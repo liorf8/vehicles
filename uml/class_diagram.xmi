@@ -1,210 +1,228 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI xmlns:UML="http://schema.omg.org/spec/UML/1.3" verified="false" timestamp="2009-03-03T23:30:28" xmi.version="1.2" >
+<XMI verified="false" xmi.version="1.2" timestamp="2009-03-04T00:22:42" xmlns:UML="http://schema.omg.org/spec/UML/1.3" >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://uml.sf.net</XMI.exporter>
    <XMI.exporterVersion>1.5.8</XMI.exporterVersion>
    <XMI.exporterEncoding>UnicodeUTF8</XMI.exporterEncoding>
   </XMI.documentation>
-  <XMI.metamodel xmi.name="UML" href="UML.xml" xmi.version="1.3" />
+  <XMI.metamodel xmi.version="1.3" href="UML.xml" xmi.name="UML" />
  </XMI.header>
  <XMI.content>
-  <UML:Model isSpecification="false" isLeaf="false" isRoot="false" xmi.id="m1" isAbstract="false" name="UML Model" >
+  <UML:Model isSpecification="false" isAbstract="false" isLeaf="false" xmi.id="m1" isRoot="false" name="UML Model" >
    <UML:Namespace.ownedElement>
-    <UML:Stereotype isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="folder" isRoot="false" isAbstract="false" name="folder" />
-    <UML:Stereotype isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="datatype" isRoot="false" isAbstract="false" name="datatype" />
-    <UML:Model stereotype="folder" isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="Logical View" isRoot="false" isAbstract="false" name="Logical View" >
+    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="folder" name="folder" />
+    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="datatype" name="datatype" />
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Logical View" name="Logical View" >
      <UML:Namespace.ownedElement>
-      <UML:Package stereotype="folder" isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="Datatypes" isRoot="false" isAbstract="false" name="Datatypes" >
+      <UML:Package stereotype="folder" visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Datatypes" name="Datatypes" >
        <UML:Namespace.ownedElement>
-        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="F2bV6lxO76A3" isRoot="false" isAbstract="false" name="int" />
-        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="4PoaxVS3I1YQ" isRoot="false" isAbstract="false" name="char" />
-        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="sHVIC3iS6HxA" isRoot="false" isAbstract="false" name="bool" />
-        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="3tWAxhD26zc3" isRoot="false" isAbstract="false" name="float" />
-        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="V24l1cAtrfC4" isRoot="false" isAbstract="false" name="double" />
-        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="gsWkARtDIPLG" isRoot="false" isAbstract="false" name="short" />
-        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="6XGCWqEzsGjt" isRoot="false" isAbstract="false" name="long" />
-        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="ttkkYumCnIxx" isRoot="false" isAbstract="false" name="unsigned int" />
-        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="iq80FREKyUUT" isRoot="false" isAbstract="false" name="unsigned short" />
-        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="KiSAxB1q2mYY" isRoot="false" isAbstract="false" name="unsigned long" />
-        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="gJlTbiOHWWGj" isRoot="false" isAbstract="false" name="string" />
-        <UML:DataType stereotype="datatype" isSpecification="false" isLeaf="false" visibility="public" namespace="Datatypes" xmi.id="rsvvl64RkSG8" isRoot="false" isAbstract="false" name="gridElement []" elementReference="bTr5dU6Vd2Hd" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="RLEHv10voHj2" name="int" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="2p3yUbT0DtEo" name="char" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="y6IlOn7OneQp" name="boolean" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="mgdVnCuUtWFS" name="float" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="VmU8Tv380gt9" name="double" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Aa4s1XDXa9wV" name="byte" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="rbqM8kNwa1UO" name="short" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="4bQqfhgJ47eo" name="long" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="GEVwS9ugwpgX" name="String" />
        </UML:Namespace.ownedElement>
       </UML:Package>
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="U3uzYNHEoS9x" isRoot="false" isAbstract="false" name="Vehicle" />
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="Tz0FWYwnJNMz" isRoot="false" isAbstract="false" name="Environment" >
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="U3uzYNHEoS9x" name="Vehicle" />
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Tz0FWYwnJNMz" name="Environment" />
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="meTIuDEOE7Lk" name="Simulation" />
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="SdxE56CY4AmY" name="Battery" />
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="iiL03hxpLP6D" name="Memory_Unit" />
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="aIaoPvXqYU4b" name="Sensor" />
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="aE8eOuA5aV3d" name="Wheel" />
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="DyRWNXixpIkD" name="Organic_Source" >
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="uKqbJ3pLVNBv" />
+       </UML:GeneralizableElement.generalization>
+      </UML:Class>
+      <UML:Class visibility="implementation" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="DH3kl7JJMRwi" name="Light_Source" >
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="3VDAyVfE3osQ" />
+        <UML:Generalization xmi.idref="212GWYyeLffm" />
+       </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
-        <UML:Attribute isSpecification="false" visibility="private" xmi.id="geOoQPbEK6Od" type="rsvvl64RkSG8" name="grid" />
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="lSAcXm6bHicW" isRoot="false" isAbstract="false" isQuery="false" name="Add_Element_At" >
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="LCGIYfh1FIZI" type="8MyaeBSHtj87" initialValue="0" name="intensity" />
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="Q9dGygPUa9R4" type="8MyaeBSHtj87" initialValue="0" name="range_of_light" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="aWtjEdbZqpqM" name="modifyLightSource" >
          <UML:BehavioralFeature.parameter>
-          <UML:Parameter kind="return" xmi.id="" type="sHVIC3iS6HxA" />
-          <UML:Parameter isSpecification="false" visibility="private" xmi.id="JTPCNAIRZ0sp" value="" type="tL3xIj7zAVcd" name="element" />
-          <UML:Parameter isSpecification="false" visibility="private" xmi.id="7fcSpW9bwHBU" value="" type="V24l1cAtrfC4" name="x_pos" />
-          <UML:Parameter isSpecification="false" visibility="private" xmi.id="3G3IyfpH7CTU" value="" type="V24l1cAtrfC4" name="y_pos" />
-         </UML:BehavioralFeature.parameter>
-        </UML:Operation>
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="guvmlGarKaBJ" isRoot="false" isAbstract="false" isQuery="false" name="get_Element_At" >
-         <UML:BehavioralFeature.parameter>
-          <UML:Parameter kind="return" xmi.id="HyYbYhs7h7Io" type="tL3xIj7zAVcd" />
-          <UML:Parameter isSpecification="false" visibility="private" xmi.id="a2HB8UEgnLIi" value="" type="V24l1cAtrfC4" name="x_pos" />
-          <UML:Parameter isSpecification="false" visibility="private" xmi.id="67s5y29ew2Oh" value="" type="tL3xIj7zAVcd" name="y_pos" />
-         </UML:BehavioralFeature.parameter>
-        </UML:Operation>
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="5upxznx6Rt7q" isRoot="false" isAbstract="false" isQuery="false" name="set_Name" >
-         <UML:BehavioralFeature.parameter>
-          <UML:Parameter isSpecification="false" visibility="private" xmi.id="YOo5xLmqSUxi" value="" type="gJlTbiOHWWGj" name="name" />
-         </UML:BehavioralFeature.parameter>
-        </UML:Operation>
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="IXAktxTwrIro" isRoot="false" isAbstract="false" isQuery="false" name="Environment" >
-         <UML:BehavioralFeature.parameter>
-          <UML:Parameter comment="Number of x squares the environment will have" isSpecification="false" visibility="private" xmi.id="6mtVfyLCM8HH" value="" type="F2bV6lxO76A3" name="x_size" />
-          <UML:Parameter comment="Number of y squares the environment will have" isSpecification="false" visibility="private" xmi.id="T37tV3ZnYjWP" value="" type="F2bV6lxO76A3" name="y_size" />
-          <UML:Parameter isSpecification="false" visibility="private" xmi.id="ezMUHBILy9rb" value="" type="gJlTbiOHWWGj" name="name" />
-         </UML:BehavioralFeature.parameter>
-        </UML:Operation>
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="pTq9x7IDRGNG" isRoot="false" isAbstract="false" isQuery="false" name="save_Environment" >
-         <UML:BehavioralFeature.parameter>
-          <UML:Parameter kind="return" xmi.id="TrWu5r8vKYXC" type="sHVIC3iS6HxA" />
-          <UML:Parameter comment="File is a java.File" isSpecification="false" visibility="private" xmi.id="LF4getXRMNYJ" value="" type="qSQduhgbOmPx" name="File_To_Save_To" />
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="VXNkpu0D1bRx" type="8MyaeBSHtj87" value="" name="range" />
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="IqSs0tvYPoFd" type="8MyaeBSHtj87" value="" name="intensity" />
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="d1b8YwrLprWq" type="8MyaeBSHtj87" value="" name="name" />
          </UML:BehavioralFeature.parameter>
         </UML:Operation>
        </UML:Classifier.feature>
       </UML:Class>
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="meTIuDEOE7Lk" isRoot="false" isAbstract="false" name="Simulation" />
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="SdxE56CY4AmY" isRoot="false" isAbstract="false" name="Battery" />
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="iiL03hxpLP6D" isRoot="false" isAbstract="false" name="Memory_Unit" />
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="aIaoPvXqYU4b" isRoot="false" isAbstract="false" name="Sensor" />
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="aE8eOuA5aV3d" isRoot="false" isAbstract="false" name="Wheel" />
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="DyRWNXixpIkD" isRoot="false" isAbstract="false" name="Organic_Source" />
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="J6nrcqTnpuHA" isRoot="false" isAbstract="false" name="Motor" />
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="Pz8CFsPT9QBs" isRoot="false" isAbstract="false" name="Heat_Source" />
-      <UML:Class isSpecification="false" isLeaf="false" visibility="implementation" namespace="Logical View" xmi.id="16LSDld5H6G7" isRoot="false" isAbstract="false" name="Water_Source" >
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="J6nrcqTnpuHA" name="Motor" />
+      <UML:Class visibility="implementation" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Pz8CFsPT9QBs" name="Heat_Source" >
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="FhHIOSkaorox" />
+       </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
-        <UML:Attribute isSpecification="false" visibility="private" xmi.id="mG3AJnYh05wY" initialValue="0" type="V24l1cAtrfC4" name="depth" />
-        <UML:Attribute isSpecification="false" visibility="private" xmi.id="YIHsK3Oyet0G" initialValue="0" type="V24l1cAtrfC4" name="width" />
-        <UML:Attribute isSpecification="false" visibility="private" xmi.id="tE3rxV1jj4r2" initialValue="0" type="V24l1cAtrfC4" name="length" />
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="pPknSeM1wdrE" isRoot="false" isAbstract="false" isQuery="false" name="modifyWaterSource" >
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="kzux5x23D7GI" type="8MyaeBSHtj87" initialValue="0" name="intensity" />
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="Hvlq2QPWyhxv" type="8MyaeBSHtj87" initialValue="0" name="range" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="td1CouF3n0tp" name="modifyHeatSource" >
          <UML:BehavioralFeature.parameter>
-          <UML:Parameter isSpecification="false" visibility="private" xmi.id="fFAJ6AYzMZoJ" value="" type="V24l1cAtrfC4" name="width" />
-          <UML:Parameter isSpecification="false" visibility="private" xmi.id="4q0lssniFVVi" value="" type="V24l1cAtrfC4" name="length" />
-          <UML:Parameter isSpecification="false" visibility="private" xmi.id="9pj3RaF6nPNu" value="" type="V24l1cAtrfC4" name="depth" />
-          <UML:Parameter isSpecification="false" visibility="private" xmi.id="YtruSgCUUCFM" value="" type="gJlTbiOHWWGj" name="name" />
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="GLMxJIWcv2qW" type="8MyaeBSHtj87" value="" name="range" />
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="c07EMp5zoIni" type="8MyaeBSHtj87" value="" name="intensity" />
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="XpWWiJuxfHsw" type="8MyaeBSHtj87" value="" name="name" />
          </UML:BehavioralFeature.parameter>
         </UML:Operation>
        </UML:Classifier.feature>
       </UML:Class>
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="8M8ct4yhChRO" isRoot="false" isAbstract="false" name="Environment_Terrain" >
-       <UML:Namespace.ownedElement>
-        <UML:Class isSpecification="false" isLeaf="false" visibility="implementation" namespace="8M8ct4yhChRO" xmi.id="DH3kl7JJMRwi" isRoot="false" isAbstract="false" name="Light_Source" >
-         <UML:GeneralizableElement.generalization>
-          <UML:Generalization xmi.idref="3VDAyVfE3osQ" />
-          <UML:Generalization xmi.idref="212GWYyeLffm" />
-         </UML:GeneralizableElement.generalization>
-         <UML:Classifier.feature>
-          <UML:Attribute isSpecification="false" visibility="private" xmi.id="LCGIYfh1FIZI" initialValue="0" type="V24l1cAtrfC4" name="intensity" />
-          <UML:Attribute isSpecification="false" visibility="private" xmi.id="Q9dGygPUa9R4" initialValue="0" type="V24l1cAtrfC4" name="range_of_light" />
-          <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="aWtjEdbZqpqM" isRoot="false" isAbstract="false" isQuery="false" name="modifyLightSource" >
-           <UML:BehavioralFeature.parameter>
-            <UML:Parameter isSpecification="false" visibility="private" xmi.id="VXNkpu0D1bRx" value="" type="V24l1cAtrfC4" name="range" />
-            <UML:Parameter isSpecification="false" visibility="private" xmi.id="IqSs0tvYPoFd" value="" type="gsWkARtDIPLG" name="intensity" />
-            <UML:Parameter isSpecification="false" visibility="private" xmi.id="d1b8YwrLprWq" value="" type="gJlTbiOHWWGj" name="name" />
-           </UML:BehavioralFeature.parameter>
-          </UML:Operation>
-         </UML:Classifier.feature>
-        </UML:Class>
-       </UML:Namespace.ownedElement>
+      <UML:Class visibility="implementation" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="16LSDld5H6G7" name="Water_Source" >
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="t43lVatng1FG" />
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="mG3AJnYh05wY" type="8MyaeBSHtj87" initialValue="0" name="depth" />
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="YIHsK3Oyet0G" type="8MyaeBSHtj87" initialValue="0" name="width" />
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="tE3rxV1jj4r2" type="8MyaeBSHtj87" initialValue="0" name="length" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="pPknSeM1wdrE" name="modifyWaterSource" >
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="fFAJ6AYzMZoJ" type="8MyaeBSHtj87" value="" name="width" />
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="4q0lssniFVVi" type="8MyaeBSHtj87" value="" name="length" />
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="9pj3RaF6nPNu" type="8MyaeBSHtj87" value="" name="depth" />
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="YtruSgCUUCFM" type="8MyaeBSHtj87" value="" name="name" />
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
       </UML:Class>
-      <UML:Package isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="0vfjXi1by8XI" isRoot="false" isAbstract="false" name="new_package" >
-       <UML:Namespace.ownedElement/>
-      </UML:Package>
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="tL3xIj7zAVcd" isRoot="false" isAbstract="true" name="Environment_Element" >
+      <UML:Class visibility="implementation" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="8M8ct4yhChRO" name="Environment_Terrain" >
+       <UML:GeneralizableElement.generalization>
+        <UML:Generalization xmi.idref="0a28fbwp5hDS" />
+       </UML:GeneralizableElement.generalization>
+       <UML:Classifier.feature>
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="iyf5vxGunkKY" type="8MyaeBSHtj87" name="terrain_type" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="qrjA4wwE8Un8" name="modifyTerrain" >
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="7ZpCUlQOW8g4" type="8MyaeBSHtj87" value="" name="name" />
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="spY6fNpnQkje" type="8MyaeBSHtj87" value="" name="terrain_type" />
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="true" isLeaf="false" isRoot="false" xmi.id="tL3xIj7zAVcd" name="Environment_Element" >
        <UML:GeneralizableElement.generalization>
         <UML:Generalization xmi.idref="TyojoGZm7UKX" />
        </UML:GeneralizableElement.generalization>
        <UML:Classifier.feature>
-        <UML:Attribute isSpecification="false" visibility="private" xmi.id="r5BYwkxUS4o9" type="gJlTbiOHWWGj" name="name" />
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="4T99C5UX3IjH" isRoot="false" isAbstract="false" isQuery="false" name="getName" />
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="r5BYwkxUS4o9" type="8MyaeBSHtj87" name="name" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="4T99C5UX3IjH" name="getName" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="fZUL5JrZzBTu" name="saveElement" >
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="dcV0ehhUyP7W" type="8MyaeBSHtj87" value="" name="path and name to save to" />
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="I88RZ2FInxXv" name="loadElement" >
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="EFTrqwpUdWwZ" type="8MyaeBSHtj87" value="" name="path and name to load from" />
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
        </UML:Classifier.feature>
       </UML:Class>
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="ILbER8XEkNwT" isRoot="false" isAbstract="false" name="Vehicle_Component" />
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="pZk7Ip4RIh2D" isRoot="false" isAbstract="false" name="Vehicle_Data_File" />
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="HXndZ3wAIOGp" isRoot="false" isAbstract="false" name="Environment_Data_File" />
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="azAWSgKFE2KU" isRoot="false" isAbstract="false" name="Vehicle_Component_Data_File" />
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="sPv86yKNV5z3" isRoot="false" isAbstract="false" name="simulation" >
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ILbER8XEkNwT" name="Vehicle_Component" />
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="pZk7Ip4RIh2D" name="Vehicle_Data_File" />
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="HXndZ3wAIOGp" name="Environment_Data_File" />
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="azAWSgKFE2KU" name="Vehicle_Component_Data_File" />
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="sPv86yKNV5z3" name="simulation" >
        <UML:Classifier.feature>
-        <UML:Attribute isSpecification="false" visibility="private" xmi.id="lmpf3HBILDYs" initialValue="false" type="sHVIC3iS6HxA" name="isRunning" />
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="1i5FkPjamdjs" isRoot="false" isAbstract="false" isQuery="false" name="Run_Simulation" />
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="G28D3F8FgQfs" isRoot="false" isAbstract="false" isQuery="false" name="Stop_Simulation" />
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="H4FfrGNwT6KA" isRoot="false" isAbstract="false" isQuery="false" name="Resume_Simulation" />
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="g6lNxKOBLVOO" isRoot="false" isAbstract="false" isQuery="false" name="Pause_Simulation" />
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="UdPsIHAKUnCi" isRoot="false" isAbstract="false" isQuery="false" name="Exit_Simulation" />
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="96BFOKtT5HQO" isRoot="false" isAbstract="false" isQuery="false" name="Export_Simulation_Data" >
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="lmpf3HBILDYs" type="8MyaeBSHtj87" initialValue="false" name="isRunning" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="1i5FkPjamdjs" name="Run_Simulation" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="G28D3F8FgQfs" name="Stop_Simulation" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="H4FfrGNwT6KA" name="Resume_Simulation" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="g6lNxKOBLVOO" name="Pause_Simulation" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="UdPsIHAKUnCi" name="Exit_Simulation" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="96BFOKtT5HQO" name="Export_Simulation_Data" >
          <UML:BehavioralFeature.parameter>
-          <UML:Parameter isSpecification="false" visibility="private" xmi.id="YsztCTBgqsrT" value="" type="gJlTbiOHWWGj" name="File_To_Export_To" />
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="YsztCTBgqsrT" type="8MyaeBSHtj87" value="" name="File_To_Export_To" />
          </UML:BehavioralFeature.parameter>
         </UML:Operation>
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="fbjAx7tRjIK1" isRoot="false" isAbstract="false" isQuery="false" name="Save_Simulation" />
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="XSK2DUiMYuZv" isRoot="false" isAbstract="false" isQuery="false" name="Load_Simulation" />
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="CTOHimfLNMUI" isRoot="false" isAbstract="false" isQuery="false" name="Simulation" >
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="fbjAx7tRjIK1" name="Save_Simulation" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="XSK2DUiMYuZv" name="Load_Simulation" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="CTOHimfLNMUI" name="Simulation" >
          <UML:BehavioralFeature.parameter>
-          <UML:Parameter isSpecification="false" visibility="private" xmi.id="UNjDf1CCRUCf" value="" type="gJlTbiOHWWGj" name="Simulation_File" />
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="UNjDf1CCRUCf" type="8MyaeBSHtj87" value="" name="Simulation_File" />
          </UML:BehavioralFeature.parameter>
         </UML:Operation>
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="DefHfu21urr4" isRoot="false" isAbstract="false" isQuery="false" name="createSimulation" />
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="QwbNNTAG6lyL" isRoot="false" isAbstract="false" isQuery="false" name="deleteSimulation" />
-        <UML:Operation isSpecification="false" isLeaf="false" visibility="public" xmi.id="LxoDGUcS6Gjl" isRoot="false" isAbstract="false" isQuery="false" name="modifySimulation" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="DefHfu21urr4" name="createSimulation" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="QwbNNTAG6lyL" name="deleteSimulation" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="LxoDGUcS6Gjl" name="modifySimulation" />
        </UML:Classifier.feature>
       </UML:Class>
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="xTsoudbiHczS" isRoot="false" isAbstract="false" name="Simulation_Data_File" />
-      <UML:Generalization isSpecification="false" child="tL3xIj7zAVcd" visibility="public" namespace="Logical View" xmi.id="TyojoGZm7UKX" parent="DH3kl7JJMRwi" discriminator="" name="" />
-      <UML:Generalization isSpecification="false" child="DH3kl7JJMRwi" visibility="public" namespace="Logical View" xmi.id="3VDAyVfE3osQ" parent="tL3xIj7zAVcd" discriminator="" name="" />
-      <UML:Generalization isSpecification="false" child="DH3kl7JJMRwi" visibility="public" namespace="Logical View" xmi.id="212GWYyeLffm" parent="sPv86yKNV5z3" discriminator="" name="" />
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="bTr5dU6Vd2Hd" isRoot="false" isAbstract="false" name="gridElement" />
-      <UML:Class isSpecification="false" isLeaf="false" visibility="public" namespace="Logical View" xmi.id="qSQduhgbOmPx" isRoot="false" isAbstract="false" name="File" />
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="xTsoudbiHczS" name="Simulation_Data_File" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="tL3xIj7zAVcd" xmi.id="TyojoGZm7UKX" parent="DH3kl7JJMRwi" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="DH3kl7JJMRwi" xmi.id="3VDAyVfE3osQ" parent="tL3xIj7zAVcd" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="DH3kl7JJMRwi" xmi.id="212GWYyeLffm" parent="sPv86yKNV5z3" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="16LSDld5H6G7" xmi.id="t43lVatng1FG" parent="sPv86yKNV5z3" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="DyRWNXixpIkD" xmi.id="uKqbJ3pLVNBv" parent="sPv86yKNV5z3" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="8M8ct4yhChRO" xmi.id="0a28fbwp5hDS" parent="sPv86yKNV5z3" name="" />
+      <UML:Generalization discriminator="" visibility="public" isSpecification="false" namespace="Logical View" child="Pz8CFsPT9QBs" xmi.id="FhHIOSkaorox" parent="sPv86yKNV5z3" name="" />
      </UML:Namespace.ownedElement>
      <XMI.extension xmi.extender="umbrello" >
       <diagrams>
-       <diagram snapgrid="0" showattsig="1" fillcolor="#ffff00" linewidth="0" zoom="100" showgrid="0" showopsig="1" usefillcolor="1" snapx="10" canvaswidth="1378" snapy="10" showatts="1" xmi.id="Xahs5nbXAtj6" documentation="" type="1" showops="1" showpackage="1" name="class diagram" localid="" showstereotype="1" showscope="1" snapcsgrid="0" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="#ff0000" canvasheight="774" >
+       <diagram showopsig="1" linecolor="#ff0000" snapx="10" showattribassocs="1" snapy="10" linewidth="0" showattsig="1" showpackage="1" showstereotype="1" name="class diagram" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" canvasheight="1194" canvaswidth="2044" localid="" snapcsgrid="0" showgrid="0" showops="1" usefillcolor="1" fillcolor="#ffff00" zoom="81" xmi.id="Xahs5nbXAtj6" documentation="" showscope="1" snapgrid="0" showatts="1" type="1" >
         <widgets>
-         <classwidget usesdiagramfillcolor="1" width="68" showattsigs="601" x="769" fillcolor="none" y="46" showopsigs="601" linewidth="none" height="37" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="U3uzYNHEoS9x" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
-         <classwidget usesdiagramfillcolor="1" width="686" showattsigs="601" x="688" fillcolor="none" y="502" showopsigs="601" linewidth="none" height="133" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="Tz0FWYwnJNMz" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
-         <classwidget usesdiagramfillcolor="1" width="72" showattsigs="601" x="815" fillcolor="none" y="199" showopsigs="601" linewidth="none" height="37" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="SdxE56CY4AmY" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
-         <classwidget usesdiagramfillcolor="1" width="118" showattsigs="601" x="583" fillcolor="none" y="202" showopsigs="601" linewidth="none" height="37" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="iiL03hxpLP6D" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
-         <classwidget usesdiagramfillcolor="1" width="67" showattsigs="601" x="727" fillcolor="none" y="200" showopsigs="601" linewidth="none" height="37" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="aIaoPvXqYU4b" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
-         <classwidget usesdiagramfillcolor="1" width="61" showattsigs="601" x="910" fillcolor="none" y="199" showopsigs="601" linewidth="none" height="37" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="aE8eOuA5aV3d" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
-         <classwidget usesdiagramfillcolor="1" width="138" showattsigs="601" x="218" fillcolor="none" y="677" showopsigs="601" linewidth="none" height="37" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="DyRWNXixpIkD" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
-         <classwidget usesdiagramfillcolor="0" width="528" showattsigs="601" x="14" fillcolor="#ffff00" y="405" showopsigs="601" linewidth="none" height="76" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="DH3kl7JJMRwi" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="0" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="#ff0000" />
-         <classwidget usesdiagramfillcolor="1" width="58" showattsigs="601" x="995" fillcolor="none" y="199" showopsigs="601" linewidth="none" height="37" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="J6nrcqTnpuHA" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
-         <classwidget usesdiagramfillcolor="1" width="114" showattsigs="601" x="30" fillcolor="none" y="657" showopsigs="601" linewidth="none" height="37" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="Pz8CFsPT9QBs" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
-         <classwidget usesdiagramfillcolor="0" width="628" showattsigs="601" x="14" fillcolor="#ffff00" y="512" showopsigs="601" linewidth="none" height="95" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="16LSDld5H6G7" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="0" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="#ff0000" />
-         <classwidget usesdiagramfillcolor="1" width="177" showattsigs="601" x="386" fillcolor="none" y="665" showopsigs="601" linewidth="none" height="37" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="8M8ct4yhChRO" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
-         <classwidget usesdiagramfillcolor="0" width="196" showattsigs="601" x="31" fillcolor="#ffff00" y="292" drawascircle="0" showopsigs="601" linewidth="none" height="57" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="tL3xIj7zAVcd" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="0" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="#ff0000" />
-         <classwidget usesdiagramfillcolor="1" width="170" showattsigs="601" x="700" fillcolor="none" y="122" showopsigs="601" linewidth="none" height="37" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="ILbER8XEkNwT" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
-         <classwidget usesdiagramfillcolor="1" width="309" showattsigs="601" x="421" fillcolor="none" y="38" showopsigs="601" linewidth="none" height="37" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="pZk7Ip4RIh2D" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
-         <classwidget usesdiagramfillcolor="1" width="322" showattsigs="601" x="637" fillcolor="none" y="293" showopsigs="601" linewidth="none" height="37" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="HXndZ3wAIOGp" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
-         <classwidget usesdiagramfillcolor="1" width="253" showattsigs="601" x="566" fillcolor="none" y="351" showopsigs="601" linewidth="none" height="37" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="azAWSgKFE2KU" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
-         <classwidget usesdiagramfillcolor="0" width="398" showattsigs="601" x="15" fillcolor="#ffff00" y="16" showopsigs="601" linewidth="none" height="266" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="sPv86yKNV5z3" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="0" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="#ff0000" />
-         <classwidget usesdiagramfillcolor="1" width="179" showattsigs="601" x="610" fillcolor="none" y="424" showopsigs="601" linewidth="none" height="37" usefillcolor="1" showpubliconly="0" showattributes="1" isinstance="0" xmi.id="xTsoudbiHczS" showoperations="1" showpackage="1" showscope="1" showstereotype="1" usesdiagramusefillcolor="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" linecolor="none" />
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="769" showattsigs="601" showstereotype="1" y="46" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="68" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="U3uzYNHEoS9x" showscope="1" height="37" showopsigs="601" />
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="856" showattsigs="601" showstereotype="1" y="332" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="113" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="Tz0FWYwnJNMz" showscope="1" height="37" showopsigs="601" />
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="815" showattsigs="601" showstereotype="1" y="199" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="72" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="SdxE56CY4AmY" showscope="1" height="37" showopsigs="601" />
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="583" showattsigs="601" showstereotype="1" y="202" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="118" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="iiL03hxpLP6D" showscope="1" height="37" showopsigs="601" />
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="727" showattsigs="601" showstereotype="1" y="200" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="67" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="aIaoPvXqYU4b" showscope="1" height="37" showopsigs="601" />
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="910" showattsigs="601" showstereotype="1" y="199" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="61" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="aE8eOuA5aV3d" showscope="1" height="37" showopsigs="601" />
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="461" showattsigs="601" showstereotype="1" y="98" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="138" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="DyRWNXixpIkD" showscope="1" height="37" showopsigs="601" />
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="14" showattsigs="601" showstereotype="1" y="405" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="512" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="DH3kl7JJMRwi" showscope="1" height="76" showopsigs="601" />
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="995" showattsigs="601" showstereotype="1" y="199" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="58" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="J6nrcqTnpuHA" showscope="1" height="37" showopsigs="601" />
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="30" showattsigs="601" showstereotype="1" y="639" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="522" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="Pz8CFsPT9QBs" showscope="1" height="76" showopsigs="601" />
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="14" showattsigs="601" showstereotype="1" y="512" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="628" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="16LSDld5H6G7" showscope="1" height="95" showopsigs="601" />
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="659" showattsigs="601" showstereotype="1" y="631" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="366" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="8M8ct4yhChRO" showscope="1" height="57" showopsigs="601" />
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="31" showattsigs="601" showstereotype="1" y="292" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" drawascircle="0" width="393" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="tL3xIj7zAVcd" showscope="1" height="95" showopsigs="601" />
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="700" showattsigs="601" showstereotype="1" y="122" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="170" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="ILbER8XEkNwT" showscope="1" height="37" showopsigs="601" />
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="421" showattsigs="601" showstereotype="1" y="38" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="309" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="pZk7Ip4RIh2D" showscope="1" height="37" showopsigs="601" />
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="637" showattsigs="601" showstereotype="1" y="293" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="196" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="HXndZ3wAIOGp" showscope="1" height="37" showopsigs="601" />
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="566" showattsigs="601" showstereotype="1" y="351" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="253" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="azAWSgKFE2KU" showscope="1" height="37" showopsigs="601" />
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="11" showattsigs="601" showstereotype="1" y="16" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="398" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="sPv86yKNV5z3" showscope="1" height="266" showopsigs="601" />
+         <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="609" showattsigs="601" showstereotype="1" y="425" showattributes="1" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" width="179" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="xTsoudbiHczS" showscope="1" height="37" showopsigs="601" />
         </widgets>
         <messages/>
         <associations>
-         <assocwidget totalcounta="3" indexa="1" totalcountb="2" indexb="1" linewidth="none" widgetbid="tL3xIj7zAVcd" widgetaid="DH3kl7JJMRwi" xmi.id="3VDAyVfE3osQ" type="500" linecolor="none" >
+         <assocwidget indexa="1" indexb="1" widgetaid="DH3kl7JJMRwi" linecolor="none" totalcounta="3" xmi.id="3VDAyVfE3osQ" widgetbid="tL3xIj7zAVcd" totalcountb="2" type="500" linewidth="none" >
           <linepath>
-           <startpoint startx="190" starty="405" />
-           <endpoint endx="129" endy="349" />
+           <startpoint startx="31" starty="405" />
+           <endpoint endx="31" endy="387" />
           </linepath>
          </assocwidget>
-         <assocwidget totalcounta="3" indexa="2" totalcountb="2" indexb="1" linewidth="none" widgetbid="sPv86yKNV5z3" widgetaid="DH3kl7JJMRwi" xmi.id="212GWYyeLffm" type="500" linecolor="none" >
+         <assocwidget indexa="2" indexb="3" widgetaid="DH3kl7JJMRwi" linecolor="none" totalcounta="3" xmi.id="212GWYyeLffm" widgetbid="sPv86yKNV5z3" totalcountb="5" type="500" linewidth="none" >
           <linepath>
-           <startpoint startx="366" starty="405" />
-           <endpoint endx="214" endy="282" />
-           <point x="295" y="352" />
+           <startpoint startx="310" starty="405" />
+           <endpoint endx="310" endy="282" />
           </linepath>
          </assocwidget>
-         <assocwidget totalcounta="2" indexa="1" visibilityB="200" totalcountb="2" indexb="1" linewidth="none" widgetbid="DH3kl7JJMRwi" widgetaid="8M8ct4yhChRO" roleBdoc="" documentation="" roleAdoc="" type="509" changeabilityA="900" changeabilityB="900" linecolor="none" visibilityA="200" >
+         <assocwidget indexa="1" indexb="1" widgetaid="16LSDld5H6G7" linecolor="none" totalcounta="2" xmi.id="t43lVatng1FG" widgetbid="sPv86yKNV5z3" totalcountb="5" type="500" linewidth="none" >
           <linepath>
-           <startpoint startx="474" starty="665" />
-           <endpoint endx="278" endy="481" />
+           <startpoint startx="23" starty="512" />
+           <endpoint endx="23" endy="282" />
+          </linepath>
+         </assocwidget>
+         <assocwidget indexa="1" indexb="1" widgetaid="DyRWNXixpIkD" linecolor="none" totalcounta="2" xmi.id="uKqbJ3pLVNBv" widgetbid="sPv86yKNV5z3" totalcountb="2" type="500" linewidth="none" >
+          <linepath>
+           <startpoint startx="461" starty="135" />
+           <endpoint endx="409" endy="135" />
+          </linepath>
+         </assocwidget>
+         <assocwidget indexa="1" indexb="4" widgetaid="8M8ct4yhChRO" linecolor="none" totalcounta="2" xmi.id="0a28fbwp5hDS" widgetbid="sPv86yKNV5z3" totalcountb="5" type="500" linewidth="none" >
+          <linepath>
+           <startpoint startx="659" starty="631" />
+           <endpoint endx="409" endy="282" />
+          </linepath>
+         </assocwidget>
+         <assocwidget indexa="1" indexb="2" widgetaid="Pz8CFsPT9QBs" linecolor="none" totalcounta="2" xmi.id="FhHIOSkaorox" widgetbid="sPv86yKNV5z3" totalcountb="5" type="500" linewidth="none" >
+          <linepath>
+           <startpoint startx="30" starty="639" />
+           <endpoint endx="30" endy="282" />
           </linepath>
          </assocwidget>
         </associations>
@@ -212,50 +230,50 @@
       </diagrams>
      </XMI.extension>
     </UML:Model>
-    <UML:Model stereotype="folder" isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="Use Case View" isRoot="false" isAbstract="false" name="Use Case View" >
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Use Case View" name="Use Case View" >
      <UML:Namespace.ownedElement/>
     </UML:Model>
-    <UML:Model stereotype="folder" isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="Component View" isRoot="false" isAbstract="false" name="Component View" >
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Component View" name="Component View" >
      <UML:Namespace.ownedElement/>
     </UML:Model>
-    <UML:Model stereotype="folder" isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="Deployment View" isRoot="false" isAbstract="false" name="Deployment View" >
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Deployment View" name="Deployment View" >
      <UML:Namespace.ownedElement/>
     </UML:Model>
-    <UML:Model stereotype="folder" isSpecification="false" isLeaf="false" visibility="public" namespace="m1" xmi.id="Entity Relationship Model" isRoot="false" isAbstract="false" name="Entity Relationship Model" >
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Entity Relationship Model" name="Entity Relationship Model" >
      <UML:Namespace.ownedElement/>
     </UML:Model>
    </UML:Namespace.ownedElement>
   </UML:Model>
  </XMI.content>
  <XMI.extensions xmi.extender="umbrello" >
-  <docsettings viewid="Xahs5nbXAtj6" documentation="" uniqueid="TrWu5r8vKYXC" />
+  <docsettings viewid="Xahs5nbXAtj6" uniqueid="8MyaeBSHtj87" documentation="" />
   <listview>
    <listitem open="1" type="800" label="Views" >
     <listitem open="1" type="801" id="Logical View" >
      <listitem open="0" type="807" id="Xahs5nbXAtj6" label="class diagram" />
      <listitem open="1" type="813" id="SdxE56CY4AmY" />
-     <listitem open="1" type="813" id="Tz0FWYwnJNMz" >
-      <listitem open="0" type="814" id="geOoQPbEK6Od" />
-      <listitem open="0" type="815" id="lSAcXm6bHicW" />
-      <listitem open="0" type="815" id="guvmlGarKaBJ" />
-      <listitem open="0" type="815" id="5upxznx6Rt7q" />
-      <listitem open="0" type="815" id="IXAktxTwrIro" />
-      <listitem open="0" type="815" id="pTq9x7IDRGNG" />
-     </listitem>
+     <listitem open="1" type="813" id="Tz0FWYwnJNMz" />
      <listitem open="1" type="813" id="HXndZ3wAIOGp" />
-     <listitem open="1" type="813" id="tL3xIj7zAVcd" >
+     <listitem open="0" type="813" id="tL3xIj7zAVcd" >
       <listitem open="0" type="814" id="r5BYwkxUS4o9" />
       <listitem open="0" type="815" id="4T99C5UX3IjH" />
+      <listitem open="0" type="815" id="fZUL5JrZzBTu" />
+      <listitem open="0" type="815" id="I88RZ2FInxXv" />
      </listitem>
-     <listitem open="1" type="813" id="8M8ct4yhChRO" >
-      <listitem open="0" type="813" id="DH3kl7JJMRwi" >
-       <listitem open="0" type="814" id="LCGIYfh1FIZI" />
-       <listitem open="0" type="814" id="Q9dGygPUa9R4" />
-       <listitem open="0" type="815" id="aWtjEdbZqpqM" />
-      </listitem>
+     <listitem open="0" type="813" id="8M8ct4yhChRO" >
+      <listitem open="0" type="814" id="iyf5vxGunkKY" />
+      <listitem open="0" type="815" id="qrjA4wwE8Un8" />
      </listitem>
-     <listitem open="1" type="813" id="qSQduhgbOmPx" />
-     <listitem open="1" type="813" id="Pz8CFsPT9QBs" />
+     <listitem open="0" type="813" id="Pz8CFsPT9QBs" >
+      <listitem open="0" type="814" id="kzux5x23D7GI" />
+      <listitem open="0" type="814" id="Hvlq2QPWyhxv" />
+      <listitem open="0" type="815" id="td1CouF3n0tp" />
+     </listitem>
+     <listitem open="0" type="813" id="DH3kl7JJMRwi" >
+      <listitem open="0" type="814" id="LCGIYfh1FIZI" />
+      <listitem open="0" type="814" id="Q9dGygPUa9R4" />
+      <listitem open="0" type="815" id="aWtjEdbZqpqM" />
+     </listitem>
      <listitem open="1" type="813" id="iiL03hxpLP6D" />
      <listitem open="1" type="813" id="J6nrcqTnpuHA" />
      <listitem open="1" type="813" id="DyRWNXixpIkD" />
@@ -266,15 +284,14 @@
      <listitem open="1" type="813" id="ILbER8XEkNwT" />
      <listitem open="1" type="813" id="azAWSgKFE2KU" />
      <listitem open="1" type="813" id="pZk7Ip4RIh2D" />
-     <listitem open="1" type="813" id="16LSDld5H6G7" >
+     <listitem open="0" type="813" id="16LSDld5H6G7" >
       <listitem open="0" type="814" id="mG3AJnYh05wY" />
       <listitem open="0" type="814" id="YIHsK3Oyet0G" />
       <listitem open="0" type="814" id="tE3rxV1jj4r2" />
       <listitem open="0" type="815" id="pPknSeM1wdrE" />
      </listitem>
      <listitem open="1" type="813" id="aE8eOuA5aV3d" />
-     <listitem open="1" type="813" id="bTr5dU6Vd2Hd" />
-     <listitem open="1" type="813" id="sPv86yKNV5z3" >
+     <listitem open="0" type="813" id="sPv86yKNV5z3" >
       <listitem open="0" type="814" id="lmpf3HBILDYs" />
       <listitem open="0" type="815" id="1i5FkPjamdjs" />
       <listitem open="0" type="815" id="G28D3F8FgQfs" />
@@ -289,20 +306,16 @@
       <listitem open="0" type="815" id="QwbNNTAG6lyL" />
       <listitem open="0" type="815" id="LxoDGUcS6Gjl" />
      </listitem>
-     <listitem open="1" type="818" id="0vfjXi1by8XI" />
      <listitem open="1" type="830" id="Datatypes" >
-      <listitem open="1" type="829" id="sHVIC3iS6HxA" />
-      <listitem open="1" type="829" id="4PoaxVS3I1YQ" />
-      <listitem open="1" type="829" id="V24l1cAtrfC4" />
-      <listitem open="1" type="829" id="3tWAxhD26zc3" />
-      <listitem open="1" type="829" id="rsvvl64RkSG8" />
-      <listitem open="1" type="829" id="F2bV6lxO76A3" />
-      <listitem open="1" type="829" id="6XGCWqEzsGjt" />
-      <listitem open="1" type="829" id="gsWkARtDIPLG" />
-      <listitem open="1" type="829" id="gJlTbiOHWWGj" />
-      <listitem open="1" type="829" id="ttkkYumCnIxx" />
-      <listitem open="1" type="829" id="KiSAxB1q2mYY" />
-      <listitem open="1" type="829" id="iq80FREKyUUT" />
+      <listitem open="0" type="829" id="GEVwS9ugwpgX" />
+      <listitem open="0" type="829" id="y6IlOn7OneQp" />
+      <listitem open="0" type="829" id="Aa4s1XDXa9wV" />
+      <listitem open="0" type="829" id="2p3yUbT0DtEo" />
+      <listitem open="0" type="829" id="VmU8Tv380gt9" />
+      <listitem open="0" type="829" id="mgdVnCuUtWFS" />
+      <listitem open="0" type="829" id="RLEHv10voHj2" />
+      <listitem open="0" type="829" id="4bQqfhgJ47eo" />
+      <listitem open="0" type="829" id="rbqM8kNwa1UO" />
      </listitem>
     </listitem>
     <listitem open="1" type="802" id="Use Case View" />
@@ -312,7 +325,1821 @@
    </listitem>
   </listview>
   <codegeneration>
-   <codegenerator language="C++" />
+   <codegenerator language="Java" >
+    <codedocument package="-1" fileExt=".xml" id="ANTDOC" fileName="build" writeOutCode="false" >
+     <textblocks/>
+     <header>
+      <codecomment tag="" />
+     </header>
+    </codedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="U3uzYNHEoS9x" id="U3uzYNHEoS9x" fileName="Vehicle" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" writeOutText="false" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="U3uzYNHEoS9x" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Vehicle&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Vehicle ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks/>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields/>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="Tz0FWYwnJNMz" id="Tz0FWYwnJNMz" fileName="Environment" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" writeOutText="false" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="Tz0FWYwnJNMz" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Environment&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Environment ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks/>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields/>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="meTIuDEOE7Lk" id="meTIuDEOE7Lk" fileName="Simulation" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" writeOutText="false" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="meTIuDEOE7Lk" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Simulation&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Simulation ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks/>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields/>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="SdxE56CY4AmY" id="SdxE56CY4AmY" fileName="Battery" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" writeOutText="false" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="SdxE56CY4AmY" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Battery&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Battery ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks/>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields/>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="iiL03hxpLP6D" id="iiL03hxpLP6D" fileName="Memory_Unit" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" writeOutText="false" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="iiL03hxpLP6D" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Memory_Unit&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Memory_Unit ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks/>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields/>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="aIaoPvXqYU4b" id="aIaoPvXqYU4b" fileName="Sensor" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" writeOutText="false" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="aIaoPvXqYU4b" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Sensor&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Sensor ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks/>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields/>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="aE8eOuA5aV3d" id="aE8eOuA5aV3d" fileName="Wheel" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" writeOutText="false" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="aE8eOuA5aV3d" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Wheel&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Wheel ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks/>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields/>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="DyRWNXixpIkD" id="DyRWNXixpIkD" fileName="Organic_Source" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" text="&amp;#010;import simulation;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="DyRWNXixpIkD" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Organic_Source&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Organic_Source ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks/>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields/>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="DH3kl7JJMRwi" id="DH3kl7JJMRwi" fileName="Light_Source" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" text="&amp;#010;import Environment_Element;&amp;#010;import simulation;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="DH3kl7JJMRwi" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Light_Source&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Light_Source ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks>
+            <codeoperation tag="operation_aWtjEdbZqpqM" parent_id="aWtjEdbZqpqM" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@param range &amp;#010;@param intensity &amp;#010;@param name &amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+           </textblocks>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields>
+      <codeclassfield role_id="-1" listClassName="" field_type="0" parent_id="LCGIYfh1FIZI" writeOutMethods="false" initialValue="0" >
+       <header>
+        <codecomment tag="" />
+       </header>
+       <ccfdeclarationcodeblock tag="" parent_id="LCGIYfh1FIZI" indentLevel="1" text="private undef intensity = 0;" canDelete="false" >
+        <header>
+         <codecomment tag="" indentLevel="1" />
+        </header>
+       </ccfdeclarationcodeblock>
+       <codeaccessormethod tag="" accessType="0" parent_id="LCGIYfh1FIZI" writeOutText="false" indentLevel="1" classfield_id="LCGIYfh1FIZI" text="return intensity;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Get the value of intensity&amp;#010;&amp;#010;@return the value of intensity" />
+        </header>
+       </codeaccessormethod>
+       <codeaccessormethod tag="" accessType="1" parent_id="LCGIYfh1FIZI" writeOutText="false" indentLevel="1" classfield_id="LCGIYfh1FIZI" text="intensity = value;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Set the value of intensity&amp;#010;&amp;#010;" />
+        </header>
+       </codeaccessormethod>
+      </codeclassfield>
+      <codeclassfield role_id="-1" listClassName="" field_type="0" parent_id="Q9dGygPUa9R4" writeOutMethods="false" initialValue="0" >
+       <header>
+        <codecomment tag="" />
+       </header>
+       <ccfdeclarationcodeblock tag="" parent_id="Q9dGygPUa9R4" indentLevel="1" text="private undef range_of_light = 0;" canDelete="false" >
+        <header>
+         <codecomment tag="" indentLevel="1" />
+        </header>
+       </ccfdeclarationcodeblock>
+       <codeaccessormethod tag="" accessType="0" parent_id="Q9dGygPUa9R4" writeOutText="false" indentLevel="1" classfield_id="Q9dGygPUa9R4" text="return range_of_light;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Get the value of range_of_light&amp;#010;&amp;#010;@return the value of range_of_light" />
+        </header>
+       </codeaccessormethod>
+       <codeaccessormethod tag="" accessType="1" parent_id="Q9dGygPUa9R4" writeOutText="false" indentLevel="1" classfield_id="Q9dGygPUa9R4" text="range_of_light = value;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Set the value of range_of_light&amp;#010;&amp;#010;" />
+        </header>
+       </codeaccessormethod>
+      </codeclassfield>
+     </classfields>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="J6nrcqTnpuHA" id="J6nrcqTnpuHA" fileName="Motor" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" writeOutText="false" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="J6nrcqTnpuHA" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Motor&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Motor ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks/>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields/>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="Pz8CFsPT9QBs" id="Pz8CFsPT9QBs" fileName="Heat_Source" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" text="&amp;#010;import simulation;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="Pz8CFsPT9QBs" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Heat_Source&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Heat_Source ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks>
+            <codeoperation tag="operation_td1CouF3n0tp" parent_id="td1CouF3n0tp" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@param range &amp;#010;@param intensity &amp;#010;@param name &amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+           </textblocks>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields>
+      <codeclassfield role_id="-1" listClassName="" field_type="0" parent_id="kzux5x23D7GI" writeOutMethods="false" initialValue="0" >
+       <header>
+        <codecomment tag="" />
+       </header>
+       <ccfdeclarationcodeblock tag="" parent_id="kzux5x23D7GI" indentLevel="1" text="private undef intensity = 0;" canDelete="false" >
+        <header>
+         <codecomment tag="" indentLevel="1" />
+        </header>
+       </ccfdeclarationcodeblock>
+       <codeaccessormethod tag="" accessType="0" parent_id="kzux5x23D7GI" writeOutText="false" indentLevel="1" classfield_id="kzux5x23D7GI" text="return intensity;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Get the value of intensity&amp;#010;&amp;#010;@return the value of intensity" />
+        </header>
+       </codeaccessormethod>
+       <codeaccessormethod tag="" accessType="1" parent_id="kzux5x23D7GI" writeOutText="false" indentLevel="1" classfield_id="kzux5x23D7GI" text="intensity = value;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Set the value of intensity&amp;#010;&amp;#010;" />
+        </header>
+       </codeaccessormethod>
+      </codeclassfield>
+      <codeclassfield role_id="-1" listClassName="" field_type="0" parent_id="Hvlq2QPWyhxv" writeOutMethods="false" initialValue="0" >
+       <header>
+        <codecomment tag="" />
+       </header>
+       <ccfdeclarationcodeblock tag="" parent_id="Hvlq2QPWyhxv" indentLevel="1" text="private undef range = 0;" canDelete="false" >
+        <header>
+         <codecomment tag="" indentLevel="1" />
+        </header>
+       </ccfdeclarationcodeblock>
+       <codeaccessormethod tag="" accessType="0" parent_id="Hvlq2QPWyhxv" writeOutText="false" indentLevel="1" classfield_id="Hvlq2QPWyhxv" text="return range;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Get the value of range&amp;#010;&amp;#010;@return the value of range" />
+        </header>
+       </codeaccessormethod>
+       <codeaccessormethod tag="" accessType="1" parent_id="Hvlq2QPWyhxv" writeOutText="false" indentLevel="1" classfield_id="Hvlq2QPWyhxv" text="range = value;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Set the value of range&amp;#010;&amp;#010;" />
+        </header>
+       </codeaccessormethod>
+      </codeclassfield>
+     </classfields>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="16LSDld5H6G7" id="16LSDld5H6G7" fileName="Water_Source" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" text="&amp;#010;import simulation;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="16LSDld5H6G7" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Water_Source&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Water_Source ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks>
+            <codeoperation tag="operation_pPknSeM1wdrE" parent_id="pPknSeM1wdrE" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@param width &amp;#010;@param length &amp;#010;@param depth &amp;#010;@param name &amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+           </textblocks>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields>
+      <codeclassfield role_id="-1" listClassName="" field_type="0" parent_id="mG3AJnYh05wY" writeOutMethods="false" initialValue="0" >
+       <header>
+        <codecomment tag="" />
+       </header>
+       <ccfdeclarationcodeblock tag="" parent_id="mG3AJnYh05wY" indentLevel="1" text="private undef depth = 0;" canDelete="false" >
+        <header>
+         <codecomment tag="" indentLevel="1" />
+        </header>
+       </ccfdeclarationcodeblock>
+       <codeaccessormethod tag="" accessType="0" parent_id="mG3AJnYh05wY" writeOutText="false" indentLevel="1" classfield_id="mG3AJnYh05wY" text="return depth;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Get the value of depth&amp;#010;&amp;#010;@return the value of depth" />
+        </header>
+       </codeaccessormethod>
+       <codeaccessormethod tag="" accessType="1" parent_id="mG3AJnYh05wY" writeOutText="false" indentLevel="1" classfield_id="mG3AJnYh05wY" text="depth = value;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Set the value of depth&amp;#010;&amp;#010;" />
+        </header>
+       </codeaccessormethod>
+      </codeclassfield>
+      <codeclassfield role_id="-1" listClassName="" field_type="0" parent_id="YIHsK3Oyet0G" writeOutMethods="false" initialValue="0" >
+       <header>
+        <codecomment tag="" />
+       </header>
+       <ccfdeclarationcodeblock tag="" parent_id="YIHsK3Oyet0G" indentLevel="1" text="private undef width = 0;" canDelete="false" >
+        <header>
+         <codecomment tag="" indentLevel="1" />
+        </header>
+       </ccfdeclarationcodeblock>
+       <codeaccessormethod tag="" accessType="0" parent_id="YIHsK3Oyet0G" writeOutText="false" indentLevel="1" classfield_id="YIHsK3Oyet0G" text="return width;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Get the value of width&amp;#010;&amp;#010;@return the value of width" />
+        </header>
+       </codeaccessormethod>
+       <codeaccessormethod tag="" accessType="1" parent_id="YIHsK3Oyet0G" writeOutText="false" indentLevel="1" classfield_id="YIHsK3Oyet0G" text="width = value;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Set the value of width&amp;#010;&amp;#010;" />
+        </header>
+       </codeaccessormethod>
+      </codeclassfield>
+      <codeclassfield role_id="-1" listClassName="" field_type="0" parent_id="tE3rxV1jj4r2" writeOutMethods="false" initialValue="0" >
+       <header>
+        <codecomment tag="" />
+       </header>
+       <ccfdeclarationcodeblock tag="" parent_id="tE3rxV1jj4r2" indentLevel="1" text="private undef length = 0;" canDelete="false" >
+        <header>
+         <codecomment tag="" indentLevel="1" />
+        </header>
+       </ccfdeclarationcodeblock>
+       <codeaccessormethod tag="" accessType="0" parent_id="tE3rxV1jj4r2" writeOutText="false" indentLevel="1" classfield_id="tE3rxV1jj4r2" text="return length;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Get the value of length&amp;#010;&amp;#010;@return the value of length" />
+        </header>
+       </codeaccessormethod>
+       <codeaccessormethod tag="" accessType="1" parent_id="tE3rxV1jj4r2" writeOutText="false" indentLevel="1" classfield_id="tE3rxV1jj4r2" text="length = value;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Set the value of length&amp;#010;&amp;#010;" />
+        </header>
+       </codeaccessormethod>
+      </codeclassfield>
+     </classfields>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="8M8ct4yhChRO" id="8M8ct4yhChRO" fileName="Environment_Terrain" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" text="&amp;#010;import simulation;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="8M8ct4yhChRO" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Environment_Terrain&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Environment_Terrain ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks>
+            <codeoperation tag="operation_qrjA4wwE8Un8" parent_id="qrjA4wwE8Un8" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@param name &amp;#010;@param terrain_type &amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+           </textblocks>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields>
+      <codeclassfield role_id="-1" listClassName="" field_type="0" parent_id="iyf5vxGunkKY" writeOutMethods="false" initialValue="" >
+       <header>
+        <codecomment tag="" />
+       </header>
+       <ccfdeclarationcodeblock tag="" parent_id="iyf5vxGunkKY" indentLevel="1" text="private undef terrain_type;" canDelete="false" >
+        <header>
+         <codecomment tag="" indentLevel="1" />
+        </header>
+       </ccfdeclarationcodeblock>
+       <codeaccessormethod tag="" accessType="0" parent_id="iyf5vxGunkKY" writeOutText="false" indentLevel="1" classfield_id="iyf5vxGunkKY" text="return terrain_type;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Get the value of terrain_type&amp;#010;&amp;#010;@return the value of terrain_type" />
+        </header>
+       </codeaccessormethod>
+       <codeaccessormethod tag="" accessType="1" parent_id="iyf5vxGunkKY" writeOutText="false" indentLevel="1" classfield_id="iyf5vxGunkKY" text="terrain_type = value;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Set the value of terrain_type&amp;#010;&amp;#010;" />
+        </header>
+       </codeaccessormethod>
+      </codeclassfield>
+     </classfields>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="tL3xIj7zAVcd" id="tL3xIj7zAVcd" fileName="Environment_Element" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" text="&amp;#010;import Light_Source;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="tL3xIj7zAVcd" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Environment_Element&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Environment_Element ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks>
+            <codeoperation tag="operation_4T99C5UX3IjH" parent_id="4T99C5UX3IjH" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+            <codeoperation tag="operation_fZUL5JrZzBTu" parent_id="fZUL5JrZzBTu" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@param path and name to save to &amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+            <codeoperation tag="operation_I88RZ2FInxXv" parent_id="I88RZ2FInxXv" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@param path and name to load from &amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+           </textblocks>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields>
+      <codeclassfield role_id="-1" listClassName="" field_type="0" parent_id="r5BYwkxUS4o9" writeOutMethods="false" initialValue="" >
+       <header>
+        <codecomment tag="" />
+       </header>
+       <ccfdeclarationcodeblock tag="" parent_id="r5BYwkxUS4o9" indentLevel="1" text="private undef name;" canDelete="false" >
+        <header>
+         <codecomment tag="" indentLevel="1" />
+        </header>
+       </ccfdeclarationcodeblock>
+       <codeaccessormethod tag="" accessType="0" parent_id="r5BYwkxUS4o9" writeOutText="false" indentLevel="1" classfield_id="r5BYwkxUS4o9" text="return name;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Get the value of name&amp;#010;&amp;#010;@return the value of name" />
+        </header>
+       </codeaccessormethod>
+       <codeaccessormethod tag="" accessType="1" parent_id="r5BYwkxUS4o9" writeOutText="false" indentLevel="1" classfield_id="r5BYwkxUS4o9" text="name = value;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Set the value of name&amp;#010;&amp;#010;" />
+        </header>
+       </codeaccessormethod>
+      </codeclassfield>
+     </classfields>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="ILbER8XEkNwT" id="ILbER8XEkNwT" fileName="Vehicle_Component" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" writeOutText="false" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="ILbER8XEkNwT" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Vehicle_Component&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Vehicle_Component ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks/>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields/>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="pZk7Ip4RIh2D" id="pZk7Ip4RIh2D" fileName="Vehicle_Data_File" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" writeOutText="false" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="pZk7Ip4RIh2D" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Vehicle_Data_File&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Vehicle_Data_File ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks/>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields/>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="HXndZ3wAIOGp" id="HXndZ3wAIOGp" fileName="Environment_Data_File" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" writeOutText="false" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="HXndZ3wAIOGp" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Environment_Data_File&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Environment_Data_File ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks/>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields/>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="azAWSgKFE2KU" id="azAWSgKFE2KU" fileName="Vehicle_Component_Data_File" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" writeOutText="false" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="azAWSgKFE2KU" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Vehicle_Component_Data_File&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Vehicle_Component_Data_File ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks/>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields/>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="sPv86yKNV5z3" id="sPv86yKNV5z3" fileName="simulation" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" writeOutText="false" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="sPv86yKNV5z3" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Simulation&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Simulation ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks>
+            <codeoperation tag="operation_1i5FkPjamdjs" parent_id="1i5FkPjamdjs" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+            <codeoperation tag="operation_G28D3F8FgQfs" parent_id="G28D3F8FgQfs" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+            <codeoperation tag="operation_H4FfrGNwT6KA" parent_id="H4FfrGNwT6KA" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+            <codeoperation tag="operation_g6lNxKOBLVOO" parent_id="g6lNxKOBLVOO" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+            <codeoperation tag="operation_UdPsIHAKUnCi" parent_id="UdPsIHAKUnCi" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+            <codeoperation tag="operation_96BFOKtT5HQO" parent_id="96BFOKtT5HQO" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@param File_To_Export_To &amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+            <codeoperation tag="operation_fbjAx7tRjIK1" parent_id="fbjAx7tRjIK1" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+            <codeoperation tag="operation_XSK2DUiMYuZv" parent_id="XSK2DUiMYuZv" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+            <codeoperation tag="operation_CTOHimfLNMUI" parent_id="CTOHimfLNMUI" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@param Simulation_File &amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+            <codeoperation tag="operation_DefHfu21urr4" parent_id="DefHfu21urr4" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+            <codeoperation tag="operation_QwbNNTAG6lyL" parent_id="QwbNNTAG6lyL" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+            <codeoperation tag="operation_LxoDGUcS6Gjl" parent_id="LxoDGUcS6Gjl" indentLevel="1" canDelete="false" >
+             <header>
+              <javacodedocumentation tag="" indentLevel="1" text="&amp;#010;@return void  " />
+             </header>
+            </codeoperation>
+           </textblocks>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields>
+      <codeclassfield role_id="-1" listClassName="" field_type="0" parent_id="lmpf3HBILDYs" writeOutMethods="false" initialValue="false" >
+       <header>
+        <codecomment tag="" />
+       </header>
+       <ccfdeclarationcodeblock tag="" parent_id="lmpf3HBILDYs" indentLevel="1" text="private undef isRunning = false;" canDelete="false" >
+        <header>
+         <codecomment tag="" indentLevel="1" />
+        </header>
+       </ccfdeclarationcodeblock>
+       <codeaccessormethod tag="" accessType="0" parent_id="lmpf3HBILDYs" writeOutText="false" indentLevel="1" classfield_id="lmpf3HBILDYs" text="return isRunning;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Get the value of isRunning&amp;#010;&amp;#010;@return the value of isRunning" />
+        </header>
+       </codeaccessormethod>
+       <codeaccessormethod tag="" accessType="1" parent_id="lmpf3HBILDYs" writeOutText="false" indentLevel="1" classfield_id="lmpf3HBILDYs" text="isRunning = value;" canDelete="false" >
+        <header>
+         <javacodedocumentation tag="" indentLevel="1" text="Set the value of isRunning&amp;#010;&amp;#010;" />
+        </header>
+       </codeaccessormethod>
+      </codeclassfield>
+     </classfields>
+    </classifiercodedocument>
+    <classifiercodedocument package="Logical View" fileExt=".java" parent_class="xTsoudbiHczS" id="xTsoudbiHczS" fileName="Simulation_Data_File" writeOutCode="true" >
+     <textblocks>
+      <codeblockwithcomments tag="packages" text="package Logical View;&amp;#010;" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <codeblockwithcomments tag="imports" writeOutText="false" >
+       <header>
+        <codecomment tag="" writeOutText="false" />
+       </header>
+      </codeblockwithcomments>
+      <javaclassdeclarationblock tag="ClassDeclBlock" parent_id="xTsoudbiHczS" canDelete="false" >
+       <header>
+        <javacodedocumentation tag="" text="Class Simulation_Data_File&amp;#010;" />
+       </header>
+       <textblocks>
+        <hierarchicalcodeblock tag="fieldsDecl" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Fields" />
+         </header>
+         <textblocks/>
+        </hierarchicalcodeblock>
+        <hierarchicalcodeblock tag="methodsBlock" indentLevel="1" canDelete="false" >
+         <header>
+          <codecomment tag="" indentLevel="1" text="Methods" />
+         </header>
+         <textblocks>
+          <hierarchicalcodeblock tag="constructorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Constructors" />
+           </header>
+           <textblocks>
+            <codeblockwithcomments tag="emptyconstructor" indentLevel="1" text="public Simulation_Data_File ( ) { }" >
+             <header>
+              <codecomment tag="" indentLevel="1" text="Empty Constructor" />
+             </header>
+            </codeblockwithcomments>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="accessorMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Accessor Methods" />
+           </header>
+           <textblocks>
+            <hierarchicalcodeblock tag="staticAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+            <hierarchicalcodeblock tag="regularAccessorMethods" indentLevel="1" canDelete="false" >
+             <header>
+              <codecomment tag="" writeOutText="false" indentLevel="1" />
+             </header>
+             <textblocks/>
+            </hierarchicalcodeblock>
+           </textblocks>
+          </hierarchicalcodeblock>
+          <hierarchicalcodeblock tag="operationMethods" indentLevel="1" canDelete="false" >
+           <header>
+            <codecomment tag="" indentLevel="1" text="Operations" />
+           </header>
+           <textblocks/>
+          </hierarchicalcodeblock>
+         </textblocks>
+        </hierarchicalcodeblock>
+       </textblocks>
+      </javaclassdeclarationblock>
+     </textblocks>
+     <header>
+      <codecomment tag="" />
+     </header>
+     <classfields/>
+    </classifiercodedocument>
+   </codegenerator>
   </codegeneration>
  </XMI.extensions>
 </XMI>
