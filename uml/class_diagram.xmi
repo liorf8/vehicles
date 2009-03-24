@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI verified="false" xmi.version="1.2" timestamp="2009-03-24T22:25:27" xmlns:UML="http://schema.omg.org/spec/UML/1.3" >
+<XMI verified="false" xmi.version="1.2" timestamp="2009-03-24T22:56:22" xmlns:UML="http://schema.omg.org/spec/UML/1.3" >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://uml.sf.net</XMI.exporter>
@@ -134,21 +134,25 @@
       <UML:Class visibility="implementation" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="pZk7Ip4RIh2D" comment="This file is an implementation of the &quot;Data_File&quot; class that is used for dealing with operations associated with the Vehicle Data Files" name="Vehicle_Data_File" />
       <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="HXndZ3wAIOGp" name="Environment_Data_File" />
       <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="azAWSgKFE2KU" name="Vehicle_Component_Data_File" />
-      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="sPv86yKNV5z3" name="Simulation" >
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="sPv86yKNV5z3" comment="This is a class representing the Simulation.&#xa;This class contains all of the methods for dealing with a simulation, starting it, stopping it, pausing it, resuming, exiting etc etc.&#xa;To start a simulation a new thread will be created for each vehicle object.&#xa;&#xa;To pause these threads will be set to wait and the timeline will be paused.&#xa;&#xa;To resume these threads will be unset to wait and the timeline resumed.&#xa;&#xa;To exit the threads will be stopped and the timeline stopped and a dialog box will appear asking the user to save the accumalted data or not form running this simulation.&#xa;&#xa;&#xa;" name="Simulation" >
        <UML:Classifier.feature>
         <UML:Attribute visibility="private" isSpecification="false" xmi.id="lmpf3HBILDYs" type="s1lROrqcz8WI" initialValue="false" name="isRunning" />
         <UML:Attribute visibility="private" isSpecification="false" xmi.id="e7IYdlb2dD52" type="GEVwS9ugwpgX" name="name" />
-        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="1i5FkPjamdjs" name="Run_Simulation" />
-        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="G28D3F8FgQfs" name="Stop_Simulation" />
-        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="H4FfrGNwT6KA" name="Resume_Simulation" />
-        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="g6lNxKOBLVOO" name="Pause_Simulation" />
-        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="UdPsIHAKUnCi" name="Exit_Simulation" />
-        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="96BFOKtT5HQO" name="Export_Simulation_Data" >
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="1i5FkPjamdjs" comment="This method will first check the user defined runtime simulation settings and will apply them. These can inlcude for example, evolution on or off, destructible vehicles, selected mutation algorithm, amount of time to run simulation for etc.&#xa;&#xa;A timeline will then start (clock) and each of the threads in the threadpool of vehicles will be started. &#xa;&#xa;Methods and actions taken from this point will vary depending on user defined settings and simulation settings" name="Run_Simulation" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="G28D3F8FgQfs" comment="This method will first of all call the pause method. A dialog box will be drawn on screen asking the user if they really wish to quit, if yes all threads will be ceased and another dialong box will appear asking if they wish to save the simulation data (i.e. how long each vehicle survived etc).if yes this data will be stored to a file of the users choosing. if no do nothing. if they dont wish to quit, call resume method. " name="Stop_Simulation" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="H4FfrGNwT6KA" comment="This method will resume any and all threads running such as vehicles and possibly some elements, and will also unfreeze the clock (timeline)" name="Resume_Simulation" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="g6lNxKOBLVOO" comment="This method when called will freeze the clock (timeline) and will also set to wait all threads i.e. vehicles threads" name="Pause_Simulation" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="UdPsIHAKUnCi" comment="This method will call the stop_simulatoin method and will then exit out of that simulation (possibly by unloading the simulation and drawing a blank environment grid or by moving tabs)" name="Exit_Simulation" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="96BFOKtT5HQO" comment="This method will save the data accumaleted from the simulation into a human readable format file. (Possibly a .txt file). The parameter passed is the location where the file should be saved on the hard drive." name="Export_Simulation_Data" >
          <UML:BehavioralFeature.parameter>
-          <UML:Parameter visibility="private" isSpecification="false" xmi.id="YsztCTBgqsrT" type="s1lROrqcz8WI" value="" name="File_To_Export_To" />
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="YsztCTBgqsrT" type="GEVwS9ugwpgX" value="" name="File_To_Export_To" />
          </UML:BehavioralFeature.parameter>
         </UML:Operation>
-        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="fbjAx7tRjIK1" name="Save_Simulation" />
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="fbjAx7tRjIK1" comment="This method will sa" name="Save_Simulation" >
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="KwKo5qyvxc61" type="GEVwS9ugwpgX" value="original_location" name="file_to_save_to" />
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
         <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="XSK2DUiMYuZv" name="Load_Simulation" />
         <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="CTOHimfLNMUI" name="Simulation" >
          <UML:BehavioralFeature.parameter>
@@ -204,7 +208,7 @@
      </UML:Namespace.ownedElement>
      <XMI.extension xmi.extender="umbrello" >
       <diagrams>
-       <diagram showopsig="1" linecolor="#ff0000" snapx="10" showattribassocs="1" snapy="10" linewidth="0" showattsig="1" showpackage="1" showstereotype="1" name="class diagram" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" canvasheight="1226" canvaswidth="1768" localid="" snapcsgrid="0" showgrid="1" showops="1" usefillcolor="1" fillcolor="#ffff00" zoom="81" xmi.id="Xahs5nbXAtj6" documentation="" showscope="1" snapgrid="0" showatts="1" type="1" >
+       <diagram showopsig="1" linecolor="#ff0000" snapx="10" showattribassocs="1" snapy="10" linewidth="0" showattsig="1" showpackage="1" showstereotype="1" name="class diagram" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" canvasheight="1175" canvaswidth="1768" localid="" snapcsgrid="0" showgrid="1" showops="1" usefillcolor="1" fillcolor="#ffff00" zoom="81" xmi.id="Xahs5nbXAtj6" documentation="" showscope="1" snapgrid="0" showatts="1" type="1" >
         <widgets>
          <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="810" showattsigs="601" showstereotype="1" y="40" showattributes="1" font="DejaVu Sans,10,-1,5,75,0,0,0,0,0" width="103" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="U3uzYNHEoS9x" showscope="1" height="48" showopsigs="601" />
          <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="766" showattsigs="601" showstereotype="1" y="194" showattributes="1" font="DejaVu Sans,10,-1,5,75,0,0,0,0,0" width="89" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="SdxE56CY4AmY" showscope="1" height="58" showopsigs="601" />
@@ -222,10 +226,10 @@
          <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="960" showattsigs="601" showstereotype="1" y="130" showattributes="1" font="DejaVu Sans,10,-1,5,75,0,0,0,0,0" width="200" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="pZk7Ip4RIh2D" showscope="1" height="48" showopsigs="601" />
          <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="637" showattsigs="601" showstereotype="1" y="293" showattributes="1" font="DejaVu Sans,10,-1,5,75,0,0,0,0,0" width="260" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="HXndZ3wAIOGp" showscope="1" height="50" showopsigs="601" />
          <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="1302" showattsigs="601" showstereotype="1" y="96" showattributes="1" font="DejaVu Sans,10,-1,5,75,0,0,0,0,0" width="335" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="azAWSgKFE2KU" showscope="1" height="48" showopsigs="601" />
-         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="4" showattsigs="601" showstereotype="1" y="20" showattributes="1" font="Arial,10,-1,5,75,0,0,0,0,0" width="465" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="sPv86yKNV5z3" showscope="1" height="408" showopsigs="601" />
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="4" showattsigs="601" showstereotype="1" y="20" showattributes="1" font="Arial,10,-1,5,75,0,0,0,0,0" width="530" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="sPv86yKNV5z3" showscope="1" height="408" showopsigs="601" />
          <classwidget linecolor="none" usesdiagramfillcolor="1" linewidth="none" showoperations="1" usesdiagramusefillcolor="1" showpubliconly="0" showpackage="1" x="1170" showattsigs="601" showstereotype="1" y="263" showattributes="1" font="DejaVu Sans,10,-1,5,75,0,0,0,0,0" width="272" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="xTsoudbiHczS" showscope="1" height="68" showopsigs="601" />
          <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="88" showattsigs="601" showstereotype="1" y="449" showattributes="1" font="Abadi MT Condensed Light,10,-1,5,75,0,0,0,0,0" width="389" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="ZBTc20ESt7OV" showscope="1" height="218" showopsigs="601" />
-         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="1150" showattsigs="601" showstereotype="1" y="380" showattributes="1" font="DejaVu Sans,10,-1,5,75,1,0,0,0,0" drawascircle="0" width="247" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="1FCnyyc08cYH" showscope="1" height="168" showopsigs="601" />
+         <classwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" showoperations="1" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="1416" showattsigs="601" showstereotype="1" y="386" showattributes="1" font="DejaVu Sans,10,-1,5,75,1,0,0,0,0" drawascircle="0" width="247" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="1FCnyyc08cYH" showscope="1" height="168" showopsigs="601" />
         </widgets>
         <messages/>
         <associations/>
@@ -249,7 +253,7 @@
   </UML:Model>
  </XMI.content>
  <XMI.extensions xmi.extender="umbrello" >
-  <docsettings viewid="Xahs5nbXAtj6" uniqueid="cZAWpIpxvh8q" documentation="" />
+  <docsettings viewid="Xahs5nbXAtj6" uniqueid="KwKo5qyvxc61" documentation="" />
   <listview>
    <listitem open="1" type="800" label="Views" >
     <listitem open="0" type="801" id="Logical View" >
