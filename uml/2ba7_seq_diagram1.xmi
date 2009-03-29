@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI verified="false" xmi.version="1.2" timestamp="2009-03-29T20:11:16" xmlns:UML="http://schema.omg.org/spec/UML/1.3" >
+<XMI verified="false" xmi.version="1.2" timestamp="2009-03-29T20:22:32" xmlns:UML="http://schema.omg.org/spec/UML/1.3" >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://uml.sf.net</XMI.exporter>
@@ -37,20 +37,19 @@
      </UML:Namespace.ownedElement>
      <XMI.extension xmi.extender="umbrello" >
       <diagrams>
-       <diagram showopsig="1" linecolor="#ff0000" snapx="10" showattribassocs="1" snapy="10" linewidth="0" showattsig="1" showpackage="1" showstereotype="1" name="class diagram" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" canvasheight="830" canvaswidth="1403" localid="" snapcsgrid="0" showgrid="0" showops="1" usefillcolor="1" fillcolor="#ffff00" zoom="100" xmi.id="PlMitOc20jLT" documentation="" showscope="1" snapgrid="0" showatts="1" type="1" >
+       <diagram showopsig="1" linecolor="#ff0000" snapx="10" showattribassocs="1" snapy="10" linewidth="0" showattsig="1" showpackage="1" showstereotype="1" name="class diagram" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" canvasheight="830" canvaswidth="1500" localid="" snapcsgrid="0" showgrid="0" showops="1" usefillcolor="1" fillcolor="#ffff00" zoom="100" xmi.id="PlMitOc20jLT" documentation="" showscope="1" snapgrid="0" showatts="1" type="1" >
         <widgets/>
         <messages/>
         <associations/>
        </diagram>
-       <diagram showopsig="1" linecolor="#ff0000" snapx="10" showattribassocs="1" snapy="10" linewidth="0" showattsig="1" showpackage="1" showstereotype="1" name="sequence diagram" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" canvasheight="1048" canvaswidth="1412" localid="MzA5rU7xNUvc" snapcsgrid="0" showgrid="1" showops="1" usefillcolor="1" fillcolor="#ffff00" zoom="100" xmi.id="TRiilB1K6SRA" documentation="" showscope="1" snapgrid="0" showatts="1" type="3" >
+       <diagram showopsig="1" linecolor="#ff0000" snapx="10" showattribassocs="1" snapy="10" linewidth="0" showattsig="1" showpackage="1" showstereotype="1" name="sequence diagram" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" canvasheight="1029" canvaswidth="1485" localid="MzA5rU7xNUvc" snapcsgrid="0" showgrid="1" showops="1" usefillcolor="1" fillcolor="#ffff00" zoom="100" xmi.id="TRiilB1K6SRA" documentation="" showscope="1" snapgrid="0" showatts="1" type="3" >
         <widgets>
          <objectwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" usesdiagramusefillcolor="1" instancename="User" x="83" decon="0" showstereotype="1" y="48" font="DejaVu Sans,10,-1,5,50,0,1,0,0,0" localid="6H0cYFebwIRp" width="119" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="vUjBpJlvepnT" height="34" drawasactor="0" />
          <objectwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" usesdiagramusefillcolor="1" instancename="" x="943" decon="0" showstereotype="1" y="48" font="DejaVu Sans,10,-1,5,50,0,1,0,0,0" localid="iILittvXSspu" width="147" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="dUbKfOdPHFC4" height="34" drawasactor="0" />
          <objectwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" usesdiagramusefillcolor="1" instancename="" x="477" decon="0" showstereotype="1" y="48" font="DejaVu Sans,10,-1,5,50,0,1,0,0,0" localid="SOetm1LXiQDH" width="173" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="DXZOJZjm0kvC" height="34" drawasactor="0" />
          <objectwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" usesdiagramusefillcolor="1" instancename="" x="1216" decon="0" showstereotype="1" y="48" font="DejaVu Sans,10,-1,5,50,0,1,0,0,0" localid="MzA5rU7xNUvc" width="192" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="6qUTQjEBZ4EZ" height="34" drawasactor="0" />
-         <combinedFragmentwidget width="841" showstereotype="1" x="493" y="192" usesdiagramusefillcolor="1" usesdiagramfillcolor="1" isinstance="0" fillcolor="none" height="292" CombinedFragmenttype="7" linecolor="none" xmi.id="Z87FsxUgA74b" combinedFragmentname="if new Environment" usefillcolor="1" documentation="" linewidth="none" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" >
-          <floatingdashlinewidget width="841" showstereotype="1" x="493" y="0" usesdiagramusefillcolor="1" usesdiagramfillcolor="1" isinstance="0" fillcolor="none" height="0" maxY="484" linecolor="none" minY="192" xmi.id="7brE15vhurJ7" usefillcolor="1" linewidth="none" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" text="else" />
-          <floatingdashlinewidget width="841" showstereotype="1" x="493" y="330" usesdiagramusefillcolor="1" usesdiagramfillcolor="1" isinstance="0" fillcolor="none" height="0" maxY="484" linecolor="none" minY="192" xmi.id="RKgAbwzLCHG0" usefillcolor="1" linewidth="none" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" text="else" />
+         <combinedFragmentwidget width="824" showstereotype="1" x="562" y="189" usesdiagramusefillcolor="1" usesdiagramfillcolor="1" isinstance="0" fillcolor="none" height="288" CombinedFragmenttype="7" linecolor="none" xmi.id="rGCBHqQflwff" combinedFragmentname="-if(!existingEnviro)" usefillcolor="1" documentation="" linewidth="none" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" >
+          <floatingdashlinewidget width="824" showstereotype="1" x="562" y="332" usesdiagramusefillcolor="1" usesdiagramfillcolor="1" isinstance="0" fillcolor="none" height="0" maxY="477" linecolor="none" minY="189" xmi.id="wTVVPXtBtXzo" usefillcolor="1" linewidth="none" font="DejaVu Sans,10,-1,5,50,0,0,0,0,0" text="else" />
          </combinedFragmentwidget>
         </widgets>
         <messages>
@@ -130,7 +129,7 @@
   </UML:Model>
  </XMI.content>
  <XMI.extensions xmi.extender="umbrello" >
-  <docsettings viewid="TRiilB1K6SRA" uniqueid="HaFK58Lgfljl" documentation="" />
+  <docsettings viewid="TRiilB1K6SRA" uniqueid="wTVVPXtBtXzo" documentation="" />
   <listview>
    <listitem open="1" type="800" label="Views" >
     <listitem open="1" type="801" id="Logical View" >
