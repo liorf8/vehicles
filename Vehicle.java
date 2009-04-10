@@ -1,9 +1,9 @@
 /**
  * 
- * @author Karl 
+ *
  * A superclass for vehicle, which can be sub-classed for use in the vehicle editors 
  * or the simulation, while maintaining some common attributes
- *
+ * @author Karl 
  */
 public class Vehicle {
 	private String xmlLocation; //location of the XML file representing this vehicle
