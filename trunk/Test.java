@@ -6,9 +6,10 @@ public class Test {
 	 * @param args command line arguments
 	 */
 	public static void main(String[] args) {
-		/*Testing creating and editing a vehicle xml entry*/
+		/*Testing creating and editing a vehicle XML entry*/
 			EditorVehicle v = new EditorVehicle("hungry.xml");
 			v.addVehicleName("Hungry Vehicle");
+			v.addVehicleTemperament("Timid");
 			v.serialiseXMLDoc();
 	}
 
