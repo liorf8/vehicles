@@ -59,6 +59,14 @@ public class EditorVehicle extends Vehicle{
         root.appendChild(temperamentElement); //and add this new element to the document
 	}
 	/**
+	 * Add a vehicle component XML entry into this Vehicle's document
+	 * @param vc The vehicle component to add
+	 */
+	public void addVehicleComponent(VehicleComponent vc){
+		root.appendChild(xmldoc.adoptNode(vc.getRootElement().cloneNode(true)));
+		
+	}
+	/**
 	 * Write out the current Vehicle to a file specified by the filename attribute
 	 */
 	public void serialiseXMLDoc(){
