@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<VehicleComponent>
-    <name>Strong Sensor</name>
-    <type>Sensor</type>
-    <sensorRadius>57</sensorRadius>
-    <position>top-left</position>
-</VehicleComponent>
