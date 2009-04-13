@@ -1,3 +1,5 @@
+package vehicles.vehicle;
+
 import java.io.FileOutputStream;
 
 import org.apache.xerces.dom.DocumentImpl;
