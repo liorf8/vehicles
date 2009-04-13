@@ -1,5 +1,7 @@
+package test.vehicle;
+import vehicles.vehicle.*;
 
-public class Test {
+public class VehicleTests {
 
 	/**A main class for testing of various elements in the program.
 	 * Please DON'T upload binary files produced by compiling this into the repo.
