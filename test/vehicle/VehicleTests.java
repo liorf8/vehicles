@@ -8,6 +8,7 @@ public class VehicleTests {
 	 * @param args command line arguments
 	 */
 	public static void main(String[] args) {
+		
 		/*Testing creating and editing a vehicle XML entry*/
 			EditorVehicle v = new EditorVehicle("hungry.xml");
 			v.setVehicleName("Hungy Vehicle"); //set object attributes
@@ -32,6 +33,9 @@ public class VehicleTests {
 					v.addVehicleComponent(vc); //move xml in ram from component into vehicle
 			
 			v.saveVehicle(); //convert object and its attributes into XML
-	}
+			
+			Vehicle veh = new Vehicle("hungry.xml");
+		
+			}
 
 }
