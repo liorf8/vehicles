@@ -10,34 +10,28 @@ public class VehicleTests {
 	public static void main(String[] args) {
 		/*Testing creating and editing a vehicle XML entry*/
 			EditorVehicle v = new EditorVehicle("hungry.xml");
-			v.addVehicleName("Hungry Vehicle"); // add a name
-			v.addVehicleTemperament("Timid"); //add a temperament
-			/*Add a fast motor component*/
-			VehicleComponent vc = new VehicleComponent("fastmotor.xml");
-				vc.addVehicleComponentName("Fast Motor");
-				vc.addVehicleComponentType("Motor");
-				vc.addMotorStrength(new Double(86.00).toString());
-				vc.addPosition("left");
-				vc.serialiseXMLDoc();
-			v.addVehicleComponent(vc);//perform the add
-			/*Add a strong sensor component*/
-			vc = new VehicleComponent("strongsensor.xml");
-				vc.addVehicleComponentName("Strong Sensor");
-				vc.addVehicleComponentType("Sensor");
-				vc.addSensorRadius(Integer.toString(57));
-				vc.addPosition("top-left");
-				vc.serialiseXMLDoc();
-			v.addVehicleComponent(vc);
-			/*Add a weak sensor component*/
-			vc = new VehicleComponent("weaksensor.xml");
-				vc.addVehicleComponentName("Weak Sensor");
-				vc.addVehicleComponentType("Sensor");
-				vc.addSensorRadius(Integer.toString(22));
-				vc.addPosition("top-right");
-				vc.serialiseXMLDoc();
-			v.addVehicleComponent(vc);	
-			/*Generate the xml itself*/
-			v.serialiseXMLDoc();
+			v.setVehicleName("Hungy Vehicle"); //set object attributes
+			v.setVehicleTemperament("Timid"); //set object attributes 
+			
+				VehicleComponent vc = new VehicleComponent("fastmotor.xml"); //new object
+					vc.setVehicleComponentName("Fast Motor");//set object attributes
+					vc.setVehicleComponentType("motor");
+					vc.setVehicleComponentPosition("left");
+					vc.setVehicleComponentMotorStrength(Double.toString(86.05));
+					vc.toInternalXML(); //generate xml in ram
+			
+				v.addVehicleComponent(vc); //move xml in ram from component into vehicle
+				
+				vc = new VehicleComponent("weaksensor.xml"); //new object
+					vc.setVehicleComponentName("Weak Sensor");//set object attributes
+					vc.setVehicleComponentType("sensor");
+					vc.setVehicleComponentPosition("top-right");
+					vc.setVehicleComponentSensorRadius(Integer.toString(22));
+					vc.toInternalXML(); //generate xml in ram
+		
+					v.addVehicleComponent(vc); //move xml in ram from component into vehicle
+			
+			v.saveVehicle(); //convert object and its attributes into XML
 	}
 
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Vehicle>
+    <VehicleComponent>
+        <name>Fast Motor</name>
+        <type>motor</type>
+        <position>left</position>
+        <motorStrength>86.05</motorStrength>
+    </VehicleComponent>
+    <VehicleComponent>
+        <name>Weak Sensor</name>
+        <type>sensor</type>
+        <position>top-right</position>
+        <sensorRadius>22</sensorRadius>
+    </VehicleComponent>
+    <name>Hungy Vehicle</name>
+    <temperament>Timid</temperament>
+</Vehicle>
