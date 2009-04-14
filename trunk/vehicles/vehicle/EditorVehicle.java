@@ -1,6 +1,9 @@
 package vehicles.vehicle;
 
+import vehicles.*;
 import java.io.*;
+import java.util.Iterator;
+import java.util.Vector;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -25,18 +28,31 @@ import org.apache.xml.serialize.*;
  * @author Karl
  *
  */
-public class EditorVehicle extends Vehicle{
+public class EditorVehicle extends Vehicle {
 	Document  xmldoc; //the XML document we are creating, stored as an object in memory
 	Element root;//the root element of the document
-	String filename;// filename to associate the XML document with
 	
 	
+	
+	/**
+	 * Write an element into an XML file
+	 * @param elemName The name of the attribute
+	 * @param elemValue The value for this attribute
+	 * @param xmldoc The document to write into
+	 */
+	public void writeXMLEntry(String elemName, String elemValue, Document xmldoc){
+		Element nameElement = xmldoc.createElement(elemName);
+        Text nameText = xmldoc.createTextNode(elemValue);
+        nameElement.appendChild(nameText);//add in the text to the element
+        root.appendChild(nameElement);//and add this new element to the document
+		
+	}	
 	/**
 	 * Constructor
 	 * @param fileName filename to use for this object
 	 */
 	public EditorVehicle(String fileName){
-		filename = fileName;
+		xmlLocation = fileName;
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("Vehicle");
 	}
@@ -45,20 +61,14 @@ public class EditorVehicle extends Vehicle{
 	 * @param name The name to use for this Vehicle
 	 */
 	public void addVehicleName(String name){
-		Element nameElement = xmldoc.createElement("name");
-        Text nameText = xmldoc.createTextNode(name);
-        nameElement.appendChild(nameText);//add in the text to the element
-        root.appendChild(nameElement);//and add this new element to the document
+			writeXMLEntry("name", name, xmldoc);
 	}
 	/**
 	 * Add a vehicle temperament attribute(Aggressive | Timid | None) to the XML document being created
 	 * @param temperament One of (Aggressive | Timid | None)
 	 */
 	public void addVehicleTemperament(String temperament){
-		Element temperamentElement = xmldoc.createElement("temperament");
-        Text temperamentText = xmldoc.createTextNode(temperament);
-        temperamentElement.appendChild(temperamentText);//add in the text to the element
-        root.appendChild(temperamentElement); //and add this new element to the document
+		writeXMLEntry("temperament", temperament, xmldoc);
 	}
 	/**
 	 * Add a vehicle component XML entry into this Vehicle's document
@@ -69,12 +79,28 @@ public class EditorVehicle extends Vehicle{
 		
 	}
 	/**
-	 * Write out the current Vehicle to a file specified by the filename attribute
+	 * Write out the current Vehicle to a file specified by the filename attribute. This method
+	 * will save the vehicle object as it is to disk, so make sure it's only called when we're finished
+	 * with it
 	 */
-	public void serialiseXMLDoc(){
+	public void saveVehicle(){
 		try{
+			/*Form the XML document by saving the various attributes*/
+			if(this.vehicleName != null){ 
+				addVehicleName(vehicleName);
+			}
+			if(this.VehicleTemperament != null){
+				addVehicleTemperament(VehicleTemperament);
+			}
+			if(this.components != null){
+				Iterator it = components.iterator();
+				while(it.hasNext()){
+					addVehicleComponent((VehicleComponent)it.next());
+				}
+			}
 			xmldoc.appendChild(root); //finalise the XML document
-			FileOutputStream fos = new FileOutputStream(filename);
+			/*Now take the file in RAM and write it out to disk*/
+			FileOutputStream fos = new FileOutputStream(xmlLocation);
 			OutputFormat of = new OutputFormat("XML","ISO-8859-1",true);
 			of.setIndent(1);
 			of.setIndenting(true);
