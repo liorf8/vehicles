@@ -20,16 +20,16 @@ public class VehicleComponent{
 	private Document xmldoc; //the XML document we are creating, stored as an object in memory
 	private Element root;//the root element of the document
 	private String filename;// filename to associate the XML document with
-	
+
 	private String VehicleComponentName = null; //the name of this component
 	private String VehicleComponentType = null; //the type of this component
 	private String VehicleComponentBatteryCapacity = null; //battery capacity
 	private String VehicleComponentMotorStrength = null; //motor strength
 	private String VehicleComponentSensorRadius = null; //sensor radius
 	private String VehicleComponentPosition = null; //position
-	
-	
-	
+
+
+
 	public String getVehicleComponentName() {
 		return VehicleComponentName;
 	}
@@ -88,12 +88,16 @@ public class VehicleComponent{
 	 */
 	public void writeXMLEntry(String elemName, String elemValue, Document xmldoc){
 		Element nameElement = xmldoc.createElement(elemName);
-        Text nameText = xmldoc.createTextNode(elemValue);
-        nameElement.appendChild(nameText);//add in the text to the element
-        root.appendChild(nameElement);//and add this new element to the document
-		
+		Text nameText = xmldoc.createTextNode(elemValue);
+		nameElement.appendChild(nameText);//add in the text to the element
+		root.appendChild(nameElement);//and add this new element to the document
+
 	}	
-	
+
+	public VehicleComponent(){
+		xmldoc= new DocumentImpl();
+		root = xmldoc.createElement("VehicleComponent");
+	}
 	/**
 	 * Constructor
 	 * @param fileName filename to use for this object
@@ -170,7 +174,7 @@ public class VehicleComponent{
 			e.printStackTrace();
 		}
 	}
-	*/
+	 */
 	/** 
 	 * Generate an internal XML representation of the object and its attributes
 	 */
@@ -195,7 +199,7 @@ public class VehicleComponent{
 		}
 		xmldoc.appendChild(root);
 	}
-	
+
 	/**
 	 * Get the root of this vehicle component, call this method to get the component for inclusion
 	 * in a Vehicle XML document 

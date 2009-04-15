@@ -34,7 +34,12 @@ public class VehicleTests {
 			
 			v.saveVehicle(); //convert object and its attributes into XML
 			
-			Vehicle veh = new Vehicle("hungry.xml");
+			/*Now the vehicle is saved as an xml doc, lets try load that xml back into an object */
+			EditorVehicle veh = new EditorVehicle("hungry.xml",true); //constructor loads xml into an object
+			veh.setXmlLocation("hungryduplicate.xml");//where to save the new xml, should be same as hungry.xml
+			veh.saveVehicle(); //write the xml
+			//Now we have created an object, written to xml, created an object from that xml, and wrote that
+			//  to produce the same xml
 		
 			}
 
