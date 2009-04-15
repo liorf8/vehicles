@@ -1,27 +1,13 @@
 package vehicles.vehicle;
 
-import vehicles.*;
 import java.io.*;
 import java.util.Iterator;
-import java.util.Vector;
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
-import org.xml.sax.InputSource;
-import org.w3c.dom.NamedNodeMap;
-import org.xml.sax.Locator;
-import org.xml.sax.helpers.*;
 import org.apache.xerces.dom.DocumentImpl;
-import org.apache.xerces.dom.NodeImpl;
-import org.apache.xerces.framework.XMLAttrList;
-import org.apache.xerces.parsers.DOMParser;
-import org.apache.xerces.utils.QName;
-import org.apache.xerces.readers.MIME2Java;
 import org.apache.xml.serialize.*;
+
 /**
  * A vehicle class for use in the Vehicle Editor, essentially a wrapper around some
  * XML generation and manipulation. 
@@ -127,7 +113,4 @@ public class EditorVehicle extends Vehicle {
 			e.printStackTrace();
 		}
 	}
-	
-	
-
 }
