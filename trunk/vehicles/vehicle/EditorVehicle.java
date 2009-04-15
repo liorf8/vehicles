@@ -46,7 +46,8 @@ public class EditorVehicle extends Vehicle {
         nameElement.appendChild(nameText);//add in the text to the element
         root.appendChild(nameElement);//and add this new element to the document
 		
-	}	
+	}
+	
 	/**
 	 * Constructor
 	 * @param fileName filename to use for this object
@@ -56,6 +57,13 @@ public class EditorVehicle extends Vehicle {
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("Vehicle");
 	}
+	
+	public EditorVehicle(String fileName, boolean newVeh){
+		super(fileName);
+		xmldoc= new DocumentImpl();
+		root = xmldoc.createElement("Vehicle");
+	}
+	
 	/**
 	 * Add a vehicle name attribute to the XML document being created
 	 * @param name The name to use for this Vehicle
@@ -76,6 +84,7 @@ public class EditorVehicle extends Vehicle {
 	 */
 	public void addVehicleComponent(VehicleComponent vc){
 		root.appendChild(xmldoc.adoptNode(vc.getRootElement().cloneNode(true)));
+		System.out.println("Append component!");
 		
 	}
 	/**
@@ -93,9 +102,13 @@ public class EditorVehicle extends Vehicle {
 				addVehicleTemperament(VehicleTemperament);
 			}
 			if(this.components != null){
+				System.out.println(components.capacity());
 				Iterator it = components.iterator();
+				int count = 0;
 				while(it.hasNext()){
-					addVehicleComponent((VehicleComponent)it.next());
+					System.out.println("iteration :"+count);
+					this.addVehicleComponent((VehicleComponent)it.next());
+					count++;
 				}
 			}
 			xmldoc.appendChild(root); //finalise the XML document
