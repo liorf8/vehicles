@@ -1,22 +1,11 @@
 package vehicles.vehicle;
 
-import java.io.PrintStream;
 import java.util.Vector;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.Text;
 import org.apache.xerces.parsers.DOMParser;
 
-
-import vehicles.*;
 /**
  * 
  *
