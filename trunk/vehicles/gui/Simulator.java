@@ -172,25 +172,12 @@ public class Simulator extends FrameView {
         );
 
         mainPanel.add(jPanel2, BorderLayout.WEST);
-
         ResourceMap resourceMap = Application.getInstance(VehiclesApp.class).getContext().getResourceMap(Simulator.class);
-        jPanel1.setBackground(resourceMap.getColor("jPanel1.background")); // NOI18N
         jPanel1.setBorder(BorderFactory.createLineBorder(resourceMap.getColor("jPanel1.border.lineColor"))); // NOI18N
         jPanel1.setName("jPanel1"); // NOI18N
-
-        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 409, Short.MAX_VALUE)
-        );
-
+        jPanel1.setLayout(new BorderLayout());
         mainPanel.add(jPanel1, BorderLayout.CENTER);
-        jPanel1.add(embed);
+        jPanel1.add(embed, BorderLayout.CENTER);
 
         menuBar.setMinimumSize(new Dimension(261, 21));
         menuBar.setName("menuBar"); // NOI18N
