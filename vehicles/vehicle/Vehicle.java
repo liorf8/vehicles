@@ -22,8 +22,8 @@ public class Vehicle {
 	protected Vector <VehicleComponent> components; //components of the vehicle 
 	protected double max_battery_capacity = 100; //maximum battery this vehicle can have
 	protected double curr_battery_capacity = 100;//current battery capacity
-	
-	
+
+
 	public double getMax_battery_capacity() {
 		return max_battery_capacity;
 	}
@@ -52,20 +52,20 @@ public class Vehicle {
 			p.parse(xmlLocation); //get a parsed version of the file into memory
 			Document dom = p.getDocument();
 			processVehicleComponents( dom.getElementsByTagName("VehicleComponent"));
-			
+
 			NodeList name = dom.getElementsByTagName("name");
 			for(int i = 0;i<name.getLength();i++){
 				if(name.item(i).getParentNode().getNodeName().equals("Vehicle")){
 					this.setVehicleName(name.item(i).getChildNodes().item(0).getNodeValue());
 				}
 			}
-			
+
 			NodeList temperament = dom.getElementsByTagName("temperament");
 			this.setVehicleTemperament(temperament.item(0).getChildNodes().item(0).getNodeValue());
-			
+
 			NodeList maxBattery = dom.getElementsByTagName("max_battery_capacity");
 			this.setMax_battery_capacity(Double.parseDouble(maxBattery.item(0).getChildNodes().item(0).getNodeValue()));
-			
+
 			NodeList currBattery = dom.getElementsByTagName("curr_battery_capacity");
 			this.setCurr_battery_capacity(Double.parseDouble(currBattery.item(0).getChildNodes().item(0).getNodeValue()));
 			//Node root = dom.getDocumentElement(); //get the root element from the document
@@ -88,7 +88,7 @@ public class Vehicle {
 				System.out.println("START COMPONENT");
 				NodeList children = node.getChildNodes();
 				for(int j = 0; j < children.getLength(); j++){ 
-					
+
 					//System.out.println(children.item(j).getNodeName() );
 					NodeList values = children.item(j).getChildNodes();
 					for(int k=0;k<values.getLength();k++){ //attribute by attribute
@@ -106,41 +106,35 @@ public class Vehicle {
 								vc.setVehicleComponentType(values.item(k).getNodeValue());
 								//TODO object
 							}else{
-								if(attributeType.contains("battery")){
-									System.out.println("This is a batteryType node");
+								if(attributeType.contains("motorStrength")){
+									System.out.println("This is a motorStrength node");
 									System.out.println(values.item(k).getNodeValue());
-									vc.setVehicleComponentBatteryCapacity(values.item(k).getNodeValue());
+									vc.setVehicleComponentMotorStrength(values.item(k).getNodeValue());
 									//TODO object
 								}else{
-									if(attributeType.contains("motorStrength")){
-										System.out.println("This is a motorStrength node");
+									if(attributeType.contains("sensor")){
+										System.out.println("This is a sensorRadius node");
 										System.out.println(values.item(k).getNodeValue());
-										vc.setVehicleComponentMotorStrength(values.item(k).getNodeValue());
+										vc.setVehicleComponentSensorRadius(values.item(k).getNodeValue());
 										//TODO object
 									}else{
-										if(attributeType.contains("sensor")){
-											System.out.println("This is a sensorRadius node");
+										if(attributeType.contains("pos")){
+											System.out.println("This is a position node");
 											System.out.println(values.item(k).getNodeValue());
-											vc.setVehicleComponentSensorRadius(values.item(k).getNodeValue());
+											vc.setVehicleComponentPosition(values.item(k).getNodeValue());
 											//TODO object
 										}else{
-											if(attributeType.contains("pos")){
-												System.out.println("This is a position node");
-												System.out.println(values.item(k).getNodeValue());
-												vc.setVehicleComponentPosition(values.item(k).getNodeValue());
-												//TODO object
-											}else{
-											}
 										}
 									}
 								}
-
 							}
 
+
+
 						}
-						
+
 					}//end values for loop
-					
+
 				}//end children for loop
 				System.out.println("END OF COMPONENT");
 				vc.toInternalXML();				
@@ -150,9 +144,9 @@ public class Vehicle {
 	}
 
 
-	
-	
-	
+
+
+
 	public String getXmlLocation() {
 		return xmlLocation;
 	}
