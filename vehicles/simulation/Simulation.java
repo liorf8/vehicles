@@ -39,8 +39,6 @@ public class Simulation {
 	public Simulation(String filename){
 		try{
 			xmlLocation = filename;
-			Vector <String> vehicle_locations = new Vector<String>();
-			String enviro_location = "";
 			vehicles = new Vector<Vehicle>();
 			DOMParser p = new DOMParser();
 			System.out.println("Opening file: " + xmlLocation);
