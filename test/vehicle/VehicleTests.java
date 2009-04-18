@@ -10,7 +10,7 @@ public class VehicleTests {
 	public static void main(String[] args) {
 		
 		/*Testing creating and editing a vehicle XML entry*/
-			EditorVehicle v = new EditorVehicle("hungry.xml");
+			EditorVehicle v = new EditorVehicle("src/test/XML/hungry.xml");
 			v.setVehicleName("Hungy Vehicle"); //set object attributes
 			v.setVehicleTemperament("Timid"); //set object attributes 
 			v.setCurr_battery_capacity(46);
@@ -36,8 +36,8 @@ public class VehicleTests {
 			v.saveVehicle(); //convert object and its attributes into XML
 			
 			/*Now the vehicle is saved as an xml doc, lets try load that xml back into an object */
-			EditorVehicle veh = new EditorVehicle("hungry.xml",true); //constructor loads xml into an object
-			veh.setXmlLocation("hungryduplicate.xml");//where to save the new xml, should be same as hungry.xml
+			EditorVehicle veh = new EditorVehicle("src/test/XML/hungry.xml",true); //constructor loads xml into an object
+			veh.setXmlLocation("src/test/XML/hungryduplicate.xml");//where to save the new xml, should be same as hungry.xml
 			veh.saveVehicle(); //write the xml
 			//Now we have created an object, written to xml, created an object from that xml, and wrote that
 			//  to produce the same xml
