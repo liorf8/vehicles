@@ -11,7 +11,7 @@ public class SimulationTests {
 		
 		/* Testing the creation of a new simulation from an xml file*/
 		System.out.print("\n\nTESTING CREATION OF SIMULATION FROM XML FILE");
-		Simulation a = new Simulation("simulation.xml");
+		Simulation a = new Simulation("src/test/XML/simulation.xml");
 		a.printSimDetails();
 		
 		
@@ -36,7 +36,7 @@ public class SimulationTests {
 		
 		/* Testing creation of simulation XML file */
 		System.out.println("Testing the creation of an xml doc from specified data");
-		EditorSimulation mySimEditor = new EditorSimulation("my_simulation_test.xml");
+		EditorSimulation mySimEditor = new EditorSimulation("src/test/XML/my_simulation_test.xml");
 		mySimEditor.setAuthor("Shaun");
 		mySimEditor.setSimulationName("Test 3");
 		mySimEditor.setGeneticSelectionMethod(5);
@@ -51,16 +51,16 @@ public class SimulationTests {
 		mySimEditor.setRegeneratingElements(false);
 		mySimEditor.saveSimulation();
 		
-		Simulation test = new Simulation("my_simulation_test.xml");
+		Simulation test = new Simulation("src/test/XML/my_simulation_test.xml");
 		test.printSimDetails();
 		
 		/* Testing the modification of an existing document */
 		System.out.println("TESTING MODIFICATION OF EXISTING XML DOCUMENT");
-		EditorSimulation editor2 = new EditorSimulation("simulation.xml", true);
+		EditorSimulation editor2 = new EditorSimulation("src/test/XML/simulation.xml", true);
 		editor2.printSimDetails();
 		editor2.setSimulationName("New NAME!");
 		editor2.saveSimulation();
-		editor2 = new EditorSimulation("simulation.xml", true);
+		editor2 = new EditorSimulation("src/test/XML/simulation.xml", true);
 		editor2.printSimDetails();
 		
 		

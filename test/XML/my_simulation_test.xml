@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Simulation>
+    <Name>Test 3</Name>
+    <Author>Shaun</Author>
+    <LastModified>2009/04/18 23:47:54</LastModified>
+    <VehiclePath>VehicleTest_0</VehiclePath>
+    <VehiclePath>VehicleTest_1</VehiclePath>
+    <VehiclePath>VehicleTest_2</VehiclePath>
+    <VehiclePath>VehicleTest_3</VehiclePath>
+    <VehiclePath>VehicleTest_4</VehiclePath>
+    <VehiclePath>VehicleTest_5</VehiclePath>
+    <VehiclePath>VehicleTest_6</VehiclePath>
+    <VehiclePath>VehicleTest_7</VehiclePath>
+    <VehiclePath>VehicleTest_8</VehiclePath>
+    <VehiclePath>VehicleTest_9</VehiclePath>
+    <perishable_vehicles>false</perishable_vehicles>
+    <regenerating_elements>false</regenerating_elements>
+    <perishable_elements>false</perishable_elements>
+    <evolution>false</evolution>
+    <reproduction_method>0</reproduction_method>
+    <sensor_view>false</sensor_view>
+    <genetic_selection_method>5</genetic_selection_method>
+</Simulation>
