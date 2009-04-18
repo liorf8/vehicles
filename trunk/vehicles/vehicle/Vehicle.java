@@ -39,7 +39,13 @@ public class Vehicle {
 	public void setCurr_battery_capacity(double curr_battery_capacity) {
 		this.curr_battery_capacity = curr_battery_capacity;
 	}
-
+	/**
+	 * Get the fitness of this vehicle, defined by it's current battery strength divided by it's maximum capacity
+	 * @return curr_battery_capacity/max_battery_capacity
+	 */
+	public double getFitness(){
+		return this.curr_battery_capacity / this.max_battery_capacity;
+	}
 	public Vehicle(){
 		components = new Vector<VehicleComponent>();
 	}
