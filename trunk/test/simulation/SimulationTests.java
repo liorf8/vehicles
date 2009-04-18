@@ -10,7 +10,7 @@ public class SimulationTests {
 	public static void main(String[] args){
 		
 		/* Testing the creation of a new simulation from an xml file*/
-		System.out.print("TESTING CREATION OF SIMULATION FROM XML FILE");
+		System.out.print("\n\nTESTING CREATION OF SIMULATION FROM XML FILE");
 		Simulation a = new Simulation("simulation.xml");
 		a.printSimDetails();
 		
