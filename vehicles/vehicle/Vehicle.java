@@ -13,6 +13,7 @@ import org.apache.xerces.parsers.DOMParser;
  * or the simulation, while maintaining some common attributes
  * @author Karl 
  */
+
 public class Vehicle {
 	protected String xmlLocation; //location of the XML file representing this vehicle
 	/*Attributes of a vehicle*/
@@ -149,28 +150,8 @@ public class Vehicle {
 
 
 	}
-
-
-	/*	
-			DOMParser p = new DOMParser();
-			p.parse(xmlLocation); //get a parsed version of the file into memory
-			Document dom = p.getDocument();
-			Node root = dom.getDocumentElement(); //get the root element from the document
-			NodeList nodes = root.getChildNodes(); //get a list of the child nodes
-			for (int i = 0; i < nodes.getLength(); i++) { //iterate over each of the children
-				Node node = nodes.item(i); //get current node
-				if(node.getNodeName().contains("name")){ //a name node
-
-				}
-			}
-
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	 */
-
-
-
+	
+	
 	public String getXmlLocation() {
 		return xmlLocation;
 	}

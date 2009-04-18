@@ -3,6 +3,8 @@ package vehicles.simulation;
 import vehicles.vehicle.*;
 import vehicles.environment.*;
 import java.util.Vector;
+import java.util.Random;
+import java.util.Iterator;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -291,30 +293,120 @@ public class Simulation {
 	}
 
 	
+	
+	/*******************************************************************************************\
+	/																							\
+	/                      Genetic Selection Algorithms for a Simulation						\
+	/																							\
+	/*******************************************************************************************\
+	
+	
+	//TODO fix vehicle battery_capacity and battery stuff so that fitness can be determined properly
+	 
+	
+	
 	/**
 	 * A selection method that will choose a vehicle from the vector of vehicles based
-	 * on the value set for gen_selection  
+	 * on the value set for gen_selection
+	 * 
+	 * Values are as follows:
+	 * 0 - 	Set by default, no selection method chosen. null returned
+	 * 1 - 	Roulette - A selection operator in which the chance of a vehicle
+	 *     	being selected is proportional to its fitness.
+	 * 2 - 	Tournament - A selection operator which uses roulette selection N times
+	 *     	to produce a tournament subset of vehicles. The best vehicle in this subset
+	 *   	is then chosen as the selected vehicle to be the base for the next generation.
+	 * 3 - 	Top Percent - A selection operator which randomly selects a vehicle from the top 
+	 * 		N percent of the population as specified by the user.
+	 * 4 - 	Best - A selection operator which selects the best vehicle (as determined by fitness).
+	 * 		If there are two or more vehicle with the same level of top fitness, one of them is chosen
+	 * 		randomly.
+	 * 5 - Random - A selection operator which randomly selects a single vehicle from the population.
+	 */ 
+	public Vehicle getVehicle_SelectionBased(){
+		//TODO Need methods to get user input at runtime from the gui for top N percent
+		//and for Tournament. Random Numbers being used for now.
+		switch(this.gen_selection){
+		//Set by default, no selection method chosen
+		case 0:
+			System.out.println("No genetic selection method set! Return null");
+			return null;
+		//
+		case 1:
+			return this.getVehicleByRoulette();
+		case 2:
+			return this.getVehicleByTournament();
+		case 3:
+			return this.getVehicleByTop_N_Percent();
+		case 4:
+			return this.getVehicleByBest();
+		case 5:
+			return this.getVehicleByRandom();
+		default:
+			return null;
+		}
+	}
+	
+	
+	/**
+	 * A selection operator in which the chance of a vehicle being selected is 
+	 * proportional to its fitness. This is where the concept of survival of the
+	 * fittest comes into being. The fitness of a vehicle is related to the power 
+	 * of its battery and motor
+	 * 
+	 * @return a vehicle chosen by roulette selection
 	 */
-
+	private Vehicle getVehicleByRoulette(){
+		//TODO fill this in when vehicle fitness is decided upon . . again
+		return new Vehicle();
+	}
 	
 	
+	/**
+	 * A selection operator which uses roulette selection N times
+	 * to produce a tournament subset of vehicles. The best vehicle in this subset
+	 * is then chosen as the selected vehicle to be the base for the next generation.
+	 * @return a vehicle chosen by roulette selection N times
+	 */
+	private Vehicle getVehicleByTournament(){
+		return new Vehicle();
+	}
 	
+	/**
+	 * A selection operator which randomly selects a vehicle from the top 
+	 * N percent of the population as specified by the user.
+	 * @return a vehicle chosen from the top N percent
+	 */
+	private Vehicle getVehicleByTop_N_Percent(){
+		Random ran = new Random(System.currentTimeMillis());
+		int random = ran.nextInt(100) + 1;
+		//TODO fill this in when vehicle fitness is decided upon . . again
+		return new Vehicle();
+	}
 	
+	/**
+	 * A selection operator which selects the best vehicle (as determined by fitness).
+	 * If there are two or more vehicle with the same level of top fitness, one of them is chosen
+	 * randomly.
+	 * @return the best vehicle in the set of vehicles
+	 */
+	private Vehicle getVehicleByBest(){
+		Vehicle best;
+		Iterator it = this.vehicles.iterator();
+		while(it.hasNext()){
+			//TODO fill this in when vehicle fitness is decided upon . . again
+		}
+		return new Vehicle();
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
+	/**
+	 * A selection operator which randomly selects a single vehicle from the population.
+	 * @return a random vehicle from the set of vehicles
+	 */
+	private Vehicle getVehicleByRandom(){
+		Random ran = new Random(System.currentTimeMillis());
+		int num_veh = this.vehicles.size();
+		int random = ran.nextInt(num_veh);
+		return this.vehicles.elementAt(random);
+	}
 }
