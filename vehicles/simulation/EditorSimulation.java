@@ -67,7 +67,7 @@ public class EditorSimulation extends Simulation{
 	 * Add an environment XML file path entry into this Simulation's document
 	 * @param e The environment who's path you wish to add
 	 */
-	public void addEnvironmentPath(Enviroment e){
+	public void addEnvironmentPath(Environment e){
 		writeXMLEntry("EnvironmentPath", e.getFileLocation(), xmldoc);
 	}
 
