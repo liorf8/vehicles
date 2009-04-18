@@ -22,7 +22,7 @@ public class Simulation {
 
 	/*Attributes of an environment	*/
 	protected String simulationName = null, author = null, lastModified = null; //the name of this vehicle
-	protected Enviroment enviro = null; //the environment to use for this simulation
+	protected Environment enviro = null; //the environment to use for this simulation
 	protected Vector <Vehicle> vehicles; //the vehicles in this simulation 
 
 	/***** Variables that will affect how the simulation runs *****/
@@ -49,7 +49,7 @@ public class Simulation {
 
 			/* The following recursive method is used to get the values of all attributes
 			 * apart from the vehicles paths
-			 */
+			 */	
 			Node root = dom.getDocumentElement(); //get the root element from the document
 			handleNode(root); //recursive function to handle the nodes*/
 
@@ -154,7 +154,7 @@ public class Simulation {
 		return this.vehicles;
 	}
 
-	public Enviroment getEnvironment(){
+	public Environment getEnvironment(){
 		return this.enviro;
 	}
 
@@ -212,7 +212,7 @@ public class Simulation {
 		vehicles.add(vc);
 	}
 
-	public void setEnvironment(Enviroment e){
+	public void setEnvironment(Environment e){
 		this.enviro = e;
 	}
 
@@ -267,7 +267,7 @@ public class Simulation {
 		return (this.vehicles.size() >= 2 && this.simulationName != null);
 		//TODO Add this back in, when Environment is fixed ->   && this.enviro != null);
 	}
-	
+
 	/**
 	 * Void method that will print out all of the details about the current Simulation object
 	 */
@@ -292,19 +292,19 @@ public class Simulation {
 		System.out.println("Genetic Algorithm\t" + this.getGeneticSelectionMethod());
 	}
 
-	
-	
+
+
 	/*******************************************************************************************\
 	/																							\
 	/                      Genetic Selection Algorithms for a Simulation						\
 	/																							\
 	/*******************************************************************************************\
-	
-	
+
+
 	//TODO fix vehicle battery_capacity and battery stuff so that fitness can be determined properly
-	 
-	
-	
+
+
+
 	/**
 	 * A selection method that will choose a vehicle from the vector of vehicles based
 	 * on the value set for gen_selection
@@ -331,7 +331,7 @@ public class Simulation {
 		case 0:
 			System.out.println("No genetic selection method set! Return null");
 			return null;
-		//
+			//
 		case 1:
 			return this.getVehicleByRoulette();
 		case 2:
@@ -346,8 +346,8 @@ public class Simulation {
 			return null;
 		}
 	}
-	
-	
+
+
 	/**
 	 * A selection operator in which the chance of a vehicle being selected is 
 	 * proportional to its fitness. This is where the concept of survival of the
@@ -360,8 +360,8 @@ public class Simulation {
 		//TODO fill this in when vehicle fitness is decided upon . . again
 		return new Vehicle();
 	}
-	
-	
+
+
 	/**
 	 * A selection operator which uses roulette selection N times
 	 * to produce a tournament subset of vehicles. The best vehicle in this subset
@@ -371,7 +371,7 @@ public class Simulation {
 	private Vehicle getVehicleByTournament(){
 		return new Vehicle();
 	}
-	
+
 	/**
 	 * A selection operator which randomly selects a vehicle from the top 
 	 * N percent of the population as specified by the user.
@@ -383,7 +383,7 @@ public class Simulation {
 		//TODO fill this in when vehicle fitness is decided upon . . again
 		return new Vehicle();
 	}
-	
+
 	/**
 	 * A selection operator which selects the best vehicle (as determined by fitness).
 	 * If there are two or more vehicle with the same level of top fitness, one of them is chosen
@@ -398,7 +398,7 @@ public class Simulation {
 		}
 		return new Vehicle();
 	}
-	
+
 	/**
 	 * A selection operator which randomly selects a single vehicle from the population.
 	 * @return a random vehicle from the set of vehicles
