@@ -11,6 +11,7 @@
 
 package vehicles.gui;
 
+import java.awt.BorderLayout;
 import vehicles.processing.Embedded;
 import vehicles.*;
 import javax.swing.ActionMap;
@@ -60,192 +61,182 @@ public class VehicleEditor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new JTabbedPane();
-        jPanel3 = new JPanel();
-        jPanel15 = new JPanel();
-        jTextField2 = new JTextField();
-        jPanel18 = new JPanel();
-        jComboBox1 = new JComboBox();
-        jPanel19 = new JPanel();
+        tabContainer = new JTabbedPane();
+        tab_Properties = new JPanel();
+        panel_VehicleName = new JPanel();
+        vehicleName_jTextField = new JTextField();
+        panel_SelectedVehicle = new JPanel();
+        selectedVehicle_jComboBox = new JComboBox();
+        panel_VehicleDescription = new JPanel();
         jScrollPane6 = new JScrollPane();
-        jTextArea2 = new JTextArea();
-        jPanel20 = new JPanel();
-        jTextField5 = new JTextField();
-        jPanel21 = new JPanel();
-        jPanel4 = new JPanel();
-        jPanel2 = new JPanel();
-        jButton3 = new JButton();
-        jButton4 = new JButton();
-        jButton5 = new JButton();
+        vehicleDescription_jTextArea = new JTextArea();
+        panel_Author = new JPanel();
+        author_jTextField = new JTextField();
+        panel_Preview = new JPanel();
+        panel_Processing = new JPanel();
+        tab_Design = new JPanel();
+        button_Save = new JButton();
+        button_SaveAs = new JButton();
+        button_Cancel = new JButton();
 
         ResourceMap resourceMap = Application.getInstance(VehiclesApp.class).getContext().getResourceMap(VehicleEditor.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
 
-        jTabbedPane1.setName("jTabbedPane1"); // NOI18N
+        tabContainer.setName("tabContainer"); // NOI18N
 
-        jPanel3.setName("jPanel3"); // NOI18N
+        tab_Properties.setName("tab_Properties"); // NOI18N
 
-        jPanel15.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel15.border.title"))); // NOI18N
-        jPanel15.setName("jPanel15"); // NOI18N
+        panel_VehicleName.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_VehicleName.border.title"))); // NOI18N
+        panel_VehicleName.setName("panel_VehicleName"); // NOI18N
 
-        jTextField2.setName("jTextField2"); // NOI18N
+        vehicleName_jTextField.setName("vehicleName_jTextField"); // NOI18N
 
-        GroupLayout jPanel15Layout = new GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField2, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+        GroupLayout panel_VehicleNameLayout = new GroupLayout(panel_VehicleName);
+        panel_VehicleName.setLayout(panel_VehicleNameLayout);
+        panel_VehicleNameLayout.setHorizontalGroup(
+            panel_VehicleNameLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(vehicleName_jTextField, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        );
-
-        jPanel18.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel18.border.title"))); // NOI18N
-        jPanel18.setName("jPanel18"); // NOI18N
-
-        jComboBox1.setModel(new DefaultComboBoxModel(new String[] { "<new>", "Vehicle 1", "Vehicle 2", "Vehicle 3", "Vehicle 4", "Vehicle 5" }));
-        jComboBox1.setName("jComboBox1"); // NOI18N
-
-        GroupLayout jPanel18Layout = new GroupLayout(jPanel18);
-        jPanel18.setLayout(jPanel18Layout);
-        jPanel18Layout.setHorizontalGroup(
-            jPanel18Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jComboBox1, 0, 438, Short.MAX_VALUE)
-        );
-        jPanel18Layout.setVerticalGroup(
-            jPanel18Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jComboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        panel_VehicleNameLayout.setVerticalGroup(
+            panel_VehicleNameLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(vehicleName_jTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
-        jPanel19.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel19.border.title"))); // NOI18N
-        jPanel19.setName("jPanel19"); // NOI18N
+        panel_SelectedVehicle.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_SelectedVehicle.border.title"))); // NOI18N
+        panel_SelectedVehicle.setName("panel_SelectedVehicle"); // NOI18N
+
+        selectedVehicle_jComboBox.setModel(new DefaultComboBoxModel(new String[] { "<new>", "Vehicle 1", "Vehicle 2", "Vehicle 3", "Vehicle 4", "Vehicle 5" }));
+        selectedVehicle_jComboBox.setName("selectedVehicle_jComboBox"); // NOI18N
+
+        GroupLayout panel_SelectedVehicleLayout = new GroupLayout(panel_SelectedVehicle);
+        panel_SelectedVehicle.setLayout(panel_SelectedVehicleLayout);
+        panel_SelectedVehicleLayout.setHorizontalGroup(
+            panel_SelectedVehicleLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(selectedVehicle_jComboBox, 0, 438, Short.MAX_VALUE)
+        );
+        panel_SelectedVehicleLayout.setVerticalGroup(
+            panel_SelectedVehicleLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(selectedVehicle_jComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        );
+
+        panel_VehicleDescription.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_VehicleDescription.border.title"))); // NOI18N
+        panel_VehicleDescription.setName("panel_VehicleDescription"); // NOI18N
 
         jScrollPane6.setName("jScrollPane6"); // NOI18N
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jTextArea2.setName("jTextArea2"); // NOI18N
-        jScrollPane6.setViewportView(jTextArea2);
+        vehicleDescription_jTextArea.setColumns(20);
+        vehicleDescription_jTextArea.setRows(5);
+        vehicleDescription_jTextArea.setName("vehicleDescription_jTextArea"); // NOI18N
+        jScrollPane6.setViewportView(vehicleDescription_jTextArea);
 
-        GroupLayout jPanel19Layout = new GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(Alignment.LEADING)
+        GroupLayout panel_VehicleDescriptionLayout = new GroupLayout(panel_VehicleDescription);
+        panel_VehicleDescription.setLayout(panel_VehicleDescriptionLayout);
+        panel_VehicleDescriptionLayout.setHorizontalGroup(
+            panel_VehicleDescriptionLayout.createParallelGroup(Alignment.LEADING)
             .addComponent(jScrollPane6, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(Alignment.LEADING)
+        panel_VehicleDescriptionLayout.setVerticalGroup(
+            panel_VehicleDescriptionLayout.createParallelGroup(Alignment.LEADING)
             .addComponent(jScrollPane6, GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
         );
 
-        jPanel20.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel20.border.title"))); // NOI18N
-        jPanel20.setName("jPanel20"); // NOI18N
+        panel_Author.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Author.border.title"))); // NOI18N
+        panel_Author.setName("panel_Author"); // NOI18N
 
-        jTextField5.setName("jTextField5"); // NOI18N
+        author_jTextField.setName("author_jTextField"); // NOI18N
 
-        GroupLayout jPanel20Layout = new GroupLayout(jPanel20);
-        jPanel20.setLayout(jPanel20Layout);
-        jPanel20Layout.setHorizontalGroup(
-            jPanel20Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField5, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+        GroupLayout panel_AuthorLayout = new GroupLayout(panel_Author);
+        panel_Author.setLayout(panel_AuthorLayout);
+        panel_AuthorLayout.setHorizontalGroup(
+            panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(author_jTextField, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         );
-        jPanel20Layout.setVerticalGroup(
-            jPanel20Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        );
-
-        jPanel21.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel21.border.title"))); // NOI18N
-        jPanel21.setName("jPanel21"); // NOI18N
-
-        jPanel4.setName("jPanel4"); // NOI18N
-
-        GroupLayout jPanel4Layout = new GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 210, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 149, Short.MAX_VALUE)
+        panel_AuthorLayout.setVerticalGroup(
+            panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(author_jTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
-        GroupLayout jPanel21Layout = new GroupLayout(jPanel21);
-        jPanel21.setLayout(jPanel21Layout);
-        jPanel21Layout.setHorizontalGroup(
-            jPanel21Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jPanel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        panel_Preview.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Preview.border.title"))); // NOI18N
+        panel_Preview.setName("panel_Preview"); // NOI18N
+
+        panel_Processing.setName("panel_Processing"); // NOI18N
+        panel_Processing.setLayout(new BorderLayout());
+
+        GroupLayout panel_PreviewLayout = new GroupLayout(panel_Preview);
+        panel_Preview.setLayout(panel_PreviewLayout);
+        panel_PreviewLayout.setHorizontalGroup(
+            panel_PreviewLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(panel_Processing, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         );
-        jPanel21Layout.setVerticalGroup(
-            jPanel21Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jPanel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        panel_PreviewLayout.setVerticalGroup(
+            panel_PreviewLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(panel_Processing, GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
         );
 
-        jPanel4.add(embed);
+        panel_Processing.add(embed, BorderLayout.CENTER);
 
-        GroupLayout jPanel3Layout = new GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        GroupLayout tab_PropertiesLayout = new GroupLayout(tab_Properties);
+        tab_Properties.setLayout(tab_PropertiesLayout);
+        tab_PropertiesLayout.setHorizontalGroup(
+            tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(tab_PropertiesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(jPanel18, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(Alignment.TRAILING)
-                            .addComponent(jPanel15, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel19, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(panel_SelectedVehicle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(tab_PropertiesLayout.createSequentialGroup()
+                        .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
+                            .addComponent(panel_VehicleName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING)
-                            .addComponent(jPanel21, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel20, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
+                            .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panel_Author, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        tab_PropertiesLayout.setVerticalGroup(
+            tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(tab_PropertiesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel18, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel_SelectedVehicle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(jPanel20, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel15, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(panel_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panel_VehicleName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(jPanel19, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel21, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Properties", jPanel3);
+        tabContainer.addTab("Properties", tab_Properties);
 
-        jPanel2.setName("jPanel2"); // NOI18N
+        tab_Design.setName("tab_Design"); // NOI18N
 
-        GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(Alignment.LEADING)
+        GroupLayout tab_DesignLayout = new GroupLayout(tab_Design);
+        tab_Design.setLayout(tab_DesignLayout);
+        tab_DesignLayout.setHorizontalGroup(
+            tab_DesignLayout.createParallelGroup(Alignment.LEADING)
             .addGap(0, 470, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(Alignment.LEADING)
+        tab_DesignLayout.setVerticalGroup(
+            tab_DesignLayout.createParallelGroup(Alignment.LEADING)
             .addGap(0, 303, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab(resourceMap.getString("jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
+        tabContainer.addTab(resourceMap.getString("tab_Design.TabConstraints.tabTitle"), tab_Design); // NOI18N
 
-        jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
-        jButton3.setName("jButton3"); // NOI18N
+        button_Save.setText(resourceMap.getString("button_Save.text")); // NOI18N
+        button_Save.setName("button_Save"); // NOI18N
+
+        button_SaveAs.setText(resourceMap.getString("button_SaveAs.text")); // NOI18N
+        button_SaveAs.setName("button_SaveAs"); // NOI18N
 
         ActionMap actionMap = Application.getInstance(VehiclesApp.class).getContext().getActionMap(VehicleEditor.class, this);
-        jButton4.setAction(actionMap.get("cancel")); // NOI18N
-        jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
-        jButton4.setName("jButton4"); // NOI18N
-
-        jButton5.setText(resourceMap.getString("jButton5.text")); // NOI18N
-        jButton5.setName("jButton5"); // NOI18N
+        button_Cancel.setAction(actionMap.get("cancel")); // NOI18N
+        button_Cancel.setText(resourceMap.getString("button_Cancel.text")); // NOI18N
+        button_Cancel.setName("button_Cancel"); // NOI18N
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -253,23 +244,23 @@ public class VehicleEditor extends javax.swing.JFrame {
             layout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(254, Short.MAX_VALUE)
-                .addComponent(jButton5)
+                .addComponent(button_Save)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(button_SaveAs)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(button_Cancel)
                 .addContainerGap())
-            .addComponent(jTabbedPane1, GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+            .addComponent(tabContainer, GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                .addComponent(tabContainer, GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jButton5))
+                    .addComponent(button_Cancel)
+                    .addComponent(button_SaveAs)
+                    .addComponent(button_Save))
                 .addContainerGap())
         );
 
@@ -289,23 +280,23 @@ public class VehicleEditor extends javax.swing.JFrame {
 
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JButton jButton3;
-    private JButton jButton4;
-    private JButton jButton5;
-    private JComboBox jComboBox1;
-    private JPanel jPanel15;
-    private JPanel jPanel18;
-    private JPanel jPanel19;
-    private JPanel jPanel2;
-    private JPanel jPanel20;
-    private JPanel jPanel21;
-    private JPanel jPanel3;
-    private JPanel jPanel4;
+    private JTextField author_jTextField;
+    private JButton button_Cancel;
+    private JButton button_Save;
+    private JButton button_SaveAs;
     private JScrollPane jScrollPane6;
-    private JTabbedPane jTabbedPane1;
-    private JTextArea jTextArea2;
-    private JTextField jTextField2;
-    private JTextField jTextField5;
+    private JPanel panel_Author;
+    private JPanel panel_Preview;
+    private JPanel panel_Processing;
+    private JPanel panel_SelectedVehicle;
+    private JPanel panel_VehicleDescription;
+    private JPanel panel_VehicleName;
+    private JComboBox selectedVehicle_jComboBox;
+    private JTabbedPane tabContainer;
+    private JPanel tab_Design;
+    private JPanel tab_Properties;
+    private JTextArea vehicleDescription_jTextArea;
+    private JTextField vehicleName_jTextField;
     // End of variables declaration//GEN-END:variables
     private PApplet embed;
 }
