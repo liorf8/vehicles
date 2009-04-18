@@ -2,7 +2,7 @@
 <Simulation>
     <Name>New NAME!</Name>
     <Author>Author0</Author>
-    <LastModified>2009/04/18 23:47:54</LastModified>
+    <LastModified>2009/04/18 23:58:02</LastModified>
     <VehiclePath>src/test/XML/hungry.xml</VehiclePath>
     <VehiclePath>src/test/XML/hungryduplicate.xml</VehiclePath>
     <perishable_vehicles>false</perishable_vehicles>
