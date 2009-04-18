@@ -20,6 +20,25 @@ public class Vehicle {
 	protected String vehicleName = null; //the name of this vehicle
 	protected String VehicleTemperament = null; //the vehicle's temperament
 	protected Vector <VehicleComponent> components; //components of the vehicle 
+	protected double max_battery_capacity = 100; //maximum battery this vehicle can have
+	protected double curr_battery_capacity = 100;//current battery capacity
+	
+	
+	public double getMax_battery_capacity() {
+		return max_battery_capacity;
+	}
+
+	public void setMax_battery_capacity(double max_battery_capacity) {
+		this.max_battery_capacity = max_battery_capacity;
+	}
+
+	public double getCurr_battery_capacity() {
+		return curr_battery_capacity;
+	}
+
+	public void setCurr_battery_capacity(double curr_battery_capacity) {
+		this.curr_battery_capacity = curr_battery_capacity;
+	}
 
 	public Vehicle(){
 		components = new Vector<VehicleComponent>();
@@ -44,6 +63,11 @@ public class Vehicle {
 			NodeList temperament = dom.getElementsByTagName("temperament");
 			this.setVehicleTemperament(temperament.item(0).getChildNodes().item(0).getNodeValue());
 			
+			NodeList maxBattery = dom.getElementsByTagName("max_battery_capacity");
+			this.setMax_battery_capacity(Double.parseDouble(maxBattery.item(0).getChildNodes().item(0).getNodeValue()));
+			
+			NodeList currBattery = dom.getElementsByTagName("curr_battery_capacity");
+			this.setCurr_battery_capacity(Double.parseDouble(currBattery.item(0).getChildNodes().item(0).getNodeValue()));
 			//Node root = dom.getDocumentElement(); //get the root element from the document
 			//handleNode(root); //recursive function to handle the nodes
 
@@ -126,30 +150,7 @@ public class Vehicle {
 	}
 
 
-	/**
-	 * Take in a node from an XML document and use it to instansiate parts of the object- for 
-	 * internal class use only by other methods
-	 * @param node The node to handle
-	 */
-	private void handleNode(Node node){
-		int type = node.getNodeType();
-		//System.out.println(node.getNodeName() + " " + node.getNodeValue());
-		switch (type) { //depending on the type of node, perform different actions
-		case Node.ELEMENT_NODE: 
-			System.out.println(node.getNodeName());
-			NodeList children = node.getChildNodes();
-			int len = children.getLength();
-			for (int i=0; i<len; i++)
-				handleNode(children.item(i));
-			break;
-		case Node.TEXT_NODE:
-			System.out.println("Parent of parent = " +node.getParentNode().getParentNode().getNodeName());
-			System.out.println("Parent = " + node.getParentNode().getNodeName())
-			;			System.out.println("\tChild= " + node.getNodeValue() );
-		}
-
-
-	}
+	
 	
 	
 	public String getXmlLocation() {

@@ -58,6 +58,20 @@ public class EditorVehicle extends Vehicle {
 			writeXMLEntry("name", name, xmldoc);
 	}
 	/**
+	 * Add a vehicle max_battery_capacity attribute to the XML document being created
+	 * @param max_capacity The name to use for this Vehicle
+	 */
+	public void addMaxBatteryCapacity(String max_capacity){
+			writeXMLEntry("max_battery_capacity", max_capacity, xmldoc);
+	}
+	/**
+	 * Add a vehicle curr_battery_capacity attribute to the XML document being created
+	 * @param name The name to use for this Vehicle
+	 */
+	public void addCurrBatteryCapacity(String curr_capacity){
+			writeXMLEntry("curr_battery_capacity", curr_capacity, xmldoc);
+	}
+	/**
 	 * Add a vehicle temperament attribute(Aggressive | Timid | None) to the XML document being created
 	 * @param temperament One of (Aggressive | Timid | None)
 	 */
@@ -84,6 +98,8 @@ public class EditorVehicle extends Vehicle {
 			if(this.vehicleName != null){ 
 				addVehicleName(vehicleName);
 			}
+			this.addMaxBatteryCapacity(Double.toString(max_battery_capacity));
+			this.addCurrBatteryCapacity(Double.toString(curr_battery_capacity));
 			if(this.VehicleTemperament != null){
 				addVehicleTemperament(VehicleTemperament);
 			}
