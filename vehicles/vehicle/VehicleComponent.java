@@ -19,7 +19,6 @@ public class VehicleComponent{
 
 	private String VehicleComponentName = null; //the name of this component
 	private String VehicleComponentType = null; //the type of this component
-	private String VehicleComponentBatteryCapacity = null; //battery capacity
 	private String VehicleComponentMotorStrength = null; //motor strength
 	private String VehicleComponentSensorRadius = null; //sensor radius
 	private String VehicleComponentPosition = null; //position
@@ -42,14 +41,7 @@ public class VehicleComponent{
 		VehicleComponentType = vehicleComponentType;
 	}
 
-	public String getVehicleComponentBatteryCapacity() {
-		return VehicleComponentBatteryCapacity;
-	}
-
-	public void setVehicleComponentBatteryCapacity(
-			String vehicleComponentBatteryCapacity) {
-		VehicleComponentBatteryCapacity = vehicleComponentBatteryCapacity;
-	}
+	
 
 	public String getVehicleComponentMotorStrength() {
 		return VehicleComponentMotorStrength;
@@ -124,13 +116,7 @@ public class VehicleComponent{
 	public void addMotorStrength(String strength){
 		writeXMLEntry("motorStrength", strength, xmldoc);
 	}
-	/**
-	 * Add a vehicle component battery capacity attribute (0.0 - 100.0) to the XML document being created
-	 * @param temperament One of (0.0 - 100.0)
-	 */
-	public void addBatteryCapacity(String capacity){
-		writeXMLEntry("batteryCapacity", capacity, xmldoc);
-	}
+	
 	/**
 	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
 	 * @param temperament One of (0 - 100)
@@ -183,9 +169,6 @@ public class VehicleComponent{
 		}
 		if(this.VehicleComponentPosition != null){
 			this.addPosition(VehicleComponentPosition);
-		}
-		if(this.VehicleComponentBatteryCapacity != null){
-			this.addBatteryCapacity(VehicleComponentBatteryCapacity);
 		}
 		if(this.VehicleComponentMotorStrength != null){
 			this.addMotorStrength(VehicleComponentMotorStrength);

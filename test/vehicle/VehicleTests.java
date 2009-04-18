@@ -13,6 +13,7 @@ public class VehicleTests {
 			EditorVehicle v = new EditorVehicle("hungry.xml");
 			v.setVehicleName("Hungy Vehicle"); //set object attributes
 			v.setVehicleTemperament("Timid"); //set object attributes 
+			v.setCurr_battery_capacity(46);
 			
 				VehicleComponent vc = new VehicleComponent("fastmotor.xml"); //new object
 					vc.setVehicleComponentName("Fast Motor");//set object attributes

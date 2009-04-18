@@ -13,5 +13,7 @@
         <sensorRadius>22</sensorRadius>
     </VehicleComponent>
     <name>Hungy Vehicle</name>
+    <max_battery_capacity>100.0</max_battery_capacity>
+    <curr_battery_capacity>46.0</curr_battery_capacity>
     <temperament>Timid</temperament>
 </Vehicle>
