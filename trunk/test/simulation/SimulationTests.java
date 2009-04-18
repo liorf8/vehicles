@@ -11,7 +11,7 @@ public class SimulationTests {
 		
 		/* Testing the creation of a new simulation from an xml file*/
 		System.out.print("TESTING CREATION OF SIMULATION FROM XML FILE");
-		Simulation a = new Simulation("/home/graysr/Eclipse_Workspace/2ba7_GroupProject/src/test/simulation/simulation.xml");
+		Simulation a = new Simulation("simulation.xml");
 		a.printSimDetails();
 		
 		
@@ -56,11 +56,11 @@ public class SimulationTests {
 		
 		/* Testing the modification of an existing document */
 		System.out.println("TESTING MODIFICATION OF EXISTING XML DOCUMENT");
-		EditorSimulation editor2 = new EditorSimulation("/home/graysr/Eclipse_Workspace/2ba7_GroupProject/src/test/simulation/simulation.xml", true);
+		EditorSimulation editor2 = new EditorSimulation("simulation.xml", true);
 		editor2.printSimDetails();
 		editor2.setSimulationName("New NAME!");
 		editor2.saveSimulation();
-		editor2 = new EditorSimulation("/home/graysr/Eclipse_Workspace/2ba7_GroupProject/src/test/simulation/simulation.xml", true);
+		editor2 = new EditorSimulation("simulation.xml", true);
 		editor2.printSimDetails();
 		
 		
