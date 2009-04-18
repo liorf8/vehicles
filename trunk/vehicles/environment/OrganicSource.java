@@ -11,17 +11,41 @@ public class OrganicSource extends EnvironmentElement {
 		this.capacity = c;
 		this.recharge = r;
 	}
-	public double getCapacity(){
+	public double organicCapacity(){
 		return this.capacity;
 	}
-	public double getRecharge(){
+	public double organicRecharge(){
 		return this.recharge;
 	}
 	public void modifyCapacity(double capacity){
+	
+		try{
+			 value(capacity);
+		}catch(valueOutOfBounds de){
+	
+		}
 		this.capacity = capacity;
 	}
-	public void modifyRange(double recharge){
+	public void modifyRecharge(double recharge){
+
+		try{
+			 valueOne(recharge);
+		}catch(valueOutOfBounds de){
+	
+		}
 		this.recharge = recharge;
 	}
-	
+	public void value(double e) throws valueOutOfBounds{
+		if (e <0.0 || e>100.0){
+		throw new valueOutOfBounds("OrganicCapacity "+e+" out of bounds.\nValue must be greater than 0\n" +
+				" or less than or equal to 100\n");
+		}
+	}
+	public void valueOne(double e) throws valueOutOfBounds{
+		if (e <0.0 || e>10.0){
+		throw new valueOutOfBounds("OrganicCapacity "+e+" out of bounds.\nValue must be greater than 0\n" +
+				" or less than or equal to 100\n");
+		}
+	}
+
 }
