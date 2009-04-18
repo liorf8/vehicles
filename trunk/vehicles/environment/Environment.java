@@ -9,7 +9,7 @@ package vehicles.environment;
  * James*/
 import java.util.*;
 
-public class Enviroment {
+public class Environment {
 	private String name;
 	@SuppressWarnings("unchecked")
 	private Vector elementVector;
@@ -18,7 +18,7 @@ public class Enviroment {
 	private String fileLocation;
 
 	@SuppressWarnings("unchecked")
-	public Enviroment(String na, String fl){
+	public Environment(String na, String fl){
 		this.name = na;
 		elementVector = new Vector();
 		this.width = 0.0;
