@@ -4,6 +4,7 @@
 
 package vehicles.gui;
 
+import vehicles.processing.Embedded;
 import vehicles.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -34,6 +35,7 @@ import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import processing.core.*;
 
 /**
  * The application's main frame.
@@ -42,7 +44,12 @@ public class Simulator extends FrameView {
 
     public Simulator(SingleFrameApplication app) {
         super(app);
+        embed = new Embedded();
         initComponents();
+        // important to call this whenever embedding a PApplet.
+        // It ensures that the animation thread is started and
+        // that other internal variables are properly set.
+        embed.init();
     }
 
     @Action
@@ -183,6 +190,7 @@ public class Simulator extends FrameView {
         );
 
         mainPanel.add(jPanel1, BorderLayout.CENTER);
+        jPanel1.add(embed);
 
         menuBar.setMinimumSize(new Dimension(261, 21));
         menuBar.setName("menuBar"); // NOI18N
@@ -391,4 +399,5 @@ public class Simulator extends FrameView {
     private JFrame environmentEditor;
     private JFrame vehicleEditor;
     private JFrame simulationEditor;
+    private PApplet embed;
 }

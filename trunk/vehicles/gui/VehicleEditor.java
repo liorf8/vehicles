@@ -11,6 +11,7 @@
 
 package vehicles.gui;
 
+import vehicles.processing.Embedded;
 import vehicles.*;
 import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
@@ -29,6 +30,7 @@ import javax.swing.WindowConstants;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
+import processing.core.*;
 
 /**
  *
@@ -38,7 +40,13 @@ public class VehicleEditor extends javax.swing.JFrame {
 
     /** Creates new form VehicleEditor */
     public VehicleEditor(java.awt.Frame parent) {
+
+        embed = new Embedded();
         initComponents();
+        // important to call this whenever embedding a PApplet.
+        // It ensures that the animation thread is started and
+        // that other internal variables are properly set.
+        embed.init();
     }
 
     @Action public void cancel() {
@@ -152,7 +160,6 @@ public class VehicleEditor extends javax.swing.JFrame {
         jPanel21.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel21.border.title"))); // NOI18N
         jPanel21.setName("jPanel21"); // NOI18N
 
-        jPanel4.setBackground(resourceMap.getColor("jPanel4.background")); // NOI18N
         jPanel4.setName("jPanel4"); // NOI18N
 
         GroupLayout jPanel4Layout = new GroupLayout(jPanel4);
@@ -176,6 +183,8 @@ public class VehicleEditor extends javax.swing.JFrame {
             jPanel21Layout.createParallelGroup(Alignment.LEADING)
             .addComponent(jPanel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jPanel4.add(embed);
 
         GroupLayout jPanel3Layout = new GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -279,6 +288,7 @@ public class VehicleEditor extends javax.swing.JFrame {
 //        });
 //    }
 
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton jButton3;
     private JButton jButton4;
@@ -298,5 +308,5 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JTextField jTextField2;
     private JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
-
+    private PApplet embed;
 }
