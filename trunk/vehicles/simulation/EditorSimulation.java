@@ -1,7 +1,6 @@
 package vehicles.simulation;
 import vehicles.vehicle.*;
 import vehicles.environment.*;
-
 import java.io.*;
 import java.util.Iterator;
 import org.w3c.dom.Document;
@@ -57,43 +56,11 @@ public class EditorSimulation extends Simulation{
 	}
 
 	/**
-	 * Add a simulation name attribute to the XML document being created
-	 * @param name The name to use for this Simulation
-	 */
-	public void addSimulationName(String name){
-		writeXMLEntry("Name", name, xmldoc);
-	}
-
-	/**
-	 * Add an author attribute to the XML document being created
-	 * @param author The name of the author of this simulation
-	 */
-	public void addSimulationAuthor(String author){
-		writeXMLEntry("Author", author, xmldoc);
-	}
-
-	/**
-	 * Add a vehicle XML file path entry into this Simulation's document
-	 * @param vp The vehicle path to add
-	 */
-	public void addVehiclePath(String vp){
-		writeXMLEntry("VehiclePath", vp, xmldoc);
-	}
-
-	/**
 	 * Add a vehicle XML file path entry into this Simulation's document
 	 * @param v The vehicle whoe's path you wish to add
 	 */
 	public void addVehiclePath(Vehicle v){
 		writeXMLEntry("VehiclePath", v.getXmlLocation(), xmldoc);
-	}
-
-	/**
-	 * Add an environment XML file path entry into this Simulation's document
-	 * @param ep The environment path you wish to add
-	 */
-	public void addEnvironmentPath(String ep){
-		writeXMLEntry("EnvironmentPath", ep, xmldoc);
 	}
 
 	/**
@@ -111,62 +78,6 @@ public class EditorSimulation extends Simulation{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		writeXMLEntry("LastModified", dateFormat.format(date), xmldoc);
-	}
-
-	/**
-	 * Add a perishable vehicles entry into the simulations document
-	 * @param pv The value of perishable_vehicles to write
-	 */
-	public void addPerishableVehicles(boolean pv){
-		writeXMLEntry("perishable_vehicles", Boolean.toString(pv) , xmldoc);
-	}
-
-	/**
-	 * Add a regenerating elements entry into the simulations document
-	 * @param re The value of regenerating_elements to write
-	 */
-	public void addRegeneratingElements(boolean re){
-		writeXMLEntry("regenerating_elements", Boolean.toString(re) , xmldoc);
-	}
-
-	/**
-	 * Add a perishable elements entry into the simulations document
-	 * @param pe The value of perishable_elements to write
-	 */
-	public void addPerishableElements(boolean pe){
-		writeXMLEntry("perishable_elements", Boolean.toString(pe) , xmldoc);
-	}
-
-	/**
-	 * Add an evolution entry into the simulations document
-	 * @param evo The value of evolution to write
-	 */
-	public void addEvolution(boolean evo){
-		writeXMLEntry("evolution", Boolean.toString(evo) , xmldoc);
-	}
-
-	/**
-	 * Add a reproduction method entry into the simulations document
-	 * @param rep The value of reproduction_method to write
-	 */
-	public void addPerishableElements(int rep){
-		writeXMLEntry("reproduction_method", Integer.toString(rep) , xmldoc);
-	}
-
-	/**
-	 * Add a sensor viw entry into the simulations document
-	 * @param sv The value of sensor_view to write
-	 */
-	public void addSensorView(boolean sv){
-		writeXMLEntry("sensor_view", Boolean.toString(sv) , xmldoc);
-	}
-
-	/**
-	 * Add a genetic selection method entry into the simulations document
-	 * @param gs The value of genetic_selection_method to write
-	 */
-	public void addGeneticSelectionMethod(int gs){
-		writeXMLEntry("genetic_selection_method", Integer.toString(gs) , xmldoc);
 	}
 
 	/**
@@ -201,14 +112,14 @@ public class EditorSimulation extends Simulation{
 	 * will save the vehicle object as it is to disk, so make sure it's only called when we're finished
 	 * with it
 	 */
-	public void saveEnvironment(){
+	public void saveSimulation(){
 		if (!this.isSaveable()){
 			System.out.println("Simulation Not saveable yet");
 			return;
 		}
 
 		try{
-			/*Form the XML document by saving the various attributes*/
+			/*** Form the XML document by saving the various attributes ***/
 			//Add the simulation name
 			this.addString("Name", this.simulationName);
 			//add the author name
@@ -235,7 +146,7 @@ public class EditorSimulation extends Simulation{
 			//Add sensor_view
 			this.addBoolean("sensor_view", this.sensor_view);
 			//Add Genetic Selection Mehod
-			this.addInteger("genetic_selection_methodd", this.gen_selection);
+			this.addInteger("genetic_selection_method", this.gen_selection);
 
 			xmldoc.appendChild(root); //finalise the XML document
 			/*Now take the file in RAM and write it out to disk*/

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<!-- Defines the xml for a Simulation -->
+    <xs:complexType name="Simulation">
+        <xs:sequence>
+            <xs:element name="Name" type="xs:string" use="required"/>
+            <xs:element name="Author" type="xs:decimal"/>
+            <xs:element name="LastModified" type="xs:decimal"/>
+            <!--A simulation must have at least 2 vehicles-->
+            <xs:element name="VehiclePath" minOccurs="2" type="xs:string">
+            <!--A simulation must have only one environment path -->
+            <xs:element name="EnvironmentPath" type="xs:string" use="required">
+            <!-- The following are for run time options of a simulation -->
+            <xs:element name="perishable_vehicles" type="xs:boolean" default="false"/>
+            <xs:element name="regenerating_elements" type="xs:boolean" default="false"/>
+            <xs:element name="perishable_elements" type="xs:boolean" default="false"/>
+            <xs:element name="evolution" type="xs:boolean" default="false"/>
+            <xs:element name="sensor_view" type="xs:boolean" default="false"/>
+            <xs:element name="reproduction_method" type="xs:integer" default="0"/>
+            <xs:element name="genetic_selection_method" type="xs:integer" default="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
