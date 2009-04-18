@@ -255,16 +255,20 @@ public class Simulation {
 		this.lastModified = timeStamp;
 	}
 
+	/**** Other Methods ****/
+
 	/**
 	 * Method used to find out if the current simulation has enough data to be saved
 	 * @return
 	 */
 	public boolean isSaveable(){
-		return (this.author != null && this.vehicles.size() >= 2 && this.simulationName != null);
+		return (this.vehicles.size() >= 2 && this.simulationName != null);
 		//TODO Add this back in, when Environment is fixed ->   && this.enviro != null);
 	}
-
-	/**** Other Methods ****/
+	
+	/**
+	 * Void method that will print out all of the details about the current Simulation object
+	 */
 	public void printSimDetails(){
 		System.out.println("Name\t" + this.getSimulationName());
 		System.out.println("Author\t" + this.getAuthor());
@@ -286,5 +290,31 @@ public class Simulation {
 		System.out.println("Genetic Algorithm\t" + this.getGeneticSelectionMethod());
 	}
 
+	
+	/**
+	 * A selection method that will choose a vehicle from the vector of vehicles based
+	 * on the value set for gen_selection  
+	 */
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

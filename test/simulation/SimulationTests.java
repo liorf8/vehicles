@@ -47,11 +47,9 @@ public class SimulationTests {
 			v.setXmlLocation("VehicleTest_".concat(Integer.toString(i)));
 			mySimEditor.addVehicle(v);
 		}
-		mySimEditor.setPerishableElements(true);
 		mySimEditor.setPerishableVehicles(false);
 		mySimEditor.setRegeneratingElements(false);
-		mySimEditor.setReproductionMethod(2);
-		mySimEditor.saveEnvironment();
+		mySimEditor.saveSimulation();
 		
 		Simulation test = new Simulation("my_simulation_test.xml");
 		test.printSimDetails();
@@ -61,7 +59,7 @@ public class SimulationTests {
 		EditorSimulation editor2 = new EditorSimulation("/home/graysr/Eclipse_Workspace/2ba7_GroupProject/src/test/simulation/simulation.xml", true);
 		editor2.printSimDetails();
 		editor2.setSimulationName("New NAME!");
-		editor2.saveEnvironment();
+		editor2.saveSimulation();
 		editor2 = new EditorSimulation("/home/graysr/Eclipse_Workspace/2ba7_GroupProject/src/test/simulation/simulation.xml", true);
 		editor2.printSimDetails();
 		
