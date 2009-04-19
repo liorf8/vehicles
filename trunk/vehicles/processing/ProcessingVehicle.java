@@ -29,6 +29,10 @@ public class ProcessingVehicle extends PApplet{
 	int numOfRobots = 3;
 	float move_speed = PI/6;
 
+    public void setMove_speed(float move_speed) {
+        this.move_speed = move_speed;
+    }
+
 	int source_drag_id = -1;
 
 
