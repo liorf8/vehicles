@@ -4,10 +4,17 @@
 
 package vehicles.gui;
 
+import java.awt.GridLayout;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import javax.swing.BoxLayout;
+import javax.swing.DebugGraphics;
+import javax.swing.JLayeredPane;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import org.netbeans.lib.awtextra.AbsoluteLayout;
 import vehicles.processing.*;
 import vehicles.*;
 import java.awt.BorderLayout;
@@ -39,7 +46,6 @@ import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import processing.core.*;
 
 /**
  * The application's main frame.
@@ -125,6 +131,8 @@ public class Simulator extends FrameView {
         mainPanel = new JPanel();
         jPanel2 = new JPanel();
         jPanel1 = new JPanel();
+        jScrollPane1 = new JScrollPane();
+        jPanel3 = new JPanel();
         menuBar = new JMenuBar();
         JMenu simulationMenu = new JMenu();
         jMenuItem4 = new JMenuItem();
@@ -173,16 +181,42 @@ public class Simulator extends FrameView {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 409, Short.MAX_VALUE)
+            .addGap(0, 342, Short.MAX_VALUE)
         );
 
         mainPanel.add(jPanel2, BorderLayout.WEST);
         ResourceMap resourceMap = Application.getInstance(VehiclesApp.class).getContext().getResourceMap(Simulator.class);
         jPanel1.setBorder(BorderFactory.createLineBorder(resourceMap.getColor("jPanel1.border.lineColor"))); // NOI18N
+        jPanel1.setAutoscrolls(true);
         jPanel1.setName("jPanel1"); // NOI18N
         jPanel1.setLayout(new BorderLayout());
+
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        jPanel3.setFocusCycleRoot(true);
+        jPanel3.setName("jPanel3"); // NOI18N
+        jPanel3.setOpaque(false);
+        jPanel3.setPreferredSize(new Dimension(640, 480));
+        jPanel3.setVerifyInputWhenFocusTarget(false);
+
+        jPanel3.add(embed);
+
+        GroupLayout jPanel3Layout = new GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(Alignment.LEADING)
+            .addGap(0, 480, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(jPanel3);
+
+        jPanel1.add(jScrollPane1, BorderLayout.CENTER);
+
         mainPanel.add(jPanel1, BorderLayout.CENTER);
-        jPanel1.add(embed, BorderLayout.CENTER);
 
         menuBar.setMinimumSize(new Dimension(261, 21));
         menuBar.setName("menuBar"); // NOI18N
@@ -382,6 +416,8 @@ public class Simulator extends FrameView {
     private JMenuItem jMenuItem9;
     private JPanel jPanel1;
     private JPanel jPanel2;
+    private JPanel jPanel3;
+    private JScrollPane jScrollPane1;
     private Separator jSeparator1;
     private JSeparator jSeparator2;
     private JSeparator jSeparator3;

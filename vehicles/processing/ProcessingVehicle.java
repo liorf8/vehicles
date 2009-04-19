@@ -23,8 +23,8 @@ public class ProcessingVehicle extends PApplet {
 
     // Processing Sketch Setup
     public void setup() {
-        size(400, 400);
-        background(10,10,10);
+        size(640, 480);
+        background(0,0,0);
 
         ellipseMode(CENTER);
         rectMode(CENTER);
@@ -53,7 +53,7 @@ public class ProcessingVehicle extends PApplet {
 
     // Processing Sketch Main Loop
     public void draw() {
-        background(150);
+        background(0,0,0);
 
         image(ground, 0, 0);
 
@@ -102,7 +102,6 @@ public class ProcessingVehicle extends PApplet {
      * update the light source on the ground
      */
     void updateGround() {
-
 
         float sum;
         int c;
