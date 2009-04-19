@@ -4,7 +4,7 @@
 
 package vehicles.gui;
 
-import vehicles.processing.Embedded;
+import vehicles.processing.*;
 import vehicles.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -44,7 +44,7 @@ public class Simulator extends FrameView {
 
     public Simulator(SingleFrameApplication app) {
         super(app);
-        embed = new Embedded();
+        embed = new ProcessingVehicle();
         initComponents();
         // important to call this whenever embedding a PApplet.
         // It ensures that the animation thread is started and
