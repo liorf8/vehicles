@@ -2,6 +2,7 @@ package vehicles.simulation;
 
 import vehicles.vehicle.*;
 import vehicles.environment.*;
+import java.io.*;
 import java.util.Vector;
 import java.util.Random;
 import java.util.Iterator;
@@ -75,7 +76,6 @@ public class Simulation {
 			this.vehicles.add(new Vehicle(vehicle_location));
 		}
 	}
-
 
 	/**
 	 * Take in a node from an XML document and use it to instansiate parts of the object- for 
@@ -354,9 +354,33 @@ public class Simulation {
 	 * 
 	 * @return a vehicle chosen by roulette selection
 	 */
+
+	//Messy code, algorithm is correct? Code is messy
 	private Vehicle getVehicleByRoulette(){
-		//TODO fill this in when vehicle fitness is decided upon . . again
-		return new Vehicle();
+		int len = this.vehicles.size(), i;
+		double[]percent = new double[len];
+		double total = 0;
+		for(i = 0; i < len; i++){
+			percent[i] = this.vehicles.elementAt(i).getFitness();
+			total += percent[i];
+		}
+		percent[0] = (percent[0]/total) * 100;
+		for(i = 1; i < percent.length; i++){
+			percent[i] = (percent[i]/total) * 100;
+			percent[i] = percent[i] + percent[i-1];
+		}
+		System.out.println("Percentages:");
+		for(i = 0; i < percent.length; i++){
+			System.out.println(percent[i]);
+		}
+		Random ran = new Random(System.currentTimeMillis());
+		double random = (double)ran.nextInt(101);
+		for(i = 0; i < percent.length; i++){
+			if(random <= percent[i]){
+				break;
+			}
+		}
+		return this.vehicles.elementAt(i);
 	}
 
 
@@ -367,7 +391,25 @@ public class Simulation {
 	 * @return a vehicle chosen by roulette selection N times
 	 */
 	private Vehicle getVehicleByTournament(){
-		return new Vehicle();
+		try {
+			BufferedReader uin = new BufferedReader(new InputStreamReader(System.in));
+			int n = 0;
+			do{
+			System.out.print("Please enter the number N for Tournament Selection: ");
+			n = new Integer(uin.readLine()).intValue();
+			}
+			while(n <= 0);
+			
+			Vehicle[] subset = new Vehicle[n];
+			
+			for(int i = 0; i < n; i++){
+				subset[i] = this.getVehicleByRoulette();
+			}
+			return this.getVehicleByBest(subset);
+		}
+		catch (IOException io) {
+		}
+		return null;
 	}
 
 	/**
@@ -389,14 +431,34 @@ public class Simulation {
 	 * @return the best vehicle in the set of vehicles
 	 */
 	private Vehicle getVehicleByBest(){
-		Vehicle best;
-		Iterator it = this.vehicles.iterator();
-		while(it.hasNext()){
-			//TODO fill this in when vehicle fitness is decided upon . . again
+		Vehicle best = this.vehicles.elementAt(0);
+		int len = this.vehicles.size();
+		for(int i = 0 ; i < len - 1; i++){
+			if(this.vehicles.elementAt(i).getFitness() >= best.getFitness()){
+				best = this.vehicles.elementAt(i);
+			}
 		}
-		return new Vehicle();
+		return best;
 	}
 
+	/**
+	 * A selection operator which selects the best vehicle (as determined by fitness).
+	 * If there are two or more vehicle with the same level of top fitness, one of them is chosen
+	 * randomly.
+	 * @param An array of vehicles to choose the best from
+	 * @return the best vehicle in the set of vehicles
+	 */
+	private Vehicle getVehicleByBest(Vehicle[] veh){
+		Vehicle best = veh[0];
+		int len = veh.length;
+		for(int i = 0 ; i < len; i++){
+			if(veh[i].getFitness() >= best.getFitness()){
+				best = veh[i];
+			}
+		}
+		return best;
+	}
+	
 	/**
 	 * A selection operator which randomly selects a single vehicle from the population.
 	 * @return a random vehicle from the set of vehicles
@@ -407,4 +469,20 @@ public class Simulation {
 		int random = ran.nextInt(num_veh);
 		return this.vehicles.elementAt(random);
 	}
+
+	/**
+	 * Method to sort the vehicles in the vehicles vector
+	 * in order of fitness
+	 */
+	private void sortByFitness(){
+
+	}
+
+
+
+
+
+
+
+
 }

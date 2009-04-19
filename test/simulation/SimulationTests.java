@@ -63,6 +63,7 @@ public class SimulationTests {
 		editor2 = new EditorSimulation("src/test/XML/simulation.xml", true);
 		editor2.printSimDetails();
 		
+		Vehicle veh = a.getVehicle_SelectionBased();
 		
 	}
 }
