@@ -44,7 +44,7 @@ public class Vehicle {
 	 * @return curr_battery_capacity/max_battery_capacity
 	 */
 	public double getFitness(){
-		return this.curr_battery_capacity / this.max_battery_capacity;
+		return this.max_battery_capacity/this.curr_battery_capacity;
 	}
 	public Vehicle(){
 		components = new Vector<VehicleComponent>();
