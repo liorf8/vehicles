@@ -359,7 +359,7 @@ public class Simulator extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSlider1StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-        embed.setMove_speed(jSlider1.getValue()/10);
+        embed.setMove_speed((float)jSlider1.getValue()/5);
     }//GEN-LAST:event_jSlider1StateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
