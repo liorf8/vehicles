@@ -4,17 +4,15 @@
 
 package vehicles.gui;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import javax.swing.BoxLayout;
-import javax.swing.DebugGraphics;
-import javax.swing.JLayeredPane;
+import java.awt.event.*;
+import java.awt.event.HierarchyBoundsListener;
+import java.awt.event.HierarchyEvent;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import org.netbeans.lib.awtextra.AbsoluteLayout;
 import vehicles.processing.*;
 import vehicles.*;
 import java.awt.BorderLayout;
@@ -60,6 +58,9 @@ public class Simulator extends FrameView {
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
         embed.init();
+        listener = new MyAdjustmentListener();
+        jScrollPane1.getHorizontalScrollBar().addAdjustmentListener(listener);
+        jScrollPane1.getVerticalScrollBar().addAdjustmentListener(listener);
         
     }
 
@@ -119,6 +120,7 @@ public class Simulator extends FrameView {
         return fc;
     }
 
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -127,12 +129,12 @@ public class Simulator extends FrameView {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        GridBagConstraints gridBagConstraints;
 
         mainPanel = new JPanel();
-        jPanel2 = new JPanel();
-        jPanel1 = new JPanel();
         jScrollPane1 = new JScrollPane();
         jPanel3 = new JPanel();
+        jPanel3.add(embed);
         menuBar = new JMenuBar();
         JMenu simulationMenu = new JMenu();
         jMenuItem4 = new JMenuItem();
@@ -167,60 +169,30 @@ public class Simulator extends FrameView {
         jSlider1 = new JSlider();
 
         mainPanel.setName("mainPanel"); // NOI18N
-        mainPanel.setLayout(new BorderLayout());
-
-        jPanel2.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        jPanel2.setName("jPanel2"); // NOI18N
-        jPanel2.setPreferredSize(new Dimension(140, 411));
-
-        GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 138, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 342, Short.MAX_VALUE)
-        );
-
-        mainPanel.add(jPanel2, BorderLayout.WEST);
-        ResourceMap resourceMap = Application.getInstance(VehiclesApp.class).getContext().getResourceMap(Simulator.class);
-        jPanel1.setBorder(BorderFactory.createLineBorder(resourceMap.getColor("jPanel1.border.lineColor"))); // NOI18N
-        jPanel1.setAutoscrolls(true);
-        jPanel1.setName("jPanel1"); // NOI18N
-        jPanel1.setLayout(new BorderLayout());
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
+        jScrollPane1.setPreferredSize(new Dimension(640, 484));
 
-        jPanel3.setFocusCycleRoot(true);
         jPanel3.setName("jPanel3"); // NOI18N
-        jPanel3.setOpaque(false);
         jPanel3.setPreferredSize(new Dimension(640, 480));
-        jPanel3.setVerifyInputWhenFocusTarget(false);
-
-        jPanel3.add(embed);
-
-        GroupLayout jPanel3Layout = new GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
-        );
-
+        jPanel3.setLayout(new GridBagLayout());
         jScrollPane1.setViewportView(jPanel3);
 
-        jPanel1.add(jScrollPane1, BorderLayout.CENTER);
-
-        mainPanel.add(jPanel1, BorderLayout.CENTER);
+        GroupLayout mainPanelLayout = new GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+        );
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+        );
 
         menuBar.setMinimumSize(new Dimension(261, 21));
         menuBar.setName("menuBar"); // NOI18N
 
+        ResourceMap resourceMap = Application.getInstance(VehiclesApp.class).getContext().getResourceMap(Simulator.class);
         simulationMenu.setText(resourceMap.getString("simulationMenu.text")); // NOI18N
         simulationMenu.setName("simulationMenu"); // NOI18N
 
@@ -396,6 +368,7 @@ public class Simulator extends FrameView {
         embed.setMove_speed((float)jSlider1.getValue()/5);
     }//GEN-LAST:event_jSlider1StateChanged
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JMenu environmentMenu;
     private JButton jButton1;
@@ -414,8 +387,6 @@ public class Simulator extends FrameView {
     private JMenuItem jMenuItem7;
     private JMenuItem jMenuItem8;
     private JMenuItem jMenuItem9;
-    private JPanel jPanel1;
-    private JPanel jPanel2;
     private JPanel jPanel3;
     private JScrollPane jScrollPane1;
     private Separator jSeparator1;
@@ -437,4 +408,5 @@ public class Simulator extends FrameView {
     private JFrame vehicleEditor;
     private JFrame simulationEditor;
     private ProcessingVehicle embed;
+    private AdjustmentListener listener;
 }
