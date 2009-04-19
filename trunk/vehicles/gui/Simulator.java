@@ -11,8 +11,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import vehicles.processing.*;
 import vehicles.*;
-import java.awt.Window;
 import java.awt.Dimension;
+import java.awt.Window;
 import java.awt.Insets;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -106,6 +106,11 @@ public class Simulator extends FrameView implements ChangeListener {
         }
     }
 
+    @Action
+    public void resetWindow(){
+        ((Window)mainPanel.getTopLevelAncestor()).pack();
+    }
+
     private JFileChooser createFileChooser(String name) {
         JFileChooser fc = new JFileChooser();
         fc.setDialogTitle(getResourceMap().getString(name + ".dialogTitle"));
@@ -114,6 +119,7 @@ public class Simulator extends FrameView implements ChangeListener {
     }
 
 
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -126,7 +132,6 @@ public class Simulator extends FrameView implements ChangeListener {
         mainPanel = new JPanel();
         jScrollPane1 = new JScrollPane();
         jPanel3 = new JPanel();
-        jPanel3.add(embed);
         menuBar = new JMenuBar();
         JMenu simulationMenu = new JMenu();
         jMenuItem4 = new JMenuItem();
@@ -162,18 +167,22 @@ public class Simulator extends FrameView implements ChangeListener {
 
         mainPanel.setName("mainPanel"); // NOI18N
 
+        jScrollPane1.setAutoscrolls(true);
         jScrollPane1.setName("jScrollPane1"); // NOI18N
-        jScrollPane1.setPreferredSize(new Dimension(640, 484));
 
+        jPanel3.setAutoscrolls(true);
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setLayout(new GridBagLayout());
+
+        jPanel3.add(embed);
+
         jScrollPane1.setViewportView(jPanel3);
 
         GroupLayout mainPanelLayout = new GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(Alignment.LEADING)
@@ -273,6 +282,7 @@ public class Simulator extends FrameView implements ChangeListener {
         jSeparator6.setName("jSeparator6"); // NOI18N
         optionsMenu.add(jSeparator6);
 
+        jMenuItem8.setAction(actionMap.get("resetWindow")); // NOI18N
         jMenuItem8.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK));
         jMenuItem8.setText(resourceMap.getString("jMenuItem8.text")); // NOI18N
         jMenuItem8.setName("jMenuItem8"); // NOI18N
@@ -361,7 +371,9 @@ public class Simulator extends FrameView implements ChangeListener {
 
     private void jSlider1StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
         embed.setMove_speed((float)jSlider1.getValue()/5);
+        jPanel3.validate();
     }//GEN-LAST:event_jSlider1StateChanged
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
