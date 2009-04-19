@@ -369,10 +369,6 @@ public class Simulation {
 			percent[i] = (percent[i]/total) * 100;
 			percent[i] = percent[i] + percent[i-1];
 		}
-		System.out.println("Percentages:");
-		for(i = 0; i < percent.length; i++){
-			System.out.println(percent[i]);
-		}
 		Random ran = new Random(System.currentTimeMillis());
 		double random = (double)ran.nextInt(101);
 		for(i = 0; i < percent.length; i++){
@@ -395,13 +391,13 @@ public class Simulation {
 			BufferedReader uin = new BufferedReader(new InputStreamReader(System.in));
 			int n = 0;
 			do{
-			System.out.print("Please enter the number N for Tournament Selection: ");
-			n = new Integer(uin.readLine()).intValue();
+				System.out.print("Please enter the number N for Tournament Selection: ");
+				n = new Integer(uin.readLine()).intValue();
 			}
 			while(n <= 0);
-			
+
 			Vehicle[] subset = new Vehicle[n];
-			
+
 			for(int i = 0; i < n; i++){
 				subset[i] = this.getVehicleByRoulette();
 			}
@@ -409,6 +405,7 @@ public class Simulation {
 		}
 		catch (IOException io) {
 		}
+		//if the above fails, return null
 		return null;
 	}
 
@@ -418,10 +415,18 @@ public class Simulation {
 	 * @return a vehicle chosen from the top N percent
 	 */
 	private Vehicle getVehicleByTop_N_Percent(){
-		Random ran = new Random(System.currentTimeMillis());
-		int random = ran.nextInt(100) + 1;
-		//TODO fill this in when vehicle fitness is decided upon . . again
-		return new Vehicle();
+		try {
+			BufferedReader uin = new BufferedReader(new InputStreamReader(System.in));
+			int n = 0;
+			do{
+				System.out.print("Please enter the top N percent to select from: ");
+				n = new Integer(uin.readLine()).intValue();
+			}
+			while(n <= 0);
+		}
+		catch (IOException io) {
+		}
+		return null;
 	}
 
 	/**
@@ -458,7 +463,7 @@ public class Simulation {
 		}
 		return best;
 	}
-	
+
 	/**
 	 * A selection operator which randomly selects a single vehicle from the population.
 	 * @return a random vehicle from the set of vehicles
@@ -468,14 +473,6 @@ public class Simulation {
 		int num_veh = this.vehicles.size();
 		int random = ran.nextInt(num_veh);
 		return this.vehicles.elementAt(random);
-	}
-
-	/**
-	 * Method to sort the vehicles in the vehicles vector
-	 * in order of fitness
-	 */
-	private void sortByFitness(){
-
 	}
 
 
