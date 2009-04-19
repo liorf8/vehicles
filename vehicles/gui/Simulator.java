@@ -4,6 +4,10 @@
 
 package vehicles.gui;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import vehicles.processing.*;
 import vehicles.*;
 import java.awt.BorderLayout;
@@ -50,6 +54,7 @@ public class Simulator extends FrameView {
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
         embed.init();
+        
     }
 
     @Action
@@ -341,12 +346,21 @@ public class Simulator extends FrameView {
         jSlider1.setMinimumSize(new Dimension(36, 48));
         jSlider1.setName("jSlider1"); // NOI18N
         jSlider1.setPreferredSize(new Dimension(300, 46));
+        jSlider1.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                jSlider1StateChanged(evt);
+            }
+        });
         toolBar.add(jSlider1);
 
         setComponent(mainPanel);
         setMenuBar(menuBar);
         setToolBar(toolBar);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jSlider1StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
+        embed.setMove_speed(jSlider1.getValue()/10);
+    }//GEN-LAST:event_jSlider1StateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JMenu environmentMenu;
@@ -386,5 +400,5 @@ public class Simulator extends FrameView {
     private JFrame environmentEditor;
     private JFrame vehicleEditor;
     private JFrame simulationEditor;
-    private PApplet embed;
+    private ProcessingVehicle embed;
 }

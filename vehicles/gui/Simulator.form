@@ -365,6 +365,9 @@
               <Dimension value="[300, 46]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSlider1StateChanged"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
