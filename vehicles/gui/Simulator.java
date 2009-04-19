@@ -4,25 +4,19 @@
 
 package vehicles.gui;
 
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.event.*;
-import java.awt.event.HierarchyBoundsListener;
-import java.awt.event.HierarchyEvent;
 import javax.swing.JScrollPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import vehicles.processing.*;
 import vehicles.*;
-import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.Window;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.ActionMap;
-import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -48,7 +42,7 @@ import javax.swing.JFrame;
 /**
  * The application's main frame.
  */
-public class Simulator extends FrameView {
+public class Simulator extends FrameView implements ChangeListener {
 
     public Simulator(SingleFrameApplication app) {
         super(app);
@@ -61,7 +55,6 @@ public class Simulator extends FrameView {
         listener = new MyAdjustmentListener();
         jScrollPane1.getHorizontalScrollBar().addAdjustmentListener(listener);
         jScrollPane1.getVerticalScrollBar().addAdjustmentListener(listener);
-        
     }
 
     @Action
@@ -129,7 +122,6 @@ public class Simulator extends FrameView {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        GridBagConstraints gridBagConstraints;
 
         mainPanel = new JPanel();
         jScrollPane1 = new JScrollPane();
@@ -174,7 +166,6 @@ public class Simulator extends FrameView {
         jScrollPane1.setPreferredSize(new Dimension(640, 484));
 
         jPanel3.setName("jPanel3"); // NOI18N
-        jPanel3.setPreferredSize(new Dimension(640, 480));
         jPanel3.setLayout(new GridBagLayout());
         jScrollPane1.setViewportView(jPanel3);
 
@@ -182,11 +173,11 @@ public class Simulator extends FrameView {
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
         );
 
         menuBar.setMinimumSize(new Dimension(261, 21));
@@ -352,16 +343,20 @@ public class Simulator extends FrameView {
         jSlider1.setMinimumSize(new Dimension(36, 48));
         jSlider1.setName("jSlider1"); // NOI18N
         jSlider1.setPreferredSize(new Dimension(300, 46));
-        jSlider1.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent evt) {
-                jSlider1StateChanged(evt);
-            }
-        });
+        jSlider1.addChangeListener(this);
         toolBar.add(jSlider1);
 
         setComponent(mainPanel);
         setMenuBar(menuBar);
         setToolBar(toolBar);
+    }
+
+    // Code for dispatching events from components to event handlers.
+
+    public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        if (evt.getSource() == jSlider1) {
+            Simulator.this.jSlider1StateChanged(evt);
+        }
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSlider1StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
