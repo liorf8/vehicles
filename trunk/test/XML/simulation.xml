@@ -2,15 +2,15 @@
 <Simulation>
     <Name>New NAME!</Name>
     <Author>Author0</Author>
-    <LastModified>2009/04/19 02:10:41</LastModified>
-    <VehiclePath>src/test/XML/hungry.xml</VehiclePath>
-    <VehiclePath>src/test/XML/hungryduplicate.xml</VehiclePath>
+    <LastModified>2009/04/20 17:54:53</LastModified>
     <VehiclePath>src/test/XML/battery_Vehicle.xml</VehiclePath>
+    <VehiclePath>src/test/XML/hungryduplicate.xml</VehiclePath>
+    <VehiclePath>src/test/XML/hungry.xml</VehiclePath>
     <perishable_vehicles>false</perishable_vehicles>
     <regenerating_elements>false</regenerating_elements>
     <perishable_elements>false</perishable_elements>
     <evolution>false</evolution>
     <reproduction_method>0</reproduction_method>
     <sensor_view>false</sensor_view>
-    <genetic_selection_method>1</genetic_selection_method>
+    <genetic_selection_method>3</genetic_selection_method>
 </Simulation>
