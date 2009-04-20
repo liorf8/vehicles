@@ -1,26 +1,24 @@
 package vehicles.environment;
-/* Here is the classes. Not to sure about how some of the methods should be
- * done. Anyway let me know what changes need to be made.
- * Does this class need an area method?
- *
- *
- *
- * regards
- * James*/
+
 import java.util.*;
 
+/**
+ * Class representing an environment, both in RAM and providing methods to read and write to an XML file.
+ * 
+ * @author James, Karl
+ *
+ */
 public class Environment {
 	private String name;
-	@SuppressWarnings("unchecked")
-	private Vector elementVector;
+	private Vector<EnvironmentElement> elementVector;
 	private double width;
 	private double height;
 	private String fileLocation;
 
-	@SuppressWarnings("unchecked")
+	
 	public Environment(String na, String fl){
 		this.name = na;
-		elementVector = new Vector();
+		elementVector = new Vector<EnvironmentElement>();
 		this.width = 0.0;
 		this.height = 0.0;
 		this.fileLocation = fl;
@@ -47,18 +45,18 @@ public class Environment {
 	public String getFileLocation(){
 		return this.fileLocation;
 	}
-	@SuppressWarnings("unchecked")
-	public Vector getVectorElement(){
+	
+	public Vector<EnvironmentElement> getVectorElement(){
 		return elementVector;
 	}
-	@SuppressWarnings("unchecked")
+	
 	/*Might be best to add an area method to the environmentElement class and
 	 * use it here*/
 	public boolean occupied(double xPos, double yPos, double width, double height){
-		Vector v = new Vector();
+		Vector<EnvironmentElement> v = new Vector<EnvironmentElement>();
 		v = elementVector;
 		boolean j=true;
-		Enumeration n = v.elements();
+		Enumeration<EnvironmentElement> n = v.elements();
 		   while (n.hasMoreElements()){
 			   EnvironmentElement obj = (EnvironmentElement)n.nextElement();
 			   if((obj.getPosition().getXpos()==(xPos))&&(obj.getPosition().getYpos()==yPos)){
@@ -69,12 +67,12 @@ public class Environment {
 		  }
 		   return j;
 	}
-	@SuppressWarnings("unchecked")
+	
 	//adding the element to the Vector
 	public void saveElement(EnvironmentElement eE){
 		elementVector.add(eE);
 	}
-	public void saveElementTwo(String name, String path){
+	/*public void saveElementTwo(String name, String path){
 		//not sure what this is to contain
 		String n = null; String file = null;
 		double x= 0.0; double y = 0.0;
@@ -83,7 +81,7 @@ public class Environment {
 		e.changeName(name);
 		e.changeFileLocation(path);
 	}
-	@SuppressWarnings("unchecked")
+	*/
 	/*An element has been created and saved in the Vector
 	 * so using the name of the element we can retrieve it*/
 	public EnvironmentElement loadElement(String elementName){
@@ -93,7 +91,7 @@ public class Environment {
 		double x=0.0;
 		double y=0.0;
 		Point p = new Point(x,y);
-		Enumeration n = elementVector.elements();
+		Enumeration<EnvironmentElement> n = elementVector.elements();
 		   while (n.hasMoreElements()){
 			   EnvironmentElement obj = (EnvironmentElement)n.nextElement();
 			   if (obj.getName() == elementName){
@@ -105,7 +103,9 @@ public class Environment {
 		   e = new EnvironmentElement(name, FileLocation, p);
 		   return e;
 	}
-	//not to sure if this is what is required?
+	/*
+	 * not to sure if this is what is required?
+	 *
 	public void environmentElement(String fileLocation){
 		String name = null; String file = null;
 		double x= 0.0; double y = 0.0;
@@ -114,6 +114,10 @@ public class Environment {
 		e.changeFileLocation(fileLocation);
 
 	}
+	*/
+	/*
+	 * Not what is needed, maybe useful for debugging, but the XML is enough for that purpose
+	 
 	@SuppressWarnings("unchecked")
 	public void Display(Vector v){
 	
@@ -159,5 +163,8 @@ public class Environment {
     	}
 
 	}
-
+	*/
+	
+	
+	
 }

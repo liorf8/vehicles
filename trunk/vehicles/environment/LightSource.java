@@ -1,5 +1,9 @@
 package vehicles.environment;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Text;
+
 public class LightSource extends EnvironmentElement{
 
 	private double intensity;
@@ -10,28 +14,64 @@ public class LightSource extends EnvironmentElement{
 		this.intensity = i;
 		this.range = r;
 	}
-	public double lightIntensity(){
-		return this.intensity;
+	public LightSource(){
+		super();
+		this.range = 0.0;
+		this.intensity = 0.0;
 	}
-	public double lightRange(){
-		return this.range;
+	
+	
+	
+	public double getIntensity() {
+		return intensity;
 	}
-	public void modifyIntensity(double intensity){
-
-		try{
-			 value(intensity);
-		}catch(valueOutOfBounds de){
-
-		}
-		this.intensity=intensity;
+	public void setIntensity(double intensity) {
+		this.intensity = intensity;
 	}
-	public void modifyRange(double range){
+	public double getRange() {
+		return range;
+	}
+	public void setRange(double range) {
 		this.range = range;
 	}
-	public void value(double e) throws valueOutOfBounds{
-		if (e <0.0 || e>100.0){
-		throw new valueOutOfBounds("LightIntensity "+e+" out of bounds.\nValue must be greater than 0\n" +
-				" or less than or equal to 100\n");
-		}
+	/**
+	 * Add an light source intensity entry to the XML document being created
+	 * @param intensity The intensity of this light source
+	 */
+	public void addLightSourceIntensity(String intensity){
+		writeXMLEntry("lightIntensity",intensity, xmldoc);
 	}
+	
+	/**
+	 * Add an light source range entry to the XML document being created
+	 * @param range The range of this light source
+	 */
+	public void addLightSourceRange(String range){
+		writeXMLEntry("lightRange",range, xmldoc);
+	}
+	
+	/**
+	 * Convert this object into a XML representation in RAM(overrride superclass EnvironmentElement)
+	 */
+	public void toInternalXML(){
+		if(this.name != null){
+			this.addEnvironmentElementName(name);
+		}
+		if(this.type != null){
+			this.addEnvironmentElementType(type);
+		}
+		if(this.position != null){
+			this.addEnvironmentElementPosition(position);
+		}
+		if(this.range != 0){
+			this.addLightSourceRange(Double.toString(range));
+		}
+		if(this.intensity != 0){
+			this.addLightSourceIntensity(Double.toString(intensity));
+		}
+		xmldoc.appendChild(root);
+	}
+	
+	
+	
 }
