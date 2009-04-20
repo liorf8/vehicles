@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<EnvironmentElement>
+    <name>Strong Light Source</name>
+    <type>LightSource</type>
+    <xPos>15.0</xPos>
+    <yPos>42.0</yPos>
+    <lightRange>78.0</lightRange>
+    <lightIntensity>95.0</lightIntensity>
+</EnvironmentElement>

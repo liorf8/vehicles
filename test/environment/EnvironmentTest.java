@@ -1,5 +1,30 @@
-/*package test.environment;
+package test.environment;
+import vehicles.environment.LightSource;
+import vehicles.environment.Point;
+import vehicles.vehicle.*;
 
+public class EnvironmentTest{
+	public static void main(String args[]){
+		/*
+		 * Create a light source, populate it's attributes, and write to file
+		 */
+		LightSource ls = new LightSource();
+	
+		ls.setFileLocation("StrongLightSource.xml");
+		ls.setName("Strong Light Source");
+		ls.setType("LightSource");
+		ls.setPosition(new Point(15,42));		
+		ls.setRange(78);
+		ls.setIntensity(95);
+		ls.toInternalXML();
+		ls.saveEnvironmentElement();
+		}
+}
+
+
+
+
+/*
 import java.util.*;
 import vehicles.environment.*;
 
