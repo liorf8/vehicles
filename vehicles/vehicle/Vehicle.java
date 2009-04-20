@@ -14,7 +14,7 @@ import org.apache.xerces.parsers.DOMParser;
  * @author Karl 
  */
 
-public class Vehicle {
+public class Vehicle{
 	protected String xmlLocation; //location of the XML file representing this vehicle
 	/*Attributes of a vehicle*/
 	protected String vehicleName = null; //the name of this vehicle
@@ -22,7 +22,6 @@ public class Vehicle {
 	protected Vector <VehicleComponent> components; //components of the vehicle 
 	protected double max_battery_capacity = 100; //maximum battery this vehicle can have
 	protected double curr_battery_capacity = 100;//current battery capacity
-
 
 	public double getMax_battery_capacity() {
 		return max_battery_capacity;
@@ -41,10 +40,11 @@ public class Vehicle {
 	}
 	/**
 	 * Get the fitness of this vehicle, defined by it's current battery strength divided by it's maximum capacity
+	 * plus 10 percent of the maximum capacity
 	 * @return curr_battery_capacity/max_battery_capacity
 	 */
 	public double getFitness(){
-		return this.max_battery_capacity/this.curr_battery_capacity;
+		return (this.curr_battery_capacity/this.max_battery_capacity) + (this.max_battery_capacity * 0.10);
 	}
 	public Vehicle(){
 		components = new Vector<VehicleComponent>();

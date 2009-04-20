@@ -5,7 +5,6 @@ import vehicles.environment.*;
 import java.io.*;
 import java.util.Vector;
 import java.util.Random;
-import java.util.Iterator;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -414,18 +413,42 @@ public class Simulation {
 	 * N percent of the population as specified by the user.
 	 * @return a vehicle chosen from the top N percent
 	 */
+	//Messy Code, works but inefficent and messy :(
 	private Vehicle getVehicleByTop_N_Percent(){
 		try {
 			BufferedReader uin = new BufferedReader(new InputStreamReader(System.in));
-			int n = 0;
+			double n = 0;
 			do{
 				System.out.print("Please enter the top N percent to select from: ");
-				n = new Integer(uin.readLine()).intValue();
+				n = new Double(uin.readLine()).doubleValue();
 			}
 			while(n <= 0);
+			double size = this.vehicles.size();
+			double topN = size * (n/100);
+			int topN_rounded = (int)topN;
+			Vehicle[] v = new Vehicle[(int)size];
+			Vehicle temp;
+			v = this.vehicles.toArray(v);
+			int v_len = v.length;
+			for(int i = 0; i < v_len - 1; i++){
+				for(int j = i; j < v_len - 1; j++){
+					if(v[j].getFitness() >= v[j+1].getFitness()){
+						temp = v[j];
+						v[j] = v[j+1];
+						v[j+1] = temp;
+					}
+				}
+			}
+			for(int i = 0; i < v_len; i++){
+				System.out.println(v[i].getFitness());
+			}
+			Random r = new Random(System.currentTimeMillis());
+			int ran = (r.nextInt(topN_rounded)) + (v_len - topN_rounded);
+			return v[ran];
 		}
 		catch (IOException io) {
 		}
+		//if the above fails, return null
 		return null;
 	}
 
