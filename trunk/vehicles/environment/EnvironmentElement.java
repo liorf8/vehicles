@@ -21,23 +21,29 @@ public class EnvironmentElement {
 	public static int Terrain = 4;
 	
 	protected String fileLocation = null;//The XML file location of this element
+	protected String author = null, lastModified = null;
 	
 	//Environment Element attributes
 	protected String name = null;
 	protected int type = 0; //type of element (see above)
-	
 	protected Point position = null;
 	//protected Document xmldoc = null; //the XML document we are creating, stored as an object in memory
 	//protected Element root = null;//the root element of the document
 
 	/**
-	 * Empty Constructor
+	 * An empty constructor
 	 */
 	public EnvironmentElement(){
-		//xmldoc= new DocumentImpl();
-		//root = xmldoc.createElement("EnvironmentElement");
 	}
-
+	
+	/**
+	 * An constrcutor for new environment-elements
+	 */
+	public EnvironmentElement(String filelocation, boolean New){
+		this.fileLocation = filelocation;
+	}
+	
+	
 	/**
 	 * Constructor that reads in an environment element XML file
 	 * @param filelocation The Environment Element xml file to read in
@@ -64,6 +70,14 @@ public class EnvironmentElement {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public void setAuthor(String aut){
+		this.author = aut;
+	}
+	
+	public void setLastModified(String timeStamp){
+		this.lastModified = timeStamp;
+	}
 
 	public void setFileLocation(String fileLocation) {
 		this.fileLocation = fileLocation;
@@ -81,6 +95,14 @@ public class EnvironmentElement {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public String getAuthor(){
+		return this.author;
+	}
+	
+	public String getLastModified(){
+		return this.lastModified;
 	}
 	
 	public String getFileLocation() {
@@ -109,11 +131,11 @@ public class EnvironmentElement {
 	 * @param elemValue The value for this attribute
 	 * @param xmldoc The document to write into
 	 */
-	public void writeXMLEntry(String elemName, String elemValue, Document xmldoc){
+	public void writeXMLEntry(String elemName, String elemValue, Document xmldoc, Element root){
 		Element nameElement = xmldoc.createElement(elemName);
 		Text nameText = xmldoc.createTextNode(elemValue);
 		nameElement.appendChild(nameText);//add in the text to the element
-		this.root.appendChild(nameElement);//and add this new element to the document
+		root.appendChild(nameElement);//and add this new element to the document
 	}	
 
 	/**
