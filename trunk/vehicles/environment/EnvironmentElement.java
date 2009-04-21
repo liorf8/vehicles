@@ -1,7 +1,6 @@
 package vehicles.environment;
 
 import java.io.FileOutputStream;
-
 import org.apache.xerces.dom.DocumentImpl;
 import org.apache.xml.serialize.OutputFormat;
 import org.apache.xml.serialize.XMLSerializer;
@@ -9,72 +8,100 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
-/* This class could be changed to an abstract class if required
- * Might need to add in an area method
- * Added a point class instead of using xpos and ypos in this class
- * */
-public class EnvironmentElement {
-	protected String name;
-	protected String fileLocation;
-	protected String type; //the type of EnvironmentElement this is(LightSource,HeatSource,OrganicSource,Terrain)
-	
-	protected Point position;
-	protected Document xmldoc; //the XML document we are creating, stored as an object in memory
-	protected Element root;//the root element of the document
+/**
+ * This class Represents EnvironmentElements. It is a super class used to create
+ * and type of environment element
+ */
 
+public class EnvironmentElement {
+	/*** Element Types ***/
+	public static int LightSource = 1;
+	public static int HeatSource = 2;
+	public static int OrganicSource = 3;
+	public static int Terrain = 4;
+	
+	protected String fileLocation = null;//The XML file location of this element
+	
+	//Environment Element attributes
+	protected String name = null;
+	protected int type = 0; //type of element (see above)
+	
+	protected Point position = null;
+	//protected Document xmldoc = null; //the XML document we are creating, stored as an object in memory
+	//protected Element root = null;//the root element of the document
+
+	/**
+	 * Empty Constructor
+	 */
 	public EnvironmentElement(){
-		//We depend on these definitely being null, so do this initialisation
-		this.name = null;
-		this.fileLocation = null;
-		this.position = null;
-		this.type = null;
-		xmldoc= new DocumentImpl();
-		root = xmldoc.createElement("EnvironmentElement");
+		//xmldoc= new DocumentImpl();
+		//root = xmldoc.createElement("EnvironmentElement");
 	}
 
+	/**
+	 * Constructor that reads in an environment element XML file
+	 * @param filelocation The Environment Element xml file to read in
+	 */
 	public EnvironmentElement(String filelocation){
+		//TODO extract variables from XML file
 		this.fileLocation = filelocation;
 	}
 	
+	/**
+	 * Constructor that takes in a filename, point and name
+	 * @param n The name of the element
+	 * @param fl The file location of the element
+	 * @param p The point of this element
+	 */
 	public EnvironmentElement(String n, String fl, Point p){
 		this.name = n;
 		this.fileLocation= fl;
 		this.position = p;
-
 	}	
 
-
-	public String getName() {
-		return name;
-	}
+	/**** Setter Methods ****/
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public String getFileLocation() {
-		return fileLocation;
-	}
-
 	public void setFileLocation(String fileLocation) {
 		this.fileLocation = fileLocation;
 	}
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
+	
+	public void setType(int type) {
 		this.type = type;
 	}
-	public Point getPosition() {
-		return position;
-	}
-
+	
 	public void setPosition(Point position) {
 		this.position = position;
 	}
 
-	//BEGIN XML METHODS
+	/**** Getter Methods ****/
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getFileLocation() {
+		return fileLocation;
+	}
+	
+	public int getType() {
+		return type;
+	}
+	
+	public Point getPosition() {
+		return position;
+	}
+	
+	/**** Other Methods ****/
+	
+	public boolean isSaveable(){
+		return (this.type != 0 && this.name != null && this.fileLocation != null);
+	}
+	
+	/**** XML Methods ****/
 
 	/**
 	 * Write an element into an XML file
