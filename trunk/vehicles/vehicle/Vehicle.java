@@ -91,7 +91,7 @@ public class Vehicle{
 			Node node = componentList.item(i); // get a single vehicle component
 			if(node.getNodeType() == Node.ELEMENT_NODE){
 				VehicleComponent vc = new VehicleComponent(); //set the attributes of this object as we go on
-				System.out.println("START COMPONENT");
+				//System.out.println("START COMPONENT");
 				NodeList children = node.getChildNodes();
 				for(int j = 0; j < children.getLength(); j++){ 
 
@@ -101,34 +101,32 @@ public class Vehicle{
 						/*PROCESS AN ATTRIBUTE OF AN ELEMENT OF A VEHICLECOMPONENT */
 						String attributeType = values.item(k).getParentNode().getNodeName();
 						if(attributeType.contains("name")){
-							System.out.println("This is a name node");
-							System.out.println(values.item(k).getNodeValue());
+//							System.out.println("This is a name node");
+	//						System.out.println(values.item(k).getNodeValue());
 							vc.setVehicleComponentName(values.item(k).getNodeValue());
-							//TODO object
 						}else{
 							if(attributeType.contains("type")){
-								System.out.println("This is a type node");
-								System.out.println(values.item(k).getNodeValue());
+								//System.out.println("This is a type node");
+								//System.out.println(values.item(k).getNodeValue());
 								vc.setVehicleComponentType(values.item(k).getNodeValue());
-								//TODO object
 							}else{
 								if(attributeType.contains("motorStrength")){
-									System.out.println("This is a motorStrength node");
-									System.out.println(values.item(k).getNodeValue());
+									//System.out.println("This is a motorStrength node");
+									//System.out.println(values.item(k).getNodeValue());
 									vc.setVehicleComponentMotorStrength(values.item(k).getNodeValue());
-									//TODO object
+									
 								}else{
 									if(attributeType.contains("sensor")){
-										System.out.println("This is a sensorRadius node");
-										System.out.println(values.item(k).getNodeValue());
+								//		System.out.println("This is a sensorRadius node");
+									//	System.out.println(values.item(k).getNodeValue());
 										vc.setVehicleComponentSensorRadius(values.item(k).getNodeValue());
-										//TODO object
+									
 									}else{
 										if(attributeType.contains("pos")){
-											System.out.println("This is a position node");
-											System.out.println(values.item(k).getNodeValue());
+									//		System.out.println("This is a position node");
+										//	System.out.println(values.item(k).getNodeValue());
 											vc.setVehicleComponentPosition(values.item(k).getNodeValue());
-											//TODO object
+											
 										}else{
 										}
 									}
@@ -142,7 +140,7 @@ public class Vehicle{
 					}//end values for loop
 
 				}//end children for loop
-				System.out.println("END OF COMPONENT");
+				//System.out.println("END OF COMPONENT");
 				vc.toInternalXML();				
 				components.add(vc);
 			}

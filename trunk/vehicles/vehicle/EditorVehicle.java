@@ -84,7 +84,7 @@ public class EditorVehicle extends Vehicle {
 	 */
 	public void addVehicleComponent(VehicleComponent vc){
 		root.appendChild(xmldoc.adoptNode(vc.getRootElement().cloneNode(true)));
-		System.out.println("Append component!");
+	///	System.out.println("Append component!");
 		
 	}
 	/**
@@ -104,11 +104,11 @@ public class EditorVehicle extends Vehicle {
 				addVehicleTemperament(VehicleTemperament);
 			}
 			if(this.components != null){
-				System.out.println(components.capacity());
+				//System.out.println(components.capacity());
 				Iterator it = components.iterator();
 				int count = 0;
 				while(it.hasNext()){
-					System.out.println("iteration :"+count);
+					//System.out.println("iteration :"+count);
 					this.addVehicleComponent((VehicleComponent)it.next());
 					count++;
 				}
