@@ -1,43 +1,78 @@
 package vehicles.environment;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Text;
+
 public class HeatSource extends EnvironmentElement{
 
-	private double intensity;
-	private double range;
+	//private double 
+	private double strength;
+	private double radius;
 
 	public HeatSource(String n, String fl, Point p, double i, double r){
-		super(n, fl, p);
-		this.intensity = i;
-		this.range = r;
+		super(n, fl ,p);
+		this.strength = i;
+		this.radius = r;
 	}
-	public double heatIntensity(){
-		return this.intensity;
+	public HeatSource(){
+		super();
+		this.radius = 0.0;
+		this.strength = 0.0;
 	}
-	public double heatRange(){
-		return this.range;
-	}
-	public void modifyIntensity(double intensity){
-
-		try{
-			 value(intensity);
-		}catch(valueOutOfBounds de){
 	
+	
+	
+	public double getIntensity() {
+		return strength;
+	}
+	public void setIntensity(double intensity) {
+		this.strength = intensity;
+	}
+	public double getRange() {
+		return radius;
+	}
+	public void setRange(double range) {
+		this.radius = range;
+	}
+	/**
+	 * Add an heat source intensity entry to the XML document being created
+	 * @param intensity The intensity of this light source
+	 */
+	public void addHeatSourceIntensity(String intensity){
+		writeXMLEntry("heatIntensity",intensity, xmldoc);
+	}
+	
+	/**
+	 * Add an heat source range entry to the XML document being created
+	 * @param range The range of this light source
+	 */
+	public void addHeatSourceRange(String range){
+		writeXMLEntry("heatRange",range, xmldoc);
+	}
+	
+	/**
+	 * Convert this object into a XML representation in RAM(overrride superclass EnvironmentElement)
+	 */
+	public void toInternalXML(){
+		if(this.name != null){
+			this.addEnvironmentElementName(name);
 		}
-		this.intensity=intensity;
-	}
-	public void modifyRange(double range){
-		this.range = range;
-	}
-	public String modifyHeatSource(double range, double intensity, String name){
-		this.range= range;
-		this.intensity = intensity;
-		String nameOne= name;
-		return nameOne;
-	}
-	public void value(double e) throws valueOutOfBounds{
-		if (e <0.0 || e>100.0){
-		throw new valueOutOfBounds("HeatIntensity "+e+" out of bounds.\nValue must be greater than 0\n" +
-				" or less than or equal to 100\n");
+		if(this.type != 0){
+			this.addEnvironmentElementType(type);
 		}
+		if(this.position != null){
+			this.addEnvironmentElementPosition(position);
+		}
+		if(this.radius != 0){
+			this.addHeatSourceRange(Double.toString(radius));
+		}
+		if(this.strength != 0){
+			this.addHeatSourceIntensity(Double.toString(strength));
+		}
+		xmldoc.appendChild(root);
 	}
+	
+	
+	
 }
