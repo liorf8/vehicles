@@ -15,4 +15,10 @@ public class Point {
 	public double getYpos(){
 		return this.ypos;
 	}
+	public void setXPos(double x){
+		this.xpos = x;
+	}
+	public void setYPos(double y){
+		this.ypos = y;
+	}
 }
