@@ -93,13 +93,15 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="Evironment">
+    <xs:complexType name="Environment">
         <xs:sequence>
-            <xs:element name="Name" type="xs:string"/>
+            <xs:element name="Name" type="xs:string" use="required"/>
+			<xs:element name="Author" type="xs:string"/>
+			<xs:element name="LastModified" type="xs:string"/>
             <xs:element name="numX" type="xs:decimal"/>
             <xs:element name="numY" type="xs:decimal"/>
             <!--Environment can have one or more enviroment elements, with their own x and y pos-->
-            <xs:element name="enviroElement" minOccurs="0" type="enviro_element"> </xs:element>
+            <xs:element name="elementPath" minOccurs="0" type="enviro_element"> </xs:element>
         </xs:sequence>
     </xs:complexType>
 

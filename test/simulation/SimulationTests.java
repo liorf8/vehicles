@@ -65,5 +65,10 @@ public class SimulationTests {
 		
 		Vehicle veh = a.getVehicle_SelectionBased();
 		
+		/* Testing the creation of a new simulation from an incorrect xml file*/
+		System.out.print("\n\nTESTING CREATION OF SIMULATION FROM AN INCORRECT XML FILE");
+		Simulation wrong = new Simulation("src/test/XML/hungry.xml");
+		wrong.printSimDetails();
+		
 	}
 }

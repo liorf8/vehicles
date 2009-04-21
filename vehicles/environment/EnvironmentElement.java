@@ -32,6 +32,10 @@ public class EnvironmentElement {
 		root = xmldoc.createElement("EnvironmentElement");
 	}
 
+	public EnvironmentElement(String filelocation){
+		this.fileLocation = filelocation;
+	}
+	
 	public EnvironmentElement(String n, String fl, Point p){
 		this.name = n;
 		this.fileLocation= fl;
@@ -122,6 +126,7 @@ public class EnvironmentElement {
 	public Element getRootElement(){
 		return root;
 	}
+	
 	/**
 	 * Save this element to file- FOR DEBUGGING ONLY!!!!
 	 */
