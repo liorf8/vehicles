@@ -15,6 +15,7 @@ import org.w3c.dom.Text;
 
 public class EnvironmentElement {
 	/*** Element Types ***/
+	public static int NotSet = 0;;
 	public static int LightSource = 1;
 	public static int HeatSource = 2;
 	public static int OrganicSource = 3;
@@ -27,8 +28,8 @@ public class EnvironmentElement {
 	protected String name = null;
 	protected int type = 0; //type of element (see above)
 	protected Point position = null;
-	//protected Document xmldoc = null; //the XML document we are creating, stored as an object in memory
-	//protected Element root = null;//the root element of the document
+	protected Document xmldoc = null; //the XML document we are creating, stored as an object in memory
+	protected Element root = null;//the root element of the document
 
 	/**
 	 * An empty constructor
@@ -37,7 +38,7 @@ public class EnvironmentElement {
 	}
 	
 	/**
-	 * An constrcutor for new environment-elements
+	 * An constructor for new environment-elements
 	 */
 	public EnvironmentElement(String filelocation, boolean New){
 		this.fileLocation = filelocation;
@@ -131,12 +132,13 @@ public class EnvironmentElement {
 	 * @param elemValue The value for this attribute
 	 * @param xmldoc The document to write into
 	 */
-	public void writeXMLEntry(String elemName, String elemValue, Document xmldoc, Element root){
+	public void writeXMLEntry(String elemName, String elemValue, Document xmldoc){
 		Element nameElement = xmldoc.createElement(elemName);
 		Text nameText = xmldoc.createTextNode(elemValue);
 		nameElement.appendChild(nameText);//add in the text to the element
 		root.appendChild(nameElement);//and add this new element to the document
-	}	
+
+	}
 
 	/**
 	 * Add an environment element name to the XML document being created
@@ -149,8 +151,8 @@ public class EnvironmentElement {
 	 * Add an environment element type to the XML document being created
 	 * @param type The type of this environment element
 	 */
-	public void addEnvironmentElementType(String type){
-		writeXMLEntry("type", type, xmldoc);
+	public void addEnvironmentElementType(int type){
+		writeXMLEntry("type", Integer.toString(type), xmldoc);
 	}
 	/**
 	 * Add an environment element position information to the XML document being created

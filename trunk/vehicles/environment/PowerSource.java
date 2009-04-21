@@ -4,18 +4,18 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
-public class WaterSource extends EnvironmentElement{
+public class PowerSource extends EnvironmentElement{
 
 	//private double 
 	private double strength;
 	private double radius;
 
-	public WaterSource(String n, String fl, Point p, double i, double r){
+	public PowerSource(String n, String fl, Point p, double i, double r){
 		super(n, fl ,p);
 		this.strength = i;
 		this.radius = r;
 	}
-	public WaterSource(){
+	public PowerSource(){
 		super();
 		this.radius = 0.0;
 		this.strength = 0.0;
@@ -36,19 +36,19 @@ public class WaterSource extends EnvironmentElement{
 		this.radius = range;
 	}
 	/**
-	 * Add an water source intensity entry to the XML document being created
+	 * Add an power source intensity entry to the XML document being created
 	 * @param intensity The intensity of this light source
 	 */
-	public void addWaterSourceIntensity(String intensity){
-		writeXMLEntry("waterIntensity",intensity, xmldoc);
+	public void addPowerSourceIntensity(String intensity){
+		writeXMLEntry("powerIntensity",intensity, xmldoc);
 	}
 	
 	/**
-	 * Add an water source range entry to the XML document being created
+	 * Add an power source range entry to the XML document being created
 	 * @param range The range of this light source
 	 */
-	public void addWaterSourceRange(String range){
-		writeXMLEntry("waterRange",range, xmldoc);
+	public void addPowerSourceRange(String range){
+		writeXMLEntry("powerRange",range, xmldoc);
 	}
 	
 	/**
@@ -65,10 +65,10 @@ public class WaterSource extends EnvironmentElement{
 			this.addEnvironmentElementPosition(position);
 		}
 		if(this.radius != 0){
-			this.addWaterSourceRange(Double.toString(radius));
+			this.addPowerSourceRange(Double.toString(radius));
 		}
 		if(this.strength != 0){
-			this.addWaterSourceIntensity(Double.toString(strength));
+			this.addPowerSourceIntensity(Double.toString(strength));
 		}
 		xmldoc.appendChild(root);
 	}

@@ -6,33 +6,34 @@ import org.w3c.dom.Text;
 
 public class LightSource extends EnvironmentElement{
 
-	private double intensity;
-	private double range;
+	//private double 
+	private double strength;
+	private double radius;
 
 	public LightSource(String n, String fl, Point p, double i, double r){
 		super(n, fl ,p);
-		this.intensity = i;
-		this.range = r;
+		this.strength = i;
+		this.radius = r;
 	}
 	public LightSource(){
 		super();
-		this.range = 0.0;
-		this.intensity = 0.0;
+		this.radius = 0.0;
+		this.strength = 0.0;
 	}
 	
 	
 	
 	public double getIntensity() {
-		return intensity;
+		return strength;
 	}
 	public void setIntensity(double intensity) {
-		this.intensity = intensity;
+		this.strength = intensity;
 	}
 	public double getRange() {
-		return range;
+		return radius;
 	}
 	public void setRange(double range) {
-		this.range = range;
+		this.radius = range;
 	}
 	/**
 	 * Add an light source intensity entry to the XML document being created
@@ -57,17 +58,17 @@ public class LightSource extends EnvironmentElement{
 		if(this.name != null){
 			this.addEnvironmentElementName(name);
 		}
-		if(this.type != null){
+		if(this.type != 0){
 			this.addEnvironmentElementType(type);
 		}
 		if(this.position != null){
 			this.addEnvironmentElementPosition(position);
 		}
-		if(this.range != 0){
-			this.addLightSourceRange(Double.toString(range));
+		if(this.radius != 0){
+			this.addLightSourceRange(Double.toString(radius));
 		}
-		if(this.intensity != 0){
-			this.addLightSourceIntensity(Double.toString(intensity));
+		if(this.strength != 0){
+			this.addLightSourceIntensity(Double.toString(strength));
 		}
 		xmldoc.appendChild(root);
 	}
