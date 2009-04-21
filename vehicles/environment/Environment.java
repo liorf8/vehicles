@@ -221,10 +221,6 @@ public class Environment {
 	}
 	
 	
-	
-	
-	
-	
 	/*Might be best to add an area method to the environmentElement class and
 	 * use it here*/
 	public boolean occupied(double xPos, double yPos, double width, double height){
@@ -244,17 +240,6 @@ public class Environment {
 	}
 	
 	
-	
-	/*public void saveElementTwo(String name, String path){
-		//not sure what this is to contain
-		String n = null; String file = null;
-		double x= 0.0; double y = 0.0;
-		Point p = new Point(x,y);
-		EnvironmentElement e = new EnvironmentElement(n, file, p);
-		e.changeName(name);
-		e.changeFileLocation(path);
-	}
-	*/
 	/*An element has been created and saved in the Vector
 	 * so using the name of the element we can retrieve it*/
 	public EnvironmentElement loadElement(String elementName){
