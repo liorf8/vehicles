@@ -37,27 +37,39 @@ public class Simulation {
 	}
 
 	public Simulation(String filename){
-		try{
-			xmlLocation = filename;
-			vehicles = new Vector<Vehicle>();
+		try{			
 			DOMParser p = new DOMParser();
-			System.out.println("Opening file: " + xmlLocation);
-			p.parse(xmlLocation); //get a parsed version of the file into memory
+			System.out.println("Opening file: " + filename);
+			p.parse(filename); //get a parsed version of the file into memory
 			Document dom = p.getDocument();
+
+			/*Get the root node, check this xml file IS a simulation file
+			 * if it is not a simulation file, print an error and return
+			 */
+			Node root = dom.getDocumentElement(); //get the root element from the document
+			if(!root.getNodeName().equals("Simulation")){
+				System.err.println("The file '" + filename + "' is NOT a simulation file.");
+				return;
+			}
+
+			/*If valid Simulation file, continue*/
+			vehicles = new Vector<Vehicle>();
+			this.xmlLocation = filename;
 
 			/* The following recursive method is used to get the values of all attributes
 			 * apart from the vehicles paths
 			 */	
-			Node root = dom.getDocumentElement(); //get the root element from the document
 			handleNode(root); //recursive function to handle the nodes*/
 
 			/* Fill the vector with the vehicles pointed at in the file */
 			NodeList vehiclePaths = dom.getElementsByTagName("VehiclePath");
 			processVehiclePaths(vehiclePaths);
 
-
 		}catch(Exception e){
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.err.println("An error occurred while creating an Environment from the file '" +
+					filename + "'. Please check that this file exists.");
+
 		}
 
 	}
@@ -106,7 +118,11 @@ public class Simulation {
 			else if(name.equals("EnvironmentPath")){
 				this.setEnvironment(node_value);
 			}
-			else if(name.equals("perishable_vehicles")){
+			/*
+			 * Removed all runtime options, as they are only used while a simultion is running 
+			 * and not at any other time, therefore they should only be set in the simulation object 
+			 *
+			 * else if(name.equals("perishable_vehicles")){
 				this.setPerishableVehicles(Boolean.getBoolean(node_value));
 			}
 			else if(name.equals("regenerating_elements")){
@@ -127,10 +143,9 @@ public class Simulation {
 			else if(name.equals("genetic_selection_method")){
 				this.setGeneticSelectionMethod(Integer.parseInt(node_value));
 			}
+			 */
 			else break;
 		}
-
-
 	}
 
 	/***** Getter Methods *****/
@@ -239,14 +254,10 @@ public class Simulation {
 	}
 
 	public void setReproductionMethod(int r){
-		//TODO Find out which repro methods will be
-		//used and make sure the user can only enter a valid one
 		this.repro_method = r;
 	}
 
 	public void setGeneticSelectionMethod(int gen){
-		//TODO Find out which genetic selection methods will be
-		//used and make sure the user can only enter a valid one
 		this.gen_selection = gen;
 	}
 
@@ -273,10 +284,17 @@ public class Simulation {
 		System.out.println("Author\t" + this.getAuthor());
 		System.out.println("Last Modified\t" + this.getLastModified());
 		System.out.println("Location\t" + this.getXmlLocation());
-		System.out.println("NumVehicles\t" + this.vehicles.size());
-		System.out.println("\tVehicle Paths");
-		for(int i = 0; i < vehicles.size(); i++){
-			System.out.println(vehicles.elementAt(i).getXmlLocation());
+		if(this.vehicles != null){
+			System.out.println("NumVehicles\t" + this.vehicles.size());
+			System.out.println("\tVehicle Paths");
+			for(int i = 0; i < vehicles.size(); i++){
+				System.out.println(vehicles.elementAt(i).getXmlLocation());
+			}
+		}
+		else{
+			System.out.println("Vehicles were never initialised for this Simulation.");
+			System.out.println("Possibly due to passing an incorrect XML file or never adding " +
+					"vehicles to the Simulation");
 		}
 		//System.out.println("Environment Path\t" + this.getEnvironment().getFileLocation());
 		System.out.println("\tRuntime Options");

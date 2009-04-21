@@ -2,7 +2,7 @@
 <Simulation>
     <Name>Test 3</Name>
     <Author>Shaun</Author>
-    <LastModified>2009/04/20 17:54:53</LastModified>
+    <LastModified>2009/04/21 17:39:43</LastModified>
     <VehiclePath>VehicleTest_0</VehiclePath>
     <VehiclePath>VehicleTest_1</VehiclePath>
     <VehiclePath>VehicleTest_2</VehiclePath>
@@ -13,11 +13,4 @@
     <VehiclePath>VehicleTest_7</VehiclePath>
     <VehiclePath>VehicleTest_8</VehiclePath>
     <VehiclePath>VehicleTest_9</VehiclePath>
-    <perishable_vehicles>false</perishable_vehicles>
-    <regenerating_elements>false</regenerating_elements>
-    <perishable_elements>false</perishable_elements>
-    <evolution>false</evolution>
-    <reproduction_method>0</reproduction_method>
-    <sensor_view>false</sensor_view>
-    <genetic_selection_method>5</genetic_selection_method>
 </Simulation>
