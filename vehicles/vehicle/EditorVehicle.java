@@ -17,9 +17,9 @@ import org.apache.xml.serialize.*;
 public class EditorVehicle extends Vehicle {
 	Document  xmldoc; //the XML document we are creating, stored as an object in memory
 	Element root;//the root element of the document
-	
-	
-	
+
+
+
 	/**
 	 * Write an element into an XML file
 	 * @param elemName The name of the attribute
@@ -28,12 +28,12 @@ public class EditorVehicle extends Vehicle {
 	 */
 	public void writeXMLEntry(String elemName, String elemValue, Document xmldoc){
 		Element nameElement = xmldoc.createElement(elemName);
-        Text nameText = xmldoc.createTextNode(elemValue);
-        nameElement.appendChild(nameText);//add in the text to the element
-        root.appendChild(nameElement);//and add this new element to the document
-		
+		Text nameText = xmldoc.createTextNode(elemValue);
+		nameElement.appendChild(nameText);//add in the text to the element
+		root.appendChild(nameElement);//and add this new element to the document
+
 	}
-	
+
 	/**
 	 * Constructor
 	 * @param fileName filename to use for this object
@@ -43,33 +43,33 @@ public class EditorVehicle extends Vehicle {
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("Vehicle");
 	}
-	
+
 	public EditorVehicle(String fileName, boolean newVeh){
 		super(fileName);
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("Vehicle");
 	}
-	
+
 	/**
 	 * Add a vehicle name attribute to the XML document being created
 	 * @param name The name to use for this Vehicle
 	 */
 	public void addVehicleName(String name){
-			writeXMLEntry("name", name, xmldoc);
+		writeXMLEntry("name", name, xmldoc);
 	}
 	/**
 	 * Add a vehicle max_battery_capacity attribute to the XML document being created
 	 * @param max_capacity The name to use for this Vehicle
 	 */
 	public void addMaxBatteryCapacity(String max_capacity){
-			writeXMLEntry("max_battery_capacity", max_capacity, xmldoc);
+		writeXMLEntry("max_battery_capacity", max_capacity, xmldoc);
 	}
 	/**
 	 * Add a vehicle curr_battery_capacity attribute to the XML document being created
 	 * @param name The name to use for this Vehicle
 	 */
 	public void addCurrBatteryCapacity(String curr_capacity){
-			writeXMLEntry("curr_battery_capacity", curr_capacity, xmldoc);
+		writeXMLEntry("curr_battery_capacity", curr_capacity, xmldoc);
 	}
 	/**
 	 * Add a vehicle temperament attribute(Aggressive | Timid | None) to the XML document being created
@@ -84,8 +84,8 @@ public class EditorVehicle extends Vehicle {
 	 */
 	public void addVehicleComponent(VehicleComponent vc){
 		root.appendChild(xmldoc.adoptNode(vc.getRootElement().cloneNode(true)));
-	///	System.out.println("Append component!");
-		
+		///	System.out.println("Append component!");
+
 	}
 	/**
 	 * Write out the current Vehicle to a file specified by the filename attribute. This method
@@ -93,6 +93,7 @@ public class EditorVehicle extends Vehicle {
 	 * with it
 	 */
 	public void saveVehicle(){
+		FileOutputStream fos = null;
 		try{
 			/*Form the XML document by saving the various attributes*/
 			if(this.vehicleName != null){ 
@@ -115,12 +116,19 @@ public class EditorVehicle extends Vehicle {
 			}
 			xmldoc.appendChild(root); //finalise the XML document
 			/*Now take the file in RAM and write it out to disk*/
-			FileOutputStream fos = new FileOutputStream(xmlLocation);
+			try{
+				fos = new FileOutputStream(xmlLocation);
+			}catch(FileNotFoundException e ){
+				File f = new File(xmlLocation);
+				f.createNewFile();
+				fos = new FileOutputStream(xmlLocation);
+			}
+			
 			OutputFormat of = new OutputFormat("XML","ISO-8859-1",true);
 			of.setIndent(1);
 			of.setIndenting(true);
 			XMLSerializer serializer = new XMLSerializer(fos,of);//prepare a serialiser for
-															//generating XML documents
+			//generating XML documents
 			// As a DOMSerializer
 			serializer.asDOMSerializer();
 			serializer.serialize( xmldoc.getDocumentElement() );//get the root element and start writing

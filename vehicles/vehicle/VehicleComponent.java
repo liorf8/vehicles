@@ -19,19 +19,21 @@ public class VehicleComponent{
 
 	private String VehicleComponentName = null; //the name of this component
 	private String VehicleComponentType = null; //the type of this component
-	private String VehicleComponentMotorStrength = null; //motor strength
-	private String VehicleComponentSensorRadius = null; //sensor radius
-	private String VehicleComponentPosition = null; //position
+	
+	private String VehicleComponentLeftSensorRadius = null;
+	private String VehicleComponentLeftSensorLight = null; 
+	private String VehicleComponentLeftSensorHeat = null; 
+	private String VehicleComponentLeftSensorWater = null; 
+	private String VehicleComponentLeftSensorPower = null; 
+	
+	private String VehicleComponentRightSensorRadius = null;
+	private String VehicleComponentRightSensorLight = null; 
+	private String VehicleComponentRightSensorHeat = null; 
+	private String VehicleComponentRightSensorWater = null; 
+	private String VehicleComponentRightSensorPower = null; 
+	
 
 
-
-	public String getVehicleComponentName() {
-		return VehicleComponentName;
-	}
-
-	public void setVehicleComponentName(String vehicleComponentName) {
-		VehicleComponentName = vehicleComponentName;
-	}
 
 	public String getVehicleComponentType() {
 		return VehicleComponentType;
@@ -41,31 +43,111 @@ public class VehicleComponent{
 		VehicleComponentType = vehicleComponentType;
 	}
 
-	
-
-	public String getVehicleComponentMotorStrength() {
-		return VehicleComponentMotorStrength;
+	public String getFilename() {
+		return filename;
 	}
 
-	public void setVehicleComponentMotorStrength(
-			String vehicleComponentMotorStrength) {
-		VehicleComponentMotorStrength = vehicleComponentMotorStrength;
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 
-	public String getVehicleComponentSensorRadius() {
-		return VehicleComponentSensorRadius;
+	public String getVehicleComponentName() {
+		return VehicleComponentName;
 	}
 
-	public void setVehicleComponentSensorRadius(String vehicleComponentSensorRadius) {
-		VehicleComponentSensorRadius = vehicleComponentSensorRadius;
+	public void setVehicleComponentName(String vehicleComponentName) {
+		VehicleComponentName = vehicleComponentName;
 	}
 
-	public String getVehicleComponentPosition() {
-		return VehicleComponentPosition;
+
+	public String getVehicleComponentLeftSensorRadius() {
+		return VehicleComponentLeftSensorRadius;
 	}
 
-	public void setVehicleComponentPosition(String vehicleComponentPosition) {
-		VehicleComponentPosition = vehicleComponentPosition;
+	public void setVehicleComponentLeftSensorRadius(
+			String vehicleComponentLeftSensorRadius) {
+		VehicleComponentLeftSensorRadius = vehicleComponentLeftSensorRadius;
+	}
+
+	public String getVehicleComponentLeftSensorLight() {
+		return VehicleComponentLeftSensorLight;
+	}
+
+	public void setVehicleComponentLeftSensorLight(
+			String vehicleComponentLeftSensorLight) {
+		VehicleComponentLeftSensorLight = vehicleComponentLeftSensorLight;
+	}
+
+	public String getVehicleComponentLeftSensorHeat() {
+		return VehicleComponentLeftSensorHeat;
+	}
+
+	public void setVehicleComponentLeftSensorHeat(
+			String vehicleComponentLeftSensorHeat) {
+		VehicleComponentLeftSensorHeat = vehicleComponentLeftSensorHeat;
+	}
+
+	public String getVehicleComponentLeftSensorWater() {
+		return VehicleComponentLeftSensorWater;
+	}
+
+	public void setVehicleComponentLeftSensorWater(
+			String vehicleComponentLeftSensorWater) {
+		VehicleComponentLeftSensorWater = vehicleComponentLeftSensorWater;
+	}
+
+	public String getVehicleComponentLeftSensorPower() {
+		return VehicleComponentLeftSensorPower;
+	}
+
+	public void setVehicleComponentLeftSensorPower(
+			String vehicleComponentLeftSensorPower) {
+		VehicleComponentLeftSensorPower = vehicleComponentLeftSensorPower;
+	}
+
+	public String getVehicleComponentRightSensorRadius() {
+		return VehicleComponentRightSensorRadius;
+	}
+
+	public void setVehicleComponentRightSensorRadius(
+			String vehicleComponentRightSensorRadius) {
+		VehicleComponentRightSensorRadius = vehicleComponentRightSensorRadius;
+	}
+
+	public String getVehicleComponentRightSensorLight() {
+		return VehicleComponentRightSensorLight;
+	}
+
+	public void setVehicleComponentRightSensorLight(
+			String vehicleComponentRightSensorLight) {
+		VehicleComponentRightSensorLight = vehicleComponentRightSensorLight;
+	}
+
+	public String getVehicleComponentRightSensorHeat() {
+		return VehicleComponentRightSensorHeat;
+	}
+
+	public void setVehicleComponentRightSensorHeat(
+			String vehicleComponentRightSensorHeat) {
+		VehicleComponentRightSensorHeat = vehicleComponentRightSensorHeat;
+	}
+
+	public String getVehicleComponentRightSensorWater() {
+		return VehicleComponentRightSensorWater;
+	}
+
+	public void setVehicleComponentRightSensorWater(
+			String vehicleComponentRightSensorWater) {
+		VehicleComponentRightSensorWater = vehicleComponentRightSensorWater;
+	}
+
+	public String getVehicleComponentRightSensorPower() {
+		return VehicleComponentRightSensorPower;
+	}
+
+	public void setVehicleComponentRightSensorPower(
+			String vehicleComponentRightSensorPower) {
+		VehicleComponentRightSensorPower = vehicleComponentRightSensorPower;
 	}
 
 	/**
@@ -103,37 +185,89 @@ public class VehicleComponent{
 		writeXMLEntry("name", name, xmldoc);
 	} 
 	/**
-	 * Add a vehicle component temperament attribute(Motor | Sensor | Memory | Battery) to the XML document being created
-	 * @param temperament One of (Motor | Sensor | Memory | Battery)
+	 * Add a vehicle component temperament attribute(LeftSensor | RightSensor) to the XML document being created
+	 * @param temperament One of (LeftSensor | RightSensor)
 	 */
 	public void addVehicleComponentType(String type){
 		writeXMLEntry("type", type, xmldoc);
 	}
-	/**
-	 * Add a vehicle component motor strength attribute (0.0 - 100.0) to the XML document being created
-	 * @param temperament One of (0.0 - 100.0)
-	 */
-	public void addMotorStrength(String strength){
-		writeXMLEntry("motorStrength", strength, xmldoc);
-	}
+	
 	
 	/**
 	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
 	 * @param temperament One of (0 - 100)
 	 */
-	public void addSensorRadius(String radius){
-		writeXMLEntry("sensorRadius", radius, xmldoc);
+	public void addLeftSensorRadius(String radius){
+		writeXMLEntry("LeftSensorRadius", radius, xmldoc);
 	}
 	/**
-	 * Add a vehicle component position attribute 
-	 * (top-left | top-right | left | right | bottom-left 
-                 | bottom-right)
- to the XML document being created
-	 * @param temperament One of (top-left | top-right | left | right | bottom-left | bottom-right)
+	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
+	 * @param temperament One of (0 - 100)
 	 */
-	public void addPosition(String pos){
-		writeXMLEntry("position", pos, xmldoc);
+	public void addLeftSensorLight(String light){
+		writeXMLEntry("LeftSensorLight", light, xmldoc);
 	}
+	/**
+	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
+	 * @param temperament One of (0 - 100)
+	 */
+	public void addLeftSensorHeat(String heat){
+		writeXMLEntry("LeftSensorHeat", heat, xmldoc);
+	}
+	/**
+	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
+	 * @param temperament One of (0 - 100)
+	 */
+	public void addLeftSensorPower(String power){
+		writeXMLEntry("LeftSensorPower", power, xmldoc);
+	}
+	/**
+	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
+	 * @param temperament One of (0 - 100)
+	 */
+	public void addLeftSensorWater(String water){
+		writeXMLEntry("LeftSensorWater", water, xmldoc);
+	}
+	
+	
+
+	/**
+	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
+	 * @param temperament One of (0 - 100)
+	 */
+	public void addRightSensorRadius(String radius){
+		writeXMLEntry("RightSensorRadius", radius, xmldoc);
+	}
+	/**
+	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
+	 * @param temperament One of (0 - 100)
+	 */
+	public void addRightSensorLight(String light){
+		writeXMLEntry("RightSensorLight", light, xmldoc);
+	}
+	/**
+	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
+	 * @param temperament One of (0 - 100)
+	 */
+	public void addRightSensorHeat(String heat){
+		writeXMLEntry("RightSensorHeat", heat, xmldoc);
+	}
+	/**
+	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
+	 * @param temperament One of (0 - 100)
+	 */
+	public void addRightSensorPower(String power){
+		writeXMLEntry("RightSensorPower", power, xmldoc);
+	}
+	/**
+	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
+	 * @param temperament One of (0 - 100)
+	 */
+	public void addRightSensorWater(String water){
+		writeXMLEntry("RightSensorWater", water, xmldoc);
+	}
+	
+	
 	/**
 	 * Write out the current VehicleComponent to a file specified by the filename attribute
 	 */
@@ -165,17 +299,34 @@ public class VehicleComponent{
 			this.addVehicleComponentName(VehicleComponentName);
 		}
 		if(this.VehicleComponentType != null){
-			this.addVehicleComponentType(VehicleComponentType);
+			this.addVehicleComponentType(VehicleComponentType);			
 		}
-		if(this.VehicleComponentPosition != null){
-			this.addPosition(VehicleComponentPosition);
+		if(this.VehicleComponentLeftSensorHeat!=null){
+			this.addLeftSensorHeat(VehicleComponentLeftSensorHeat);
 		}
-		if(this.VehicleComponentMotorStrength != null){
-			this.addMotorStrength(VehicleComponentMotorStrength);
+		if(this.VehicleComponentLeftSensorLight!=null){
+			this.addLeftSensorLight(VehicleComponentLeftSensorLight);
 		}
-		if(this.VehicleComponentSensorRadius != null){
-			this.addSensorRadius(VehicleComponentSensorRadius);
+		if(this.VehicleComponentLeftSensorPower!=null){
+			this.addLeftSensorPower(VehicleComponentLeftSensorPower);
 		}
+		if(this.VehicleComponentLeftSensorWater!=null){
+			this.addLeftSensorWater(VehicleComponentLeftSensorWater);
+		}
+		
+		if(this.VehicleComponentRightSensorHeat!=null){
+			this.addRightSensorHeat(VehicleComponentRightSensorHeat);
+		}
+		if(this.VehicleComponentRightSensorLight!=null){
+			this.addRightSensorLight(VehicleComponentRightSensorLight);
+		}
+		if(this.VehicleComponentRightSensorPower!=null){
+			this.addRightSensorPower(VehicleComponentRightSensorPower);
+		}
+		if(this.VehicleComponentRightSensorWater!=null){
+			this.addRightSensorWater(VehicleComponentRightSensorWater);
+		}
+		
 		xmldoc.appendChild(root);
 	}
 
