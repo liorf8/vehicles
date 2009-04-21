@@ -57,7 +57,7 @@ public class Vehicle{
 			DOMParser p = new DOMParser();
 			p.parse(xmlLocation); //get a parsed version of the file into memory
 			Document dom = p.getDocument();
-			processVehicleComponents( dom.getElementsByTagName("VehicleComponent"));
+			processVehicleComponents(dom.getElementsByTagName("VehicleComponent"));
 
 			NodeList name = dom.getElementsByTagName("name");
 			for(int i = 0;i<name.getLength();i++){
@@ -91,7 +91,6 @@ public class Vehicle{
 			Node node = componentList.item(i); // get a single vehicle component
 			if(node.getNodeType() == Node.ELEMENT_NODE){
 				VehicleComponent vc = new VehicleComponent(); //set the attributes of this object as we go on
-				//System.out.println("START COMPONENT");
 				NodeList children = node.getChildNodes();
 				for(int j = 0; j < children.getLength(); j++){ 
 
@@ -101,8 +100,8 @@ public class Vehicle{
 						/*PROCESS AN ATTRIBUTE OF AN ELEMENT OF A VEHICLECOMPONENT */
 						String attributeType = values.item(k).getParentNode().getNodeName();
 						if(attributeType.contains("name")){
-//							System.out.println("This is a name node");
-	//						System.out.println(values.item(k).getNodeValue());
+							//							System.out.println("This is a name node");
+							//						System.out.println(values.item(k).getNodeValue());
 							vc.setVehicleComponentName(values.item(k).getNodeValue());
 						}else{
 							if(attributeType.contains("type")){
@@ -110,32 +109,51 @@ public class Vehicle{
 								//System.out.println(values.item(k).getNodeValue());
 								vc.setVehicleComponentType(values.item(k).getNodeValue());
 							}else{
-								if(attributeType.contains("motorStrength")){
-									//System.out.println("This is a motorStrength node");
-									//System.out.println(values.item(k).getNodeValue());
-									vc.setVehicleComponentMotorStrength(values.item(k).getNodeValue());
-									
+								if(attributeType.contains("LeftSensorRadius")){
+									vc.setVehicleComponentLeftSensorRadius(values.item(k).getNodeValue());
 								}else{
-									if(attributeType.contains("sensor")){
-								//		System.out.println("This is a sensorRadius node");
-									//	System.out.println(values.item(k).getNodeValue());
-										vc.setVehicleComponentSensorRadius(values.item(k).getNodeValue());
-									
+									if(attributeType.contains("LeftSensorLight")){
+										vc.setVehicleComponentLeftSensorLight(values.item(k).getNodeValue());
 									}else{
-										if(attributeType.contains("pos")){
-									//		System.out.println("This is a position node");
-										//	System.out.println(values.item(k).getNodeValue());
-											vc.setVehicleComponentPosition(values.item(k).getNodeValue());
-											
+										if(attributeType.contains("LeftSensorHeat")){
+											vc.setVehicleComponentLeftSensorHeat(values.item(k).getNodeValue());
 										}else{
+											if(attributeType.contains("LeftSensorPower")){
+												vc.setVehicleComponentLeftSensorPower(values.item(k).getNodeValue());
+											}else{
+												if(attributeType.contains("LeftSensorWater")){
+													vc.setVehicleComponentLeftSensorWater(values.item(k).getNodeValue());
+												}else{
+													if(attributeType.contains("RightSensorRadius")){
+														vc.setVehicleComponentRightSensorRadius(values.item(k).getNodeValue());
+													}else{
+														if(attributeType.contains("RightSensorLight")){
+															vc.setVehicleComponentRightSensorLight(values.item(k).getNodeValue());
+														}else{
+															if(attributeType.contains("RightSensorHeat")){
+																vc.setVehicleComponentRightSensorHeat(values.item(k).getNodeValue());
+															}else{
+																if(attributeType.contains("RightSensorPower")){
+																	vc.setVehicleComponentRightSensorPower(values.item(k).getNodeValue());
+																}else{
+																	if(attributeType.contains("RightSensorWater")){
+																		vc.setVehicleComponentRightSensorWater(values.item(k).getNodeValue());
+
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
 										}
-									}
+									}		
+
 								}
+
 							}
-
-
-
 						}
+
 
 					}//end values for loop
 
@@ -146,6 +164,8 @@ public class Vehicle{
 			}
 		}
 	}
+
+
 
 
 
