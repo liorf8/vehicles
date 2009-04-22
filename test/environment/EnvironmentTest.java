@@ -1,6 +1,7 @@
 package test.environment;
 import vehicles.environment.Environment;
 import vehicles.environment.EnvironmentElement;
+import vehicles.environment.HeatSource;
 import vehicles.environment.LightSource;
 import vehicles.environment.Point;
 import vehicles.vehicle.*;
@@ -14,12 +15,23 @@ public class EnvironmentTest{
 	
 		ls.setFileLocation("StrongLightSource.xml");
 		ls.setName("Strong Light Source");
-		ls.setType(EnvironmentElement.LightSource);
+		ls.setType(EnvironmentElement.LightSource);//TODO put this in object constructor
 		ls.setPosition(new Point(15,42));		
 		ls.setRange(78);
 		ls.setIntensity(95);
 		ls.toInternalXML();
 		ls.saveEnvironmentElement();
+		
+		HeatSource hs = new HeatSource();
+		hs.setFileLocation("WeakHeatSource.xml");
+		hs.setName("Weak Heat Source");
+		hs.setType(EnvironmentElement.HeatSource); //TODO put this in object constructor
+		hs.setPosition(new Point(30,40));
+		hs.setRange(10);
+		hs.setIntensity(30);
+		hs.toInternalXML();
+		hs.saveEnvironmentElement();
+		
 		
 		
 		/*
@@ -30,6 +42,7 @@ public class EnvironmentTest{
 		e.setWidth(200);
 		//e.setLastModified(timeStamp) Shaun- will you tell me how to get the current time?
 		e.addElement(ls);
+		e.addElement(hs);
 		e.saveEnvironment();
 		}
 }

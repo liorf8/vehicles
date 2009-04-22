@@ -189,7 +189,9 @@ public class Environment {
 				Iterator<EnvironmentElement> it = this.elementVector.iterator();
 				while(it.hasNext()){
 					EnvironmentElement curr = it.next();
-					//curr.toInternalXML();
+					//curr.toInternalXML(); //TODO add a check to see if object has already been converted to internal
+											// XML, by catching the exception this can throw if it has, and handle appropriatly
+											//   Karl will do this tonight
 					this.addEnvironmentElement(curr);
 				}
 			}
