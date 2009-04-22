@@ -1,12 +1,24 @@
 package vehicles.environment;
 
+import vehicles.environment.EnvironmentElement;
+import vehicles.vehicle.VehicleComponent;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.Iterator;
 import java.util.Vector;
 import java.util.Enumeration;
 
+import org.apache.xerces.dom.DocumentImpl;
 import org.apache.xerces.parsers.DOMParser;
+import org.apache.xml.serialize.OutputFormat;
+import org.apache.xml.serialize.XMLSerializer;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
 
 /**
  * Class representing an environment, both in RAM and providing methods to read and write to an XML file.
@@ -22,15 +34,19 @@ public class Environment {
 	protected Vector<EnvironmentElement> elementVector;
 	protected double width = 0.0;
 	protected double height = 0.0;
-	
+	protected Document xmldoc = null; //the XML document we are creating, stored as an object in memory
+	protected Element root = null;//the root element of the document
+
 	/**
 	 * Constructor for creating a new environment with no file location or name to start
 	 *
 	 */
 	public Environment(){
-		this.elementVector = new Vector<EnvironmentElement>(); 
+		this.elementVector = new Vector<EnvironmentElement>();
+		xmldoc= new DocumentImpl();
+		root = xmldoc.createElement("Environment");
 	}
-	
+
 	/**
 	 * Constructor for new environment
 	 * @param na The name this environment wil have
@@ -40,6 +56,9 @@ public class Environment {
 		this.name = na;
 		this.elementVector = new Vector<EnvironmentElement>();
 		this.xmlLocation = fl;
+		xmldoc= new DocumentImpl();
+		root = xmldoc.createElement("Environment");
+
 	}
 
 	/**
@@ -65,12 +84,12 @@ public class Environment {
 			/*If valid Environment file, continue*/
 			xmlLocation = filename;
 			this.elementVector = new Vector<EnvironmentElement>();
-			
+
 			/* The following recursive method is used to get the values of all attributes
 			 * apart from environment paths
 			 */	
 			handleNode(root); //recursive function to handle the nodes*/
-			
+
 			/* Fill the vector with the elements pointed at in the file */
 			NodeList elementPaths = dom.getElementsByTagName("elementPath");
 			processElementPaths(elementPaths);
@@ -80,8 +99,9 @@ public class Environment {
 					filename + "'. Please check that this file exists.");
 		}
 	}
-	
-	
+
+
+
 	/**
 	 * Take a NodeList representing paths to enviro-elements and creates 
 	 * enviro-element objects from these paths and adds them to the vector
@@ -97,7 +117,7 @@ public class Environment {
 			this.elementVector.add(new EnvironmentElement());
 		}
 	}
-	
+
 	/**
 	 * Take in a node from an XML document and use it to instansiate parts of the object- for 
 	 * internal class use only by other methods
@@ -134,51 +154,121 @@ public class Environment {
 			else break;
 		}
 	}
-	
+	/**
+	 * Write an element into an XML file
+	 * @param elemName The name of the attribute
+	 * @param elemValue The value for this attribute
+	 * @param xmldoc The document to write into
+	 */
+	public void writeXMLEntry(String elemName, String elemValue, Document xmldoc){
+		Element nameElement = xmldoc.createElement(elemName);
+		Text nameText = xmldoc.createTextNode(elemValue);
+		nameElement.appendChild(nameText);//add in the text to the element
+		root.appendChild(nameElement);//and add this new element to the document
+
+	}
+	/**
+	 * Save this environment to file
+	 */
+	public void saveEnvironment(){
+		try{
+			FileOutputStream fos;
+			if(this.name != null){
+				this.writeXMLEntry("name", name, xmldoc);
+			}
+			if(this.author != null){
+				this.writeXMLEntry("author", author, xmldoc);
+			}
+			if(this.width != 0.0){
+				this.writeXMLEntry("width", Double.toString(width), xmldoc);
+			}
+			if(this.height != 0.0){
+				this.writeXMLEntry("height", Double.toString(height), xmldoc);
+			}
+			if(this.elementVector != null){
+				Iterator<EnvironmentElement> it = this.elementVector.iterator();
+				while(it.hasNext()){
+					EnvironmentElement curr = it.next();
+					//curr.toInternalXML();
+					this.addEnvironmentElement(curr);
+				}
+			}
+			xmldoc.appendChild(root); //finalise the XML document
+			/*Now take the file in RAM and write it out to disk*/
+			try{
+				fos = new FileOutputStream(xmlLocation);
+			}catch(FileNotFoundException e ){
+				File f = new File(xmlLocation);
+				f.createNewFile();
+				fos = new FileOutputStream(xmlLocation);
+			}
+
+			OutputFormat of = new OutputFormat("XML","ISO-8859-1",true);
+			of.setIndent(1);
+			of.setIndenting(true);
+			XMLSerializer serializer = new XMLSerializer(fos,of);//prepare a serialiser for
+			//generating XML documents
+			// As a DOMSerializer
+			serializer.asDOMSerializer();
+			serializer.serialize( xmldoc.getDocumentElement() );//get the root element and start writing
+			fos.close();
+		}catch(Exception e ){
+			e.printStackTrace();
+		}
+
+	}
+	/**
+	 * Add an evironment element XML entry into this Vehicle's document
+	 * @param vc The vehicle component to add
+	 */
+	public void addEnvironmentElement(EnvironmentElement ee){
+		root.appendChild(xmldoc.adoptNode(ee.getRootElement().cloneNode(true)));
+
+	}
 	/***** Getter Methods *****/
-	
+
 	public String getName(){
 		return this.name;
 	}
-	
+
 	public String getAuthor(){
 		return this.author;
 	}
-	
+
 	public String getLastModified(){
 		return this.lastModified;
 	}
-	
+
 	public double getWidth(){
 		return this.width;
 	}
-	
+
 	public double getHeigth(){
 		return this.height;
 	}
-	
+
 	public String getFileLocation(){
 		return this.xmlLocation;
 	}
-	
+
 	public Vector<EnvironmentElement> getElements(){
 		return elementVector;
 	}
-	
+
 	/***** Setter Methods *****/
-	
+
 	public void setName(String name){
 		this.name = name;
 	}
-	
+
 	public void setAuthor(String aut){
 		this.author = aut;
 	}
-	
+
 	public void setLastModified(String timeStamp){
 		this.lastModified = timeStamp;
 	}
-	
+
 	public void setWidth(double width){
 		if(width > 0.0){
 			this.width = width;
@@ -188,7 +278,7 @@ public class Environment {
 			this.width = 100.0;
 		}
 	}
-	
+
 	public void setHeight(double height){
 		if(height > 0.0){
 			this.height= height;
@@ -198,11 +288,11 @@ public class Environment {
 			this.height = 100.0;
 		}
 	}
-	
+
 	public void setXMLLocation(String location){
 		this.xmlLocation = location;
 	}
-	
+
 	/**
 	 * A method to add an environment element to the current environment
 	 * @param e The element to add 
@@ -210,17 +300,17 @@ public class Environment {
 	public void addElement(EnvironmentElement e){
 		this.elementVector.add(e);
 	}
-	
-	
-	
-	
+
+
+
+
 	/**** Other Methods ****/
-	
+
 	public boolean isSaveable(){
 		return (this.name != null);
 	}
-	
-	
+
+
 	/*Might be best to add an area method to the environmentElement class and
 	 * use it here*/
 	public boolean occupied(double xPos, double yPos, double width, double height){
@@ -228,18 +318,18 @@ public class Environment {
 		v = elementVector;
 		boolean j=true;
 		Enumeration<EnvironmentElement> n = v.elements();
-		   while (n.hasMoreElements()){
-			   EnvironmentElement obj = (EnvironmentElement)n.nextElement();
-			   if((obj.getPosition().getXpos()==(xPos))&&(obj.getPosition().getYpos()==yPos)){
-				   j= true;
-			   }else{
-				   j= false;
-			   }
-		  }
-		   return j;
+		while (n.hasMoreElements()){
+			EnvironmentElement obj = (EnvironmentElement)n.nextElement();
+			if((obj.getPosition().getXpos()==(xPos))&&(obj.getPosition().getYpos()==yPos)){
+				j= true;
+			}else{
+				j= false;
+			}
+		}
+		return j;
 	}
-	
-	
+
+
 	/*An element has been created and saved in the Vector
 	 * so using the name of the element we can retrieve it*/
 	public EnvironmentElement loadElement(String elementName){
@@ -250,16 +340,16 @@ public class Environment {
 		double y=0.0;
 		Point p = new Point(x,y);
 		Enumeration<EnvironmentElement> n = elementVector.elements();
-		   while (n.hasMoreElements()){
-			   EnvironmentElement obj = (EnvironmentElement)n.nextElement();
-			   if (obj.getName() == elementName){
-				   name = obj.getName();
-				   FileLocation = obj.getFileLocation();
-				   p = obj.getPosition();
-			   }
-		  }
-		   e = new EnvironmentElement(name, FileLocation, p);
-		   return e;
+		while (n.hasMoreElements()){
+			EnvironmentElement obj = (EnvironmentElement)n.nextElement();
+			if (obj.getName() == elementName){
+				name = obj.getName();
+				FileLocation = obj.getFileLocation();
+				p = obj.getPosition();
+			}
+		}
+		e = new EnvironmentElement(name, FileLocation, p);
+		return e;
 	}
 	/*
 	 * not to sure if this is what is required?
@@ -272,13 +362,13 @@ public class Environment {
 		e.changeFileLocation(fileLocation);
 
 	}
-	*/
+	 */
 	/*
 	 * Not what is needed, maybe useful for debugging, but the XML is enough for that purpose
-	 
+
 	@SuppressWarnings("unchecked")
 	public void Display(Vector v){
-	
+
 		for (int i=0; i<v.size(); i++){
 
 			//t.println("\nProcessing....   "+v.elementAt(i).toString());
@@ -321,8 +411,8 @@ public class Environment {
     	}
 
 	}
-	*/
-	
-	
-	
+	 */
+
+
+
 }
