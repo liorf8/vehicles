@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Environment>
+    <name>desert</name>
+    <width>200.0</width>
+    <height>500.0</height>
+    <EnvironmentElement>
+        <name>Strong Light Source</name>
+        <type>1</type>
+        <xPos>15.0</xPos>
+        <yPos>42.0</yPos>
+        <lightRange>78.0</lightRange>
+        <lightIntensity>95.0</lightIntensity>
+    </EnvironmentElement>
+</Environment>

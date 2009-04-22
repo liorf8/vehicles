@@ -1,4 +1,5 @@
 package test.environment;
+import vehicles.environment.Environment;
 import vehicles.environment.EnvironmentElement;
 import vehicles.environment.LightSource;
 import vehicles.environment.Point;
@@ -19,6 +20,17 @@ public class EnvironmentTest{
 		ls.setIntensity(95);
 		ls.toInternalXML();
 		ls.saveEnvironmentElement();
+		
+		
+		/*
+		 * Create an environment and write to xml
+		 */
+		Environment e = new Environment("desert","desert.xml");
+		e.setHeight(500);
+		e.setWidth(200);
+		//e.setLastModified(timeStamp) Shaun- will you tell me how to get the current time?
+		e.addElement(ls);
+		e.saveEnvironment();
 		}
 }
 

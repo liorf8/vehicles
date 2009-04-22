@@ -35,6 +35,8 @@ public class EnvironmentElement {
 	 * An empty constructor
 	 */
 	public EnvironmentElement(){
+		xmldoc= new DocumentImpl();
+		root = xmldoc.createElement("EnvironmentElement");
 	}
 	
 	/**
@@ -42,6 +44,8 @@ public class EnvironmentElement {
 	 */
 	public EnvironmentElement(String filelocation, boolean New){
 		this.fileLocation = filelocation;
+		xmldoc= new DocumentImpl();
+		root = xmldoc.createElement("EnvironmentElement");
 	}
 	
 	
@@ -52,6 +56,8 @@ public class EnvironmentElement {
 	public EnvironmentElement(String filelocation){
 		//TODO extract variables from XML file
 		this.fileLocation = filelocation;
+		xmldoc= new DocumentImpl();
+		root = xmldoc.createElement("EnvironmentElement");
 	}
 	
 	/**
@@ -64,6 +70,8 @@ public class EnvironmentElement {
 		this.name = n;
 		this.fileLocation= fl;
 		this.position = p;
+		xmldoc= new DocumentImpl();
+		root = xmldoc.createElement("EnvironmentElement");
 	}	
 
 	/**** Setter Methods ****/
@@ -179,7 +187,7 @@ public class EnvironmentElement {
 	}
 	
 	/**
-	 * Save this element to file- FOR DEBUGGING ONLY!!!!
+	 * Save this element to file
 	 */
 	public void saveEnvironmentElement(){
 		try{
