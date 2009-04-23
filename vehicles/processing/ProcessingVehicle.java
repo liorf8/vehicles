@@ -10,8 +10,8 @@ public class ProcessingVehicle extends PApplet {
     boolean mouseDown;
     PImage ground;
     boolean specialSense = true;
-    int numOfLights = 5;
-    int numOfRobots = 5;
+    int numOfLights = 6;
+    int numOfRobots = 10;
     float move_speed = PI / 6;
 
     public void setMove_speed(float move_speed) {
@@ -35,18 +35,17 @@ public class ProcessingVehicle extends PApplet {
 
         robots = new Robot[10];
         for (int i = 0; i < robots.length; i++) {
-            robots[i] = new Robot(i * (width / 5) + 50, height / 2, random(PI), 15, i);
+            robots[i] = new Robot(i * (width / 10) + 20, height / 2, random(PI), 10, i);
         }
 
 
-        sources = new Source[5];
+        sources = new Source[6];
         for (int i = 0; i < sources.length; i++) {
-            sources[i] = new Source(i * (width / 6) + 60, height / 2 + (i % 2) * 50, 1.0f, 100, i);
+            sources[i] = new Source(i * (width / 6) + 60, height / 2 + (i % 2) * 50, 1.0f, 130, i);
 
         }
 
         smooth();
-
         updateGround();
     }
 
@@ -80,13 +79,11 @@ public class ProcessingVehicle extends PApplet {
             updateGround();
         }
 
-
         // num of lights
         if (key >= '1' && key <= '5') {
             numOfLights = 5 - ('5' - key);
             updateGround();
         }
-
     }
 
     public void mousePressed() {
@@ -105,7 +102,7 @@ public class ProcessingVehicle extends PApplet {
 
         float sum;
         int c;
-        int px = 5;
+        int px = 1;
 
         ground = new PImage(width, height);
         for (int i = 0; i < width; i += px) {
@@ -127,7 +124,6 @@ public class ProcessingVehicle extends PApplet {
                 for (int p = 0; p < px; p++) {
                     for (int q = 0; q < px; q++) {
                         ground.set(i + p, k + q, color(c, c, (specialSense) ? c / 8 : c));
-                    //ground.set(p, q, 0xff0000);
                     }
                 }
             }
@@ -173,15 +169,14 @@ public class ProcessingVehicle extends PApplet {
 
         void draw() {
 
-            fill(255, 0, 0);
-            triangle(sA.x, sA.y, sB.x, sB.y, x + cos(angle) * axle * 2f, y + sin(angle) * axle * 2f);
+            //fill(55, 55, 0);
+            //triangle(sA.x, sA.y, sB.x, sB.y, x + cos(angle) * axle * 2f, y + sin(angle) * axle * 2f);
 
-            fill(0);
+            fill(id * 20, 120, id * 20);
             wA.draw(angle, 1);
             wB.draw(angle - PI, -1);
 
             ellipse(x, y, axle * 3, axle * 3);
-
             sA.draw();
             sB.draw();
 
@@ -400,8 +395,10 @@ public class ProcessingVehicle extends PApplet {
 
             if (id < numOfLights) {
                 checkCollision();
+                /*
                 // dragging?
                 int range = 80;
+                
                 if (mouseDown && mouseX > x - range && mouseX < x + range && mouseY > y - range && mouseY < y + range) {
                     if (source_drag_id == -1) {
                         dragging = true;
@@ -419,6 +416,7 @@ public class ProcessingVehicle extends PApplet {
                     y = mouseY;
                     updateGround();
                 }
+*/
             }
         }
 
