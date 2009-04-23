@@ -13,7 +13,7 @@ import java.awt.Adjustable;
 public class MyAdjustmentListener implements AdjustmentListener {
         // This method is called whenever the value of a scrollbar is changed,
         // either by the user or programmatically.
-        @Override
+        //@Override
         public void adjustmentValueChanged(AdjustmentEvent evt) {
             Adjustable source = evt.getAdjustable();
 

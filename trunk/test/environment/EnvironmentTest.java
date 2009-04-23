@@ -11,28 +11,27 @@ public class EnvironmentTest{
 		/*
 		 * Create a light source, populate it's attributes, and write to file
 		 */
-		LightSource ls = new LightSource();
-	
+		LightSource ls = new LightSource();	
 		ls.setFileLocation("StrongLightSource.xml");
 		ls.setName("Strong Light Source");
 		ls.setType(EnvironmentElement.LightSource);//TODO put this in object constructor
 		ls.setPosition(new Point(15,42));		
-		ls.setRange(78);
-		ls.setIntensity(95);
+		ls.setRadius(78);
+		ls.setStrength(95);
 		ls.toInternalXML();
 		ls.saveEnvironmentElement();
-		
+		/*
+		 * Create a heat source, populate it's attributes, and write to file
+		 */
 		HeatSource hs = new HeatSource();
 		hs.setFileLocation("WeakHeatSource.xml");
 		hs.setName("Weak Heat Source");
 		hs.setType(EnvironmentElement.HeatSource); //TODO put this in object constructor
 		hs.setPosition(new Point(30,40));
-		hs.setRange(10);
-		hs.setIntensity(30);
+		hs.setRadius(10);
+		hs.setStrength(30);
 		hs.toInternalXML();
-		hs.saveEnvironmentElement();
-		
-		
+		hs.saveEnvironmentElement();		
 		
 		/*
 		 * Create an environment and write to xml
@@ -44,10 +43,13 @@ public class EnvironmentTest{
 		e.addElement(ls);
 		e.addElement(hs);
 		e.saveEnvironment();
+		
+		/*Read that xml and create an object from it, then re-write it back to xml*/
+		Environment env = new Environment("desert.xml"); //load up object values from xml
+		env.setXMLLocation("desertDuplicate.xml");
+		env.saveEnvironment();
 		}
 }
-
-
 
 
 /*

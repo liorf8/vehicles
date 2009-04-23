@@ -68,35 +68,37 @@ public class Environment {
 	public Environment(String filename){
 		try{
 			DOMParser p = new DOMParser();
-			System.out.println("Opening Environment file: " + filename);
 			p.parse(filename); //get a parsed version of the file into memory
 			Document dom = p.getDocument();
 
 			/*Get the root node, check this xml file IS an environment file
 			 * if it is not an environment file, print an error and return
 			 */
-			Node root = dom.getDocumentElement(); //get the root element from the document
-			if(!root.getNodeName().equals("Environment")){
+			Node rootElem = dom.getDocumentElement(); //get the root element from the document
+			if(!rootElem.getNodeName().equals("Environment")){
 				System.err.println("The file '" + filename + "' is NOT an Environment file.");
 				return;
 			}
 
 			/*If valid Environment file, continue*/
 			xmlLocation = filename;
+			xmldoc= new DocumentImpl();
+			this.root = xmldoc.createElement("Environment");
 			this.elementVector = new Vector<EnvironmentElement>();
 
 			/* The following recursive method is used to get the values of all attributes
 			 * apart from environment paths
 			 */	
-			handleNode(root); //recursive function to handle the nodes*/
+			handleNode(rootElem); //recursive function to handle the nodes*/
 
-			/* Fill the vector with the elements pointed at in the file */
-			NodeList elementPaths = dom.getElementsByTagName("elementPath");
+			/* Fill the vector with the elements in the file */
+			NodeList elementPaths = dom.getElementsByTagName("EnvironmentElement");
 			processElementPaths(elementPaths);
 		}
 		catch(Exception e){
 			System.err.println("An error occurred while creating an Environment from the file '" +
 					filename + "'. Please check that this file exists.");
+			e.printStackTrace();
 		}
 	}
 
@@ -111,11 +113,54 @@ public class Environment {
 	//TODO Fix environment element so this will work
 	private void processElementPaths(NodeList elementList){
 		int length = elementList.getLength();
-		String element_location = null;
-		for(int i = 0; i < length; i++){
-			element_location = elementList.item(i).getChildNodes().item(0).getNodeValue();
-			this.elementVector.add(new EnvironmentElement());
-		}
+		EnvironmentElement ee = new EnvironmentElement(); // a current enviro-element to create for each entry, then add to the vector
+		for(int i = 0; i < length; i++){//process enviro-element by element
+			ee = new EnvironmentElement();
+			NodeList childElems = elementList.item(i).getChildNodes(); //get the attributes of a single environment editor
+			int len = childElems.getLength();
+			for(int j= 0; j < len; j++){ //process element by element
+				Node curr = childElems.item(j);
+				if(curr.getNodeName().contains("name")){//enviro-elem name
+					ee.setName(curr.getFirstChild().getNodeValue());
+				}
+				if(curr.getNodeName().contains("type")){//enviro-elem type
+					ee.setType(Integer.parseInt(curr.getFirstChild().getNodeValue()));
+				}
+				if(curr.getNodeName().contains("xPos")){//enviro-elem xPos
+					ee.setXpos(Double.parseDouble(curr.getFirstChild().getNodeValue()));
+				}
+				if(curr.getNodeName().contains("yPos")){//enviro-elem yPos
+					ee.setYpos(Double.parseDouble(curr.getFirstChild().getNodeValue()));
+				}
+				if(curr.getNodeName().contains("Range")){//enviro-elem range/radius
+					ee.setRadius(Double.parseDouble(curr.getFirstChild().getNodeValue()));					
+				}
+				if(curr.getNodeName().contains("Intensity")){//enviro-elem intensity/strength
+					ee.setStrength(Double.parseDouble(curr.getFirstChild().getNodeValue()));					
+				}
+			}
+			/*Now the object has been created, need to identify it's type, create an appropriate subclass of EnvironmentElement, and add
+			 * this to the vector. 
+			 */
+			if(ee.getType() == EnvironmentElement.HeatSource){
+				HeatSource hs = new HeatSource(ee);
+				this.elementVector.add(hs); //save the new element
+			}
+			if(ee.getType() == EnvironmentElement.LightSource){
+				LightSource ls = new LightSource(ee);
+				this.elementVector.add(ls); //save the new element
+			}
+			if(ee.getType() == EnvironmentElement.PowerSource){
+				PowerSource ps = new PowerSource(ee);
+				this.elementVector.add(ps); //save the new element
+			}
+			if(ee.getType() == EnvironmentElement.WaterSource){
+				WaterSource ws = new WaterSource(ee);
+				this.elementVector.add(ws); //save the new element
+			}
+			
+		} //end of an single element for loop iteration here
+
 	}
 
 	/**
@@ -136,20 +181,21 @@ public class Environment {
 		case Node.TEXT_NODE:
 			name = node.getParentNode().getNodeName();
 			node_value = node.getNodeValue();
-			if(name.equals("Name")){
+
+			if(name.contains("name") && this.name == null){ //avoids us catching names of environment elements here
 				this.setName(node_value);
 			}
-			else if(name.equals("Author")){
+			else if(name.equals("author")){
 				this.setAuthor(node_value);
 			}
 			else if(name.equals("LastModified")){
 				this.setLastModified(node_value);
 			}
-			else if(name.equals("numX")){
-				this.setWidth(Integer.parseInt(node_value));
+			else if(name.equals("width")){
+				this.setWidth(Double.parseDouble(node_value));
 			}
-			else if(name.equals("numY")){
-				this.setHeight(Integer.parseInt(node_value));
+			else if(name.equals("height")){
+				this.setHeight(Double.parseDouble(node_value));
 			}
 			else break;
 		}
@@ -187,11 +233,18 @@ public class Environment {
 			}
 			if(this.elementVector != null){
 				Iterator<EnvironmentElement> it = this.elementVector.iterator();
-				while(it.hasNext()){
+				while(it.hasNext()){ //process every element in the vector
 					EnvironmentElement curr = it.next();
-					//curr.toInternalXML(); //TODO add a check to see if object has already been converted to internal
-											// XML, by catching the exception this can throw if it has, and handle appropriatly
-											//   Karl will do this tonight
+					Object o = curr.getRootElement().getFirstChild(); //determine if the xml tree is populated 
+					if(o == null){ //if not, populate it(convert object attributes to xml tree)
+						curr.toInternalXML();
+					}
+					
+					/*THESE 2 LINES WILL NEED TO BE REMOVED, DEGUG ONLY!!*/
+					curr.setFileLocation(curr.getName()+"_duplicate");
+					curr.saveEnvironmentElement();
+					
+					//now add the xml tree from this element to the whole environment's xml tree
 					this.addEnvironmentElement(curr);
 				}
 			}
@@ -199,9 +252,9 @@ public class Environment {
 			/*Now take the file in RAM and write it out to disk*/
 			try{
 				fos = new FileOutputStream(xmlLocation);
-			}catch(FileNotFoundException e ){
+			}catch(FileNotFoundException e ){ //the file doesn't exist yet
 				File f = new File(xmlLocation);
-				f.createNewFile();
+				f.createNewFile(); //so create it
 				fos = new FileOutputStream(xmlLocation);
 			}
 
