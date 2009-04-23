@@ -18,8 +18,8 @@ public class EnvironmentElement {
 	public static int NotSet = 0;;
 	public static int LightSource = 1;
 	public static int HeatSource = 2;
-	public static int OrganicSource = 3;
-	public static int Terrain = 4;
+	public static int PowerSource = 3;
+	public static int WaterSource = 4;
 	
 	protected String fileLocation = null;//The XML file location of this element
 	protected String author = null, lastModified = null;
@@ -27,6 +27,10 @@ public class EnvironmentElement {
 	//Environment Element attributes
 	protected String name = null;
 	protected int type = 0; //type of element (see above)
+	protected double radius = 0.0;
+	protected double strength = 0.0;
+	
+
 	protected Point position = null;
 	protected Document xmldoc = null; //the XML document we are creating, stored as an object in memory
 	protected Element root = null;//the root element of the document
@@ -73,9 +77,34 @@ public class EnvironmentElement {
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("EnvironmentElement");
 	}	
+	/**
+	 * A "copy" constructor
+	 * @param other The EnvironmentElement to copy attributes from(passed by value in Java, yay :D ) 
+	 */
+	public EnvironmentElement(EnvironmentElement other){
+		this.name = other.name;
+		this.fileLocation = other.fileLocation;
+		this.author = other.author;
+		this.lastModified = other.lastModified;
+		this.position = other.position;
+		this.radius = other.radius;
+		this.root = other.root;
+		this.strength = other.strength;
+		this.type = other.type;
+		this.xmldoc = other.xmldoc;
+	}
 
+	
 	/**** Setter Methods ****/
 
+
+	public void setStrength(double strength) {
+		this.strength = strength;
+	}
+	public void setRadius(double radius) {
+		this.radius = radius;
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -99,13 +128,37 @@ public class EnvironmentElement {
 	public void setPosition(Point position) {
 		this.position = position;
 	}
+	
+	public void setXpos(double xpos){
+		if(this.position == null){
+			this.position = new Point();
+			this.position.setXPos(xpos);
+		}else{
+			this.position.setXPos(xpos);
+		}
+	}
+	
+	public void setYpos(double ypos){
+		if(this.position == null){
+			this.position = new Point();
+			this.position.setYPos(ypos);
+		}else{
+			this.position.setYPos(ypos);
+		}
+	}
 
 	/**** Getter Methods ****/
 	
 	public String getName() {
 		return name;
 	}
-	
+	public double getRadius() {
+		return radius;
+	}
+
+	public double getStrength() {
+		return strength;
+	}
 	public String getAuthor(){
 		return this.author;
 	}
@@ -175,7 +228,7 @@ public class EnvironmentElement {
 	 * Write this EnvironmentElement to an XML document in RAm, which can then be written to disk(no need to do this) or appeneded to an Environment XML document in RAM
 	 */
 	public void toInternalXML(){
-		//sub-classes must implement
+		System.out.println("Oh crap");
 	}
 	/**
 	 * Get the root of this environment element, call this method to get the component for inclusion
@@ -207,5 +260,8 @@ public class EnvironmentElement {
 		}
 
 
+	}
+	public String toString(){
+		return(this.name + " " +this.type + " "+ this.radius + " " + this.strength );
 	}
 }

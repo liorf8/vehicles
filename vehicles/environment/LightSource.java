@@ -7,8 +7,7 @@ import org.w3c.dom.Text;
 public class LightSource extends EnvironmentElement{
 
 	//private double 
-	private double strength;
-	private double radius;
+	
 
 	public LightSource(String n, String fl, Point p, double i, double r){
 		super(n, fl ,p);
@@ -19,6 +18,9 @@ public class LightSource extends EnvironmentElement{
 		super();
 		this.radius = 0.0;
 		this.strength = 0.0;
+	}
+	public LightSource(EnvironmentElement e){
+		super(e);
 	}
 	
 	
@@ -54,6 +56,7 @@ public class LightSource extends EnvironmentElement{
 	/**
 	 * Convert this object into a XML representation in RAM(overrride superclass EnvironmentElement)
 	 */
+	@Override
 	public void toInternalXML(){
 		if(this.name != null){
 			this.addEnvironmentElementName(name);
