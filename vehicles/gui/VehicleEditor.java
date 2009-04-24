@@ -44,15 +44,16 @@ public class VehicleEditor extends javax.swing.JFrame {
 
         vehiclesArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
         vehiclesDropDown = new DefaultComboBoxModel(vehiclesArray);
-        for(int i = 0; i<vehiclesArray.length;i++){
-			System.out.println(vehiclesArray[i].getVehicleName()+"\n");
-		}
+
         embed = new Embedded();
         initComponents();
         // important to call this whenever embedding a PApplet.
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
         embed.init();
+        for (int i = 0; i<vehiclesArray.length;i++) {
+			System.out.println(vehiclesArray[i].getVehicleName());
+		}
 
     }
 
@@ -186,7 +187,10 @@ public class VehicleEditor extends javax.swing.JFrame {
         scrollpanel_VehicleDescription.setName("scrollpanel_VehicleDescription"); // NOI18N
 
         text_VehicleDescription.setColumns(20);
+        text_VehicleDescription.setFont(resourceMap.getFont("text_VehicleDescription.font")); // NOI18N
+        text_VehicleDescription.setLineWrap(true);
         text_VehicleDescription.setRows(5);
+        text_VehicleDescription.setWrapStyleWord(true);
         text_VehicleDescription.setName("text_VehicleDescription"); // NOI18N
         scrollpanel_VehicleDescription.setViewportView(text_VehicleDescription);
 
@@ -983,16 +987,15 @@ public class VehicleEditor extends javax.swing.JFrame {
     private void dropdown_selectedVehicleItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_selectedVehicleItemStateChanged
         JComboBox tempComboBox = (JComboBox) evt.getSource();
         EditorVehicle selected = (EditorVehicle) tempComboBox.getSelectedItem();
-        
         populateFields(selected);
     }//GEN-LAST:event_dropdown_selectedVehicleItemStateChanged
 
     private void populateFields(EditorVehicle p_vehicle) {
         EditorVehicle tempVehicle = p_vehicle;
-        System.out.print(p_vehicle.getVehicleName());
+
         text_Author.setText(tempVehicle.getVehicleAuthor());
-        text_VehicleDescription.setText(tempVehicle.getVehicleDescription()); //TODO fix
-        text_VehicleName.setText(tempVehicle.getVehicleName()); //TODO fix
+        text_VehicleDescription.setText(tempVehicle.getVehicleDescription());
+        text_VehicleName.setText(tempVehicle.getVehicleName());
 
         slider_Red.setValue(tempVehicle.getVehicleColourRed());
         slider_Blue.setValue(tempVehicle.getVehicleColourBlue());
@@ -1000,7 +1003,7 @@ public class VehicleEditor extends javax.swing.JFrame {
 
         slider_Aggression.setValue(tempVehicle.getAggression());
         slider_MotorStrength.setValue(tempVehicle.getMotorStrength());
-/*
+
         slider_Left_Heat.setValue(tempVehicle.getLeftSensorHeat());
         slider_Left_Light.setValue(tempVehicle.getLeftSensorLight());
         slider_Left_Power.setValue(tempVehicle.getLeftSensorPower());
@@ -1010,248 +1013,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         slider_Right_Light.setValue(tempVehicle.getRightSensorLight());
         slider_Right_Power.setValue(tempVehicle.getRightSensorPower());
         slider_Right_Water.setValue(tempVehicle.getRightSensorWater());
- */
 }
-
-    public JComboBox getDropdown_selectedVehicle() {
-        return dropdown_selectedVehicle;
-    }
-
-    public void setDropdown_selectedVehicle(JComboBox dropdown_selectedVehicle) {
-        this.dropdown_selectedVehicle = dropdown_selectedVehicle;
-    }
-
-    public JSlider getSlider_Aggression() {
-        return slider_Aggression;
-    }
-
-    public void setSlider_Aggression(JSlider slider_Aggression) {
-        this.slider_Aggression = slider_Aggression;
-    }
-
-    public JSlider getSlider_Blue() {
-        return slider_Blue;
-    }
-
-    public void setSlider_Blue(JSlider slider_Blue) {
-        this.slider_Blue = slider_Blue;
-    }
-
-    public JSlider getSlider_Green() {
-        return slider_Green;
-    }
-
-    public void setSlider_Green(JSlider slider_Green) {
-        this.slider_Green = slider_Green;
-    }
-
-    public JSlider getSlider_Left_Heat() {
-        return slider_Left_Heat;
-    }
-
-    public void setSlider_Left_Heat(JSlider slider_Left_Heat) {
-        this.slider_Left_Heat = slider_Left_Heat;
-    }
-
-    public JSlider getSlider_Left_Light() {
-        return slider_Left_Light;
-    }
-
-    public void setSlider_Left_Light(JSlider slider_Left_Light) {
-        this.slider_Left_Light = slider_Left_Light;
-    }
-
-    public JSlider getSlider_Left_Power() {
-        return slider_Left_Power;
-    }
-
-    public void setSlider_Left_Power(JSlider slider_Left_Power) {
-        this.slider_Left_Power = slider_Left_Power;
-    }
-
-    public JSlider getSlider_Left_Water() {
-        return slider_Left_Water;
-    }
-
-    public void setSlider_Left_Water(JSlider slider_Left_Water) {
-        this.slider_Left_Water = slider_Left_Water;
-    }
-
-    public JSlider getSlider_MotorStrength() {
-        return slider_MotorStrength;
-    }
-
-    public void setSlider_MotorStrength(JSlider slider_MotorStrength) {
-        this.slider_MotorStrength = slider_MotorStrength;
-    }
-
-    public JSlider getSlider_Red() {
-        return slider_Red;
-    }
-
-    public void setSlider_Red(JSlider slider_Red) {
-        this.slider_Red = slider_Red;
-    }
-
-    public JSlider getSlider_Right_Heat() {
-        return slider_Right_Heat;
-    }
-
-    public void setSlider_Right_Heat(JSlider slider_Right_Heat) {
-        this.slider_Right_Heat = slider_Right_Heat;
-    }
-
-    public JSlider getSlider_Right_Light() {
-        return slider_Right_Light;
-    }
-
-    public void setSlider_Right_Light(JSlider slider_Right_Light) {
-        this.slider_Right_Light = slider_Right_Light;
-    }
-
-    public JSlider getSlider_Right_Power() {
-        return slider_Right_Power;
-    }
-
-    public void setSlider_Right_Power(JSlider slider_Right_Power) {
-        this.slider_Right_Power = slider_Right_Power;
-    }
-
-    public JSlider getSlider_Right_Water() {
-        return slider_Right_Water;
-    }
-
-    public void setSlider_Right_Water(JSlider slider_Right_Water) {
-        this.slider_Right_Water = slider_Right_Water;
-    }
-
-    public JTextField getText_Aggression() {
-        return text_Aggression;
-    }
-
-    public void setText_Aggression(JTextField text_Aggression) {
-        this.text_Aggression = text_Aggression;
-    }
-
-    public JTextField getText_Author() {
-        return text_Author;
-    }
-
-    public void setText_Author(JTextField text_Author) {
-        this.text_Author = text_Author;
-    }
-
-    public JTextField getText_Blue() {
-        return text_Blue;
-    }
-
-    public void setText_Blue(JTextField text_Blue) {
-        this.text_Blue = text_Blue;
-    }
-
-    public JTextField getText_Green() {
-        return text_Green;
-    }
-
-    public void setText_Green(JTextField text_Green) {
-        this.text_Green = text_Green;
-    }
-
-    public JTextField getText_Left_Heat() {
-        return text_Left_Heat;
-    }
-
-    public void setText_Left_Heat(JTextField text_Left_Heat) {
-        this.text_Left_Heat = text_Left_Heat;
-    }
-
-    public JTextField getText_Left_Light() {
-        return text_Left_Light;
-    }
-
-    public void setText_Left_Light(JTextField text_Left_Light) {
-        this.text_Left_Light = text_Left_Light;
-    }
-
-    public JTextField getText_Left_Power() {
-        return text_Left_Power;
-    }
-
-    public void setText_Left_Power(JTextField text_Left_Power) {
-        this.text_Left_Power = text_Left_Power;
-    }
-
-    public JTextField getText_Left_Water() {
-        return text_Left_Water;
-    }
-
-    public void setText_Left_Water(JTextField text_Left_Water) {
-        this.text_Left_Water = text_Left_Water;
-    }
-
-    public JTextField getText_MotorStrength() {
-        return text_MotorStrength;
-    }
-
-    public void setText_MotorStrength(JTextField text_MotorStrength) {
-        this.text_MotorStrength = text_MotorStrength;
-    }
-
-    public JTextField getText_Red() {
-        return text_Red;
-    }
-
-    public void setText_Red(JTextField text_Red) {
-        this.text_Red = text_Red;
-    }
-
-    public JTextField getText_Right_Heat() {
-        return text_Right_Heat;
-    }
-
-    public void setText_Right_Heat(JTextField text_Right_Heat) {
-        this.text_Right_Heat = text_Right_Heat;
-    }
-
-    public JTextField getText_Right_Light() {
-        return text_Right_Light;
-    }
-
-    public void setText_Right_Light(JTextField text_Right_Light) {
-        this.text_Right_Light = text_Right_Light;
-    }
-
-    public JTextField getText_Right_Power() {
-        return text_Right_Power;
-    }
-
-    public void setText_Right_Power(JTextField text_Right_Power) {
-        this.text_Right_Power = text_Right_Power;
-    }
-
-    public JTextField getText_Right_Water() {
-        return text_Right_Water;
-    }
-
-    public void setText_Right_Water(JTextField text_Right_Water) {
-        this.text_Right_Water = text_Right_Water;
-    }
-
-    public JTextArea getText_VehicleDescription() {
-        return text_VehicleDescription;
-    }
-
-    public void setText_VehicleDescription(JTextArea text_VehicleDescription) {
-        this.text_VehicleDescription = text_VehicleDescription;
-    }
-
-    public JTextField getText_VehicleName() {
-        return text_VehicleName;
-    }
-
-    public void setText_VehicleName(JTextField text_VehicleName) {
-        this.text_VehicleName = text_VehicleName;
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton button_Cancel;
@@ -1316,4 +1078,5 @@ public class VehicleEditor extends javax.swing.JFrame {
     private PApplet embed;
     private EditorVehicle[] vehiclesArray;
     private DefaultComboBoxModel vehiclesDropDown;
+
 }

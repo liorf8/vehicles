@@ -9,11 +9,11 @@ public class ListVehiclesTest {
 		/*CREATE A NEW VEHICLE*/
 		EditorVehicle veh = new EditorVehicle("xml/vehicles/angry.xml");
 		veh.setVehicleName("Angry Vehicle");
-		veh.setVehicleAuthor("Some sweaty angryguy");
-		veh.setVehicleDescription("This is a very angry little vehicle ");
+		veh.setVehicleAuthor("Some sweaty angry guy");
+		veh.setVehicleDescription("This is a very angry little vehicle, This is a very angry little vehicle, This is a very angry little vehicle, This is a very angry little vehicle");
 		veh.setCurr_battery_capacity(65);
 		veh.setMax_battery_capacity(100);
-
+        veh.setColour(255, 255, 255);
 
 		VehicleComponent vc = new VehicleComponent("weaksensor.xml"); //new object
 			vc.setVehicleComponentName("Weak Sensor");//set object attributes
