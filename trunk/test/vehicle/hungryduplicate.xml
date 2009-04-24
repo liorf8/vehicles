@@ -3,6 +3,7 @@
     <name>Hungy Vehicle</name>
     <max_battery_capacity>100.0</max_battery_capacity>
     <curr_battery_capacity>46.0</curr_battery_capacity>
+    <motorStrength>67.7</motorStrength>
     <temperament>Timid</temperament>
     <VehicleComponent>
         <name>Weak Sensor</name>

@@ -14,6 +14,7 @@ public class VehicleTests {
 			v.setVehicleName("Hungy Vehicle"); //set object attributes
 			v.setVehicleTemperament("Timid"); //set object attributes 
 			v.setCurr_battery_capacity(46);
+			v.setMotorStrength(67.7);
 			
 				
 				VehicleComponent vc = new VehicleComponent("weaksensor.xml"); //new object
