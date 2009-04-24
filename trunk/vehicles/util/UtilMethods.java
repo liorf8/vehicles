@@ -18,7 +18,8 @@ public class UtilMethods {
 		EditorVehicle[] list = new EditorVehicle[files.length];
 		for(int i =0; i < files.length;i++){
 			if(files[i].isFile()){ // if current entry is a file
-				v.add(new EditorVehicle(files[i].toString())); //create an object from the XML in this file
+				//System.out.println(files[i].toString());
+				v.add(new EditorVehicle(files[i].toString(),true)); //create an object from the XML in this file
 			}
 		}
 		return v.toArray(list); //return an array

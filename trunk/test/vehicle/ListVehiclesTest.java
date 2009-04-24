@@ -9,6 +9,8 @@ public class ListVehiclesTest {
 		/*CREATE A NEW VEHICLE*/
 		EditorVehicle veh = new EditorVehicle("xml/vehicles/angry.xml");
 		veh.setVehicleName("Angry Vehicle");
+		veh.setAuthor("Some sweaty angryguy");
+		veh.setDescription("This is a very angry little vehicle ");
 		veh.setCurr_battery_capacity(65);
 		veh.setMax_battery_capacity(100);
 
@@ -21,7 +23,6 @@ public class ListVehiclesTest {
 			vc.setVehicleComponentLeftSensorHeat(Integer.toString(34));
 			vc.setVehicleComponentLeftSensorPower(Integer.toString(67));
 			vc.setVehicleComponentLeftSensorWater(Integer.toString(89));
-			vc.toInternalXML(); //generate xml in ram
 
 			veh.addVehicleComponent(vc); //move xml in ram from component into vehicle
 			
@@ -33,11 +34,10 @@ public class ListVehiclesTest {
 			vc.setVehicleComponentRightSensorHeat(Integer.toString(12));
 			vc.setVehicleComponentRightSensorPower(Integer.toString(9));
 			vc.setVehicleComponentRightSensorWater(Integer.toString(-8));
-			vc.toInternalXML(); //generate xml in ram
 
 			veh.addVehicleComponent(vc); //move xml in ram from component into vehicle
 	
-		veh.addVehicleComponent(vc); //move xml in ram from component into vehicle
+		
 		veh.saveVehicle();
 		/*GET LIST OF ALL VEHICLES IN FOLDER*/
 		EditorVehicle[] array = UtilMethods.getVehiclesFromFolder("xml/vehicles");
