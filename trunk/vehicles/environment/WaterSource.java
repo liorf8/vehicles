@@ -70,7 +70,7 @@ public class WaterSource extends EnvironmentElement{
 		if(this.strength != 0){
 			this.addWaterSourceIntensity(Double.toString(strength));
 		}
-		xmldoc.appendChild(root);
+		//xmldoc.appendChild(root);
 	}
 	
 	

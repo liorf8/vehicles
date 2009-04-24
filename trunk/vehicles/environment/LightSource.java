@@ -73,7 +73,7 @@ public class LightSource extends EnvironmentElement{
 		if(this.strength != 0){
 			this.addLightSourceIntensity(Double.toString(strength));
 		}
-		xmldoc.appendChild(root);
+		//xmldoc.appendChild(root);
 	}
 	
 	

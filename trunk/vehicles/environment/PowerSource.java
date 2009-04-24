@@ -72,7 +72,7 @@ public class PowerSource extends EnvironmentElement{
 		if(this.strength != 0){
 			this.addPowerSourceIntensity(Double.toString(strength));
 		}
-		xmldoc.appendChild(root);
+		//xmldoc.appendChild(root);
 	}
 	
 	
