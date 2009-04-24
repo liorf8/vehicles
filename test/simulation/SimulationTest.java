@@ -1,6 +1,8 @@
 package test.simulation;
 import vehicles.simulation.*;
 import vehicles.vehicle.*;
+import vehicles.environment.*;
+import java.util.Vector;
 
 /**A main class for testing of various elements in the simulation.
 * Please DON'T upload binary files produced by compiling this into the repo.
@@ -12,6 +14,16 @@ public class SimulationTest {
 		/* Testing the creation of a new simulation from an xml file*/
 		System.out.print("\n\nTESTING CREATION OF SIMULATION FROM XML FILE");
 		Simulation a = new Simulation("xml/simulations/simulation.xml");
+		Vector<Vehicle> ve = a.getVehicles();
+		int size = ve.size();
+		System.out.println("PRINTING DETAILS FOR VEHCILES POINTED AT IN FILE: 'xml/simulations/simulation.xml'");
+		for(int i = 0; i < size; i++){
+			ve.elementAt(i).printDetails();
+		}
+		Environment ee = a.getEnvironment();
+		System.out.println("PRINTING DETAILS FOR ENVIRONMENT IN FILE 'xml/simulations/simulation.xml'");
+		ee.printDetails();
+		System.out.println("PRINTING DETAILS FOR 'Simulation.xml'");
 		a.printSimDetails();
 		
 		
@@ -25,11 +37,9 @@ public class SimulationTest {
 		for(int i = 0; i < 10; i++){
 			b.addVehicle(new Vehicle());
 		}
-		b.setPerishableElements(true);
 		b.setPerishableVehicles(false);
-		b.setRegeneratingElements(false);
-		b.setReproductionMethod(2);
 		b.setXmlLocation("my/test/example");
+		b.setEnvironment("xml/environments/desert.xml");
 		b.printSimDetails();
 		
 		
@@ -48,7 +58,7 @@ public class SimulationTest {
 			mySimEditor.addVehicle(v);
 		}
 		mySimEditor.setPerishableVehicles(false);
-		mySimEditor.setRegeneratingElements(false);
+		mySimEditor.setEnvironment("xml/environments/desert.xml");
 		mySimEditor.saveSimulation();
 		
 		Simulation test = new Simulation("xml/simulations/my_simulation_test.xml");

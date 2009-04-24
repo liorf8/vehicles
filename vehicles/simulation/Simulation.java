@@ -27,9 +27,7 @@ public class Simulation {
 
 	/***** Variables that will affect how the simulation runs *****/
 	/* By default all options are off */
-	protected boolean perishable_vehicles = false, regenerating_elements = false,
-	perishable_elements = false, evolution = false, sensor_view = false;
-	protected int repro_method = 0; //reproduction method to be used. 0 - X are valid
+	protected boolean perishable_vehicles = false, evolution = false;
 	protected int gen_selection = 0; //genetic selection algorithm to use 0 - X are valid
 
 	public Simulation(){
@@ -121,20 +119,8 @@ public class Simulation {
 			else if(name.equals("perishable_vehicles")){
 				this.setPerishableVehicles(Boolean.getBoolean(node_value));
 			}
-			else if(name.equals("regenerating_elements")){
-				this.setRegeneratingElements(Boolean.getBoolean(node_value));
-			}
-			else if(name.equals("perishable_elements")){
-				this.setPerishableElements(Boolean.getBoolean(node_value));
-			}
 			else if(name.equals("evolution")){
 				this.setEvolution(Boolean.getBoolean(node_value));
-			}
-			else if(name.equals("reproduction_method")){
-				this.setReproductionMethod(Integer.parseInt(node_value));
-			}
-			else if(name.equals("sensor_view")){
-				this.setSensorView(Boolean.getBoolean(node_value));
 			}
 			else if(name.equals("genetic_selection_method")){
 				this.setGeneticSelectionMethod(Integer.parseInt(node_value));
@@ -145,6 +131,10 @@ public class Simulation {
 
 	/***** Getter Methods *****/
 
+	public String getEnvironmentPath(){
+		return this.enviro.getFileLocation();
+	}
+	
 	public String getXmlLocation() {
 		return xmlLocation;
 	}
@@ -169,24 +159,8 @@ public class Simulation {
 		return this.perishable_vehicles;
 	}
 
-	public boolean getRegeneratingElements(){
-		return this.regenerating_elements;
-	}
-
-	public boolean getPerishableElements(){
-		return this.perishable_elements;
-	}
-
 	public boolean getEvolution(){
 		return this.evolution;
-	}
-
-	public boolean getSensorView(){
-		return this.sensor_view;
-	}
-
-	public int getReproductionMethod(){
-		return this.repro_method;
 	}
 
 	public int getGeneticSelectionMethod(){
@@ -215,6 +189,10 @@ public class Simulation {
 		this.vehicles = veh;
 	}
 
+	public void addVehicle(String c){
+		vehicles.add(new Vehicle(c));
+	}
+	
 	public void addVehicle(Vehicle vc){
 		vehicles.add(vc);
 	}
@@ -224,32 +202,15 @@ public class Simulation {
 	}
 
 	public void setEnvironment(String filepath){
-		//TODO Fix environment class so this will work!
-		//this.enviro = new Environment(filepath);
+		this.enviro = new Environment(filepath);
 	}
 
 	public void setPerishableVehicles(boolean perish){
 		this.perishable_vehicles = perish;
 	}
-
-	public void setRegeneratingElements(boolean regen){
-		this.regenerating_elements = regen;
-	}
-
-	public void setPerishableElements(boolean perish){
-		this.perishable_elements = perish;
-	}
-
+	
 	public void setEvolution(boolean evo){
 		this.evolution = evo;
-	}
-
-	public void setSensorView(boolean s_view){
-		this.sensor_view = s_view;
-	}
-
-	public void setReproductionMethod(int r){
-		this.repro_method = r;
 	}
 
 	public void setGeneticSelectionMethod(int gen){
@@ -267,8 +228,7 @@ public class Simulation {
 	 * @return
 	 */
 	public boolean isSaveable(){
-		return (this.vehicles.size() >= 2 && this.simulationName != null);
-		//TODO Add this back in, when Environment is fixed ->   && this.enviro != null);
+		return (this.vehicles.size() >= 2 && this.simulationName != null && this.enviro != null);
 	}
 
 	/**
@@ -291,14 +251,10 @@ public class Simulation {
 			System.out.println("Possibly due to passing an incorrect XML file or never adding " +
 					"vehicles to the Simulation");
 		}
-		//System.out.println("Environment Path\t" + this.getEnvironment().getFileLocation());
+		System.out.println("Environment Path\t" + this.getEnvironment().getFileLocation());
 		System.out.println("\tRuntime Options");
 		System.out.println("Vehicles can perish\t" + this.getPerishableVehicles());
-		System.out.println("Elements can perish\t" + this.getPerishableElements());
-		System.out.println("Elements can regenerate\t" + this.getRegeneratingElements());
 		System.out.println("Vehicles can evolve\t" + this.getEvolution());
-		System.out.println("Reproduction Method\t" + this.getReproductionMethod());
-		System.out.println("Sensor View\t" + this.getSensorView());
 		System.out.println("Genetic Algorithm\t" + this.getGeneticSelectionMethod());
 	}
 

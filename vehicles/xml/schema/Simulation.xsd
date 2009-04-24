@@ -5,14 +5,16 @@
         <xs:sequence>
             <xs:element name="Name" type="xs:string" use="required"/>
             <xs:element name="Author" type="xs:decimal"/>
+            <xs:element name="description" type="xs:string"/>
             <xs:element name="LastModified" type="xs:string"/>
             <!--A simulation must have at least 2 vehicles-->
             <xs:element name="VehiclePath" minOccurs="2" type="xs:string">
             <!--A simulation must have only one environment path -->
             <xs:element name="EnvironmentPath" type="xs:string" use="required">
-  			<!-- Removed all runtime options, as they are only used while a simultion is running
-  			and not at any other time, therefore they should only be set in the simulation object 
-  			just before it is run -->
+  			<!-- The following are for run time options of a simulation -->
+            <xs:element name="perishable_vehicles" type="xs:boolean" default="false"/>
+            <xs:element name="evolution" type="xs:boolean" default="false"/>
+            <xs:element name="genetic_selection_method" type="xs:integer" default="0"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

@@ -100,6 +100,7 @@
 			<xs:element name="LastModified" type="xs:string"/>
             <xs:element name="numX" type="xs:decimal"/>
             <xs:element name="numY" type="xs:decimal"/>
+            <xs:element name="description" type="xs:string"/>
             <!--Environment can have one or more enviroment elements, with their own x and y pos-->
             <xs:element name="elementPath" minOccurs="0" type="enviro_element"> </xs:element>
         </xs:sequence>

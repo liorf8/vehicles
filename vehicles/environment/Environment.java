@@ -476,6 +476,15 @@ public class Environment {
 	}
 	 */
 
-
+	public void printDetails(){
+		System.out.println("Printing Details for environment at: " + this.xmlLocation);
+		System.out.println("Name\t" + this.name);
+		System.out.println("Author\t" + this.author);
+		System.out.println("Last Modified\t" + this.lastModified);
+		System.out.println("Description\t" + this.description);
+		System.out.println("Width\t" + this.width);
+		System.out.println("Heigth\t" + this.height);
+		
+	}
 
 }

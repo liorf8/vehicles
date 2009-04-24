@@ -132,28 +132,13 @@ public class EditorSimulation extends Simulation{
 				this.addVehiclePath((Vehicle)it.next());
 			}
 			//add the environment file path
-			//this.addString("EnvironmentPath", this.enviro.getFileLocation());
+			this.addString("EnvironmentPath", this.enviro.getFileLocation());
 			//add perishable vehicles
-			/*
-			 * 
-			 *Removed all runtime options, as they are only used while a simultion is running 
-			 *and not at any other time, therefore they should only be set in the simulation object 
-			 * 
-			 * 
 			this.addBoolean("perishable_vehicles", this.perishable_vehicles);
-			//Add regenerating_elements
-			this.addBoolean("regenerating_elements", this.regenerating_elements);
-			//Add perishable_elements
-			this.addBoolean("perishable_elements", this.perishable_elements);
 			//Add evolution
 			this.addBoolean("evolution", this.evolution);
-			//Add reproduction_method
-			this.addInteger("reproduction_method", this.repro_method);
-			//Add sensor_view
-			this.addBoolean("sensor_view", this.sensor_view);
 			//Add Genetic Selection Mehod
 			this.addInteger("genetic_selection_method", this.gen_selection);
-			*/
 
 			xmldoc.appendChild(root); //finalise the XML document
 			/*Now take the file in RAM and write it out to disk*/
