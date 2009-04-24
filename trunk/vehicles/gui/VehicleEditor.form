@@ -23,22 +23,26 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="550" max="32767" attributes="0"/>
-              <Component id="button_Save" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="button_SaveAs" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="button_Cancel" min="-2" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="287" max="32767" attributes="0"/>
+                      <Component id="button_Save" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="button_SaveAs" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="button_Cancel" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="tabContainer" alignment="0" pref="498" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Component id="tabContainer" alignment="0" pref="771" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="tabContainer" pref="462" max="32767" attributes="0"/>
+              <Component id="tabContainer" pref="466" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="button_Cancel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -74,39 +78,49 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="panel_SelectedVehicle" alignment="0" max="32767" attributes="0"/>
+                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                      <Component id="panel_SelectedVehicle" max="32767" attributes="0"/>
+                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="panel_VehicleName" max="32767" attributes="2"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="panel_VehicleName" alignment="1" max="32767" attributes="2"/>
-                                  <Component id="panel_VehicleDescription" alignment="1" max="32767" attributes="2"/>
-                              </Group>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="panel_Preview" alignment="0" max="32767" attributes="2"/>
-                                  <Component id="panel_Author" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                              <Component id="panel_VehicleDescription" max="32767" attributes="2"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="panel_Preview" max="32767" attributes="2"/>
+                              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="panel_Author" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="panel_SelectedVehicle" min="-2" max="-2" attributes="1"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="panel_Author" alignment="0" min="-2" max="-2" attributes="1"/>
-                          <Component id="panel_VehicleName" alignment="0" min="-2" max="-2" attributes="1"/>
+                          <Component id="panel_VehicleName" min="-2" max="-2" attributes="1"/>
+                          <Component id="panel_Author" min="-2" max="-2" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="panel_VehicleDescription" alignment="1" max="32767" attributes="2"/>
-                          <Component id="panel_Preview" alignment="1" max="32767" attributes="2"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="panel_VehicleDescription" max="32767" attributes="2"/>
+                          <Component id="panel_Preview" max="32767" attributes="2"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -129,7 +143,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="vehicleName_jTextField" alignment="0" pref="358" max="32767" attributes="0"/>
+                      <Component id="vehicleName_jTextField" alignment="0" pref="221" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -161,7 +175,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="selectedVehicle_jComboBox" alignment="0" pref="734" max="32767" attributes="0"/>
+                      <Component id="selectedVehicle_jComboBox" alignment="0" pref="452" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -203,12 +217,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane6" alignment="0" pref="358" max="32767" attributes="0"/>
+                      <Component id="jScrollPane6" alignment="0" pref="221" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane6" alignment="0" pref="283" max="32767" attributes="0"/>
+                      <Component id="jScrollPane6" alignment="0" pref="287" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -249,7 +263,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="author_jTextField" alignment="0" pref="358" max="32767" attributes="0"/>
+                      <Component id="author_jTextField" alignment="0" pref="222" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -281,12 +295,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="panel_Processing" alignment="0" pref="358" max="32767" attributes="0"/>
+                      <Component id="panel_Processing" alignment="0" pref="222" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="panel_Processing" alignment="0" pref="283" max="32767" attributes="0"/>
+                      <Component id="panel_Processing" alignment="0" pref="287" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -320,22 +334,29 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jPanel5" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jPanel6" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel5" max="32767" attributes="0"/>
+                          <Component id="jPanel6" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel11" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel6" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jPanel11" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jPanel5" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jPanel6" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -403,7 +424,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSlider1" max="32767" attributes="0"/>
+                              <Component id="jSlider1" pref="49" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -411,7 +432,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSlider1" pref="341" max="32767" attributes="0"/>
+                              <Component id="jSlider1" pref="122" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -420,10 +441,11 @@
                   <SubComponents>
                     <Component class="javax.swing.JSlider" name="jSlider1">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" resourceKey="jSlider1.font"/>
                         <Property name="majorTickSpacing" type="int" value="10"/>
                         <Property name="maximum" type="int" value="50"/>
                         <Property name="minimum" type="int" value="-50"/>
-                        <Property name="minorTickSpacing" type="int" value="1"/>
+                        <Property name="minorTickSpacing" type="int" value="2"/>
                         <Property name="orientation" type="int" value="1"/>
                         <Property name="paintLabels" type="boolean" value="true"/>
                         <Property name="paintTicks" type="boolean" value="true"/>
@@ -451,7 +473,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSlider2" max="32767" attributes="0"/>
+                              <Component id="jSlider2" pref="49" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -459,7 +481,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSlider2" pref="341" max="32767" attributes="0"/>
+                              <Component id="jSlider2" pref="122" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -471,7 +493,7 @@
                         <Property name="majorTickSpacing" type="int" value="10"/>
                         <Property name="maximum" type="int" value="50"/>
                         <Property name="minimum" type="int" value="-50"/>
-                        <Property name="minorTickSpacing" type="int" value="1"/>
+                        <Property name="minorTickSpacing" type="int" value="2"/>
                         <Property name="orientation" type="int" value="1"/>
                         <Property name="paintLabels" type="boolean" value="true"/>
                         <Property name="paintTicks" type="boolean" value="true"/>
@@ -499,7 +521,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSlider3" max="32767" attributes="0"/>
+                              <Component id="jSlider3" pref="49" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -507,7 +529,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSlider3" pref="341" max="32767" attributes="0"/>
+                              <Component id="jSlider3" pref="122" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -519,12 +541,11 @@
                         <Property name="majorTickSpacing" type="int" value="10"/>
                         <Property name="maximum" type="int" value="50"/>
                         <Property name="minimum" type="int" value="-50"/>
-                        <Property name="minorTickSpacing" type="int" value="1"/>
+                        <Property name="minorTickSpacing" type="int" value="2"/>
                         <Property name="orientation" type="int" value="1"/>
                         <Property name="paintLabels" type="boolean" value="true"/>
                         <Property name="paintTicks" type="boolean" value="true"/>
                         <Property name="snapToTicks" type="boolean" value="true"/>
-                        <Property name="value" type="int" value="0"/>
                         <Property name="name" type="java.lang.String" value="jSlider3" noResource="true"/>
                       </Properties>
                     </Component>
@@ -547,7 +568,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSlider4" max="32767" attributes="0"/>
+                              <Component id="jSlider4" pref="51" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -555,7 +576,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSlider4" pref="341" max="32767" attributes="0"/>
+                              <Component id="jSlider4" pref="122" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -567,7 +588,7 @@
                         <Property name="majorTickSpacing" type="int" value="10"/>
                         <Property name="maximum" type="int" value="50"/>
                         <Property name="minimum" type="int" value="-50"/>
-                        <Property name="minorTickSpacing" type="int" value="1"/>
+                        <Property name="minorTickSpacing" type="int" value="2"/>
                         <Property name="orientation" type="int" value="1"/>
                         <Property name="paintLabels" type="boolean" value="true"/>
                         <Property name="paintTicks" type="boolean" value="true"/>
@@ -643,7 +664,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSlider5" max="32767" attributes="0"/>
+                              <Component id="jSlider5" pref="49" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -651,7 +672,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSlider5" pref="341" max="32767" attributes="0"/>
+                              <Component id="jSlider5" pref="143" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -663,7 +684,7 @@
                         <Property name="majorTickSpacing" type="int" value="10"/>
                         <Property name="maximum" type="int" value="50"/>
                         <Property name="minimum" type="int" value="-50"/>
-                        <Property name="minorTickSpacing" type="int" value="1"/>
+                        <Property name="minorTickSpacing" type="int" value="2"/>
                         <Property name="orientation" type="int" value="1"/>
                         <Property name="paintLabels" type="boolean" value="true"/>
                         <Property name="paintTicks" type="boolean" value="true"/>
@@ -691,7 +712,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSlider6" max="32767" attributes="0"/>
+                              <Component id="jSlider6" pref="49" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -699,7 +720,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSlider6" pref="341" max="32767" attributes="0"/>
+                              <Component id="jSlider6" pref="143" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -711,7 +732,7 @@
                         <Property name="majorTickSpacing" type="int" value="10"/>
                         <Property name="maximum" type="int" value="50"/>
                         <Property name="minimum" type="int" value="-50"/>
-                        <Property name="minorTickSpacing" type="int" value="1"/>
+                        <Property name="minorTickSpacing" type="int" value="2"/>
                         <Property name="orientation" type="int" value="1"/>
                         <Property name="paintLabels" type="boolean" value="true"/>
                         <Property name="paintTicks" type="boolean" value="true"/>
@@ -739,7 +760,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSlider7" max="32767" attributes="0"/>
+                              <Component id="jSlider7" pref="49" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -747,7 +768,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSlider7" pref="341" max="32767" attributes="0"/>
+                              <Component id="jSlider7" pref="143" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -759,7 +780,7 @@
                         <Property name="majorTickSpacing" type="int" value="10"/>
                         <Property name="maximum" type="int" value="50"/>
                         <Property name="minimum" type="int" value="-50"/>
-                        <Property name="minorTickSpacing" type="int" value="1"/>
+                        <Property name="minorTickSpacing" type="int" value="2"/>
                         <Property name="orientation" type="int" value="1"/>
                         <Property name="paintLabels" type="boolean" value="true"/>
                         <Property name="paintTicks" type="boolean" value="true"/>
@@ -787,7 +808,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSlider8" max="32767" attributes="0"/>
+                              <Component id="jSlider8" pref="51" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -795,7 +816,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSlider8" pref="341" max="32767" attributes="0"/>
+                              <Component id="jSlider8" pref="143" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -807,7 +828,7 @@
                         <Property name="majorTickSpacing" type="int" value="10"/>
                         <Property name="maximum" type="int" value="50"/>
                         <Property name="minimum" type="int" value="-50"/>
-                        <Property name="minorTickSpacing" type="int" value="1"/>
+                        <Property name="minorTickSpacing" type="int" value="2"/>
                         <Property name="orientation" type="int" value="1"/>
                         <Property name="paintLabels" type="boolean" value="true"/>
                         <Property name="paintTicks" type="boolean" value="true"/>
@@ -818,6 +839,51 @@
                     </Component>
                   </SubComponents>
                 </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel11">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder justification="1" title="Motor Strength">
+                      <Property name="titleX" resourceKey="jPanel11.border.title"/>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+                <Property name="name" type="java.lang.String" value="jPanel11" noResource="true"/>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="jSlider9" pref="59" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jSlider9" pref="382" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JSlider" name="jSlider9">
+                  <Properties>
+                    <Property name="majorTickSpacing" type="int" value="10"/>
+                    <Property name="maximum" type="int" value="200"/>
+                    <Property name="orientation" type="int" value="1"/>
+                    <Property name="paintLabels" type="boolean" value="true"/>
+                    <Property name="paintTicks" type="boolean" value="true"/>
+                    <Property name="snapToTicks" type="boolean" value="true"/>
+                    <Property name="name" type="java.lang.String" value="jSlider9" noResource="true"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>
