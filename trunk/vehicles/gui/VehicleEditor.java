@@ -1,16 +1,11 @@
-/*
- * VehicleEditor.java
- *
- * Created on 26-Mar-2009, 15:02:43
- * @author Niall O'Hara
- */
-
 package vehicles.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import javax.swing.JSlider;
-import javax.swing.WindowConstants;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -33,26 +28,36 @@ import org.jdesktop.application.Action;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
 import processing.core.*;
+import vehicles.util.*;
+import vehicles.vehicle.*;
 
-/**
- * The application's main frame.
+/*
+ * VehicleEditor.java
+ *
+ * Created on 26-Mar-2009, 15:02:43
+ * @author Niall O'Hara
  */
 public class VehicleEditor extends javax.swing.JFrame {
 
     /** Creates new form VehicleEditor */
     public VehicleEditor(java.awt.Frame parent) {
 
+        vehiclesArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
+        vehiclesDropDown = new DefaultComboBoxModel(vehiclesArray);
         embed = new Embedded();
         initComponents();
         // important to call this whenever embedding a PApplet.
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
         embed.init();
+
     }
 
-    @Action public void cancel() {
+    @Action
+    public void cancel() {
         dispose();
     }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -65,14 +70,14 @@ public class VehicleEditor extends javax.swing.JFrame {
         tabContainer = new JTabbedPane();
         tab_Properties = new JPanel();
         panel_VehicleName = new JPanel();
-        vehicleName_jTextField = new JTextField();
+        text_VehicleName = new JTextField();
         panel_SelectedVehicle = new JPanel();
-        selectedVehicle_jComboBox = new JComboBox();
+        dropdown_selectedVehicle = new JComboBox();
         panel_VehicleDescription = new JPanel();
-        jScrollPane6 = new JScrollPane();
-        vehicleDescription_jTextArea = new JTextArea();
+        scrollpanel_VehicleDescription = new JScrollPane();
+        text_VehicleDescription = new JTextArea();
         panel_Author = new JPanel();
-        author_jTextField = new JTextField();
+        text_Author = new JTextField();
         panel_Preview = new JPanel();
         panel_Processing = new JPanel();
         panel_Blue = new JPanel();
@@ -134,72 +139,79 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_VehicleName.setName("panel_VehicleName"); // NOI18N
         panel_VehicleName.setPreferredSize(new Dimension(224, 46));
 
-        vehicleName_jTextField.setName("vehicleName_jTextField"); // NOI18N
+        text_VehicleName.setName("text_VehicleName"); // NOI18N
 
         GroupLayout panel_VehicleNameLayout = new GroupLayout(panel_VehicleName);
         panel_VehicleName.setLayout(panel_VehicleNameLayout);
         panel_VehicleNameLayout.setHorizontalGroup(
             panel_VehicleNameLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(vehicleName_jTextField, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+            .addComponent(text_VehicleName, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         );
         panel_VehicleNameLayout.setVerticalGroup(
             panel_VehicleNameLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(vehicleName_jTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+            .addComponent(text_VehicleName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
         panel_SelectedVehicle.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_SelectedVehicle.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_SelectedVehicle.border.titleFont"))); // NOI18N
         panel_SelectedVehicle.setName("panel_SelectedVehicle"); // NOI18N
 
-        selectedVehicle_jComboBox.setModel(new DefaultComboBoxModel(new String[] { "<new>", "Vehicle 1", "Vehicle 2", "Vehicle 3", "Vehicle 4", "Vehicle 5" }));
-        selectedVehicle_jComboBox.setName("selectedVehicle_jComboBox"); // NOI18N
+        dropdown_selectedVehicle.setModel(vehiclesDropDown);
+        dropdown_selectedVehicle.setName("dropdown_selectedVehicle"); // NOI18N
+        dropdown_selectedVehicle.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                dropdown_selectedVehicleItemStateChanged(evt);
+            }
+        });
 
         GroupLayout panel_SelectedVehicleLayout = new GroupLayout(panel_SelectedVehicle);
         panel_SelectedVehicle.setLayout(panel_SelectedVehicleLayout);
         panel_SelectedVehicleLayout.setHorizontalGroup(
             panel_SelectedVehicleLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(selectedVehicle_jComboBox, 0, 210, Short.MAX_VALUE)
+            .addComponent(dropdown_selectedVehicle, 0, 210, Short.MAX_VALUE)
         );
         panel_SelectedVehicleLayout.setVerticalGroup(
             panel_SelectedVehicleLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(selectedVehicle_jComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+            .addComponent(dropdown_selectedVehicle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
         panel_VehicleDescription.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_VehicleDescription.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_VehicleDescription.border.titleFont"))); // NOI18N
         panel_VehicleDescription.setName("panel_VehicleDescription"); // NOI18N
         panel_VehicleDescription.setPreferredSize(new Dimension(220, 311));
 
-        jScrollPane6.setName("jScrollPane6"); // NOI18N
+        scrollpanel_VehicleDescription.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollpanel_VehicleDescription.setAutoscrolls(true);
+        scrollpanel_VehicleDescription.setName("scrollpanel_VehicleDescription"); // NOI18N
 
-        vehicleDescription_jTextArea.setColumns(20);
-        vehicleDescription_jTextArea.setRows(5);
-        vehicleDescription_jTextArea.setName("vehicleDescription_jTextArea"); // NOI18N
-        jScrollPane6.setViewportView(vehicleDescription_jTextArea);
+        text_VehicleDescription.setColumns(20);
+        text_VehicleDescription.setRows(5);
+        text_VehicleDescription.setName("text_VehicleDescription"); // NOI18N
+        scrollpanel_VehicleDescription.setViewportView(text_VehicleDescription);
 
         GroupLayout panel_VehicleDescriptionLayout = new GroupLayout(panel_VehicleDescription);
         panel_VehicleDescription.setLayout(panel_VehicleDescriptionLayout);
         panel_VehicleDescriptionLayout.setHorizontalGroup(
             panel_VehicleDescriptionLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane6, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+            .addComponent(scrollpanel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         );
         panel_VehicleDescriptionLayout.setVerticalGroup(
             panel_VehicleDescriptionLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane6, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+            .addComponent(scrollpanel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
         );
 
         panel_Author.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Author.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Author.border.titleFont"))); // NOI18N
         panel_Author.setName("panel_Author"); // NOI18N
 
-        author_jTextField.setName("author_jTextField"); // NOI18N
+        text_Author.setName("text_Author"); // NOI18N
 
         GroupLayout panel_AuthorLayout = new GroupLayout(panel_Author);
         panel_Author.setLayout(panel_AuthorLayout);
         panel_AuthorLayout.setHorizontalGroup(
             panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(author_jTextField, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+            .addComponent(text_Author, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         );
         panel_AuthorLayout.setVerticalGroup(
             panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(author_jTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+            .addComponent(text_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
         panel_Preview.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Preview.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Preview.border.titleFont"))); // NOI18N
@@ -964,13 +976,283 @@ public class VehicleEditor extends javax.swing.JFrame {
         int value = tempSlider.getValue();
         text_Blue.setText(Integer.toString(value));
 }//GEN-LAST:event_slider_Blue_StateChanged
-   
+
+    private void dropdown_selectedVehicleItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_selectedVehicleItemStateChanged
+        JComboBox tempComboBox = (JComboBox) evt.getSource();
+        EditorVehicle selected = (EditorVehicle) tempComboBox.getSelectedItem();
+        populateFields(selected);
+    }//GEN-LAST:event_dropdown_selectedVehicleItemStateChanged
+
+    private void populateFields(EditorVehicle p_vehicle) {
+        EditorVehicle tempVehicle = p_vehicle;
+        text_Author.setText(tempVehicle.getVehicleAuthor());
+        text_VehicleDescription.setText(tempVehicle.getVehicleDescription()); //TODO fix
+        text_VehicleName.setText(tempVehicle.getVehicleName()); //TODO fix
+
+        slider_Red.setValue(tempVehicle.getVehicleColourRed());
+        slider_Blue.setValue(tempVehicle.getVehicleColourBlue());
+        slider_Green.setValue(tempVehicle.getVehicleColourGreen());
+
+        slider_Aggression.setValue(tempVehicle.getAggression());
+        slider_MotorStrength.setValue(tempVehicle.getMotorStrength());
+/*
+        slider_Left_Heat.setValue(tempVehicle.getLeftSensorHeat());
+        slider_Left_Light.setValue(tempVehicle.getLeftSensorLight());
+        slider_Left_Power.setValue(tempVehicle.getLeftSensorPower());
+        slider_Left_Water.setValue(tempVehicle.getLeftSensorWater());
+        
+        slider_Right_Heat.setValue(tempVehicle.getRightSensorHeat());
+        slider_Right_Light.setValue(tempVehicle.getRightSensorLight());
+        slider_Right_Power.setValue(tempVehicle.getRightSensorPower());
+        slider_Right_Water.setValue(tempVehicle.getRightSensorWater());
+ */
+}
+
+    public JComboBox getDropdown_selectedVehicle() {
+        return dropdown_selectedVehicle;
+    }
+
+    public void setDropdown_selectedVehicle(JComboBox dropdown_selectedVehicle) {
+        this.dropdown_selectedVehicle = dropdown_selectedVehicle;
+    }
+
+    public JSlider getSlider_Aggression() {
+        return slider_Aggression;
+    }
+
+    public void setSlider_Aggression(JSlider slider_Aggression) {
+        this.slider_Aggression = slider_Aggression;
+    }
+
+    public JSlider getSlider_Blue() {
+        return slider_Blue;
+    }
+
+    public void setSlider_Blue(JSlider slider_Blue) {
+        this.slider_Blue = slider_Blue;
+    }
+
+    public JSlider getSlider_Green() {
+        return slider_Green;
+    }
+
+    public void setSlider_Green(JSlider slider_Green) {
+        this.slider_Green = slider_Green;
+    }
+
+    public JSlider getSlider_Left_Heat() {
+        return slider_Left_Heat;
+    }
+
+    public void setSlider_Left_Heat(JSlider slider_Left_Heat) {
+        this.slider_Left_Heat = slider_Left_Heat;
+    }
+
+    public JSlider getSlider_Left_Light() {
+        return slider_Left_Light;
+    }
+
+    public void setSlider_Left_Light(JSlider slider_Left_Light) {
+        this.slider_Left_Light = slider_Left_Light;
+    }
+
+    public JSlider getSlider_Left_Power() {
+        return slider_Left_Power;
+    }
+
+    public void setSlider_Left_Power(JSlider slider_Left_Power) {
+        this.slider_Left_Power = slider_Left_Power;
+    }
+
+    public JSlider getSlider_Left_Water() {
+        return slider_Left_Water;
+    }
+
+    public void setSlider_Left_Water(JSlider slider_Left_Water) {
+        this.slider_Left_Water = slider_Left_Water;
+    }
+
+    public JSlider getSlider_MotorStrength() {
+        return slider_MotorStrength;
+    }
+
+    public void setSlider_MotorStrength(JSlider slider_MotorStrength) {
+        this.slider_MotorStrength = slider_MotorStrength;
+    }
+
+    public JSlider getSlider_Red() {
+        return slider_Red;
+    }
+
+    public void setSlider_Red(JSlider slider_Red) {
+        this.slider_Red = slider_Red;
+    }
+
+    public JSlider getSlider_Right_Heat() {
+        return slider_Right_Heat;
+    }
+
+    public void setSlider_Right_Heat(JSlider slider_Right_Heat) {
+        this.slider_Right_Heat = slider_Right_Heat;
+    }
+
+    public JSlider getSlider_Right_Light() {
+        return slider_Right_Light;
+    }
+
+    public void setSlider_Right_Light(JSlider slider_Right_Light) {
+        this.slider_Right_Light = slider_Right_Light;
+    }
+
+    public JSlider getSlider_Right_Power() {
+        return slider_Right_Power;
+    }
+
+    public void setSlider_Right_Power(JSlider slider_Right_Power) {
+        this.slider_Right_Power = slider_Right_Power;
+    }
+
+    public JSlider getSlider_Right_Water() {
+        return slider_Right_Water;
+    }
+
+    public void setSlider_Right_Water(JSlider slider_Right_Water) {
+        this.slider_Right_Water = slider_Right_Water;
+    }
+
+    public JTextField getText_Aggression() {
+        return text_Aggression;
+    }
+
+    public void setText_Aggression(JTextField text_Aggression) {
+        this.text_Aggression = text_Aggression;
+    }
+
+    public JTextField getText_Author() {
+        return text_Author;
+    }
+
+    public void setText_Author(JTextField text_Author) {
+        this.text_Author = text_Author;
+    }
+
+    public JTextField getText_Blue() {
+        return text_Blue;
+    }
+
+    public void setText_Blue(JTextField text_Blue) {
+        this.text_Blue = text_Blue;
+    }
+
+    public JTextField getText_Green() {
+        return text_Green;
+    }
+
+    public void setText_Green(JTextField text_Green) {
+        this.text_Green = text_Green;
+    }
+
+    public JTextField getText_Left_Heat() {
+        return text_Left_Heat;
+    }
+
+    public void setText_Left_Heat(JTextField text_Left_Heat) {
+        this.text_Left_Heat = text_Left_Heat;
+    }
+
+    public JTextField getText_Left_Light() {
+        return text_Left_Light;
+    }
+
+    public void setText_Left_Light(JTextField text_Left_Light) {
+        this.text_Left_Light = text_Left_Light;
+    }
+
+    public JTextField getText_Left_Power() {
+        return text_Left_Power;
+    }
+
+    public void setText_Left_Power(JTextField text_Left_Power) {
+        this.text_Left_Power = text_Left_Power;
+    }
+
+    public JTextField getText_Left_Water() {
+        return text_Left_Water;
+    }
+
+    public void setText_Left_Water(JTextField text_Left_Water) {
+        this.text_Left_Water = text_Left_Water;
+    }
+
+    public JTextField getText_MotorStrength() {
+        return text_MotorStrength;
+    }
+
+    public void setText_MotorStrength(JTextField text_MotorStrength) {
+        this.text_MotorStrength = text_MotorStrength;
+    }
+
+    public JTextField getText_Red() {
+        return text_Red;
+    }
+
+    public void setText_Red(JTextField text_Red) {
+        this.text_Red = text_Red;
+    }
+
+    public JTextField getText_Right_Heat() {
+        return text_Right_Heat;
+    }
+
+    public void setText_Right_Heat(JTextField text_Right_Heat) {
+        this.text_Right_Heat = text_Right_Heat;
+    }
+
+    public JTextField getText_Right_Light() {
+        return text_Right_Light;
+    }
+
+    public void setText_Right_Light(JTextField text_Right_Light) {
+        this.text_Right_Light = text_Right_Light;
+    }
+
+    public JTextField getText_Right_Power() {
+        return text_Right_Power;
+    }
+
+    public void setText_Right_Power(JTextField text_Right_Power) {
+        this.text_Right_Power = text_Right_Power;
+    }
+
+    public JTextField getText_Right_Water() {
+        return text_Right_Water;
+    }
+
+    public void setText_Right_Water(JTextField text_Right_Water) {
+        this.text_Right_Water = text_Right_Water;
+    }
+
+    public JTextArea getText_VehicleDescription() {
+        return text_VehicleDescription;
+    }
+
+    public void setText_VehicleDescription(JTextArea text_VehicleDescription) {
+        this.text_VehicleDescription = text_VehicleDescription;
+    }
+
+    public JTextField getText_VehicleName() {
+        return text_VehicleName;
+    }
+
+    public void setText_VehicleName(JTextField text_VehicleName) {
+        this.text_VehicleName = text_VehicleName;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JTextField author_jTextField;
     private JButton button_Cancel;
     private JButton button_Save;
     private JButton button_SaveAs;
-    private JScrollPane jScrollPane6;
+    private JComboBox dropdown_selectedVehicle;
     private JPanel panel_Aggression;
     private JPanel panel_Author;
     private JPanel panel_Blue;
@@ -992,7 +1274,7 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JPanel panel_SelectedVehicle;
     private JPanel panel_VehicleDescription;
     private JPanel panel_VehicleName;
-    private JComboBox selectedVehicle_jComboBox;
+    private JScrollPane scrollpanel_VehicleDescription;
     private JSlider slider_Aggression;
     private JSlider slider_Blue;
     private JSlider slider_Green;
@@ -1010,6 +1292,7 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JPanel tab_Design;
     private JPanel tab_Properties;
     private JTextField text_Aggression;
+    private JTextField text_Author;
     private JTextField text_Blue;
     private JTextField text_Green;
     private JTextField text_Left_Heat;
@@ -1022,8 +1305,10 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JTextField text_Right_Light;
     private JTextField text_Right_Power;
     private JTextField text_Right_Water;
-    private JTextArea vehicleDescription_jTextArea;
-    private JTextField vehicleName_jTextField;
+    private JTextArea text_VehicleDescription;
+    private JTextField text_VehicleName;
     // End of variables declaration//GEN-END:variables
     private PApplet embed;
+    private EditorVehicle[] vehiclesArray;
+    private DefaultComboBoxModel vehiclesDropDown;
 }

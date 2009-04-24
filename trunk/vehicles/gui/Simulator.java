@@ -1,10 +1,3 @@
-/*
- * Simulator.java
- *
- * Created on 26-Mar-2009, 13:02:43
- * @author Niall O'Hara
- */
-
 package vehicles.gui;
 
 import java.awt.GridBagLayout;
@@ -42,8 +35,11 @@ import org.jdesktop.application.FrameView;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
-/**
- * The application's main frame.
+/*
+ * Simulator.java
+ *
+ * Created on 26-Mar-2009, 13:02:43
+ * @author Niall O'Hara
  */
 public class Simulator extends FrameView implements ChangeListener {
 
@@ -185,11 +181,11 @@ public class Simulator extends FrameView implements ChangeListener {
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
         );
 
         menuBar.setMinimumSize(new Dimension(261, 21));
@@ -286,7 +282,6 @@ public class Simulator extends FrameView implements ChangeListener {
         optionsMenu.add(jSeparator6);
 
         jMenuItem8.setAction(actionMap.get("resetWindow")); // NOI18N
-        jMenuItem8.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK));
         jMenuItem8.setText(resourceMap.getString("jMenuItem8.text")); // NOI18N
         jMenuItem8.setName("jMenuItem8"); // NOI18N
         optionsMenu.add(jMenuItem8);
@@ -351,6 +346,7 @@ public class Simulator extends FrameView implements ChangeListener {
         jSlider1.setPaintLabels(true);
         jSlider1.setPaintTicks(true);
         jSlider1.setSnapToTicks(true);
+        jSlider1.setValue(10);
         jSlider1.setFocusable(false);
         jSlider1.setMaximumSize(new Dimension(32767, 30000));
         jSlider1.setMinimumSize(new Dimension(36, 48));

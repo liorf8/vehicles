@@ -1,8 +1,3 @@
-/*
- * AboutBox.java
- * @author Niall O'Hara
- */
-
 package vehicles.gui;
 
 import vehicles.*;
@@ -18,6 +13,10 @@ import org.jdesktop.application.Action;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
 
+/*
+ * AboutBox.java
+ * @author Niall O'Hara
+ */
 public class AboutBox extends javax.swing.JDialog {
 
     public AboutBox(java.awt.Frame parent) {

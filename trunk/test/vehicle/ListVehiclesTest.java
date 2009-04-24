@@ -1,12 +1,13 @@
-package vehicles.util;
+package test.vehicle;
 
+import vehicles.util.*;
 import vehicles.vehicle.*;
 
 //WARNING- hard-coded values
-public class FileTest {
+public class ListVehiclesTest {
 	public static void main(String args[]){
 		/*CREATE A NEW VEHICLE*/
-		EditorVehicle veh = new EditorVehicle("/home/karl/XMLVehicles/angry.xml"); 
+		EditorVehicle veh = new EditorVehicle("xml/vehicles/angry.xml");
 		veh.setVehicleName("Angry Vehicle");
 		veh.setCurr_battery_capacity(65);
 		veh.setMax_battery_capacity(100);
@@ -39,7 +40,7 @@ public class FileTest {
 		veh.addVehicleComponent(vc); //move xml in ram from component into vehicle
 		veh.saveVehicle();
 		/*GET LIST OF ALL VEHICLES IN FOLDER*/
-		Vehicle[] array = UtilMethods.getVehiclesFromFolder("/home/karl/XMLVehicles");
+		Vehicle[] array = UtilMethods.getVehiclesFromFolder("xml/vehicles");
 		for(int i = 0; i<array.length;i++){
 			System.out.println(array[i].getVehicleName()+"\n");
 		}

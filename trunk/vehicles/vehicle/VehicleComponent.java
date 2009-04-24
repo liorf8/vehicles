@@ -12,7 +12,7 @@ import org.w3c.dom.Text;
  *	in the editors, though the implementation of the engine may change this.
  *
  */
-public class VehicleComponent{
+public class VehicleComponent {
 	private Document xmldoc; //the XML document we are creating, stored as an object in memory
 	private Element root;//the root element of the document
 	private String filename;// filename to associate the XML document with
@@ -31,9 +31,6 @@ public class VehicleComponent{
 	private String VehicleComponentRightSensorHeat = null; 
 	private String VehicleComponentRightSensorWater = null; 
 	private String VehicleComponentRightSensorPower = null; 
-	
-
-
 
 	public String getVehicleComponentType() {
 		return VehicleComponentType;
@@ -168,6 +165,7 @@ public class VehicleComponent{
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("VehicleComponent");
 	}
+
 	/**
 	 * Constructor
 	 * @param fileName filename to use for this object
@@ -177,13 +175,15 @@ public class VehicleComponent{
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("VehicleComponent");
 	}
+
 	/**
 	 * Add a vehicle component name attribute to the XML document being created
 	 * @param name The name to use for this VehicleComponent
 	 */
 	public void addVehicleComponentName(String name){
 		writeXMLEntry("name", name, xmldoc);
-	} 
+	}
+
 	/**
 	 * Add a vehicle component temperament attribute(LeftSensor | RightSensor) to the XML document being created
 	 * @param temperament One of (LeftSensor | RightSensor)
@@ -200,6 +200,7 @@ public class VehicleComponent{
 	public void addLeftSensorRadius(String radius){
 		writeXMLEntry("LeftSensorRadius", radius, xmldoc);
 	}
+
 	/**
 	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
 	 * @param temperament One of (0 - 100)
@@ -207,6 +208,7 @@ public class VehicleComponent{
 	public void addLeftSensorLight(String light){
 		writeXMLEntry("LeftSensorLight", light, xmldoc);
 	}
+
 	/**
 	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
 	 * @param temperament One of (0 - 100)
@@ -214,6 +216,7 @@ public class VehicleComponent{
 	public void addLeftSensorHeat(String heat){
 		writeXMLEntry("LeftSensorHeat", heat, xmldoc);
 	}
+
 	/**
 	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
 	 * @param temperament One of (0 - 100)
@@ -229,8 +232,6 @@ public class VehicleComponent{
 		writeXMLEntry("LeftSensorWater", water, xmldoc);
 	}
 	
-	
-
 	/**
 	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
 	 * @param temperament One of (0 - 100)
@@ -238,6 +239,7 @@ public class VehicleComponent{
 	public void addRightSensorRadius(String radius){
 		writeXMLEntry("RightSensorRadius", radius, xmldoc);
 	}
+
 	/**
 	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
 	 * @param temperament One of (0 - 100)
@@ -245,6 +247,7 @@ public class VehicleComponent{
 	public void addRightSensorLight(String light){
 		writeXMLEntry("RightSensorLight", light, xmldoc);
 	}
+
 	/**
 	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
 	 * @param temperament One of (0 - 100)
@@ -252,6 +255,7 @@ public class VehicleComponent{
 	public void addRightSensorHeat(String heat){
 		writeXMLEntry("RightSensorHeat", heat, xmldoc);
 	}
+
 	/**
 	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
 	 * @param temperament One of (0 - 100)
@@ -259,6 +263,7 @@ public class VehicleComponent{
 	public void addRightSensorPower(String power){
 		writeXMLEntry("RightSensorPower", power, xmldoc);
 	}
+
 	/**
 	 * Add a vehicle component sensor radius attribute (0 - 100) to the XML document being created
 	 * @param temperament One of (0 - 100)
@@ -267,8 +272,6 @@ public class VehicleComponent{
 		writeXMLEntry("RightSensorWater", water, xmldoc);
 	}
 	
-	
-	 
 	/** 
 	 * Generate an internal XML representation of the object and its attributes
 	 */
@@ -291,7 +294,6 @@ public class VehicleComponent{
 		if(this.VehicleComponentLeftSensorWater!=null){
 			this.addLeftSensorWater(VehicleComponentLeftSensorWater);
 		}
-		
 		if(this.VehicleComponentRightSensorHeat!=null){
 			this.addRightSensorHeat(VehicleComponentRightSensorHeat);
 		}
@@ -304,7 +306,6 @@ public class VehicleComponent{
 		if(this.VehicleComponentRightSensorWater!=null){
 			this.addRightSensorWater(VehicleComponentRightSensorWater);
 		}
-		
 		//xmldoc.appendChild(root); this is only needed for saving the actual component to file, we won't be doing that in the end program
 	}
 
@@ -317,5 +318,4 @@ public class VehicleComponent{
 		this.toInternalXML(); //brilliantly-placed function call that fixes all sorts of weird errors and cleans up the interface
 		return root; //now the root element has had all attributes attached to it, return it
 	}
-
 }

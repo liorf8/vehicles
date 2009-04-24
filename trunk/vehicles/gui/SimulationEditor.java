@@ -1,10 +1,3 @@
-/*
- * SimulationEditor.java
- *
- * Created on 28-Mar-2009, 14:51:37
- * @author Niall O'Hara
- */
-
 package vehicles.gui;
 
 import vehicles.*;
@@ -28,8 +21,11 @@ import org.jdesktop.application.Action;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
 
-/**
- * The application's main frame.
+/*
+ * SimulationEditor.java
+ *
+ * Created on 28-Mar-2009, 14:51:37
+ * @author Niall O'Hara
  */
 public class SimulationEditor extends javax.swing.JFrame {
 
