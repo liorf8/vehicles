@@ -224,7 +224,7 @@ public class Vehicle {
         //handleNode(root); //recursive function to handle the nodes
 
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             System.err.println("An error occurred while creating a vehicle from the file '" +
                     filename + "'. Please check that this file exists.");
         }

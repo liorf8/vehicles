@@ -121,8 +121,8 @@ public class EditorVehicle extends Vehicle {
 			}
 			this.addMaxBatteryCapacity(Double.toString(max_battery_capacity));
 			this.addCurrBatteryCapacity(Double.toString(curr_battery_capacity));
-			this.addmotorStrength(Double.toString(this.motorStrength));
-			this.addAggression(Double.toString(this.aggression));
+			this.addmotorStrength(Integer.toString(this.motorStrength));
+			this.addAggression(Integer.toString(this.aggression));
 			this.addVehicleColour(this.vehicleColour);
 			
 			if(this.components != null){
