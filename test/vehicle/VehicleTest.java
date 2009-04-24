@@ -12,6 +12,8 @@ public class VehicleTest {
 		/*Testing creating and editing a vehicle XML entry*/
 			EditorVehicle v = new EditorVehicle("xml/vehicles/hungry.xml");
 			v.setVehicleName("Hungy Vehicle"); //set object attributes
+			v.setAuthor("Some guy");
+			v.setDescription("This is a hungry little vehicle ");
 			v.setCurr_battery_capacity(46);
 			v.setMotorStrength(67);
 			v.setAggression(55);
