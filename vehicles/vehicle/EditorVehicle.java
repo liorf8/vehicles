@@ -88,12 +88,12 @@ public class EditorVehicle extends Vehicle {
 		writeXMLEntry("aggression", aggr, xmldoc);
 	}
 	
+	
 	/**
 	 * Add a vehicle component XML entry into this Vehicle's document
 	 * @param vc The vehicle component to add
 	 */
-    @Override
-	public void addVehicleComponent(VehicleComponent vc){
+	public void addVehicleComponentXML(VehicleComponent vc){
 		root.appendChild(xmldoc.adoptNode(vc.getRootElement().cloneNode(true)));
 		///	System.out.println("Append component!");
 
@@ -139,7 +139,8 @@ public class EditorVehicle extends Vehicle {
 						curr.toInternalXML();
 					}
 					*/
-					this.addVehicleComponent(curr);
+					curr.setFilename("temp");
+					this.addVehicleComponentXML(curr);
 					count++;
 				}
 			}
