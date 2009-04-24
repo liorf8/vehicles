@@ -124,6 +124,8 @@ public class EditorVehicle extends Vehicle {
 			this.addmotorStrength(Integer.toString(this.motorStrength));
 			this.addAggression(Integer.toString(this.aggression));
 			this.addVehicleColour(this.vehicleColour);
+			this.writeXMLEntry("author", this.author, xmldoc);
+			this.writeXMLEntry("description", this.description, xmldoc);
 			
 			if(this.components != null){
 				//System.out.println(components.capacity());
