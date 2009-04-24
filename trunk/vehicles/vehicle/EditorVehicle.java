@@ -125,8 +125,14 @@ public class EditorVehicle extends Vehicle {
 				Iterator<VehicleComponent> it = components.iterator();
 				int count = 0;
 				while(it.hasNext()){
-					//System.out.println("iteration :"+count);
-					this.addVehicleComponent((VehicleComponent)it.next());
+					VehicleComponent curr = it.next();
+					/*
+					 * Object o = curr.getRootElement().getFirstChild(); //determine if the xml tree is populated 
+					if(o == null){ //if not, populate it(convert object attributes to xml tree)
+						curr.toInternalXML();
+					}
+					*/
+					this.addVehicleComponent(curr);
 					count++;
 				}
 			}

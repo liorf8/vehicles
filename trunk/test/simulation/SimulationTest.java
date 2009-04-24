@@ -5,7 +5,7 @@ import vehicles.vehicle.*;
 /**A main class for testing of various elements in the simulation.
 * Please DON'T upload binary files produced by compiling this into the repo.
 */
-public class SimulationTests {
+public class SimulationTest {
 
 	public static void main(String[] args){
 		
