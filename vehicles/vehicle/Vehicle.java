@@ -27,24 +27,8 @@ public class Vehicle {
     protected int motorStrength = 0;
     protected int aggression = 0;
     protected VehicleColour vehicleColour = new VehicleColour();
-    protected String author = null;
-    protected String description = null;
 
-    public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
+   
 
 	public String getVehicleAuthor() {
         return vehicleAuthor;
@@ -239,10 +223,10 @@ public class Vehicle {
             this.vehicleColour.setGreen(Integer.parseInt(green.item(0).getChildNodes().item(0).getNodeValue()));
             
             NodeList auth= dom.getElementsByTagName("author");
-            this.setAuthor(auth.item(0).getChildNodes().item(0).getNodeValue());
+            this.setVehicleAuthor(auth.item(0).getChildNodes().item(0).getNodeValue());
             
             NodeList desc= dom.getElementsByTagName("description");
-            this.setDescription(desc.item(0).getChildNodes().item(0).getNodeValue());
+            this.setVehicleDescription(desc.item(0).getChildNodes().item(0).getNodeValue());
 
         //Node root = dom.getDocumentElement(); //get the root element from the document
         //handleNode(root); //recursive function to handle the nodes
