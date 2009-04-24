@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Vehicle>
+    <VehicleComponent>
+        <name>Weak Sensor</name>
+        <type>Left</type>
+        <LeftSensorHeat>34</LeftSensorHeat>
+        <LeftSensorLight>45</LeftSensorLight>
+        <LeftSensorPower>67</LeftSensorPower>
+        <LeftSensorWater>89</LeftSensorWater>
+    </VehicleComponent>
+    <VehicleComponent>
+        <name>Strong Sensor</name>
+        <type>Right</type>
+        <RightSensorHeat>12</RightSensorHeat>
+        <RightSensorLight>45</RightSensorLight>
+        <RightSensorPower>9</RightSensorPower>
+        <RightSensorWater>-8</RightSensorWater>
+    </VehicleComponent>
+    <name>Hungy Vehicle</name>
+    <max_battery_capacity>100.0</max_battery_capacity>
+    <curr_battery_capacity>46.0</curr_battery_capacity>
+    <motorStrength>67.7</motorStrength>
+    <aggression>55.6</aggression>
+    <Colour>
+        <red>102</red>
+        <blue>203</blue>
+        <green>150</green>
+    </Colour>
+</Vehicle>
