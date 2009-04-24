@@ -1,5 +1,8 @@
 /*
  * Simulator.java
+ *
+ * Created on 26-Mar-2009, 13:02:43
+ * @author Niall O'Hara
  */
 
 package vehicles.gui;

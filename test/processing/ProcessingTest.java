@@ -9,13 +9,15 @@ import processing.core.*;
 
 public class ProcessingTest extends PApplet{
 	Vehicle veh; //one of our Java vehicles
-	
+
+    @Override
 	public void setup(){		
 		size(200, 200);
 		veh = new Vehicle("hungry.xml");
 
 	}
 	
+    @Override
 	public void draw(){
 		if(veh.getVehicleName()!= null){ //has it worked?
 			background(255);    // Setting the background to white

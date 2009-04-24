@@ -1,5 +1,6 @@
 /*
  * AboutBox.java
+ * @author Niall O'Hara
  */
 
 package vehicles.gui;

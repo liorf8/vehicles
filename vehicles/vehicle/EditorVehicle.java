@@ -90,6 +90,7 @@ public class EditorVehicle extends Vehicle {
 	 * Add a vehicle component XML entry into this Vehicle's document
 	 * @param vc The vehicle component to add
 	 */
+    @Override
 	public void addVehicleComponent(VehicleComponent vc){
 		root.appendChild(xmldoc.adoptNode(vc.getRootElement().cloneNode(true)));
 		///	System.out.println("Append component!");

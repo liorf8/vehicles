@@ -1,9 +1,5 @@
 package vehicles.environment;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Text;
-
 public class WaterSource extends EnvironmentElement{
 
 	

@@ -1,19 +1,13 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * SimulationEditor.java
  *
  * Created on 28-Mar-2009, 14:51:37
+ * @author Niall O'Hara
  */
 
 package vehicles.gui;
 
 import vehicles.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.AbstractListModel;
 import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
@@ -30,14 +24,12 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
-import javax.swing.WindowConstants;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
 
 /**
- *
- * @author Niall O'Hara
+ * The application's main frame.
  */
 public class SimulationEditor extends javax.swing.JFrame {
 

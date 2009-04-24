@@ -11,6 +11,7 @@ import processing.core.*;
  */
  public class Embedded extends PApplet {
 
+     @Override
      public void setup() {
          // original setup code here ...
          size(400, 400);
@@ -19,10 +20,12 @@ import processing.core.*;
          noLoop();
      }
 
+     @Override
      public void draw() {
          // drawing code goes here
      }
 
+     @Override
      public void mouseDragged() {
          // do something based on mouse movement
          line(mouseX, mouseY, pmouseX, pmouseY);

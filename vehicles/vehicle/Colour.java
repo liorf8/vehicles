@@ -1,12 +1,6 @@
 package vehicles.vehicle;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-
 import org.apache.xerces.dom.DocumentImpl;
-import org.apache.xml.serialize.OutputFormat;
-import org.apache.xml.serialize.XMLSerializer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
@@ -76,6 +70,7 @@ public class Colour {
 		return root;
 	}
 
+    @Override
 	public String toString(){
 		return (this.red + " " +this.blue + " " + this.green);
 	}
