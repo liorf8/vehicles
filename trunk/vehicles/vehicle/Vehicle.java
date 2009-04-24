@@ -438,4 +438,14 @@ public class Vehicle {
     public void addVehicleComponent(VehicleComponent vc) {
         components.add(vc);
     }
+    
+    public void printDetails(){
+    	System.out.println("Details for vehicle to be at location: " + this.xmlLocation);
+    	System.out.println("Name\t" + this.vehicleName);
+    	System.out.println("Author\t" + this.author);
+    	System.out.println("Description\t" + this.description);
+    	System.out.println("Aggression\t" + this.aggression);    
+    	System.out.println("Max Battery Capacity\t" + this.max_battery_capacity);
+    	System.out.println("Motor Strength\t" + this.motorStrength);
+    }
 }
