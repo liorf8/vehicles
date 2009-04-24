@@ -72,6 +72,13 @@ public class EditorVehicle extends Vehicle {
 		writeXMLEntry("curr_battery_capacity", curr_capacity, xmldoc);
 	}
 	/**
+	 * Add a vehicle motor strength attribute to the XML document being created
+	 * @param strength The strength
+	 */
+	public void addmotorStrength(String str){
+		writeXMLEntry("motorStrength", str, xmldoc);
+	}
+	/**
 	 * Add a vehicle temperament attribute(Aggressive | Timid | None) to the XML document being created
 	 * @param temperament One of (Aggressive | Timid | None)
 	 */
@@ -101,6 +108,7 @@ public class EditorVehicle extends Vehicle {
 			}
 			this.addMaxBatteryCapacity(Double.toString(max_battery_capacity));
 			this.addCurrBatteryCapacity(Double.toString(curr_battery_capacity));
+			this.addmotorStrength(Double.toString(this.motorStrength));
 			if(this.VehicleTemperament != null){
 				addVehicleTemperament(VehicleTemperament);
 			}

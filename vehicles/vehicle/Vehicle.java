@@ -22,6 +22,15 @@ public class Vehicle{
 	protected Vector <VehicleComponent> components; //components of the vehicle 
 	protected double max_battery_capacity = 100; //maximum battery this vehicle can have
 	protected double curr_battery_capacity = 100;//current battery capacity
+	protected double motorStrength = 0.0;
+
+	public double getMotorStrength() {
+		return motorStrength;
+	}
+
+	public void setMotorStrength(double motorStrength) {
+		this.motorStrength = motorStrength;
+	}
 
 	public double getMax_battery_capacity() {
 		return max_battery_capacity;
@@ -74,6 +83,9 @@ public class Vehicle{
 
 			NodeList currBattery = dom.getElementsByTagName("curr_battery_capacity");
 			this.setCurr_battery_capacity(Double.parseDouble(currBattery.item(0).getChildNodes().item(0).getNodeValue()));
+			
+			NodeList motorStr = dom.getElementsByTagName("motorStrength");
+			this.setMotorStrength(Double.parseDouble(motorStr.item(0).getChildNodes().item(0).getNodeValue()));
 			//Node root = dom.getDocumentElement(); //get the root element from the document
 			//handleNode(root); //recursive function to handle the nodes
 
