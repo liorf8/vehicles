@@ -262,6 +262,8 @@ public class EnvironmentElement {
 
 
 	}
+    
+    @Override
 	public String toString(){
 		return(this.name + " " +this.type + " "+ this.radius + " " + this.strength );
 	}

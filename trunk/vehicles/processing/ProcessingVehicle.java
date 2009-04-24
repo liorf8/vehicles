@@ -22,6 +22,7 @@ public class ProcessingVehicle extends PApplet {
 
 
     // Processing Sketch Setup
+    @Override
     public void setup() {
         size(800, 600);
         background(0,0,0);
@@ -51,6 +52,7 @@ public class ProcessingVehicle extends PApplet {
 
 
     // Processing Sketch Main Loop
+    @Override
     public void draw() {
         background(0,0,0);
 
@@ -71,6 +73,7 @@ public class ProcessingVehicle extends PApplet {
     /**
      * key press handler
      */
+    @Override
     public void keyPressed() {
 
         if (key == 32) { // SPACEBAR
@@ -86,10 +89,12 @@ public class ProcessingVehicle extends PApplet {
         }
     }
 
+    @Override
     public void mousePressed() {
         mouseDown = true;
     }
 
+    @Override
     public void mouseReleased() {
         mouseDown = false;
         updateGround();

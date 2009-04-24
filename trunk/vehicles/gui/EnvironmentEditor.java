@@ -1,12 +1,8 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * EnvironmentEditor.java
  *
  * Created on 26-Mar-2009, 15:05:05
+ * @author Niall O'Hara
  */
 
 package vehicles.gui;
@@ -26,14 +22,12 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.WindowConstants;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
 
 /**
- *
- * @author Niall O'Hara
+ * The application's main frame.
  */
 public class EnvironmentEditor extends javax.swing.JFrame {
 

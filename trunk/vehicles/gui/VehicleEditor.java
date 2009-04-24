@@ -1,12 +1,8 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * VehicleEditor.java
  *
  * Created on 26-Mar-2009, 15:02:43
+ * @author Niall O'Hara
  */
 
 package vehicles.gui;
@@ -14,6 +10,7 @@ package vehicles.gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JSlider;
+import javax.swing.WindowConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -38,8 +35,7 @@ import org.jdesktop.application.ResourceMap;
 import processing.core.*;
 
 /**
- *
- * @author Niall O'Hara
+ * The application's main frame.
  */
 public class VehicleEditor extends javax.swing.JFrame {
 
@@ -161,7 +157,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_SelectedVehicle.setLayout(panel_SelectedVehicleLayout);
         panel_SelectedVehicleLayout.setHorizontalGroup(
             panel_SelectedVehicleLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(selectedVehicle_jComboBox, 0, 443, Short.MAX_VALUE)
+            .addComponent(selectedVehicle_jComboBox, 0, 210, Short.MAX_VALUE)
         );
         panel_SelectedVehicleLayout.setVerticalGroup(
             panel_SelectedVehicleLayout.createParallelGroup(Alignment.LEADING)
@@ -321,7 +317,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_PreviewLayout.setVerticalGroup(
             panel_PreviewLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_PreviewLayout.createSequentialGroup()
-                .addComponent(panel_Processing, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                .addComponent(panel_Processing, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(panel_Red, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
@@ -338,31 +334,29 @@ public class VehicleEditor extends javax.swing.JFrame {
             tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(tab_PropertiesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(panel_SelectedVehicle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(tab_PropertiesLayout.createSequentialGroup()
-                        .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
-                            .addComponent(panel_VehicleDescription, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                            .addComponent(panel_Author, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panel_VehicleName, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)))
+                .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(panel_SelectedVehicle, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_VehicleDescription, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                    .addComponent(panel_Author, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_VehicleName, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tab_PropertiesLayout.setVerticalGroup(
             tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
-            .addGroup(tab_PropertiesLayout.createSequentialGroup()
+            .addGroup(Alignment.TRAILING, tab_PropertiesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panel_SelectedVehicle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
+                .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                     .addGroup(tab_PropertiesLayout.createSequentialGroup()
+                        .addComponent(panel_SelectedVehicle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(panel_VehicleName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(panel_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
-                    .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE))
+                        .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 

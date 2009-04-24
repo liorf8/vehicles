@@ -1,8 +1,5 @@
 package vehicles.environment;
 
-import vehicles.environment.EnvironmentElement;
-import vehicles.vehicle.VehicleComponent;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -38,7 +35,7 @@ public class Environment {
 	protected Element root = null;//the root element of the document
 
 	/**
-	 * Constructor for creating a new environment with no file location or name to start
+	 * Constructor for creating a new environment with no file location or envName to start
 	 *
 	 */
 	public Environment(){
@@ -49,7 +46,7 @@ public class Environment {
 
 	/**
 	 * Constructor for new environment
-	 * @param na The name this environment wil have
+	 * @param na The envName this environment wil have
 	 * @param fl The file location of this environment
 	 */
 	public Environment(String na, String fl){
@@ -120,7 +117,7 @@ public class Environment {
 			int len = childElems.getLength();
 			for(int j= 0; j < len; j++){ //process element by element
 				Node curr = childElems.item(j);
-				if(curr.getNodeName().contains("name")){//enviro-elem name
+				if(curr.getNodeName().contains("name")){//enviro-elem envName
 					ee.setName(curr.getFirstChild().getNodeValue());
 				}
 				if(curr.getNodeName().contains("type")){//enviro-elem type
@@ -170,7 +167,7 @@ public class Environment {
 	 */
 	private void handleNode(Node node){
 		int type = node.getNodeType();
-		String name, node_value;
+		String envName, node_value;
 		switch (type) { //depending on the type of node, perform different actions
 		case Node.ELEMENT_NODE: 
 			NodeList children = node.getChildNodes();
@@ -179,22 +176,22 @@ public class Environment {
 				handleNode(children.item(i));
 			break;
 		case Node.TEXT_NODE:
-			name = node.getParentNode().getNodeName();
+			envName = node.getParentNode().getNodeName();
 			node_value = node.getNodeValue();
 
-			if(name.contains("name") && this.name == null){ //avoids us catching names of environment elements here
+			if(envName.contains("name") && this.name == null){ //avoids us catching names of environment elements here
 				this.setName(node_value);
 			}
-			else if(name.equals("author")){
+			else if(envName.equals("author")){
 				this.setAuthor(node_value);
 			}
-			else if(name.equals("LastModified")){
+			else if(envName.equals("LastModified")){
 				this.setLastModified(node_value);
 			}
-			else if(name.equals("width")){
+			else if(envName.equals("width")){
 				this.setWidth(Double.parseDouble(node_value));
 			}
-			else if(name.equals("height")){
+			else if(envName.equals("height")){
 				this.setHeight(Double.parseDouble(node_value));
 			}
 			else break;
@@ -202,7 +199,7 @@ public class Environment {
 	}
 	/**
 	 * Write an element into an XML file
-	 * @param elemName The name of the attribute
+	 * @param elemName The envName of the attribute
 	 * @param elemValue The value for this attribute
 	 * @param xmldoc The document to write into
 	 */
@@ -383,10 +380,10 @@ public class Environment {
 
 
 	/*An element has been created and saved in the Vector
-	 * so using the name of the element we can retrieve it*/
+	 * so using the envName of the element we can retrieve it*/
 	public EnvironmentElement loadElement(String elementName){
 		EnvironmentElement e ;
-		String name = null;
+		String envName = null;
 		String FileLocation = null;
 		double x=0.0;
 		double y=0.0;
@@ -394,23 +391,23 @@ public class Environment {
 		Enumeration<EnvironmentElement> n = elementVector.elements();
 		while (n.hasMoreElements()){
 			EnvironmentElement obj = (EnvironmentElement)n.nextElement();
-			if (obj.getName() == elementName){
-				name = obj.getName();
+			if (obj.getName().equalsIgnoreCase(elementName)){
+				envName = obj.getName();
 				FileLocation = obj.getFileLocation();
 				p = obj.getPosition();
 			}
 		}
-		e = new EnvironmentElement(name, FileLocation, p);
+		e = new EnvironmentElement(envName, FileLocation, p);
 		return e;
 	}
 	/*
 	 * not to sure if this is what is required?
 	 *
 	public void environmentElement(String fileLocation){
-		String name = null; String file = null;
+		String envName = null; String file = null;
 		double x= 0.0; double y = 0.0;
 		Point p = new Point(x,y);
-		EnvironmentElement e = new EnvironmentElement(name, file, p);
+		EnvironmentElement e = new EnvironmentElement(envName, file, p);
 		e.changeFileLocation(fileLocation);
 
 	}

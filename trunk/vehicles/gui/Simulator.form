@@ -218,9 +218,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="vehicles.gui.Simulator" id="resetWindow" methodName="resetWindow"/>
                 </Property>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+R"/>
-                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="jMenuItem8.text"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem8" noResource="true"/>
               </Properties>
