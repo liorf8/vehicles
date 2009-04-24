@@ -15,6 +15,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JSlider;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import vehicles.processing.Embedded;
 import vehicles.*;
 import javax.swing.ActionMap;
@@ -78,44 +80,45 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Preview = new JPanel();
         panel_Processing = new JPanel();
         tab_Design = new JPanel();
-        jPanel6 = new JPanel();
-        jPanel7 = new JPanel();
-        jSlider5 = new JSlider();
-        jTextField1 = new JTextField();
-        jPanel8 = new JPanel();
-        jSlider6 = new JSlider();
-        jTextField2 = new JTextField();
-        jPanel9 = new JPanel();
-        jSlider7 = new JSlider();
-        jTextField3 = new JTextField();
-        jPanel10 = new JPanel();
-        jSlider8 = new JSlider();
-        jTextField4 = new JTextField();
-        jPanel11 = new JPanel();
-        jSlider9 = new JSlider();
-        jTextField9 = new JTextField();
-        jPanel12 = new JPanel();
-        jPanel13 = new JPanel();
-        jSlider10 = new JSlider();
-        jTextField5 = new JTextField();
-        jPanel14 = new JPanel();
-        jSlider11 = new JSlider();
-        jTextField6 = new JTextField();
-        jPanel15 = new JPanel();
-        jSlider12 = new JSlider();
-        jTextField7 = new JTextField();
-        jPanel16 = new JPanel();
-        jSlider13 = new JSlider();
-        jTextField8 = new JTextField();
-        jPanel17 = new JPanel();
-        jSlider14 = new JSlider();
-        jTextField10 = new JTextField();
+        panel_LeftSensor = new JPanel();
+        panel_Left_Light = new JPanel();
+        slider_Left_Light = new JSlider();
+        text_Left_Light = new JTextField();
+        panel_Left_Heat = new JPanel();
+        slider_Left_Heat = new JSlider();
+        text_Left_Heat = new JTextField();
+        panel_Left_Water = new JPanel();
+        slider_Left_Water = new JSlider();
+        text_Left_Water = new JTextField();
+        panel_Left_Power = new JPanel();
+        slider_Left_Power = new JSlider();
+        text_Left_Power = new JTextField();
+        panel_MotorStrength = new JPanel();
+        slider_MotorStrength = new JSlider();
+        text_MotorStrength = new JTextField();
+        panel_RightSensor = new JPanel();
+        panel_Right_Light = new JPanel();
+        slider_Right_Light = new JSlider();
+        text_Right_Light = new JTextField();
+        panel_Right_Heat = new JPanel();
+        slider_Right_Heat = new JSlider();
+        text_Right_Heat = new JTextField();
+        panel_Right_Water = new JPanel();
+        slider_Right_Water = new JSlider();
+        text_Right_Water = new JTextField();
+        panel_Right_Power = new JPanel();
+        slider_Right_Power = new JSlider();
+        text_Right_Power = new JTextField();
+        panel_Aggression = new JPanel();
+        slider_Aggression = new JSlider();
+        text_Aggression = new JTextField();
         button_Save = new JButton();
         button_SaveAs = new JButton();
         button_Cancel = new JButton();
 
         ResourceMap resourceMap = Application.getInstance(VehiclesApp.class).getContext().getResourceMap(VehicleEditor.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
+        setMinimumSize(new Dimension(500, 520));
         setName("Form"); // NOI18N
 
         tabContainer.setName("tabContainer"); // NOI18N
@@ -131,7 +134,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_VehicleName.setLayout(panel_VehicleNameLayout);
         panel_VehicleNameLayout.setHorizontalGroup(
             panel_VehicleNameLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(vehicleName_jTextField, GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+            .addComponent(vehicleName_jTextField, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
         );
         panel_VehicleNameLayout.setVerticalGroup(
             panel_VehicleNameLayout.createParallelGroup(Alignment.LEADING)
@@ -148,7 +151,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_SelectedVehicle.setLayout(panel_SelectedVehicleLayout);
         panel_SelectedVehicleLayout.setHorizontalGroup(
             panel_SelectedVehicleLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(selectedVehicle_jComboBox, 0, 460, Short.MAX_VALUE)
+            .addComponent(selectedVehicle_jComboBox, 0, 443, Short.MAX_VALUE)
         );
         panel_SelectedVehicleLayout.setVerticalGroup(
             panel_SelectedVehicleLayout.createParallelGroup(Alignment.LEADING)
@@ -157,6 +160,7 @@ public class VehicleEditor extends javax.swing.JFrame {
 
         panel_VehicleDescription.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_VehicleDescription.border.title"))); // NOI18N
         panel_VehicleDescription.setName("panel_VehicleDescription"); // NOI18N
+        panel_VehicleDescription.setPreferredSize(new Dimension(220, 311));
 
         jScrollPane6.setName("jScrollPane6"); // NOI18N
 
@@ -169,11 +173,11 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_VehicleDescription.setLayout(panel_VehicleDescriptionLayout);
         panel_VehicleDescriptionLayout.setHorizontalGroup(
             panel_VehicleDescriptionLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane6, GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
         );
         panel_VehicleDescriptionLayout.setVerticalGroup(
             panel_VehicleDescriptionLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane6, GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
         );
 
         panel_Author.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Author.border.title"))); // NOI18N
@@ -185,7 +189,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Author.setLayout(panel_AuthorLayout);
         panel_AuthorLayout.setHorizontalGroup(
             panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(author_jTextField, GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+            .addComponent(author_jTextField, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
         );
         panel_AuthorLayout.setVerticalGroup(
             panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
@@ -194,6 +198,7 @@ public class VehicleEditor extends javax.swing.JFrame {
 
         panel_Preview.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Preview.border.title"))); // NOI18N
         panel_Preview.setName("panel_Preview"); // NOI18N
+        panel_Preview.setPreferredSize(new Dimension(220, 311));
 
         panel_Processing.setName("panel_Processing"); // NOI18N
         panel_Processing.setLayout(new BorderLayout());
@@ -202,11 +207,11 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Preview.setLayout(panel_PreviewLayout);
         panel_PreviewLayout.setHorizontalGroup(
             panel_PreviewLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(panel_Processing, GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+            .addComponent(panel_Processing, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
         );
         panel_PreviewLayout.setVerticalGroup(
             panel_PreviewLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(panel_Processing, GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+            .addComponent(panel_Processing, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
         );
 
         panel_Processing.add(embed, BorderLayout.CENTER);
@@ -217,18 +222,17 @@ public class VehicleEditor extends javax.swing.JFrame {
             tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(tab_PropertiesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.CENTER)
-                    .addComponent(panel_VehicleName, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel_VehicleDescription, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(panel_Author, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(panel_SelectedVehicle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(tab_PropertiesLayout.createSequentialGroup()
+                        .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
+                            .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panel_VehicleName, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
+                            .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                            .addComponent(panel_Author, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
-            .addGroup(tab_PropertiesLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(panel_SelectedVehicle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(10, Short.MAX_VALUE))
         );
         tab_PropertiesLayout.setVerticalGroup(
             tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
@@ -241,8 +245,8 @@ public class VehicleEditor extends javax.swing.JFrame {
                     .addComponent(panel_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -250,371 +254,451 @@ public class VehicleEditor extends javax.swing.JFrame {
 
         tab_Design.setName("tab_Design"); // NOI18N
 
-        jPanel6.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("jPanel6.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("jPanel6.border.titleFont"))); // NOI18N
-        jPanel6.setName("jPanel6"); // NOI18N
+        panel_LeftSensor.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_LeftSensor.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_LeftSensor.border.titleFont"))); // NOI18N
+        panel_LeftSensor.setName("panel_LeftSensor"); // NOI18N
 
-        jPanel7.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("jPanel7.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION)); // NOI18N
-        jPanel7.setName("jPanel7"); // NOI18N
+        panel_Left_Light.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1), resourceMap.getString("panel_Left_Light.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION)); // NOI18N
+        panel_Left_Light.setName("panel_Left_Light"); // NOI18N
 
-        jSlider5.setMajorTickSpacing(10);
-        jSlider5.setMaximum(50);
-        jSlider5.setMinimum(-50);
-        jSlider5.setMinorTickSpacing(2);
-        jSlider5.setOrientation(JSlider.VERTICAL);
-        jSlider5.setPaintLabels(true);
-        jSlider5.setPaintTicks(true);
-        jSlider5.setSnapToTicks(true);
-        jSlider5.setValue(0);
-        jSlider5.setName("jSlider5"); // NOI18N
+        slider_Left_Light.setMajorTickSpacing(10);
+        slider_Left_Light.setMaximum(50);
+        slider_Left_Light.setMinimum(-50);
+        slider_Left_Light.setMinorTickSpacing(2);
+        slider_Left_Light.setOrientation(JSlider.VERTICAL);
+        slider_Left_Light.setPaintLabels(true);
+        slider_Left_Light.setPaintTicks(true);
+        slider_Left_Light.setValue(0);
+        slider_Left_Light.setName("slider_Left_Light"); // NOI18N
+        slider_Left_Light.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                slider_Left_Light_StateChanged(evt);
+            }
+        });
 
-        jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
-        jTextField1.setName("jTextField1"); // NOI18N
+        text_Left_Light.setEditable(false);
+        text_Left_Light.setFont(resourceMap.getFont("text_Left_Light.font")); // NOI18N
+        text_Left_Light.setHorizontalAlignment(JTextField.CENTER);
+        text_Left_Light.setText(resourceMap.getString("text_Left_Light.text")); // NOI18N
+        text_Left_Light.setName("text_Left_Light"); // NOI18N
 
-        GroupLayout jPanel7Layout = new GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-            .addComponent(jSlider5, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+        GroupLayout panel_Left_LightLayout = new GroupLayout(panel_Left_Light);
+        panel_Left_Light.setLayout(panel_Left_LightLayout);
+        panel_Left_LightLayout.setHorizontalGroup(
+            panel_Left_LightLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Left_Light, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+            .addComponent(slider_Left_Light, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addComponent(jSlider5, GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+        panel_Left_LightLayout.setVerticalGroup(
+            panel_Left_LightLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_Left_LightLayout.createSequentialGroup()
+                .addComponent(slider_Left_Light, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addComponent(text_Left_Light, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel8.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("jPanel8.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION)); // NOI18N
-        jPanel8.setName("jPanel8"); // NOI18N
+        panel_Left_Heat.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1), resourceMap.getString("panel_Left_Heat.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION)); // NOI18N
+        panel_Left_Heat.setName("panel_Left_Heat"); // NOI18N
 
-        jSlider6.setMajorTickSpacing(10);
-        jSlider6.setMaximum(50);
-        jSlider6.setMinimum(-50);
-        jSlider6.setMinorTickSpacing(2);
-        jSlider6.setOrientation(JSlider.VERTICAL);
-        jSlider6.setPaintLabels(true);
-        jSlider6.setPaintTicks(true);
-        jSlider6.setSnapToTicks(true);
-        jSlider6.setValue(0);
-        jSlider6.setName("jSlider6"); // NOI18N
+        slider_Left_Heat.setMajorTickSpacing(10);
+        slider_Left_Heat.setMaximum(50);
+        slider_Left_Heat.setMinimum(-50);
+        slider_Left_Heat.setMinorTickSpacing(2);
+        slider_Left_Heat.setOrientation(JSlider.VERTICAL);
+        slider_Left_Heat.setPaintLabels(true);
+        slider_Left_Heat.setPaintTicks(true);
+        slider_Left_Heat.setSnapToTicks(true);
+        slider_Left_Heat.setValue(0);
+        slider_Left_Heat.setName("slider_Left_Heat"); // NOI18N
+        slider_Left_Heat.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                slider_Left_Heat_StateChanged(evt);
+            }
+        });
 
-        jTextField2.setText(resourceMap.getString("jTextField2.text")); // NOI18N
-        jTextField2.setName("jTextField2"); // NOI18N
+        text_Left_Heat.setEditable(false);
+        text_Left_Heat.setFont(resourceMap.getFont("text_Left_Heat.font")); // NOI18N
+        text_Left_Heat.setHorizontalAlignment(JTextField.CENTER);
+        text_Left_Heat.setText(resourceMap.getString("text_Left_Heat.text")); // NOI18N
+        text_Left_Heat.setName("text_Left_Heat"); // NOI18N
 
-        GroupLayout jPanel8Layout = new GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField2, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-            .addComponent(jSlider6, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+        GroupLayout panel_Left_HeatLayout = new GroupLayout(panel_Left_Heat);
+        panel_Left_Heat.setLayout(panel_Left_HeatLayout);
+        panel_Left_HeatLayout.setHorizontalGroup(
+            panel_Left_HeatLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Left_Heat, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+            .addComponent(slider_Left_Heat, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addComponent(jSlider6, GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+        panel_Left_HeatLayout.setVerticalGroup(
+            panel_Left_HeatLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_Left_HeatLayout.createSequentialGroup()
+                .addComponent(slider_Left_Heat, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addComponent(text_Left_Heat, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel9.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("jPanel9.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION)); // NOI18N
-        jPanel9.setName("jPanel9"); // NOI18N
+        panel_Left_Water.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1), resourceMap.getString("panel_Left_Water.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION)); // NOI18N
+        panel_Left_Water.setName("panel_Left_Water"); // NOI18N
 
-        jSlider7.setMajorTickSpacing(10);
-        jSlider7.setMaximum(50);
-        jSlider7.setMinimum(-50);
-        jSlider7.setMinorTickSpacing(2);
-        jSlider7.setOrientation(JSlider.VERTICAL);
-        jSlider7.setPaintLabels(true);
-        jSlider7.setPaintTicks(true);
-        jSlider7.setSnapToTicks(true);
-        jSlider7.setValue(0);
-        jSlider7.setName("jSlider7"); // NOI18N
+        slider_Left_Water.setMajorTickSpacing(10);
+        slider_Left_Water.setMaximum(50);
+        slider_Left_Water.setMinimum(-50);
+        slider_Left_Water.setMinorTickSpacing(2);
+        slider_Left_Water.setOrientation(JSlider.VERTICAL);
+        slider_Left_Water.setPaintLabels(true);
+        slider_Left_Water.setPaintTicks(true);
+        slider_Left_Water.setSnapToTicks(true);
+        slider_Left_Water.setValue(0);
+        slider_Left_Water.setName("slider_Left_Water"); // NOI18N
+        slider_Left_Water.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                slider_Left_Water_StateChanged(evt);
+            }
+        });
 
-        jTextField3.setText(resourceMap.getString("jTextField3.text")); // NOI18N
-        jTextField3.setName("jTextField3"); // NOI18N
+        text_Left_Water.setEditable(false);
+        text_Left_Water.setFont(resourceMap.getFont("text_Left_Water.font")); // NOI18N
+        text_Left_Water.setHorizontalAlignment(JTextField.CENTER);
+        text_Left_Water.setText(resourceMap.getString("text_Left_Water.text")); // NOI18N
+        text_Left_Water.setName("text_Left_Water"); // NOI18N
 
-        GroupLayout jPanel9Layout = new GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField3, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-            .addComponent(jSlider7, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+        GroupLayout panel_Left_WaterLayout = new GroupLayout(panel_Left_Water);
+        panel_Left_Water.setLayout(panel_Left_WaterLayout);
+        panel_Left_WaterLayout.setHorizontalGroup(
+            panel_Left_WaterLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Left_Water, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+            .addComponent(slider_Left_Water, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addComponent(jSlider7, GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+        panel_Left_WaterLayout.setVerticalGroup(
+            panel_Left_WaterLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_Left_WaterLayout.createSequentialGroup()
+                .addComponent(slider_Left_Water, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addComponent(text_Left_Water, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel10.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("jPanel10.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION)); // NOI18N
-        jPanel10.setName("jPanel10"); // NOI18N
+        panel_Left_Power.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1), resourceMap.getString("panel_Left_Power.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION)); // NOI18N
+        panel_Left_Power.setName("panel_Left_Power"); // NOI18N
 
-        jSlider8.setMajorTickSpacing(10);
-        jSlider8.setMaximum(50);
-        jSlider8.setMinimum(-50);
-        jSlider8.setMinorTickSpacing(2);
-        jSlider8.setOrientation(JSlider.VERTICAL);
-        jSlider8.setPaintLabels(true);
-        jSlider8.setPaintTicks(true);
-        jSlider8.setSnapToTicks(true);
-        jSlider8.setValue(0);
-        jSlider8.setName("jSlider8"); // NOI18N
+        slider_Left_Power.setMajorTickSpacing(10);
+        slider_Left_Power.setMaximum(50);
+        slider_Left_Power.setMinimum(-50);
+        slider_Left_Power.setMinorTickSpacing(2);
+        slider_Left_Power.setOrientation(JSlider.VERTICAL);
+        slider_Left_Power.setPaintLabels(true);
+        slider_Left_Power.setPaintTicks(true);
+        slider_Left_Power.setSnapToTicks(true);
+        slider_Left_Power.setValue(0);
+        slider_Left_Power.setName("slider_Left_Power"); // NOI18N
+        slider_Left_Power.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                slider_Left_Power_StateChanged(evt);
+            }
+        });
 
-        jTextField4.setText(resourceMap.getString("jTextField4.text")); // NOI18N
-        jTextField4.setName("jTextField4"); // NOI18N
+        text_Left_Power.setEditable(false);
+        text_Left_Power.setFont(resourceMap.getFont("text_Left_Power.font")); // NOI18N
+        text_Left_Power.setHorizontalAlignment(JTextField.CENTER);
+        text_Left_Power.setText(resourceMap.getString("text_Left_Power.text")); // NOI18N
+        text_Left_Power.setName("text_Left_Power"); // NOI18N
 
-        GroupLayout jPanel10Layout = new GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField4, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-            .addComponent(jSlider8, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+        GroupLayout panel_Left_PowerLayout = new GroupLayout(panel_Left_Power);
+        panel_Left_Power.setLayout(panel_Left_PowerLayout);
+        panel_Left_PowerLayout.setHorizontalGroup(
+            panel_Left_PowerLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Left_Power, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+            .addComponent(slider_Left_Power, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
         );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addComponent(jSlider8, GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+        panel_Left_PowerLayout.setVerticalGroup(
+            panel_Left_PowerLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_Left_PowerLayout.createSequentialGroup()
+                .addComponent(slider_Left_Power, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jTextField4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addComponent(text_Left_Power, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
 
-        GroupLayout jPanel6Layout = new GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jPanel7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        GroupLayout panel_LeftSensorLayout = new GroupLayout(panel_LeftSensor);
+        panel_LeftSensor.setLayout(panel_LeftSensorLayout);
+        panel_LeftSensorLayout.setHorizontalGroup(
+            panel_LeftSensorLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(panel_LeftSensorLayout.createSequentialGroup()
+                .addComponent(panel_Left_Light, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jPanel8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel_Left_Heat, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jPanel9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel_Left_Water, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jPanel10, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panel_Left_Power, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jPanel7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel10, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        panel_LeftSensorLayout.setVerticalGroup(
+            panel_LeftSensorLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(panel_Left_Light, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel_Left_Heat, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel_Left_Water, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel_Left_Power, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel11.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("jPanel11.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("jPanel11.border.titleFont"))); // NOI18N
-        jPanel11.setMinimumSize(new Dimension(114, 0));
-        jPanel11.setName("jPanel11"); // NOI18N
+        panel_MotorStrength.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_MotorStrength.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_MotorStrength.border.titleFont"))); // NOI18N
+        panel_MotorStrength.setToolTipText(resourceMap.getString("panel_MotorStrength.toolTipText")); // NOI18N
+        panel_MotorStrength.setMinimumSize(new Dimension(114, 0));
+        panel_MotorStrength.setName("panel_MotorStrength"); // NOI18N
 
-        jSlider9.setMajorTickSpacing(10);
-        jSlider9.setMinorTickSpacing(2);
-        jSlider9.setOrientation(JSlider.VERTICAL);
-        jSlider9.setPaintLabels(true);
-        jSlider9.setPaintTicks(true);
-        jSlider9.setSnapToTicks(true);
-        jSlider9.setName("jSlider9"); // NOI18N
+        slider_MotorStrength.setMajorTickSpacing(10);
+        slider_MotorStrength.setMinorTickSpacing(2);
+        slider_MotorStrength.setOrientation(JSlider.VERTICAL);
+        slider_MotorStrength.setPaintLabels(true);
+        slider_MotorStrength.setPaintTicks(true);
+        slider_MotorStrength.setSnapToTicks(true);
+        slider_MotorStrength.setName("slider_MotorStrength"); // NOI18N
+        slider_MotorStrength.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                slider_MotorStrength_StateChanged(evt);
+            }
+        });
 
-        jTextField9.setText(resourceMap.getString("jTextField9.text")); // NOI18N
-        jTextField9.setName("jTextField9"); // NOI18N
+        text_MotorStrength.setEditable(false);
+        text_MotorStrength.setFont(resourceMap.getFont("text_MotorStrength.font")); // NOI18N
+        text_MotorStrength.setHorizontalAlignment(JTextField.CENTER);
+        text_MotorStrength.setText(resourceMap.getString("text_MotorStrength.text")); // NOI18N
+        text_MotorStrength.setName("text_MotorStrength"); // NOI18N
 
-        GroupLayout jPanel11Layout = new GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField9, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addComponent(jSlider9, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+        GroupLayout panel_MotorStrengthLayout = new GroupLayout(panel_MotorStrength);
+        panel_MotorStrength.setLayout(panel_MotorStrengthLayout);
+        panel_MotorStrengthLayout.setHorizontalGroup(
+            panel_MotorStrengthLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_MotorStrength, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+            .addGroup(panel_MotorStrengthLayout.createSequentialGroup()
+                .addComponent(slider_MotorStrength, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addComponent(jSlider9, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+        panel_MotorStrengthLayout.setVerticalGroup(
+            panel_MotorStrengthLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_MotorStrengthLayout.createSequentialGroup()
+                .addComponent(slider_MotorStrength, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jTextField9, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+                .addComponent(text_MotorStrength, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel12.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("jPanel12.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("jPanel12.border.titleFont"))); // NOI18N
-        jPanel12.setName("jPanel12"); // NOI18N
+        panel_RightSensor.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_RightSensor.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_RightSensor.border.titleFont"))); // NOI18N
+        panel_RightSensor.setName("panel_RightSensor"); // NOI18N
 
-        jPanel13.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("jPanel13.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION)); // NOI18N
-        jPanel13.setName("jPanel13"); // NOI18N
+        panel_Right_Light.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1), resourceMap.getString("panel_Right_Light.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION)); // NOI18N
+        panel_Right_Light.setName("panel_Right_Light"); // NOI18N
 
-        jSlider10.setMajorTickSpacing(10);
-        jSlider10.setMaximum(50);
-        jSlider10.setMinimum(-50);
-        jSlider10.setMinorTickSpacing(2);
-        jSlider10.setOrientation(JSlider.VERTICAL);
-        jSlider10.setPaintLabels(true);
-        jSlider10.setPaintTicks(true);
-        jSlider10.setSnapToTicks(true);
-        jSlider10.setValue(0);
-        jSlider10.setName("jSlider10"); // NOI18N
+        slider_Right_Light.setMajorTickSpacing(10);
+        slider_Right_Light.setMaximum(50);
+        slider_Right_Light.setMinimum(-50);
+        slider_Right_Light.setMinorTickSpacing(2);
+        slider_Right_Light.setOrientation(JSlider.VERTICAL);
+        slider_Right_Light.setPaintLabels(true);
+        slider_Right_Light.setPaintTicks(true);
+        slider_Right_Light.setSnapToTicks(true);
+        slider_Right_Light.setValue(0);
+        slider_Right_Light.setName("slider_Right_Light"); // NOI18N
+        slider_Right_Light.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                slider_Right_Light_StateChanged(evt);
+            }
+        });
 
-        jTextField5.setText(resourceMap.getString("jTextField5.text")); // NOI18N
-        jTextField5.setName("jTextField5"); // NOI18N
+        text_Right_Light.setEditable(false);
+        text_Right_Light.setFont(resourceMap.getFont("text_Right_Light.font")); // NOI18N
+        text_Right_Light.setHorizontalAlignment(JTextField.CENTER);
+        text_Right_Light.setText(resourceMap.getString("text_Right_Light.text")); // NOI18N
+        text_Right_Light.setName("text_Right_Light"); // NOI18N
 
-        GroupLayout jPanel13Layout = new GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField5, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-            .addComponent(jSlider10, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+        GroupLayout panel_Right_LightLayout = new GroupLayout(panel_Right_Light);
+        panel_Right_Light.setLayout(panel_Right_LightLayout);
+        panel_Right_LightLayout.setHorizontalGroup(
+            panel_Right_LightLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Right_Light, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+            .addComponent(slider_Right_Light, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
         );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addComponent(jSlider10, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+        panel_Right_LightLayout.setVerticalGroup(
+            panel_Right_LightLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_Right_LightLayout.createSequentialGroup()
+                .addComponent(slider_Right_Light, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jTextField5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addComponent(text_Right_Light, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel14.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("jPanel14.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION)); // NOI18N
-        jPanel14.setName("jPanel14"); // NOI18N
+        panel_Right_Heat.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1), resourceMap.getString("panel_Right_Heat.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION)); // NOI18N
+        panel_Right_Heat.setName("panel_Right_Heat"); // NOI18N
 
-        jSlider11.setMajorTickSpacing(10);
-        jSlider11.setMaximum(50);
-        jSlider11.setMinimum(-50);
-        jSlider11.setMinorTickSpacing(2);
-        jSlider11.setOrientation(JSlider.VERTICAL);
-        jSlider11.setPaintLabels(true);
-        jSlider11.setPaintTicks(true);
-        jSlider11.setSnapToTicks(true);
-        jSlider11.setValue(0);
-        jSlider11.setName("jSlider11"); // NOI18N
+        slider_Right_Heat.setMajorTickSpacing(10);
+        slider_Right_Heat.setMaximum(50);
+        slider_Right_Heat.setMinimum(-50);
+        slider_Right_Heat.setMinorTickSpacing(2);
+        slider_Right_Heat.setOrientation(JSlider.VERTICAL);
+        slider_Right_Heat.setPaintLabels(true);
+        slider_Right_Heat.setPaintTicks(true);
+        slider_Right_Heat.setSnapToTicks(true);
+        slider_Right_Heat.setValue(0);
+        slider_Right_Heat.setName("slider_Right_Heat"); // NOI18N
+        slider_Right_Heat.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                slider_Right_Heat_StateChanged(evt);
+            }
+        });
 
-        jTextField6.setText(resourceMap.getString("jTextField6.text")); // NOI18N
-        jTextField6.setName("jTextField6"); // NOI18N
+        text_Right_Heat.setEditable(false);
+        text_Right_Heat.setFont(resourceMap.getFont("text_Right_Heat.font")); // NOI18N
+        text_Right_Heat.setHorizontalAlignment(JTextField.CENTER);
+        text_Right_Heat.setText(resourceMap.getString("text_Right_Heat.text")); // NOI18N
+        text_Right_Heat.setName("text_Right_Heat"); // NOI18N
 
-        GroupLayout jPanel14Layout = new GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField6, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-            .addComponent(jSlider11, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+        GroupLayout panel_Right_HeatLayout = new GroupLayout(panel_Right_Heat);
+        panel_Right_Heat.setLayout(panel_Right_HeatLayout);
+        panel_Right_HeatLayout.setHorizontalGroup(
+            panel_Right_HeatLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Right_Heat, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+            .addComponent(slider_Right_Heat, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
         );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addComponent(jSlider11, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+        panel_Right_HeatLayout.setVerticalGroup(
+            panel_Right_HeatLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_Right_HeatLayout.createSequentialGroup()
+                .addComponent(slider_Right_Heat, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jTextField6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addComponent(text_Right_Heat, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel15.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("jPanel15.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION)); // NOI18N
-        jPanel15.setName("jPanel15"); // NOI18N
+        panel_Right_Water.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1), resourceMap.getString("panel_Right_Water.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION)); // NOI18N
+        panel_Right_Water.setName("panel_Right_Water"); // NOI18N
 
-        jSlider12.setMajorTickSpacing(10);
-        jSlider12.setMaximum(50);
-        jSlider12.setMinimum(-50);
-        jSlider12.setMinorTickSpacing(2);
-        jSlider12.setOrientation(JSlider.VERTICAL);
-        jSlider12.setPaintLabels(true);
-        jSlider12.setPaintTicks(true);
-        jSlider12.setSnapToTicks(true);
-        jSlider12.setValue(0);
-        jSlider12.setName("jSlider12"); // NOI18N
+        slider_Right_Water.setMajorTickSpacing(10);
+        slider_Right_Water.setMaximum(50);
+        slider_Right_Water.setMinimum(-50);
+        slider_Right_Water.setMinorTickSpacing(2);
+        slider_Right_Water.setOrientation(JSlider.VERTICAL);
+        slider_Right_Water.setPaintLabels(true);
+        slider_Right_Water.setPaintTicks(true);
+        slider_Right_Water.setSnapToTicks(true);
+        slider_Right_Water.setValue(0);
+        slider_Right_Water.setName("slider_Right_Water"); // NOI18N
+        slider_Right_Water.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                slider_Right_Water_StateChanged(evt);
+            }
+        });
 
-        jTextField7.setText(resourceMap.getString("jTextField7.text")); // NOI18N
-        jTextField7.setName("jTextField7"); // NOI18N
+        text_Right_Water.setEditable(false);
+        text_Right_Water.setFont(resourceMap.getFont("text_Right_Water.font")); // NOI18N
+        text_Right_Water.setHorizontalAlignment(JTextField.CENTER);
+        text_Right_Water.setText(resourceMap.getString("text_Right_Water.text")); // NOI18N
+        text_Right_Water.setName("text_Right_Water"); // NOI18N
 
-        GroupLayout jPanel15Layout = new GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField7, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-            .addComponent(jSlider12, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+        GroupLayout panel_Right_WaterLayout = new GroupLayout(panel_Right_Water);
+        panel_Right_Water.setLayout(panel_Right_WaterLayout);
+        panel_Right_WaterLayout.setHorizontalGroup(
+            panel_Right_WaterLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Right_Water, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+            .addComponent(slider_Right_Water, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
         );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                .addComponent(jSlider12, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+        panel_Right_WaterLayout.setVerticalGroup(
+            panel_Right_WaterLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_Right_WaterLayout.createSequentialGroup()
+                .addComponent(slider_Right_Water, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jTextField7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addComponent(text_Right_Water, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel16.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("jPanel16.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION)); // NOI18N
-        jPanel16.setName("jPanel16"); // NOI18N
+        panel_Right_Power.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1), resourceMap.getString("panel_Right_Power.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION)); // NOI18N
+        panel_Right_Power.setName("panel_Right_Power"); // NOI18N
 
-        jSlider13.setMajorTickSpacing(10);
-        jSlider13.setMaximum(50);
-        jSlider13.setMinimum(-50);
-        jSlider13.setMinorTickSpacing(2);
-        jSlider13.setOrientation(JSlider.VERTICAL);
-        jSlider13.setPaintLabels(true);
-        jSlider13.setPaintTicks(true);
-        jSlider13.setSnapToTicks(true);
-        jSlider13.setValue(0);
-        jSlider13.setName("jSlider13"); // NOI18N
+        slider_Right_Power.setMajorTickSpacing(10);
+        slider_Right_Power.setMaximum(50);
+        slider_Right_Power.setMinimum(-50);
+        slider_Right_Power.setMinorTickSpacing(2);
+        slider_Right_Power.setOrientation(JSlider.VERTICAL);
+        slider_Right_Power.setPaintLabels(true);
+        slider_Right_Power.setPaintTicks(true);
+        slider_Right_Power.setSnapToTicks(true);
+        slider_Right_Power.setValue(0);
+        slider_Right_Power.setName("slider_Right_Power"); // NOI18N
+        slider_Right_Power.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                slider_Right_PowerStateChanged(evt);
+            }
+        });
 
-        jTextField8.setText(resourceMap.getString("jTextField8.text")); // NOI18N
-        jTextField8.setName("jTextField8"); // NOI18N
+        text_Right_Power.setEditable(false);
+        text_Right_Power.setFont(resourceMap.getFont("text_Right_Power.font")); // NOI18N
+        text_Right_Power.setHorizontalAlignment(JTextField.CENTER);
+        text_Right_Power.setText(resourceMap.getString("text_Right_Power.text")); // NOI18N
+        text_Right_Power.setName("text_Right_Power"); // NOI18N
 
-        GroupLayout jPanel16Layout = new GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField8, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-            .addComponent(jSlider13, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+        GroupLayout panel_Right_PowerLayout = new GroupLayout(panel_Right_Power);
+        panel_Right_Power.setLayout(panel_Right_PowerLayout);
+        panel_Right_PowerLayout.setHorizontalGroup(
+            panel_Right_PowerLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Right_Power, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+            .addComponent(slider_Right_Power, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
         );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                .addComponent(jSlider13, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+        panel_Right_PowerLayout.setVerticalGroup(
+            panel_Right_PowerLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_Right_PowerLayout.createSequentialGroup()
+                .addComponent(slider_Right_Power, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jTextField8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addComponent(text_Right_Power, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
 
-        GroupLayout jPanel12Layout = new GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addComponent(jPanel13, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        GroupLayout panel_RightSensorLayout = new GroupLayout(panel_RightSensor);
+        panel_RightSensor.setLayout(panel_RightSensorLayout);
+        panel_RightSensorLayout.setHorizontalGroup(
+            panel_RightSensorLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(panel_RightSensorLayout.createSequentialGroup()
+                .addComponent(panel_Right_Light, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jPanel14, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel_Right_Heat, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jPanel15, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel_Right_Water, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jPanel16, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panel_Right_Power, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jPanel13, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel14, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel15, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel16, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        panel_RightSensorLayout.setVerticalGroup(
+            panel_RightSensorLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(panel_Right_Light, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel_Right_Heat, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel_Right_Water, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel_Right_Power, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel17.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("jPanel17.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("jPanel17.border.titleFont"))); // NOI18N
-        jPanel17.setName("jPanel17"); // NOI18N
+        panel_Aggression.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Aggression.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Aggression.border.titleFont"))); // NOI18N
+        panel_Aggression.setName("panel_Aggression"); // NOI18N
 
-        jSlider14.setMajorTickSpacing(10);
-        jSlider14.setMinorTickSpacing(2);
-        jSlider14.setOrientation(JSlider.VERTICAL);
-        jSlider14.setPaintLabels(true);
-        jSlider14.setPaintTicks(true);
-        jSlider14.setSnapToTicks(true);
-        jSlider14.setName("jSlider14"); // NOI18N
+        slider_Aggression.setMajorTickSpacing(10);
+        slider_Aggression.setMinorTickSpacing(2);
+        slider_Aggression.setOrientation(JSlider.VERTICAL);
+        slider_Aggression.setPaintLabels(true);
+        slider_Aggression.setPaintTicks(true);
+        slider_Aggression.setSnapToTicks(true);
+        slider_Aggression.setName("slider_Aggression"); // NOI18N
+        slider_Aggression.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                slider_Aggression_StateChanged(evt);
+            }
+        });
 
-        jTextField10.setText(resourceMap.getString("jTextField10.text")); // NOI18N
-        jTextField10.setName("jTextField10"); // NOI18N
+        text_Aggression.setEditable(false);
+        text_Aggression.setFont(resourceMap.getFont("text_Aggression.font")); // NOI18N
+        text_Aggression.setHorizontalAlignment(JTextField.CENTER);
+        text_Aggression.setText(resourceMap.getString("text_Aggression.text")); // NOI18N
+        text_Aggression.setName("text_Aggression"); // NOI18N
 
-        GroupLayout jPanel17Layout = new GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField10, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addComponent(jSlider14, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+        GroupLayout panel_AggressionLayout = new GroupLayout(panel_Aggression);
+        panel_Aggression.setLayout(panel_AggressionLayout);
+        panel_AggressionLayout.setHorizontalGroup(
+            panel_AggressionLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Aggression, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+            .addGroup(panel_AggressionLayout.createSequentialGroup()
+                .addComponent(slider_Aggression, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                .addComponent(jSlider14, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+        panel_AggressionLayout.setVerticalGroup(
+            panel_AggressionLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_AggressionLayout.createSequentialGroup()
+                .addComponent(slider_Aggression, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jTextField10, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+                .addComponent(text_Aggression, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
         );
 
         GroupLayout tab_DesignLayout = new GroupLayout(tab_Design);
@@ -624,12 +708,12 @@ public class VehicleEditor extends javax.swing.JFrame {
             .addGroup(tab_DesignLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tab_DesignLayout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(jPanel12, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panel_RightSensor, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_LeftSensor, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(tab_DesignLayout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(jPanel11, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel17, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panel_MotorStrength, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_Aggression, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         tab_DesignLayout.setVerticalGroup(
@@ -637,16 +721,16 @@ public class VehicleEditor extends javax.swing.JFrame {
             .addGroup(tab_DesignLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tab_DesignLayout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(jPanel11, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panel_MotorStrength, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_LeftSensor, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(tab_DesignLayout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(jPanel12, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel17, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panel_RightSensor, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_Aggression, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jPanel6.getAccessibleContext().setAccessibleName(resourceMap.getString("jPanel6.AccessibleContext.accessibleName")); // NOI18N
+        panel_LeftSensor.getAccessibleContext().setAccessibleName(resourceMap.getString("jPanel6.AccessibleContext.accessibleName")); // NOI18N
 
         tabContainer.addTab(resourceMap.getString("tab_Design.TabConstraints.tabTitle"), tab_Design); // NOI18N
 
@@ -674,14 +758,14 @@ public class VehicleEditor extends javax.swing.JFrame {
                         .addComponent(button_SaveAs)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(button_Cancel))
-                    .addComponent(tabContainer, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE))
+                    .addComponent(tabContainer, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabContainer, GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
+                .addComponent(tabContainer, GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(button_Cancel)
@@ -692,6 +776,66 @@ public class VehicleEditor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void slider_Left_Light_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Left_Light_StateChanged
+        JSlider tempSlider = (JSlider) evt.getSource();
+        int value = tempSlider.getValue();
+        text_Left_Light.setText(Integer.toString(value));
+}//GEN-LAST:event_slider_Left_Light_StateChanged
+
+    private void slider_Left_Heat_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Left_Heat_StateChanged
+        JSlider tempSlider = (JSlider) evt.getSource();
+        int value = tempSlider.getValue();
+        text_Left_Heat.setText(Integer.toString(value));
+}//GEN-LAST:event_slider_Left_Heat_StateChanged
+
+    private void slider_Left_Water_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Left_Water_StateChanged
+        JSlider tempSlider = (JSlider) evt.getSource();
+        int value = tempSlider.getValue();
+        text_Left_Water.setText(Integer.toString(value));
+}//GEN-LAST:event_slider_Left_Water_StateChanged
+
+    private void slider_Left_Power_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Left_Power_StateChanged
+        JSlider tempSlider = (JSlider) evt.getSource();
+        int value = tempSlider.getValue();
+        text_Left_Power.setText(Integer.toString(value));
+}//GEN-LAST:event_slider_Left_Power_StateChanged
+
+    private void slider_MotorStrength_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_MotorStrength_StateChanged
+        JSlider tempSlider = (JSlider) evt.getSource();
+        int value = tempSlider.getValue();
+        text_MotorStrength.setText(Integer.toString(value));
+}//GEN-LAST:event_slider_MotorStrength_StateChanged
+
+    private void slider_Right_Light_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Right_Light_StateChanged
+        JSlider tempSlider = (JSlider) evt.getSource();
+        int value = tempSlider.getValue();
+        text_Right_Light.setText(Integer.toString(value));
+}//GEN-LAST:event_slider_Right_Light_StateChanged
+
+    private void slider_Right_Heat_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Right_Heat_StateChanged
+        JSlider tempSlider = (JSlider) evt.getSource();
+        int value = tempSlider.getValue();
+        text_Right_Heat.setText(Integer.toString(value));
+}//GEN-LAST:event_slider_Right_Heat_StateChanged
+
+    private void slider_Right_Water_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Right_Water_StateChanged
+        JSlider tempSlider = (JSlider) evt.getSource();
+        int value = tempSlider.getValue();
+        text_Right_Water.setText(Integer.toString(value));
+}//GEN-LAST:event_slider_Right_Water_StateChanged
+
+    private void slider_Right_PowerStateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Right_PowerStateChanged
+        JSlider tempSlider = (JSlider) evt.getSource();
+        int value = tempSlider.getValue();
+        text_Right_Power.setText(Integer.toString(value));
+}//GEN-LAST:event_slider_Right_PowerStateChanged
+
+    private void slider_Aggression_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Aggression_StateChanged
+        JSlider tempSlider = (JSlider) evt.getSource();
+        int value = tempSlider.getValue();
+        text_Aggression.setText(Integer.toString(value));
+}//GEN-LAST:event_slider_Aggression_StateChanged
 
     /**
     * @param args the command line arguments
@@ -710,49 +854,49 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JButton button_Cancel;
     private JButton button_Save;
     private JButton button_SaveAs;
-    private JPanel jPanel10;
-    private JPanel jPanel11;
-    private JPanel jPanel12;
-    private JPanel jPanel13;
-    private JPanel jPanel14;
-    private JPanel jPanel15;
-    private JPanel jPanel16;
-    private JPanel jPanel17;
-    private JPanel jPanel6;
-    private JPanel jPanel7;
-    private JPanel jPanel8;
-    private JPanel jPanel9;
     private JScrollPane jScrollPane6;
-    private JSlider jSlider10;
-    private JSlider jSlider11;
-    private JSlider jSlider12;
-    private JSlider jSlider13;
-    private JSlider jSlider14;
-    private JSlider jSlider5;
-    private JSlider jSlider6;
-    private JSlider jSlider7;
-    private JSlider jSlider8;
-    private JSlider jSlider9;
-    private JTextField jTextField1;
-    private JTextField jTextField10;
-    private JTextField jTextField2;
-    private JTextField jTextField3;
-    private JTextField jTextField4;
-    private JTextField jTextField5;
-    private JTextField jTextField6;
-    private JTextField jTextField7;
-    private JTextField jTextField8;
-    private JTextField jTextField9;
+    private JPanel panel_Aggression;
     private JPanel panel_Author;
+    private JPanel panel_LeftSensor;
+    private JPanel panel_Left_Heat;
+    private JPanel panel_Left_Light;
+    private JPanel panel_Left_Power;
+    private JPanel panel_Left_Water;
+    private JPanel panel_MotorStrength;
     private JPanel panel_Preview;
     private JPanel panel_Processing;
+    private JPanel panel_RightSensor;
+    private JPanel panel_Right_Heat;
+    private JPanel panel_Right_Light;
+    private JPanel panel_Right_Power;
+    private JPanel panel_Right_Water;
     private JPanel panel_SelectedVehicle;
     private JPanel panel_VehicleDescription;
     private JPanel panel_VehicleName;
     private JComboBox selectedVehicle_jComboBox;
+    private JSlider slider_Aggression;
+    private JSlider slider_Left_Heat;
+    private JSlider slider_Left_Light;
+    private JSlider slider_Left_Power;
+    private JSlider slider_Left_Water;
+    private JSlider slider_MotorStrength;
+    private JSlider slider_Right_Heat;
+    private JSlider slider_Right_Light;
+    private JSlider slider_Right_Power;
+    private JSlider slider_Right_Water;
     private JTabbedPane tabContainer;
     private JPanel tab_Design;
     private JPanel tab_Properties;
+    private JTextField text_Aggression;
+    private JTextField text_Left_Heat;
+    private JTextField text_Left_Light;
+    private JTextField text_Left_Power;
+    private JTextField text_Left_Water;
+    private JTextField text_MotorStrength;
+    private JTextField text_Right_Heat;
+    private JTextField text_Right_Light;
+    private JTextField text_Right_Power;
+    private JTextField text_Right_Water;
     private JTextArea vehicleDescription_jTextArea;
     private JTextField vehicleName_jTextField;
     // End of variables declaration//GEN-END:variables
