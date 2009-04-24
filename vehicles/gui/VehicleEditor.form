@@ -136,19 +136,19 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="vehicleName_jTextField" alignment="0" pref="210" max="32767" attributes="0"/>
+                      <Component id="text_VehicleName" alignment="0" pref="210" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="vehicleName_jTextField" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="text_VehicleName" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="vehicleName_jTextField">
+                <Component class="javax.swing.JTextField" name="text_VehicleName">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="vehicleName_jTextField" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="text_VehicleName" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -169,30 +169,26 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="selectedVehicle_jComboBox" alignment="0" pref="210" max="32767" attributes="0"/>
+                      <Component id="dropdown_selectedVehicle" alignment="0" pref="210" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="selectedVehicle_jComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="dropdown_selectedVehicle" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JComboBox" name="selectedVehicle_jComboBox">
+                <Component class="javax.swing.JComboBox" name="dropdown_selectedVehicle">
                   <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="6">
-                        <StringItem index="0" value="&lt;new&gt;"/>
-                        <StringItem index="1" value="Vehicle 1"/>
-                        <StringItem index="2" value="Vehicle 2"/>
-                        <StringItem index="3" value="Vehicle 3"/>
-                        <StringItem index="4" value="Vehicle 4"/>
-                        <StringItem index="5" value="Vehicle 5"/>
-                      </StringArray>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="vehiclesDropDown" type="code"/>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="selectedVehicle_jComboBox" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="dropdown_selectedVehicle" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="dropdown_selectedVehicleItemStateChanged"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -215,19 +211,21 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane6" alignment="0" pref="210" max="32767" attributes="0"/>
+                      <Component id="scrollpanel_VehicleDescription" alignment="0" pref="210" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane6" alignment="0" pref="233" max="32767" attributes="0"/>
+                      <Component id="scrollpanel_VehicleDescription" alignment="0" pref="233" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+                <Container class="javax.swing.JScrollPane" name="scrollpanel_VehicleDescription">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="jScrollPane6" noResource="true"/>
+                    <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+                    <Property name="autoscrolls" type="boolean" value="true"/>
+                    <Property name="name" type="java.lang.String" value="scrollpanel_VehicleDescription" noResource="true"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -235,11 +233,11 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="vehicleDescription_jTextArea">
+                    <Component class="javax.swing.JTextArea" name="text_VehicleDescription">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
-                        <Property name="name" type="java.lang.String" value="vehicleDescription_jTextArea" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="text_VehicleDescription" noResource="true"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -262,19 +260,19 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="author_jTextField" alignment="0" pref="210" max="32767" attributes="0"/>
+                      <Component id="text_Author" alignment="0" pref="210" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="author_jTextField" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="text_Author" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="author_jTextField">
+                <Component class="javax.swing.JTextField" name="text_Author">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="author_jTextField" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="text_Author" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>

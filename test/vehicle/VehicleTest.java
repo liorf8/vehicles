@@ -13,13 +13,13 @@ public class VehicleTest {
 			EditorVehicle v = new EditorVehicle("xml/vehicles/hungry.xml");
 			v.setVehicleName("Hungy Vehicle"); //set object attributes
 			v.setCurr_battery_capacity(46);
-			v.setMotorStrength(67.7);
-			v.setAggression(55.6);
+			v.setMotorStrength(67);
+			v.setAggression(55);
 			v.setColour(102, 203, 150);
 
 				
 				VehicleComponent vc = new VehicleComponent("weaksensor.xml"); //new object
-					vc.setVehicleComponentName("Weak Sensor");//set object attributes
+					vc.setVehicleComponentName("Left Sensor");//set object attributes
 					vc.setVehicleComponentType("Left");
 					vc.setVehicleComponentLeftSensorRadius(Integer.toString(22));
 					vc.setVehicleComponentLeftSensorLight(Integer.toString(45));
@@ -30,7 +30,7 @@ public class VehicleTest {
 					v.addVehicleComponent(vc); //move xml in ram from component into vehicle
 
 				vc = new VehicleComponent("weaksensor.xml"); //new object
-					vc.setVehicleComponentName("Strong Sensor");//set object attributes
+					vc.setVehicleComponentName("Right Sensor");//set object attributes
 					vc.setVehicleComponentType("Right");
 					vc.setVehicleComponentRightSensorRadius(Integer.toString(34));
 					vc.setVehicleComponentRightSensorLight(Integer.toString(45));

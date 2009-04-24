@@ -5,14 +5,13 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
-public class Colour {
+public class VehicleColour {
 	private int red = 0;
 	private int blue = 0;
 	private int green = 0;
 
 	Document  xmldoc; //the XML document we are creating, stored as an object in memory
 	Element root;//the root element of the document
-
 
 	/* Getters and setters*/
 	public int getRed() {
@@ -33,18 +32,20 @@ public class Colour {
 	public void setGreen(int green) {
 		this.green = green;
 	}
+
 	/*Constructors*/
-	public Colour(){
+	public VehicleColour(){
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("Colour");
 	}
-	public Colour(int r,int b,int g){
+	public VehicleColour(int r,int b,int g){
 		this.red = r;
 		this.blue = b;
 		this.green = g;
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("Colour");
 	}
+
 	/*XML geneneration*/
 	/**
 	 * Write an element into an XML file
@@ -58,9 +59,10 @@ public class Colour {
 		nameElement.appendChild(nameText);//add in the text to the element
 		root.appendChild(nameElement);//and add this new element to the document
 	}
+
 	/**
-	 * Finalise and return the xml tree of this Colour
-	 * @return the root element of this Colour's xml tree
+	 * Finalise and return the xml tree of this VehicleColour
+	 * @return the root element of this VehicleColour's xml tree
 	 */
 	public Element getRootElement(){
 		this.writeXMLEntry("red", Integer.toString(red), xmldoc);

@@ -1,10 +1,3 @@
-/*
- * EnvironmentEditor.java
- *
- * Created on 26-Mar-2009, 15:05:05
- * @author Niall O'Hara
- */
-
 package vehicles.gui;
 
 import vehicles.*;
@@ -26,8 +19,11 @@ import org.jdesktop.application.Action;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
 
-/**
- * The application's main frame.
+/*
+ * EnvironmentEditor.java
+ *
+ * Created on 26-Mar-2009, 15:05:05
+ * @author Niall O'Hara
  */
 public class EnvironmentEditor extends javax.swing.JFrame {
 
