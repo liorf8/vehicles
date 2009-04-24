@@ -118,11 +118,7 @@ public class Simulation {
 			else if(name.equals("EnvironmentPath")){
 				this.setEnvironment(node_value);
 			}
-			/*
-			 * Removed all runtime options, as they are only used while a simultion is running 
-			 * and not at any other time, therefore they should only be set in the simulation object 
-			 *
-			 * else if(name.equals("perishable_vehicles")){
+			else if(name.equals("perishable_vehicles")){
 				this.setPerishableVehicles(Boolean.getBoolean(node_value));
 			}
 			else if(name.equals("regenerating_elements")){
@@ -143,7 +139,6 @@ public class Simulation {
 			else if(name.equals("genetic_selection_method")){
 				this.setGeneticSelectionMethod(Integer.parseInt(node_value));
 			}
-			 */
 			else break;
 		}
 	}
