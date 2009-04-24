@@ -27,7 +27,7 @@ public class Environment {
 	protected String xmlLocation = null; //XML file location for this environment
 
 	//Attibutes of an environment
-	public String name = null, lastModified = null, author = null;
+	public String name = null, lastModified = null, author = null, description = null;
 	protected Vector<EnvironmentElement> elementVector;
 	protected double width = 0.0;
 	protected double height = 0.0;
@@ -185,6 +185,9 @@ public class Environment {
 			else if(envName.equals("author")){
 				this.setAuthor(node_value);
 			}
+			else if(envName.equals("description")){
+				this.setDescription(node_value);
+			}
 			else if(envName.equals("LastModified")){
 				this.setLastModified(node_value);
 			}
@@ -221,6 +224,9 @@ public class Environment {
 			}
 			if(this.author != null){
 				this.writeXMLEntry("author", author, xmldoc);
+			}
+			if(this.description != null){
+				this.writeXMLEntry("description", description, xmldoc);
 			}
 			if(this.width != 0.0){
 				this.writeXMLEntry("width", Double.toString(width), xmldoc);
@@ -284,6 +290,10 @@ public class Environment {
 		return this.author;
 	}
 
+	public String getDescription(){
+		return this.description;
+	}
+	
 	public String getLastModified(){
 		return this.lastModified;
 	}
@@ -314,6 +324,10 @@ public class Environment {
 		this.author = aut;
 	}
 
+	public void setDescription(String d){
+		this.description = d;
+	}
+	
 	public void setLastModified(String timeStamp){
 		this.lastModified = timeStamp;
 	}
