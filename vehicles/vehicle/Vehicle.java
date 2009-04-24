@@ -18,11 +18,22 @@ public class Vehicle{
 	protected String xmlLocation; //location of the XML file representing this vehicle
 	/*Attributes of a vehicle*/
 	protected String vehicleName = null; //the name of this vehicle
-	protected String VehicleTemperament = null; //the vehicle's temperament
 	protected Vector <VehicleComponent> components; //components of the vehicle 
 	protected double max_battery_capacity = 100; //maximum battery this vehicle can have
 	protected double curr_battery_capacity = 100;//current battery capacity
 	protected double motorStrength = 0.0;
+	protected double aggression = 0.0;
+	protected Colour colour = new Colour();
+
+	
+	public double getAggression() {
+		return aggression;
+	}
+
+	public void setAggression(double aggression) {
+		this.aggression = aggression;
+	}
+	
 
 	public double getMotorStrength() {
 		return motorStrength;
@@ -46,6 +57,11 @@ public class Vehicle{
 
 	public void setCurr_battery_capacity(double curr_battery_capacity) {
 		this.curr_battery_capacity = curr_battery_capacity;
+	}
+	public void setColour(int r, int b, int g){
+		this.colour.setRed(r);
+		this.colour.setBlue(b);
+		this.colour.setGreen(g);
 	}
 	/**
 	 * Get the fitness of this vehicle, defined by it's current battery strength divided by it's maximum capacity
@@ -75,9 +91,6 @@ public class Vehicle{
 				}
 			}
 
-			NodeList temperament = dom.getElementsByTagName("temperament");
-			this.setVehicleTemperament(temperament.item(0).getChildNodes().item(0).getNodeValue());
-
 			NodeList maxBattery = dom.getElementsByTagName("max_battery_capacity");
 			this.setMax_battery_capacity(Double.parseDouble(maxBattery.item(0).getChildNodes().item(0).getNodeValue()));
 
@@ -86,6 +99,19 @@ public class Vehicle{
 			
 			NodeList motorStr = dom.getElementsByTagName("motorStrength");
 			this.setMotorStrength(Double.parseDouble(motorStr.item(0).getChildNodes().item(0).getNodeValue()));
+			
+			NodeList aggr = dom.getElementsByTagName("aggression");
+			this.setAggression(Double.parseDouble(aggr.item(0).getChildNodes().item(0).getNodeValue()));
+			
+			NodeList red = dom.getElementsByTagName("red");
+			this.colour.setRed(Integer.parseInt(red.item(0).getChildNodes().item(0).getNodeValue()));
+			
+			NodeList blue = dom.getElementsByTagName("blue");
+			this.colour.setBlue(Integer.parseInt(blue.item(0).getChildNodes().item(0).getNodeValue()));
+			
+			NodeList green = dom.getElementsByTagName("green");
+			this.colour.setGreen(Integer.parseInt(green.item(0).getChildNodes().item(0).getNodeValue()));
+			
 			//Node root = dom.getDocumentElement(); //get the root element from the document
 			//handleNode(root); //recursive function to handle the nodes
 
@@ -193,12 +219,7 @@ public class Vehicle{
 	public void setVehicleName(String vehicleName) {
 		this.vehicleName = vehicleName;
 	}
-	public String getVehicleTemperament() {
-		return VehicleTemperament;
-	}
-	public void setVehicleTemperament(String vehicleTemperament) {
-		VehicleTemperament = vehicleTemperament;
-	}
+	
 	public Vector<VehicleComponent> getComponents() {
 		return components;
 	}

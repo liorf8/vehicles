@@ -20,5 +20,10 @@
     <max_battery_capacity>100.0</max_battery_capacity>
     <curr_battery_capacity>46.0</curr_battery_capacity>
     <motorStrength>67.7</motorStrength>
-    <temperament>Timid</temperament>
+    <aggression>55.6</aggression>
+    <Colour>
+        <red>102</red>
+        <blue>203</blue>
+        <green>150</green>
+    </Colour>
 </Vehicle>

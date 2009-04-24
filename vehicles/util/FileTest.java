@@ -10,7 +10,6 @@ public class FileTest {
 		veh.setVehicleName("Angry Vehicle");
 		veh.setCurr_battery_capacity(65);
 		veh.setMax_battery_capacity(100);
-		veh.setVehicleTemperament("aggresive");
 
 
 		VehicleComponent vc = new VehicleComponent("weaksensor.xml"); //new object
@@ -43,7 +42,6 @@ public class FileTest {
 		Vehicle[] array = UtilMethods.getVehiclesFromFolder("/home/karl/XMLVehicles");
 		for(int i = 0; i<array.length;i++){
 			System.out.println(array[i].getVehicleName()+"\n");
-			System.out.println("\t"+array[i].getVehicleTemperament());
 		}
 	}
 

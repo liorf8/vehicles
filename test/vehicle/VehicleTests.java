@@ -12,9 +12,10 @@ public class VehicleTests {
 		/*Testing creating and editing a vehicle XML entry*/
 			EditorVehicle v = new EditorVehicle("hungry.xml");
 			v.setVehicleName("Hungy Vehicle"); //set object attributes
-			v.setVehicleTemperament("Timid"); //set object attributes 
 			v.setCurr_battery_capacity(46);
 			v.setMotorStrength(67.7);
+			v.setAggression(55.6);
+			v.setColour(102, 203, 150);
 			
 				
 				VehicleComponent vc = new VehicleComponent("weaksensor.xml"); //new object
