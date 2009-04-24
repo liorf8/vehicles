@@ -249,8 +249,8 @@ public class Vehicle {
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.err.println("An error occurred while creating a vehicle from the file '" +
-                    filename + "'. Please check that this file exists.");
+            //System.err.println("An error occurred while creating a vehicle from the file '" +
+              //      filename + "'. Please check that this file exists.");
         }
 
     }

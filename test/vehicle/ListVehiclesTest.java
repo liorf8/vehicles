@@ -40,7 +40,7 @@ public class ListVehiclesTest {
 		veh.addVehicleComponent(vc); //move xml in ram from component into vehicle
 		veh.saveVehicle();
 		/*GET LIST OF ALL VEHICLES IN FOLDER*/
-		Vehicle[] array = UtilMethods.getVehiclesFromFolder("xml/vehicles");
+		EditorVehicle[] array = UtilMethods.getVehiclesFromFolder("xml/vehicles");
 		for(int i = 0; i<array.length;i++){
 			System.out.println(array[i].getVehicleName()+"\n");
 		}

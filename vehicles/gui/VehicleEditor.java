@@ -44,6 +44,9 @@ public class VehicleEditor extends javax.swing.JFrame {
 
         vehiclesArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
         vehiclesDropDown = new DefaultComboBoxModel(vehiclesArray);
+        for(int i = 0; i<vehiclesArray.length;i++){
+			System.out.println(vehiclesArray[i].getVehicleName()+"\n");
+		}
         embed = new Embedded();
         initComponents();
         // important to call this whenever embedding a PApplet.
@@ -980,11 +983,13 @@ public class VehicleEditor extends javax.swing.JFrame {
     private void dropdown_selectedVehicleItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_selectedVehicleItemStateChanged
         JComboBox tempComboBox = (JComboBox) evt.getSource();
         EditorVehicle selected = (EditorVehicle) tempComboBox.getSelectedItem();
+        
         populateFields(selected);
     }//GEN-LAST:event_dropdown_selectedVehicleItemStateChanged
 
     private void populateFields(EditorVehicle p_vehicle) {
         EditorVehicle tempVehicle = p_vehicle;
+        System.out.print(p_vehicle.getVehicleName());
         text_Author.setText(tempVehicle.getVehicleAuthor());
         text_VehicleDescription.setText(tempVehicle.getVehicleDescription()); //TODO fix
         text_VehicleName.setText(tempVehicle.getVehicleName()); //TODO fix
