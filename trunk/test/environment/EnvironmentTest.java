@@ -36,7 +36,7 @@ public class EnvironmentTest{
 		/*
 		 * Create an environment and write to xml
 		 */
-		Environment e = new Environment("desert","desert.xml");
+		Environment e = new Environment("desert","xml/environments/desert.xml");
 		e.setHeight(500);
 		e.setWidth(200);
 		//e.setLastModified(timeStamp) Shaun- will you tell me how to get the current time?
