@@ -71,7 +71,7 @@ public class HeatSource extends EnvironmentElement{
 		if(this.strength != 0){
 			this.addHeatSourceIntensity(Double.toString(strength));
 		}
-		xmldoc.appendChild(root);
+		//xmldoc.appendChild(root);
 	}
 	
 	

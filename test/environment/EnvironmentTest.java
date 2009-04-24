@@ -18,8 +18,7 @@ public class EnvironmentTest{
 		ls.setPosition(new Point(15,42));		
 		ls.setRadius(78);
 		ls.setStrength(95);
-		ls.toInternalXML();
-		ls.saveEnvironmentElement();
+		
 		/*
 		 * Create a heat source, populate it's attributes, and write to file
 		 */
@@ -29,9 +28,7 @@ public class EnvironmentTest{
 		hs.setType(EnvironmentElement.HeatSource); //TODO put this in object constructor
 		hs.setPosition(new Point(30,40));
 		hs.setRadius(10);
-		hs.setStrength(30);
-		hs.toInternalXML();
-		hs.saveEnvironmentElement();		
+		hs.setStrength(30);		
 		
 		/*
 		 * Create an environment and write to xml

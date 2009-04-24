@@ -228,7 +228,7 @@ public class EnvironmentElement {
 	 * Write this EnvironmentElement to an XML document in RAm, which can then be written to disk(no need to do this) or appeneded to an Environment XML document in RAM
 	 */
 	public void toInternalXML(){
-		System.out.println("Oh crap");
+		System.out.println("Oh crap"); //subclass overrided version should ONLY be called
 	}
 	/**
 	 * Get the root of this environment element, call this method to get the component for inclusion
@@ -236,6 +236,7 @@ public class EnvironmentElement {
 	 * @return The root element of this EnvironmentElement
 	 */
 	public Element getRootElement(){
+		this.toInternalXML();
 		return root;
 	}
 	

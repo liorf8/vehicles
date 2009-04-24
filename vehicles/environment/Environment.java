@@ -235,15 +235,12 @@ public class Environment {
 				Iterator<EnvironmentElement> it = this.elementVector.iterator();
 				while(it.hasNext()){ //process every element in the vector
 					EnvironmentElement curr = it.next();
-					Object o = curr.getRootElement().getFirstChild(); //determine if the xml tree is populated 
+					/*
+					 
 					if(o == null){ //if not, populate it(convert object attributes to xml tree)
 						curr.toInternalXML();
 					}
-					
-					/*THESE 2 LINES WILL NEED TO BE REMOVED, DEGUG ONLY!!*/
-					curr.setFileLocation(curr.getName()+"_duplicate");
-					curr.saveEnvironmentElement();
-					
+					*/									
 					//now add the xml tree from this element to the whole environment's xml tree
 					this.addEnvironmentElement(curr);
 				}
