@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<EnvironmentElement>
-    <name>Weak Heat Source</name>
-    <type>2</type>
-    <xPos>30.0</xPos>
-    <yPos>40.0</yPos>
-    <heatRange>10.0</heatRange>
-    <heatIntensity>30.0</heatIntensity>
-</EnvironmentElement>

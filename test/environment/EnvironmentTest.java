@@ -12,7 +12,7 @@ public class EnvironmentTest{
 		 * Create a light source, populate it's attributes, and write to file
 		 */
 		LightSource ls = new LightSource();	
-		ls.setFileLocation("StrongLightSource.xml");
+		ls.setFileLocation("xml/environments/StrongLightSource.xml");
 		ls.setName("Strong Light Source");
 		ls.setType(EnvironmentElement.LightSource);//TODO put this in object constructor
 		ls.setPosition(new Point(15,42));		
@@ -24,7 +24,7 @@ public class EnvironmentTest{
 		 * Create a heat source, populate it's attributes, and write to file
 		 */
 		HeatSource hs = new HeatSource();
-		hs.setFileLocation("WeakHeatSource.xml");
+		hs.setFileLocation("xml/environments/WeakHeatSource.xml");
 		hs.setName("Weak Heat Source");
 		hs.setType(EnvironmentElement.HeatSource); //TODO put this in object constructor
 		hs.setPosition(new Point(30,40));
@@ -45,8 +45,8 @@ public class EnvironmentTest{
 		e.saveEnvironment();
 		
 		/*Read that xml and create an object from it, then re-write it back to xml*/
-		Environment env = new Environment("desert.xml"); //load up object values from xml
-		env.setXMLLocation("desertDuplicate.xml");
+		Environment env = new Environment("xml/environments/desert.xml"); //load up object values from xml
+		env.setXMLLocation("xml/environments/desertDuplicate.xml");
 		env.saveEnvironment();
 		}
 }
