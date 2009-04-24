@@ -60,12 +60,33 @@ public class Vehicle {
         value = Integer.parseInt(stringValue);
         return value;
     }
+    
+    public void setLeftSensorLight(int value) {
+    	Iterator<VehicleComponent> itr = components.iterator();
+    	VehicleComponent tempComp = null;
+        while (itr.hasNext()) {
+            tempComp = (VehicleComponent) itr.next();
+            if (tempComp.getVehicleComponentType().equalsIgnoreCase("LEFT")) {
+              tempComp.setVehicleComponentLeftSensorLight(Integer.toString(value));
+            }
+        }
+    }
 
     public int getLeftSensorHeat() {
         int value;
         String stringValue = getComponent("LEFT").getVehicleComponentLeftSensorHeat();
         value = Integer.parseInt(stringValue);
         return value;
+    }
+    public void setLeftSensorHeat(int value) {
+    	Iterator<VehicleComponent> itr = components.iterator();
+    	VehicleComponent tempComp = null;
+        while (itr.hasNext()) {
+            tempComp = (VehicleComponent) itr.next();
+            if (tempComp.getVehicleComponentType().equalsIgnoreCase("LEFT")) {
+              tempComp.setVehicleComponentLeftSensorHeat(Integer.toString(value));
+            }
+        }
     }
 
     public int getLeftSensorWater() {
@@ -74,12 +95,32 @@ public class Vehicle {
         value = Integer.parseInt(stringValue);
         return value;
     }
+    public void setLeftSensorWater(int value) {
+    	Iterator<VehicleComponent> itr = components.iterator();
+    	VehicleComponent tempComp = null;
+        while (itr.hasNext()) {
+            tempComp = (VehicleComponent) itr.next();
+            if (tempComp.getVehicleComponentType().equalsIgnoreCase("LEFT")) {
+              tempComp.setVehicleComponentLeftSensorWater(Integer.toString(value));
+            }
+        }
+    }
 
     public int getLeftSensorPower() {
         int value;
         String stringValue = getComponent("LEFT").getVehicleComponentLeftSensorPower();
         value = Integer.parseInt(stringValue);
         return value;
+    }
+    public void setLeftSensorPower(int value) {
+    	Iterator<VehicleComponent> itr = components.iterator();
+    	VehicleComponent tempComp = null;
+        while (itr.hasNext()) {
+            tempComp = (VehicleComponent) itr.next();
+            if (tempComp.getVehicleComponentType().equalsIgnoreCase("LEFT")) {
+              tempComp.setVehicleComponentLeftSensorPower(Integer.toString(value));
+            }
+        }
     }
 
     public int getRightSensorLight() {
@@ -88,12 +129,32 @@ public class Vehicle {
         value = Integer.parseInt(stringValue);
         return value;
     }
+    public void setRightSensorLight(int value) {
+    	Iterator<VehicleComponent> itr = components.iterator();
+    	VehicleComponent tempComp = null;
+        while (itr.hasNext()) {
+            tempComp = (VehicleComponent) itr.next();
+            if (tempComp.getVehicleComponentType().equalsIgnoreCase("RIGHT")) {
+              tempComp.setVehicleComponentRightSensorLight(Integer.toString(value));
+            }
+        }
+    }
 
     public int getRightSensorHeat() {
         int value;
         String stringValue = getComponent("RIGHT").getVehicleComponentRightSensorHeat();
         value = Integer.parseInt(stringValue);
         return value;
+    }
+    public void setRightSensorHeat(int value) {
+    	Iterator<VehicleComponent> itr = components.iterator();
+    	VehicleComponent tempComp = null;
+        while (itr.hasNext()) {
+            tempComp = (VehicleComponent) itr.next();
+            if (tempComp.getVehicleComponentType().equalsIgnoreCase("RIGHT")) {
+              tempComp.setVehicleComponentRightSensorHeat(Integer.toString(value));
+            }
+        }
     }
 
     public int getRightSensorWater() {
@@ -102,12 +163,32 @@ public class Vehicle {
         value = Integer.parseInt(stringValue);
         return value;
     }
+    public void setRightSensorWater(int value) {
+    	Iterator<VehicleComponent> itr = components.iterator();
+    	VehicleComponent tempComp = null;
+        while (itr.hasNext()) {
+            tempComp = (VehicleComponent) itr.next();
+            if (tempComp.getVehicleComponentType().equalsIgnoreCase("RIGHT")) {
+              tempComp.setVehicleComponentRightSensorWater(Integer.toString(value));
+            }
+        }
+    }
 
     public int getRightSensorPower() {
         int value;
         String stringValue = getComponent("RIGHT").getVehicleComponentRightSensorPower();
         value = Integer.parseInt(stringValue);
         return value;
+    }
+    public void setRightSensorPower(int value) {
+    	Iterator<VehicleComponent> itr = components.iterator();
+    	VehicleComponent tempComp = null;
+        while (itr.hasNext()) {
+            tempComp = (VehicleComponent) itr.next();
+            if (tempComp.getVehicleComponentType().equalsIgnoreCase("RIGHT")) {
+              tempComp.setVehicleComponentRightSensorPower(Integer.toString(value));
+            }
+        }
     }
 
     public VehicleComponent getComponent(String type) {
@@ -121,6 +202,7 @@ public class Vehicle {
         }
         return toReturn;
     }
+    
 
     public void setVehicleColour(VehicleColour vehicleColour) {
         this.vehicleColour = vehicleColour;
@@ -182,14 +264,22 @@ public class Vehicle {
     }
 
     public Vehicle() {
-        components = new Vector<VehicleComponent>();
+    	this.components = new Vector<VehicleComponent>();
+    	VehicleComponent vc = new VehicleComponent();
+        vc.setVehicleComponentType("LEFT");
+        this.addVehicleComponent(vc);
+        vc = new VehicleComponent();
+        vc.setVehicleComponentType("RIGHT");
+        this.addVehicleComponent(vc);
+
+        
     }
 
     public Vehicle(String filename) {
         try {
             xmlLocation = filename;
             components = new Vector<VehicleComponent>();
-            DOMParser p = new DOMParser();
+                        DOMParser p = new DOMParser();
             p.parse(xmlLocation); //get a parsed version of the file into memory
             Document dom = p.getDocument();
             processVehicleComponents(dom.getElementsByTagName("VehicleComponent"));
