@@ -79,12 +79,13 @@ public class EditorVehicle extends Vehicle {
 		writeXMLEntry("motorStrength", str, xmldoc);
 	}
 	/**
-	 * Add a vehicle temperament attribute(Aggressive | Timid | None) to the XML document being created
-	 * @param temperament One of (Aggressive | Timid | None)
+	 * Add a vehicle aggression attribute to the XML document being created
+	 * @param aggr The aggression
 	 */
-	public void addVehicleTemperament(String temperament){
-		writeXMLEntry("temperament", temperament, xmldoc);
+	public void addAggression(String aggr){
+		writeXMLEntry("aggression", aggr, xmldoc);
 	}
+	
 	/**
 	 * Add a vehicle component XML entry into this Vehicle's document
 	 * @param vc The vehicle component to add
@@ -93,6 +94,13 @@ public class EditorVehicle extends Vehicle {
 		root.appendChild(xmldoc.adoptNode(vc.getRootElement().cloneNode(true)));
 		///	System.out.println("Append component!");
 
+	}
+	/**
+	 * Add a vehicle colour XML entry into this Vehicle's document
+	 * @param vc The colour to add
+	 */
+	public void addVehicleColour(Colour c){
+		root.appendChild(xmldoc.adoptNode(c.getRootElement().cloneNode(true)));
 	}
 	/**
 	 * Write out the current Vehicle to a file specified by the filename attribute. This method
@@ -109,12 +117,12 @@ public class EditorVehicle extends Vehicle {
 			this.addMaxBatteryCapacity(Double.toString(max_battery_capacity));
 			this.addCurrBatteryCapacity(Double.toString(curr_battery_capacity));
 			this.addmotorStrength(Double.toString(this.motorStrength));
-			if(this.VehicleTemperament != null){
-				addVehicleTemperament(VehicleTemperament);
-			}
+			this.addAggression(Double.toString(this.aggression));
+			this.addVehicleColour(this.colour);
+			
 			if(this.components != null){
 				//System.out.println(components.capacity());
-				Iterator it = components.iterator();
+				Iterator<VehicleComponent> it = components.iterator();
 				int count = 0;
 				while(it.hasNext()){
 					//System.out.println("iteration :"+count);
