@@ -79,6 +79,15 @@ public class VehicleEditor extends javax.swing.JFrame {
         author_jTextField = new JTextField();
         panel_Preview = new JPanel();
         panel_Processing = new JPanel();
+        panel_Blue = new JPanel();
+        slider_Blue = new JSlider();
+        text_Blue = new JTextField();
+        panel_Green = new JPanel();
+        slider_Green = new JSlider();
+        text_Green = new JTextField();
+        panel_Red = new JPanel();
+        slider_Red = new JSlider();
+        text_Red = new JTextField();
         tab_Design = new JPanel();
         panel_LeftSensor = new JPanel();
         panel_Left_Light = new JPanel();
@@ -125,8 +134,9 @@ public class VehicleEditor extends javax.swing.JFrame {
 
         tab_Properties.setName("tab_Properties"); // NOI18N
 
-        panel_VehicleName.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_VehicleName.border.title"))); // NOI18N
+        panel_VehicleName.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_VehicleName.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_VehicleName.border.titleFont"))); // NOI18N
         panel_VehicleName.setName("panel_VehicleName"); // NOI18N
+        panel_VehicleName.setPreferredSize(new Dimension(224, 46));
 
         vehicleName_jTextField.setName("vehicleName_jTextField"); // NOI18N
 
@@ -134,14 +144,14 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_VehicleName.setLayout(panel_VehicleNameLayout);
         panel_VehicleNameLayout.setHorizontalGroup(
             panel_VehicleNameLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(vehicleName_jTextField, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+            .addComponent(vehicleName_jTextField, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         );
         panel_VehicleNameLayout.setVerticalGroup(
             panel_VehicleNameLayout.createParallelGroup(Alignment.LEADING)
             .addComponent(vehicleName_jTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
-        panel_SelectedVehicle.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_SelectedVehicle.border.title"))); // NOI18N
+        panel_SelectedVehicle.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_SelectedVehicle.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_SelectedVehicle.border.titleFont"))); // NOI18N
         panel_SelectedVehicle.setName("panel_SelectedVehicle"); // NOI18N
 
         selectedVehicle_jComboBox.setModel(new DefaultComboBoxModel(new String[] { "<new>", "Vehicle 1", "Vehicle 2", "Vehicle 3", "Vehicle 4", "Vehicle 5" }));
@@ -158,7 +168,7 @@ public class VehicleEditor extends javax.swing.JFrame {
             .addComponent(selectedVehicle_jComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
-        panel_VehicleDescription.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_VehicleDescription.border.title"))); // NOI18N
+        panel_VehicleDescription.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_VehicleDescription.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_VehicleDescription.border.titleFont"))); // NOI18N
         panel_VehicleDescription.setName("panel_VehicleDescription"); // NOI18N
         panel_VehicleDescription.setPreferredSize(new Dimension(220, 311));
 
@@ -173,14 +183,14 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_VehicleDescription.setLayout(panel_VehicleDescriptionLayout);
         panel_VehicleDescriptionLayout.setHorizontalGroup(
             panel_VehicleDescriptionLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane6, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         );
         panel_VehicleDescriptionLayout.setVerticalGroup(
             panel_VehicleDescriptionLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane6, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
         );
 
-        panel_Author.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Author.border.title"))); // NOI18N
+        panel_Author.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Author.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Author.border.titleFont"))); // NOI18N
         panel_Author.setName("panel_Author"); // NOI18N
 
         author_jTextField.setName("author_jTextField"); // NOI18N
@@ -189,29 +199,135 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Author.setLayout(panel_AuthorLayout);
         panel_AuthorLayout.setHorizontalGroup(
             panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(author_jTextField, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+            .addComponent(author_jTextField, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         );
         panel_AuthorLayout.setVerticalGroup(
             panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
             .addComponent(author_jTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
-        panel_Preview.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Preview.border.title"))); // NOI18N
+        panel_Preview.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Preview.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Preview.border.titleFont"))); // NOI18N
         panel_Preview.setName("panel_Preview"); // NOI18N
         panel_Preview.setPreferredSize(new Dimension(220, 311));
 
         panel_Processing.setName("panel_Processing"); // NOI18N
         panel_Processing.setLayout(new BorderLayout());
 
+        panel_Blue.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Blue.border.title"))); // NOI18N
+        panel_Blue.setName("panel_Blue"); // NOI18N
+
+        slider_Blue.setMaximum(255);
+        slider_Blue.setValue(128);
+        slider_Blue.setName("slider_Blue"); // NOI18N
+        slider_Blue.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                slider_Blue_StateChanged(evt);
+            }
+        });
+
+        text_Blue.setEditable(false);
+        text_Blue.setFont(resourceMap.getFont("text_Blue.font")); // NOI18N
+        text_Blue.setText(resourceMap.getString("text_Blue.text")); // NOI18N
+        text_Blue.setName("text_Blue"); // NOI18N
+
+        GroupLayout panel_BlueLayout = new GroupLayout(panel_Blue);
+        panel_Blue.setLayout(panel_BlueLayout);
+        panel_BlueLayout.setHorizontalGroup(
+            panel_BlueLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_BlueLayout.createSequentialGroup()
+                .addComponent(slider_Blue, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(text_Blue, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+        );
+        panel_BlueLayout.setVerticalGroup(
+            panel_BlueLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Blue, GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+            .addComponent(slider_Blue, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        panel_Green.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Green.border.title"))); // NOI18N
+        panel_Green.setName("panel_Green"); // NOI18N
+
+        slider_Green.setMaximum(255);
+        slider_Green.setValue(128);
+        slider_Green.setName("slider_Green"); // NOI18N
+        slider_Green.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                slider_Green_StateChanged(evt);
+            }
+        });
+
+        text_Green.setEditable(false);
+        text_Green.setFont(resourceMap.getFont("text_Green.font")); // NOI18N
+        text_Green.setText(resourceMap.getString("text_Green.text")); // NOI18N
+        text_Green.setName("text_Green"); // NOI18N
+
+        GroupLayout panel_GreenLayout = new GroupLayout(panel_Green);
+        panel_Green.setLayout(panel_GreenLayout);
+        panel_GreenLayout.setHorizontalGroup(
+            panel_GreenLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_GreenLayout.createSequentialGroup()
+                .addComponent(slider_Green, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(text_Green, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+        );
+        panel_GreenLayout.setVerticalGroup(
+            panel_GreenLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Green, GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+            .addComponent(slider_Green, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        panel_Red.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Red.border.title"))); // NOI18N
+        panel_Red.setName("panel_Red"); // NOI18N
+
+        slider_Red.setMaximum(255);
+        slider_Red.setValue(128);
+        slider_Red.setName("slider_Red"); // NOI18N
+        slider_Red.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                slider_Red_StateChanged(evt);
+            }
+        });
+
+        text_Red.setEditable(false);
+        text_Red.setFont(resourceMap.getFont("text_Red.font")); // NOI18N
+        text_Red.setText(resourceMap.getString("text_Red.text")); // NOI18N
+        text_Red.setName("text_Red"); // NOI18N
+
+        GroupLayout panel_RedLayout = new GroupLayout(panel_Red);
+        panel_Red.setLayout(panel_RedLayout);
+        panel_RedLayout.setHorizontalGroup(
+            panel_RedLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_RedLayout.createSequentialGroup()
+                .addComponent(slider_Red, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(text_Red, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+        );
+        panel_RedLayout.setVerticalGroup(
+            panel_RedLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Red, GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+            .addComponent(slider_Red, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         GroupLayout panel_PreviewLayout = new GroupLayout(panel_Preview);
         panel_Preview.setLayout(panel_PreviewLayout);
         panel_PreviewLayout.setHorizontalGroup(
             panel_PreviewLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(panel_Processing, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+            .addComponent(panel_Red, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel_Green, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel_Blue, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel_Processing, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
         );
         panel_PreviewLayout.setVerticalGroup(
             panel_PreviewLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(panel_Processing, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+            .addGroup(Alignment.TRAILING, panel_PreviewLayout.createSequentialGroup()
+                .addComponent(panel_Processing, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(panel_Red, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(panel_Green, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(panel_Blue, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
 
         panel_Processing.add(embed, BorderLayout.CENTER);
@@ -226,12 +342,11 @@ public class VehicleEditor extends javax.swing.JFrame {
                     .addComponent(panel_SelectedVehicle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(tab_PropertiesLayout.createSequentialGroup()
                         .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
-                            .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panel_VehicleName, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(panel_VehicleDescription, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                            .addComponent(panel_Author, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panel_VehicleName, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
-                            .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-                            .addComponent(panel_Author, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         tab_PropertiesLayout.setVerticalGroup(
@@ -241,12 +356,13 @@ public class VehicleEditor extends javax.swing.JFrame {
                 .addComponent(panel_SelectedVehicle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(panel_VehicleName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panel_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(tab_PropertiesLayout.createSequentialGroup()
+                        .addComponent(panel_VehicleName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(panel_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
+                    .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -291,7 +407,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Left_LightLayout.setVerticalGroup(
             panel_Left_LightLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_Left_LightLayout.createSequentialGroup()
-                .addComponent(slider_Left_Light, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addComponent(slider_Left_Light, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_Left_Light, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
@@ -331,7 +447,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Left_HeatLayout.setVerticalGroup(
             panel_Left_HeatLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_Left_HeatLayout.createSequentialGroup()
-                .addComponent(slider_Left_Heat, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addComponent(slider_Left_Heat, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_Left_Heat, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
@@ -365,13 +481,13 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Left_Water.setLayout(panel_Left_WaterLayout);
         panel_Left_WaterLayout.setHorizontalGroup(
             panel_Left_WaterLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_Left_Water, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-            .addComponent(slider_Left_Water, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+            .addComponent(text_Left_Water, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+            .addComponent(slider_Left_Water, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
         );
         panel_Left_WaterLayout.setVerticalGroup(
             panel_Left_WaterLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_Left_WaterLayout.createSequentialGroup()
-                .addComponent(slider_Left_Water, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addComponent(slider_Left_Water, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_Left_Water, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
@@ -405,13 +521,13 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Left_Power.setLayout(panel_Left_PowerLayout);
         panel_Left_PowerLayout.setHorizontalGroup(
             panel_Left_PowerLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_Left_Power, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-            .addComponent(slider_Left_Power, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+            .addComponent(text_Left_Power, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+            .addComponent(slider_Left_Power, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
         );
         panel_Left_PowerLayout.setVerticalGroup(
             panel_Left_PowerLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_Left_PowerLayout.createSequentialGroup()
-                .addComponent(slider_Left_Power, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addComponent(slider_Left_Power, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_Left_Power, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
@@ -465,15 +581,15 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_MotorStrength.setLayout(panel_MotorStrengthLayout);
         panel_MotorStrengthLayout.setHorizontalGroup(
             panel_MotorStrengthLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_MotorStrength, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+            .addComponent(text_MotorStrength, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
             .addGroup(panel_MotorStrengthLayout.createSequentialGroup()
-                .addComponent(slider_MotorStrength, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                .addComponent(slider_MotorStrength, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panel_MotorStrengthLayout.setVerticalGroup(
             panel_MotorStrengthLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_MotorStrengthLayout.createSequentialGroup()
-                .addComponent(slider_MotorStrength, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                .addComponent(slider_MotorStrength, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_MotorStrength, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
         );
@@ -510,13 +626,13 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Right_Light.setLayout(panel_Right_LightLayout);
         panel_Right_LightLayout.setHorizontalGroup(
             panel_Right_LightLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_Right_Light, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-            .addComponent(slider_Right_Light, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+            .addComponent(text_Right_Light, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+            .addComponent(slider_Right_Light, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
         );
         panel_Right_LightLayout.setVerticalGroup(
             panel_Right_LightLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_Right_LightLayout.createSequentialGroup()
-                .addComponent(slider_Right_Light, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                .addComponent(slider_Right_Light, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_Right_Light, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
@@ -550,13 +666,13 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Right_Heat.setLayout(panel_Right_HeatLayout);
         panel_Right_HeatLayout.setHorizontalGroup(
             panel_Right_HeatLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_Right_Heat, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-            .addComponent(slider_Right_Heat, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+            .addComponent(text_Right_Heat, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+            .addComponent(slider_Right_Heat, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
         );
         panel_Right_HeatLayout.setVerticalGroup(
             panel_Right_HeatLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_Right_HeatLayout.createSequentialGroup()
-                .addComponent(slider_Right_Heat, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                .addComponent(slider_Right_Heat, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_Right_Heat, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
@@ -590,13 +706,13 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Right_Water.setLayout(panel_Right_WaterLayout);
         panel_Right_WaterLayout.setHorizontalGroup(
             panel_Right_WaterLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_Right_Water, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-            .addComponent(slider_Right_Water, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+            .addComponent(text_Right_Water, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+            .addComponent(slider_Right_Water, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
         );
         panel_Right_WaterLayout.setVerticalGroup(
             panel_Right_WaterLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_Right_WaterLayout.createSequentialGroup()
-                .addComponent(slider_Right_Water, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                .addComponent(slider_Right_Water, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_Right_Water, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
@@ -616,7 +732,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         slider_Right_Power.setName("slider_Right_Power"); // NOI18N
         slider_Right_Power.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent evt) {
-                slider_Right_PowerStateChanged(evt);
+                slider_Right_Power_StateChanged(evt);
             }
         });
 
@@ -630,13 +746,13 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Right_Power.setLayout(panel_Right_PowerLayout);
         panel_Right_PowerLayout.setHorizontalGroup(
             panel_Right_PowerLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_Right_Power, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-            .addComponent(slider_Right_Power, GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+            .addComponent(text_Right_Power, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+            .addComponent(slider_Right_Power, GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
         );
         panel_Right_PowerLayout.setVerticalGroup(
             panel_Right_PowerLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_Right_PowerLayout.createSequentialGroup()
-                .addComponent(slider_Right_Power, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                .addComponent(slider_Right_Power, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_Right_Power, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
@@ -688,15 +804,15 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Aggression.setLayout(panel_AggressionLayout);
         panel_AggressionLayout.setHorizontalGroup(
             panel_AggressionLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_Aggression, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+            .addComponent(text_Aggression, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
             .addGroup(panel_AggressionLayout.createSequentialGroup()
-                .addComponent(slider_Aggression, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                .addComponent(slider_Aggression, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panel_AggressionLayout.setVerticalGroup(
             panel_AggressionLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_AggressionLayout.createSequentialGroup()
-                .addComponent(slider_Aggression, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                .addComponent(slider_Aggression, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_Aggression, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
         );
@@ -758,7 +874,7 @@ public class VehicleEditor extends javax.swing.JFrame {
                         .addComponent(button_SaveAs)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(button_Cancel))
-                    .addComponent(tabContainer, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE))
+                    .addComponent(tabContainer, GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -825,11 +941,11 @@ public class VehicleEditor extends javax.swing.JFrame {
         text_Right_Water.setText(Integer.toString(value));
 }//GEN-LAST:event_slider_Right_Water_StateChanged
 
-    private void slider_Right_PowerStateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Right_PowerStateChanged
+    private void slider_Right_Power_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Right_Power_StateChanged
         JSlider tempSlider = (JSlider) evt.getSource();
         int value = tempSlider.getValue();
         text_Right_Power.setText(Integer.toString(value));
-}//GEN-LAST:event_slider_Right_PowerStateChanged
+}//GEN-LAST:event_slider_Right_Power_StateChanged
 
     private void slider_Aggression_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Aggression_StateChanged
         JSlider tempSlider = (JSlider) evt.getSource();
@@ -837,17 +953,23 @@ public class VehicleEditor extends javax.swing.JFrame {
         text_Aggression.setText(Integer.toString(value));
 }//GEN-LAST:event_slider_Aggression_StateChanged
 
-    /**
-    * @param args the command line arguments
-    */
-//    public static void main(String args[]) {
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new VehicleEditor().setVisible(true);
-//            }
-//        });
-//    }
+    private void slider_Red_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Red_StateChanged
+        JSlider tempSlider = (JSlider) evt.getSource();
+        int value = tempSlider.getValue();
+        text_Red.setText(Integer.toString(value));
+}//GEN-LAST:event_slider_Red_StateChanged
 
+    private void slider_Green_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Green_StateChanged
+        JSlider tempSlider = (JSlider) evt.getSource();
+        int value = tempSlider.getValue();
+        text_Green.setText(Integer.toString(value));
+}//GEN-LAST:event_slider_Green_StateChanged
+
+    private void slider_Blue_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Blue_StateChanged
+        JSlider tempSlider = (JSlider) evt.getSource();
+        int value = tempSlider.getValue();
+        text_Blue.setText(Integer.toString(value));
+}//GEN-LAST:event_slider_Blue_StateChanged
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JTextField author_jTextField;
@@ -857,6 +979,8 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JScrollPane jScrollPane6;
     private JPanel panel_Aggression;
     private JPanel panel_Author;
+    private JPanel panel_Blue;
+    private JPanel panel_Green;
     private JPanel panel_LeftSensor;
     private JPanel panel_Left_Heat;
     private JPanel panel_Left_Light;
@@ -865,6 +989,7 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JPanel panel_MotorStrength;
     private JPanel panel_Preview;
     private JPanel panel_Processing;
+    private JPanel panel_Red;
     private JPanel panel_RightSensor;
     private JPanel panel_Right_Heat;
     private JPanel panel_Right_Light;
@@ -875,11 +1000,14 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JPanel panel_VehicleName;
     private JComboBox selectedVehicle_jComboBox;
     private JSlider slider_Aggression;
+    private JSlider slider_Blue;
+    private JSlider slider_Green;
     private JSlider slider_Left_Heat;
     private JSlider slider_Left_Light;
     private JSlider slider_Left_Power;
     private JSlider slider_Left_Water;
     private JSlider slider_MotorStrength;
+    private JSlider slider_Red;
     private JSlider slider_Right_Heat;
     private JSlider slider_Right_Light;
     private JSlider slider_Right_Power;
@@ -888,11 +1016,14 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JPanel tab_Design;
     private JPanel tab_Properties;
     private JTextField text_Aggression;
+    private JTextField text_Blue;
+    private JTextField text_Green;
     private JTextField text_Left_Heat;
     private JTextField text_Left_Light;
     private JTextField text_Left_Power;
     private JTextField text_Left_Water;
     private JTextField text_MotorStrength;
+    private JTextField text_Red;
     private JTextField text_Right_Heat;
     private JTextField text_Right_Light;
     private JTextField text_Right_Power;

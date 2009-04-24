@@ -36,7 +36,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="button_Cancel" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="tabContainer" alignment="1" pref="480" max="32767" attributes="0"/>
+                  <Component id="tabContainer" alignment="0" pref="480" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -81,20 +81,18 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="panel_SelectedVehicle" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="panel_VehicleDescription" alignment="1" max="32767" attributes="2"/>
-                                  <Component id="panel_VehicleName" alignment="0" max="32767" attributes="2"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="panel_Preview" pref="229" max="32767" attributes="2"/>
+                                  <Component id="panel_VehicleDescription" alignment="0" pref="222" max="32767" attributes="2"/>
                                   <Component id="panel_Author" alignment="0" max="32767" attributes="2"/>
+                                  <Component id="panel_VehicleName" alignment="1" pref="222" max="32767" attributes="2"/>
                               </Group>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="panel_Preview" pref="227" max="32767" attributes="2"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -108,13 +106,14 @@
                       <Component id="panel_SelectedVehicle" min="-2" max="-2" attributes="1"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="panel_VehicleName" min="-2" max="-2" attributes="1"/>
-                          <Component id="panel_Author" min="-2" max="-2" attributes="1"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="panel_Preview" max="32767" attributes="2"/>
-                          <Component id="panel_VehicleDescription" alignment="0" max="32767" attributes="2"/>
+                          <Group type="102" attributes="0">
+                              <Component id="panel_VehicleName" min="-2" max="-2" attributes="1"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="panel_Author" min="-2" max="-2" attributes="1"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="panel_VehicleDescription" pref="259" max="32767" attributes="2"/>
+                          </Group>
+                          <Component id="panel_Preview" pref="363" max="32767" attributes="2"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -128,16 +127,20 @@
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Vehicle Name">
                       <Property name="titleX" resourceKey="panel_VehicleName.border.title"/>
+                      <Property name="font" resourceKey="panel_VehicleName.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="panel_VehicleName" noResource="true"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[224, 46]"/>
+                </Property>
               </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="vehicleName_jTextField" alignment="0" pref="208" max="32767" attributes="0"/>
+                      <Component id="vehicleName_jTextField" alignment="0" pref="210" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -160,6 +163,7 @@
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Selected Vehicle">
                       <Property name="titleX" resourceKey="panel_SelectedVehicle.border.title"/>
+                      <Property name="font" resourceKey="panel_SelectedVehicle.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -202,6 +206,7 @@
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Vehicle Description">
                       <Property name="titleX" resourceKey="panel_VehicleDescription.border.title"/>
+                      <Property name="font" resourceKey="panel_VehicleDescription.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -214,12 +219,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane6" alignment="0" pref="208" max="32767" attributes="0"/>
+                      <Component id="jScrollPane6" alignment="0" pref="210" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane6" alignment="0" pref="285" max="32767" attributes="0"/>
+                      <Component id="jScrollPane6" alignment="0" pref="233" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -251,6 +256,7 @@
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Author">
                       <Property name="titleX" resourceKey="panel_Author.border.title"/>
+                      <Property name="font" resourceKey="panel_Author.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -260,7 +266,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="author_jTextField" alignment="0" pref="217" max="32767" attributes="0"/>
+                      <Component id="author_jTextField" alignment="0" pref="210" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -283,6 +289,7 @@
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Preview">
                       <Property name="titleX" resourceKey="panel_Preview.border.title"/>
+                      <Property name="font" resourceKey="panel_Preview.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -295,12 +302,23 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="panel_Processing" alignment="0" pref="217" max="32767" attributes="0"/>
+                      <Component id="panel_Red" alignment="0" max="32767" attributes="2"/>
+                      <Component id="panel_Green" alignment="0" max="32767" attributes="2"/>
+                      <Component id="panel_Blue" alignment="0" max="32767" attributes="2"/>
+                      <Component id="panel_Processing" alignment="0" pref="215" max="32767" attributes="2"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="panel_Processing" alignment="0" pref="285" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="panel_Processing" pref="169" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="panel_Red" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="panel_Green" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="panel_Blue" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -314,6 +332,156 @@
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+                </Container>
+                <Container class="javax.swing.JPanel" name="panel_Blue">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder title="Blue">
+                          <Property name="titleX" resourceKey="panel_Blue.border.title"/>
+                        </TitledBorder>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="panel_Blue" noResource="true"/>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="slider_Blue" pref="167" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="text_Blue" min="-2" pref="30" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="text_Blue" alignment="0" pref="24" max="32767" attributes="1"/>
+                          <Component id="slider_Blue" alignment="0" max="32767" attributes="1"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JSlider" name="slider_Blue">
+                      <Properties>
+                        <Property name="maximum" type="int" value="255"/>
+                        <Property name="value" type="int" value="128"/>
+                        <Property name="name" type="java.lang.String" value="slider_Blue" noResource="true"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="slider_Blue_StateChanged"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="text_Blue">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                        <Property name="font" type="java.awt.Font" resourceKey="text_Blue.font"/>
+                        <Property name="text" type="java.lang.String" resourceKey="text_Blue.text"/>
+                        <Property name="name" type="java.lang.String" value="text_Blue" noResource="true"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="panel_Green">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder title="Green">
+                          <Property name="titleX" resourceKey="panel_Green.border.title"/>
+                        </TitledBorder>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="panel_Green" noResource="true"/>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="slider_Green" pref="167" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="text_Green" min="-2" pref="30" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="text_Green" alignment="0" pref="24" max="32767" attributes="1"/>
+                          <Component id="slider_Green" alignment="0" max="32767" attributes="1"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JSlider" name="slider_Green">
+                      <Properties>
+                        <Property name="maximum" type="int" value="255"/>
+                        <Property name="value" type="int" value="128"/>
+                        <Property name="name" type="java.lang.String" value="slider_Green" noResource="true"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="slider_Green_StateChanged"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="text_Green">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                        <Property name="font" type="java.awt.Font" resourceKey="text_Green.font"/>
+                        <Property name="text" type="java.lang.String" resourceKey="text_Green.text"/>
+                        <Property name="name" type="java.lang.String" value="text_Green" noResource="true"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="panel_Red">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder title="Red">
+                          <Property name="titleX" resourceKey="panel_Red.border.title"/>
+                        </TitledBorder>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="panel_Red" noResource="true"/>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="slider_Red" pref="167" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="text_Red" min="-2" pref="30" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="text_Red" alignment="0" pref="24" max="32767" attributes="1"/>
+                          <Component id="slider_Red" alignment="0" max="32767" attributes="1"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JSlider" name="slider_Red">
+                      <Properties>
+                        <Property name="maximum" type="int" value="255"/>
+                        <Property name="value" type="int" value="128"/>
+                        <Property name="name" type="java.lang.String" value="slider_Red" noResource="true"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="slider_Red_StateChanged"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="text_Red">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                        <Property name="font" type="java.awt.Font" resourceKey="text_Red.font"/>
+                        <Property name="text" type="java.lang.String" resourceKey="text_Red.text"/>
+                        <Property name="name" type="java.lang.String" value="text_Red" noResource="true"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
                 </Container>
               </SubComponents>
             </Container>
@@ -433,7 +601,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Left_Light" pref="130" max="32767" attributes="0"/>
+                              <Component id="slider_Left_Light" pref="129" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Left_Light" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -493,7 +661,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Left_Heat" pref="130" max="32767" attributes="0"/>
+                              <Component id="slider_Left_Heat" pref="129" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Left_Heat" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -547,14 +715,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Left_Water" alignment="0" pref="54" max="32767" attributes="0"/>
-                          <Component id="slider_Left_Water" alignment="0" pref="54" max="32767" attributes="0"/>
+                          <Component id="text_Left_Water" alignment="0" pref="56" max="32767" attributes="0"/>
+                          <Component id="slider_Left_Water" alignment="0" pref="56" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Left_Water" pref="130" max="32767" attributes="0"/>
+                              <Component id="slider_Left_Water" pref="129" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Left_Water" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -608,14 +776,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Left_Power" alignment="0" pref="55" max="32767" attributes="0"/>
-                          <Component id="slider_Left_Power" alignment="0" pref="55" max="32767" attributes="0"/>
+                          <Component id="text_Left_Power" alignment="0" pref="56" max="32767" attributes="0"/>
+                          <Component id="slider_Left_Power" alignment="0" pref="56" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Left_Power" pref="130" max="32767" attributes="0"/>
+                              <Component id="slider_Left_Power" pref="129" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Left_Power" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -673,9 +841,9 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_MotorStrength" alignment="0" pref="146" max="32767" attributes="0"/>
+                      <Component id="text_MotorStrength" alignment="0" pref="143" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="slider_MotorStrength" pref="136" max="32767" attributes="0"/>
+                          <Component id="slider_MotorStrength" pref="133" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -683,7 +851,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="slider_MotorStrength" pref="154" max="32767" attributes="0"/>
+                          <Component id="slider_MotorStrength" pref="153" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="text_MotorStrength" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
@@ -771,14 +939,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Right_Light" alignment="1" pref="57" max="32767" attributes="0"/>
-                          <Component id="slider_Right_Light" alignment="0" pref="57" max="32767" attributes="0"/>
+                          <Component id="text_Right_Light" alignment="1" pref="56" max="32767" attributes="0"/>
+                          <Component id="slider_Right_Light" alignment="0" pref="56" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Right_Light" pref="128" max="32767" attributes="0"/>
+                              <Component id="slider_Right_Light" pref="129" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Right_Light" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -832,14 +1000,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Right_Heat" alignment="0" pref="54" max="32767" attributes="0"/>
-                          <Component id="slider_Right_Heat" alignment="1" pref="54" max="32767" attributes="0"/>
+                          <Component id="text_Right_Heat" alignment="0" pref="56" max="32767" attributes="0"/>
+                          <Component id="slider_Right_Heat" alignment="1" pref="56" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Right_Heat" pref="128" max="32767" attributes="0"/>
+                              <Component id="slider_Right_Heat" pref="129" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Right_Heat" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -893,14 +1061,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Right_Water" alignment="0" pref="55" max="32767" attributes="0"/>
-                          <Component id="slider_Right_Water" alignment="0" pref="55" max="32767" attributes="0"/>
+                          <Component id="text_Right_Water" alignment="0" pref="56" max="32767" attributes="0"/>
+                          <Component id="slider_Right_Water" alignment="0" pref="56" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Right_Water" pref="128" max="32767" attributes="0"/>
+                              <Component id="slider_Right_Water" pref="129" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Right_Water" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -954,14 +1122,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Right_Power" alignment="0" pref="55" max="32767" attributes="0"/>
-                          <Component id="slider_Right_Power" alignment="0" pref="55" max="32767" attributes="0"/>
+                          <Component id="text_Right_Power" alignment="0" pref="56" max="32767" attributes="0"/>
+                          <Component id="slider_Right_Power" alignment="0" pref="56" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Right_Power" pref="128" max="32767" attributes="0"/>
+                              <Component id="slider_Right_Power" pref="129" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Right_Power" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -983,7 +1151,7 @@
                         <Property name="name" type="java.lang.String" value="slider_Right_Power" noResource="true"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="slider_Right_PowerStateChanged"/>
+                        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="slider_Right_Power_StateChanged"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="text_Right_Power">
@@ -1015,9 +1183,9 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_Aggression" alignment="0" pref="146" max="32767" attributes="0"/>
+                      <Component id="text_Aggression" alignment="0" pref="143" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="slider_Aggression" pref="136" max="32767" attributes="0"/>
+                          <Component id="slider_Aggression" pref="133" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1025,7 +1193,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="slider_Aggression" pref="153" max="32767" attributes="0"/>
+                          <Component id="slider_Aggression" pref="154" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="text_Aggression" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
