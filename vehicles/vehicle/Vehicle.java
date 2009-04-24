@@ -199,7 +199,6 @@ public class Vehicle{
 
 				}//end children for loop
 				//System.out.println("END OF COMPONENT");
-				vc.toInternalXML();				
 				components.add(vc);
 			}
 		}

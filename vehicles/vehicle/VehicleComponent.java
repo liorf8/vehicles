@@ -268,29 +268,7 @@ public class VehicleComponent{
 	}
 	
 	
-	/**
-	 * Write out the current VehicleComponent to a file specified by the filename attribute
-	 */
-	/* Taken out for now, probably not going to be needed
-	public void serialiseXMLDoc(){
-		try{
-			if() //TODO write attributes from object to XML
-			xmldoc.appendChild(root); //finalise the XML document
-			FileOutputStream fos = new FileOutputStream(filename);
-			OutputFormat of = new OutputFormat("XML","ISO-8859-1",true);
-			of.setIndent(1);
-			of.setIndenting(true);
-			XMLSerializer serializer = new XMLSerializer(fos,of);//prepare a serialiser for
-															//generating XML documents
-			// As a DOMSerializer
-			serializer.asDOMSerializer();
-			serializer.serialize( xmldoc.getDocumentElement() );//get the root element and start writing
-			fos.close();
-		}catch(Exception e ){
-			e.printStackTrace();
-		}
-	}
-	 */
+	 
 	/** 
 	 * Generate an internal XML representation of the object and its attributes
 	 */
@@ -327,7 +305,7 @@ public class VehicleComponent{
 			this.addRightSensorWater(VehicleComponentRightSensorWater);
 		}
 		
-		xmldoc.appendChild(root);
+		//xmldoc.appendChild(root); this is only needed for saving the actual component to file, we won't be doing that in the end program
 	}
 
 	/**
@@ -336,7 +314,8 @@ public class VehicleComponent{
 	 * @return The root element of this VehicleComponent
 	 */
 	public Element getRootElement(){
-		return root;
+		this.toInternalXML(); //brilliantly-placed function call that fixes all sorts of weird errors and cleans up the interface
+		return root; //now the root element has had all attributes attached to it, return it
 	}
 
 }
