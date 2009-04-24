@@ -29,7 +29,6 @@ public class VehicleTest {
 			v.setRightSensorPower(84);
 			v.setRightSensorWater(56);
 			
-
 			v.saveVehicle(); //convert object and its attributes into XML
 
 			/*Now the vehicle is saved as an xml doc, lets try load that xml back into an object */
@@ -40,5 +39,4 @@ public class VehicleTest {
 			//  to produce the same xml
 
 			}
-
 }
