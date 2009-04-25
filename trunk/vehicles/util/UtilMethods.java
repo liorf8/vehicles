@@ -18,7 +18,7 @@ public class UtilMethods {
 		File[] files = new File(folderName).listFiles(); //get list of files
 		EditorVehicle[] list = new EditorVehicle[files.length - 1];
 		for(int i =0; i < files.length;i++){
-			if(files[i].isFile()){ // if current entry is a file
+			if(files[i].isFile() && files[i].toString().endsWith(".xml")){ // if current entry is a file
 				//System.out.println(files[i].toString());
 				v.add(new EditorVehicle(files[i].toString(),true)); //create an object from the XML in this file
 			}
