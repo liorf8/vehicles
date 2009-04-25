@@ -15,6 +15,9 @@ public class Grid {
 		this.height = h;
         this.desc = d;
 	}
+	public Grid(){
+		
+	}
 
     public String getDesc() {
         return desc;
