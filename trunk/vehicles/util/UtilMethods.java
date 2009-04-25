@@ -50,8 +50,8 @@ public class UtilMethods {
 	 * @return A formatted version of the string passed
 	 */
 	public static String formatString(String s){
-		s = s.replaceAll("[^a-zA-Z0-9]", "");
         s = s.toLowerCase();
+        s = s.replaceAll("[^a-z0-9]", "");
 		return s;
 	}
 }
