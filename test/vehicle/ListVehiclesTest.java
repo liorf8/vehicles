@@ -7,7 +7,7 @@ import vehicles.vehicle.*;
 public class ListVehiclesTest {
 	public static void main(String args[]){
 		/*CREATE A NEW VEHICLE*/
-		EditorVehicle veh = new EditorVehicle("xml/vehicles/angry.xml");
+		EditorVehicle veh = new EditorVehicle("xml/vehicles/angry.veh");
 		veh.setVehicleName("Angry Vehicle");
 		veh.setVehicleAuthor("Some sweaty angry guy");
 		veh.setVehicleDescription("This is a very angry little vehicle, This is a very angry little vehicle, This is a very angry little vehicle, This is a very angry little vehicle");
