@@ -6,6 +6,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.apache.xerces.parsers.DOMParser;
 import java.util.Iterator;
+import java.io.File;
 
 /**
  * 
@@ -21,6 +22,7 @@ public class Vehicle {
     protected String vehicleName = null; //the name of this vehicle
     protected String vehicleAuthor = null; //the author of this vehicle
     protected String vehicleDescription = null; //the description of this vehicle
+    protected String lastModified = null;
     protected Vector<VehicleComponent> components; //components of the vehicle
     protected double max_battery_capacity = 100; //maximum battery this vehicle can have
     protected double curr_battery_capacity = 100;//current battery capacity
@@ -203,7 +205,13 @@ public class Vehicle {
         return toReturn;
     }
     
-
+    public String getFileName(){
+    	String filename = this.xmlLocation;
+    	String sep = File.separator;
+    	String[] parts = filename.split(sep);
+    	return parts[parts.length - 1];
+    }
+    
     public void setVehicleColour(VehicleColour vehicleColour) {
         this.vehicleColour = vehicleColour;
     }
@@ -214,6 +222,14 @@ public class Vehicle {
 
     public void setVehicleDescription(String vehicleDescription) {
         this.vehicleDescription = vehicleDescription;
+    }
+    
+    public void setLastModified(String timeStamp){
+    	this.lastModified = timeStamp;
+    }
+    
+    public String getLastModified(){
+    	return this.lastModified;
     }
 
     public int getAggression() {
@@ -291,6 +307,9 @@ public class Vehicle {
                 }
             }
 
+            NodeList lastModded = dom.getElementsByTagName("LastModified");
+            this.setLastModified(lastModded.item(0).getChildNodes().item(0).getNodeValue());
+            
             NodeList maxBattery = dom.getElementsByTagName("max_battery_capacity");
             this.setMax_battery_capacity(Double.parseDouble(maxBattery.item(0).getChildNodes().item(0).getNodeValue()));
 
