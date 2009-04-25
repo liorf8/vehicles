@@ -78,6 +78,7 @@ public class EditorSimulation extends Simulation{
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
 		writeXMLEntry("LastModified", dateFormat.format(date), xmldoc);
+		this.setLastModified(dateFormat.format(date));
 	}
 
 	/**
