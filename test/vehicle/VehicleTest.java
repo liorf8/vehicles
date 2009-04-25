@@ -30,6 +30,9 @@ public class VehicleTest {
 			v.setRightSensorWater(56);
 			
 			v.saveVehicle(); //convert object and its attributes into XML
+			System.out.println("Testing getting filename");
+			System.out.println("Filepath: " + v.getXmlLocation());
+			System.out.println("Filename: " + v.setFileName());
 
 			/*Now the vehicle is saved as an xml doc, lets try load that xml back into an object */
 			EditorVehicle veh = new EditorVehicle("xml/vehicles/hungry.xml",true); //constructor loads xml into an object

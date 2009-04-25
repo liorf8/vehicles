@@ -1,10 +1,12 @@
 package test.processing;
 
 import processing.core.*;
+import vehicles.simulation.*;
 
 @SuppressWarnings("serial")
 public class ProcessingVehicleTest extends PApplet {
 
+	Simulation s = new Simulation("/home/graysr/Eclipse_Workspace/2ba7_GroupProject/xml/simulations/listTest1.xml");
     Robot[] robots;
     Source[] sources;
     boolean mouseDown;

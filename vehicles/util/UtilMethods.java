@@ -44,6 +44,11 @@ public class UtilMethods {
 		return s.toArray(list);
 	}
 	
+	/**
+	 * Removes all non alphanumeric characters in a string
+	 * @param s The string to format
+	 * @return A formatted version of the string passed
+	 */
 	public static String formatString(String s){
 		s = s.replaceAll("[^a-zA-Z0-9]", "");
         s = s.toLowerCase();
