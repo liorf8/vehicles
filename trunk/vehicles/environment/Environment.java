@@ -85,7 +85,7 @@ public class Environment {
 
 			/*If valid Environment file, continue*/
 			xmlLocation = filename;
-			xmldoc= new DocumentImpl();
+			xmldoc = new DocumentImpl();
 			this.root = xmldoc.createElement("Environment");
 			this.elementVector = new Vector<EnvironmentElement>();
 			this.grid = new Grid();
@@ -245,10 +245,10 @@ public class Environment {
 			if(this.description != null){
 				this.writeXMLEntry("description", description, xmldoc);
 			}
-			if(this.grid.getWidth() != 0.0){
+			if(this.grid.getWidth() != 0){
 				this.writeXMLEntry("width", Integer.toString(grid.getWidth()), xmldoc);
 			}
-			if(this.grid.getHeight() != 0.0){
+			if(this.grid.getHeight() != 0){
 				this.writeXMLEntry("height", Integer.toString(grid.getHeight()), xmldoc);
 			}
 			if(this.elementVector != null){
@@ -316,11 +316,11 @@ public class Environment {
 		return this.lastModified;
 	}
 
-	public double getWidth(){
+	public int getWidth(){
 		return this.grid.getWidth();
 	}
 
-	public double getHeigth(){
+	public int getHeigth(){
 		return this.grid.getHeight();
 	}
 

@@ -26,8 +26,8 @@ public class EnvironmentTest{
 		 * Create an environment and write to xml
 		 */
 		Environment e = new Environment("desert","xml/environments/desert.env");
-		e.setHeight(500);
-		e.setWidth(200);
+		e.setWidth(640);
+		e.setHeight(480);
 		//e.setLastModified(timeStamp) Shaun- will you tell me how to get the current time?
 		//Karl, timestamp is autoset when writing xml
 		e.setAuthor("some guy");
