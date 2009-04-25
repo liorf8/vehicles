@@ -130,38 +130,23 @@ public class Environment {
 				if(curr.getNodeName().contains("type")){//enviro-elem type
 					ee.setType(Integer.parseInt(curr.getFirstChild().getNodeValue()));
 				}
-				if(curr.getNodeName().contains("xPos")){//enviro-elem xPos
+				if(curr.getNodeName().contains("Xpos")){//enviro-elem xPos
 					ee.setXpos(Double.parseDouble(curr.getFirstChild().getNodeValue()));
 				}
-				if(curr.getNodeName().contains("yPos")){//enviro-elem yPos
+				if(curr.getNodeName().contains("Ypos")){//enviro-elem yPos
 					ee.setYpos(Double.parseDouble(curr.getFirstChild().getNodeValue()));
 				}
-				if(curr.getNodeName().contains("Range")){//enviro-elem range/radius
-					ee.setRadius(Double.parseDouble(curr.getFirstChild().getNodeValue()));					
+				if(curr.getNodeName().contains("radius")){//enviro-elem range/radius
+					ee.setRadius(Integer.parseInt(curr.getFirstChild().getNodeValue()));					
 				}
-				if(curr.getNodeName().contains("Intensity")){//enviro-elem intensity/strength
-					ee.setStrength(Double.parseDouble(curr.getFirstChild().getNodeValue()));					
+				if(curr.getNodeName().contains("strength")){//enviro-elem intensity/strength
+					ee.setStrength(Integer.parseInt(curr.getFirstChild().getNodeValue()));					
 				}
 			}
-			/*Now the object has been created, need to identify it's type, create an appropriate subclass of EnvironmentElement, and add
-			 * this to the vector. 
+			/*Now the object has been created, save it
+			 * 
 			 */
-			if(ee.getType() == EnvironmentElement.HeatSource){
-				HeatSource hs = new HeatSource(ee);
-				this.elementVector.add(hs); //save the new element
-			}
-			if(ee.getType() == EnvironmentElement.LightSource){
-				LightSource ls = new LightSource(ee);
-				this.elementVector.add(ls); //save the new element
-			}
-			if(ee.getType() == EnvironmentElement.PowerSource){
-				PowerSource ps = new PowerSource(ee);
-				this.elementVector.add(ps); //save the new element
-			}
-			if(ee.getType() == EnvironmentElement.WaterSource){
-				WaterSource ws = new WaterSource(ee);
-				this.elementVector.add(ws); //save the new element
-			}
+			this.addElement(ee);
 			
 		} //end of an single element for loop iteration here
 
@@ -467,5 +452,6 @@ public class Environment {
 	public String toString(){
 		return this.name + " (" + this.fileName + ")";
 	}
+	
 
 }
