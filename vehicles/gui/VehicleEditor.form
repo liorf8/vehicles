@@ -684,7 +684,6 @@
                         <Property name="orientation" type="int" value="1"/>
                         <Property name="paintLabels" type="boolean" value="true"/>
                         <Property name="paintTicks" type="boolean" value="true"/>
-                        <Property name="snapToTicks" type="boolean" value="true"/>
                         <Property name="value" type="int" value="0"/>
                         <Property name="name" type="java.lang.String" value="slider_Left_Heat" noResource="true"/>
                       </Properties>
@@ -745,7 +744,6 @@
                         <Property name="orientation" type="int" value="1"/>
                         <Property name="paintLabels" type="boolean" value="true"/>
                         <Property name="paintTicks" type="boolean" value="true"/>
-                        <Property name="snapToTicks" type="boolean" value="true"/>
                         <Property name="value" type="int" value="0"/>
                         <Property name="name" type="java.lang.String" value="slider_Left_Water" noResource="true"/>
                       </Properties>
@@ -806,7 +804,6 @@
                         <Property name="orientation" type="int" value="1"/>
                         <Property name="paintLabels" type="boolean" value="true"/>
                         <Property name="paintTicks" type="boolean" value="true"/>
-                        <Property name="snapToTicks" type="boolean" value="true"/>
                         <Property name="value" type="int" value="0"/>
                         <Property name="name" type="java.lang.String" value="slider_Left_Power" noResource="true"/>
                       </Properties>
@@ -872,7 +869,6 @@
                     <Property name="orientation" type="int" value="1"/>
                     <Property name="paintLabels" type="boolean" value="true"/>
                     <Property name="paintTicks" type="boolean" value="true"/>
-                    <Property name="snapToTicks" type="boolean" value="true"/>
                     <Property name="name" type="java.lang.String" value="slider_MotorStrength" noResource="true"/>
                   </Properties>
                   <Events>
@@ -969,7 +965,6 @@
                         <Property name="orientation" type="int" value="1"/>
                         <Property name="paintLabels" type="boolean" value="true"/>
                         <Property name="paintTicks" type="boolean" value="true"/>
-                        <Property name="snapToTicks" type="boolean" value="true"/>
                         <Property name="value" type="int" value="0"/>
                         <Property name="name" type="java.lang.String" value="slider_Right_Light" noResource="true"/>
                       </Properties>
@@ -1030,7 +1025,6 @@
                         <Property name="orientation" type="int" value="1"/>
                         <Property name="paintLabels" type="boolean" value="true"/>
                         <Property name="paintTicks" type="boolean" value="true"/>
-                        <Property name="snapToTicks" type="boolean" value="true"/>
                         <Property name="value" type="int" value="0"/>
                         <Property name="name" type="java.lang.String" value="slider_Right_Heat" noResource="true"/>
                       </Properties>
@@ -1091,7 +1085,6 @@
                         <Property name="orientation" type="int" value="1"/>
                         <Property name="paintLabels" type="boolean" value="true"/>
                         <Property name="paintTicks" type="boolean" value="true"/>
-                        <Property name="snapToTicks" type="boolean" value="true"/>
                         <Property name="value" type="int" value="0"/>
                         <Property name="name" type="java.lang.String" value="slider_Right_Water" noResource="true"/>
                       </Properties>
@@ -1152,7 +1145,6 @@
                         <Property name="orientation" type="int" value="1"/>
                         <Property name="paintLabels" type="boolean" value="true"/>
                         <Property name="paintTicks" type="boolean" value="true"/>
-                        <Property name="snapToTicks" type="boolean" value="true"/>
                         <Property name="value" type="int" value="0"/>
                         <Property name="name" type="java.lang.String" value="slider_Right_Power" noResource="true"/>
                       </Properties>
@@ -1214,7 +1206,6 @@
                     <Property name="orientation" type="int" value="1"/>
                     <Property name="paintLabels" type="boolean" value="true"/>
                     <Property name="paintTicks" type="boolean" value="true"/>
-                    <Property name="snapToTicks" type="boolean" value="true"/>
                     <Property name="name" type="java.lang.String" value="slider_Aggression" noResource="true"/>
                   </Properties>
                   <Events>
