@@ -120,10 +120,10 @@ public class Simulation {
 				this.setEnvironment(node_value);
 			}
 			else if(name.equals("perishable_vehicles")){
-				this.setPerishableVehicles(Boolean.getBoolean(node_value));
+				this.setPerishableVehicles(Boolean.valueOf(node_value));
 			}
 			else if(name.equals("evolution")){
-				this.setEvolution(Boolean.getBoolean(node_value));
+				this.setEvolution(Boolean.valueOf(node_value));
 			}
 			else if(name.equals("genetic_selection_method")){
 				this.setGeneticSelectionMethod(Integer.parseInt(node_value));
@@ -254,7 +254,7 @@ public class Simulation {
 			System.out.println("NumVehicles\t" + this.vehicles.size());
 			System.out.println("\tVehicle Paths");
 			for(int i = 0; i < vehicles.size(); i++){
-				System.out.println(vehicles.elementAt(i).getXmlLocation());
+				System.out.println(vehicles.elementAt(i).toString());
 			}
 		}
 		else{
