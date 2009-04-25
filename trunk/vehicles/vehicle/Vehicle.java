@@ -18,6 +18,7 @@ import java.io.File;
 public class Vehicle {
 
     protected String xmlLocation; //location of the XML file representing this vehicle
+    protected String fileName = null;
 	/*Attributes of a vehicle*/
     protected String vehicleName = null; //the name of this vehicle
     protected String vehicleAuthor = null; //the author of this vehicle
@@ -206,10 +207,18 @@ public class Vehicle {
     }
     
     public String getFileName(){
+    	return this.fileName;
+    }
+    
+    public void setFileName(String f){
+    	this.fileName = f;
+    }
+    
+    public void setFileName(){
     	String filename = this.xmlLocation;
     	String sep = File.separator;
     	String[] parts = filename.split(sep);
-    	return parts[parts.length - 1];
+    	this.fileName = parts[parts.length - 1];
     }
     
     public void setVehicleColour(VehicleColour vehicleColour) {
@@ -294,6 +303,7 @@ public class Vehicle {
     public Vehicle(String filename) {
         try {
             xmlLocation = filename;
+            this.setFileName();
             components = new Vector<VehicleComponent>();
                         DOMParser p = new DOMParser();
             p.parse(xmlLocation); //get a parsed version of the file into memory
@@ -339,7 +349,7 @@ public class Vehicle {
 
         //Node root = dom.getDocumentElement(); //get the root element from the document
         //handleNode(root); //recursive function to handle the nodes
-
+            
         } catch (Exception e) {
             e.printStackTrace();
             //System.err.println("An error occurred while creating a vehicle from the file '" +
@@ -436,6 +446,7 @@ public class Vehicle {
 
     public void setXmlLocation(String xmlLocation) {
         this.xmlLocation = xmlLocation;
+        this.setFileName();
     }
 
     public String getVehicleName() {
@@ -460,6 +471,7 @@ public class Vehicle {
     
     public void printDetails(){
     	System.out.println("Details for vehicle to be at location: " + this.xmlLocation);
+    	System.out.println("File Name: " + this.fileName);
     	System.out.println("Name\t" + this.vehicleName);
     	System.out.println("Author\t" + this.vehicleAuthor);
     	System.out.println("Description\t" + this.vehicleDescription);

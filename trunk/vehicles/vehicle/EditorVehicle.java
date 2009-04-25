@@ -41,6 +41,7 @@ public class EditorVehicle extends Vehicle {
 	 */
 	public EditorVehicle(String fileName){
 		xmlLocation = fileName;
+		this.setFileName();
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("Vehicle");
 	}
