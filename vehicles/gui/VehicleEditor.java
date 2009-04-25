@@ -1064,7 +1064,7 @@ public class VehicleEditor extends javax.swing.JFrame {
 
     private void button_SaveAsMouseClicked(MouseEvent evt) {//GEN-FIRST:event_button_SaveAsMouseClicked
         String filename = UtilMethods.formatString(text_VehicleName.getText());
-        EditorVehicle v = new EditorVehicle("xml/vehicles/" + filename + ".xml");
+        EditorVehicle v = new EditorVehicle("xml/vehicles/" + filename + ".veh");
         v.setVehicleName(text_VehicleName.getText()); //set object attributes
 		v.setVehicleAuthor(text_Author.getText());
 		v.setVehicleDescription(text_VehicleDescription.getText());
