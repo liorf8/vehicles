@@ -18,8 +18,8 @@ public class EnvironmentElement {
 	public static final int NotSet = 0;;
 	public static final int LightSource = 1;
 	public static final int HeatSource = 2;
-	public static final int PowerSource = 3;
-	public static final int WaterSource = 4;
+	public static final int WaterSource = 3;
+	public static final int PowerSource = 4;
 
 	protected String fileLocation = null;//The XML file location of this element
 	protected String author = null, lastModified = null;
@@ -27,8 +27,8 @@ public class EnvironmentElement {
 	//Environment Element attributes
 	protected String name = null;
 	protected int type = 0; //type of element (see above)
-	protected int radius = 0;
-	protected int strength = 0;
+	protected int radius = 10;
+	protected int strength = 50;
 
 
 	protected Point position = null;
@@ -38,9 +38,30 @@ public class EnvironmentElement {
 	/**
 	 * An empty constructor
 	 */
-	public EnvironmentElement(){
-		xmldoc= new DocumentImpl();
+	public EnvironmentElement() {
+		xmldoc = new DocumentImpl();
 		root = xmldoc.createElement("EnvironmentElement");
+	}
+
+    /**
+	 * Constructor for element type only
+	 */
+    public EnvironmentElement(int p_type) {
+		this.type = p_type;
+		switch(this.type){
+		case EnvironmentElement.HeatSource :
+			this.name = "Heat";
+			break;
+		case EnvironmentElement.LightSource:
+			this.name = "Light";
+			break;
+		case EnvironmentElement.PowerSource:
+			this.name = "Power";
+			break;
+		case EnvironmentElement.WaterSource:
+			this.name = "Water";
+			break;
+		}
 	}
 
 	/**
@@ -106,17 +127,16 @@ public class EnvironmentElement {
 		this.position = position;
 		switch(this.type){
 		case EnvironmentElement.HeatSource :
-			this.name = "heat";
+			this.name = "Heat";
 			break;
 		case EnvironmentElement.LightSource:
-			this.name = "light";
+			this.name = "Light";
 			break;
 		case EnvironmentElement.PowerSource:
-			this.name = "power";
+			this.name = "Power";
 			break;
-
 		case EnvironmentElement.WaterSource:
-			this.name = "water";
+			this.name = "Water";
 			break;
 
 		}
@@ -197,11 +217,11 @@ public class EnvironmentElement {
 	public String getName() {
 		return name;
 	}
-	public double getRadius() {
+	public int getRadius() {
 		return radius;
 	}
 
-	public double getStrength() {
+	public int getStrength() {
 		return strength;
 	}
 	public String getAuthor(){

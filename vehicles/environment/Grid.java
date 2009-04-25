@@ -8,24 +8,15 @@ public class Grid {
     
 	private int width;
 	private int height;
-    private String desc;
 
-	public Grid(int w, int h, String d) {
+	public Grid(int w, int h) {
 		this.width = w;
 		this.height = h;
-        this.desc = d;
 	}
+
 	public Grid(){
 		
 	}
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
 
     public int getHeight() {
         return height;
@@ -44,6 +35,6 @@ public class Grid {
     }
 
     public String toString(){
-        return this.width + " " + this.height;
+        return this.width + " x " + this.height;
     }
 }

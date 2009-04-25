@@ -99,7 +99,7 @@
                           <Component id="panel_LastModified" alignment="0" max="32767" attributes="2"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="panel_Preview" pref="219" max="32767" attributes="2"/>
+                      <Component id="panel_Appearance" pref="219" max="32767" attributes="2"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -109,7 +109,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="panel_Preview" alignment="1" pref="363" max="32767" attributes="2"/>
+                          <Component id="panel_Appearance" alignment="1" pref="363" max="32767" attributes="2"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="panel_VehicleName" min="-2" max="-2" attributes="1"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -289,17 +289,17 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="panel_Preview">
+            <Container class="javax.swing.JPanel" name="panel_Appearance">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Preview">
-                      <Property name="titleX" resourceKey="panel_Preview.border.title"/>
-                      <Property name="font" resourceKey="panel_Preview.border.titleFont"/>
+                    <TitledBorder title="Appearance">
+                      <Property name="titleX" resourceKey="panel_Appearance.border.title"/>
+                      <Property name="font" resourceKey="panel_Appearance.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
-                <Property name="name" type="java.lang.String" value="panel_Preview" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="panel_Appearance" noResource="true"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[220, 311]"/>
                 </Property>

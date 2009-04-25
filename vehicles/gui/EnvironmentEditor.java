@@ -1,5 +1,6 @@
 package vehicles.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -21,7 +22,6 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
@@ -48,12 +48,23 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         environmentArray = UtilMethods.getEnvironmentsFromFolder("xml/environments");
         environmentDropDown = new DefaultComboBoxModel(environmentArray);
 
-        embed = new Embedded();
+        gridArray = new Grid[] {new Grid(640,480),new Grid(800,600),new Grid(1024,768)};
+        gridDropDown = new DefaultComboBoxModel(gridArray);
+
+        elementArray = new EnvironmentElement[] {new EnvironmentElement(1),
+                                                new EnvironmentElement(2),
+                                                new EnvironmentElement(3),
+                                                new EnvironmentElement(4)};
+        elementDropDown = new DefaultComboBoxModel(elementArray);
+
+        proGrid = new Embedded();
+        proElement = new Embedded();
         initComponents();
         // important to call this whenever embedding a PApplet.
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
-        //embed.init();
+        proGrid.init();
+        proElement.init();
         populateFields(environmentArray[0]);
     }
 
@@ -85,20 +96,20 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         text_LastModified = new JTextField();
         tab_Design = new JPanel();
         panel_Layout = new JPanel();
-        jPanel6 = new JPanel();
+        panel_Grid = new JPanel();
         panel_Tools = new JPanel();
-        jPanel8 = new JPanel();
-        jComboBox2 = new JComboBox();
-        jPanel9 = new JPanel();
-        jComboBox3 = new JComboBox();
-        jPanel10 = new JPanel();
-        panel_Red = new JPanel();
+        panel_GridSize = new JPanel();
+        dropdown_GridSize = new JComboBox();
+        panel_Brush = new JPanel();
+        dropdown_Element = new JComboBox();
+        panel_Element = new JPanel();
+        panel_Radius = new JPanel();
         slider_Radius = new JSlider();
         text_Radius = new JTextField();
-        panel_Red1 = new JPanel();
+        panel_Intensity = new JPanel();
         slider_Intensity = new JSlider();
         text_Intensity = new JTextField();
-        jToggleButton1 = new JToggleButton();
+        toggle_SelectionMode = new JToggleButton();
         button_Save = new JButton();
         button_SaveAs = new JButton();
         button_Cancel = new JButton();
@@ -267,74 +278,64 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_Layout.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Layout.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Layout.border.titleFont"))); // NOI18N
         panel_Layout.setName("panel_Layout"); // NOI18N
 
-        jPanel6.setBackground(resourceMap.getColor("jPanel6.background")); // NOI18N
-        jPanel6.setName("jPanel6"); // NOI18N
-        jPanel6.setPreferredSize(new Dimension(320, 240));
-
-        GroupLayout jPanel6Layout = new GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 347, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 342, Short.MAX_VALUE)
-        );
+        panel_Grid.setName("panel_Grid"); // NOI18N
+        panel_Grid.setPreferredSize(new Dimension(320, 240));
+        panel_Grid.setLayout(new BorderLayout());
 
         GroupLayout panel_LayoutLayout = new GroupLayout(panel_Layout);
         panel_Layout.setLayout(panel_LayoutLayout);
         panel_LayoutLayout.setHorizontalGroup(
             panel_LayoutLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jPanel6, GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+            .addComponent(panel_Grid, GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
         );
         panel_LayoutLayout.setVerticalGroup(
             panel_LayoutLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jPanel6, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+            .addComponent(panel_Grid, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
         );
+
+        panel_Grid.add(proGrid, BorderLayout.CENTER);
 
         panel_Tools.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Tools.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Tools.border.titleFont"))); // NOI18N
         panel_Tools.setName("panel_Tools"); // NOI18N
 
-        jPanel8.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel8.border.title"))); // NOI18N
-        jPanel8.setName("jPanel8"); // NOI18N
+        panel_GridSize.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_GridSize.border.title"))); // NOI18N
+        panel_GridSize.setName("panel_GridSize"); // NOI18N
 
-        jComboBox2.setModel(new DefaultComboBoxModel(new String[] { "320 x 240", "640 x 480", "800 x 600", "1024 x 768", "1280 x 960" }));
-        jComboBox2.setName("jComboBox2"); // NOI18N
+        dropdown_GridSize.setModel(gridDropDown);
+        dropdown_GridSize.setName("dropdown_GridSize"); // NOI18N
+        dropdown_GridSize.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                dropdown_GridSizeItemStateChanged(evt);
+            }
+        });
 
-        GroupLayout jPanel8Layout = new GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jComboBox2, 0, 186, Short.MAX_VALUE)
+        GroupLayout panel_GridSizeLayout = new GroupLayout(panel_GridSize);
+        panel_GridSize.setLayout(panel_GridSizeLayout);
+        panel_GridSizeLayout.setHorizontalGroup(
+            panel_GridSizeLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(dropdown_GridSize, 0, 186, Short.MAX_VALUE)
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jComboBox2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        );
-
-        jPanel9.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel9.border.title"))); // NOI18N
-        jPanel9.setName("jPanel9"); // NOI18N
-
-        jComboBox3.setModel(new DefaultComboBoxModel(new String[] { "Grass", "Sand", "Gravel", "Water", "Power Source" }));
-        jComboBox3.setName("jComboBox3"); // NOI18N
-
-        jPanel10.setBackground(resourceMap.getColor("jPanel10.background")); // NOI18N
-        jPanel10.setName("jPanel10"); // NOI18N
-
-        GroupLayout jPanel10Layout = new GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 186, Short.MAX_VALUE)
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 126, Short.MAX_VALUE)
+        panel_GridSizeLayout.setVerticalGroup(
+            panel_GridSizeLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(dropdown_GridSize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
-        panel_Red.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Red.border.title"))); // NOI18N
-        panel_Red.setName("panel_Red"); // NOI18N
+        panel_Brush.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Brush.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Brush.border.titleFont"))); // NOI18N
+        panel_Brush.setName("panel_Brush"); // NOI18N
+
+        dropdown_Element.setModel(elementDropDown);
+        dropdown_Element.setName("dropdown_Element"); // NOI18N
+        dropdown_Element.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                dropdown_ElementItemStateChanged(evt);
+            }
+        });
+
+        panel_Element.setName("panel_Element"); // NOI18N
+        panel_Element.setLayout(new BorderLayout());
+
+        panel_Radius.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Radius.border.title"))); // NOI18N
+        panel_Radius.setName("panel_Radius"); // NOI18N
 
         slider_Radius.setMaximum(50);
         slider_Radius.setValue(10);
@@ -350,23 +351,23 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         text_Radius.setText(resourceMap.getString("text_Radius.text")); // NOI18N
         text_Radius.setName("text_Radius"); // NOI18N
 
-        GroupLayout panel_RedLayout = new GroupLayout(panel_Red);
-        panel_Red.setLayout(panel_RedLayout);
-        panel_RedLayout.setHorizontalGroup(
-            panel_RedLayout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, panel_RedLayout.createSequentialGroup()
+        GroupLayout panel_RadiusLayout = new GroupLayout(panel_Radius);
+        panel_Radius.setLayout(panel_RadiusLayout);
+        panel_RadiusLayout.setHorizontalGroup(
+            panel_RadiusLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_RadiusLayout.createSequentialGroup()
                 .addComponent(slider_Radius, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_Radius, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
         );
-        panel_RedLayout.setVerticalGroup(
-            panel_RedLayout.createParallelGroup(Alignment.LEADING)
+        panel_RadiusLayout.setVerticalGroup(
+            panel_RadiusLayout.createParallelGroup(Alignment.LEADING)
             .addComponent(text_Radius, GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
             .addComponent(slider_Radius, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        panel_Red1.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Red1.border.title"))); // NOI18N
-        panel_Red1.setName("panel_Red1"); // NOI18N
+        panel_Intensity.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Intensity.border.title"))); // NOI18N
+        panel_Intensity.setName("panel_Intensity"); // NOI18N
 
         slider_Intensity.setName("slider_Intensity"); // NOI18N
         slider_Intensity.addChangeListener(new ChangeListener() {
@@ -380,63 +381,65 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         text_Intensity.setText(resourceMap.getString("text_Intensity.text")); // NOI18N
         text_Intensity.setName("text_Intensity"); // NOI18N
 
-        GroupLayout panel_Red1Layout = new GroupLayout(panel_Red1);
-        panel_Red1.setLayout(panel_Red1Layout);
-        panel_Red1Layout.setHorizontalGroup(
-            panel_Red1Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, panel_Red1Layout.createSequentialGroup()
+        GroupLayout panel_IntensityLayout = new GroupLayout(panel_Intensity);
+        panel_Intensity.setLayout(panel_IntensityLayout);
+        panel_IntensityLayout.setHorizontalGroup(
+            panel_IntensityLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_IntensityLayout.createSequentialGroup()
                 .addComponent(slider_Intensity, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_Intensity, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
         );
-        panel_Red1Layout.setVerticalGroup(
-            panel_Red1Layout.createParallelGroup(Alignment.LEADING)
+        panel_IntensityLayout.setVerticalGroup(
+            panel_IntensityLayout.createParallelGroup(Alignment.LEADING)
             .addComponent(text_Intensity, GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
             .addComponent(slider_Intensity, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jToggleButton1.setText(resourceMap.getString("jToggleButton1.text")); // NOI18N
-        jToggleButton1.setName("jToggleButton1"); // NOI18N
+        toggle_SelectionMode.setText(resourceMap.getString("toggle_SelectionMode.text")); // NOI18N
+        toggle_SelectionMode.setName("toggle_SelectionMode"); // NOI18N
 
-        GroupLayout jPanel9Layout = new GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addComponent(jToggleButton1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        GroupLayout panel_BrushLayout = new GroupLayout(panel_Brush);
+        panel_Brush.setLayout(panel_BrushLayout);
+        panel_BrushLayout.setHorizontalGroup(
+            panel_BrushLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(panel_BrushLayout.createSequentialGroup()
+                .addComponent(toggle_SelectionMode, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jComboBox3, 0, 75, Short.MAX_VALUE))
-            .addComponent(jPanel10, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panel_Red, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panel_Red1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(dropdown_Element, 0, 75, Short.MAX_VALUE))
+            .addComponent(panel_Element, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+            .addComponent(panel_Radius, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel_Intensity, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(jToggleButton1)
-                    .addComponent(jComboBox3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        panel_BrushLayout.setVerticalGroup(
+            panel_BrushLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(panel_BrushLayout.createSequentialGroup()
+                .addGroup(panel_BrushLayout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(toggle_SelectionMode)
+                    .addComponent(dropdown_Element, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jPanel10, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel_Element, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(panel_Red, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel_Radius, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(panel_Red1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addComponent(panel_Intensity, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
+
+        panel_Element.add(proElement, BorderLayout.CENTER);
 
         GroupLayout panel_ToolsLayout = new GroupLayout(panel_Tools);
         panel_Tools.setLayout(panel_ToolsLayout);
         panel_ToolsLayout.setHorizontalGroup(
             panel_ToolsLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jPanel8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel9, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel_GridSize, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel_Brush, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panel_ToolsLayout.setVerticalGroup(
             panel_ToolsLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(panel_ToolsLayout.createSequentialGroup()
-                .addComponent(jPanel8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel_GridSize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jPanel9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panel_Brush, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         GroupLayout tab_DesignLayout = new GroupLayout(tab_Design);
@@ -552,13 +555,35 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         JSlider tempSlider = (JSlider) evt.getSource();
         int value = tempSlider.getValue();
         text_Radius.setText(Integer.toString(value));
+        EnvironmentElement selected = (EnvironmentElement) dropdown_Element.getSelectedItem();
+        selected.setRadius(value);
 }//GEN-LAST:event_slider_Radius_StateChanged
 
     private void slider_Intensity_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Intensity_StateChanged
         JSlider tempSlider = (JSlider) evt.getSource();
         int value = tempSlider.getValue();
         text_Intensity.setText(Integer.toString(value));
+        EnvironmentElement selected = (EnvironmentElement) dropdown_Element.getSelectedItem();
+        selected.setStrength(value);
 }//GEN-LAST:event_slider_Intensity_StateChanged
+
+    private void dropdown_GridSizeItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_GridSizeItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropdown_GridSizeItemStateChanged
+
+    private void dropdown_ElementItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_ElementItemStateChanged
+        JComboBox tempComboBox = (JComboBox) evt.getSource();
+        EnvironmentElement selected = (EnvironmentElement) tempComboBox.getSelectedItem();
+        populateBrushSliders(selected);
+    }//GEN-LAST:event_dropdown_ElementItemStateChanged
+
+        private void populateBrushSliders(EnvironmentElement p_element) {
+        EnvironmentElement tempElement = p_element;
+
+        slider_Radius.setValue(tempElement.getRadius());
+        slider_Intensity.setValue(tempElement.getStrength());
+
+}
 
     private void populateFields(Environment p_environment) {
         Environment tempEnvironment = p_environment;
@@ -573,23 +598,22 @@ public class EnvironmentEditor extends javax.swing.JFrame {
     private JButton button_Cancel;
     private JButton button_Save;
     private JButton button_SaveAs;
+    private JComboBox dropdown_Element;
+    private JComboBox dropdown_GridSize;
     private JComboBox dropdown_SelectedEnvironment;
-    private JComboBox jComboBox2;
-    private JComboBox jComboBox3;
-    private JPanel jPanel10;
     private JPanel jPanel3;
-    private JPanel jPanel6;
-    private JPanel jPanel8;
-    private JPanel jPanel9;
-    private JToggleButton jToggleButton1;
     private JPanel panel_Author;
+    private JPanel panel_Brush;
+    private JPanel panel_Element;
     private JPanel panel_EnvironmentDescription;
     private JPanel panel_EnvironmentName;
+    private JPanel panel_Grid;
+    private JPanel panel_GridSize;
+    private JPanel panel_Intensity;
     private JPanel panel_LastModified;
     private JPanel panel_Layout;
     private JPanel panel_Preview;
-    private JPanel panel_Red;
-    private JPanel panel_Red1;
+    private JPanel panel_Radius;
     private JPanel panel_SelectedEnvironment;
     private JPanel panel_Tools;
     private JScrollPane scrollpanel_VehicleDescription;
@@ -605,8 +629,13 @@ public class EnvironmentEditor extends javax.swing.JFrame {
     private JTextField text_LastModified;
     private JTextField text_Radius;
     private JTextField text_Status;
+    private JToggleButton toggle_SelectionMode;
     // End of variables declaration//GEN-END:variables
-    private PApplet embed;
+    private PApplet proGrid, proElement;
     private Environment[] environmentArray;
+    private Grid[] gridArray;
+    private EnvironmentElement[] elementArray;
     private DefaultComboBoxModel environmentDropDown;
+    private DefaultComboBoxModel gridDropDown;
+    private DefaultComboBoxModel elementDropDown;
 }
