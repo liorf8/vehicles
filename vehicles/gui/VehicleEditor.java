@@ -53,9 +53,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
         embed.init();
-        for (int i = 0; i<vehiclesArray.length;i++) {
-			System.out.println(vehiclesArray[i].getXmlLocation());
-		}
+        populateFields(vehiclesArray[0]);
 
     }
 
@@ -93,6 +91,8 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Red = new JPanel();
         slider_Red = new JSlider();
         text_Red = new JTextField();
+        panel_LastModified = new JPanel();
+        text_LastModified = new JTextField();
         tab_Design = new JPanel();
         panel_LeftSensor = new JPanel();
         panel_Left_Light = new JPanel();
@@ -183,7 +183,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         );
         panel_VehicleDescriptionLayout.setVerticalGroup(
             panel_VehicleDescriptionLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+            .addComponent(scrollpanel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
         );
 
         panel_Author.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Author.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Author.border.titleFont"))); // NOI18N
@@ -328,6 +328,24 @@ public class VehicleEditor extends javax.swing.JFrame {
 
         panel_Processing.add(embed, BorderLayout.CENTER);
 
+        panel_LastModified.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_LastModified.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_LastModified.border.titleFont"))); // NOI18N
+        panel_LastModified.setName("panel_LastModified"); // NOI18N
+
+        text_LastModified.setEditable(false);
+        text_LastModified.setBorder(BorderFactory.createEmptyBorder(1, 4, 1, 1));
+        text_LastModified.setName("text_LastModified"); // NOI18N
+
+        GroupLayout panel_LastModifiedLayout = new GroupLayout(panel_LastModified);
+        panel_LastModified.setLayout(panel_LastModifiedLayout);
+        panel_LastModifiedLayout.setHorizontalGroup(
+            panel_LastModifiedLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_LastModified, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+        );
+        panel_LastModifiedLayout.setVerticalGroup(
+            panel_LastModifiedLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_LastModified, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        );
+
         GroupLayout tab_PropertiesLayout = new GroupLayout(tab_Properties);
         tab_Properties.setLayout(tab_PropertiesLayout);
         tab_PropertiesLayout.setHorizontalGroup(
@@ -335,9 +353,10 @@ public class VehicleEditor extends javax.swing.JFrame {
             .addGroup(tab_PropertiesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
                     .addComponent(panel_VehicleName, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
                     .addComponent(panel_Author, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
+                    .addComponent(panel_LastModified, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                 .addContainerGap())
@@ -353,7 +372,9 @@ public class VehicleEditor extends javax.swing.JFrame {
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(panel_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)))
+                        .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(panel_LastModified, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -865,6 +886,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_SelectedVehicle.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_SelectedVehicle.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_SelectedVehicle.border.titleFont"))); // NOI18N
         panel_SelectedVehicle.setName("panel_SelectedVehicle"); // NOI18N
 
+        dropdown_selectedVehicle.setMaximumRowCount(4);
         dropdown_selectedVehicle.setModel(vehiclesDropDown);
         dropdown_selectedVehicle.setName("dropdown_selectedVehicle"); // NOI18N
         dropdown_selectedVehicle.addItemListener(new ItemListener() {
@@ -898,7 +920,7 @@ public class VehicleEditor extends javax.swing.JFrame {
                     .addComponent(panel_SelectedVehicle, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tabContainer, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(text_Status, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                        .addComponent(text_Status, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(button_Save)
                         .addPreferredGap(ComponentPlacement.RELATED)
@@ -1029,11 +1051,15 @@ public class VehicleEditor extends javax.swing.JFrame {
 		v.setRightSensorWater(slider_Right_Water.getValue());
 		v.saveVehicle(); //convert object and its attributes into XML
         v = null;
+        vehiclesArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
+        vehiclesDropDown = new DefaultComboBoxModel(vehiclesArray);
+        dropdown_selectedVehicle.setModel(vehiclesDropDown);
     }//GEN-LAST:event_button_SaveMouseClicked
 
     private void button_SaveAsMouseClicked(MouseEvent evt) {//GEN-FIRST:event_button_SaveAsMouseClicked
         System.out.print("saveas");
-        EditorVehicle v = new EditorVehicle("xml/vehicles/" + text_VehicleName.getText() + ".xml");
+        String filename = UtilMethods.formatString(text_VehicleName.getText());
+        EditorVehicle v = new EditorVehicle("xml/vehicles/" + filename + ".xml");
         v.setVehicleName(text_VehicleName.getText()); //set object attributes
 		v.setVehicleAuthor(text_Author.getText());
 		v.setVehicleDescription(text_VehicleDescription.getText());
@@ -1061,6 +1087,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         text_Author.setText(tempVehicle.getVehicleAuthor());
         text_VehicleDescription.setText(tempVehicle.getVehicleDescription());
         text_VehicleName.setText(tempVehicle.getVehicleName());
+        text_LastModified.setText("XXX");
 
         slider_Red.setValue(tempVehicle.getVehicleColourRed());
         slider_Blue.setValue(tempVehicle.getVehicleColourBlue());
@@ -1089,6 +1116,7 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JPanel panel_Author;
     private JPanel panel_Blue;
     private JPanel panel_Green;
+    private JPanel panel_LastModified;
     private JPanel panel_LeftSensor;
     private JPanel panel_Left_Heat;
     private JPanel panel_Left_Light;
@@ -1127,6 +1155,7 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JTextField text_Author;
     private JTextField text_Blue;
     private JTextField text_Green;
+    private JTextField text_LastModified;
     private JTextField text_Left_Heat;
     private JTextField text_Left_Light;
     private JTextField text_Left_Power;

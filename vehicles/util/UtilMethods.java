@@ -45,8 +45,8 @@ public class UtilMethods {
 	}
 	
 	public static String formatString(String s){
-		s.toLowerCase();
 		s = s.replaceAll("[^a-zA-Z0-9]", "");
+        s = s.toLowerCase();
 		return s;
 	}
 }
