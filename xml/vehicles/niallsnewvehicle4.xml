@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Vehicle>
+    <name>Niall&apos;s New Vehicle 4</name>
+    <author>Niall O&apos;Hara</author>
+    <description>This is a hungry little bastard 23</description>
+    <LastModified>25/04/2009 17:37:40</LastModified>
+    <max_battery_capacity>100.0</max_battery_capacity>
+    <curr_battery_capacity>100.0</curr_battery_capacity>
+    <motorStrength>100</motorStrength>
+    <aggression>100</aggression>
+    <Colour>
+        <red>154</red>
+        <green>82</green>
+        <blue>89</blue>
+    </Colour>
+    <VehicleComponent>
+        <type>LEFT</type>
+        <LeftSensorHeat>12</LeftSensorHeat>
+        <LeftSensorLight>-7</LeftSensorLight>
+        <LeftSensorPower>44</LeftSensorPower>
+        <LeftSensorWater>30</LeftSensorWater>
+    </VehicleComponent>
+    <VehicleComponent>
+        <type>RIGHT</type>
+        <RightSensorHeat>34</RightSensorHeat>
+        <RightSensorLight>50</RightSensorLight>
+        <RightSensorPower>5</RightSensorPower>
+        <RightSensorWater>16</RightSensorWater>
+    </VehicleComponent>
+</Vehicle>

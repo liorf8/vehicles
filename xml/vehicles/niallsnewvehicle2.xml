@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <Vehicle>
-    <name>Hungry</name>
-    <author>Some guy</author>
-    <description>This is a hungry little vehicle</description>
-    <LastModified>25/04/2009 17:38:58</LastModified>
+    <name>Niall&apos;s New Vehicle 2</name>
+    <author>Niall O&apos;Hara</author>
+    <description>This is a hungry little bastard 2</description>
+    <LastModified>25/04/2009 17:38:24</LastModified>
     <max_battery_capacity>100.0</max_battery_capacity>
-    <curr_battery_capacity>46.0</curr_battery_capacity>
+    <curr_battery_capacity>100.0</curr_battery_capacity>
     <motorStrength>68</motorStrength>
     <aggression>56</aggression>
     <Colour>
-        <red>132</red>
-        <green>72</green>
-        <blue>150</blue>
+        <red>154</red>
+        <green>212</green>
+        <blue>89</blue>
     </Colour>
     <VehicleComponent>
         <type>LEFT</type>
         <LeftSensorHeat>12</LeftSensorHeat>
         <LeftSensorLight>35</LeftSensorLight>
         <LeftSensorPower>42</LeftSensorPower>
-        <LeftSensorWater>50</LeftSensorWater>
+        <LeftSensorWater>-8</LeftSensorWater>
     </VehicleComponent>
     <VehicleComponent>
         <type>RIGHT</type>
         <RightSensorHeat>50</RightSensorHeat>
         <RightSensorLight>50</RightSensorLight>
         <RightSensorPower>50</RightSensorPower>
-        <RightSensorWater>50</RightSensorWater>
+        <RightSensorWater>-40</RightSensorWater>
     </VehicleComponent>
 </Vehicle>
