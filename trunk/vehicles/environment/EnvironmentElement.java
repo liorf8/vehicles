@@ -93,6 +93,16 @@ public class EnvironmentElement {
 		this.type = other.type;
 		this.xmldoc = other.xmldoc;
 	}
+	/**
+	 * Maybe constructor to use in the editor?
+	 * @param type
+	 * @param position
+	 */
+	public EnvironmentElement(int type,Point position){
+		this.type = type;
+		this.position = position;
+	}
+	
 
 	
 	/**** Setter Methods ****/
