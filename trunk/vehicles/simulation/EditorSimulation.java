@@ -75,7 +75,7 @@ public class EditorSimulation extends Simulation{
 	 * Add The Last Modified Time Stamp to the Simulation's document
 	 */
 	public void addLastModified(){
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
 		writeXMLEntry("LastModified", dateFormat.format(date), xmldoc);
 	}
@@ -124,6 +124,8 @@ public class EditorSimulation extends Simulation{
 			this.addString("Name", this.simulationName);
 			//add the author name
 			this.addString("Author", this.author);
+			//add the description
+			this.addString("Description", this.description);
 			//add modified data stamp
 			this.addLastModified();
 			//add the vehicle file paths

@@ -80,6 +80,8 @@ public class EnvironmentElement {
 	/**
 	 * A "copy" constructor
 	 * @param other The EnvironmentElement to copy attributes from(passed by value in Java, yay :D ) 
+	 * In C You could have a new pointer pointing at the original, then you'd always have the exact copy
+	 * cos no matter what they'd always point at the same thing...but that's just an aside, back to work!
 	 */
 	public EnvironmentElement(EnvironmentElement other){
 		this.name = other.name;
@@ -93,6 +95,7 @@ public class EnvironmentElement {
 		this.type = other.type;
 		this.xmldoc = other.xmldoc;
 	}
+	
 	/**
 	 * Maybe constructor to use in the editor?
 	 * @param type
