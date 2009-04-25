@@ -17,14 +17,16 @@ public class UtilMethods {
 	
 		Vector<EditorVehicle> v = new Vector<EditorVehicle>();
 		File[] files = new File(folderName).listFiles(); //get list of files
-		EditorVehicle[] list = new EditorVehicle[files.length - 1];
+		int count = 0;
 		for(int i =0; i < files.length;i++){
 			if(files[i].isFile() && files[i].toString().endsWith(".veh")){ // if current entry is a vehicle file
 				//System.out.println(files[i].toString());
 				v.add(new EditorVehicle(files[i].toString(),true)); //create an object from the XML in this file
+				count++;
 			}
 		}
-		return (EditorVehicle[])v.toArray();
+		EditorVehicle[] list = new EditorVehicle[count];
+		return v.toArray(list);
 	}
 	
 	/**
@@ -36,13 +38,15 @@ public class UtilMethods {
 		Vector<Simulation> s = new Vector<Simulation>();
 		File[] files = new File(folderPath).listFiles();
 		int len = files.length;
-		Simulation[] list = new Simulation[len - 1];
+		int count = 0;		
 		for(int i = 0; i < len; i++){
 			if(files[i].isFile() && files[i].toString().endsWith(".sim")){
 				s.add(new Simulation(files[i].toString()));
+				count++;
 			}
 		}
-		return (Simulation[])s.toArray();
+		Simulation[] list = new Simulation[count];
+		return s.toArray(list);
 	}
 	
 	/**
@@ -54,13 +58,15 @@ public class UtilMethods {
 		Vector<Environment> e = new Vector<Environment>();
 		File[] files = new File(folderPath).listFiles();
 		int len = files.length;
-		Environment[] list = new Environment[len - 1];
+		int count = 0;
 		for(int i = 0; i < len; i++){
 			if(files[i].isFile() && files[i].toString().endsWith(".env")){
 				e.add(new Environment(files[i].toString()));
 			}
 		}
-		return (Environment[])e.toArray();
+
+		Environment[] list = new Environment[count];
+		return e.toArray(list);
 	}
 	
 	/**
