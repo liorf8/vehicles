@@ -10,6 +10,7 @@ public class HeatSource extends EnvironmentElement{
 	}
 	public HeatSource(){
 		super();
+		this.name = "heat";
 		this.radius = 0.0;
 		this.strength = 0.0;
 	}

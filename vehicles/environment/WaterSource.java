@@ -10,6 +10,7 @@ public class WaterSource extends EnvironmentElement{
 	}
 	public WaterSource(){
 		super();
+		this.name = "water";
 		this.radius = 0.0;
 		this.strength = 0.0;
 	}

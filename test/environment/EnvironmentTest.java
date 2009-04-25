@@ -11,8 +11,6 @@ public class EnvironmentTest{
 		 * Create a light source, populate it's attributes, and write to file
 		 */
 		LightSource ls = new LightSource();	
-		ls.setFileLocation("xml/environments/StrongLightSource.xml");
-		ls.setName("Strong Light Source");
 		ls.setType(EnvironmentElement.LightSource);//TODO put this in object constructor
 		ls.setPosition(new Point(15,42));		
 		ls.setRadius(78);
@@ -22,8 +20,6 @@ public class EnvironmentTest{
 		 * Create a heat source, populate it's attributes, and write to file
 		 */
 		HeatSource hs = new HeatSource();
-		hs.setFileLocation("xml/environments/WeakHeatSource.xml");
-		hs.setName("Weak Heat Source");
 		hs.setType(EnvironmentElement.HeatSource); //TODO put this in object constructor
 		hs.setPosition(new Point(30,40));
 		hs.setRadius(10);

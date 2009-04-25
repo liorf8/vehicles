@@ -283,6 +283,7 @@ public class EnvironmentElement {
     
     @Override
 	public String toString(){
-		return(this.name + " " +this.type + " "+ this.radius + " " + this.strength );
+		//return(this.name + " " +this.type + " "+ this.radius + " " + this.strength + this.getXpos() + "," + this.getYpos());
+    	return(this.name);
 	}
 }

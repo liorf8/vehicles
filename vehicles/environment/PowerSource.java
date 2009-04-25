@@ -11,6 +11,7 @@ public class PowerSource extends EnvironmentElement{
 	}
 	public PowerSource(){
 		super();
+		this.name = "power";
 		this.radius = 0.0;
 		this.strength = 0.0;
 	}
