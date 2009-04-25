@@ -1048,9 +1048,15 @@ public class VehicleEditor extends javax.swing.JFrame {
 		v.setRightSensorPower(slider_Right_Power.getValue());
 		v.setRightSensorWater(slider_Right_Water.getValue());
 		v.saveVehicle(); //convert object and its attributes into XML
-        //vehiclesArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
-        //vehiclesDropDown = new DefaultComboBoxModel(vehiclesArray);
-        //dropdown_selectedVehicle.setModel(vehiclesDropDown);
+        String lastModified = v.getLastModified();
+        vehiclesArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
+        vehiclesDropDown = new DefaultComboBoxModel(vehiclesArray);
+        for (int i = 0; i < vehiclesArray.length; i++) {
+            if (vehiclesArray[i].getLastModified().equalsIgnoreCase(lastModified)) {
+                v = vehiclesArray[i];
+            }
+        }
+        dropdown_selectedVehicle.setModel(vehiclesDropDown);
         dropdown_selectedVehicle.requestFocus();
         dropdown_selectedVehicle.setSelectedItem(v);
         populateFields(v);
