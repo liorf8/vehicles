@@ -44,11 +44,11 @@ public class EditorSimulation extends Simulation{
 	 * @param fileName filename to use for this object
 	 */
 	public EditorSimulation(String fileName){
-		xmlLocation = fileName;
+		super(fileName);
 		xmldoc= new DocumentImpl();
-		root = xmldoc.createElement("Simulation");
+		root = xmldoc.createElement("Simulation");		
 	}
-	
+
 	public EditorSimulation(){
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("Simulation");

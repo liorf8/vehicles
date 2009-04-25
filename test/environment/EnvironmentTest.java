@@ -32,7 +32,7 @@ public class EnvironmentTest{
 		/*
 		 * Create an environment and write to xml
 		 */
-		Environment e = new Environment("desert","xml/environments/desert.xml");
+		Environment e = new Environment("desert","xml/environments/desert.env");
 		e.setHeight(500);
 		e.setWidth(200);
 		//e.setLastModified(timeStamp) Shaun- will you tell me how to get the current time?
@@ -44,8 +44,8 @@ public class EnvironmentTest{
 		e.saveEnvironment();
 		
 		/*Read that xml and create an object from it, then re-write it back to xml*/
-		Environment env = new Environment("xml/environments/desert.xml"); //load up object values from xml
-		env.setXMLLocation("xml/environments/desertDuplicate.xml");
+		Environment env = new Environment("xml/environments/desert.env"); //load up object values from xml
+		env.setXMLLocation("xml/environments/desertDuplicate.env");
 		env.saveEnvironment();
 		}
 }

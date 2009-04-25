@@ -12,10 +12,22 @@ public class SimulationTest {
 
 	public static void main(String[] args){
 		EditorSimulation es = new EditorSimulation();
+		es.setXmlLocation("xml/simulations/testsim.sim");
+		es.setSimulationName("TestSim");
 		es.setAuthor("Some guy");
+		es.setDescription("a test simulation");
+		es.setEvolution(true);
+		es.setGeneticSelectionMethod(0);
+		es.addVehicle("xml/vehicles/angry.veh");
+		es.addVehicle("xml/vehicles/hungry.veh");
+		es.setEnvironment("xml/environments/desert.env");
+		es.saveSimulation();
 		
-		es.addVehicle("/xml/simulations/hungry.xml");
-		es.setEnvironment("/xml/environments/desert.xml");
+		EditorSimulation sim = new EditorSimulation("xml/simulations/testsim.sim");
+		sim.printSimDetails();
+		sim.setXmlLocation("xml/simulations/testsimduplicate.sim");
+		sim.saveSimulation();
+		
 //		
 //		// Testing the creation of a new simulation from an xml file
 //		System.out.print("\n\nTESTING CREATION OF SIMULATION FROM XML FILE");
