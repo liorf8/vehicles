@@ -16,7 +16,7 @@ public class UtilMethods {
 	
 		Vector<EditorVehicle> v = new Vector<EditorVehicle>();
 		File[] files = new File(folderName).listFiles(); //get list of files
-		EditorVehicle[] list = new EditorVehicle[files.length];
+		EditorVehicle[] list = new EditorVehicle[files.length - 1];
 		for(int i =0; i < files.length;i++){
 			if(files[i].isFile()){ // if current entry is a file
 				//System.out.println(files[i].toString());
@@ -35,7 +35,7 @@ public class UtilMethods {
 		Vector<Simulation> s = new Vector<Simulation>();
 		File[] files = new File(folderPath).listFiles();
 		int len = files.length;
-		Simulation[] list = new Simulation[len];
+		Simulation[] list = new Simulation[len - 1];
 		for(int i = 0; i < len; i++){
 			if(files[i].isFile()){
 				s.add(new Simulation(files[i].toString()));
