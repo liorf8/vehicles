@@ -3,6 +3,7 @@ package vehicles.util;
 import java.io.File;
 import java.util.Vector;
 import vehicles.vehicle.*;
+import vehicles.simulation.*;
 
 public class UtilMethods {
 
@@ -23,5 +24,23 @@ public class UtilMethods {
 			}
 		}
 		return v.toArray(list); //return an array
+	}
+	
+	/**
+	 * Get a list of simulations from a particular folder
+	 * @param folderPath The path to generate the list from
+	 * @return A Simulation Array of simulations at the folder path
+	 */
+	public static Simulation[] getSimulationsFromFolder(String folderPath){
+		Vector<Simulation> s = new Vector<Simulation>();
+		File[] files = new File(folderPath).listFiles();
+		int len = files.length;
+		Simulation[] list = new Simulation[len];
+		for(int i = 0; i < len; i++){
+			if(files[i].isFile()){
+				s.add(new Simulation(files[i].toString()));
+			}
+		}
+		return s.toArray(list);
 	}
 }

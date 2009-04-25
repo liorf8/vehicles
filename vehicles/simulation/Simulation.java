@@ -21,7 +21,7 @@ public class Simulation {
 	protected String xmlLocation; //location of the XML file representing this simulation
 
 	/*Attributes of an environment	*/
-	protected String simulationName = null, author = null, lastModified = null; //the name of this vehicle
+	protected String simulationName = null, author = null, lastModified = null, description; //the name of this vehicle
 	protected Environment enviro = null; //the environment to use for this simulation
 	protected Vector <Vehicle> vehicles; //the vehicles in this simulation 
 
@@ -110,6 +110,9 @@ public class Simulation {
 			else if(name.equals("Author")){
 				this.setAuthor(node_value);
 			}
+			else if(name.equals("Description")){
+				this.setDescription(node_value);
+			}
 			else if(name.equals("LastModified")){
 				this.setLastModified(node_value);
 			}
@@ -137,6 +140,10 @@ public class Simulation {
 	
 	public String getXmlLocation() {
 		return xmlLocation;
+	}
+	
+	public String getDescription(){
+		return this.description;
 	}
 
 	public String getSimulationName() {
@@ -183,6 +190,10 @@ public class Simulation {
 
 	public void setAuthor(String name){
 		this.author = name;
+	}
+	
+	public void setDescription(String d){
+		this.description = d;
 	}
 
 	public void setVehicles(Vector<Vehicle> veh) {

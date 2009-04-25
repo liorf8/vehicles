@@ -1,6 +1,9 @@
 package vehicles.vehicle;
 
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -107,6 +110,12 @@ public class EditorVehicle extends Vehicle {
 		root.appendChild(xmldoc.adoptNode(c.getRootElement().cloneNode(true)));
 	}
 
+	public void writeTimeStamp(Document xmldoc){
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date date = new Date();
+		writeXMLEntry("LastModified", dateFormat.format(date), xmldoc);
+	}
+	
 	/**
 	 * Write out the current Vehicle to a file specified by the filename attribute. This method
 	 * will save the vehicle object as it is to disk, so make sure it's only called when we're finished
@@ -119,8 +128,13 @@ public class EditorVehicle extends Vehicle {
 			if(this.vehicleName != null){ 
 				addVehicleName(vehicleName);
 			}
-            this.writeXMLEntry("author", this.vehicleAuthor, xmldoc);
-			this.writeXMLEntry("description", this.vehicleDescription, xmldoc);
+			if(this.vehicleAuthor != null){
+				this.writeXMLEntry("author", this.vehicleAuthor, xmldoc);
+			}
+			if(this.vehicleDescription != null){
+				this.writeXMLEntry("description", this.vehicleDescription, xmldoc);
+			}
+			this.writeTimeStamp(xmldoc);
 			this.addMaxBatteryCapacity(Double.toString(max_battery_capacity));
 			this.addCurrBatteryCapacity(Double.toString(curr_battery_capacity));
 			this.addmotorStrength(Integer.toString(this.motorStrength));

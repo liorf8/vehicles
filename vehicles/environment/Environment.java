@@ -3,6 +3,9 @@ package vehicles.environment;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Vector;
 import java.util.Enumeration;
@@ -211,20 +214,41 @@ public class Environment {
 		Text nameText = xmldoc.createTextNode(elemValue);
 		nameElement.appendChild(nameText);//add in the text to the element
 		root.appendChild(nameElement);//and add this new element to the document
-
 	}
+	
+	public void writeTimeStamp(Document xmldoc){
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date date = new Date();
+		writeXMLEntry("LastModified", dateFormat.format(date), xmldoc);
+	}
+	
+	
 	/**
 	 * Save this environment to file
 	 */
 	public void saveEnvironment(){
 		try{
+			//Maybe not needed? I added anyway
+			if(this.xmlLocation == null){
+				System.err.print("Specify a filepath to save to!");
+				return;
+			}
+			
 			FileOutputStream fos;
 			if(this.name != null){
 				this.writeXMLEntry("name", name, xmldoc);
 			}
+			//Maybe not needed? I added anyway
+			else{
+				System.err.print("Environment needs a name!");
+				return;
+			}
 			if(this.author != null){
 				this.writeXMLEntry("author", author, xmldoc);
 			}
+			//Write a timestamp
+			this.writeTimeStamp(xmldoc);
+			
 			if(this.description != null){
 				this.writeXMLEntry("description", description, xmldoc);
 			}
@@ -248,6 +272,7 @@ public class Environment {
 					this.addEnvironmentElement(curr);
 				}
 			}
+			
 			xmldoc.appendChild(root); //finalise the XML document
 			/*Now take the file in RAM and write it out to disk*/
 			try{
@@ -414,67 +439,6 @@ public class Environment {
 		e = new EnvironmentElement(envName, FileLocation, p);
 		return e;
 	}
-	/*
-	 * not to sure if this is what is required?
-	 *
-	public void environmentElement(String fileLocation){
-		String envName = null; String file = null;
-		double x= 0.0; double y = 0.0;
-		Point p = new Point(x,y);
-		EnvironmentElement e = new EnvironmentElement(envName, file, p);
-		e.changeFileLocation(fileLocation);
-
-	}
-	 */
-	/*
-	 * Not what is needed, maybe useful for debugging, but the XML is enough for that purpose
-
-	@SuppressWarnings("unchecked")
-	public void Display(Vector v){
-
-		for (int i=0; i<v.size(); i++){
-
-			//t.println("\nProcessing....   "+v.elementAt(i).toString());
-
-			if (v.elementAt(i) instanceof HeatSource){
-
-				HeatSource n =(HeatSource)v.elementAt(i);
-				//t.println("\nheatSource : "+n.getName()+" "+n.getFileLocation()+"\nIntensity"+n.heatIntensity()
-				//		+"\nRange : "+n.heatRange());
-
-			}else{
-				if (v.elementAt(i) instanceof LightSource){
-
-					LightSource n =(LightSource)v.elementAt(i);
-					//t.println("\nlightSource : "+n.getName()+" "+n.getFileLocation()+"\nIntensity"+n.lightIntensity()
-							//+"\nRange : "+n.lightIntensity());
-				}else{
-					if (v.elementAt(i) instanceof OrganicSource){
-
-						OrganicSource n =(OrganicSource)v.elementAt(i);
-						//t.println("\norganicSource : "+n.getName()+" "+n.getFileLocation()+"\nRecharge"+n.organicRecharge()
-							//+"\nCapacity : "+n.organicCapacity());
-					}else{
-						if (v.elementAt(i) instanceof WaterSource){
-
-							WaterSource n =(WaterSource)v.elementAt(i);
-							//t.println("\nWaterSource : "+n.getName()+" "+n.getFileLocation()+"\nDepth"+n.waterDepth()
-									//+"\n");
-						}else{
-							if (v.elementAt(i) instanceof Terrain){
-
-								Terrain n =(Terrain)v.elementAt(i);
-								//t.println("\nheatSource : "+n.getName()+" "+n.getFileLocation()+"\nFriction"+n.terrainFriction()
-								//				+"\nImagePath : "+n.terrainImagePath());
-							}
-						}
-					}
-				}
-			}
-    	}
-
-	}
-	 */
 
 	public void printDetails(){
 		System.out.println("Printing Details for environment at: " + this.xmlLocation);
