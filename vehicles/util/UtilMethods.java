@@ -50,11 +50,11 @@ public class UtilMethods {
 	 * @param folderPath The path to generate the list from
 	 * @return An Environment Array of environments at the folder path
 	 */
-	public static Simulation[] getSEnvironmentsFromFolder(String folderPath){
+	public static Environment[] getEnvironmentsFromFolder(String folderPath){
 		Vector<Environment> e = new Vector<Environment>();
 		File[] files = new File(folderPath).listFiles();
 		int len = files.length;
-		Simulation[] list = new Simulation[len - 1];
+		Environment[] list = new Environment[len - 1];
 		for(int i = 0; i < len; i++){
 			if(files[i].isFile() && files[i].toString().endsWith(".env")){
 				e.add(new Environment(files[i].toString()));

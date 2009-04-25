@@ -128,10 +128,10 @@ public class VehicleEditor extends javax.swing.JFrame {
         slider_Aggression = new JSlider();
         text_Aggression = new JTextField();
         button_Save = new JButton();
-        button_SaveAs = new JButton();
+        button_SaveAsNew = new JButton();
         button_Cancel = new JButton();
         panel_SelectedVehicle = new JPanel();
-        dropdown_selectedVehicle = new JComboBox();
+        dropdown_SelectedVehicle = new JComboBox();
         text_Status = new JTextField();
 
         ResourceMap resourceMap = Application.getInstance(VehiclesApp.class).getContext().getResourceMap(VehicleEditor.class);
@@ -869,11 +869,11 @@ public class VehicleEditor extends javax.swing.JFrame {
             }
         });
 
-        button_SaveAs.setText(resourceMap.getString("button_SaveAs.text")); // NOI18N
-        button_SaveAs.setName("button_SaveAs"); // NOI18N
-        button_SaveAs.addMouseListener(new MouseAdapter() {
+        button_SaveAsNew.setText(resourceMap.getString("button_SaveAsNew.text")); // NOI18N
+        button_SaveAsNew.setName("button_SaveAsNew"); // NOI18N
+        button_SaveAsNew.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                button_SaveAsMouseClicked(evt);
+                button_SaveAsNewMouseClicked(evt);
             }
         });
 
@@ -885,12 +885,12 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_SelectedVehicle.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_SelectedVehicle.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_SelectedVehicle.border.titleFont"))); // NOI18N
         panel_SelectedVehicle.setName("panel_SelectedVehicle"); // NOI18N
 
-        dropdown_selectedVehicle.setMaximumRowCount(4);
-        dropdown_selectedVehicle.setModel(vehiclesDropDown);
-        dropdown_selectedVehicle.setName("dropdown_selectedVehicle"); // NOI18N
-        dropdown_selectedVehicle.addItemListener(new ItemListener() {
+        dropdown_SelectedVehicle.setMaximumRowCount(4);
+        dropdown_SelectedVehicle.setModel(vehiclesDropDown);
+        dropdown_SelectedVehicle.setName("dropdown_SelectedVehicle"); // NOI18N
+        dropdown_SelectedVehicle.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent evt) {
-                dropdown_selectedVehicleItemStateChanged(evt);
+                dropdown_SelectedVehicleItemStateChanged(evt);
             }
         });
 
@@ -898,11 +898,11 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_SelectedVehicle.setLayout(panel_SelectedVehicleLayout);
         panel_SelectedVehicleLayout.setHorizontalGroup(
             panel_SelectedVehicleLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(dropdown_selectedVehicle, 0, 468, Short.MAX_VALUE)
+            .addComponent(dropdown_SelectedVehicle, 0, 468, Short.MAX_VALUE)
         );
         panel_SelectedVehicleLayout.setVerticalGroup(
             panel_SelectedVehicleLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(dropdown_selectedVehicle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+            .addComponent(dropdown_SelectedVehicle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
         text_Status.setEditable(false);
@@ -923,7 +923,7 @@ public class VehicleEditor extends javax.swing.JFrame {
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(button_Save)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(button_SaveAs)
+                        .addComponent(button_SaveAsNew)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(button_Cancel)))
                 .addContainerGap())
@@ -938,7 +938,7 @@ public class VehicleEditor extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(button_Cancel)
-                    .addComponent(button_SaveAs)
+                    .addComponent(button_SaveAsNew)
                     .addComponent(button_Save)
                     .addComponent(text_Status, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -1025,14 +1025,14 @@ public class VehicleEditor extends javax.swing.JFrame {
         text_Blue.setText(Integer.toString(value));
 }//GEN-LAST:event_slider_Blue_StateChanged
 
-    private void dropdown_selectedVehicleItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_selectedVehicleItemStateChanged
+    private void dropdown_SelectedVehicleItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_SelectedVehicleItemStateChanged
         JComboBox tempComboBox = (JComboBox) evt.getSource();
         EditorVehicle selected = (EditorVehicle) tempComboBox.getSelectedItem();
         populateFields(selected);
-    }//GEN-LAST:event_dropdown_selectedVehicleItemStateChanged
+}//GEN-LAST:event_dropdown_SelectedVehicleItemStateChanged
 
     private void button_SaveMouseClicked(MouseEvent evt) {//GEN-FIRST:event_button_SaveMouseClicked
-        EditorVehicle v = (EditorVehicle) dropdown_selectedVehicle.getSelectedItem();
+        EditorVehicle v = (EditorVehicle) dropdown_SelectedVehicle.getSelectedItem();
         v.setVehicleName(text_VehicleName.getText()); //set object attributes
 		v.setVehicleAuthor(text_Author.getText());
 		v.setVehicleDescription(text_VehicleDescription.getText());
@@ -1056,13 +1056,13 @@ public class VehicleEditor extends javax.swing.JFrame {
                 v = vehiclesArray[i];
             }
         }
-        dropdown_selectedVehicle.setModel(vehiclesDropDown);
-        dropdown_selectedVehicle.requestFocus();
-        dropdown_selectedVehicle.setSelectedItem(v);
+        dropdown_SelectedVehicle.setModel(vehiclesDropDown);
+        dropdown_SelectedVehicle.requestFocus();
+        dropdown_SelectedVehicle.setSelectedItem(v);
         populateFields(v);
     }//GEN-LAST:event_button_SaveMouseClicked
 
-    private void button_SaveAsMouseClicked(MouseEvent evt) {//GEN-FIRST:event_button_SaveAsMouseClicked
+    private void button_SaveAsNewMouseClicked(MouseEvent evt) {//GEN-FIRST:event_button_SaveAsNewMouseClicked
         String filename = UtilMethods.formatString(text_VehicleName.getText());
         EditorVehicle v = new EditorVehicle("xml/vehicles/" + filename + ".veh");
         v.setVehicleName(text_VehicleName.getText()); //set object attributes
@@ -1088,14 +1088,14 @@ public class VehicleEditor extends javax.swing.JFrame {
                 v = vehiclesArray[i];
             }
         }
-        dropdown_selectedVehicle.setModel(vehiclesDropDown);
-        dropdown_selectedVehicle.requestFocus();
-        dropdown_selectedVehicle.setSelectedItem(v);
+        dropdown_SelectedVehicle.setModel(vehiclesDropDown);
+        dropdown_SelectedVehicle.requestFocus();
+        dropdown_SelectedVehicle.setSelectedItem(v);
         populateFields(v);
-    }//GEN-LAST:event_button_SaveAsMouseClicked
+}//GEN-LAST:event_button_SaveAsNewMouseClicked
 
     private void formWindowGainedFocus(WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        dropdown_selectedVehicle.requestFocus();
+        dropdown_SelectedVehicle.requestFocus();
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void populateFields(EditorVehicle p_vehicle) {
@@ -1128,8 +1128,8 @@ public class VehicleEditor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton button_Cancel;
     private JButton button_Save;
-    private JButton button_SaveAs;
-    private JComboBox dropdown_selectedVehicle;
+    private JButton button_SaveAsNew;
+    private JComboBox dropdown_SelectedVehicle;
     private JPanel panel_Aggression;
     private JPanel panel_Author;
     private JPanel panel_Blue;

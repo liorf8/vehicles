@@ -1,5 +1,12 @@
 package vehicles.gui;
 
+import java.awt.Dimension;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.TitledBorder;
 import vehicles.*;
 import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
@@ -18,6 +25,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
+import vehicles.util.*;
+import vehicles.environment.*;
 
 /*
  * EnvironmentEditor.java
@@ -29,6 +38,9 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 
     /** Creates new form EnvironmentEditor */
     public EnvironmentEditor(java.awt.Frame parent) {
+
+        environmentArray = UtilMethods.getEnvironmentsFromFolder("xml/environments");
+        environmentDropDown = new DefaultComboBoxModel(environmentArray);
         initComponents();
     }
 
@@ -47,17 +59,17 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 
         jTabbedPane1 = new JTabbedPane();
         jPanel1 = new JPanel();
-        jPanel14 = new JPanel();
-        jTextField1 = new JTextField();
-        jPanel17 = new JPanel();
-        jComboBox1 = new JComboBox();
-        jPanel16 = new JPanel();
-        jScrollPane5 = new JScrollPane();
-        jTextArea1 = new JTextArea();
-        jPanel18 = new JPanel();
-        jTextField5 = new JTextField();
-        jPanel19 = new JPanel();
+        panel_Preview = new JPanel();
         jPanel3 = new JPanel();
+        panel_EnvironmentName = new JPanel();
+        text_EnvironmentName = new JTextField();
+        panel_Author = new JPanel();
+        text_Author = new JTextField();
+        panel_EnvironmentDescription = new JPanel();
+        scrollpanel_VehicleDescription = new JScrollPane();
+        text_EnvironmentDescription = new JTextArea();
+        panel_LastModified = new JPanel();
+        text_LastModified = new JTextField();
         jPanel2 = new JPanel();
         jPanel4 = new JPanel();
         jPanel6 = new JPanel();
@@ -75,90 +87,30 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         jButton2 = new JButton();
         jPanel10 = new JPanel();
         jButton6 = new JButton();
-        jButton3 = new JButton();
+        button_SaveAs = new JButton();
         jButton4 = new JButton();
         jButton5 = new JButton();
+        text_Status = new JTextField();
+        panel_SelectedEnvironment = new JPanel();
+        dropdown_SelectedEnvironment = new JComboBox();
 
         ResourceMap resourceMap = Application.getInstance(VehiclesApp.class).getContext().getResourceMap(EnvironmentEditor.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
+        addWindowFocusListener(new WindowFocusListener() {
+            public void windowGainedFocus(WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(WindowEvent evt) {
+            }
+        });
 
         jTabbedPane1.setName("jTabbedPane1"); // NOI18N
 
         jPanel1.setName("jPanel1"); // NOI18N
 
-        jPanel14.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel14.border.title"))); // NOI18N
-        jPanel14.setName("jPanel14"); // NOI18N
-
-        jTextField1.setName("jTextField1"); // NOI18N
-
-        GroupLayout jPanel14Layout = new GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField1, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        );
-
-        jPanel17.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel17.border.title"))); // NOI18N
-        jPanel17.setName("jPanel17"); // NOI18N
-
-        jComboBox1.setModel(new DefaultComboBoxModel(new String[] { "<new>", "Enviro 1", "Enviro 2", "Enviro 3", "Enviro 4", "Enviro 5" }));
-        jComboBox1.setName("jComboBox1"); // NOI18N
-
-        GroupLayout jPanel17Layout = new GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jComboBox1, 0, 450, Short.MAX_VALUE)
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jComboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        );
-
-        jPanel16.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel16.border.title"))); // NOI18N
-        jPanel16.setName("jPanel16"); // NOI18N
-
-        jScrollPane5.setName("jScrollPane5"); // NOI18N
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setName("jTextArea1"); // NOI18N
-        jScrollPane5.setViewportView(jTextArea1);
-
-        GroupLayout jPanel16Layout = new GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane5, GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane5, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-        );
-
-        jPanel18.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel18.border.title"))); // NOI18N
-        jPanel18.setName("jPanel18"); // NOI18N
-
-        jTextField5.setName("jTextField5"); // NOI18N
-
-        GroupLayout jPanel18Layout = new GroupLayout(jPanel18);
-        jPanel18.setLayout(jPanel18Layout);
-        jPanel18Layout.setHorizontalGroup(
-            jPanel18Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField5, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-        );
-        jPanel18Layout.setVerticalGroup(
-            jPanel18Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        );
-
-        jPanel19.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel19.border.title"))); // NOI18N
-        jPanel19.setName("jPanel19"); // NOI18N
+        panel_Preview.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Preview.border.title"))); // NOI18N
+        panel_Preview.setName("panel_Preview"); // NOI18N
 
         jPanel3.setBackground(resourceMap.getColor("jPanel3.background")); // NOI18N
         jPanel3.setName("jPanel3"); // NOI18N
@@ -167,22 +119,100 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 215, Short.MAX_VALUE)
+            .addGap(0, 199, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 221, Short.MAX_VALUE)
+            .addGap(0, 262, Short.MAX_VALUE)
         );
 
-        GroupLayout jPanel19Layout = new GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(Alignment.LEADING)
+        GroupLayout panel_PreviewLayout = new GroupLayout(panel_Preview);
+        panel_Preview.setLayout(panel_PreviewLayout);
+        panel_PreviewLayout.setHorizontalGroup(
+            panel_PreviewLayout.createParallelGroup(Alignment.LEADING)
             .addComponent(jPanel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(Alignment.LEADING)
+        panel_PreviewLayout.setVerticalGroup(
+            panel_PreviewLayout.createParallelGroup(Alignment.LEADING)
             .addComponent(jPanel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        panel_EnvironmentName.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_EnvironmentName.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_EnvironmentName.border.titleFont"))); // NOI18N
+        panel_EnvironmentName.setName("panel_EnvironmentName"); // NOI18N
+        panel_EnvironmentName.setPreferredSize(new Dimension(224, 46));
+
+        text_EnvironmentName.setName("text_EnvironmentName"); // NOI18N
+
+        GroupLayout panel_EnvironmentNameLayout = new GroupLayout(panel_EnvironmentName);
+        panel_EnvironmentName.setLayout(panel_EnvironmentNameLayout);
+        panel_EnvironmentNameLayout.setHorizontalGroup(
+            panel_EnvironmentNameLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_EnvironmentName, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+        );
+        panel_EnvironmentNameLayout.setVerticalGroup(
+            panel_EnvironmentNameLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_EnvironmentName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        );
+
+        panel_Author.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Author.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Author.border.titleFont"))); // NOI18N
+        panel_Author.setName("panel_Author"); // NOI18N
+
+        text_Author.setName("text_Author"); // NOI18N
+
+        GroupLayout panel_AuthorLayout = new GroupLayout(panel_Author);
+        panel_Author.setLayout(panel_AuthorLayout);
+        panel_AuthorLayout.setHorizontalGroup(
+            panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Author, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+        );
+        panel_AuthorLayout.setVerticalGroup(
+            panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        );
+
+        panel_EnvironmentDescription.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_EnvironmentDescription.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_EnvironmentDescription.border.titleFont"))); // NOI18N
+        panel_EnvironmentDescription.setName("panel_EnvironmentDescription"); // NOI18N
+        panel_EnvironmentDescription.setPreferredSize(new Dimension(220, 311));
+
+        scrollpanel_VehicleDescription.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollpanel_VehicleDescription.setAutoscrolls(true);
+        scrollpanel_VehicleDescription.setName("scrollpanel_VehicleDescription"); // NOI18N
+
+        text_EnvironmentDescription.setColumns(20);
+        text_EnvironmentDescription.setFont(resourceMap.getFont("text_EnvironmentDescription.font")); // NOI18N
+        text_EnvironmentDescription.setLineWrap(true);
+        text_EnvironmentDescription.setRows(5);
+        text_EnvironmentDescription.setWrapStyleWord(true);
+        text_EnvironmentDescription.setName("text_EnvironmentDescription"); // NOI18N
+        scrollpanel_VehicleDescription.setViewportView(text_EnvironmentDescription);
+
+        GroupLayout panel_EnvironmentDescriptionLayout = new GroupLayout(panel_EnvironmentDescription);
+        panel_EnvironmentDescription.setLayout(panel_EnvironmentDescriptionLayout);
+        panel_EnvironmentDescriptionLayout.setHorizontalGroup(
+            panel_EnvironmentDescriptionLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(scrollpanel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+        );
+        panel_EnvironmentDescriptionLayout.setVerticalGroup(
+            panel_EnvironmentDescriptionLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(scrollpanel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+        );
+
+        panel_LastModified.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_LastModified.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_LastModified.border.titleFont"))); // NOI18N
+        panel_LastModified.setName("panel_LastModified"); // NOI18N
+
+        text_LastModified.setEditable(false);
+        text_LastModified.setBorder(BorderFactory.createEmptyBorder(1, 4, 1, 1));
+        text_LastModified.setName("text_LastModified"); // NOI18N
+
+        GroupLayout panel_LastModifiedLayout = new GroupLayout(panel_LastModified);
+        panel_LastModified.setLayout(panel_LastModifiedLayout);
+        panel_LastModifiedLayout.setHorizontalGroup(
+            panel_LastModifiedLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_LastModified, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+        );
+        panel_LastModifiedLayout.setVerticalGroup(
+            panel_LastModifiedLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_LastModified, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
@@ -191,31 +221,29 @@ public class EnvironmentEditor extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(jPanel17, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
-                            .addComponent(jPanel14, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel16, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
-                            .addComponent(jPanel19, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel18, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(panel_EnvironmentDescription, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(panel_EnvironmentName, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(panel_Author, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_LastModified, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(3, 3, 3)
+                .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel17, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(jPanel18, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel14, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(jPanel16, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel19, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(panel_EnvironmentName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(panel_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(panel_EnvironmentDescription, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(panel_LastModified, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -233,11 +261,11 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
+            .addGap(0, 270, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 327, Short.MAX_VALUE)
+            .addGap(0, 262, Short.MAX_VALUE)
         );
 
         GroupLayout jPanel4Layout = new GroupLayout(jPanel4);
@@ -338,7 +366,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 83, Short.MAX_VALUE)
+            .addGap(0, 18, Short.MAX_VALUE)
         );
 
         jButton6.setText(resourceMap.getString("jButton6.text")); // NOI18N
@@ -411,8 +439,8 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
 
-        jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
-        jButton3.setName("jButton3"); // NOI18N
+        button_SaveAs.setText(resourceMap.getString("button_SaveAs.text")); // NOI18N
+        button_SaveAs.setName("button_SaveAs"); // NOI18N
 
         ActionMap actionMap = Application.getInstance(VehiclesApp.class).getContext().getActionMap(EnvironmentEditor.class, this);
         jButton4.setAction(actionMap.get("cancel")); // NOI18N
@@ -422,34 +450,80 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         jButton5.setText(resourceMap.getString("jButton5.text")); // NOI18N
         jButton5.setName("jButton5"); // NOI18N
 
+        text_Status.setEditable(false);
+        text_Status.setText(resourceMap.getString("text_Status.text")); // NOI18N
+        text_Status.setName("text_Status"); // NOI18N
+
+        panel_SelectedEnvironment.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_SelectedEnvironment.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_SelectedEnvironment.border.titleFont"))); // NOI18N
+        panel_SelectedEnvironment.setName("panel_SelectedEnvironment"); // NOI18N
+
+        dropdown_SelectedEnvironment.setMaximumRowCount(4);
+        dropdown_SelectedEnvironment.setModel(environmentDropDown);
+        dropdown_SelectedEnvironment.setName("dropdown_SelectedEnvironment"); // NOI18N
+        dropdown_SelectedEnvironment.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                dropdown_SelectedEnvironmentItemStateChanged(evt);
+            }
+        });
+
+        GroupLayout panel_SelectedEnvironmentLayout = new GroupLayout(panel_SelectedEnvironment);
+        panel_SelectedEnvironment.setLayout(panel_SelectedEnvironmentLayout);
+        panel_SelectedEnvironmentLayout.setHorizontalGroup(
+            panel_SelectedEnvironmentLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(dropdown_SelectedEnvironment, 0, 455, Short.MAX_VALUE)
+        );
+        panel_SelectedEnvironmentLayout.setVerticalGroup(
+            panel_SelectedEnvironmentLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(dropdown_SelectedEnvironment, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        );
+
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(266, Short.MAX_VALUE)
-                .addComponent(jButton5)
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                    .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(text_Status, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jButton5)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(button_SaveAs)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jButton4))
+                    .addComponent(jTabbedPane1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                    .addComponent(panel_SelectedEnvironment, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addComponent(jTabbedPane1, GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
+                .addContainerGap()
+                .addComponent(panel_SelectedEnvironment, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jButton5))
+                    .addComponent(button_SaveAs)
+                    .addComponent(jButton5)
+                    .addComponent(text_Status, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void dropdown_SelectedEnvironmentItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_SelectedEnvironmentItemStateChanged
+        JComboBox tempComboBox = (JComboBox) evt.getSource();
+        Environment selected = (Environment) tempComboBox.getSelectedItem();
+        populateFields(selected);
+}//GEN-LAST:event_dropdown_SelectedEnvironmentItemStateChanged
+
+    private void formWindowGainedFocus(WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        dropdown_SelectedEnvironment.requestFocus();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
     * @param args the command line arguments
@@ -461,24 +535,27 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 //            }
 //        });
 //    }
+    private void populateFields(Environment p_environment) {
+        Environment tempEnvironment = p_environment;
 
+        text_Author.setText(tempEnvironment.getAuthor());
+        text_EnvironmentDescription.setText(tempEnvironment.getDescription());
+        text_EnvironmentName.setText(tempEnvironment.getName());
+        text_LastModified.setText(tempEnvironment.getLastModified());
+
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JButton button_SaveAs;
+    private JComboBox dropdown_SelectedEnvironment;
     private JButton jButton1;
     private JButton jButton2;
-    private JButton jButton3;
     private JButton jButton4;
     private JButton jButton5;
     private JButton jButton6;
-    private JComboBox jComboBox1;
     private JComboBox jComboBox2;
     private JComboBox jComboBox3;
     private JPanel jPanel1;
     private JPanel jPanel10;
-    private JPanel jPanel14;
-    private JPanel jPanel16;
-    private JPanel jPanel17;
-    private JPanel jPanel18;
-    private JPanel jPanel19;
     private JPanel jPanel2;
     private JPanel jPanel3;
     private JPanel jPanel4;
@@ -491,11 +568,20 @@ public class EnvironmentEditor extends javax.swing.JFrame {
     private JRadioButton jRadioButton2;
     private JRadioButton jRadioButton3;
     private JRadioButton jRadioButton4;
-    private JScrollPane jScrollPane5;
     private JTabbedPane jTabbedPane1;
-    private JTextArea jTextArea1;
-    private JTextField jTextField1;
-    private JTextField jTextField5;
+    private JPanel panel_Author;
+    private JPanel panel_EnvironmentDescription;
+    private JPanel panel_EnvironmentName;
+    private JPanel panel_LastModified;
+    private JPanel panel_Preview;
+    private JPanel panel_SelectedEnvironment;
+    private JScrollPane scrollpanel_VehicleDescription;
+    private JTextField text_Author;
+    private JTextArea text_EnvironmentDescription;
+    private JTextField text_EnvironmentName;
+    private JTextField text_LastModified;
+    private JTextField text_Status;
     // End of variables declaration//GEN-END:variables
-
+    private Environment[] environmentArray;
+    private DefaultComboBoxModel environmentDropDown;
 }
