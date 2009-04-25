@@ -248,10 +248,10 @@ public class Vehicle {
         this.curr_battery_capacity = curr_battery_capacity;
     }
 
-    public void setColour(int r, int b, int g) {
+    public void setColour(int r, int g, int b) {
         this.vehicleColour.setRed(r);
-        this.vehicleColour.setBlue(b);
         this.vehicleColour.setGreen(g);
+        this.vehicleColour.setBlue(b);
     }
 
     /**

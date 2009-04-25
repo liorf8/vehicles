@@ -119,13 +119,13 @@ public class EditorVehicle extends Vehicle {
 			if(this.vehicleName != null){ 
 				addVehicleName(vehicleName);
 			}
+            this.writeXMLEntry("author", this.vehicleAuthor, xmldoc);
+			this.writeXMLEntry("description", this.vehicleDescription, xmldoc);
 			this.addMaxBatteryCapacity(Double.toString(max_battery_capacity));
 			this.addCurrBatteryCapacity(Double.toString(curr_battery_capacity));
 			this.addmotorStrength(Integer.toString(this.motorStrength));
 			this.addAggression(Integer.toString(this.aggression));
-			this.addVehicleColour(this.vehicleColour);
-			this.writeXMLEntry("author", this.vehicleAuthor, xmldoc);
-			this.writeXMLEntry("description", this.vehicleDescription, xmldoc);
+            this.addVehicleColour(this.vehicleColour);
 			
 			if(this.components != null){
 				//System.out.println(components.capacity());
