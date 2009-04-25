@@ -115,6 +115,7 @@ public class EditorVehicle extends Vehicle {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
 		writeXMLEntry("LastModified", dateFormat.format(date), xmldoc);
+		this.lastModified = dateFormat.format(date);
 	}
 	
 	/**
