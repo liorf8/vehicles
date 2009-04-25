@@ -262,7 +262,12 @@ public class Simulation {
 			System.out.println("Possibly due to passing an incorrect XML file or never adding " +
 					"vehicles to the Simulation");
 		}
-		System.out.println("Environment Path\t" + this.getEnvironment().getFileLocation());
+		if(this.enviro != null){
+			System.out.println("Environment Path\t" + this.getEnvironment().getFileLocation());
+		}
+		else{
+			System.out.println("Environment Path not found, or has not been properly initialisd!");
+		}
 		System.out.println("\tRuntime Options");
 		System.out.println("Vehicles can perish\t" + this.getPerishableVehicles());
 		System.out.println("Vehicles can evolve\t" + this.getEvolution());

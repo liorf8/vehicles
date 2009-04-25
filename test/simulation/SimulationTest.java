@@ -3,6 +3,7 @@ import vehicles.simulation.*;
 import vehicles.vehicle.*;
 import vehicles.environment.*;
 import java.util.Vector;
+import vehicles.util.*;
 
 /**A main class for testing of various elements in the simulation.
 * Please DON'T upload binary files produced by compiling this into the repo.
@@ -13,7 +14,7 @@ public class SimulationTest {
 		
 		/* Testing the creation of a new simulation from an xml file*/
 		System.out.print("\n\nTESTING CREATION OF SIMULATION FROM XML FILE");
-		Simulation a = new Simulation("xml/simulations/simulation.xml");
+		Simulation a = new Simulation("xml/simulations/my_simulation_test.xml");
 		Vector<Vehicle> ve = a.getVehicles();
 		int size = ve.size();
 		System.out.println("PRINTING DETAILS FOR VEHCILES POINTED AT IN FILE: 'xml/simulations/simulation.xml'");
@@ -66,19 +67,24 @@ public class SimulationTest {
 		
 		/* Testing the modification of an existing document */
 		System.out.println("TESTING MODIFICATION OF EXISTING XML DOCUMENT");
-		EditorSimulation editor2 = new EditorSimulation("xml/simulations/simulation.xml", true);
+		EditorSimulation editor2 = new EditorSimulation("xml/simulations/my_simulation_test.xml", true);
 		editor2.printSimDetails();
 		editor2.setSimulationName("New NAME!");
 		editor2.saveSimulation();
-		editor2 = new EditorSimulation("xml/simulations/simulation.xml", true);
+		editor2 = new EditorSimulation("xml/simulations/my_simulation_test.xml", true);
 		editor2.printSimDetails();
 		
 		Vehicle veh = a.getVehicle_SelectionBased();
 		
 		/* Testing the creation of a new simulation from an incorrect xml file*/
-		System.out.print("\n\nTESTING CREATION OF SIMULATION FROM AN INCORRECT XML FILE");
+		System.out.println("\n\nTESTING CREATION OF SIMULATION FROM AN INCORRECT XML FILE");
 		Simulation wrong = new Simulation("xml/simulations/hungry.xml");
 		wrong.printSimDetails();
 		
+		System.out.println("\n\nTESTING STRING FORMATTING IN JAVA UTILS");
+		String teststst = "heya how ARFEEW 0987654 ][#''#;];]";
+		System.out.println("String is now: " + teststst);
+		teststst = UtilMethods.formatString(teststst);
+		System.out.println("String is now: " + teststst);
 	}
 }

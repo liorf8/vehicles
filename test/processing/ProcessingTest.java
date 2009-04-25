@@ -13,7 +13,7 @@ public class ProcessingTest extends PApplet{
     @Override
 	public void setup(){		
 		size(200, 200);
-		veh = new Vehicle("hungry.xml");
+		veh = new Vehicle("/home/graysr/Eclipse_Workspace/2ba7_GroupProject/xml/vehicles/hungry.xml");
 
 	}
 	
