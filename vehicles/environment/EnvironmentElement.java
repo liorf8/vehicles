@@ -15,11 +15,11 @@ import org.w3c.dom.Text;
 
 public class EnvironmentElement {
 	/*** Element Types ***/
-	public static int NotSet = 0;;
-	public static int LightSource = 1;
-	public static int HeatSource = 2;
-	public static int PowerSource = 3;
-	public static int WaterSource = 4;
+	public static final int NotSet = 0;;
+	public static final int LightSource = 1;
+	public static final int HeatSource = 2;
+	public static final int PowerSource = 3;
+	public static final int WaterSource = 4;
 
 	protected String fileLocation = null;//The XML file location of this element
 	protected String author = null, lastModified = null;
@@ -104,6 +104,22 @@ public class EnvironmentElement {
 	public EnvironmentElement(int type,Point position){
 		this.type = type;
 		this.position = position;
+		switch(this.type){
+		case EnvironmentElement.HeatSource :
+			this.name = "heat";
+			break;
+		case EnvironmentElement.LightSource:
+			this.name = "light";
+			break;
+		case EnvironmentElement.PowerSource:
+			this.name = "power";
+			break;
+
+		case EnvironmentElement.WaterSource:
+			this.name = "water";
+			break;
+
+		}
 	}
 
 
@@ -136,6 +152,22 @@ public class EnvironmentElement {
 
 	public void setType(int type) {
 		this.type = type;
+		switch(this.type){
+		case EnvironmentElement.HeatSource :
+			this.name = "heat";
+			break;
+		case EnvironmentElement.LightSource:
+			this.name = "light";
+			break;
+		case EnvironmentElement.PowerSource:
+			this.name = "power";
+			break;
+
+		case EnvironmentElement.WaterSource:
+			this.name = "water";
+			break;
+
+		}
 	}
 
 	public void setPosition(Point position) {
