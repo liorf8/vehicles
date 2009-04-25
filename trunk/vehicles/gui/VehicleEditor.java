@@ -442,7 +442,6 @@ public class VehicleEditor extends javax.swing.JFrame {
         slider_Left_Heat.setOrientation(JSlider.VERTICAL);
         slider_Left_Heat.setPaintLabels(true);
         slider_Left_Heat.setPaintTicks(true);
-        slider_Left_Heat.setSnapToTicks(true);
         slider_Left_Heat.setValue(0);
         slider_Left_Heat.setName("slider_Left_Heat"); // NOI18N
         slider_Left_Heat.addChangeListener(new ChangeListener() {
@@ -482,7 +481,6 @@ public class VehicleEditor extends javax.swing.JFrame {
         slider_Left_Water.setOrientation(JSlider.VERTICAL);
         slider_Left_Water.setPaintLabels(true);
         slider_Left_Water.setPaintTicks(true);
-        slider_Left_Water.setSnapToTicks(true);
         slider_Left_Water.setValue(0);
         slider_Left_Water.setName("slider_Left_Water"); // NOI18N
         slider_Left_Water.addChangeListener(new ChangeListener() {
@@ -522,7 +520,6 @@ public class VehicleEditor extends javax.swing.JFrame {
         slider_Left_Power.setOrientation(JSlider.VERTICAL);
         slider_Left_Power.setPaintLabels(true);
         slider_Left_Power.setPaintTicks(true);
-        slider_Left_Power.setSnapToTicks(true);
         slider_Left_Power.setValue(0);
         slider_Left_Power.setName("slider_Left_Power"); // NOI18N
         slider_Left_Power.addChangeListener(new ChangeListener() {
@@ -583,7 +580,6 @@ public class VehicleEditor extends javax.swing.JFrame {
         slider_MotorStrength.setOrientation(JSlider.VERTICAL);
         slider_MotorStrength.setPaintLabels(true);
         slider_MotorStrength.setPaintTicks(true);
-        slider_MotorStrength.setSnapToTicks(true);
         slider_MotorStrength.setName("slider_MotorStrength"); // NOI18N
         slider_MotorStrength.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent evt) {
@@ -627,7 +623,6 @@ public class VehicleEditor extends javax.swing.JFrame {
         slider_Right_Light.setOrientation(JSlider.VERTICAL);
         slider_Right_Light.setPaintLabels(true);
         slider_Right_Light.setPaintTicks(true);
-        slider_Right_Light.setSnapToTicks(true);
         slider_Right_Light.setValue(0);
         slider_Right_Light.setName("slider_Right_Light"); // NOI18N
         slider_Right_Light.addChangeListener(new ChangeListener() {
@@ -667,7 +662,6 @@ public class VehicleEditor extends javax.swing.JFrame {
         slider_Right_Heat.setOrientation(JSlider.VERTICAL);
         slider_Right_Heat.setPaintLabels(true);
         slider_Right_Heat.setPaintTicks(true);
-        slider_Right_Heat.setSnapToTicks(true);
         slider_Right_Heat.setValue(0);
         slider_Right_Heat.setName("slider_Right_Heat"); // NOI18N
         slider_Right_Heat.addChangeListener(new ChangeListener() {
@@ -707,7 +701,6 @@ public class VehicleEditor extends javax.swing.JFrame {
         slider_Right_Water.setOrientation(JSlider.VERTICAL);
         slider_Right_Water.setPaintLabels(true);
         slider_Right_Water.setPaintTicks(true);
-        slider_Right_Water.setSnapToTicks(true);
         slider_Right_Water.setValue(0);
         slider_Right_Water.setName("slider_Right_Water"); // NOI18N
         slider_Right_Water.addChangeListener(new ChangeListener() {
@@ -747,7 +740,6 @@ public class VehicleEditor extends javax.swing.JFrame {
         slider_Right_Power.setOrientation(JSlider.VERTICAL);
         slider_Right_Power.setPaintLabels(true);
         slider_Right_Power.setPaintTicks(true);
-        slider_Right_Power.setSnapToTicks(true);
         slider_Right_Power.setValue(0);
         slider_Right_Power.setName("slider_Right_Power"); // NOI18N
         slider_Right_Power.addChangeListener(new ChangeListener() {
@@ -806,7 +798,6 @@ public class VehicleEditor extends javax.swing.JFrame {
         slider_Aggression.setOrientation(JSlider.VERTICAL);
         slider_Aggression.setPaintLabels(true);
         slider_Aggression.setPaintTicks(true);
-        slider_Aggression.setSnapToTicks(true);
         slider_Aggression.setName("slider_Aggression"); // NOI18N
         slider_Aggression.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent evt) {
@@ -1094,6 +1085,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         dropdown_selectedVehicle.setModel(vehiclesDropDown);
         dropdown_selectedVehicle.requestFocus();
         dropdown_selectedVehicle.setSelectedItem(v);
+        populateFields(v);
     }//GEN-LAST:event_button_SaveAsMouseClicked
 
     private void formWindowGainedFocus(WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
