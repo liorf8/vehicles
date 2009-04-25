@@ -37,6 +37,8 @@ public class EnvironmentTest{
 		e.setWidth(200);
 		//e.setLastModified(timeStamp) Shaun- will you tell me how to get the current time?
 		//Karl, timestamp is autoset when writing xml
+		e.setAuthor("some guy");
+		e.setDescription("a harsh environment");
 		e.addElement(ls);
 		e.addElement(hs);
 		e.saveEnvironment();
