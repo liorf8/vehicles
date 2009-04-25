@@ -2,10 +2,14 @@ package vehicles.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 import javax.swing.JSlider;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.TitledBorder;
@@ -54,6 +58,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         // that other internal variables are properly set.
         embed.init();
         populateFields(vehiclesArray[0]);
+        
 
     }
 
@@ -137,6 +142,13 @@ public class VehicleEditor extends javax.swing.JFrame {
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setMinimumSize(new Dimension(500, 520));
         setName("Form"); // NOI18N
+        addWindowFocusListener(new WindowFocusListener() {
+            public void windowGainedFocus(WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(WindowEvent evt) {
+            }
+        });
 
         tabContainer.setName("tabContainer"); // NOI18N
 
@@ -1054,6 +1066,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         vehiclesArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
         vehiclesDropDown = new DefaultComboBoxModel(vehiclesArray);
         dropdown_selectedVehicle.setModel(vehiclesDropDown);
+        dropdown_selectedVehicle.requestFocus();
     }//GEN-LAST:event_button_SaveMouseClicked
 
     private void button_SaveAsMouseClicked(MouseEvent evt) {//GEN-FIRST:event_button_SaveAsMouseClicked
@@ -1079,7 +1092,12 @@ public class VehicleEditor extends javax.swing.JFrame {
         vehiclesArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
         vehiclesDropDown = new DefaultComboBoxModel(vehiclesArray);
         dropdown_selectedVehicle.setModel(vehiclesDropDown);
+        dropdown_selectedVehicle.requestFocus();
     }//GEN-LAST:event_button_SaveAsMouseClicked
+
+    private void formWindowGainedFocus(WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        dropdown_selectedVehicle.requestFocus();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     private void populateFields(EditorVehicle p_vehicle) {
         EditorVehicle tempVehicle = p_vehicle;
@@ -1105,6 +1123,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         slider_Right_Light.setValue(tempVehicle.getRightSensorLight());
         slider_Right_Power.setValue(tempVehicle.getRightSensorPower());
         slider_Right_Water.setValue(tempVehicle.getRightSensorWater());
+
 }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
