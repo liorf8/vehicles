@@ -217,7 +217,7 @@ public class Vehicle {
     public void setFileName(){
     	String filename = this.xmlLocation;
     	String sep = File.separator;
-    	String[] parts = filename.split(sep);
+    	String[] parts = filename.split("\\" + sep);
     	this.fileName = parts[parts.length - 1];
     }
     
