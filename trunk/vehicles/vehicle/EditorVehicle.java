@@ -185,6 +185,6 @@ public class EditorVehicle extends Vehicle {
 	}
 	
 	public String toString(){
-		return this.vehicleName;
+		return this.vehicleName + " (" + this.fileName + ")";
 	}
 }

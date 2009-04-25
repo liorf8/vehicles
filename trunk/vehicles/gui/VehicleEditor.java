@@ -2,8 +2,6 @@ package vehicles.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -58,8 +56,6 @@ public class VehicleEditor extends javax.swing.JFrame {
         // that other internal variables are properly set.
         embed.init();
         populateFields(vehiclesArray[0]);
-        
-
     }
 
     @Action
@@ -1087,8 +1083,14 @@ public class VehicleEditor extends javax.swing.JFrame {
 		v.setRightSensorPower(slider_Right_Power.getValue());
 		v.setRightSensorWater(slider_Right_Water.getValue());
 		v.saveVehicle(); //convert object and its attributes into XML
+        String lastModified = v.getLastModified();
         vehiclesArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
         vehiclesDropDown = new DefaultComboBoxModel(vehiclesArray);
+        for (int i = 0; i < vehiclesArray.length; i++) {
+            if (vehiclesArray[i].getLastModified().equalsIgnoreCase(lastModified)) {
+                v = vehiclesArray[i];
+            }
+        }
         dropdown_selectedVehicle.setModel(vehiclesDropDown);
         dropdown_selectedVehicle.requestFocus();
         dropdown_selectedVehicle.setSelectedItem(v);
