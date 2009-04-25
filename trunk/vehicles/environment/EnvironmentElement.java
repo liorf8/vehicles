@@ -20,16 +20,16 @@ public class EnvironmentElement {
 	public static int HeatSource = 2;
 	public static int PowerSource = 3;
 	public static int WaterSource = 4;
-	
+
 	protected String fileLocation = null;//The XML file location of this element
 	protected String author = null, lastModified = null;
-	
+
 	//Environment Element attributes
 	protected String name = null;
 	protected int type = 0; //type of element (see above)
-	protected double radius = 0.0;
-	protected double strength = 0.0;
-	
+	protected int radius = 0;
+	protected int strength = 0;
+
 
 	protected Point position = null;
 	protected Document xmldoc = null; //the XML document we are creating, stored as an object in memory
@@ -42,7 +42,7 @@ public class EnvironmentElement {
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("EnvironmentElement");
 	}
-	
+
 	/**
 	 * An constructor for new environment-elements
 	 */
@@ -51,8 +51,8 @@ public class EnvironmentElement {
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("EnvironmentElement");
 	}
-	
-	
+
+
 	/**
 	 * Constructor that reads in an environment element XML file
 	 * @param filelocation The Environment Element xml file to read in
@@ -63,7 +63,7 @@ public class EnvironmentElement {
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("EnvironmentElement");
 	}
-	
+
 	/**
 	 * Constructor that takes in a filename, point and name
 	 * @param n The name of the element
@@ -95,7 +95,7 @@ public class EnvironmentElement {
 		this.type = other.type;
 		this.xmldoc = other.xmldoc;
 	}
-	
+
 	/**
 	 * Maybe constructor to use in the editor?
 	 * @param type
@@ -105,27 +105,27 @@ public class EnvironmentElement {
 		this.type = type;
 		this.position = position;
 	}
-	
 
-	
+
+
 	/**** Setter Methods ****/
 
 
-	public void setStrength(double strength) {
+	public void setStrength(int strength) {
 		this.strength = strength;
 	}
-	public void setRadius(double radius) {
+	public void setRadius(int radius) {
 		this.radius = radius;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public void setAuthor(String aut){
 		this.author = aut;
 	}
-	
+
 	public void setLastModified(String timeStamp){
 		this.lastModified = timeStamp;
 	}
@@ -133,15 +133,15 @@ public class EnvironmentElement {
 	public void setFileLocation(String fileLocation) {
 		this.fileLocation = fileLocation;
 	}
-	
+
 	public void setType(int type) {
 		this.type = type;
 	}
-	
+
 	public void setPosition(Point position) {
 		this.position = position;
 	}
-	
+
 	public void setXpos(double xpos){
 		if(this.position == null){
 			this.position = new Point();
@@ -150,7 +150,7 @@ public class EnvironmentElement {
 			this.position.setXPos(xpos);
 		}
 	}
-	
+
 	public void setYpos(double ypos){
 		if(this.position == null){
 			this.position = new Point();
@@ -161,7 +161,7 @@ public class EnvironmentElement {
 	}
 
 	/**** Getter Methods ****/
-	
+
 	public String getName() {
 		return name;
 	}
@@ -175,19 +175,19 @@ public class EnvironmentElement {
 	public String getAuthor(){
 		return this.author;
 	}
-	
+
 	public String getLastModified(){
 		return this.lastModified;
 	}
-	
+
 	public String getFileLocation() {
 		return fileLocation;
 	}
-	
+
 	public int getType() {
 		return type;
 	}
-	
+
 	public Point getPosition() {
 		return position;
 	}
@@ -198,11 +198,11 @@ public class EnvironmentElement {
 		return this.position.getYpos();
 	}
 	/**** Other Methods ****/
-	
+
 	public boolean isSaveable(){
 		return (this.type != 0 && this.name != null && this.fileLocation != null);
 	}
-	
+
 	/**** XML Methods ****/
 
 	/**
@@ -216,38 +216,8 @@ public class EnvironmentElement {
 		Text nameText = xmldoc.createTextNode(elemValue);
 		nameElement.appendChild(nameText);//add in the text to the element
 		root.appendChild(nameElement);//and add this new element to the document
-
 	}
 
-	/**
-	 * Add an environment element name to the XML document being created
-	 * @param name The name of this environment element
-	 */
-	public void addEnvironmentElementName(String name){
-		writeXMLEntry("name", name, xmldoc);
-	}
-	/**
-	 * Add an environment element type to the XML document being created
-	 * @param type The type of this environment element
-	 */
-	public void addEnvironmentElementType(int type){
-		writeXMLEntry("type", Integer.toString(type), xmldoc);
-	}
-	/**
-	 * Add an environment element position information to the XML document being created
-	 * @param point A point object representing this EnvironmentElement's position
-	 */
-	public void addEnvironmentElementPosition(Point point){
-		writeXMLEntry("xPos", Double.toString(point.getXpos()), xmldoc);
-		writeXMLEntry("yPos", Double.toString(point.getYpos()), xmldoc);
-	}	
-
-	/** 
-	 * Write this EnvironmentElement to an XML document in RAm, which can then be written to disk(no need to do this) or appeneded to an Environment XML document in RAM
-	 */
-	public void toInternalXML(){
-		System.out.println("Oh crap"); //subclass overrided version should ONLY be called
-	}
 	/**
 	 * Get the root of this environment element, call this method to get the component for inclusion
 	 * in an Environment XML document 
@@ -257,9 +227,32 @@ public class EnvironmentElement {
 		this.toInternalXML();
 		return root;
 	}
-	
+
 	/**
-	 * Save this element to file
+	 * Convert this object into a XML representation in RAM(overrride superclass EnvironmentElement)
+	 */
+	public void toInternalXML(){
+		if(this.name != null){
+			this.writeXMLEntry("name",name,xmldoc);
+		}
+		if(this.type != 0){
+			this.writeXMLEntry("type",Integer.toString(type),xmldoc);
+		}
+		if(this.position != null){
+			this.writeXMLEntry("Xpos",Double.toString(this.position.getXpos()),xmldoc);
+			this.writeXMLEntry("Ypos",Double.toString(this.position.getXpos()),xmldoc);
+		}
+		if(this.radius != 0){
+			this.writeXMLEntry("radius",Integer.toString(radius),xmldoc);
+		}
+		if(this.strength != 0){
+			this.writeXMLEntry("strength",Integer.toString(strength),xmldoc);
+		}
+		//xmldoc.appendChild(root);
+	}
+
+	/**
+	 * Save this element to file -DO NOT CALL EVER!!!!!!!!!
 	 */
 	public void saveEnvironmentElement(){
 		try{
@@ -280,10 +273,10 @@ public class EnvironmentElement {
 
 
 	}
-    
-    @Override
+
+	@Override
 	public String toString(){
 		//return(this.name + " " +this.type + " "+ this.radius + " " + this.strength + this.getXpos() + "," + this.getYpos());
-    	return(this.name);
+		return(this.name);
 	}
 }

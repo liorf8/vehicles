@@ -1,8 +1,6 @@
 package test.environment;
 import vehicles.environment.Environment;
 import vehicles.environment.EnvironmentElement;
-import vehicles.environment.HeatSource;
-import vehicles.environment.LightSource;
 import vehicles.environment.Point;
 
 public class EnvironmentTest{
@@ -10,16 +8,15 @@ public class EnvironmentTest{
 		/*
 		 * Create a light source, populate it's attributes, and write to file
 		 */
-		LightSource ls = new LightSource();	
+		EnvironmentElement ls = new EnvironmentElement();	
 		ls.setType(EnvironmentElement.LightSource);//TODO put this in object constructor
 		ls.setPosition(new Point(15,42));		
 		ls.setRadius(78);
-		ls.setStrength(95);
-		
+		ls.setStrength(95);		
 		/*
 		 * Create a heat source, populate it's attributes, and write to file
 		 */
-		HeatSource hs = new HeatSource();
+		EnvironmentElement hs = new EnvironmentElement();
 		hs.setType(EnvironmentElement.HeatSource); //TODO put this in object constructor
 		hs.setPosition(new Point(30,40));
 		hs.setRadius(10);
