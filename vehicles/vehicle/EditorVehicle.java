@@ -181,4 +181,8 @@ public class EditorVehicle extends Vehicle {
 			e.printStackTrace();
 		}
 	}
+	
+	public String toString(){
+		return this.vehicleName;
+	}
 }
