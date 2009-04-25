@@ -12,8 +12,9 @@ public class SimulationTest {
 
 	public static void main(String[] args){
 		EditorSimulation es = new EditorSimulation();
+		//es.se
 		es.addVehicle("/xml/simulations/hungry.xml");
-		
+		es.setEnvironment("/xml/environments/desert.xml");
 //		
 //		// Testing the creation of a new simulation from an xml file
 //		System.out.print("\n\nTESTING CREATION OF SIMULATION FROM XML FILE");

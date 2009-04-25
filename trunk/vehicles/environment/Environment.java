@@ -453,7 +453,7 @@ public class Environment {
 	}
 	
 	public String toString(){
-		return this.name;
+		return this.name+"("+this.xmlLocation+")";
 	}
 
 }
