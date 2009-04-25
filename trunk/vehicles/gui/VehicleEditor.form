@@ -93,13 +93,13 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="panel_VehicleDescription" pref="222" max="32767" attributes="2"/>
-                          <Component id="panel_VehicleName" alignment="0" pref="222" max="32767" attributes="2"/>
+                          <Component id="panel_VehicleDescription" pref="230" max="32767" attributes="2"/>
+                          <Component id="panel_VehicleName" alignment="0" pref="230" max="32767" attributes="2"/>
                           <Component id="panel_Author" alignment="1" max="32767" attributes="2"/>
                           <Component id="panel_LastModified" alignment="0" max="32767" attributes="2"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="panel_Preview" pref="227" max="32767" attributes="2"/>
+                      <Component id="panel_Preview" pref="219" max="32767" attributes="2"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -145,7 +145,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_VehicleName" alignment="0" pref="210" max="32767" attributes="0"/>
+                      <Component id="text_VehicleName" alignment="0" pref="218" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -158,6 +158,39 @@
                 <Component class="javax.swing.JTextField" name="text_VehicleName">
                   <Properties>
                     <Property name="name" type="java.lang.String" value="text_VehicleName" noResource="true"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="panel_Author">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Author">
+                      <Property name="titleX" resourceKey="panel_Author.border.title"/>
+                      <Property name="font" resourceKey="panel_Author.border.titleFont"/>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+                <Property name="name" type="java.lang.String" value="panel_Author" noResource="true"/>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="text_Author" alignment="0" pref="218" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="text_Author" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JTextField" name="text_Author">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="text_Author" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -181,7 +214,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollpanel_VehicleDescription" alignment="0" pref="210" max="32767" attributes="0"/>
+                      <Component id="scrollpanel_VehicleDescription" alignment="0" pref="218" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -217,35 +250,41 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="panel_Author">
+            <Container class="javax.swing.JPanel" name="panel_LastModified">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Author">
-                      <Property name="titleX" resourceKey="panel_Author.border.title"/>
-                      <Property name="font" resourceKey="panel_Author.border.titleFont"/>
+                    <TitledBorder title="Last Modified">
+                      <Property name="titleX" resourceKey="panel_LastModified.border.title"/>
+                      <Property name="font" resourceKey="panel_LastModified.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
-                <Property name="name" type="java.lang.String" value="panel_Author" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="panel_LastModified" noResource="true"/>
               </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_Author" alignment="0" pref="210" max="32767" attributes="0"/>
+                      <Component id="text_LastModified" alignment="0" pref="218" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_Author" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="text_LastModified" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="text_Author">
+                <Component class="javax.swing.JTextField" name="text_LastModified">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="text_Author" noResource="true"/>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                        <EmptyBorder bottom="1" left="4" right="1" top="1"/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="text_LastModified" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -272,7 +311,7 @@
                       <Component id="panel_Red" alignment="0" max="32767" attributes="2"/>
                       <Component id="panel_Green" alignment="0" max="32767" attributes="2"/>
                       <Component id="panel_Blue" alignment="0" max="32767" attributes="2"/>
-                      <Component id="panel_Processing" alignment="0" pref="215" max="32767" attributes="2"/>
+                      <Component id="panel_Processing" alignment="0" pref="207" max="32767" attributes="2"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -316,7 +355,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Blue" pref="167" max="32767" attributes="0"/>
+                              <Component id="slider_Blue" pref="159" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Blue" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
@@ -366,7 +405,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Green" pref="167" max="32767" attributes="0"/>
+                              <Component id="slider_Green" pref="159" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Green" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
@@ -416,7 +455,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Red" pref="167" max="32767" attributes="0"/>
+                              <Component id="slider_Red" pref="159" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Red" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
@@ -450,45 +489,6 @@
                     </Component>
                   </SubComponents>
                 </Container>
-              </SubComponents>
-            </Container>
-            <Container class="javax.swing.JPanel" name="panel_LastModified">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Last Modified">
-                      <Property name="titleX" resourceKey="panel_LastModified.border.title"/>
-                      <Property name="font" resourceKey="panel_LastModified.border.titleFont"/>
-                    </TitledBorder>
-                  </Border>
-                </Property>
-                <Property name="name" type="java.lang.String" value="panel_LastModified" noResource="true"/>
-              </Properties>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_LastModified" alignment="0" pref="210" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_LastModified" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="javax.swing.JTextField" name="text_LastModified">
-                  <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-                        <EmptyBorder bottom="1" left="4" right="1" top="1"/>
-                      </Border>
-                    </Property>
-                    <Property name="name" type="java.lang.String" value="text_LastModified" noResource="true"/>
-                  </Properties>
-                </Component>
               </SubComponents>
             </Container>
           </SubComponents>

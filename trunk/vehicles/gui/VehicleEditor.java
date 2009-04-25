@@ -76,11 +76,13 @@ public class VehicleEditor extends javax.swing.JFrame {
         tab_Properties = new JPanel();
         panel_VehicleName = new JPanel();
         text_VehicleName = new JTextField();
+        panel_Author = new JPanel();
+        text_Author = new JTextField();
         panel_VehicleDescription = new JPanel();
         scrollpanel_VehicleDescription = new JScrollPane();
         text_VehicleDescription = new JTextArea();
-        panel_Author = new JPanel();
-        text_Author = new JTextField();
+        panel_LastModified = new JPanel();
+        text_LastModified = new JTextField();
         panel_Preview = new JPanel();
         panel_Processing = new JPanel();
         panel_Blue = new JPanel();
@@ -92,8 +94,6 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Red = new JPanel();
         slider_Red = new JSlider();
         text_Red = new JTextField();
-        panel_LastModified = new JPanel();
-        text_LastModified = new JTextField();
         tab_Design = new JPanel();
         panel_LeftSensor = new JPanel();
         panel_Left_Light = new JPanel();
@@ -160,11 +160,27 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_VehicleName.setLayout(panel_VehicleNameLayout);
         panel_VehicleNameLayout.setHorizontalGroup(
             panel_VehicleNameLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_VehicleName, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+            .addComponent(text_VehicleName, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
         );
         panel_VehicleNameLayout.setVerticalGroup(
             panel_VehicleNameLayout.createParallelGroup(Alignment.LEADING)
             .addComponent(text_VehicleName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        );
+
+        panel_Author.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Author.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Author.border.titleFont"))); // NOI18N
+        panel_Author.setName("panel_Author"); // NOI18N
+
+        text_Author.setName("text_Author"); // NOI18N
+
+        GroupLayout panel_AuthorLayout = new GroupLayout(panel_Author);
+        panel_Author.setLayout(panel_AuthorLayout);
+        panel_AuthorLayout.setHorizontalGroup(
+            panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Author, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+        );
+        panel_AuthorLayout.setVerticalGroup(
+            panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
         panel_VehicleDescription.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_VehicleDescription.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_VehicleDescription.border.titleFont"))); // NOI18N
@@ -187,27 +203,29 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_VehicleDescription.setLayout(panel_VehicleDescriptionLayout);
         panel_VehicleDescriptionLayout.setHorizontalGroup(
             panel_VehicleDescriptionLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+            .addComponent(scrollpanel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
         );
         panel_VehicleDescriptionLayout.setVerticalGroup(
             panel_VehicleDescriptionLayout.createParallelGroup(Alignment.LEADING)
             .addComponent(scrollpanel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
         );
 
-        panel_Author.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Author.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Author.border.titleFont"))); // NOI18N
-        panel_Author.setName("panel_Author"); // NOI18N
+        panel_LastModified.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_LastModified.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_LastModified.border.titleFont"))); // NOI18N
+        panel_LastModified.setName("panel_LastModified"); // NOI18N
 
-        text_Author.setName("text_Author"); // NOI18N
+        text_LastModified.setEditable(false);
+        text_LastModified.setBorder(BorderFactory.createEmptyBorder(1, 4, 1, 1));
+        text_LastModified.setName("text_LastModified"); // NOI18N
 
-        GroupLayout panel_AuthorLayout = new GroupLayout(panel_Author);
-        panel_Author.setLayout(panel_AuthorLayout);
-        panel_AuthorLayout.setHorizontalGroup(
-            panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_Author, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+        GroupLayout panel_LastModifiedLayout = new GroupLayout(panel_LastModified);
+        panel_LastModified.setLayout(panel_LastModifiedLayout);
+        panel_LastModifiedLayout.setHorizontalGroup(
+            panel_LastModifiedLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_LastModified, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
         );
-        panel_AuthorLayout.setVerticalGroup(
-            panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        panel_LastModifiedLayout.setVerticalGroup(
+            panel_LastModifiedLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_LastModified, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
         panel_Preview.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Preview.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Preview.border.titleFont"))); // NOI18N
@@ -239,7 +257,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_BlueLayout.setHorizontalGroup(
             panel_BlueLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_BlueLayout.createSequentialGroup()
-                .addComponent(slider_Blue, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                .addComponent(slider_Blue, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_Blue, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
         );
@@ -271,7 +289,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_GreenLayout.setHorizontalGroup(
             panel_GreenLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_GreenLayout.createSequentialGroup()
-                .addComponent(slider_Green, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                .addComponent(slider_Green, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_Green, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
         );
@@ -303,7 +321,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_RedLayout.setHorizontalGroup(
             panel_RedLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_RedLayout.createSequentialGroup()
-                .addComponent(slider_Red, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                .addComponent(slider_Red, GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_Red, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
         );
@@ -320,7 +338,7 @@ public class VehicleEditor extends javax.swing.JFrame {
             .addComponent(panel_Red, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panel_Green, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panel_Blue, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panel_Processing, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+            .addComponent(panel_Processing, GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
         );
         panel_PreviewLayout.setVerticalGroup(
             panel_PreviewLayout.createParallelGroup(Alignment.LEADING)
@@ -336,24 +354,6 @@ public class VehicleEditor extends javax.swing.JFrame {
 
         panel_Processing.add(embed, BorderLayout.CENTER);
 
-        panel_LastModified.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_LastModified.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_LastModified.border.titleFont"))); // NOI18N
-        panel_LastModified.setName("panel_LastModified"); // NOI18N
-
-        text_LastModified.setEditable(false);
-        text_LastModified.setBorder(BorderFactory.createEmptyBorder(1, 4, 1, 1));
-        text_LastModified.setName("text_LastModified"); // NOI18N
-
-        GroupLayout panel_LastModifiedLayout = new GroupLayout(panel_LastModified);
-        panel_LastModified.setLayout(panel_LastModifiedLayout);
-        panel_LastModifiedLayout.setHorizontalGroup(
-            panel_LastModifiedLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_LastModified, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-        );
-        panel_LastModifiedLayout.setVerticalGroup(
-            panel_LastModifiedLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_LastModified, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        );
-
         GroupLayout tab_PropertiesLayout = new GroupLayout(tab_Properties);
         tab_Properties.setLayout(tab_PropertiesLayout);
         tab_PropertiesLayout.setHorizontalGroup(
@@ -361,12 +361,12 @@ public class VehicleEditor extends javax.swing.JFrame {
             .addGroup(tab_PropertiesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                    .addComponent(panel_VehicleName, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                    .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                    .addComponent(panel_VehicleName, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                     .addComponent(panel_Author, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panel_LastModified, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addComponent(panel_Preview, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tab_PropertiesLayout.setVerticalGroup(

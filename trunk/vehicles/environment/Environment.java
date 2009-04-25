@@ -463,8 +463,9 @@ public class Environment {
     	String[] parts = filename.split("\\" + sep);
     	this.fileName = parts[parts.length - 1];
     }
+    
 	public String toString(){
-		return this.name+"("+this.fileName+")";
+		return this.name + " (" + this.fileName + ")";
 	}
 
 }
