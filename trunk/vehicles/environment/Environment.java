@@ -451,5 +451,9 @@ public class Environment {
 		System.out.println("Heigth\t" + this.height);
 		
 	}
+	
+	public String toString(){
+		return this.name;
+	}
 
 }
