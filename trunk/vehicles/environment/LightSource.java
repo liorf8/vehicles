@@ -12,6 +12,7 @@ public class LightSource extends EnvironmentElement{
 	}
 	public LightSource(){
 		super();
+		this.name = "light";
 		this.radius = 0.0;
 		this.strength = 0.0;
 	}
