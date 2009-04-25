@@ -33,10 +33,9 @@ public class Environment {
 	//Attibutes of an environment
 	public String name = null, lastModified = null, author = null, description = null;
 	protected Vector<EnvironmentElement> elementVector;
-	protected double width = 0.0;
-	protected double height = 0.0;
 	protected Document xmldoc = null; //the XML document we are creating, stored as an object in memory
 	protected Element root = null;//the root element of the document
+	protected Grid grid = null;
 
 	/**
 	 * Constructor for creating a new environment with no file location or envName to start
@@ -46,6 +45,7 @@ public class Environment {
 		this.elementVector = new Vector<EnvironmentElement>();
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("Environment");
+		this.grid = new Grid();
 	}
 
 	/**
@@ -60,6 +60,7 @@ public class Environment {
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("Environment");
 		this.setFileName();
+		this.grid = new Grid();
 
 	}
 
@@ -87,6 +88,7 @@ public class Environment {
 			xmldoc= new DocumentImpl();
 			this.root = xmldoc.createElement("Environment");
 			this.elementVector = new Vector<EnvironmentElement>();
+			this.grid = new Grid();
 
 			/* The following recursive method is used to get the values of all attributes
 			 * apart from environment paths
@@ -96,8 +98,9 @@ public class Environment {
 			/* Fill the vector with the elements in the file */
 			NodeList elementPaths = dom.getElementsByTagName("EnvironmentElement");
 			processElementPaths(elementPaths);
-			
+
 			this.setFileName();
+			
 		}
 		catch(Exception e){
 			System.err.println("An error occurred while creating an Environment from the file '" +
@@ -147,7 +150,7 @@ public class Environment {
 			 * 
 			 */
 			this.addElement(ee);
-			
+
 		} //end of an single element for loop iteration here
 
 	}
@@ -184,10 +187,10 @@ public class Environment {
 				this.setLastModified(node_value);
 			}
 			else if(envName.equals("width")){
-				this.setWidth(Double.parseDouble(node_value));
+				this.grid.setWidth(Integer.parseInt(node_value));
 			}
 			else if(envName.equals("height")){
-				this.setHeight(Double.parseDouble(node_value));
+				this.grid.setHeight(Integer.parseInt(node_value));
 			}
 			else break;
 		}
@@ -204,15 +207,15 @@ public class Environment {
 		nameElement.appendChild(nameText);//add in the text to the element
 		root.appendChild(nameElement);//and add this new element to the document
 	}
-	
+
 	public void writeTimeStamp(Document xmldoc){
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
 		writeXMLEntry("LastModified", dateFormat.format(date), xmldoc);
 		this.setLastModified(dateFormat.format(date));
 	}
-	
-	
+
+
 	/**
 	 * Save this environment to file
 	 */
@@ -223,7 +226,7 @@ public class Environment {
 				System.err.print("Specify a filepath to save to!");
 				return;
 			}
-			
+
 			FileOutputStream fos;
 			if(this.name != null){
 				this.writeXMLEntry("name", name, xmldoc);
@@ -238,31 +241,31 @@ public class Environment {
 			}
 			//Write a timestamp
 			this.writeTimeStamp(xmldoc);
-			
+
 			if(this.description != null){
 				this.writeXMLEntry("description", description, xmldoc);
 			}
-			if(this.width != 0.0){
-				this.writeXMLEntry("width", Double.toString(width), xmldoc);
+			if(this.grid.getWidth() != 0.0){
+				this.writeXMLEntry("width", Integer.toString(grid.getWidth()), xmldoc);
 			}
-			if(this.height != 0.0){
-				this.writeXMLEntry("height", Double.toString(height), xmldoc);
+			if(this.grid.getHeight() != 0.0){
+				this.writeXMLEntry("height", Integer.toString(grid.getHeight()), xmldoc);
 			}
 			if(this.elementVector != null){
 				Iterator<EnvironmentElement> it = this.elementVector.iterator();
 				while(it.hasNext()){ //process every element in the vector
 					EnvironmentElement curr = it.next();
 					/*
-					 
+
 					if(o == null){ //if not, populate it(convert object attributes to xml tree)
 						curr.toInternalXML();
 					}
-					*/									
+					 */									
 					//now add the xml tree from this element to the whole environment's xml tree
 					this.addEnvironmentElement(curr);
 				}
 			}
-			
+
 			xmldoc.appendChild(root); //finalise the XML document
 			/*Now take the file in RAM and write it out to disk*/
 			try{
@@ -308,17 +311,17 @@ public class Environment {
 	public String getDescription(){
 		return this.description;
 	}
-	
+
 	public String getLastModified(){
 		return this.lastModified;
 	}
 
 	public double getWidth(){
-		return this.width;
+		return this.grid.getWidth();
 	}
 
 	public double getHeigth(){
-		return this.height;
+		return this.grid.getHeight();
 	}
 
 	public String getFileLocation(){
@@ -328,6 +331,8 @@ public class Environment {
 	public Vector<EnvironmentElement> getElements(){
 		return elementVector;
 	}
+	
+	
 
 	/***** Setter Methods *****/
 
@@ -342,29 +347,17 @@ public class Environment {
 	public void setDescription(String d){
 		this.description = d;
 	}
-	
+
 	public void setLastModified(String timeStamp){
 		this.lastModified = timeStamp;
 	}
 
-	public void setWidth(double width){
-		if(width > 0.0){
-			this.width = width;
-		}
-		else {
-			System.err.println("Width must be greater than 0..setting width to be 100.0");
-			this.width = 100.0;
-		}
+	public void setWidth(int width){
+		this.grid.setWidth(width);
 	}
 
-	public void setHeight(double height){
-		if(height > 0.0){
-			this.height= height;
-		}
-		else {
-			System.err.println("Height must be greater than 0..setting height to be 100.0");
-			this.height = 100.0;
-		}
+	public void setHeight(int height){
+		this.grid.setHeight(height);
 	}
 
 	public void setXMLLocation(String location){
@@ -437,21 +430,21 @@ public class Environment {
 		System.out.println("Author\t" + this.author);
 		System.out.println("Last Modified\t" + this.lastModified);
 		System.out.println("Description\t" + this.description);
-		System.out.println("Width\t" + this.width);
-		System.out.println("Heigth\t" + this.height);
-		
+		System.out.println("Width\t" + this.grid.getWidth());
+		System.out.println("Heigth\t" + this.grid.getHeight());
+
 	}
-	
+
 	public void setFileName(){
-    	String filename = this.xmlLocation;
-    	String sep = File.separator;
-    	String[] parts = filename.split("\\" + sep);
-    	this.fileName = parts[parts.length - 1];
-    }
-    
+		String filename = this.xmlLocation;
+		String sep = File.separator;
+		String[] parts = filename.split("\\" + sep);
+		this.fileName = parts[parts.length - 1];
+	}
+
 	public String toString(){
 		return this.name + " (" + this.fileName + ")";
 	}
-	
+
 
 }
