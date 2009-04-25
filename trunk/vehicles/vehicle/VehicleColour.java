@@ -7,9 +7,9 @@ import org.w3c.dom.Text;
 
 public class VehicleColour {
 	private int red = 0;
+    private int green = 0;
 	private int blue = 0;
-	private int green = 0;
-
+    
 	Document  xmldoc; //the XML document we are creating, stored as an object in memory
 	Element root;//the root element of the document
 
@@ -38,10 +38,10 @@ public class VehicleColour {
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("Colour");
 	}
-	public VehicleColour(int r,int b,int g){
+	public VehicleColour(int r,int g,int b){
 		this.red = r;
-		this.blue = b;
 		this.green = g;
+        this.blue = b;
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("Colour");
 	}
@@ -66,14 +66,14 @@ public class VehicleColour {
 	 */
 	public Element getRootElement(){
 		this.writeXMLEntry("red", Integer.toString(red), xmldoc);
-		this.writeXMLEntry("blue", Integer.toString(blue), xmldoc);
 		this.writeXMLEntry("green", Integer.toString(green), xmldoc);
+        this.writeXMLEntry("blue", Integer.toString(blue), xmldoc);
 		xmldoc.appendChild(root);
 		return root;
 	}
 
     @Override
 	public String toString(){
-		return (this.red + " " +this.blue + " " + this.green);
+		return (this.red + " " +this.green + " " + this.blue);
 	}
 }
