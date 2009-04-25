@@ -191,7 +191,12 @@ public class EnvironmentElement {
 	public Point getPosition() {
 		return position;
 	}
-	
+	public double getXpos()	{
+		return this.position.getXpos();
+	}
+	public double getYpos()	{
+		return this.position.getYpos();
+	}
 	/**** Other Methods ****/
 	
 	public boolean isSaveable(){
