@@ -24,8 +24,7 @@ public class UtilMethods {
 				v.add(new EditorVehicle(files[i].toString(),true)); //create an object from the XML in this file
 			}
 		}
-		v.trimToSize();
-		return v.toArray(list); //return an array
+		return (EditorVehicle[])v.toArray();
 	}
 	
 	/**
@@ -43,8 +42,7 @@ public class UtilMethods {
 				s.add(new Simulation(files[i].toString()));
 			}
 		}
-		s.trimToSize();
-		return s.toArray(list);
+		return (Simulation[])s.toArray();
 	}
 	
 	/**
@@ -62,8 +60,7 @@ public class UtilMethods {
 				e.add(new Environment(files[i].toString()));
 			}
 		}
-		e.trimToSize();
-		return e.toArray(list);
+		return (Environment[])e.toArray();
 	}
 	
 	/**

@@ -12,7 +12,8 @@ public class SimulationTest {
 
 	public static void main(String[] args){
 		EditorSimulation es = new EditorSimulation();
-		//es.se
+		es.setAuthor("Some guy");
+		
 		es.addVehicle("/xml/simulations/hungry.xml");
 		es.setEnvironment("/xml/environments/desert.xml");
 //		

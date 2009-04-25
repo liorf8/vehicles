@@ -28,6 +28,7 @@ import org.w3c.dom.Text;
  */
 public class Environment {
 	protected String xmlLocation = null; //XML file location for this environment
+	protected String fileName = null;
 
 	//Attibutes of an environment
 	public String name = null, lastModified = null, author = null, description = null;
@@ -58,6 +59,7 @@ public class Environment {
 		this.xmlLocation = fl;
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("Environment");
+		this.setFileName();
 
 	}
 
@@ -94,6 +96,8 @@ public class Environment {
 			/* Fill the vector with the elements in the file */
 			NodeList elementPaths = dom.getElementsByTagName("EnvironmentElement");
 			processElementPaths(elementPaths);
+			
+			this.setFileName();
 		}
 		catch(Exception e){
 			System.err.println("An error occurred while creating an Environment from the file '" +
@@ -380,6 +384,7 @@ public class Environment {
 
 	public void setXMLLocation(String location){
 		this.xmlLocation = location;
+		this.setFileName();
 	}
 
 	/**
@@ -452,8 +457,14 @@ public class Environment {
 		
 	}
 	
+	public void setFileName(){
+    	String filename = this.xmlLocation;
+    	String sep = File.separator;
+    	String[] parts = filename.split("\\" + sep);
+    	this.fileName = parts[parts.length - 1];
+    }
 	public String toString(){
-		return this.name+"("+this.xmlLocation+")";
+		return this.name+"("+this.fileName+")";
 	}
 
 }
