@@ -1045,7 +1045,6 @@ public class VehicleEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_dropdown_selectedVehicleItemStateChanged
 
     private void button_SaveMouseClicked(MouseEvent evt) {//GEN-FIRST:event_button_SaveMouseClicked
-        System.out.print("save");
         EditorVehicle v = (EditorVehicle) dropdown_selectedVehicle.getSelectedItem();
         v.setVehicleName(text_VehicleName.getText()); //set object attributes
 		v.setVehicleAuthor(text_Author.getText());
@@ -1062,15 +1061,15 @@ public class VehicleEditor extends javax.swing.JFrame {
 		v.setRightSensorPower(slider_Right_Power.getValue());
 		v.setRightSensorWater(slider_Right_Water.getValue());
 		v.saveVehicle(); //convert object and its attributes into XML
-        v = null;
-        vehiclesArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
-        vehiclesDropDown = new DefaultComboBoxModel(vehiclesArray);
-        dropdown_selectedVehicle.setModel(vehiclesDropDown);
+        //vehiclesArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
+        //vehiclesDropDown = new DefaultComboBoxModel(vehiclesArray);
+        //dropdown_selectedVehicle.setModel(vehiclesDropDown);
         dropdown_selectedVehicle.requestFocus();
+        dropdown_selectedVehicle.setSelectedItem(v);
+        populateFields(v);
     }//GEN-LAST:event_button_SaveMouseClicked
 
     private void button_SaveAsMouseClicked(MouseEvent evt) {//GEN-FIRST:event_button_SaveAsMouseClicked
-        System.out.print("saveas");
         String filename = UtilMethods.formatString(text_VehicleName.getText());
         EditorVehicle v = new EditorVehicle("xml/vehicles/" + filename + ".xml");
         v.setVehicleName(text_VehicleName.getText()); //set object attributes
@@ -1088,11 +1087,11 @@ public class VehicleEditor extends javax.swing.JFrame {
 		v.setRightSensorPower(slider_Right_Power.getValue());
 		v.setRightSensorWater(slider_Right_Water.getValue());
 		v.saveVehicle(); //convert object and its attributes into XML
-        v = null;
         vehiclesArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
         vehiclesDropDown = new DefaultComboBoxModel(vehiclesArray);
         dropdown_selectedVehicle.setModel(vehiclesDropDown);
         dropdown_selectedVehicle.requestFocus();
+        dropdown_selectedVehicle.setSelectedItem(v);
     }//GEN-LAST:event_button_SaveAsMouseClicked
 
     private void formWindowGainedFocus(WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
@@ -1105,7 +1104,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         text_Author.setText(tempVehicle.getVehicleAuthor());
         text_VehicleDescription.setText(tempVehicle.getVehicleDescription());
         text_VehicleName.setText(tempVehicle.getVehicleName());
-        text_LastModified.setText("XXX");
+        text_LastModified.setText(tempVehicle.getLastModified());
 
         slider_Red.setValue(tempVehicle.getVehicleColourRed());
         slider_Blue.setValue(tempVehicle.getVehicleColourBlue());
