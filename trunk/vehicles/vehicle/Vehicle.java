@@ -55,13 +55,13 @@ public class Vehicle implements Comparable{
 	}
 
 	public void setMaxMem(int m){
-		if(m > 0) {
+		if(m >= 0) {
 			this.mu.setMaxMem(m);
 			this.max_mem = m;
 		}
 		else{
-			this.mu.setMaxMem(1);
-			this.max_mem = 1;
+		this.mu.setMaxMem(0);
+		this.max_mem = 0;
 		}
 	}
 
