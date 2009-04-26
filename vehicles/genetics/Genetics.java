@@ -4,7 +4,6 @@ import java.util.Random;
 import java.util.Arrays;
 import java.util.Vector;
 import java.util.Collections;
-
 import vehicles.vehicle.Vehicle;
 
 /**
@@ -15,24 +14,15 @@ import vehicles.vehicle.Vehicle;
  *
  */
 public class Genetics {
-	
-	protected static int NoSelection = 0;
-	protected static int RouletteSelection = 1;
-	protected static int TournamenetSelection = 2;
-	protected static int TopNPercenSelection = 3;
-	protected static int GetBestSelection = 4;
-	protected static int RandomSelection = 5;
-	
+		
 
 	/*******************************************************************************************\
 	/																							\
 	/                      Genetic Selection Algorithms for a set of Vehicles					\
 	/																							\
-	/*******************************************************************************************\
-
-	/**
-	 * A selection method that will choose a vehicle from the array of vehicles based
-	 * on the value passed for genetic selection
+	/*******************************************************************************************/
+	
+	/*
 	 * 
 	 * Values are as follows:
 	 * 0 - 	Set by default, no selection method chosen. null returned
@@ -47,20 +37,29 @@ public class Genetics {
 	 * 		If there are two or more vehicle with the same level of top fitness, one of them is chosen
 	 * 		randomly.
 	 * 5 - Random - A selection operator which randomly selects a single vehicle from the population.
+	 */
+	
+	protected static int NoSelection = 0;
+	protected static int RouletteSelection = 1;
+	protected static int TournamenetSelection = 2;
+	protected static int TopNPercenSelection = 3;
+	protected static int GetBestSelection = 4;
+	protected static int RandomSelection = 5;
+
+	
+	/**
+	 * A selection method that will choose a vehicle from the array of vehicles based
+	 * on the value passed for genetic selection
 	 * 
 	 * @param gen_selection The genetic selection identifier. 
 	 * @param v A vehicle array to extract a single vehicle from
 	 * @param n This is for some of the genetic algorithms that require user input such as topNselection
 	 */ 
 	public static Vehicle getVehicle_SelectionBased(int gen_selection, Vector<Vehicle> v, int n){
-		//TODO Need methods to get user input at runtime from the gui for top N percent
-		//and for Tournament. Random Numbers being used for now.
 		switch(gen_selection){
-		//Set by default, no selection method chosen
 		case 0:
-			System.out.println("No genetic selection method set! Return null");
+			System.out.println("No genetic selection method set! Returning null");
 			return null;
-			//
 		case 1:
 			return getVehicleByRoulette(v);
 		case 2:
@@ -173,10 +172,6 @@ public class Genetics {
 	 */
 	public static Vehicle getVehicleByBest(Vehicle[] v){
 		Arrays.sort(v);
-		//For debugging
-		for(int i = 0; i < v.length; i++){
-			System.out.println("Vehicle " + i + " fitness: " + v[i].getFitness());
-		}
 		return v[v.length - 1];
 	}
 	
@@ -197,10 +192,6 @@ public class Genetics {
 	 */
 	public static void sortByFitness(Vector<Vehicle> v){
 		Collections.sort(v);
-		//For debugging
-		//for(int i = 0; i < v.size(); i++){
-		//	System.out.println("Vehicle " + i + " fitness: " + v.elementAt(i).getFitness());
-		//}
 	}
 
 }
