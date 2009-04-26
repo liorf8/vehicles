@@ -33,11 +33,11 @@ public class Vehicle {
 
 
 
-	public String getVehicleAuthor() {
+	public String getAuthor() {
 		return vehicleAuthor;
 	}
 
-	public void setVehicleAuthor(String vehicleAuthor) {
+	public void setAuthor(String vehicleAuthor) {
 		this.vehicleAuthor = vehicleAuthor;
 	}
 
@@ -225,11 +225,11 @@ public class Vehicle {
 		this.vehicleColour = vehicleColour;
 	}
 
-	public String getVehicleDescription() {
+	public String getDescription() {
 		return vehicleDescription;
 	}
 
-	public void setVehicleDescription(String vehicleDescription) {
+	public void setDescription(String vehicleDescription) {
 		this.vehicleDescription = vehicleDescription;
 	}
 
@@ -257,11 +257,11 @@ public class Vehicle {
 		this.motorStrength = motorStrength;
 	}
 
-	public double getMax_battery_capacity() {
+	public double getMaxBatteryCapacity() {
 		return max_battery_capacity;
 	}
 
-	public void setMax_battery_capacity(double max_battery_capacity) {
+	public void setMaxBatteryCapacity(double max_battery_capacity) {
 		this.max_battery_capacity = max_battery_capacity;
 	}
 
@@ -313,7 +313,7 @@ public class Vehicle {
 			NodeList name = dom.getElementsByTagName("name");
 			for (int i = 0; i < name.getLength(); i++) {
 				if (name.item(i).getParentNode().getNodeName().equals("Vehicle")) {
-					this.setVehicleName(name.item(i).getChildNodes().item(0).getNodeValue());
+					this.setName(name.item(i).getChildNodes().item(0).getNodeValue());
 				}
 			}
 
@@ -321,7 +321,7 @@ public class Vehicle {
 			this.setLastModified(lastModded.item(0).getChildNodes().item(0).getNodeValue());
 
 			NodeList maxBattery = dom.getElementsByTagName("max_battery_capacity");
-			this.setMax_battery_capacity(Double.parseDouble(maxBattery.item(0).getChildNodes().item(0).getNodeValue()));
+			this.setMaxBatteryCapacity(Double.parseDouble(maxBattery.item(0).getChildNodes().item(0).getNodeValue()));
 
 			NodeList currBattery = dom.getElementsByTagName("curr_battery_capacity");
 			this.setCurr_battery_capacity(Double.parseDouble(currBattery.item(0).getChildNodes().item(0).getNodeValue()));
@@ -342,10 +342,10 @@ public class Vehicle {
 			this.vehicleColour.setGreen(Integer.parseInt(green.item(0).getChildNodes().item(0).getNodeValue()));
 
 			NodeList auth= dom.getElementsByTagName("author");
-			this.setVehicleAuthor(auth.item(0).getChildNodes().item(0).getNodeValue());
+			this.setAuthor(auth.item(0).getChildNodes().item(0).getNodeValue());
 
 			NodeList desc= dom.getElementsByTagName("description");
-			this.setVehicleDescription(desc.item(0).getChildNodes().item(0).getNodeValue());
+			this.setDescription(desc.item(0).getChildNodes().item(0).getNodeValue());
 
 			//Node root = dom.getDocumentElement(); //get the root element from the document
 			//handleNode(root); //recursive function to handle the nodes
@@ -449,11 +449,11 @@ public class Vehicle {
 		this.setFileName();
 	}
 
-	public String getVehicleName() {
+	public String getName() {
 		return vehicleName;
 	}
 
-	public void setVehicleName(String vehicleName) {
+	public void setName(String vehicleName) {
 		this.vehicleName = vehicleName;
 	}
 

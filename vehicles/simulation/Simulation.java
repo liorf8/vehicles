@@ -22,6 +22,7 @@ public class Simulation {
 
 	/*Attributes of an environment	*/
 	protected String simulationName = null, author = null, lastModified = null, description; //the name of this vehicle
+    protected String fileName = null;
 	protected Environment enviro = null; //the environment to use for this simulation
 	protected Vector <Vehicle> vehicles; //the vehicles in this simulation 
 
@@ -37,6 +38,7 @@ public class Simulation {
 	public Simulation(String filename){
 		try{			
 			DOMParser p = new DOMParser();
+            
 			System.out.println("Opening file: " + filename);
 			p.parse(filename); //get a parsed version of the file into memory
 			Document dom = p.getDocument();
@@ -53,6 +55,7 @@ public class Simulation {
 			/*If valid Simulation file, continue*/
 			vehicles = new Vector<Vehicle>();
 			this.xmlLocation = filename;
+            this.setFileName();
 
 			/* The following recursive method is used to get the values of all attributes
 			 * apart from the vehicles paths
@@ -105,7 +108,7 @@ public class Simulation {
 			name = node.getParentNode().getNodeName();
 			node_value = node.getNodeValue();
 			if(name.equals("Name")){
-				this.setSimulationName(node_value);
+				this.setName(node_value);
 			}
 			else if(name.equals("Author")){
 				this.setAuthor(node_value);
@@ -146,7 +149,7 @@ public class Simulation {
 		return this.description;
 	}
 
-	public String getSimulationName() {
+	public String getName() {
 		return simulationName;
 	}
 
@@ -182,9 +185,10 @@ public class Simulation {
 
 	public void setXmlLocation(String xmlLocation) {
 		this.xmlLocation = xmlLocation;
+        this.setFileName();
 	}
 
-	public void setSimulationName(String simName) {
+	public void setName(String simName) {
 		this.simulationName = simName;
 	}
 
@@ -232,6 +236,21 @@ public class Simulation {
 		this.lastModified = timeStamp;
 	}
 
+    public String getFileName(){
+		return this.fileName;
+	}
+
+	public void setFileName(String f){
+		this.fileName = f;
+	}
+
+	public void setFileName(){
+		String filename = this.xmlLocation;
+		String sep = File.separator;
+		String[] parts = filename.split("\\" + sep);
+		this.fileName = parts[parts.length - 1];
+	}
+
 	/**** Other Methods ****/
 
 	/**
@@ -246,7 +265,7 @@ public class Simulation {
 	 * Void method that will print out all of the details about the current Simulation object
 	 */
 	public void printSimDetails(){
-		System.out.println("Name\t" + this.getSimulationName());
+		System.out.println("Name\t" + this.getName());
 		System.out.println("Author\t" + this.getAuthor());
 		System.out.println("Last Modified\t" + this.getLastModified());
 		System.out.println("Location\t" + this.getXmlLocation());
@@ -483,11 +502,8 @@ public class Simulation {
 		return this.vehicles.elementAt(random);
 	}
 
-
-
-
-
-
-
+    public String toString(){
+		return this.simulationName + " (" + this.fileName + ")";
+	}
 
 }

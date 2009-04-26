@@ -72,15 +72,17 @@ public class VehicleEditor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panel_SelectedVehicle = new JPanel();
+        dropdown_SelectedVehicle = new JComboBox();
         tabContainer = new JTabbedPane();
         tab_Properties = new JPanel();
-        panel_VehicleName = new JPanel();
-        text_VehicleName = new JTextField();
+        panel_Name = new JPanel();
+        text_Name = new JTextField();
         panel_Author = new JPanel();
         text_Author = new JTextField();
-        panel_VehicleDescription = new JPanel();
-        scrollpanel_VehicleDescription = new JScrollPane();
-        text_VehicleDescription = new JTextArea();
+        panel_Description = new JPanel();
+        scrollpanel_Description = new JScrollPane();
+        text_Description = new JTextArea();
         panel_LastModified = new JPanel();
         text_LastModified = new JTextField();
         panel_Appearance = new JPanel();
@@ -127,12 +129,10 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Aggression = new JPanel();
         slider_Aggression = new JSlider();
         text_Aggression = new JTextField();
+        text_Status = new JTextField();
         button_Save = new JButton();
         button_SaveAsNew = new JButton();
         button_Cancel = new JButton();
-        panel_SelectedVehicle = new JPanel();
-        dropdown_SelectedVehicle = new JComboBox();
-        text_Status = new JTextField();
 
         ResourceMap resourceMap = Application.getInstance(VehiclesApp.class).getContext().getResourceMap(VehicleEditor.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
@@ -146,25 +146,48 @@ public class VehicleEditor extends javax.swing.JFrame {
             }
         });
 
+        panel_SelectedVehicle.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_SelectedVehicle.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_SelectedVehicle.border.titleFont"))); // NOI18N
+        panel_SelectedVehicle.setName("panel_SelectedVehicle"); // NOI18N
+
+        dropdown_SelectedVehicle.setMaximumRowCount(4);
+        dropdown_SelectedVehicle.setModel(vehiclesDropDown);
+        dropdown_SelectedVehicle.setName("dropdown_SelectedVehicle"); // NOI18N
+        dropdown_SelectedVehicle.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                dropdown_SelectedVehicleItemStateChanged(evt);
+            }
+        });
+
+        GroupLayout panel_SelectedVehicleLayout = new GroupLayout(panel_SelectedVehicle);
+        panel_SelectedVehicle.setLayout(panel_SelectedVehicleLayout);
+        panel_SelectedVehicleLayout.setHorizontalGroup(
+            panel_SelectedVehicleLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(dropdown_SelectedVehicle, 0, 468, Short.MAX_VALUE)
+        );
+        panel_SelectedVehicleLayout.setVerticalGroup(
+            panel_SelectedVehicleLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(dropdown_SelectedVehicle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        );
+
         tabContainer.setName("tabContainer"); // NOI18N
 
         tab_Properties.setName("tab_Properties"); // NOI18N
 
-        panel_VehicleName.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_VehicleName.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_VehicleName.border.titleFont"))); // NOI18N
-        panel_VehicleName.setName("panel_VehicleName"); // NOI18N
-        panel_VehicleName.setPreferredSize(new Dimension(224, 46));
+        panel_Name.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Name.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Name.border.titleFont"))); // NOI18N
+        panel_Name.setName("panel_Name"); // NOI18N
+        panel_Name.setPreferredSize(new Dimension(224, 46));
 
-        text_VehicleName.setName("text_VehicleName"); // NOI18N
+        text_Name.setName("text_Name"); // NOI18N
 
-        GroupLayout panel_VehicleNameLayout = new GroupLayout(panel_VehicleName);
-        panel_VehicleName.setLayout(panel_VehicleNameLayout);
-        panel_VehicleNameLayout.setHorizontalGroup(
-            panel_VehicleNameLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_VehicleName, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+        GroupLayout panel_NameLayout = new GroupLayout(panel_Name);
+        panel_Name.setLayout(panel_NameLayout);
+        panel_NameLayout.setHorizontalGroup(
+            panel_NameLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Name, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
         );
-        panel_VehicleNameLayout.setVerticalGroup(
-            panel_VehicleNameLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_VehicleName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        panel_NameLayout.setVerticalGroup(
+            panel_NameLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
         panel_Author.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Author.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Author.border.titleFont"))); // NOI18N
@@ -183,31 +206,31 @@ public class VehicleEditor extends javax.swing.JFrame {
             .addComponent(text_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
-        panel_VehicleDescription.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_VehicleDescription.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_VehicleDescription.border.titleFont"))); // NOI18N
-        panel_VehicleDescription.setName("panel_VehicleDescription"); // NOI18N
-        panel_VehicleDescription.setPreferredSize(new Dimension(220, 311));
+        panel_Description.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Description.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Description.border.titleFont"))); // NOI18N
+        panel_Description.setName("panel_Description"); // NOI18N
+        panel_Description.setPreferredSize(new Dimension(220, 311));
 
-        scrollpanel_VehicleDescription.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollpanel_VehicleDescription.setAutoscrolls(true);
-        scrollpanel_VehicleDescription.setName("scrollpanel_VehicleDescription"); // NOI18N
+        scrollpanel_Description.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollpanel_Description.setAutoscrolls(true);
+        scrollpanel_Description.setName("scrollpanel_Description"); // NOI18N
 
-        text_VehicleDescription.setColumns(20);
-        text_VehicleDescription.setFont(resourceMap.getFont("text_VehicleDescription.font")); // NOI18N
-        text_VehicleDescription.setLineWrap(true);
-        text_VehicleDescription.setRows(5);
-        text_VehicleDescription.setWrapStyleWord(true);
-        text_VehicleDescription.setName("text_VehicleDescription"); // NOI18N
-        scrollpanel_VehicleDescription.setViewportView(text_VehicleDescription);
+        text_Description.setColumns(20);
+        text_Description.setFont(resourceMap.getFont("text_Description.font")); // NOI18N
+        text_Description.setLineWrap(true);
+        text_Description.setRows(5);
+        text_Description.setWrapStyleWord(true);
+        text_Description.setName("text_Description"); // NOI18N
+        scrollpanel_Description.setViewportView(text_Description);
 
-        GroupLayout panel_VehicleDescriptionLayout = new GroupLayout(panel_VehicleDescription);
-        panel_VehicleDescription.setLayout(panel_VehicleDescriptionLayout);
-        panel_VehicleDescriptionLayout.setHorizontalGroup(
-            panel_VehicleDescriptionLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+        GroupLayout panel_DescriptionLayout = new GroupLayout(panel_Description);
+        panel_Description.setLayout(panel_DescriptionLayout);
+        panel_DescriptionLayout.setHorizontalGroup(
+            panel_DescriptionLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(scrollpanel_Description, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
         );
-        panel_VehicleDescriptionLayout.setVerticalGroup(
-            panel_VehicleDescriptionLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+        panel_DescriptionLayout.setVerticalGroup(
+            panel_DescriptionLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(scrollpanel_Description, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
         );
 
         panel_LastModified.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_LastModified.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_LastModified.border.titleFont"))); // NOI18N
@@ -361,8 +384,8 @@ public class VehicleEditor extends javax.swing.JFrame {
             .addGroup(tab_PropertiesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                    .addComponent(panel_VehicleName, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                    .addComponent(panel_Description, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                    .addComponent(panel_Name, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                     .addComponent(panel_Author, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panel_LastModified, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(ComponentPlacement.RELATED)
@@ -376,11 +399,11 @@ public class VehicleEditor extends javax.swing.JFrame {
                 .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
                     .addComponent(panel_Appearance, GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
                     .addGroup(Alignment.LEADING, tab_PropertiesLayout.createSequentialGroup()
-                        .addComponent(panel_VehicleName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panel_Name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(panel_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(panel_VehicleDescription, GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                        .addComponent(panel_Description, GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(panel_LastModified, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -861,6 +884,10 @@ public class VehicleEditor extends javax.swing.JFrame {
 
         tabContainer.addTab(resourceMap.getString("tab_Design.TabConstraints.tabTitle"), tab_Design); // NOI18N
 
+        text_Status.setEditable(false);
+        text_Status.setText(resourceMap.getString("text_Status.text")); // NOI18N
+        text_Status.setName("text_Status"); // NOI18N
+
         button_Save.setText(resourceMap.getString("button_Save.text")); // NOI18N
         button_Save.setName("button_Save"); // NOI18N
         button_Save.addMouseListener(new MouseAdapter() {
@@ -881,33 +908,6 @@ public class VehicleEditor extends javax.swing.JFrame {
         button_Cancel.setAction(actionMap.get("cancel")); // NOI18N
         button_Cancel.setText(resourceMap.getString("button_Cancel.text")); // NOI18N
         button_Cancel.setName("button_Cancel"); // NOI18N
-
-        panel_SelectedVehicle.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_SelectedVehicle.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_SelectedVehicle.border.titleFont"))); // NOI18N
-        panel_SelectedVehicle.setName("panel_SelectedVehicle"); // NOI18N
-
-        dropdown_SelectedVehicle.setMaximumRowCount(4);
-        dropdown_SelectedVehicle.setModel(vehiclesDropDown);
-        dropdown_SelectedVehicle.setName("dropdown_SelectedVehicle"); // NOI18N
-        dropdown_SelectedVehicle.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent evt) {
-                dropdown_SelectedVehicleItemStateChanged(evt);
-            }
-        });
-
-        GroupLayout panel_SelectedVehicleLayout = new GroupLayout(panel_SelectedVehicle);
-        panel_SelectedVehicle.setLayout(panel_SelectedVehicleLayout);
-        panel_SelectedVehicleLayout.setHorizontalGroup(
-            panel_SelectedVehicleLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(dropdown_SelectedVehicle, 0, 468, Short.MAX_VALUE)
-        );
-        panel_SelectedVehicleLayout.setVerticalGroup(
-            panel_SelectedVehicleLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(dropdown_SelectedVehicle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        );
-
-        text_Status.setEditable(false);
-        text_Status.setText(resourceMap.getString("text_Status.text")); // NOI18N
-        text_Status.setName("text_Status"); // NOI18N
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1033,9 +1033,9 @@ public class VehicleEditor extends javax.swing.JFrame {
 
     private void button_SaveMouseClicked(MouseEvent evt) {//GEN-FIRST:event_button_SaveMouseClicked
         EditorVehicle v = (EditorVehicle) dropdown_SelectedVehicle.getSelectedItem();
-        v.setVehicleName(text_VehicleName.getText()); //set object attributes
-		v.setVehicleAuthor(text_Author.getText());
-		v.setVehicleDescription(text_VehicleDescription.getText());
+        v.setName(text_Name.getText()); //set object attributes
+		v.setAuthor(text_Author.getText());
+		v.setDescription(text_Description.getText());
 		v.setMotorStrength(slider_MotorStrength.getValue());
 		v.setAggression(slider_Aggression.getValue());
 		v.setColour(slider_Red.getValue(), slider_Green.getValue(), slider_Blue.getValue());
@@ -1063,11 +1063,11 @@ public class VehicleEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_button_SaveMouseClicked
 
     private void button_SaveAsNewMouseClicked(MouseEvent evt) {//GEN-FIRST:event_button_SaveAsNewMouseClicked
-        String filename = UtilMethods.formatString(text_VehicleName.getText());
+        String filename = UtilMethods.formatString(text_Name.getText());
         EditorVehicle v = new EditorVehicle("xml/vehicles/" + filename + ".veh");
-        v.setVehicleName(text_VehicleName.getText()); //set object attributes
-		v.setVehicleAuthor(text_Author.getText());
-		v.setVehicleDescription(text_VehicleDescription.getText());
+        v.setName(text_Name.getText()); //set object attributes
+		v.setAuthor(text_Author.getText());
+		v.setDescription(text_Description.getText());
 		v.setMotorStrength(slider_MotorStrength.getValue());
 		v.setAggression(slider_Aggression.getValue());
 		v.setColour(slider_Red.getValue(), slider_Green.getValue(), slider_Blue.getValue());
@@ -1101,9 +1101,9 @@ public class VehicleEditor extends javax.swing.JFrame {
     private void populateFields(EditorVehicle p_vehicle) {
         EditorVehicle tempVehicle = p_vehicle;
 
-        text_Author.setText(tempVehicle.getVehicleAuthor());
-        text_VehicleDescription.setText(tempVehicle.getVehicleDescription());
-        text_VehicleName.setText(tempVehicle.getVehicleName());
+        text_Author.setText(tempVehicle.getAuthor());
+        text_Description.setText(tempVehicle.getDescription());
+        text_Name.setText(tempVehicle.getName());
         text_LastModified.setText(tempVehicle.getLastModified());
 
         slider_Red.setValue(tempVehicle.getVehicleColourRed());
@@ -1134,6 +1134,7 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JPanel panel_Appearance;
     private JPanel panel_Author;
     private JPanel panel_Blue;
+    private JPanel panel_Description;
     private JPanel panel_Green;
     private JPanel panel_LastModified;
     private JPanel panel_LeftSensor;
@@ -1142,6 +1143,7 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JPanel panel_Left_Power;
     private JPanel panel_Left_Water;
     private JPanel panel_MotorStrength;
+    private JPanel panel_Name;
     private JPanel panel_Processing;
     private JPanel panel_Red;
     private JPanel panel_RightSensor;
@@ -1150,9 +1152,7 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JPanel panel_Right_Power;
     private JPanel panel_Right_Water;
     private JPanel panel_SelectedVehicle;
-    private JPanel panel_VehicleDescription;
-    private JPanel panel_VehicleName;
-    private JScrollPane scrollpanel_VehicleDescription;
+    private JScrollPane scrollpanel_Description;
     private JSlider slider_Aggression;
     private JSlider slider_Blue;
     private JSlider slider_Green;
@@ -1172,6 +1172,7 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JTextField text_Aggression;
     private JTextField text_Author;
     private JTextField text_Blue;
+    private JTextArea text_Description;
     private JTextField text_Green;
     private JTextField text_LastModified;
     private JTextField text_Left_Heat;
@@ -1179,14 +1180,13 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JTextField text_Left_Power;
     private JTextField text_Left_Water;
     private JTextField text_MotorStrength;
+    private JTextField text_Name;
     private JTextField text_Red;
     private JTextField text_Right_Heat;
     private JTextField text_Right_Light;
     private JTextField text_Right_Power;
     private JTextField text_Right_Water;
     private JTextField text_Status;
-    private JTextArea text_VehicleDescription;
-    private JTextField text_VehicleName;
     // End of variables declaration//GEN-END:variables
     private PApplet embed;
     private EditorVehicle[] vehiclesArray;

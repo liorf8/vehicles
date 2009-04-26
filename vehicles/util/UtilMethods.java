@@ -34,18 +34,18 @@ public class UtilMethods {
 	 * @param folderPath The path to generate the list from
 	 * @return A Simulation Array of simulations at the folder path
 	 */
-	public static Simulation[] getSimulationsFromFolder(String folderPath){
-		Vector<Simulation> s = new Vector<Simulation>();
+	public static EditorSimulation[] getSimulationsFromFolder(String folderPath){
+		Vector<EditorSimulation> s = new Vector<EditorSimulation>();
 		File[] files = new File(folderPath).listFiles();
 		int len = files.length;
 		int count = 0;		
 		for(int i = 0; i < len; i++){
 			if(files[i].isFile() && files[i].toString().endsWith(".sim")){
-				s.add(new Simulation(files[i].toString()));
+				s.add(new EditorSimulation(files[i].toString()));
 				count++;
 			}
 		}
-		Simulation[] list = new Simulation[count];
+		EditorSimulation[] list = new EditorSimulation[count];
 		return s.toArray(list);
 	}
 	

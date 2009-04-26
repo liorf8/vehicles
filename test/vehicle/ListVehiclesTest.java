@@ -8,11 +8,11 @@ public class ListVehiclesTest {
 	public static void main(String args[]){
 		/*CREATE A NEW VEHICLE*/
 		EditorVehicle veh = new EditorVehicle("xml/vehicles/angry.veh");
-		veh.setVehicleName("Angry Vehicle");
-		veh.setVehicleAuthor("Some sweaty angry guy");
-		veh.setVehicleDescription("This is a very angry little vehicle, This is a very angry little vehicle, This is a very angry little vehicle, This is a very angry little vehicle");
+		veh.setName("Angry Vehicle");
+		veh.setAuthor("Some sweaty angry guy");
+		veh.setDescription("This is a very angry little vehicle, This is a very angry little vehicle, This is a very angry little vehicle, This is a very angry little vehicle");
 		veh.setCurr_battery_capacity(65);
-		veh.setMax_battery_capacity(100);
+		veh.setMaxBatteryCapacity(100);
         veh.setColour(255, 255, 255);
 
 		VehicleComponent vc = new VehicleComponent("weaksensor.xml"); //new object
@@ -43,7 +43,7 @@ public class ListVehiclesTest {
 		EditorVehicle[] array = UtilMethods.getVehiclesFromFolder("xml/vehicles");
 		System.out.println("Array Len: " + array.length);
 		for(int i = 0; i<array.length;i++){
-			System.out.println(array[i].getVehicleName()+"\n");
+			System.out.println(array[i].getName()+"\n");
 		}
 	}
 
