@@ -51,8 +51,8 @@ public class MemoryUnit {
 		else{
 			this.time_to_learn = l;
 		}
-		if(max <= 0) {
-			max = 1;
+		if(max < 0) {
+			max = 0;
 		}
 		else{
 			this.max = max;
@@ -130,7 +130,7 @@ public class MemoryUnit {
 	 * @param e The element to add into memory
 	 */
 	public void addElement(EnvironmentElement e){
-		if(this.remembersElementAt(e.getXpos(), e.getYpos())){
+		if(this.remembersElementAt(e.getXpos(), e.getYpos()) || this.max == 0){
 			//System.out.println("Already learned that elements position and type!");
 			return;
 		}

@@ -87,12 +87,20 @@ public class GeneticsTestCases {
 			System.out.println(i + " as binary sring: " +  p);
 		}
 		
-
+		p = crossoverBits(Integer.toBinaryString(99), Integer.toBinaryString(62));
 
 	}
 	
 	public static String crossoverBits(String parentA, String parentB){
-		
+		parentA = addLeadingZeros(8, parentA);
+		parentB = addLeadingZeros(8, parentB);
+		System.out.println("Parent A\t" + parentA);
+		System.out.println("Parent B\t" + parentB);
+		Random r = new Random();
+		int ran = r.nextInt(8);
+		String crossed = (parentA.substring(0, ran)).concat(parentB.substring(ran, parentB.length()));
+		System.out.println("Crossed\t" + crossed);
+		System.out.println("Crossove point\t" + ran);
 		return "";
 	}
 	

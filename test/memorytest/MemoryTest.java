@@ -88,7 +88,7 @@ public class MemoryTest {
 		v.setMaxBatteryCapacity(100);
 		v.setCurrentBatteryCapacity(100);
 		
-		v.setMaxMem(10);
+		v.setMaxMem(0);
 		v.setLearningRate(1);
 
 		v.setColour(123, 223, 150);
