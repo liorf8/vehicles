@@ -134,6 +134,13 @@ public class EditorVehicle extends Vehicle {
 	public void addVehicleMemory(MemoryUnit mu){
 		root.appendChild(xmldoc.adoptNode(mu.getRootElement().cloneNode(true)));
 	}
+	/**
+	 * Add a vehicle battery XML entry into this Vehicle's document
+	 * @param vc The battery to add
+	 */
+	public void addVehicleBattery(VehicleBattery b){
+		root.appendChild(xmldoc.adoptNode(b.getRootElement().cloneNode(true)));
+	}
 
 	public void writeTimeStamp(Document xmldoc){
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -169,6 +176,7 @@ public class EditorVehicle extends Vehicle {
 			this.addAggression(Integer.toString(this.aggression));
             this.addVehicleColour(this.vehicleColour);
             this.addVehicleMemory(this.mu);
+            this.addVehicleBattery(this.battery);
 			
 			if(this.components != null){
 				//System.out.println(components.capacity());

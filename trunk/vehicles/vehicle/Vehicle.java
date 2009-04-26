@@ -25,6 +25,7 @@ public class Vehicle implements Comparable{
 	protected String vehicleDescription = null; //the description of this vehicle
 	protected String lastModified = null;
 	protected Vector<VehicleComponent> components; //components of the vehicle
+	protected VehicleBattery battery = new VehicleBattery();
 	protected int max_battery_capacity = 100; //maximum battery this vehicle can have
 	protected int curr_battery_capacity = 100;//current battery capacity
 	protected int motorStrength = 0;
@@ -308,19 +309,19 @@ public class Vehicle implements Comparable{
 	}
 
 	public int getMaxBatteryCapacity() {
-		return max_battery_capacity;
+		return this.battery.getMax_capacity();
 	}
 
 	public void setMaxBatteryCapacity(int max_battery_capacity) {
-		this.max_battery_capacity = max_battery_capacity;
+		this.battery.setMax_capacity(max_battery_capacity);
 	}
 
 	public int getCurrentBatteryCapacity() {
-		return curr_battery_capacity;
+		return this.battery.getCurr_capacity();
 	}
 
 	public void setCurrentBatteryCapacity(int curr_battery_capacity) {
-		this.curr_battery_capacity = curr_battery_capacity;
+		this.battery.setCurr_capacity(curr_battery_capacity);
 	}
 
 	public void setColour(int r, int g, int b) {
@@ -342,6 +343,8 @@ public class Vehicle implements Comparable{
 		this.mu = new MemoryUnit();
 		this.max_mem = this.mu.getMaxMem();
 		this.learning_rate = this.mu.getLearningRate();
+		this.max_battery_capacity = 100;
+		this.curr_battery_capacity = 0;
 		this.components = new Vector<VehicleComponent>();
 		VehicleComponent vc = new VehicleComponent();
 		vc.setVehicleComponentType("LEFT");
@@ -392,7 +395,18 @@ public class Vehicle implements Comparable{
 			}
 			catch(Exception e){e.printStackTrace();}
 
-			
+			NodeList batteries = dom.getElementsByTagName("battery");
+			//get the two entryies in this xml type
+			Node firstEntry = batteries.item(0).getChildNodes().item(1).getFirstChild();
+			Node secondEntry = batteries.item(0).getChildNodes().item(3).getFirstChild();
+
+			if(firstEntry.getParentNode().getNodeName().contains("max")){
+				this.battery.setMax_capacity(Integer.parseInt(firstEntry.getNodeValue()));
+				this.battery.setCurr_capacity(Integer.parseInt(secondEntry.getNodeValue()));
+			}else{ //other node is the max
+				this.battery.setMax_capacity(Integer.parseInt(secondEntry.getNodeValue()));
+				this.battery.setCurr_capacity(Integer.parseInt(firstEntry.getNodeValue()));
+			}
 
 			//if the above two failed, these will be defaults
 			this.max_mem = this.mu.getMaxMem();
