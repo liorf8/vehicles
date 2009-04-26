@@ -35,8 +35,18 @@ public class MemoryUnit {
 	 * @param l The amount of time it takes to learn something
 	 */
 	public MemoryUnit(int l, int max){
-		this.time_to_learn = l;
-		this.max = max;
+		if(l <= 0) {
+			this.time_to_learn = 1;
+		}
+		else{
+			this.time_to_learn = l;
+		}
+		if(max <= 0) {
+			max = 1;
+		}
+		else{
+			this.max = max;
+		}
 		real_memory = new Vector<Quadruple<Double, Double, String, Integer>>();
 		temp_memory = new Vector<Quintuple<Double, Double, Integer, String, Integer>>();
 	}
@@ -46,7 +56,22 @@ public class MemoryUnit {
 		this.temp_memory.clear();
 	}
 
+	public void setMaxMem(int m){
+		this.max = m;
+	}
 
+	public void setLearningRate(int l){
+		this.time_to_learn = l;
+	}
+	
+	public int getLearningRate(){
+		return this.time_to_learn;
+	}
+	
+	public int getMaxMem(){
+		return this.max;
+	}
+	
 	/**
 	 * a method to check if the vehicle remembers an element at the specified co-ordinates
 	 * @param xPos The xPos of the element to check
@@ -94,13 +119,7 @@ public class MemoryUnit {
 	 */
 	public void addElement(EnvironmentElement e){
 		if(this.remembersElementAt(e.getXpos(), e.getYpos())){
-			System.out.println("Already learned that elements position and type!");
-			return;
-		}
-		if(this.real_memory.size() >= this.max){
-			//if memory is at full capacity, clear contents of temporary memory and return
-			System.out.println("Memory unit for this vehicle is at full capacity!");
-			this.temp_memory.clear();
+			//System.out.println("Already learned that elements position and type!");
 			return;
 		}
 		double x, y, el_xPos, el_yPos;
@@ -116,7 +135,10 @@ public class MemoryUnit {
 				times_learned = Tuple.get5(this.temp_memory.elementAt(i));
 				name = Tuple.get4(this.temp_memory.elementAt(i));
 				times_learned++;
-				if(times_learned == this.time_to_learn){
+				if(times_learned >= this.time_to_learn){
+					if(this.real_memory.size() >= this.max){
+						this.real_memory.removeElementAt(0);
+					}
 					this.real_memory.add(Tuple.from(el_xPos, el_yPos, name, e.getType()));
 					this.temp_memory.removeElementAt(i);
 				}
