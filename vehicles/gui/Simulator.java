@@ -1,18 +1,20 @@
 package vehicles.gui;
 
 import java.awt.GridBagLayout;
-import java.awt.event.*;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import vehicles.vehicle.*;
+import vehicles.util.*;
+import vehicles.environment.*;
+import vehicles.simulation.*;
 import vehicles.processing.*;
 import vehicles.*;
 import java.awt.Dimension;
 import java.awt.Window;
-import java.awt.Insets;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.ActionMap;
@@ -50,13 +52,15 @@ public class Simulator extends FrameView implements ChangeListener {
         super(app);
         embed = new ProcessingVehicle();
         initComponents();
+
+        setSimulationArray();
+        setVehicleArray();
+        setEnvironmentArray();
+
         // important to call this whenever embedding a PApplet.
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
         embed.init();
-        listener = new MyAdjustmentListener();
-        jScrollPane1.getHorizontalScrollBar().addAdjustmentListener(listener);
-        jScrollPane1.getVerticalScrollBar().addAdjustmentListener(listener);
     }
 
     @Action
@@ -73,7 +77,7 @@ public class Simulator extends FrameView implements ChangeListener {
     public void showEnvironmentEditor() {
         if (environmentEditor == null) {
             JFrame mainFrame = VehiclesApp.getApplication().getMainFrame();
-            environmentEditor = new EnvironmentEditor(mainFrame);
+            environmentEditor = new EnvironmentEditor(mainFrame, this);
             environmentEditor.setLocationRelativeTo(mainFrame);
         }
         VehiclesApp.getApplication().show(environmentEditor);
@@ -83,7 +87,7 @@ public class Simulator extends FrameView implements ChangeListener {
     public void showVehicleEditor() {
         if (vehicleEditor == null) {
             JFrame mainFrame = VehiclesApp.getApplication().getMainFrame();
-            vehicleEditor = new VehicleEditor(mainFrame);
+            vehicleEditor = new VehicleEditor(mainFrame, this);
             vehicleEditor.setLocationRelativeTo(mainFrame);
         }
         VehiclesApp.getApplication().show(vehicleEditor);
@@ -93,7 +97,7 @@ public class Simulator extends FrameView implements ChangeListener {
     public void showsSimulationEditor() {
         if (simulationEditor == null) {
             JFrame mainFrame = VehiclesApp.getApplication().getMainFrame();
-            simulationEditor = new SimulationEditor(mainFrame);
+            simulationEditor = new SimulationEditor(mainFrame, this);
             simulationEditor.setLocationRelativeTo(mainFrame);
         }
         VehiclesApp.getApplication().show(simulationEditor);
@@ -432,5 +436,45 @@ public class Simulator extends FrameView implements ChangeListener {
     private JFrame vehicleEditor;
     private JFrame simulationEditor;
     private ProcessingVehicle embed;
-    private AdjustmentListener listener;
+
+    private Environment[] environmentArray;
+    private EditorVehicle[] vehicleArray;
+    private EditorSimulation[] simulationArray;
+
+    public Environment[] getEnvironmentArray() {
+        return environmentArray;
+    }
+
+    public void setEnvironmentArray() {
+        this.environmentArray = UtilMethods.getEnvironmentsFromFolder("xml/environments");
+    }
+
+    public void setEnvironmentArray(Environment[] environmentArray) {
+        this.environmentArray = environmentArray;
+    }
+
+    public EditorSimulation[] getSimulationArray() {
+        return simulationArray;
+    }
+
+    public void setSimulationArray() {
+        this.simulationArray = UtilMethods.getSimulationsFromFolder("xml/simulations");
+    }
+
+    public void setSimulationArray(EditorSimulation[] simulationArray) {
+        this.simulationArray = simulationArray;
+    }
+
+    public EditorVehicle[] getVehicleArray() {
+        return vehicleArray;
+    }
+
+    public void setVehicleArray() {
+        this.vehicleArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
+    }
+
+    public void setVehicleArray(EditorVehicle[] vehicleArray) {
+        this.vehicleArray = vehicleArray;
+    }
+
 }

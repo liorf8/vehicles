@@ -1,7 +1,5 @@
 package vehicles.gui;
 
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -34,7 +32,6 @@ import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
 import processing.core.*;
 import vehicles.simulation.*;
-import vehicles.util.*;
 
 /*
  * SimulationEditor.java
@@ -45,8 +42,10 @@ import vehicles.util.*;
 public class SimulationEditor extends javax.swing.JFrame {
 
     /** Creates new form SimulationEditor */
-    public SimulationEditor(java.awt.Frame parent) {
-        simulationArray = UtilMethods.getSimulationsFromFolder("xml/simulations");
+    public SimulationEditor(java.awt.Frame parent, Simulator p_appRoot) {
+
+        appRoot = p_appRoot;
+        simulationArray = appRoot.getSimulationArray();
         simulationDropDown = new DefaultComboBoxModel(simulationArray);
 
         embed = new Embedded();
@@ -159,7 +158,7 @@ public class SimulationEditor extends javax.swing.JFrame {
 
         tab_Properties.setName("tab_Properties"); // NOI18N
 
-        panel_Name.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Name.border.title"))); // NOI18N
+        panel_Name.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Name.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Name.border.titleFont"))); // NOI18N
         panel_Name.setName("panel_Name"); // NOI18N
 
         text_Name.setText(resourceMap.getString("text_Name.text")); // NOI18N
@@ -176,7 +175,7 @@ public class SimulationEditor extends javax.swing.JFrame {
             .addComponent(text_Name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
-        panel_Configuration.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Configuration.border.title"))); // NOI18N
+        panel_Configuration.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Configuration.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Configuration.border.titleFont"))); // NOI18N
         panel_Configuration.setName("panel_Configuration"); // NOI18N
 
         label_Evolution.setText(resourceMap.getString("label_Evolution.text")); // NOI18N
@@ -234,13 +233,16 @@ public class SimulationEditor extends javax.swing.JFrame {
                     .addComponent(radio_Perishable_Off)))
         );
 
-        panel_Description.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Description.border.title"))); // NOI18N
+        panel_Description.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Description.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Description.border.titleFont"))); // NOI18N
         panel_Description.setName("panel_Description"); // NOI18N
 
         scrollpanel_Description.setName("scrollpanel_Description"); // NOI18N
 
         text_Description.setColumns(20);
+        text_Description.setFont(resourceMap.getFont("text_Description.font")); // NOI18N
+        text_Description.setLineWrap(true);
         text_Description.setRows(5);
+        text_Description.setWrapStyleWord(true);
         text_Description.setName("text_Description"); // NOI18N
         scrollpanel_Description.setViewportView(text_Description);
 
@@ -255,7 +257,7 @@ public class SimulationEditor extends javax.swing.JFrame {
             .addComponent(scrollpanel_Description, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
         );
 
-        panel_Author.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Author.border.title"))); // NOI18N
+        panel_Author.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Author.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Author.border.titleFont"))); // NOI18N
         panel_Author.setName("panel_Author"); // NOI18N
 
         text_Author.setText(resourceMap.getString("text_Author.text")); // NOI18N
@@ -326,7 +328,7 @@ public class SimulationEditor extends javax.swing.JFrame {
 
         tab_Vehicles.setName("tab_Vehicles"); // NOI18N
 
-        panel_AvailableVehicles.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_AvailableVehicles.border.title"))); // NOI18N
+        panel_AvailableVehicles.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_AvailableVehicles.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_AvailableVehicles.border.titleFont"))); // NOI18N
         panel_AvailableVehicles.setName("panel_AvailableVehicles"); // NOI18N
 
         scrollpanel_AvailableVehicles.setName("scrollpanel_AvailableVehicles"); // NOI18N
@@ -422,7 +424,7 @@ public class SimulationEditor extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panel_SelectedVehicles.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_SelectedVehicles.border.title"))); // NOI18N
+        panel_SelectedVehicles.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_SelectedVehicles.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_SelectedVehicles.border.titleFont"))); // NOI18N
         panel_SelectedVehicles.setName("panel_SelectedVehicles"); // NOI18N
 
         scrollpanel_SelectedVehicles.setName("scrollpanel_SelectedVehicles"); // NOI18N
@@ -474,7 +476,7 @@ public class SimulationEditor extends javax.swing.JFrame {
 
         tab_Environment.setName("tab_Environment"); // NOI18N
 
-        panel_AvailableEnvironments.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_AvailableEnvironments.border.title"))); // NOI18N
+        panel_AvailableEnvironments.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_AvailableEnvironments.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_AvailableEnvironments.border.titleFont"))); // NOI18N
         panel_AvailableEnvironments.setName("panel_AvailableEnvironments"); // NOI18N
 
         scrollpanel_AvailableEnvironments.setName("scrollpanel_AvailableEnvironments"); // NOI18N
@@ -499,7 +501,7 @@ public class SimulationEditor extends javax.swing.JFrame {
             .addComponent(scrollpanel_AvailableEnvironments, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
         );
 
-        panel_SelectedEnvironment.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_SelectedEnvironment.border.title"))); // NOI18N
+        panel_SelectedEnvironment.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_SelectedEnvironment.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_SelectedEnvironment.border.titleFont"))); // NOI18N
         panel_SelectedEnvironment.setName("panel_SelectedEnvironment"); // NOI18N
 
         scrollpanel_SelectedEnvironment.setName("scrollpanel_SelectedEnvironment"); // NOI18N
@@ -547,7 +549,7 @@ public class SimulationEditor extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panel_PreviewEnvironment.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_PreviewEnvironment.border.title"))); // NOI18N
+        panel_PreviewEnvironment.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_PreviewEnvironment.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_PreviewEnvironment.border.titleFont"))); // NOI18N
         panel_PreviewEnvironment.setName("panel_PreviewEnvironment"); // NOI18N
 
         processing_Environment.setBackground(resourceMap.getColor("processing_Environment.background")); // NOI18N
@@ -755,4 +757,5 @@ public class SimulationEditor extends javax.swing.JFrame {
     private PApplet embed;
     private EditorSimulation[] simulationArray;
     private DefaultComboBoxModel simulationDropDown;
+    private Simulator appRoot;
 }
