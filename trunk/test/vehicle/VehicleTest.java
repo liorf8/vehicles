@@ -1,4 +1,8 @@
 package test.vehicle;
+import java.util.Vector;
+
+import vehicles.environment.Environment;
+import vehicles.environment.EnvironmentElement;
 import vehicles.vehicle.*;
 
 
@@ -16,13 +20,13 @@ public class VehicleTest {
 		v.setName("Hungy Vehicle"); //set object attributes
 		v.setAuthor("Some guy");
 		v.setDescription("This is a hungry little vehicle ");
-		
+
 		v.setMotorStrength(67);
 		v.setAggression(55);
 
-        v.setMaxBatteryCapacity(100);
-        v.setCurrentBatteryCapacity(50);
-        
+		v.setMaxBatteryCapacity(100);
+		v.setCurrentBatteryCapacity(50);
+
 		v.setColour(102, 203, 150);
 
 		v.setLeftSensorHeat(12);
@@ -36,18 +40,18 @@ public class VehicleTest {
 		v.setRightSensorWater(46);
 
 		v.saveVehicle(); //convert object and its attributes into XML
-        
+
 		v = new EditorVehicle("xml/vehicles/angry.veh");
 		v.setName("Angry Vehicle"); //set object attributes
 		v.setAuthor("another guy");
 		v.setDescription("This is an angry little vehicle ");
-		
+
 		v.setMotorStrength(90);
 		v.setAggression(45);
 
-        v.setMaxBatteryCapacity(100);
-        v.setCurrentBatteryCapacity(80);
-        
+		v.setMaxBatteryCapacity(100);
+		v.setCurrentBatteryCapacity(80);
+
 		v.setColour(123, 223, 150);
 
 		v.setLeftSensorHeat(22);
@@ -73,7 +77,35 @@ public class VehicleTest {
 		//Now we have created an object, written to xml, created an object from that xml, and wrote that
 		//  to produce the same xml
 
+		//Testing adding an environment to vehicle memory
+		Environment e = new Environment("xml/environments/desert.env");
+		Vector<EnvironmentElement> els = e.getElements();
+		EnvironmentElement ee = els.elementAt(0);
+		for(int i = 0; i < 100; i++){
+			veh.mu.addElement(ee);
+		}
 
+		//Testing if environment in memory
+		System.out.println("Remebers element at (" + ee.getXpos() + "," + ee.getYpos() + ")" + 
+				veh.mu.remembersElementAt(ee.getXpos(), ee.getYpos()));
 
+		//testing getting environment xpos, ypos and type
+		System.out.println("Element is of type: " + veh.mu.getTypeOfElementAt(ee.getXpos(), ee.getYpos()));
+
+		//Testing memory deletion
+		veh.mu.resetMem();
+		System.out.println("Remebers element at (" + ee.getXpos() + "," + ee.getYpos() + ")" + 
+				veh.mu.remembersElementAt(ee.getXpos(), ee.getYpos()));
+
+		//Testing adding many many things in memory
+		Environment crazy = new Environment("xml/environments/crazy.env");
+		Vector<EnvironmentElement> crazy_el = crazy.getElements();
+		for(int i = 0; i < crazy_el.size(); i++){
+			EnvironmentElement cr = crazy_el.elementAt(i);
+			for(int j = 0; j < 100; j++){
+				veh.mu.addElement(cr);
+			}
+		}
+		veh.mu.printMemory();
 	}
 }
