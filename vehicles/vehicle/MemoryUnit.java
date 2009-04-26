@@ -130,8 +130,7 @@ public class MemoryUnit {
 	 * @param e The element to add into memory
 	 */
 	public void addElement(EnvironmentElement e){
-		if(this.remembersElementAt(e.getXpos(), e.getYpos()) || this.max == 0){
-			//System.out.println("Already learned that elements position and type!");
+		if(this.remembersElementAt(e.getXpos(), e.getYpos()) || this.max == 0 || this.time_to_learn == 0){
 			return;
 		}
 		double x, y, el_xPos, el_yPos;
