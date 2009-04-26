@@ -38,32 +38,7 @@ public class EnvironmentTest{
 		/*Read that xml and create an object from it, then re-write it back to xml*/
 		Environment env = new Environment("xml/environments/desert.env"); //load up object values from xml
 		env.setXMLLocation("xml/environments/desertDuplicate.env");
-		env.saveEnvironment();
-		
-		
-		
-		
-		/*used to create a crazy environemnt to test vehicle memory
-		 * 
-		 */
-		Environment crazy = new Environment("crazy", "xml/environments/crazy.env");
-		crazy.setWidth(640);
-		crazy.setHeight(480);
-		crazy.setAuthor("Shaun");
-		crazy.setDescription("Fuckin loads of elements");
-		
-		Random r = new Random();
-		EnvironmentElement test;
-		for(int i = 0; i < 250; i++){
-			test = new EnvironmentElement();
-			test.setType(EnvironmentElement.LightSource);//TODO put this in object constructor
-			test.setPosition(new Point(r.nextInt(1000),r.nextInt(1000)));		
-			test.setRadius(r.nextInt(100));
-			test.setStrength(r.nextInt(100));
-			crazy.addElement(test);
-		}
-		crazy.saveEnvironment();	
-		
+		env.saveEnvironment();	
 		
 		
 	}
