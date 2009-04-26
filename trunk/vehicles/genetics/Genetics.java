@@ -190,6 +190,7 @@ public class Genetics {
 	 * A method to sort an array of vehicles by fitness
 	 *@param v the vehcile array to sort 
 	 */
+	@SuppressWarnings("unchecked")
 	public static void sortByFitness(Vector<Vehicle> v){
 		Collections.sort(v);
 	}
