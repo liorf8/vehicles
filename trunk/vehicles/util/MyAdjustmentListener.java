@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package vehicles.processing;
+package vehicles.util;
 import java.awt.event.*;
 import java.awt.Adjustable;
 /**

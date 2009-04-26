@@ -529,7 +529,7 @@
                               <Component id="button_AddAllVehicle" alignment="0" pref="169" max="32767" attributes="0"/>
                               <Component id="button_RemoveVehicle" alignment="0" pref="169" max="32767" attributes="0"/>
                               <Component id="button_RemoveAllVehicle" alignment="1" pref="169" max="32767" attributes="0"/>
-                              <Component id="panel_PreviewVehicle" alignment="1" max="32767" attributes="0"/>
+                              <Component id="panel_VehiclePreview" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -543,7 +543,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="button_AddAllVehicle" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="panel_PreviewVehicle" max="32767" attributes="0"/>
+                          <Component id="panel_VehiclePreview" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="button_RemoveVehicle" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -578,49 +578,42 @@
                     <Property name="name" type="java.lang.String" value="button_RemoveAllVehicle" noResource="true"/>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JPanel" name="panel_PreviewVehicle">
+                <Container class="javax.swing.JPanel" name="panel_VehiclePreview">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="Vehicle Preview">
-                          <Property name="titleX" resourceKey="panel_PreviewVehicle.border.title"/>
+                          <Property name="titleX" resourceKey="panel_VehiclePreview.border.title"/>
+                          <Property name="font" resourceKey="panel_VehiclePreview.border.titleFont"/>
                         </TitledBorder>
                       </Border>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="panel_PreviewVehicle" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="panel_VehiclePreview" noResource="true"/>
                   </Properties>
 
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="processing_Vehicle" alignment="0" max="32767" attributes="0"/>
+                          <Component id="processing_VehiclePreview" alignment="0" pref="157" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="processing_Vehicle" alignment="0" max="32767" attributes="0"/>
+                          <Component id="processing_VehiclePreview" alignment="0" pref="165" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JPanel" name="processing_Vehicle">
+                    <Container class="javax.swing.JPanel" name="processing_VehiclePreview">
                       <Properties>
-                        <Property name="background" type="java.awt.Color" resourceKey="processing_Vehicle.background"/>
-                        <Property name="name" type="java.lang.String" value="processing_Vehicle" noResource="true"/>
+                        <Property name="background" type="java.awt.Color" resourceKey="processing_VehiclePreview.background"/>
+                        <Property name="name" type="java.lang.String" value="processing_VehiclePreview" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="processing_VehiclePreview.add(proVehiclePreview, BorderLayout.CENTER);"/>
+                      </AuxValues>
 
-                      <Layout>
-                        <DimensionLayout dim="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="157" max="32767" attributes="0"/>
-                          </Group>
-                        </DimensionLayout>
-                        <DimensionLayout dim="1">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="165" max="32767" attributes="0"/>
-                          </Group>
-                        </DimensionLayout>
-                      </Layout>
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
                     </Container>
                   </SubComponents>
                 </Container>
@@ -699,7 +692,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="panel_AvailableEnvironments" max="32767" attributes="0"/>
+                      <Component id="panel_AvailableEnvironments" min="-2" pref="212" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
@@ -707,7 +700,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="panel_SelectedEnvironment" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="panel_PreviewEnvironment" max="32767" attributes="2"/>
+                          <Component id="panel_EnvironmentPreview" max="32767" attributes="2"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -728,7 +721,7 @@
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="panel_PreviewEnvironment" max="32767" attributes="0"/>
+                              <Component id="panel_EnvironmentPreview" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -748,12 +741,15 @@
                   </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="panel_AvailableEnvironments" noResource="true"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[210, 363]"/>
+                </Property>
               </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollpanel_AvailableEnvironments" alignment="0" pref="202" max="32767" attributes="0"/>
+                      <Component id="scrollpanel_AvailableEnvironments" alignment="0" pref="200" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -808,7 +804,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollpanel_SelectedEnvironment" alignment="0" pref="221" max="32767" attributes="0"/>
+                      <Component id="scrollpanel_SelectedEnvironment" alignment="0" pref="223" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -878,50 +874,42 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="panel_PreviewEnvironment">
+            <Container class="javax.swing.JPanel" name="panel_EnvironmentPreview">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Environment Preview">
-                      <Property name="titleX" resourceKey="panel_PreviewEnvironment.border.title"/>
-                      <Property name="font" resourceKey="panel_PreviewEnvironment.border.titleFont"/>
+                      <Property name="titleX" resourceKey="panel_EnvironmentPreview.border.title"/>
+                      <Property name="font" resourceKey="panel_EnvironmentPreview.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
-                <Property name="name" type="java.lang.String" value="panel_PreviewEnvironment" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="panel_EnvironmentPreview" noResource="true"/>
               </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="processing_Environment" alignment="0" max="32767" attributes="0"/>
+                      <Component id="processing_EnvironmentPreview" alignment="0" pref="354" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="processing_Environment" alignment="1" max="32767" attributes="0"/>
+                      <Component id="processing_EnvironmentPreview" alignment="1" pref="285" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="processing_Environment">
+                <Container class="javax.swing.JPanel" name="processing_EnvironmentPreview">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" resourceKey="processing_Environment.background"/>
-                    <Property name="name" type="java.lang.String" value="processing_Environment" noResource="true"/>
+                    <Property name="background" type="java.awt.Color" resourceKey="processing_EnvironmentPreview.background"/>
+                    <Property name="name" type="java.lang.String" value="processing_EnvironmentPreview" noResource="true"/>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="processing_EnvironmentPreview.add(proEnvironmentPreview, BorderLayout.CENTER);"/>
+                  </AuxValues>
 
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="352" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="285" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                  </Layout>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
                 </Container>
               </SubComponents>
             </Container>

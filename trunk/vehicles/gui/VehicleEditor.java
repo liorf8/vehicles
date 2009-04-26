@@ -13,7 +13,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import vehicles.processing.Embedded;
+import vehicles.processing.*;
 import vehicles.*;
 import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
@@ -50,13 +50,16 @@ public class VehicleEditor extends javax.swing.JFrame {
         vehicleArray = appRoot.getVehicleArray();
         vehiclesDropDown = new DefaultComboBoxModel(vehicleArray);
 
-        embed = new Embedded();
+        proAppearance = new VehicleAppearance();
+
         initComponents();
+
+        populateFields(vehicleArray[0]);
+        
         // important to call this whenever embedding a PApplet.
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
-        embed.init();
-        populateFields(vehicleArray[0]);
+        proAppearance.init();
     }
 
     @Action
@@ -87,7 +90,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_LastModified = new JPanel();
         text_LastModified = new JTextField();
         panel_Appearance = new JPanel();
-        panel_Processing = new JPanel();
+        processing_Appearance = new JPanel();
         panel_Blue = new JPanel();
         slider_Blue = new JSlider();
         text_Blue = new JTextField();
@@ -256,8 +259,9 @@ public class VehicleEditor extends javax.swing.JFrame {
         panel_Appearance.setName("panel_Appearance"); // NOI18N
         panel_Appearance.setPreferredSize(new Dimension(220, 311));
 
-        panel_Processing.setName("panel_Processing"); // NOI18N
-        panel_Processing.setLayout(new BorderLayout());
+        processing_Appearance.setBackground(resourceMap.getColor("processing_Appearance.background")); // NOI18N
+        processing_Appearance.setName("processing_Appearance"); // NOI18N
+        processing_Appearance.setLayout(new BorderLayout());
 
         panel_Blue.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Blue.border.title"))); // NOI18N
         panel_Blue.setName("panel_Blue"); // NOI18N
@@ -362,12 +366,12 @@ public class VehicleEditor extends javax.swing.JFrame {
             .addComponent(panel_Red, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panel_Green, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panel_Blue, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panel_Processing, GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+            .addComponent(processing_Appearance, GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
         );
         panel_AppearanceLayout.setVerticalGroup(
             panel_AppearanceLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_AppearanceLayout.createSequentialGroup()
-                .addComponent(panel_Processing, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                .addComponent(processing_Appearance, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(panel_Red, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
@@ -376,7 +380,7 @@ public class VehicleEditor extends javax.swing.JFrame {
                 .addComponent(panel_Blue, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
 
-        panel_Processing.add(embed, BorderLayout.CENTER);
+        processing_Appearance.add(proAppearance, BorderLayout.CENTER);
 
         GroupLayout tab_PropertiesLayout = new GroupLayout(tab_Properties);
         tab_Properties.setLayout(tab_PropertiesLayout);
@@ -1147,7 +1151,6 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JPanel panel_Left_Water;
     private JPanel panel_MotorStrength;
     private JPanel panel_Name;
-    private JPanel panel_Processing;
     private JPanel panel_Red;
     private JPanel panel_RightSensor;
     private JPanel panel_Right_Heat;
@@ -1155,6 +1158,7 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JPanel panel_Right_Power;
     private JPanel panel_Right_Water;
     private JPanel panel_SelectedVehicle;
+    private JPanel processing_Appearance;
     private JScrollPane scrollpanel_Description;
     private JSlider slider_Aggression;
     private JSlider slider_Blue;
@@ -1191,7 +1195,7 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JTextField text_Right_Water;
     private JTextField text_Status;
     // End of variables declaration//GEN-END:variables
-    private PApplet embed;
+    private PApplet proAppearance;
     private EditorVehicle[] vehicleArray;
     private DefaultComboBoxModel vehiclesDropDown;
     private Simulator appRoot;
