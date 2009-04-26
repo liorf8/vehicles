@@ -82,6 +82,7 @@ public class GeneticsTestCases {
 		
 		for(int i = 0; i < 100; i++){
 			Genetics.crossoverBitsAndMutate(r.nextInt(101), r.nextInt(101));
+			System.out.println("\n");
 		}
 	}
 }
