@@ -1158,7 +1158,7 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="panel_BatteryCapacity" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="panel_BatteryCapacity1" max="32767" attributes="0"/>
+                      <Component id="panel_Memory" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1168,7 +1168,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="panel_BatteryCapacity1" alignment="0" max="32767" attributes="2"/>
+                          <Component id="panel_Memory" alignment="0" max="32767" attributes="2"/>
                           <Component id="panel_BatteryCapacity" alignment="0" max="32767" attributes="2"/>
                           <Component id="panel_Aggression" alignment="1" max="32767" attributes="2"/>
                           <Component id="panel_MotorStrength" alignment="0" max="32767" attributes="2"/>
@@ -1421,21 +1421,21 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="panel_BatteryCapacity1">
+            <Container class="javax.swing.JPanel" name="panel_Memory">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder justification="2" title="Memory">
-                      <Property name="titleX" resourceKey="panel_BatteryCapacity1.border.title"/>
-                      <Property name="font" resourceKey="panel_BatteryCapacity1.border.titleFont"/>
+                      <Property name="titleX" resourceKey="panel_Memory.border.title"/>
+                      <Property name="font" resourceKey="panel_Memory.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" resourceKey="panel_BatteryCapacity1.toolTipText"/>
+                <Property name="toolTipText" type="java.lang.String" resourceKey="panel_Memory.toolTipText"/>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[114, 0]"/>
                 </Property>
-                <Property name="name" type="java.lang.String" value="panel_BatteryCapacity1" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="panel_Memory" noResource="true"/>
               </Properties>
 
               <Layout>
@@ -1443,15 +1443,15 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="text_MaxBattery1" alignment="0" pref="85" max="32767" attributes="2"/>
-                              <Component id="slider_MaxBattery1" alignment="1" pref="85" max="32767" attributes="2"/>
-                              <Component id="label_MaxBattery1" alignment="1" pref="85" max="32767" attributes="2"/>
+                              <Component id="text_MemMaxCapacity" alignment="0" pref="85" max="32767" attributes="2"/>
+                              <Component id="slider_MemMaxCapacity" alignment="1" pref="85" max="32767" attributes="2"/>
+                              <Component id="label_MemMaxCapacity" alignment="1" pref="85" max="32767" attributes="2"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="text_CurrentBattery1" alignment="1" pref="78" max="32767" attributes="2"/>
-                              <Component id="slider_CurrentBattery1" alignment="1" pref="78" max="32767" attributes="2"/>
-                              <Component id="label_CurrentBattery1" alignment="0" pref="78" max="32767" attributes="2"/>
+                              <Component id="text_MemLearnRate" alignment="1" pref="78" max="32767" attributes="2"/>
+                              <Component id="slider_MemLearnRate" alignment="1" pref="78" max="32767" attributes="2"/>
+                              <Component id="label_MemLearnRate" alignment="0" pref="78" max="32767" attributes="2"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1460,61 +1460,61 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="label_MaxBattery1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="label_CurrentBattery1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="label_MemMaxCapacity" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="label_MemLearnRate" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="slider_CurrentBattery1" alignment="0" pref="331" max="32767" attributes="2"/>
-                              <Component id="slider_MaxBattery1" alignment="0" pref="331" max="32767" attributes="2"/>
+                              <Component id="slider_MemLearnRate" alignment="0" pref="331" max="32767" attributes="2"/>
+                              <Component id="slider_MemMaxCapacity" alignment="0" pref="331" max="32767" attributes="2"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="text_MaxBattery1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="text_CurrentBattery1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="text_MemMaxCapacity" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="text_MemLearnRate" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="label_MaxBattery1">
+                <Component class="javax.swing.JLabel" name="label_MemMaxCapacity">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" resourceKey="label_MaxBattery1.text"/>
-                    <Property name="name" type="java.lang.String" value="label_MaxBattery1" noResource="true"/>
+                    <Property name="text" type="java.lang.String" resourceKey="label_MemMaxCapacity.text"/>
+                    <Property name="name" type="java.lang.String" value="label_MemMaxCapacity" noResource="true"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JSlider" name="slider_MaxBattery1">
+                <Component class="javax.swing.JSlider" name="slider_MemMaxCapacity">
                   <Properties>
                     <Property name="majorTickSpacing" type="int" value="10"/>
                     <Property name="minorTickSpacing" type="int" value="2"/>
                     <Property name="orientation" type="int" value="1"/>
                     <Property name="paintLabels" type="boolean" value="true"/>
                     <Property name="paintTicks" type="boolean" value="true"/>
-                    <Property name="name" type="java.lang.String" value="slider_MaxBattery1" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="slider_MemMaxCapacity" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="slider_MaxBattery1_StateChanged"/>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="slider_MemMaxCapacity_StateChanged"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="text_MaxBattery1">
+                <Component class="javax.swing.JTextField" name="text_MemMaxCapacity">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="font" type="java.awt.Font" resourceKey="text_MaxBattery1.font"/>
+                    <Property name="font" type="java.awt.Font" resourceKey="text_MemMaxCapacity.font"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" resourceKey="text_MaxBattery1.text"/>
-                    <Property name="name" type="java.lang.String" value="text_MaxBattery1" noResource="true"/>
+                    <Property name="text" type="java.lang.String" resourceKey="text_MemMaxCapacity.text"/>
+                    <Property name="name" type="java.lang.String" value="text_MemMaxCapacity" noResource="true"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="label_CurrentBattery1">
+                <Component class="javax.swing.JLabel" name="label_MemLearnRate">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" resourceKey="label_CurrentBattery1.text"/>
-                    <Property name="name" type="java.lang.String" value="label_CurrentBattery1" noResource="true"/>
+                    <Property name="text" type="java.lang.String" resourceKey="label_MemLearnRate.text"/>
+                    <Property name="name" type="java.lang.String" value="label_MemLearnRate" noResource="true"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JSlider" name="slider_CurrentBattery1">
+                <Component class="javax.swing.JSlider" name="slider_MemLearnRate">
                   <Properties>
                     <Property name="majorTickSpacing" type="int" value="10"/>
                     <Property name="maximum" type="int" value="20"/>
@@ -1523,19 +1523,19 @@
                     <Property name="paintLabels" type="boolean" value="true"/>
                     <Property name="paintTicks" type="boolean" value="true"/>
                     <Property name="value" type="int" value="10"/>
-                    <Property name="name" type="java.lang.String" value="slider_CurrentBattery1" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="slider_MemLearnRate" noResource="true"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="slider_CurrentBattery1_StateChanged"/>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="slider_MemLearnRate_StateChanged"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="text_CurrentBattery1">
+                <Component class="javax.swing.JTextField" name="text_MemLearnRate">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="font" type="java.awt.Font" resourceKey="text_CurrentBattery1.font"/>
+                    <Property name="font" type="java.awt.Font" resourceKey="text_MemLearnRate.font"/>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" resourceKey="text_CurrentBattery1.text"/>
-                    <Property name="name" type="java.lang.String" value="text_CurrentBattery1" noResource="true"/>
+                    <Property name="text" type="java.lang.String" resourceKey="text_MemLearnRate.text"/>
+                    <Property name="name" type="java.lang.String" value="text_MemLearnRate" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>

@@ -141,13 +141,13 @@ public class VehicleEditor extends javax.swing.JFrame {
         label_CurrentBattery = new JLabel();
         slider_CurrentBattery = new JSlider();
         text_CurrentBattery = new JTextField();
-        panel_BatteryCapacity1 = new JPanel();
-        label_MaxBattery1 = new JLabel();
-        slider_MaxBattery1 = new JSlider();
-        text_MaxBattery1 = new JTextField();
-        label_CurrentBattery1 = new JLabel();
-        slider_CurrentBattery1 = new JSlider();
-        text_CurrentBattery1 = new JTextField();
+        panel_Memory = new JPanel();
+        label_MemMaxCapacity = new JLabel();
+        slider_MemMaxCapacity = new JSlider();
+        text_MemMaxCapacity = new JTextField();
+        label_MemLearnRate = new JLabel();
+        slider_MemLearnRate = new JSlider();
+        text_MemLearnRate = new JTextField();
         text_Status = new JTextField();
         button_Save = new JButton();
         button_SaveAsNew = new JButton();
@@ -981,86 +981,86 @@ public class VehicleEditor extends javax.swing.JFrame {
                     .addComponent(text_CurrentBattery, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
         );
 
-        panel_BatteryCapacity1.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_BatteryCapacity1.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_BatteryCapacity1.border.titleFont"))); // NOI18N
-        panel_BatteryCapacity1.setToolTipText(resourceMap.getString("panel_BatteryCapacity1.toolTipText")); // NOI18N
-        panel_BatteryCapacity1.setMinimumSize(new Dimension(114, 0));
-        panel_BatteryCapacity1.setName("panel_BatteryCapacity1"); // NOI18N
+        panel_Memory.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Memory.border.title"), TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Memory.border.titleFont"))); // NOI18N
+        panel_Memory.setToolTipText(resourceMap.getString("panel_Memory.toolTipText")); // NOI18N
+        panel_Memory.setMinimumSize(new Dimension(114, 0));
+        panel_Memory.setName("panel_Memory"); // NOI18N
 
-        label_MaxBattery1.setHorizontalAlignment(SwingConstants.CENTER);
-        label_MaxBattery1.setText(resourceMap.getString("label_MaxBattery1.text")); // NOI18N
-        label_MaxBattery1.setName("label_MaxBattery1"); // NOI18N
+        label_MemMaxCapacity.setHorizontalAlignment(SwingConstants.CENTER);
+        label_MemMaxCapacity.setText(resourceMap.getString("label_MemMaxCapacity.text")); // NOI18N
+        label_MemMaxCapacity.setName("label_MemMaxCapacity"); // NOI18N
 
-        slider_MaxBattery1.setMajorTickSpacing(10);
-        slider_MaxBattery1.setMinorTickSpacing(2);
-        slider_MaxBattery1.setOrientation(JSlider.VERTICAL);
-        slider_MaxBattery1.setPaintLabels(true);
-        slider_MaxBattery1.setPaintTicks(true);
-        slider_MaxBattery1.setName("slider_MaxBattery1"); // NOI18N
-        slider_MaxBattery1.addChangeListener(new ChangeListener() {
+        slider_MemMaxCapacity.setMajorTickSpacing(10);
+        slider_MemMaxCapacity.setMinorTickSpacing(2);
+        slider_MemMaxCapacity.setOrientation(JSlider.VERTICAL);
+        slider_MemMaxCapacity.setPaintLabels(true);
+        slider_MemMaxCapacity.setPaintTicks(true);
+        slider_MemMaxCapacity.setName("slider_MemMaxCapacity"); // NOI18N
+        slider_MemMaxCapacity.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent evt) {
-                slider_MaxBattery1_StateChanged(evt);
+                slider_MemMaxCapacity_StateChanged(evt);
             }
         });
 
-        text_MaxBattery1.setEditable(false);
-        text_MaxBattery1.setFont(resourceMap.getFont("text_MaxBattery1.font")); // NOI18N
-        text_MaxBattery1.setHorizontalAlignment(JTextField.CENTER);
-        text_MaxBattery1.setText(resourceMap.getString("text_MaxBattery1.text")); // NOI18N
-        text_MaxBattery1.setName("text_MaxBattery1"); // NOI18N
+        text_MemMaxCapacity.setEditable(false);
+        text_MemMaxCapacity.setFont(resourceMap.getFont("text_MemMaxCapacity.font")); // NOI18N
+        text_MemMaxCapacity.setHorizontalAlignment(JTextField.CENTER);
+        text_MemMaxCapacity.setText(resourceMap.getString("text_MemMaxCapacity.text")); // NOI18N
+        text_MemMaxCapacity.setName("text_MemMaxCapacity"); // NOI18N
 
-        label_CurrentBattery1.setHorizontalAlignment(SwingConstants.CENTER);
-        label_CurrentBattery1.setText(resourceMap.getString("label_CurrentBattery1.text")); // NOI18N
-        label_CurrentBattery1.setName("label_CurrentBattery1"); // NOI18N
+        label_MemLearnRate.setHorizontalAlignment(SwingConstants.CENTER);
+        label_MemLearnRate.setText(resourceMap.getString("label_MemLearnRate.text")); // NOI18N
+        label_MemLearnRate.setName("label_MemLearnRate"); // NOI18N
 
-        slider_CurrentBattery1.setMajorTickSpacing(10);
-        slider_CurrentBattery1.setMaximum(20);
-        slider_CurrentBattery1.setMinorTickSpacing(1);
-        slider_CurrentBattery1.setOrientation(JSlider.VERTICAL);
-        slider_CurrentBattery1.setPaintLabels(true);
-        slider_CurrentBattery1.setPaintTicks(true);
-        slider_CurrentBattery1.setValue(10);
-        slider_CurrentBattery1.setName("slider_CurrentBattery1"); // NOI18N
-        slider_CurrentBattery1.addChangeListener(new ChangeListener() {
+        slider_MemLearnRate.setMajorTickSpacing(10);
+        slider_MemLearnRate.setMaximum(20);
+        slider_MemLearnRate.setMinorTickSpacing(1);
+        slider_MemLearnRate.setOrientation(JSlider.VERTICAL);
+        slider_MemLearnRate.setPaintLabels(true);
+        slider_MemLearnRate.setPaintTicks(true);
+        slider_MemLearnRate.setValue(10);
+        slider_MemLearnRate.setName("slider_MemLearnRate"); // NOI18N
+        slider_MemLearnRate.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent evt) {
-                slider_CurrentBattery1_StateChanged(evt);
+                slider_MemLearnRate_StateChanged(evt);
             }
         });
 
-        text_CurrentBattery1.setEditable(false);
-        text_CurrentBattery1.setFont(resourceMap.getFont("text_CurrentBattery1.font")); // NOI18N
-        text_CurrentBattery1.setHorizontalAlignment(JTextField.CENTER);
-        text_CurrentBattery1.setText(resourceMap.getString("text_CurrentBattery1.text")); // NOI18N
-        text_CurrentBattery1.setName("text_CurrentBattery1"); // NOI18N
+        text_MemLearnRate.setEditable(false);
+        text_MemLearnRate.setFont(resourceMap.getFont("text_MemLearnRate.font")); // NOI18N
+        text_MemLearnRate.setHorizontalAlignment(JTextField.CENTER);
+        text_MemLearnRate.setText(resourceMap.getString("text_MemLearnRate.text")); // NOI18N
+        text_MemLearnRate.setName("text_MemLearnRate"); // NOI18N
 
-        GroupLayout panel_BatteryCapacity1Layout = new GroupLayout(panel_BatteryCapacity1);
-        panel_BatteryCapacity1.setLayout(panel_BatteryCapacity1Layout);
-        panel_BatteryCapacity1Layout.setHorizontalGroup(
-            panel_BatteryCapacity1Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(panel_BatteryCapacity1Layout.createSequentialGroup()
-                .addGroup(panel_BatteryCapacity1Layout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(text_MaxBattery1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                    .addComponent(slider_MaxBattery1, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                    .addComponent(label_MaxBattery1, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
+        GroupLayout panel_MemoryLayout = new GroupLayout(panel_Memory);
+        panel_Memory.setLayout(panel_MemoryLayout);
+        panel_MemoryLayout.setHorizontalGroup(
+            panel_MemoryLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(panel_MemoryLayout.createSequentialGroup()
+                .addGroup(panel_MemoryLayout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(text_MemMaxCapacity, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                    .addComponent(slider_MemMaxCapacity, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                    .addComponent(label_MemMaxCapacity, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(panel_BatteryCapacity1Layout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(text_CurrentBattery1, GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
-                    .addComponent(slider_CurrentBattery1, GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
-                    .addComponent(label_CurrentBattery1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)))
+                .addGroup(panel_MemoryLayout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(text_MemLearnRate, GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                    .addComponent(slider_MemLearnRate, GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                    .addComponent(label_MemLearnRate, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)))
         );
-        panel_BatteryCapacity1Layout.setVerticalGroup(
-            panel_BatteryCapacity1Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, panel_BatteryCapacity1Layout.createSequentialGroup()
-                .addGroup(panel_BatteryCapacity1Layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(label_MaxBattery1)
-                    .addComponent(label_CurrentBattery1))
+        panel_MemoryLayout.setVerticalGroup(
+            panel_MemoryLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_MemoryLayout.createSequentialGroup()
+                .addGroup(panel_MemoryLayout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(label_MemMaxCapacity)
+                    .addComponent(label_MemLearnRate))
                 .addGap(6, 6, 6)
-                .addGroup(panel_BatteryCapacity1Layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(slider_CurrentBattery1, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
-                    .addComponent(slider_MaxBattery1, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE))
+                .addGroup(panel_MemoryLayout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(slider_MemLearnRate, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                    .addComponent(slider_MemMaxCapacity, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE))
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(panel_BatteryCapacity1Layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(text_MaxBattery1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(text_CurrentBattery1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
+                .addGroup(panel_MemoryLayout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(text_MemMaxCapacity, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(text_MemLearnRate, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
         );
 
         GroupLayout tab_AttributesLayout = new GroupLayout(tab_Attributes);
@@ -1075,7 +1075,7 @@ public class VehicleEditor extends javax.swing.JFrame {
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(panel_BatteryCapacity, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(panel_BatteryCapacity1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel_Memory, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tab_AttributesLayout.setVerticalGroup(
@@ -1083,7 +1083,7 @@ public class VehicleEditor extends javax.swing.JFrame {
             .addGroup(Alignment.TRAILING, tab_AttributesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tab_AttributesLayout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(panel_BatteryCapacity1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_Memory, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panel_BatteryCapacity, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panel_Aggression, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panel_MotorStrength, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1247,13 +1247,17 @@ public class VehicleEditor extends javax.swing.JFrame {
         text_CurrentBattery.setText(Integer.toString(value));
 }//GEN-LAST:event_slider_CurrentBattery_StateChanged
 
-    private void slider_MaxBattery1_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_MaxBattery1_StateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_slider_MaxBattery1_StateChanged
+    private void slider_MemMaxCapacity_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_MemMaxCapacity_StateChanged
+        JSlider tempSlider = (JSlider) evt.getSource();
+        int value = tempSlider.getValue();
+        text_MemMaxCapacity.setText(Integer.toString(value));
+}//GEN-LAST:event_slider_MemMaxCapacity_StateChanged
 
-    private void slider_CurrentBattery1_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_CurrentBattery1_StateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_slider_CurrentBattery1_StateChanged
+    private void slider_MemLearnRate_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_MemLearnRate_StateChanged
+        JSlider tempSlider = (JSlider) evt.getSource();
+        int value = tempSlider.getValue();
+        text_MemLearnRate.setText(Integer.toString(value));
+}//GEN-LAST:event_slider_MemLearnRate_StateChanged
 
     private void populateFields(EditorVehicle p_vehicle) {
         EditorVehicle tempVehicle = p_vehicle;
@@ -1283,6 +1287,9 @@ public class VehicleEditor extends javax.swing.JFrame {
         slider_MaxBattery.setValue(tempVehicle.getMaxBatteryCapacity());
         slider_CurrentBattery.setValue(tempVehicle.getCurrentBatteryCapacity());
 
+        slider_MemLearnRate.setValue(tempVehicle.getLearningRate());
+        slider_MemMaxCapacity.setValue(tempVehicle.getMaxMem());
+
 }
 
     @Action
@@ -1295,6 +1302,8 @@ public class VehicleEditor extends javax.swing.JFrame {
 		v.setAggression(slider_Aggression.getValue());
         v.setMaxBatteryCapacity(slider_MaxBattery.getValue());
         v.setCurrentBatteryCapacity(slider_CurrentBattery.getValue());
+        v.setMaxMem(slider_MemMaxCapacity.getValue());
+        v.setLearningRate(slider_MemLearnRate.getValue());
 		v.setColour(slider_Red.getValue(), slider_Green.getValue(), slider_Blue.getValue());
 		v.setLeftSensorHeat(slider_Left_Heat.getValue());
 		v.setLeftSensorLight(slider_Left_Light.getValue());
@@ -1331,6 +1340,8 @@ public class VehicleEditor extends javax.swing.JFrame {
 		v.setAggression(slider_Aggression.getValue());
         v.setMaxBatteryCapacity(slider_MaxBattery.getValue());
         v.setCurrentBatteryCapacity(slider_CurrentBattery.getValue());
+        v.setMaxMem(slider_MemMaxCapacity.getValue());
+        v.setLearningRate(slider_MemLearnRate.getValue());
 		v.setColour(slider_Red.getValue(), slider_Green.getValue(), slider_Blue.getValue());
 		v.setLeftSensorHeat(slider_Left_Heat.getValue());
 		v.setLeftSensorLight(slider_Left_Light.getValue());
@@ -1362,14 +1373,13 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JButton button_SaveAsNew;
     private JComboBox dropdown_SelectedVehicle;
     private JLabel label_CurrentBattery;
-    private JLabel label_CurrentBattery1;
     private JLabel label_MaxBattery;
-    private JLabel label_MaxBattery1;
+    private JLabel label_MemLearnRate;
+    private JLabel label_MemMaxCapacity;
     private JPanel panel_Aggression;
     private JPanel panel_Appearance;
     private JPanel panel_Author;
     private JPanel panel_BatteryCapacity;
-    private JPanel panel_BatteryCapacity1;
     private JPanel panel_Blue;
     private JPanel panel_Description;
     private JPanel panel_Green;
@@ -1379,6 +1389,7 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JPanel panel_Left_Light;
     private JPanel panel_Left_Power;
     private JPanel panel_Left_Water;
+    private JPanel panel_Memory;
     private JPanel panel_MotorStrength;
     private JPanel panel_Name;
     private JPanel panel_Red;
@@ -1393,14 +1404,14 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JSlider slider_Aggression;
     private JSlider slider_Blue;
     private JSlider slider_CurrentBattery;
-    private JSlider slider_CurrentBattery1;
     private JSlider slider_Green;
     private JSlider slider_Left_Heat;
     private JSlider slider_Left_Light;
     private JSlider slider_Left_Power;
     private JSlider slider_Left_Water;
     private JSlider slider_MaxBattery;
-    private JSlider slider_MaxBattery1;
+    private JSlider slider_MemLearnRate;
+    private JSlider slider_MemMaxCapacity;
     private JSlider slider_MotorStrength;
     private JSlider slider_Red;
     private JSlider slider_Right_Heat;
@@ -1415,7 +1426,6 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JTextField text_Author;
     private JTextField text_Blue;
     private JTextField text_CurrentBattery;
-    private JTextField text_CurrentBattery1;
     private JTextArea text_Description;
     private JTextField text_Green;
     private JTextField text_LastModified;
@@ -1424,7 +1434,8 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JTextField text_Left_Power;
     private JTextField text_Left_Water;
     private JTextField text_MaxBattery;
-    private JTextField text_MaxBattery1;
+    private JTextField text_MemLearnRate;
+    private JTextField text_MemMaxCapacity;
     private JTextField text_MotorStrength;
     private JTextField text_Name;
     private JTextField text_Red;
