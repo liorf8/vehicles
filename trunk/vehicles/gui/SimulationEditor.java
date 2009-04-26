@@ -34,6 +34,8 @@ import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
 import processing.core.*;
 import vehicles.simulation.*;
+import vehicles.vehicle.*;
+import vehicles.environment.*;
 
 /*
  * SimulationEditor.java
@@ -52,6 +54,18 @@ public class SimulationEditor extends javax.swing.JFrame {
 
         proVehiclePreview = new VehiclePreview();
         proEnvironmentPreview = new EnvironmentPreview();
+
+        environmentArray = appRoot.getEnvironmentArray();
+        availableEnvironments = new AbstractListModel() {
+            public int getSize() { return environmentArray.length; }
+            public Object getElementAt(int i) { return environmentArray[i]; }
+        };
+
+        vehicleArray = appRoot.getVehicleArray();
+        availableVehicles = new AbstractListModel() {
+            public int getSize() { return vehicleArray.length; }
+            public Object getElementAt(int i) { return vehicleArray[i]; }
+        };
 
         initComponents();
 
@@ -340,11 +354,7 @@ public class SimulationEditor extends javax.swing.JFrame {
 
         scrollpanel_AvailableVehicles.setName("scrollpanel_AvailableVehicles"); // NOI18N
 
-        list_AvailableVehicles.setModel(new AbstractListModel() {
-            String[] strings = { "Vehicle 1", "Vehicle 2", "Vehicle 3", "Vehicle 4", "Vehicle 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        list_AvailableVehicles.setModel(availableVehicles);
         list_AvailableVehicles.setName("list_AvailableVehicles"); // NOI18N
         scrollpanel_AvailableVehicles.setViewportView(list_AvailableVehicles);
 
@@ -481,11 +491,7 @@ public class SimulationEditor extends javax.swing.JFrame {
 
         scrollpanel_AvailableEnvironments.setName("scrollpanel_AvailableEnvironments"); // NOI18N
 
-        list_AvailableEnvironments.setModel(new AbstractListModel() {
-            String[] strings = { "Enviro 1", "Enviro 2", "Enviro 3", "Enviro 4", "Enviro 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        list_AvailableEnvironments.setModel(availableEnvironments);
         list_AvailableEnvironments.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list_AvailableEnvironments.setName("list_AvailableEnvironments"); // NOI18N
         scrollpanel_AvailableEnvironments.setViewportView(list_AvailableEnvironments);
@@ -748,6 +754,10 @@ public class SimulationEditor extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private PApplet proVehiclePreview, proEnvironmentPreview;
     private EditorSimulation[] simulationArray;
+    private EditorVehicle[] vehicleArray;
+    private EnvironmentElement[] elementArray;
+    private Environment[] environmentArray;
     private DefaultComboBoxModel simulationDropDown;
     private Simulator appRoot;
+    private AbstractListModel availableVehicles, availableEnvironments;
 }
