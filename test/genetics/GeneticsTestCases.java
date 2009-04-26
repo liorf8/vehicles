@@ -79,52 +79,9 @@ public class GeneticsTestCases {
 				System.out.println("Filepath: " + temp.getXmlLocation());
 			}
 		}
-
-		String p;
-		p = crossoverBits(Integer.toBinaryString(99), Integer.toBinaryString(62));
-
-	}
-	
-	public static String crossoverBits(String parentA, String parentB){
-		parentA = addLeadingZeros(8, parentA);
-		parentB = addLeadingZeros(8, parentB);
-		System.out.println("Parent A\t" + parentA);
-		System.out.println("Parent B\t" + parentB);
-		Random r = new Random();
-		int ran = r.nextInt(8);
-		String crossed = (parentA.substring(0, ran)).concat(parentB.substring(ran, parentB.length()));
-		System.out.println("Crossover point\t" + ran);
-		System.out.println("Crossed\t" + crossed);
 		
-		ran = r.nextInt(8);
-		System.out.println("Bit to mutate\t" + ran);
-		if(crossed.charAt(ran) == '0'){
-			crossed = crossed.substring(0, ran) + "1" + crossed.substring(ran+1);
+		for(int i = 0; i < 100; i++){
+			Genetics.crossoverBitsAndMutate(r.nextInt(101), r.nextInt(101));
 		}
-		else{
-			crossed = crossed.substring(0, ran) + "0" + crossed.substring(ran+1);
-		}
-		System.out.println("Mutated\t" + crossed);
-		return "";
-	}
-	
-	
-	public static String addLeadingZeros(int n, String bin){
-		int length = bin.length();
-		System.out.println("Lenght: " + length);
-		int num_zeros = n - length;
-		System.out.println("Zeroes: " + num_zeros);
-		if ((num_zeros) <= 0){
-			return null;
-		}
-		String temp = "";
-		for(int i = 0; i < num_zeros; i++){
-			temp = temp.concat("0");
-		}
-		System.out.println("Temp: " + temp);
-		bin = temp.concat(bin);
-		System.out.println("Bin: " + bin);
-		return bin;
-		
 	}
 }
