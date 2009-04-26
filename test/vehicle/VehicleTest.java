@@ -63,7 +63,7 @@ public class VehicleTest {
 		v.setRightSensorLight(-12);
 		v.setRightSensorPower(-20);
 		v.setRightSensorWater(-40);
-
+		
 		v.saveVehicle(); //convert object and its attributes into XML
 
 		System.out.println("Testing getting filename");

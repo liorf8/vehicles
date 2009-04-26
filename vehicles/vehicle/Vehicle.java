@@ -31,6 +31,8 @@ public class Vehicle implements Comparable{
 	protected int aggression = 0;
 	protected VehicleColour vehicleColour = new VehicleColour();
 	public MemoryUnit mu = null;
+	protected int max_mem = 0, learning_rate = 0;
+	
 
 
 	/**
@@ -51,6 +53,36 @@ public class Vehicle implements Comparable{
 		}
 	}
 
+	public void setMaxMem(int m){
+		if(m > 0) {
+			this.mu.setMaxMem(m);
+			this.max_mem = m;
+		}
+		else{
+			this.mu.setMaxMem(1);
+			this.max_mem = 1;
+		}
+	}
+
+	public void setLearningRate(int l){
+		if(l > 0) {
+			this.mu.setLearningRate(l);
+			this.learning_rate = l;
+		}
+		else{
+			this.mu.setLearningRate(1);
+			this.learning_rate = 1;
+		}
+	}
+
+	public int getMaxMem(){
+		return this.max_mem;
+	}
+	
+	public int getLearningRate(){
+		return this.learning_rate;
+	}
+	
 	public String getAuthor() {
 		return vehicleAuthor;
 	}
@@ -308,6 +340,8 @@ public class Vehicle implements Comparable{
 
 	public Vehicle() {
 		this.mu = new MemoryUnit();
+		this.max_mem = this.mu.getMaxMem();
+		this.learning_rate = this.mu.getLearningRate();
 		this.components = new Vector<VehicleComponent>();
 		VehicleComponent vc = new VehicleComponent();
 		vc.setVehicleComponentType("LEFT");
@@ -345,6 +379,23 @@ public class Vehicle implements Comparable{
 
 			NodeList currBattery = dom.getElementsByTagName("curr_battery_capacity");
 			this.setCurrentBatteryCapacity(Integer.parseInt(currBattery.item(0).getChildNodes().item(0).getNodeValue()));
+
+			//if these entries are not in the xml file, default values will be kept
+			try{
+				NodeList max_memory = dom.getElementsByTagName("maximum_memory");
+				this.setMaxMem(Integer.parseInt(max_memory.item(0).getChildNodes().item(0).getNodeValue()));
+			}
+			catch(Exception e){}
+
+			try{
+				NodeList learning_rate = dom.getElementsByTagName("learning_rate");
+				this.setLearningRate(Integer.parseInt(learning_rate.item(0).getChildNodes().item(0).getNodeValue()));
+			}
+			catch(Exception e){}
+			
+			//if the above two failed, these will be defaults
+			this.max_mem = this.mu.getMaxMem();
+			this.learning_rate = this.mu.getLearningRate();
 
 			NodeList motorStr = dom.getElementsByTagName("motorStrength");
 			this.setMotorStrength(Integer.parseInt(motorStr.item(0).getChildNodes().item(0).getNodeValue()));
@@ -498,6 +549,8 @@ public class Vehicle implements Comparable{
 		System.out.println("Aggression\t" + this.aggression);    
 		System.out.println("Max Battery Capacity\t" + this.max_battery_capacity);
 		System.out.println("Motor Strength\t" + this.motorStrength);
+		System.out.println("Maximum Memory\t" + this.max_mem);
+		System.out.println("Learning rate\t" + this.learning_rate);
 	}
 
 

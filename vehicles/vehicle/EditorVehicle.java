@@ -69,6 +69,23 @@ public class EditorVehicle extends Vehicle {
 	}
 
 	/**
+	 * Add a vehicle maximum_memory attribute to the XML document being created
+	 * @param max_mem The desired maximum memory for this vehicle
+	 */
+	public void addMaxMem(String max_mem){
+		writeXMLEntry("maximum_memory", max_mem, xmldoc);
+	}
+	
+
+	/**
+	 * Add a vehicle learning rate attribute to the XML document being created
+	 * @param l The desired learning rate for this vehicle
+	 */
+	public void addLearningRate(String l){
+		writeXMLEntry("learning_rate", l, xmldoc);
+	}
+	
+	/**
 	 * Add a vehicle curr_battery_capacity attribute to the XML document being created
 	 * @param name The name to use for this Vehicle
 	 */
@@ -139,6 +156,8 @@ public class EditorVehicle extends Vehicle {
 			this.writeTimeStamp(xmldoc);
 			this.addMaxBatteryCapacity(Integer.toString(max_battery_capacity));
 			this.addCurrBatteryCapacity(Integer.toString(curr_battery_capacity));
+			this.addMaxMem(Integer.toString(max_mem));
+			this.addLearningRate(Integer.toString(learning_rate));
 			this.addMotorStrength(Integer.toString(this.motorStrength));
 			this.addAggression(Integer.toString(this.aggression));
             this.addVehicleColour(this.vehicleColour);
