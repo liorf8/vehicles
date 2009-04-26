@@ -127,6 +127,13 @@ public class EditorVehicle extends Vehicle {
 	public void addVehicleColour(VehicleColour c){
 		root.appendChild(xmldoc.adoptNode(c.getRootElement().cloneNode(true)));
 	}
+	/**
+	 * Add a vehicle memory XML entry into this Vehicle's document
+	 * @param vc The memory unit to add
+	 */
+	public void addVehicleMemory(MemoryUnit mu){
+		root.appendChild(xmldoc.adoptNode(mu.getRootElement().cloneNode(true)));
+	}
 
 	public void writeTimeStamp(Document xmldoc){
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -154,13 +161,14 @@ public class EditorVehicle extends Vehicle {
 				this.writeXMLEntry("description", this.vehicleDescription, xmldoc);
 			}
 			this.writeTimeStamp(xmldoc);
-			this.addMaxBatteryCapacity(Integer.toString(max_battery_capacity));
-			this.addCurrBatteryCapacity(Integer.toString(curr_battery_capacity));
-			this.addMaxMem(Integer.toString(max_mem));
-			this.addLearningRate(Integer.toString(learning_rate));
+			//this.addMaxBatteryCapacity(Integer.toString(max_battery_capacity));
+			//this.addCurrBatteryCapacity(Integer.toString(curr_battery_capacity));
+			//this.addMaxMem(Integer.toString(max_mem));
+			//this.addLearningRate(Integer.toString(learning_rate));
 			this.addMotorStrength(Integer.toString(this.motorStrength));
 			this.addAggression(Integer.toString(this.aggression));
             this.addVehicleColour(this.vehicleColour);
+            this.addVehicleMemory(this.mu);
 			
 			if(this.components != null){
 				//System.out.println(components.capacity());
