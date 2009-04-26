@@ -218,6 +218,8 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         jTextArea1.setName("jTextArea1"); // NOI18N
         jScrollPane2.setViewportView(jTextArea1);
 
+        ActionMap actionMap = Application.getInstance(VehiclesApp.class).getContext().getActionMap(Simulator.class, this);
+        jButton3.setAction(actionMap.get("saveLog")); // NOI18N
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
         jButton3.setName("jButton3"); // NOI18N
 
@@ -261,7 +263,6 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         simulationMenu.setText(resourceMap.getString("simulationMenu.text")); // NOI18N
         simulationMenu.setName("simulationMenu"); // NOI18N
 
-        ActionMap actionMap = Application.getInstance(VehiclesApp.class).getContext().getActionMap(Simulator.class, this);
         jMenuItem4.setAction(actionMap.get("showsSimulationEditor")); // NOI18N
         jMenuItem4.setText(resourceMap.getString("jMenuItem4.text")); // NOI18N
         jMenuItem4.setName("jMenuItem4"); // NOI18N
@@ -517,6 +518,10 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
 
     @Action
     public void pauseSim() {
+    }
+
+    @Action
+    public void saveLog() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
