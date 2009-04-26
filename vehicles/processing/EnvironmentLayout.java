@@ -1,16 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package vehicles.processing;
 import processing.core.*;
+
 /**
  *
  * @author Niall O'Hara
  */
- public class Embedded extends PApplet {
-
+public class EnvironmentLayout extends PApplet {
      @Override
      public void setup() {
          // original setup code here ...
@@ -33,4 +28,3 @@ import processing.core.*;
          redraw();
      }
  }
-

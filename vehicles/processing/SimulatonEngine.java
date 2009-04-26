@@ -3,7 +3,7 @@ package vehicles.processing;
 import processing.core.*;
 
 @SuppressWarnings("serial")
-public class ProcessingVehicle extends PApplet {
+public class SimulatonEngine extends PApplet {
 
     Robot[] robots;
     Source[] sources;

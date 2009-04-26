@@ -12,7 +12,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import vehicles.processing.Embedded;
+import vehicles.processing.*;
 import vehicles.*;
 import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
@@ -57,14 +57,15 @@ public class EnvironmentEditor extends javax.swing.JFrame {
                                                 new EnvironmentElement(4)};
         elementDropDown = new DefaultComboBoxModel(elementArray);
 
-        proGrid = new Embedded();
-        proElement = new Embedded();
+        proLayout = new EnvironmentLayout();
+        proBrush = new ElementBrush();
+
         initComponents();
         // important to call this whenever embedding a PApplet.
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
-        proGrid.init();
-        proElement.init();
+        proLayout.init();
+        proBrush.init();
         populateFields(environmentArray[0]);
     }
 
@@ -96,20 +97,20 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         text_LastModified = new JTextField();
         tab_Design = new JPanel();
         panel_Layout = new JPanel();
-        panel_Grid = new JPanel();
+        processing_Layout = new JPanel();
         panel_Tools = new JPanel();
         panel_GridSize = new JPanel();
         dropdown_GridSize = new JComboBox();
         panel_Brush = new JPanel();
-        dropdown_Element = new JComboBox();
-        panel_Element = new JPanel();
+        toggle_SelectionMode = new JToggleButton();
+        dropdown_Brush = new JComboBox();
+        processing_Brush = new JPanel();
         panel_Radius = new JPanel();
         slider_Radius = new JSlider();
         text_Radius = new JTextField();
         panel_Intensity = new JPanel();
         slider_Intensity = new JSlider();
         text_Intensity = new JTextField();
-        toggle_SelectionMode = new JToggleButton();
         text_Status = new JTextField();
         button_Save = new JButton();
         button_SaveAs = new JButton();
@@ -266,22 +267,23 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_Layout.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Layout.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Layout.border.titleFont"))); // NOI18N
         panel_Layout.setName("panel_Layout"); // NOI18N
 
-        panel_Grid.setName("panel_Grid"); // NOI18N
-        panel_Grid.setPreferredSize(new Dimension(320, 240));
-        panel_Grid.setLayout(new BorderLayout());
+        processing_Layout.setBackground(resourceMap.getColor("processing_Layout.background")); // NOI18N
+        processing_Layout.setName("processing_Layout"); // NOI18N
+        processing_Layout.setPreferredSize(new Dimension(320, 240));
+        processing_Layout.setLayout(new BorderLayout());
 
         GroupLayout panel_LayoutLayout = new GroupLayout(panel_Layout);
         panel_Layout.setLayout(panel_LayoutLayout);
         panel_LayoutLayout.setHorizontalGroup(
             panel_LayoutLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(panel_Grid, GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+            .addComponent(processing_Layout, GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
         );
         panel_LayoutLayout.setVerticalGroup(
             panel_LayoutLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(panel_Grid, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+            .addComponent(processing_Layout, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
         );
 
-        panel_Grid.add(proGrid, BorderLayout.CENTER);
+        processing_Layout.add(proLayout, BorderLayout.CENTER);
 
         panel_Tools.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Tools.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Tools.border.titleFont"))); // NOI18N
         panel_Tools.setName("panel_Tools"); // NOI18N
@@ -311,16 +313,20 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_Brush.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Brush.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Brush.border.titleFont"))); // NOI18N
         panel_Brush.setName("panel_Brush"); // NOI18N
 
-        dropdown_Element.setModel(elementDropDown);
-        dropdown_Element.setName("dropdown_Element"); // NOI18N
-        dropdown_Element.addItemListener(new ItemListener() {
+        toggle_SelectionMode.setText(resourceMap.getString("toggle_SelectionMode.text")); // NOI18N
+        toggle_SelectionMode.setName("toggle_SelectionMode"); // NOI18N
+
+        dropdown_Brush.setModel(elementDropDown);
+        dropdown_Brush.setName("dropdown_Brush"); // NOI18N
+        dropdown_Brush.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent evt) {
-                dropdown_ElementItemStateChanged(evt);
+                dropdown_BrushItemStateChanged(evt);
             }
         });
 
-        panel_Element.setName("panel_Element"); // NOI18N
-        panel_Element.setLayout(new BorderLayout());
+        processing_Brush.setBackground(resourceMap.getColor("processing_Brush.background")); // NOI18N
+        processing_Brush.setName("processing_Brush"); // NOI18N
+        processing_Brush.setLayout(new BorderLayout());
 
         panel_Radius.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Radius.border.title"))); // NOI18N
         panel_Radius.setName("panel_Radius"); // NOI18N
@@ -384,9 +390,6 @@ public class EnvironmentEditor extends javax.swing.JFrame {
             .addComponent(slider_Intensity, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        toggle_SelectionMode.setText(resourceMap.getString("toggle_SelectionMode.text")); // NOI18N
-        toggle_SelectionMode.setName("toggle_SelectionMode"); // NOI18N
-
         GroupLayout panel_BrushLayout = new GroupLayout(panel_Brush);
         panel_Brush.setLayout(panel_BrushLayout);
         panel_BrushLayout.setHorizontalGroup(
@@ -394,8 +397,8 @@ public class EnvironmentEditor extends javax.swing.JFrame {
             .addGroup(panel_BrushLayout.createSequentialGroup()
                 .addComponent(toggle_SelectionMode, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(dropdown_Element, 0, 75, Short.MAX_VALUE))
-            .addComponent(panel_Element, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                .addComponent(dropdown_Brush, 0, 75, Short.MAX_VALUE))
+            .addComponent(processing_Brush, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
             .addComponent(panel_Radius, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panel_Intensity, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -404,16 +407,16 @@ public class EnvironmentEditor extends javax.swing.JFrame {
             .addGroup(panel_BrushLayout.createSequentialGroup()
                 .addGroup(panel_BrushLayout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(toggle_SelectionMode)
-                    .addComponent(dropdown_Element, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dropdown_Brush, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(panel_Element, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                .addComponent(processing_Brush, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(panel_Radius, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(panel_Intensity, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
 
-        panel_Element.add(proElement, BorderLayout.CENTER);
+        processing_Brush.add(proBrush, BorderLayout.CENTER);
 
         GroupLayout panel_ToolsLayout = new GroupLayout(panel_Tools);
         panel_Tools.setLayout(panel_ToolsLayout);
@@ -520,7 +523,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         JSlider tempSlider = (JSlider) evt.getSource();
         int value = tempSlider.getValue();
         text_Radius.setText(Integer.toString(value));
-        EnvironmentElement selected = (EnvironmentElement) dropdown_Element.getSelectedItem();
+        EnvironmentElement selected = (EnvironmentElement) dropdown_Brush.getSelectedItem();
         selected.setRadius(value);
 }//GEN-LAST:event_slider_Radius_StateChanged
 
@@ -528,7 +531,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         JSlider tempSlider = (JSlider) evt.getSource();
         int value = tempSlider.getValue();
         text_Intensity.setText(Integer.toString(value));
-        EnvironmentElement selected = (EnvironmentElement) dropdown_Element.getSelectedItem();
+        EnvironmentElement selected = (EnvironmentElement) dropdown_Brush.getSelectedItem();
         selected.setStrength(value);
 }//GEN-LAST:event_slider_Intensity_StateChanged
 
@@ -536,11 +539,11 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_dropdown_GridSizeItemStateChanged
 
-    private void dropdown_ElementItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_ElementItemStateChanged
+    private void dropdown_BrushItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_BrushItemStateChanged
         JComboBox tempComboBox = (JComboBox) evt.getSource();
         EnvironmentElement selected = (EnvironmentElement) tempComboBox.getSelectedItem();
         populateBrushSliders(selected);
-    }//GEN-LAST:event_dropdown_ElementItemStateChanged
+}//GEN-LAST:event_dropdown_BrushItemStateChanged
 
         private void populateBrushSliders(EnvironmentElement p_element) {
         EnvironmentElement tempElement = p_element;
@@ -563,14 +566,12 @@ public class EnvironmentEditor extends javax.swing.JFrame {
     private JButton button_Cancel;
     private JButton button_Save;
     private JButton button_SaveAs;
-    private JComboBox dropdown_Element;
+    private JComboBox dropdown_Brush;
     private JComboBox dropdown_GridSize;
     private JComboBox dropdown_SelectedEnvironment;
     private JPanel panel_Author;
     private JPanel panel_Brush;
     private JPanel panel_Description;
-    private JPanel panel_Element;
-    private JPanel panel_Grid;
     private JPanel panel_GridSize;
     private JPanel panel_Intensity;
     private JPanel panel_LastModified;
@@ -579,6 +580,8 @@ public class EnvironmentEditor extends javax.swing.JFrame {
     private JPanel panel_Radius;
     private JPanel panel_SelectedEnvironment;
     private JPanel panel_Tools;
+    private JPanel processing_Brush;
+    private JPanel processing_Layout;
     private JScrollPane scrollpanel_Description;
     private JSlider slider_Intensity;
     private JSlider slider_Radius;
@@ -594,7 +597,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
     private JTextField text_Status;
     private JToggleButton toggle_SelectionMode;
     // End of variables declaration//GEN-END:variables
-    private PApplet proGrid, proElement;
+    private PApplet proLayout, proBrush;
     private Environment[] environmentArray;
     private Grid[] gridArray;
     private EnvironmentElement[] elementArray;

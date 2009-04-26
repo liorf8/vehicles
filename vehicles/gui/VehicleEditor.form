@@ -333,7 +333,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Appearance">
+                    <TitledBorder title="Vehicle Appearance">
                       <Property name="titleX" resourceKey="panel_Appearance.border.title"/>
                       <Property name="font" resourceKey="panel_Appearance.border.titleFont"/>
                     </TitledBorder>
@@ -351,13 +351,13 @@
                       <Component id="panel_Red" alignment="0" max="32767" attributes="2"/>
                       <Component id="panel_Green" alignment="0" max="32767" attributes="2"/>
                       <Component id="panel_Blue" alignment="0" max="32767" attributes="2"/>
-                      <Component id="panel_Processing" alignment="0" pref="207" max="32767" attributes="2"/>
+                      <Component id="processing_Appearance" alignment="0" pref="207" max="32767" attributes="2"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="panel_Processing" pref="169" max="32767" attributes="0"/>
+                          <Component id="processing_Appearance" pref="169" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="panel_Red" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -369,12 +369,13 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="panel_Processing">
+                <Container class="javax.swing.JPanel" name="processing_Appearance">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="panel_Processing" noResource="true"/>
+                    <Property name="background" type="java.awt.Color" resourceKey="processing_Appearance.background"/>
+                    <Property name="name" type="java.lang.String" value="processing_Appearance" noResource="true"/>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="panel_Processing.add(embed, BorderLayout.CENTER);"/>
+                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="processing_Appearance.add(proAppearance, BorderLayout.CENTER);"/>
                   </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>

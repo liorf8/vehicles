@@ -50,7 +50,7 @@ public class Simulator extends FrameView implements ChangeListener {
 
     public Simulator(SingleFrameApplication app) {
         super(app);
-        embed = new ProcessingVehicle();
+        embed = new SimulatonEngine();
         initComponents();
 
         setSimulationArray();
@@ -435,7 +435,7 @@ public class Simulator extends FrameView implements ChangeListener {
     private JFrame environmentEditor;
     private JFrame vehicleEditor;
     private JFrame simulationEditor;
-    private ProcessingVehicle embed;
+    private SimulatonEngine embed;
 
     private Environment[] environmentArray;
     private EditorVehicle[] vehicleArray;
