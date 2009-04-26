@@ -81,12 +81,6 @@ public class GeneticsTestCases {
 		}
 
 		String p;
-		for(int i = 0; i < 101; i++){
-			p = Integer.toBinaryString(i);
-			p = addLeadingZeros(8, p);
-			System.out.println(i + " as binary sring: " +  p);
-		}
-		
 		p = crossoverBits(Integer.toBinaryString(99), Integer.toBinaryString(62));
 
 	}
@@ -99,8 +93,18 @@ public class GeneticsTestCases {
 		Random r = new Random();
 		int ran = r.nextInt(8);
 		String crossed = (parentA.substring(0, ran)).concat(parentB.substring(ran, parentB.length()));
+		System.out.println("Crossover point\t" + ran);
 		System.out.println("Crossed\t" + crossed);
-		System.out.println("Crossove point\t" + ran);
+		
+		ran = r.nextInt(8);
+		System.out.println("Bit to mutate\t" + ran);
+		if(crossed.charAt(ran) == '0'){
+			crossed = crossed.substring(0, ran) + "1" + crossed.substring(ran+1);
+		}
+		else{
+			crossed = crossed.substring(0, ran) + "0" + crossed.substring(ran+1);
+		}
+		System.out.println("Mutated\t" + crossed);
 		return "";
 	}
 	
