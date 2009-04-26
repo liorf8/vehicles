@@ -19,7 +19,7 @@ public class GeneticsTestCases {
 		Random r = new Random();
 		
 		Simulation sim = new Simulation("xml/simulations/testsim.sim");
-
+		
 		Vector<Vehicle> v = sim.getVehicles();
 
 		Vehicle temp;
