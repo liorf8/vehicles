@@ -2,6 +2,7 @@ package test.processing;
 
 import processing.core.*;
 import vehicles.simulation.*;
+import vehicles.vehicle.*;
 
 @SuppressWarnings("serial")
 public class ProcessingVehicleTest extends PApplet {
@@ -15,6 +16,8 @@ public class ProcessingVehicleTest extends PApplet {
     int numOfLights = 6;
     int numOfRobots = 10;
     float move_speed = PI / 6;
+    PImage b;
+    
 
     public void setMove_speed(float move_speed) {
         this.move_speed = move_speed / PI;
@@ -27,7 +30,9 @@ public class ProcessingVehicleTest extends PApplet {
     @Override
     public void setup() {
         size(800, 600);
-        background(0,0,0);
+        b = loadImage("/home/graysr/Processing_Sketchbook/test/test.png");
+        image(b, 0, 0);
+        //background(0,0,0);
 
         ellipseMode(CENTER);
         rectMode(CENTER);
@@ -58,7 +63,7 @@ public class ProcessingVehicleTest extends PApplet {
     public void draw() {
         background(0,0,0);
 
-        image(ground, 0, 0);
+        //image(ground, 0, 0);
 
         fill(155);
         for (int i = 0; i < numOfLights; i++) {
@@ -456,5 +461,15 @@ public class ProcessingVehicleTest extends PApplet {
             return ((plus) ? 1 - d : d);
         }
     }
+    
+//  male and female are just for ease of reading, vehicles actuall dont have dangly and bouncy bits
+	public Vehicle mate(Vehicle male, Vehicle female){
+		
+		return new Vehicle();
+	}
+	
+	public Vehicle produceOffspring(Vehicle other){
+		return new Vehicle();
+	}
 }
 
