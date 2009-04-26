@@ -14,7 +14,7 @@ import java.util.Collections;
 public class SimulationTest {
 
 	public static void main(String[] args){
-		/*EditorSimulation es = new EditorSimulation();
+		EditorSimulation es = new EditorSimulation();
 		es.setXmlLocation("xml/simulations/testsim.sim");
 		es.setName("TestSim");
 		es.setAuthor("Some guy");
@@ -22,9 +22,9 @@ public class SimulationTest {
 		es.setEvolution(true);
 		es.setGeneticSelectionMethod(0);
 		es.addVehicle("xml/vehicles/hungry.veh");
-		es.addVehicle("xml/vehicles/hungryduplicate.veh");
+		es.addVehicle("xml/vehicles/angry.veh");
 		es.setEnvironment("xml/environments/desert.env");
-		es.saveSimulation();*/
+		es.saveSimulation();
 
 		EditorSimulation sim = new EditorSimulation("xml/simulations/testsim.sim");
 		sim.printSimDetails();
