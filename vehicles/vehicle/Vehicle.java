@@ -13,9 +13,9 @@ import java.io.File;
  *
  * A superclass for vehicle, which can be sub-classed for use in the vehicle editors 
  * or the simulation, while maintaining some common attributes
- * @author Karl 
+ * @author Karl, Shaun
  */
-public class Vehicle {
+public class Vehicle implements Comparable{
 
 	protected String xmlLocation; //location of the XML file representing this vehicle
 	protected String fileName = null;
@@ -32,6 +32,23 @@ public class Vehicle {
 	protected VehicleColour vehicleColour = new VehicleColour();
 
 
+	/**
+	 * Compare to method used to compare a vehicle with another vehicle in terms of 
+	 * fitness
+	 */
+	public int compareTo(Object otherVehicle) throws ClassCastException {
+		if (!(otherVehicle instanceof Vehicle)){
+			throw new ClassCastException("A Vehicle object expected.");
+		}
+		double otherFitness = ((Vehicle) otherVehicle).getFitness();
+		double this_fitness = this.getFitness();
+		if(this_fitness < otherFitness){
+			return -1;
+		}
+		else {
+			return 1;
+		}
+	}
 
 	public String getAuthor() {
 		return vehicleAuthor;
