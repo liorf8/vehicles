@@ -147,6 +147,8 @@ public class EditorSimulation extends Simulation{
 			this.addBoolean("evolution", this.evolution);
 			//Add Genetic Selection Mehod
 			this.addInteger("genetic_selection_method", this.gen_selection);
+			//Add Reproduction Method
+			this.addInteger("reproduction_method", this.repro_method);
 
 			xmldoc.appendChild(root); //finalise the XML document
 			/*Now take the file in RAM and write it out to disk*/
