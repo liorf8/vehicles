@@ -4,7 +4,7 @@
   <Properties>
     <Property name="title" type="java.lang.String" resourceKey="Form.title"/>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[500, 520]"/>
+      <Dimension value="[620, 560]"/>
     </Property>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
   </Properties>
@@ -33,9 +33,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="panel_SelectedVehicle" alignment="0" max="32767" attributes="0"/>
-                  <Component id="tabContainer" alignment="0" pref="480" max="32767" attributes="0"/>
+                  <Component id="tabContainer" alignment="0" pref="600" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="text_Status" pref="239" max="32767" attributes="0"/>
+                      <Component id="text_Status" pref="359" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="button_Save" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -54,7 +54,7 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="panel_SelectedVehicle" min="-2" max="-2" attributes="1"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="tabContainer" pref="420" max="32767" attributes="0"/>
+              <Component id="tabContainer" pref="450" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="button_Cancel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -84,7 +84,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="dropdown_SelectedVehicle" alignment="0" pref="468" max="32767" attributes="0"/>
+              <Component id="dropdown_SelectedVehicle" alignment="0" pref="588" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -133,13 +133,13 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="panel_Description" pref="229" max="32767" attributes="2"/>
-                          <Component id="panel_Name" alignment="0" pref="229" max="32767" attributes="2"/>
+                          <Component id="panel_Description" pref="289" max="32767" attributes="2"/>
+                          <Component id="panel_Name" alignment="0" pref="289" max="32767" attributes="2"/>
                           <Component id="panel_Author" alignment="1" max="32767" attributes="2"/>
                           <Component id="panel_LastModified" alignment="0" max="32767" attributes="2"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="panel_Appearance" max="32767" attributes="2"/>
+                      <Component id="panel_Appearance" pref="280" max="32767" attributes="2"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -149,13 +149,13 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="panel_Appearance" alignment="1" pref="373" max="32767" attributes="2"/>
+                          <Component id="panel_Appearance" alignment="1" pref="403" max="32767" attributes="2"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="panel_Name" min="-2" max="-2" attributes="1"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="panel_Author" min="-2" max="-2" attributes="1"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="panel_Description" pref="221" max="32767" attributes="2"/>
+                              <Component id="panel_Description" pref="251" max="32767" attributes="2"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="panel_LastModified" min="-2" max="-2" attributes="1"/>
                           </Group>
@@ -185,7 +185,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_Name" alignment="0" pref="217" max="32767" attributes="0"/>
+                      <Component id="text_Name" alignment="0" pref="277" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -218,7 +218,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_Author" alignment="0" pref="217" max="32767" attributes="0"/>
+                      <Component id="text_Author" alignment="0" pref="277" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -254,12 +254,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollpanel_Description" alignment="0" pref="217" max="32767" attributes="0"/>
+                      <Component id="scrollpanel_Description" alignment="0" pref="277" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollpanel_Description" alignment="0" pref="195" max="32767" attributes="0"/>
+                      <Component id="scrollpanel_Description" alignment="0" pref="225" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -306,7 +306,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_LastModified" alignment="0" pref="217" max="32767" attributes="0"/>
+                      <Component id="text_LastModified" alignment="0" pref="277" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -351,13 +351,13 @@
                       <Component id="panel_Red" alignment="0" max="32767" attributes="2"/>
                       <Component id="panel_Green" alignment="0" max="32767" attributes="2"/>
                       <Component id="panel_Blue" alignment="0" max="32767" attributes="2"/>
-                      <Component id="processing_Appearance" alignment="0" pref="208" max="32767" attributes="2"/>
+                      <Component id="processing_Appearance" alignment="0" pref="268" max="32767" attributes="2"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="processing_Appearance" pref="179" max="32767" attributes="0"/>
+                          <Component id="processing_Appearance" pref="209" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="panel_Red" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -396,7 +396,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Blue" pref="160" max="32767" attributes="0"/>
+                              <Component id="slider_Blue" pref="220" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Blue" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
@@ -446,7 +446,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Green" pref="160" max="32767" attributes="0"/>
+                              <Component id="slider_Green" pref="220" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Green" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
@@ -496,7 +496,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Red" pref="160" max="32767" attributes="0"/>
+                              <Component id="slider_Red" pref="220" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Red" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
@@ -630,14 +630,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Left_Light" alignment="1" pref="94" max="32767" attributes="0"/>
-                          <Component id="slider_Left_Light" alignment="0" pref="94" max="32767" attributes="0"/>
+                          <Component id="text_Left_Light" alignment="1" pref="124" max="32767" attributes="0"/>
+                          <Component id="slider_Left_Light" alignment="0" pref="124" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Left_Light" pref="107" max="32767" attributes="0"/>
+                              <Component id="slider_Left_Light" pref="122" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Left_Light" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -690,14 +690,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Left_Heat" alignment="0" pref="98" max="32767" attributes="0"/>
-                          <Component id="slider_Left_Heat" alignment="1" pref="98" max="32767" attributes="0"/>
+                          <Component id="text_Left_Heat" alignment="0" pref="128" max="32767" attributes="0"/>
+                          <Component id="slider_Left_Heat" alignment="1" pref="128" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Left_Heat" pref="107" max="32767" attributes="0"/>
+                              <Component id="slider_Left_Heat" pref="122" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Left_Heat" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -750,14 +750,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Left_Water" alignment="0" pref="96" max="32767" attributes="0"/>
-                          <Component id="slider_Left_Water" alignment="0" pref="96" max="32767" attributes="0"/>
+                          <Component id="text_Left_Water" alignment="0" pref="126" max="32767" attributes="0"/>
+                          <Component id="slider_Left_Water" alignment="0" pref="126" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Left_Water" pref="107" max="32767" attributes="0"/>
+                              <Component id="slider_Left_Water" pref="122" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Left_Water" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -810,14 +810,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Left_Power" alignment="0" pref="97" max="32767" attributes="0"/>
-                          <Component id="slider_Left_Power" alignment="0" pref="97" max="32767" attributes="0"/>
+                          <Component id="text_Left_Power" alignment="0" pref="127" max="32767" attributes="0"/>
+                          <Component id="slider_Left_Power" alignment="0" pref="127" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Left_Power" pref="107" max="32767" attributes="0"/>
+                              <Component id="slider_Left_Power" pref="122" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Left_Power" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -909,14 +909,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Right_Light" alignment="1" pref="124" max="32767" attributes="0"/>
-                          <Component id="slider_Right_Light" alignment="0" pref="124" max="32767" attributes="0"/>
+                          <Component id="text_Right_Light" alignment="1" pref="154" max="32767" attributes="0"/>
+                          <Component id="slider_Right_Light" alignment="0" pref="154" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Right_Light" pref="107" max="32767" attributes="0"/>
+                              <Component id="slider_Right_Light" pref="122" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Right_Light" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -969,14 +969,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Right_Heat" alignment="0" pref="88" max="32767" attributes="0"/>
-                          <Component id="slider_Right_Heat" alignment="1" pref="88" max="32767" attributes="0"/>
+                          <Component id="text_Right_Heat" alignment="0" pref="118" max="32767" attributes="0"/>
+                          <Component id="slider_Right_Heat" alignment="1" pref="118" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Right_Heat" pref="107" max="32767" attributes="0"/>
+                              <Component id="slider_Right_Heat" pref="122" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Right_Heat" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1029,14 +1029,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Right_Water" alignment="0" pref="87" max="32767" attributes="0"/>
-                          <Component id="slider_Right_Water" alignment="0" pref="87" max="32767" attributes="0"/>
+                          <Component id="text_Right_Water" alignment="0" pref="117" max="32767" attributes="0"/>
+                          <Component id="slider_Right_Water" alignment="0" pref="117" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Right_Water" pref="107" max="32767" attributes="0"/>
+                              <Component id="slider_Right_Water" pref="122" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Right_Water" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1089,14 +1089,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Right_Power" alignment="0" pref="86" max="32767" attributes="0"/>
-                          <Component id="slider_Right_Power" alignment="0" pref="86" max="32767" attributes="0"/>
+                          <Component id="text_Right_Power" alignment="0" pref="116" max="32767" attributes="0"/>
+                          <Component id="slider_Right_Power" alignment="0" pref="116" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Right_Power" pref="107" max="32767" attributes="0"/>
+                              <Component id="slider_Right_Power" pref="122" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Right_Power" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1196,9 +1196,9 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_MotorStrength" alignment="0" pref="102" max="32767" attributes="0"/>
+                      <Component id="text_MotorStrength" alignment="0" pref="142" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="slider_MotorStrength" pref="92" max="32767" attributes="0"/>
+                          <Component id="slider_MotorStrength" pref="132" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1206,7 +1206,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="slider_MotorStrength" pref="321" max="32767" attributes="0"/>
+                          <Component id="slider_MotorStrength" pref="351" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="text_MotorStrength" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
@@ -1254,9 +1254,9 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_Aggression" alignment="0" pref="92" max="32767" attributes="0"/>
+                      <Component id="text_Aggression" alignment="0" pref="132" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="slider_Aggression" pref="82" max="32767" attributes="0"/>
+                          <Component id="slider_Aggression" pref="122" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1264,7 +1264,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="slider_Aggression" pref="321" max="32767" attributes="0"/>
+                          <Component id="slider_Aggression" pref="351" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="text_Aggression" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
@@ -1318,15 +1318,15 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="text_MaxBattery" alignment="0" pref="107" max="32767" attributes="2"/>
-                              <Component id="slider_MaxBattery" pref="107" max="32767" attributes="2"/>
-                              <Component id="label_MaxBattery" alignment="1" pref="107" max="32767" attributes="2"/>
+                              <Component id="text_MaxBattery" alignment="0" pref="127" max="32767" attributes="2"/>
+                              <Component id="slider_MaxBattery" pref="127" max="32767" attributes="2"/>
+                              <Component id="label_MaxBattery" alignment="1" pref="127" max="32767" attributes="2"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="text_CurrentBattery" pref="100" max="32767" attributes="2"/>
-                              <Component id="slider_CurrentBattery" pref="100" max="32767" attributes="2"/>
-                              <Component id="label_CurrentBattery" alignment="0" pref="100" max="32767" attributes="2"/>
+                              <Component id="text_CurrentBattery" pref="120" max="32767" attributes="2"/>
+                              <Component id="slider_CurrentBattery" pref="120" max="32767" attributes="2"/>
+                              <Component id="label_CurrentBattery" alignment="0" pref="120" max="32767" attributes="2"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1340,8 +1340,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="slider_CurrentBattery" pref="301" max="32767" attributes="2"/>
-                              <Component id="slider_MaxBattery" alignment="0" pref="301" max="32767" attributes="2"/>
+                              <Component id="slider_CurrentBattery" pref="331" max="32767" attributes="2"/>
+                              <Component id="slider_MaxBattery" alignment="0" pref="331" max="32767" attributes="2"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -1428,21 +1428,21 @@
     </Component>
     <Component class="javax.swing.JButton" name="button_Save">
       <Properties>
+        <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+          <action class="vehicles.gui.VehicleEditor" id="saveVehicle" methodName="saveVehicle"/>
+        </Property>
         <Property name="text" type="java.lang.String" resourceKey="button_Save.text"/>
         <Property name="name" type="java.lang.String" value="button_Save" noResource="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="button_SaveMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="button_SaveAsNew">
       <Properties>
+        <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+          <action class="vehicles.gui.VehicleEditor" id="saveVehicleAs" methodName="saveVehicleAs"/>
+        </Property>
         <Property name="text" type="java.lang.String" resourceKey="button_SaveAsNew.text"/>
         <Property name="name" type="java.lang.String" value="button_SaveAsNew" noResource="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="button_SaveAsNewMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="button_Cancel">
       <Properties>

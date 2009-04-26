@@ -48,13 +48,13 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         environmentArray = appRoot.getEnvironmentArray();
         environmentDropDown = new DefaultComboBoxModel(environmentArray);
 
-        gridArray = new Grid[] {new Grid(640,480),new Grid(800,600),new Grid(1024,768)};
+        gridArray = new Grid[]{new Grid(640, 480), new Grid(800, 600), new Grid(1024, 768)};
         gridDropDown = new DefaultComboBoxModel(gridArray);
 
-        elementArray = new EnvironmentElement[] {new EnvironmentElement(1),
-                                                new EnvironmentElement(2),
-                                                new EnvironmentElement(3),
-                                                new EnvironmentElement(4)};
+        elementArray = new EnvironmentElement[]{new EnvironmentElement(1),
+                    new EnvironmentElement(2),
+                    new EnvironmentElement(3),
+                    new EnvironmentElement(4)};
         elementDropDown = new DefaultComboBoxModel(elementArray);
 
         proLayout = new EnvironmentLayout();
@@ -67,10 +67,6 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         proLayout.init();
         proBrush.init();
         populateFields(environmentArray[0]);
-    }
-
-    @Action public void cancel() {
-        dispose();
     }
 
     /** This method is called from within the constructor to
@@ -118,7 +114,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 
         ResourceMap resourceMap = Application.getInstance(VehiclesApp.class).getContext().getResourceMap(EnvironmentEditor.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
-        setMinimumSize(new Dimension(620, 520));
+        setMinimumSize(new Dimension(620, 560));
         setName("Form"); // NOI18N
         addWindowFocusListener(new WindowFocusListener() {
             public void windowGainedFocus(WindowEvent evt) {
@@ -212,7 +208,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         );
         panel_DescriptionLayout.setVerticalGroup(
             panel_DescriptionLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_Description, GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+            .addComponent(scrollpanel_Description, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
         );
 
         panel_LastModified.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_LastModified.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_LastModified.border.titleFont"))); // NOI18N
@@ -254,7 +250,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(panel_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(panel_Description, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                .addComponent(panel_Description, GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(panel_LastModified, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -280,7 +276,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         );
         panel_LayoutLayout.setVerticalGroup(
             panel_LayoutLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(processing_Layout, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+            .addComponent(processing_Layout, GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
         );
 
         processing_Layout.add(proLayout, BorderLayout.CENTER);
@@ -313,6 +309,8 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_Brush.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Brush.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Brush.border.titleFont"))); // NOI18N
         panel_Brush.setName("panel_Brush"); // NOI18N
 
+        ActionMap actionMap = Application.getInstance(VehiclesApp.class).getContext().getActionMap(EnvironmentEditor.class, this);
+        toggle_SelectionMode.setAction(actionMap.get("toggleBrush")); // NOI18N
         toggle_SelectionMode.setText(resourceMap.getString("toggle_SelectionMode.text")); // NOI18N
         toggle_SelectionMode.setName("toggle_SelectionMode"); // NOI18N
 
@@ -409,7 +407,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
                     .addComponent(toggle_SelectionMode)
                     .addComponent(dropdown_Brush, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(processing_Brush, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                .addComponent(processing_Brush, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(panel_Radius, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
@@ -460,13 +458,14 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         text_Status.setText(resourceMap.getString("text_Status.text")); // NOI18N
         text_Status.setName("text_Status"); // NOI18N
 
+        button_Save.setAction(actionMap.get("saveEnvironment")); // NOI18N
         button_Save.setText(resourceMap.getString("button_Save.text")); // NOI18N
         button_Save.setName("button_Save"); // NOI18N
 
+        button_SaveAs.setAction(actionMap.get("saveEnvironmentAs")); // NOI18N
         button_SaveAs.setText(resourceMap.getString("button_SaveAs.text")); // NOI18N
         button_SaveAs.setName("button_SaveAs"); // NOI18N
 
-        ActionMap actionMap = Application.getInstance(VehiclesApp.class).getContext().getActionMap(EnvironmentEditor.class, this);
         button_Cancel.setAction(actionMap.get("cancel")); // NOI18N
         button_Cancel.setText(resourceMap.getString("button_Cancel.text")); // NOI18N
         button_Cancel.setName("button_Cancel"); // NOI18N
@@ -496,7 +495,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panel_SelectedEnvironment, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(tabContainer, GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                .addComponent(tabContainer, GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(button_Cancel)
@@ -545,13 +544,13 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         populateBrushSliders(selected);
 }//GEN-LAST:event_dropdown_BrushItemStateChanged
 
-        private void populateBrushSliders(EnvironmentElement p_element) {
+    private void populateBrushSliders(EnvironmentElement p_element) {
         EnvironmentElement tempElement = p_element;
 
         slider_Radius.setValue(tempElement.getRadius());
         slider_Intensity.setValue(tempElement.getStrength());
 
-}
+    }
 
     private void populateFields(Environment p_environment) {
         Environment tempEnvironment = p_environment;
@@ -561,7 +560,25 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         text_Name.setText(tempEnvironment.getName());
         text_LastModified.setText(tempEnvironment.getLastModified());
 
-}
+    }
+
+    @Action
+    public void cancel() {
+        dispose();
+    }
+
+    @Action
+    public void toggleBrush() {
+    }
+
+    @Action
+    public void saveEnvironment() {
+    }
+
+    @Action
+    public void saveEnvironmentAs() {
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton button_Cancel;
     private JButton button_Save;
@@ -597,7 +614,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
     private JTextField text_Status;
     private JToggleButton toggle_SelectionMode;
     // End of variables declaration//GEN-END:variables
-    private PApplet proLayout, proBrush;
+    private PApplet proLayout,  proBrush;
     private Environment[] environmentArray;
     private Grid[] gridArray;
     private EnvironmentElement[] elementArray;

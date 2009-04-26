@@ -383,6 +383,9 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="vehicles.gui.Simulator" id="startSim" methodName="startSim"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="jButton1.text"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -392,6 +395,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton2">
               <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="vehicles.gui.Simulator" id="stopSim" methodName="stopSim"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="jButton2.text"/>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -401,6 +407,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton4">
               <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="vehicles.gui.Simulator" id="pauseSim" methodName="pauseSim"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="jButton4.text"/>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>

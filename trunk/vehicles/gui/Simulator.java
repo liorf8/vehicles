@@ -366,18 +366,21 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         jPanel1.setName("jPanel1"); // NOI18N
         jPanel1.setPreferredSize(new Dimension(100, 71));
 
+        jButton1.setAction(actionMap.get("startSim")); // NOI18N
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(SwingConstants.CENTER);
         jButton1.setIconTextGap(10);
         jButton1.setName("jButton1"); // NOI18N
 
+        jButton2.setAction(actionMap.get("stopSim")); // NOI18N
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
         jButton2.setEnabled(false);
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(SwingConstants.CENTER);
         jButton2.setName("jButton2"); // NOI18N
 
+        jButton4.setAction(actionMap.get("pauseSim")); // NOI18N
         jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
         jButton4.setEnabled(false);
         jButton4.setFocusable(false);
@@ -502,6 +505,18 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
 
     public void setVehicleArray(EditorVehicle[] vehicleArray) {
         this.vehicleArray = vehicleArray;
+    }
+
+    @Action
+    public void startSim() {
+    }
+
+    @Action
+    public void stopSim() {
+    }
+
+    @Action
+    public void pauseSim() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
