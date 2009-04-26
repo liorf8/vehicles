@@ -12,7 +12,7 @@ public class SimulatonEngine extends PApplet {
     boolean specialSense = true;
     int numOfLights = 6;
     int numOfRobots = 10;
-    float move_speed = PI / 6;
+    float move_speed = 0;
 
     public void setMove_speed(float move_speed) {
         this.move_speed = move_speed / PI;
