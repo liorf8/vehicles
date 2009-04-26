@@ -30,6 +30,7 @@ public class Vehicle implements Comparable{
 	protected int motorStrength = 0;
 	protected int aggression = 0;
 	protected VehicleColour vehicleColour = new VehicleColour();
+	public MemoryUnit mu = null;
 
 
 	/**
@@ -306,6 +307,7 @@ public class Vehicle implements Comparable{
 	}
 
 	public Vehicle() {
+		this.mu = new MemoryUnit();
 		this.components = new Vector<VehicleComponent>();
 		VehicleComponent vc = new VehicleComponent();
 		vc.setVehicleComponentType("LEFT");
@@ -319,6 +321,7 @@ public class Vehicle implements Comparable{
 
 	public Vehicle(String filename) {
 		try {
+			this.mu = new MemoryUnit();
 			xmlLocation = filename;
 			this.setFileName();
 			components = new Vector<VehicleComponent>();

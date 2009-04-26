@@ -14,107 +14,143 @@ import java.util.Vector;
  *
  */
 public class MemoryUnit {
-	private Triple<Double, Double, Integer>[] t; 
-	private Vector<Triple<Double, Double, Integer>> curr_learning; 
-	private int time_to_learn;
-	private int size;
-	private static int curr_index;
-	private boolean mem_full;
-	
-	/**
-	 * Constrcutor for new memory units
-	 * @param l The amount of time it takes to learn something
-	 * @param size The amount of memory the unit can hold
-	 */
-	public MemoryUnit(int l, int s){
-		this.time_to_learn = l;
-		this.size = s;
-		t = new Triple[this.size];
-		curr_learning = new Vector<Triple<Double, Double, Integer>>();
-		this.resetMem();
-	}
+	private Vector<Quadruple<Double, Double, String, Integer>> real_memory;
+	private Vector<Quintuple<Double, Double, Integer, String, Integer>> temp_memory; 
+	private int time_to_learn, max;
+
 
 	/**
 	 * Constructor for new memory units
 	 * time to learn is defaulted to 7
-	 * memory sixe is defaulted to 10 
 	 */
 	public MemoryUnit(){
-		this.time_to_learn = 7;
-		this.size = 10;
-		t = new Triple[this.size];
-		curr_learning = new Vector<Triple<Double, Double, Integer>>();
-		this.resetMem();
+		this.time_to_learn = 5;
+		this.max = 50; //max amount of items to remember
+		real_memory = new Vector<Quadruple<Double, Double, String, Integer>>();
+		temp_memory = new Vector<Quintuple<Double, Double, Integer, String, Integer>>();
 	}
-	
+
 	/**
 	 * Constructor for new memory units
-	 * time to learn is defaulted to 7
-	 * @param size The amount of memory the unit can hold
-	 */
-	public MemoryUnit(int s, boolean temp){
-		this.time_to_learn = 7;
-		this.size = s;
-		t = new Triple[this.size];
-		curr_learning = new Vector<Triple<Double, Double, Integer>>();
-		this.resetMem();
-	}
-	
-	/**
-	 * Constructor for new memory units
-	* memory sixe is defaulted to 10 
 	 * @param l The amount of time it takes to learn something
 	 */
-	public MemoryUnit(int l){
+	public MemoryUnit(int l, int max){
 		this.time_to_learn = l;
-		this.size = 10;
-		t = new Triple[size];
-		curr_learning = new Vector<Triple<Double, Double, Integer>>();
-		this.resetMem();
+		this.max = max;
+		real_memory = new Vector<Quadruple<Double, Double, String, Integer>>();
+		temp_memory = new Vector<Quintuple<Double, Double, Integer, String, Integer>>();
 	}
-	
+
 	public void resetMem(){
-		for (int i = 0; i < this.size; i++){
-			t[i] = Tuple.from(0.0, 0.0, 0);
-		}
-		curr_learning.clear();
-		curr_index = 0;
-		this.mem_full = false;
+		this.real_memory.clear();
+		this.temp_memory.clear();
 	}
-	
-	
-	public boolean containsPoint(Point p){
+
+
+	/**
+	 * a method to check if the vehicle remembers an element at the specified co-ordinates
+	 * @param xPos The xPos of the element to check
+	 * @param yPos The yPos of the element to check
+	 * @return a boolean stating whether or not the vehicle remembers an element at the
+	 * specified point
+	 */
+	public boolean remembersElementAt(double xPos, double yPos){
 		double x, y;
-		for(int i = 0; i < this.size; i++){
-			x = Tuple.get1(t[i]);
-			y = Tuple.get2(t[i]);
-			if(x == p.getXpos() && y == p.getYpos()){
+		int size = this.real_memory.size();
+		for(int i = 0; i < size; i++){
+			x = Tuple.get1(this.real_memory.elementAt(i));
+			y = Tuple.get2(this.real_memory.elementAt(i));
+			if(x == xPos && y == yPos){
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	public void addElement(EnvironmentElement e){
-		if(this.mem_full){
-			System.out.println("Memory full, nothing new can be learned!");
-			return;
-		}
+	/**
+	 * return the type of the element remebered at the specified co ordinates
+	 * @param xPos The xpos of the element
+	 * @param yPos The ypos of the element
+	 * @return an int representing the type of the element
+	 */
+	public int getTypeOfElementAt(double xPos, double yPos){
 		double x, y;
-		int type;
-		for(int i = 0; i < this.size; i++){
-			x = Tuple.get1(t[i]);
-			y = Tuple.get2(t[i]);
-			if(x == e.getXpos() && y == e.getYpos()){
-				
-				
+		int size = this.real_memory.size();
+		for(int i = 0; i < size; i++){
+			x = Tuple.get1(this.real_memory.elementAt(i));
+			y = Tuple.get2(this.real_memory.elementAt(i));
+			if(x == xPos && y == yPos){
+				return Tuple.get4(this.real_memory.elementAt(i));
 			}
 		}
+		return EnvironmentElement.NotSet;
 	}
 	
+
+	/**
+	 * Method to add an element into memory
+	 * The element is stored in the vehicle memory as the x and y pos of the element and its type
+	 * @param e The element to add into memory
+	 */
+	public void addElement(EnvironmentElement e){
+		if(this.remembersElementAt(e.getXpos(), e.getYpos())){
+			System.out.println("Already learned that elements position and type!");
+			return;
+		}
+		if(this.real_memory.size() >= this.max){
+			//if memory is at full capacity, clear contents of temporary memory and return
+			System.out.println("Memory unit for this vehicle is at full capacity!");
+			this.temp_memory.clear();
+			return;
+		}
+		double x, y, el_xPos, el_yPos;
+		String name;
+		el_xPos = e.getXpos();
+		el_yPos = e.getYpos();
+		int size = this.temp_memory.size();
+		int times_learned;
+		for(int i = 0; i < size; i++){
+			x = Tuple.get1(this.temp_memory.elementAt(i));
+			y = Tuple.get2(this.temp_memory.elementAt(i));
+			if(x == el_xPos && y == el_yPos){
+				times_learned = Tuple.get5(this.temp_memory.elementAt(i));
+				name = Tuple.get4(this.temp_memory.elementAt(i));
+				times_learned++;
+				if(times_learned == this.time_to_learn){
+					this.real_memory.add(Tuple.from(el_xPos, el_yPos, name, e.getType()));
+					this.temp_memory.removeElementAt(i);
+				}
+				else{
+					temp_memory.setElementAt(Tuple.from(el_xPos, el_yPos, e.getType(), name, times_learned), i);
+				}
+				return;
+			}
+		}
+		this.temp_memory.add(Tuple.from(el_xPos, el_yPos, e.getType(), e.getName(), 1));
+	}
 	
-	
-	
-	
-	
+	/**
+	 * Print details about all items in memory
+	 *
+	 */
+	public void printMemory(){
+		int len = this.real_memory.size();
+		double x, y;
+		int type;
+		String name;
+		for(int i = 0; i < len; i++){
+			name = Tuple.get3(this.real_memory.elementAt(i));
+			x = Tuple.get1(this.real_memory.elementAt(i));
+			y = Tuple.get2(this.real_memory.elementAt(i));
+			type = Tuple.get4(this.real_memory.elementAt(i));
+			System.out.println("Name '" + name + "' | Position: (" + x + "," + y + ") | Type: " + type);
+		}
+		System.out.println(len + " elements in memory");
+	}
+
+
+
+
+
+
 }

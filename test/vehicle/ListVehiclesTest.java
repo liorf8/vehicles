@@ -2,6 +2,8 @@ package test.vehicle;
 
 import vehicles.util.*;
 import vehicles.vehicle.*;
+import vehicles.environment.*;
+import java.util.Vector;
 
 //WARNING- hard-coded values
 public class ListVehiclesTest {
@@ -36,8 +38,8 @@ public class ListVehiclesTest {
 			vc.setVehicleComponentRightSensorWater(Integer.toString(-8));
 
 			veh.addVehicleComponent(vc); //move xml in ram from component into vehicle
-	
-		
+			
+			
 		veh.saveVehicle();
 		/*GET LIST OF ALL VEHICLES IN FOLDER*/
 		EditorVehicle[] array = UtilMethods.getVehiclesFromFolder("xml/vehicles");
