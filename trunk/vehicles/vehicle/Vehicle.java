@@ -66,13 +66,13 @@ public class Vehicle implements Comparable{
 	}
 
 	public void setLearningRate(int l){
-		if(l > 0) {
+		if(l >= 0) {
 			this.mu.setLearningRate(l);
 			this.learning_rate = l;
 		}
 		else{
-			this.mu.setLearningRate(1);
-			this.learning_rate = 1;
+			this.mu.setLearningRate(0);
+			this.learning_rate = 0;
 		}
 	}
 
