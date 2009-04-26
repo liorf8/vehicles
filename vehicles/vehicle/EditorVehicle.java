@@ -137,8 +137,8 @@ public class EditorVehicle extends Vehicle {
 				this.writeXMLEntry("description", this.vehicleDescription, xmldoc);
 			}
 			this.writeTimeStamp(xmldoc);
-			this.addMaxBatteryCapacity(Double.toString(max_battery_capacity));
-			this.addCurrBatteryCapacity(Double.toString(curr_battery_capacity));
+			this.addMaxBatteryCapacity(Integer.toString(max_battery_capacity));
+			this.addCurrBatteryCapacity(Integer.toString(curr_battery_capacity));
 			this.addMotorStrength(Integer.toString(this.motorStrength));
 			this.addAggression(Integer.toString(this.aggression));
             this.addVehicleColour(this.vehicleColour);

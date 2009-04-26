@@ -11,7 +11,7 @@ public class ListVehiclesTest {
 		veh.setName("Angry Vehicle");
 		veh.setAuthor("Some sweaty angry guy");
 		veh.setDescription("This is a very angry little vehicle, This is a very angry little vehicle, This is a very angry little vehicle, This is a very angry little vehicle");
-		veh.setCurr_battery_capacity(65);
+		veh.setCurrentBatteryCapacity(65);
 		veh.setMaxBatteryCapacity(100);
         veh.setColour(255, 255, 255);
 
