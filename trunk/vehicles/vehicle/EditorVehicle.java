@@ -80,7 +80,7 @@ public class EditorVehicle extends Vehicle {
 	 * Add a vehicle motor strength attribute to the XML document being created
 	 * @param strength The strength
 	 */
-	public void addmotorStrength(String str){
+	public void addMotorStrength(String str){
 		writeXMLEntry("motorStrength", str, xmldoc);
 	}
     
@@ -139,7 +139,7 @@ public class EditorVehicle extends Vehicle {
 			this.writeTimeStamp(xmldoc);
 			this.addMaxBatteryCapacity(Double.toString(max_battery_capacity));
 			this.addCurrBatteryCapacity(Double.toString(curr_battery_capacity));
-			this.addmotorStrength(Integer.toString(this.motorStrength));
+			this.addMotorStrength(Integer.toString(this.motorStrength));
 			this.addAggression(Integer.toString(this.aggression));
             this.addVehicleColour(this.vehicleColour);
 			

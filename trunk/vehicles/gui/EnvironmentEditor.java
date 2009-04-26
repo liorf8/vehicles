@@ -31,7 +31,6 @@ import org.jdesktop.application.Action;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
 import processing.core.*;
-import vehicles.util.*;
 import vehicles.environment.*;
 
 /*
@@ -43,9 +42,10 @@ import vehicles.environment.*;
 public class EnvironmentEditor extends javax.swing.JFrame {
 
     /** Creates new form EnvironmentEditor */
-    public EnvironmentEditor(java.awt.Frame parent) {
+    public EnvironmentEditor(java.awt.Frame parent, Simulator p_appRoot) {
 
-        environmentArray = UtilMethods.getEnvironmentsFromFolder("xml/environments");
+        appRoot = p_appRoot;
+        environmentArray = appRoot.getEnvironmentArray();
         environmentDropDown = new DefaultComboBoxModel(environmentArray);
 
         gridArray = new Grid[] {new Grid(640,480),new Grid(800,600),new Grid(1024,768)};
@@ -601,4 +601,5 @@ public class EnvironmentEditor extends javax.swing.JFrame {
     private DefaultComboBoxModel environmentDropDown;
     private DefaultComboBoxModel gridDropDown;
     private DefaultComboBoxModel elementDropDown;
+    private Simulator appRoot;
 }

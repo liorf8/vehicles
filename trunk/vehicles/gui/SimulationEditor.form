@@ -169,6 +169,7 @@
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Simulation Name">
                       <Property name="titleX" resourceKey="panel_Name.border.title"/>
+                      <Property name="font" resourceKey="panel_Name.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -202,6 +203,7 @@
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Simulation Configuration">
                       <Property name="titleX" resourceKey="panel_Configuration.border.title"/>
+                      <Property name="font" resourceKey="panel_Configuration.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -298,6 +300,7 @@
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Simulation Description">
                       <Property name="titleX" resourceKey="panel_Description.border.title"/>
+                      <Property name="font" resourceKey="panel_Description.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -330,7 +333,10 @@
                     <Component class="javax.swing.JTextArea" name="text_Description">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
+                        <Property name="font" type="java.awt.Font" resourceKey="text_Description.font"/>
+                        <Property name="lineWrap" type="boolean" value="true"/>
                         <Property name="rows" type="int" value="5"/>
+                        <Property name="wrapStyleWord" type="boolean" value="true"/>
                         <Property name="name" type="java.lang.String" value="text_Description" noResource="true"/>
                       </Properties>
                     </Component>
@@ -344,6 +350,7 @@
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Author">
                       <Property name="titleX" resourceKey="panel_Author.border.title"/>
+                      <Property name="font" resourceKey="panel_Author.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -459,6 +466,7 @@
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Available Vehicles">
                       <Property name="titleX" resourceKey="panel_AvailableVehicles.border.title"/>
+                      <Property name="font" resourceKey="panel_AvailableVehicles.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -624,6 +632,7 @@
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Selected Vehicles">
                       <Property name="titleX" resourceKey="panel_SelectedVehicles.border.title"/>
+                      <Property name="font" resourceKey="panel_SelectedVehicles.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -734,6 +743,7 @@
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Available Environments">
                       <Property name="titleX" resourceKey="panel_AvailableEnvironments.border.title"/>
+                      <Property name="font" resourceKey="panel_AvailableEnvironments.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -788,6 +798,7 @@
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Selected Environment">
                       <Property name="titleX" resourceKey="panel_SelectedEnvironment.border.title"/>
+                      <Property name="font" resourceKey="panel_SelectedEnvironment.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -873,6 +884,7 @@
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Environment Preview">
                       <Property name="titleX" resourceKey="panel_PreviewEnvironment.border.title"/>
+                      <Property name="font" resourceKey="panel_PreviewEnvironment.border.titleFont"/>
                     </TitledBorder>
                   </Border>
                 </Property>

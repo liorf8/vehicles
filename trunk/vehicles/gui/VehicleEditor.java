@@ -44,10 +44,11 @@ import vehicles.vehicle.*;
 public class VehicleEditor extends javax.swing.JFrame {
 
     /** Creates new form VehicleEditor */
-    public VehicleEditor(java.awt.Frame parent) {
+    public VehicleEditor(java.awt.Frame parent, Simulator p_appRoot) {
 
-        vehiclesArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
-        vehiclesDropDown = new DefaultComboBoxModel(vehiclesArray);
+        appRoot = p_appRoot;
+        vehicleArray = appRoot.getVehicleArray();
+        vehiclesDropDown = new DefaultComboBoxModel(vehicleArray);
 
         embed = new Embedded();
         initComponents();
@@ -55,7 +56,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
         embed.init();
-        populateFields(vehiclesArray[0]);
+        populateFields(vehicleArray[0]);
     }
 
     @Action
@@ -1049,11 +1050,12 @@ public class VehicleEditor extends javax.swing.JFrame {
 		v.setRightSensorWater(slider_Right_Water.getValue());
 		v.saveVehicle(); //convert object and its attributes into XML
         String lastModified = v.getLastModified();
-        vehiclesArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
-        vehiclesDropDown = new DefaultComboBoxModel(vehiclesArray);
-        for (int i = 0; i < vehiclesArray.length; i++) {
-            if (vehiclesArray[i].getLastModified().equalsIgnoreCase(lastModified)) {
-                v = vehiclesArray[i];
+        appRoot.setVehicleArray();
+        vehicleArray = appRoot.getVehicleArray();
+        vehiclesDropDown = new DefaultComboBoxModel(vehicleArray);
+        for (int i = 0; i < vehicleArray.length; i++) {
+            if (vehicleArray[i].getLastModified().equalsIgnoreCase(lastModified)) {
+                v = vehicleArray[i];
             }
         }
         dropdown_SelectedVehicle.setModel(vehiclesDropDown);
@@ -1081,11 +1083,12 @@ public class VehicleEditor extends javax.swing.JFrame {
 		v.setRightSensorWater(slider_Right_Water.getValue());
 		v.saveVehicle(); //convert object and its attributes into XML
         String lastModified = v.getLastModified();
-        vehiclesArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
-        vehiclesDropDown = new DefaultComboBoxModel(vehiclesArray);
-        for (int i = 0; i < vehiclesArray.length; i++) {
-            if (vehiclesArray[i].getLastModified().equalsIgnoreCase(lastModified)) {
-                v = vehiclesArray[i];
+        appRoot.setVehicleArray();
+        vehicleArray = appRoot.getVehicleArray();
+        vehiclesDropDown = new DefaultComboBoxModel(vehicleArray);
+        for (int i = 0; i < vehicleArray.length; i++) {
+            if (vehicleArray[i].getLastModified().equalsIgnoreCase(lastModified)) {
+                v = vehicleArray[i];
             }
         }
         dropdown_SelectedVehicle.setModel(vehiclesDropDown);
@@ -1189,7 +1192,8 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JTextField text_Status;
     // End of variables declaration//GEN-END:variables
     private PApplet embed;
-    private EditorVehicle[] vehiclesArray;
+    private EditorVehicle[] vehicleArray;
     private DefaultComboBoxModel vehiclesDropDown;
+    private Simulator appRoot;
 
 }
