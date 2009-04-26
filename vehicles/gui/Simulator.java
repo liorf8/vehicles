@@ -1,6 +1,8 @@
 package vehicles.gui;
 
+import java.awt.event.ItemListener;
 import java.awt.GridBagLayout;
+import java.awt.event.ItemEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
@@ -48,21 +50,26 @@ import javax.swing.JFrame;
  * Created on 26-Mar-2009, 13:02:43
  * @author Niall O'Hara
  */
-public class Simulator extends FrameView implements ChangeListener {
+public class Simulator extends FrameView implements ChangeListener, ItemListener {
 
     public Simulator(SingleFrameApplication app) {
         super(app);
-        embed = new SimulatonEngine();
-        initComponents();
+        engine = new SimulatonEngine();
 
         setSimulationArray();
         setVehicleArray();
         setEnvironmentArray();
 
+        simulationDropDown = new DefaultComboBoxModel(simulationArray);
+
+        initComponents();
+
+        //populateFields(simulationArray[0]);
+
         // important to call this whenever embedding a PApplet.
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
-        embed.init();
+        engine.init();
     }
 
     @Action
@@ -175,7 +182,7 @@ public class Simulator extends FrameView implements ChangeListener {
         jButton1 = new JButton();
         jButton2 = new JButton();
         jButton4 = new JButton();
-        jComboBox1 = new JComboBox();
+        dropdown_SelectedSimulation = new JComboBox();
         jSeparator1 = new Separator();
         jSlider1 = new JSlider();
 
@@ -191,7 +198,7 @@ public class Simulator extends FrameView implements ChangeListener {
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setLayout(new GridBagLayout());
 
-        jPanel3.add(embed);
+        jPanel3.add(engine);
 
         jScrollPane1.setViewportView(jPanel3);
 
@@ -218,19 +225,15 @@ public class Simulator extends FrameView implements ChangeListener {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton3, GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
+            .addComponent(jButton3, GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE)
             .addComponent(jScrollPane2, GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
-                .addPreferredGap(ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addContainerGap())
+                .addComponent(jScrollPane2, GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(jButton3))
         );
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
@@ -381,8 +384,10 @@ public class Simulator extends FrameView implements ChangeListener {
         jButton4.setHorizontalTextPosition(SwingConstants.CENTER);
         jButton4.setName("jButton4"); // NOI18N
 
-        jComboBox1.setModel(new DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setName("jComboBox1"); // NOI18N
+        dropdown_SelectedSimulation.setMaximumRowCount(4);
+        dropdown_SelectedSimulation.setModel(simulationDropDown);
+        dropdown_SelectedSimulation.setName("dropdown_SelectedSimulation"); // NOI18N
+        dropdown_SelectedSimulation.addItemListener(this);
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -397,14 +402,14 @@ public class Simulator extends FrameView implements ChangeListener {
                         .addComponent(jButton2)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(jButton4))
-                    .addComponent(jComboBox1, 0, 317, Short.MAX_VALUE))
+                    .addComponent(dropdown_SelectedSimulation, 0, 317, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(dropdown_SelectedSimulation, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
@@ -440,6 +445,12 @@ public class Simulator extends FrameView implements ChangeListener {
 
     // Code for dispatching events from components to event handlers.
 
+    public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        if (evt.getSource() == dropdown_SelectedSimulation) {
+            Simulator.this.dropdown_SelectedSimulationItemStateChanged(evt);
+        }
+    }
+
     public void stateChanged(javax.swing.event.ChangeEvent evt) {
         if (evt.getSource() == jSlider1) {
             Simulator.this.jSlider1StateChanged(evt);
@@ -447,19 +458,59 @@ public class Simulator extends FrameView implements ChangeListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSlider1StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-        embed.setMove_speed((float)jSlider1.getValue()/5);
+        engine.setMove_speed((float)jSlider1.getValue()/5);
         jPanel3.validate();
     }//GEN-LAST:event_jSlider1StateChanged
 
+    private void dropdown_SelectedSimulationItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_SelectedSimulationItemStateChanged
+        JComboBox tempComboBox = (JComboBox) evt.getSource();
+        EditorSimulation selected = (EditorSimulation) tempComboBox.getSelectedItem();
+        //populateFields(selected);
+}//GEN-LAST:event_dropdown_SelectedSimulationItemStateChanged
 
+    public Environment[] getEnvironmentArray() {
+        return environmentArray;
+    }
+
+    public void setEnvironmentArray() {
+        this.environmentArray = UtilMethods.getEnvironmentsFromFolder("xml/environments");
+    }
+
+    public void setEnvironmentArray(Environment[] environmentArray) {
+        this.environmentArray = environmentArray;
+    }
+
+    public EditorSimulation[] getSimulationArray() {
+        return simulationArray;
+    }
+
+    public void setSimulationArray() {
+        this.simulationArray = UtilMethods.getSimulationsFromFolder("xml/simulations");
+    }
+
+    public void setSimulationArray(EditorSimulation[] simulationArray) {
+        this.simulationArray = simulationArray;
+    }
+
+    public EditorVehicle[] getVehicleArray() {
+        return vehicleArray;
+    }
+
+    public void setVehicleArray() {
+        this.vehicleArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
+    }
+
+    public void setVehicleArray(EditorVehicle[] vehicleArray) {
+        this.vehicleArray = vehicleArray;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JComboBox dropdown_SelectedSimulation;
     private JMenu environmentMenu;
     private JButton jButton1;
     private JButton jButton2;
     private JButton jButton3;
     private JButton jButton4;
-    private JComboBox jComboBox1;
     private JMenuItem jMenuItem1;
     private JMenuItem jMenuItem10;
     private JMenuItem jMenuItem11;
@@ -497,46 +548,12 @@ public class Simulator extends FrameView implements ChangeListener {
     private JFrame environmentEditor;
     private JFrame vehicleEditor;
     private JFrame simulationEditor;
-    private SimulatonEngine embed;
+    private SimulatonEngine engine;
 
     private Environment[] environmentArray;
     private EditorVehicle[] vehicleArray;
     private EditorSimulation[] simulationArray;
 
-    public Environment[] getEnvironmentArray() {
-        return environmentArray;
-    }
-
-    public void setEnvironmentArray() {
-        this.environmentArray = UtilMethods.getEnvironmentsFromFolder("xml/environments");
-    }
-
-    public void setEnvironmentArray(Environment[] environmentArray) {
-        this.environmentArray = environmentArray;
-    }
-
-    public EditorSimulation[] getSimulationArray() {
-        return simulationArray;
-    }
-
-    public void setSimulationArray() {
-        this.simulationArray = UtilMethods.getSimulationsFromFolder("xml/simulations");
-    }
-
-    public void setSimulationArray(EditorSimulation[] simulationArray) {
-        this.simulationArray = simulationArray;
-    }
-
-    public EditorVehicle[] getVehicleArray() {
-        return vehicleArray;
-    }
-
-    public void setVehicleArray() {
-        this.vehicleArray = UtilMethods.getVehiclesFromFolder("xml/vehicles");
-    }
-
-    public void setVehicleArray(EditorVehicle[] vehicleArray) {
-        this.vehicleArray = vehicleArray;
-    }
+    private DefaultComboBoxModel simulationDropDown;
 
 }
