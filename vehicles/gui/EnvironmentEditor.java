@@ -288,7 +288,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_Tools.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Tools.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Tools.border.titleFont"))); // NOI18N
         panel_Tools.setName("panel_Tools"); // NOI18N
 
-        panel_GridSize.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_GridSize.border.title"))); // NOI18N
+        panel_GridSize.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_GridSize.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_GridSize.border.titleFont"))); // NOI18N
         panel_GridSize.setName("panel_GridSize"); // NOI18N
 
         dropdown_GridSize.setModel(gridDropDown);

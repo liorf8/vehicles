@@ -441,6 +441,7 @@
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="Grid Size">
                           <Property name="titleX" resourceKey="panel_GridSize.border.title"/>
+                          <Property name="font" resourceKey="panel_GridSize.border.titleFont"/>
                         </TitledBorder>
                       </Border>
                     </Property>
