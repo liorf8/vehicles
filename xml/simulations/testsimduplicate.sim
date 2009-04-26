@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Simulation>
+    <Name>TestSim</Name>
+    <Author>Some guy</Author>
+    <Description>a test simulation</Description>
+    <LastModified>25/04/2009 19:56:15</LastModified>
+    <VehiclePath>xml/vehicles/angry.veh</VehiclePath>
+    <VehiclePath>xml/vehicles/hungry.veh</VehiclePath>
+    <EnvironmentPath>xml/environments/desert.env</EnvironmentPath>
+    <perishable_vehicles>false</perishable_vehicles>
+    <evolution>true</evolution>
+    <genetic_selection_method>0</genetic_selection_method>
+</Simulation>
