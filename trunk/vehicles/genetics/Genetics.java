@@ -10,7 +10,7 @@ import vehicles.vehicle.Vehicle;
  * A class containing only static methods. To be used when the simulation is running to 
  * deal with genetic selection and evolution
  * 
- * @author graysr
+ * @author Shaun
  *
  */
 public class Genetics {
@@ -199,6 +199,82 @@ public class Genetics {
 	@SuppressWarnings("unchecked")
 	public static void sortByFitness(Vector<Vehicle> v){
 		Collections.sort(v);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	/*******************************************************************************************\
+	/																							\
+	/                      Evolution and Mutation Algorithms for Vehicles						\
+	/																							\
+	/*******************************************************************************************/
+	
+
+	/**
+	 * A method that takes in two integers and using a binary crossover and mutation algorithm
+	 * returns a crssed over mutated combination of the two ints
+	 * See http://geneticalgorithms.ai-depot.com/Tutorial/Overview.html for more
+	 * @param parentA Parent A's integer to be used
+	 * @param parentB Parent B's integer to be used
+	 * @return an int representing the combination of the two paretns ints
+	 */
+	public static int crossoverBitsAndMutate(int parentA, int parentB){
+		//get the two integers as binary and pad to 8 bits
+		String pA = Integer.toBinaryString(parentA);
+		String pB = Integer.toBinaryString(parentB);
+		pA = addLeadingZeros(8, pA);
+		pB = addLeadingZeros(8, pB);
+		//generate a random number, this is the crossover point
+		Random r = new Random();
+		int ran = r.nextInt(8);
+		//crossover the two binary numbers at the crossover point
+		String crossed = (pA.substring(0, ran)).concat(pB.substring(ran, pB.length()));
+		System.out.println("Parent A as int\t" + parentA);
+		System.out.println("Parent B as int\t" + parentB);
+		System.out.println("Parent A as binary padded to 8 bits\t" + pA);
+		System.out.println("Parent B as binary padded to 8 bits\t" + pB);
+		System.out.println("Crossover point\t" + ran);
+		System.out.println("Crossed\t" + crossed);
+
+		//now choose a random bit and flip it
+		ran = r.nextInt(8);
+		System.out.println("Bit to mutate\t" + ran);
+		if(crossed.charAt(ran) == '0'){
+			crossed = crossed.substring(0, ran) + "1" + crossed.substring(ran+1);
+		}
+		else{
+			crossed = crossed.substring(0, ran) + "0" + crossed.substring(ran+1);
+		}
+		System.out.println("Mutated\t" + crossed);
+		System.out.println("As an int\t" + Integer.parseInt(crossed, 2));
+		return Integer.parseInt(crossed, 2) ;
+	}
+
+
+	/**
+	 * A method to pad a string representing a binary number out to n bits by adding
+	 * leading zeros
+	 * @param n The desired number of bits this binary number should have
+	 * @param bin The string representing a binary number
+	 * @return A padded out version of the inputted string
+	 */
+	private static String addLeadingZeros(int n, String bin){
+		int length = bin.length();
+		int num_zeros = n - length;
+		if ((num_zeros) <= 0){
+			return null;
+		}
+		String temp = "";
+		for(int i = 0; i < num_zeros; i++){
+			temp = temp.concat("0");
+		}
+		bin = temp.concat(bin);
+		return bin;
 	}
 
 }
