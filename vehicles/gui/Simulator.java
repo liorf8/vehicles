@@ -8,6 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
+import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -55,6 +56,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     public Simulator(SingleFrameApplication app) {
         super(app);
         engine = new SimulatonEngine();
+        isPaused = false;
 
         setSimulationArray();
         setVehicleArray();
@@ -179,12 +181,12 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         JMenuItem aboutMenuItem = new JMenuItem();
         toolBar = new JToolBar();
         jPanel1 = new JPanel();
-        jButton1 = new JButton();
-        jButton2 = new JButton();
-        jButton4 = new JButton();
+        button_Start = new JButton();
+        button_Stop = new JButton();
         dropdown_SelectedSimulation = new JComboBox();
+        button_Pause = new JToggleButton();
         jSeparator1 = new Separator();
-        jSlider1 = new JSlider();
+        slider_Speed = new JSlider();
 
         mainPanel.setName("mainPanel"); // NOI18N
         mainPanel.setPreferredSize(new Dimension(820, 644));
@@ -367,31 +369,29 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         jPanel1.setName("jPanel1"); // NOI18N
         jPanel1.setPreferredSize(new Dimension(100, 71));
 
-        jButton1.setAction(actionMap.get("startSim")); // NOI18N
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(SwingConstants.CENTER);
-        jButton1.setIconTextGap(10);
-        jButton1.setName("jButton1"); // NOI18N
+        button_Start.setAction(actionMap.get("startSim")); // NOI18N
+        button_Start.setText(resourceMap.getString("button_Start.text")); // NOI18N
+        button_Start.setFocusable(false);
+        button_Start.setHorizontalTextPosition(SwingConstants.CENTER);
+        button_Start.setIconTextGap(10);
+        button_Start.setName("button_Start"); // NOI18N
 
-        jButton2.setAction(actionMap.get("stopSim")); // NOI18N
-        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
-        jButton2.setEnabled(false);
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(SwingConstants.CENTER);
-        jButton2.setName("jButton2"); // NOI18N
-
-        jButton4.setAction(actionMap.get("pauseSim")); // NOI18N
-        jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
-        jButton4.setEnabled(false);
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(SwingConstants.CENTER);
-        jButton4.setName("jButton4"); // NOI18N
+        button_Stop.setAction(actionMap.get("stopSim")); // NOI18N
+        button_Stop.setText(resourceMap.getString("button_Stop.text")); // NOI18N
+        button_Stop.setEnabled(false);
+        button_Stop.setFocusable(false);
+        button_Stop.setHorizontalTextPosition(SwingConstants.CENTER);
+        button_Stop.setName("button_Stop"); // NOI18N
 
         dropdown_SelectedSimulation.setMaximumRowCount(4);
         dropdown_SelectedSimulation.setModel(simulationDropDown);
         dropdown_SelectedSimulation.setName("dropdown_SelectedSimulation"); // NOI18N
         dropdown_SelectedSimulation.addItemListener(this);
+
+        button_Pause.setAction(actionMap.get("pauseSim")); // NOI18N
+        button_Pause.setText(resourceMap.getString("button_Pause.text")); // NOI18N
+        button_Pause.setEnabled(false);
+        button_Pause.setName("button_Pause"); // NOI18N
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -401,11 +401,11 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(button_Start)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(button_Stop)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jButton4))
+                        .addComponent(button_Pause))
                     .addComponent(dropdown_SelectedSimulation, 0, 317, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -416,9 +416,9 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
                 .addComponent(dropdown_SelectedSimulation, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(button_Start, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button_Stop, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button_Pause, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -429,18 +429,19 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         jSeparator1.setPreferredSize(new Dimension(6, 4));
         toolBar.add(jSeparator1);
 
-        jSlider1.setMajorTickSpacing(10);
-        jSlider1.setMinorTickSpacing(1);
-        jSlider1.setPaintLabels(true);
-        jSlider1.setPaintTicks(true);
-        jSlider1.setSnapToTicks(true);
-        jSlider1.setValue(10);
-        jSlider1.setFocusable(false);
-        jSlider1.setMaximumSize(new Dimension(32767, 30000));
-        jSlider1.setMinimumSize(new Dimension(36, 48));
-        jSlider1.setName("jSlider1"); // NOI18N
-        jSlider1.addChangeListener(this);
-        toolBar.add(jSlider1);
+        slider_Speed.setMajorTickSpacing(10);
+        slider_Speed.setMinorTickSpacing(1);
+        slider_Speed.setPaintLabels(true);
+        slider_Speed.setPaintTicks(true);
+        slider_Speed.setSnapToTicks(true);
+        slider_Speed.setValue(10);
+        slider_Speed.setEnabled(false);
+        slider_Speed.setFocusable(false);
+        slider_Speed.setMaximumSize(new Dimension(32767, 30000));
+        slider_Speed.setMinimumSize(new Dimension(36, 48));
+        slider_Speed.setName("slider_Speed"); // NOI18N
+        slider_Speed.addChangeListener(this);
+        toolBar.add(slider_Speed);
 
         setComponent(mainPanel);
         setMenuBar(menuBar);
@@ -456,15 +457,15 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     }
 
     public void stateChanged(javax.swing.event.ChangeEvent evt) {
-        if (evt.getSource() == jSlider1) {
-            Simulator.this.jSlider1StateChanged(evt);
+        if (evt.getSource() == slider_Speed) {
+            Simulator.this.slider_SpeedStateChanged(evt);
         }
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jSlider1StateChanged(ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-        engine.setMove_speed((float)jSlider1.getValue()/5);
+    private void slider_SpeedStateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_SpeedStateChanged
+        engine.setMove_speed((float)slider_Speed.getValue()/5);
         jPanel3.validate();
-    }//GEN-LAST:event_jSlider1StateChanged
+}//GEN-LAST:event_slider_SpeedStateChanged
 
     private void dropdown_SelectedSimulationItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_SelectedSimulationItemStateChanged
         JComboBox tempComboBox = (JComboBox) evt.getSource();
@@ -510,14 +511,40 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
 
     @Action
     public void startSim() {
+        button_Start.setEnabled(false);
+        dropdown_SelectedSimulation.setEnabled(false);
+        slider_Speed.setEnabled(true);
+        engine.setup();
+        engine.setMove_speed(slider_Speed.getValue() / 10);
+        button_Stop.setEnabled(true);
+        button_Pause.setEnabled(true);
     }
 
     @Action
     public void stopSim() {
+        button_Start.setEnabled(true);
+        dropdown_SelectedSimulation.setEnabled(true);
+        button_Stop.setEnabled(false);
+        button_Pause.setEnabled(false);
+        slider_Speed.setEnabled(false);
+        slider_Speed.setValue(10);
+        engine.setMove_speed(0);
+        isPaused = false;
+        if(button_Pause.isSelected())
+            button_Pause.setSelected(false);
     }
 
     @Action
     public void pauseSim() {
+        if (isPaused) {
+            isPaused = false;
+            engine.setMove_speed(slider_Speed.getValue() / 10);
+            slider_Speed.setEnabled(true);
+        } else {;
+            isPaused = true;
+            engine.setMove_speed(0);
+            slider_Speed.setEnabled(false);
+        }
     }
 
     @Action
@@ -525,12 +552,12 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JToggleButton button_Pause;
+    private JButton button_Start;
+    private JButton button_Stop;
     private JComboBox dropdown_SelectedSimulation;
     private JMenu environmentMenu;
-    private JButton jButton1;
-    private JButton jButton2;
     private JButton jButton3;
-    private JButton jButton4;
     private JMenuItem jMenuItem1;
     private JMenuItem jMenuItem10;
     private JMenuItem jMenuItem11;
@@ -554,12 +581,12 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     private JSeparator jSeparator5;
     private JSeparator jSeparator6;
     private JSeparator jSeparator7;
-    private JSlider jSlider1;
     private JTabbedPane jTabbedPane1;
     private JTextArea jTextArea1;
     private JPanel mainPanel;
     private JMenuBar menuBar;
     private JMenu optionsMenu;
+    private JSlider slider_Speed;
     private JToolBar toolBar;
     private JMenu vehicleMenu;
     // End of variables declaration//GEN-END:variables
@@ -575,5 +602,6 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     private EditorSimulation[] simulationArray;
 
     private DefaultComboBoxModel simulationDropDown;
+    private Boolean isPaused;
 
 }
