@@ -1,5 +1,16 @@
 package vehicles.gui;
 
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
+import javax.swing.JComboBox;
+import javax.swing.border.TitledBorder;
+import vehicles.processing.Embedded;
 import vehicles.*;
 import javax.swing.AbstractListModel;
 import javax.swing.ActionMap;
@@ -16,10 +27,14 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ListSelectionModel;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
+import processing.core.*;
+import vehicles.simulation.*;
+import vehicles.util.*;
 
 /*
  * SimulationEditor.java
@@ -31,7 +46,16 @@ public class SimulationEditor extends javax.swing.JFrame {
 
     /** Creates new form SimulationEditor */
     public SimulationEditor(java.awt.Frame parent) {
+        simulationArray = UtilMethods.getSimulationsFromFolder("xml/simulations");
+        simulationDropDown = new DefaultComboBoxModel(simulationArray);
+
+        embed = new Embedded();
         initComponents();
+        // important to call this whenever embedding a PApplet.
+        // It ensures that the animation thread is started and
+        // that other internal variables are properly set.
+        embed.init();
+        populateFields(simulationArray[0]);
     }
 
     @Action public void cancel() {
@@ -47,593 +71,688 @@ public class SimulationEditor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new JTabbedPane();
-        jPanel1 = new JPanel();
-        jPanel4 = new JPanel();
-        jScrollPane1 = new JScrollPane();
-        jList1 = new JList();
-        jPanel5 = new JPanel();
-        jScrollPane2 = new JScrollPane();
-        jList2 = new JList();
-        jPanel6 = new JPanel();
-        jButton5 = new JButton();
-        jButton6 = new JButton();
-        jButton7 = new JButton();
-        jButton8 = new JButton();
-        jPanel12 = new JPanel();
-        jPanel13 = new JPanel();
-        jPanel2 = new JPanel();
-        jPanel8 = new JPanel();
-        jScrollPane3 = new JScrollPane();
-        jList3 = new JList();
-        jPanel9 = new JPanel();
-        jScrollPane4 = new JScrollPane();
-        jList4 = new JList();
-        jPanel10 = new JPanel();
-        jButton9 = new JButton();
-        jPanel7 = new JPanel();
-        jPanel11 = new JPanel();
-        jPanel3 = new JPanel();
-        jPanel14 = new JPanel();
-        jTextField1 = new JTextField();
-        jPanel15 = new JPanel();
-        jLabel1 = new JLabel();
-        jRadioButton1 = new JRadioButton();
-        jRadioButton2 = new JRadioButton();
-        jLabel2 = new JLabel();
-        jRadioButton3 = new JRadioButton();
-        jRadioButton4 = new JRadioButton();
-        jPanel16 = new JPanel();
-        jScrollPane5 = new JScrollPane();
-        jTextArea1 = new JTextArea();
-        jPanel17 = new JPanel();
-        jTextField4 = new JTextField();
-        jButton1 = new JButton();
-        jButton2 = new JButton();
-        jButton3 = new JButton();
-        jButton4 = new JButton();
+        panel_SelectedSimulation = new JPanel();
+        dropdown_SelectedSimulation = new JComboBox();
+        tabContainer = new JTabbedPane();
+        tab_Properties = new JPanel();
+        panel_Name = new JPanel();
+        text_Name = new JTextField();
+        panel_Configuration = new JPanel();
+        label_Evolution = new JLabel();
+        radio_Evolution_On = new JRadioButton();
+        radio_Evolution_Off = new JRadioButton();
+        label_Perishable = new JLabel();
+        radio_Perishable_On = new JRadioButton();
+        radio_Perishable_Off = new JRadioButton();
+        panel_Description = new JPanel();
+        scrollpanel_Description = new JScrollPane();
+        text_Description = new JTextArea();
+        panel_Author = new JPanel();
+        text_Author = new JTextField();
+        panel_LastModified = new JPanel();
+        text_LastModified = new JTextField();
+        tab_Vehicles = new JPanel();
+        panel_AvailableVehicles = new JPanel();
+        scrollpanel_AvailableVehicles = new JScrollPane();
+        list_AvailableVehicles = new JList();
+        panel_AddRemoveVehicles = new JPanel();
+        button_AddVehicle = new JButton();
+        button_AddAllVehicle = new JButton();
+        button_RemoveVehicle = new JButton();
+        button_RemoveAllVehicle = new JButton();
+        panel_PreviewVehicle = new JPanel();
+        processing_Vehicle = new JPanel();
+        panel_SelectedVehicles = new JPanel();
+        scrollpanel_SelectedVehicles = new JScrollPane();
+        list_SelectedVehicles = new JList();
+        tab_Environment = new JPanel();
+        panel_AvailableEnvironments = new JPanel();
+        scrollpanel_AvailableEnvironments = new JScrollPane();
+        list_AvailableEnvironments = new JList();
+        panel_SelectedEnvironment = new JPanel();
+        scrollpanel_SelectedEnvironment = new JScrollPane();
+        list_SelectedEnvironment = new JList();
+        panel_SetEnvironment = new JPanel();
+        button_SetEnvironment = new JButton();
+        panel_PreviewEnvironment = new JPanel();
+        processing_Environment = new JPanel();
+        text_Status = new JTextField();
+        button_Save = new JButton();
+        button_SaveAsNew = new JButton();
+        button_Cancel = new JButton();
 
         ResourceMap resourceMap = Application.getInstance(VehiclesApp.class).getContext().getResourceMap(SimulationEditor.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
+        addWindowFocusListener(new WindowFocusListener() {
+            public void windowGainedFocus(WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(WindowEvent evt) {
+            }
+        });
 
-        jTabbedPane1.setName("jTabbedPane1"); // NOI18N
+        panel_SelectedSimulation.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_SelectedSimulation.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_SelectedSimulation.border.titleFont"))); // NOI18N
+        panel_SelectedSimulation.setName("panel_SelectedSimulation"); // NOI18N
 
-        jPanel1.setName("jPanel1"); // NOI18N
+        dropdown_SelectedSimulation.setMaximumRowCount(4);
+        dropdown_SelectedSimulation.setModel(simulationDropDown);
+        dropdown_SelectedSimulation.setName("dropdown_SelectedSimulation"); // NOI18N
+        dropdown_SelectedSimulation.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                dropdown_SelectedSimulationItemStateChanged(evt);
+            }
+        });
 
-        jPanel4.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel4.border.title"))); // NOI18N
-        jPanel4.setName("jPanel4"); // NOI18N
+        GroupLayout panel_SelectedSimulationLayout = new GroupLayout(panel_SelectedSimulation);
+        panel_SelectedSimulation.setLayout(panel_SelectedSimulationLayout);
+        panel_SelectedSimulationLayout.setHorizontalGroup(
+            panel_SelectedSimulationLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(dropdown_SelectedSimulation, 0, 597, Short.MAX_VALUE)
+        );
+        panel_SelectedSimulationLayout.setVerticalGroup(
+            panel_SelectedSimulationLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(dropdown_SelectedSimulation, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        );
 
-        jScrollPane1.setName("jScrollPane1"); // NOI18N
+        tabContainer.setName("tabContainer"); // NOI18N
 
-        jList1.setModel(new AbstractListModel() {
+        tab_Properties.setName("tab_Properties"); // NOI18N
+
+        panel_Name.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Name.border.title"))); // NOI18N
+        panel_Name.setName("panel_Name"); // NOI18N
+
+        text_Name.setText(resourceMap.getString("text_Name.text")); // NOI18N
+        text_Name.setName("text_Name"); // NOI18N
+
+        GroupLayout panel_NameLayout = new GroupLayout(panel_Name);
+        panel_Name.setLayout(panel_NameLayout);
+        panel_NameLayout.setHorizontalGroup(
+            panel_NameLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Name, GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+        );
+        panel_NameLayout.setVerticalGroup(
+            panel_NameLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        );
+
+        panel_Configuration.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Configuration.border.title"))); // NOI18N
+        panel_Configuration.setName("panel_Configuration"); // NOI18N
+
+        label_Evolution.setText(resourceMap.getString("label_Evolution.text")); // NOI18N
+        label_Evolution.setName("label_Evolution"); // NOI18N
+
+        radio_Evolution_On.setText(resourceMap.getString("radio_Evolution_On.text")); // NOI18N
+        radio_Evolution_On.setName("radio_Evolution_On"); // NOI18N
+
+        radio_Evolution_Off.setSelected(true);
+        radio_Evolution_Off.setText(resourceMap.getString("radio_Evolution_Off.text")); // NOI18N
+        radio_Evolution_Off.setName("radio_Evolution_Off"); // NOI18N
+
+        label_Perishable.setText(resourceMap.getString("label_Perishable.text")); // NOI18N
+        label_Perishable.setName("label_Perishable"); // NOI18N
+
+        radio_Perishable_On.setText(resourceMap.getString("radio_Perishable_On.text")); // NOI18N
+        radio_Perishable_On.setName("radio_Perishable_On"); // NOI18N
+
+        radio_Perishable_Off.setSelected(true);
+        radio_Perishable_Off.setText(resourceMap.getString("radio_Perishable_Off.text")); // NOI18N
+        radio_Perishable_Off.setName("radio_Perishable_Off"); // NOI18N
+
+        GroupLayout panel_ConfigurationLayout = new GroupLayout(panel_Configuration);
+        panel_Configuration.setLayout(panel_ConfigurationLayout);
+        panel_ConfigurationLayout.setHorizontalGroup(
+            panel_ConfigurationLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(panel_ConfigurationLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel_ConfigurationLayout.createParallelGroup(Alignment.LEADING)
+                    .addGroup(panel_ConfigurationLayout.createSequentialGroup()
+                        .addComponent(label_Perishable)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(radio_Perishable_On)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(radio_Perishable_Off))
+                    .addGroup(panel_ConfigurationLayout.createSequentialGroup()
+                        .addComponent(label_Evolution)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(radio_Evolution_On)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(radio_Evolution_Off)))
+                .addContainerGap(389, Short.MAX_VALUE))
+        );
+        panel_ConfigurationLayout.setVerticalGroup(
+            panel_ConfigurationLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(panel_ConfigurationLayout.createSequentialGroup()
+                .addGroup(panel_ConfigurationLayout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(label_Evolution)
+                    .addComponent(radio_Evolution_On)
+                    .addComponent(radio_Evolution_Off))
+                .addPreferredGap(ComponentPlacement.UNRELATED)
+                .addGroup(panel_ConfigurationLayout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(label_Perishable)
+                    .addComponent(radio_Perishable_On)
+                    .addComponent(radio_Perishable_Off)))
+        );
+
+        panel_Description.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Description.border.title"))); // NOI18N
+        panel_Description.setName("panel_Description"); // NOI18N
+
+        scrollpanel_Description.setName("scrollpanel_Description"); // NOI18N
+
+        text_Description.setColumns(20);
+        text_Description.setRows(5);
+        text_Description.setName("text_Description"); // NOI18N
+        scrollpanel_Description.setViewportView(text_Description);
+
+        GroupLayout panel_DescriptionLayout = new GroupLayout(panel_Description);
+        panel_Description.setLayout(panel_DescriptionLayout);
+        panel_DescriptionLayout.setHorizontalGroup(
+            panel_DescriptionLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(scrollpanel_Description, GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
+        );
+        panel_DescriptionLayout.setVerticalGroup(
+            panel_DescriptionLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(scrollpanel_Description, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+        );
+
+        panel_Author.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Author.border.title"))); // NOI18N
+        panel_Author.setName("panel_Author"); // NOI18N
+
+        text_Author.setText(resourceMap.getString("text_Author.text")); // NOI18N
+        text_Author.setName("text_Author"); // NOI18N
+
+        GroupLayout panel_AuthorLayout = new GroupLayout(panel_Author);
+        panel_Author.setLayout(panel_AuthorLayout);
+        panel_AuthorLayout.setHorizontalGroup(
+            panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Author, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+        );
+        panel_AuthorLayout.setVerticalGroup(
+            panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        );
+
+        panel_LastModified.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_LastModified.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_LastModified.border.titleFont"))); // NOI18N
+        panel_LastModified.setName("panel_LastModified"); // NOI18N
+
+        text_LastModified.setEditable(false);
+        text_LastModified.setBorder(BorderFactory.createEmptyBorder(1, 4, 1, 1));
+        text_LastModified.setName("text_LastModified"); // NOI18N
+
+        GroupLayout panel_LastModifiedLayout = new GroupLayout(panel_LastModified);
+        panel_LastModified.setLayout(panel_LastModifiedLayout);
+        panel_LastModifiedLayout.setHorizontalGroup(
+            panel_LastModifiedLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_LastModified, GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
+        );
+        panel_LastModifiedLayout.setVerticalGroup(
+            panel_LastModifiedLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(text_LastModified, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        );
+
+        GroupLayout tab_PropertiesLayout = new GroupLayout(tab_Properties);
+        tab_Properties.setLayout(tab_PropertiesLayout);
+        tab_PropertiesLayout.setHorizontalGroup(
+            tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, tab_PropertiesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(panel_Description, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_LastModified, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_Configuration, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(tab_PropertiesLayout.createSequentialGroup()
+                        .addComponent(panel_Name, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(panel_Author, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        tab_PropertiesLayout.setVerticalGroup(
+            tab_PropertiesLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(tab_PropertiesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.CENTER)
+                    .addComponent(panel_Name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panel_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(panel_Configuration, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(panel_Description, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(panel_LastModified, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        tabContainer.addTab(resourceMap.getString("tab_Properties.TabConstraints.tabTitle"), tab_Properties); // NOI18N
+
+        tab_Vehicles.setName("tab_Vehicles"); // NOI18N
+
+        panel_AvailableVehicles.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_AvailableVehicles.border.title"))); // NOI18N
+        panel_AvailableVehicles.setName("panel_AvailableVehicles"); // NOI18N
+
+        scrollpanel_AvailableVehicles.setName("scrollpanel_AvailableVehicles"); // NOI18N
+
+        list_AvailableVehicles.setModel(new AbstractListModel() {
             String[] strings = { "Vehicle 1", "Vehicle 2", "Vehicle 3", "Vehicle 4", "Vehicle 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jList1.setName("jList1"); // NOI18N
-        jScrollPane1.setViewportView(jList1);
+        list_AvailableVehicles.setName("list_AvailableVehicles"); // NOI18N
+        scrollpanel_AvailableVehicles.setViewportView(list_AvailableVehicles);
 
-        GroupLayout jPanel4Layout = new GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+        GroupLayout panel_AvailableVehiclesLayout = new GroupLayout(panel_AvailableVehicles);
+        panel_AvailableVehicles.setLayout(panel_AvailableVehiclesLayout);
+        panel_AvailableVehiclesLayout.setHorizontalGroup(
+            panel_AvailableVehiclesLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(scrollpanel_AvailableVehicles, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+        panel_AvailableVehiclesLayout.setVerticalGroup(
+            panel_AvailableVehiclesLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(scrollpanel_AvailableVehicles, GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
         );
 
-        jPanel5.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel5.border.title"))); // NOI18N
-        jPanel5.setName("jPanel5"); // NOI18N
+        panel_AddRemoveVehicles.setName("panel_AddRemoveVehicles"); // NOI18N
 
-        jScrollPane2.setName("jScrollPane2"); // NOI18N
+        button_AddVehicle.setText(resourceMap.getString("button_AddVehicle.text")); // NOI18N
+        button_AddVehicle.setName("button_AddVehicle"); // NOI18N
 
-        jList2.setModel(new AbstractListModel() {
+        button_AddAllVehicle.setText(resourceMap.getString("button_AddAllVehicle.text")); // NOI18N
+        button_AddAllVehicle.setName("button_AddAllVehicle"); // NOI18N
+
+        button_RemoveVehicle.setText(resourceMap.getString("button_RemoveVehicle.text")); // NOI18N
+        button_RemoveVehicle.setName("button_RemoveVehicle"); // NOI18N
+
+        button_RemoveAllVehicle.setText(resourceMap.getString("button_RemoveAllVehicle.text")); // NOI18N
+        button_RemoveAllVehicle.setName("button_RemoveAllVehicle"); // NOI18N
+
+        panel_PreviewVehicle.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_PreviewVehicle.border.title"))); // NOI18N
+        panel_PreviewVehicle.setName("panel_PreviewVehicle"); // NOI18N
+
+        processing_Vehicle.setBackground(resourceMap.getColor("processing_Vehicle.background")); // NOI18N
+        processing_Vehicle.setName("processing_Vehicle"); // NOI18N
+
+        GroupLayout processing_VehicleLayout = new GroupLayout(processing_Vehicle);
+        processing_Vehicle.setLayout(processing_VehicleLayout);
+        processing_VehicleLayout.setHorizontalGroup(
+            processing_VehicleLayout.createParallelGroup(Alignment.LEADING)
+            .addGap(0, 157, Short.MAX_VALUE)
+        );
+        processing_VehicleLayout.setVerticalGroup(
+            processing_VehicleLayout.createParallelGroup(Alignment.LEADING)
+            .addGap(0, 165, Short.MAX_VALUE)
+        );
+
+        GroupLayout panel_PreviewVehicleLayout = new GroupLayout(panel_PreviewVehicle);
+        panel_PreviewVehicle.setLayout(panel_PreviewVehicleLayout);
+        panel_PreviewVehicleLayout.setHorizontalGroup(
+            panel_PreviewVehicleLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(processing_Vehicle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panel_PreviewVehicleLayout.setVerticalGroup(
+            panel_PreviewVehicleLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(processing_Vehicle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        GroupLayout panel_AddRemoveVehiclesLayout = new GroupLayout(panel_AddRemoveVehicles);
+        panel_AddRemoveVehicles.setLayout(panel_AddRemoveVehiclesLayout);
+        panel_AddRemoveVehiclesLayout.setHorizontalGroup(
+            panel_AddRemoveVehiclesLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(panel_AddRemoveVehiclesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel_AddRemoveVehiclesLayout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(button_AddVehicle, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                    .addComponent(button_AddAllVehicle, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                    .addComponent(button_RemoveVehicle, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                    .addComponent(button_RemoveAllVehicle, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                    .addComponent(panel_PreviewVehicle, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        panel_AddRemoveVehiclesLayout.setVerticalGroup(
+            panel_AddRemoveVehiclesLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(panel_AddRemoveVehiclesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(button_AddVehicle)
+                .addPreferredGap(ComponentPlacement.UNRELATED)
+                .addComponent(button_AddAllVehicle)
+                .addGap(18, 18, 18)
+                .addComponent(panel_PreviewVehicle, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(button_RemoveVehicle)
+                .addPreferredGap(ComponentPlacement.UNRELATED)
+                .addComponent(button_RemoveAllVehicle)
+                .addContainerGap())
+        );
+
+        panel_SelectedVehicles.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_SelectedVehicles.border.title"))); // NOI18N
+        panel_SelectedVehicles.setName("panel_SelectedVehicles"); // NOI18N
+
+        scrollpanel_SelectedVehicles.setName("scrollpanel_SelectedVehicles"); // NOI18N
+
+        list_SelectedVehicles.setModel(new AbstractListModel() {
             String[] strings = { "Vehicle 1", "Vehicle 2", "Vehicle 3", "Vehicle 4", "Vehicle 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jList2.setName("jList2"); // NOI18N
-        jScrollPane2.setViewportView(jList2);
+        list_SelectedVehicles.setName("list_SelectedVehicles"); // NOI18N
+        scrollpanel_SelectedVehicles.setViewportView(list_SelectedVehicles);
 
-        GroupLayout jPanel5Layout = new GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane2, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+        GroupLayout panel_SelectedVehiclesLayout = new GroupLayout(panel_SelectedVehicles);
+        panel_SelectedVehicles.setLayout(panel_SelectedVehiclesLayout);
+        panel_SelectedVehiclesLayout.setHorizontalGroup(
+            panel_SelectedVehiclesLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(scrollpanel_SelectedVehicles, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane2, GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-        );
-
-        jPanel6.setName("jPanel6"); // NOI18N
-
-        jButton5.setText(resourceMap.getString("jButton5.text")); // NOI18N
-        jButton5.setName("jButton5"); // NOI18N
-
-        jButton6.setText(resourceMap.getString("jButton6.text")); // NOI18N
-        jButton6.setName("jButton6"); // NOI18N
-
-        jButton7.setText(resourceMap.getString("jButton7.text")); // NOI18N
-        jButton7.setName("jButton7"); // NOI18N
-
-        jButton8.setText(resourceMap.getString("jButton8.text")); // NOI18N
-        jButton8.setName("jButton8"); // NOI18N
-
-        jPanel12.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel12.border.title"))); // NOI18N
-        jPanel12.setName("jPanel12"); // NOI18N
-
-        jPanel13.setBackground(resourceMap.getColor("jPanel13.background")); // NOI18N
-        jPanel13.setName("jPanel13"); // NOI18N
-
-        GroupLayout jPanel13Layout = new GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 114, Short.MAX_VALUE)
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 116, Short.MAX_VALUE)
+        panel_SelectedVehiclesLayout.setVerticalGroup(
+            panel_SelectedVehiclesLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(scrollpanel_SelectedVehicles, GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
         );
 
-        GroupLayout jPanel12Layout = new GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jPanel13, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jPanel13, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        GroupLayout jPanel6Layout = new GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        GroupLayout tab_VehiclesLayout = new GroupLayout(tab_Vehicles);
+        tab_Vehicles.setLayout(tab_VehiclesLayout);
+        tab_VehiclesLayout.setHorizontalGroup(
+            tab_VehiclesLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, tab_VehiclesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(jButton5, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                    .addComponent(jButton6, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                    .addComponent(jButton8, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                    .addComponent(jButton7, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                    .addComponent(jPanel12, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton5)
-                .addPreferredGap(ComponentPlacement.UNRELATED)
-                .addComponent(jButton6)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel12, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton8)
-                .addPreferredGap(ComponentPlacement.UNRELATED)
-                .addComponent(jButton7)
-                .addContainerGap())
-        );
-
-        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel_AvailableVehicles, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jPanel6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel_AddRemoveVehicles, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jPanel5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel_SelectedVehicles, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        tab_VehiclesLayout.setVerticalGroup(
+            tab_VehiclesLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, tab_VehiclesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(jPanel5, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(tab_VehiclesLayout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(panel_SelectedVehicles, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_AvailableVehicles, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_AddRemoveVehicles, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab(resourceMap.getString("jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
+        tabContainer.addTab(resourceMap.getString("tab_Vehicles.TabConstraints.tabTitle"), tab_Vehicles); // NOI18N
 
-        jPanel2.setName("jPanel2"); // NOI18N
+        tab_Environment.setName("tab_Environment"); // NOI18N
 
-        jPanel8.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel8.border.title"))); // NOI18N
-        jPanel8.setName("jPanel8"); // NOI18N
+        panel_AvailableEnvironments.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_AvailableEnvironments.border.title"))); // NOI18N
+        panel_AvailableEnvironments.setName("panel_AvailableEnvironments"); // NOI18N
 
-        jScrollPane3.setName("jScrollPane3"); // NOI18N
+        scrollpanel_AvailableEnvironments.setName("scrollpanel_AvailableEnvironments"); // NOI18N
 
-        jList3.setModel(new AbstractListModel() {
+        list_AvailableEnvironments.setModel(new AbstractListModel() {
             String[] strings = { "Enviro 1", "Enviro 2", "Enviro 3", "Enviro 4", "Enviro 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jList3.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        jList3.setName("jList3"); // NOI18N
-        jScrollPane3.setViewportView(jList3);
+        list_AvailableEnvironments.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list_AvailableEnvironments.setName("list_AvailableEnvironments"); // NOI18N
+        scrollpanel_AvailableEnvironments.setViewportView(list_AvailableEnvironments);
 
-        GroupLayout jPanel8Layout = new GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane3, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+        GroupLayout panel_AvailableEnvironmentsLayout = new GroupLayout(panel_AvailableEnvironments);
+        panel_AvailableEnvironments.setLayout(panel_AvailableEnvironmentsLayout);
+        panel_AvailableEnvironmentsLayout.setHorizontalGroup(
+            panel_AvailableEnvironmentsLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(scrollpanel_AvailableEnvironments, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane3, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+        panel_AvailableEnvironmentsLayout.setVerticalGroup(
+            panel_AvailableEnvironmentsLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(scrollpanel_AvailableEnvironments, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
         );
 
-        jPanel9.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel9.border.title"))); // NOI18N
-        jPanel9.setName("jPanel9"); // NOI18N
+        panel_SelectedEnvironment.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_SelectedEnvironment.border.title"))); // NOI18N
+        panel_SelectedEnvironment.setName("panel_SelectedEnvironment"); // NOI18N
 
-        jScrollPane4.setName("jScrollPane4"); // NOI18N
+        scrollpanel_SelectedEnvironment.setName("scrollpanel_SelectedEnvironment"); // NOI18N
 
-        jList4.setModel(new AbstractListModel() {
+        list_SelectedEnvironment.setModel(new AbstractListModel() {
             String[] strings = { "Enviro 1" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jList4.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        jList4.setEnabled(false);
-        jList4.setName("jList4"); // NOI18N
-        jScrollPane4.setViewportView(jList4);
+        list_SelectedEnvironment.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list_SelectedEnvironment.setEnabled(false);
+        list_SelectedEnvironment.setName("list_SelectedEnvironment"); // NOI18N
+        scrollpanel_SelectedEnvironment.setViewportView(list_SelectedEnvironment);
 
-        GroupLayout jPanel9Layout = new GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane4, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+        GroupLayout panel_SelectedEnvironmentLayout = new GroupLayout(panel_SelectedEnvironment);
+        panel_SelectedEnvironment.setLayout(panel_SelectedEnvironmentLayout);
+        panel_SelectedEnvironmentLayout.setHorizontalGroup(
+            panel_SelectedEnvironmentLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(scrollpanel_SelectedEnvironment, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane4, GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+        panel_SelectedEnvironmentLayout.setVerticalGroup(
+            panel_SelectedEnvironmentLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(scrollpanel_SelectedEnvironment, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
         );
 
-        jPanel10.setName("jPanel10"); // NOI18N
+        panel_SetEnvironment.setName("panel_SetEnvironment"); // NOI18N
 
-        jButton9.setText(resourceMap.getString("jButton9.text")); // NOI18N
-        jButton9.setName("jButton9"); // NOI18N
+        button_SetEnvironment.setText(resourceMap.getString("button_SetEnvironment.text")); // NOI18N
+        button_SetEnvironment.setName("button_SetEnvironment"); // NOI18N
 
-        GroupLayout jPanel10Layout = new GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+        GroupLayout panel_SetEnvironmentLayout = new GroupLayout(panel_SetEnvironment);
+        panel_SetEnvironment.setLayout(panel_SetEnvironmentLayout);
+        panel_SetEnvironmentLayout.setHorizontalGroup(
+            panel_SetEnvironmentLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(panel_SetEnvironmentLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton9, GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                .addComponent(button_SetEnvironment, GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
+        panel_SetEnvironmentLayout.setVerticalGroup(
+            panel_SetEnvironmentLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, panel_SetEnvironmentLayout.createSequentialGroup()
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(button_SetEnvironment)
+                .addContainerGap())
+        );
+
+        panel_PreviewEnvironment.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_PreviewEnvironment.border.title"))); // NOI18N
+        panel_PreviewEnvironment.setName("panel_PreviewEnvironment"); // NOI18N
+
+        processing_Environment.setBackground(resourceMap.getColor("processing_Environment.background")); // NOI18N
+        processing_Environment.setName("processing_Environment"); // NOI18N
+
+        GroupLayout processing_EnvironmentLayout = new GroupLayout(processing_Environment);
+        processing_Environment.setLayout(processing_EnvironmentLayout);
+        processing_EnvironmentLayout.setHorizontalGroup(
+            processing_EnvironmentLayout.createParallelGroup(Alignment.LEADING)
+            .addGap(0, 352, Short.MAX_VALUE)
+        );
+        processing_EnvironmentLayout.setVerticalGroup(
+            processing_EnvironmentLayout.createParallelGroup(Alignment.LEADING)
+            .addGap(0, 285, Short.MAX_VALUE)
+        );
+
+        GroupLayout panel_PreviewEnvironmentLayout = new GroupLayout(panel_PreviewEnvironment);
+        panel_PreviewEnvironment.setLayout(panel_PreviewEnvironmentLayout);
+        panel_PreviewEnvironmentLayout.setHorizontalGroup(
+            panel_PreviewEnvironmentLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(processing_Environment, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panel_PreviewEnvironmentLayout.setVerticalGroup(
+            panel_PreviewEnvironmentLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(processing_Environment, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        GroupLayout tab_EnvironmentLayout = new GroupLayout(tab_Environment);
+        tab_Environment.setLayout(tab_EnvironmentLayout);
+        tab_EnvironmentLayout.setHorizontalGroup(
+            tab_EnvironmentLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(tab_EnvironmentLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton9)
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel7.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel7.border.title"))); // NOI18N
-        jPanel7.setName("jPanel7"); // NOI18N
-
-        jPanel11.setBackground(resourceMap.getColor("jPanel11.background")); // NOI18N
-        jPanel11.setName("jPanel11"); // NOI18N
-
-        GroupLayout jPanel11Layout = new GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 289, Short.MAX_VALUE)
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 232, Short.MAX_VALUE)
-        );
-
-        GroupLayout jPanel7Layout = new GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jPanel11, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jPanel11, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel_AvailableEnvironments, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGroup(tab_EnvironmentLayout.createParallelGroup(Alignment.TRAILING)
+                    .addGroup(tab_EnvironmentLayout.createSequentialGroup()
+                        .addComponent(panel_SetEnvironment, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jPanel9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(panel_SelectedEnvironment, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panel_PreviewEnvironment, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        tab_EnvironmentLayout.setVerticalGroup(
+            tab_EnvironmentLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, tab_EnvironmentLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(jPanel8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(Alignment.TRAILING)
-                            .addComponent(jPanel10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addGroup(tab_EnvironmentLayout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(panel_AvailableEnvironments, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(Alignment.LEADING, tab_EnvironmentLayout.createSequentialGroup()
+                        .addGroup(tab_EnvironmentLayout.createParallelGroup(Alignment.LEADING)
+                            .addComponent(panel_SelectedEnvironment, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGroup(tab_EnvironmentLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(panel_SetEnvironment, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jPanel7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab(resourceMap.getString("jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
-
-        jPanel3.setName("jPanel3"); // NOI18N
-
-        jPanel14.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel14.border.title"))); // NOI18N
-        jPanel14.setName("jPanel14"); // NOI18N
-
-        jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
-        jTextField1.setName("jTextField1"); // NOI18N
-
-        GroupLayout jPanel14Layout = new GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField1, GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        );
-
-        jPanel15.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel15.border.title"))); // NOI18N
-        jPanel15.setName("jPanel15"); // NOI18N
-
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
-
-        jRadioButton1.setText(resourceMap.getString("jRadioButton1.text")); // NOI18N
-        jRadioButton1.setName("jRadioButton1"); // NOI18N
-
-        jRadioButton2.setSelected(true);
-        jRadioButton2.setText(resourceMap.getString("jRadioButton2.text")); // NOI18N
-        jRadioButton2.setName("jRadioButton2"); // NOI18N
-
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
-        jLabel2.setName("jLabel2"); // NOI18N
-
-        jRadioButton3.setSelected(true);
-        jRadioButton3.setText(resourceMap.getString("jRadioButton3.text")); // NOI18N
-        jRadioButton3.setName("jRadioButton3"); // NOI18N
-
-        jRadioButton4.setText(resourceMap.getString("jRadioButton4.text")); // NOI18N
-        jRadioButton4.setName("jRadioButton4"); // NOI18N
-
-        GroupLayout jPanel15Layout = new GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel15Layout.createParallelGroup(Alignment.LEADING)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton4)
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton3))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton1)
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton2)))
-                .addContainerGap(262, Short.MAX_VALUE))
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGroup(jPanel15Layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addPreferredGap(ComponentPlacement.UNRELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton3)))
-        );
-
-        jPanel16.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel16.border.title"))); // NOI18N
-        jPanel16.setName("jPanel16"); // NOI18N
-
-        jScrollPane5.setName("jScrollPane5"); // NOI18N
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setName("jTextArea1"); // NOI18N
-        jScrollPane5.setViewportView(jTextArea1);
-
-        GroupLayout jPanel16Layout = new GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane5, GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane5, GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-        );
-
-        jPanel17.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("jPanel17.border.title"))); // NOI18N
-        jPanel17.setName("jPanel17"); // NOI18N
-
-        jTextField4.setText(resourceMap.getString("jTextField4.text")); // NOI18N
-        jTextField4.setName("jTextField4"); // NOI18N
-
-        GroupLayout jPanel17Layout = new GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField4, GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jTextField4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        );
-
-        GroupLayout jPanel3Layout = new GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(jPanel16, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel15, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel14, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jPanel17, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(Alignment.CENTER)
-                    .addComponent(jPanel14, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel17, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jPanel15, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jPanel16, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panel_PreviewEnvironment, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab(resourceMap.getString("jPanel3.TabConstraints.tabTitle"), jPanel3); // NOI18N
+        tabContainer.addTab(resourceMap.getString("tab_Environment.TabConstraints.tabTitle"), tab_Environment); // NOI18N
 
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
+        text_Status.setEditable(false);
+        text_Status.setText(resourceMap.getString("text_Status.text")); // NOI18N
+        text_Status.setName("text_Status"); // NOI18N
 
-        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
-        jButton2.setName("jButton2"); // NOI18N
+        button_Save.setText(resourceMap.getString("button_Save.text")); // NOI18N
+        button_Save.setName("button_Save"); // NOI18N
+        button_Save.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                button_SaveMouseClicked(evt);
+            }
+        });
 
-        jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
-        jButton3.setName("jButton3"); // NOI18N
+        button_SaveAsNew.setText(resourceMap.getString("button_SaveAsNew.text")); // NOI18N
+        button_SaveAsNew.setName("button_SaveAsNew"); // NOI18N
+        button_SaveAsNew.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                button_SaveAsNewMouseClicked(evt);
+            }
+        });
 
         ActionMap actionMap = Application.getInstance(VehiclesApp.class).getContext().getActionMap(SimulationEditor.class, this);
-        jButton4.setAction(actionMap.get("cancel")); // NOI18N
-        jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
-        jButton4.setName("jButton4"); // NOI18N
+        button_Cancel.setAction(actionMap.get("cancel")); // NOI18N
+        button_Cancel.setText(resourceMap.getString("button_Cancel.text")); // NOI18N
+        button_Cancel.setName("button_Cancel"); // NOI18N
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addPreferredGap(ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                    .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(text_Status, GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(button_Save)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(button_SaveAsNew)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(button_Cancel))
+                    .addComponent(panel_SelectedSimulation, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tabContainer, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE))
                 .addContainerGap())
-            .addComponent(jTabbedPane1, GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(panel_SelectedSimulation, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                        .addComponent(jButton4)
-                        .addComponent(jButton3)))
+                .addComponent(tabContainer, GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(button_Cancel)
+                    .addComponent(text_Status, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button_SaveAsNew)
+                    .addComponent(button_Save))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-    * @param args the command line arguments
-    */
-//    public static void main(String args[]) {
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new SimulationEditor().setVisible(true);
-//            }
-//        });
-//    }
+    private void dropdown_SelectedSimulationItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_SelectedSimulationItemStateChanged
+        JComboBox tempComboBox = (JComboBox) evt.getSource();
+        EditorSimulation selected = (EditorSimulation) tempComboBox.getSelectedItem();
+        populateFields(selected);
+}//GEN-LAST:event_dropdown_SelectedSimulationItemStateChanged
+
+    private void populateFields(EditorSimulation p_simulation) {
+        EditorSimulation tempSimulation = p_simulation;
+
+        text_Author.setText(tempSimulation.getAuthor());
+        text_Description.setText(tempSimulation.getDescription());
+        text_Name.setText(tempSimulation.getName());
+        text_LastModified.setText(tempSimulation.getLastModified());
+
+}
+
+    private void button_SaveMouseClicked(MouseEvent evt) {//GEN-FIRST:event_button_SaveMouseClicked
+
+}//GEN-LAST:event_button_SaveMouseClicked
+
+    private void button_SaveAsNewMouseClicked(MouseEvent evt) {//GEN-FIRST:event_button_SaveAsNewMouseClicked
+
+}//GEN-LAST:event_button_SaveAsNewMouseClicked
+
+    private void formWindowGainedFocus(WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        dropdown_SelectedSimulation.requestFocus();        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowGainedFocus
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JButton jButton1;
-    private JButton jButton2;
-    private JButton jButton3;
-    private JButton jButton4;
-    private JButton jButton5;
-    private JButton jButton6;
-    private JButton jButton7;
-    private JButton jButton8;
-    private JButton jButton9;
-    private JLabel jLabel1;
-    private JLabel jLabel2;
-    private JList jList1;
-    private JList jList2;
-    private JList jList3;
-    private JList jList4;
-    private JPanel jPanel1;
-    private JPanel jPanel10;
-    private JPanel jPanel11;
-    private JPanel jPanel12;
-    private JPanel jPanel13;
-    private JPanel jPanel14;
-    private JPanel jPanel15;
-    private JPanel jPanel16;
-    private JPanel jPanel17;
-    private JPanel jPanel2;
-    private JPanel jPanel3;
-    private JPanel jPanel4;
-    private JPanel jPanel5;
-    private JPanel jPanel6;
-    private JPanel jPanel7;
-    private JPanel jPanel8;
-    private JPanel jPanel9;
-    private JRadioButton jRadioButton1;
-    private JRadioButton jRadioButton2;
-    private JRadioButton jRadioButton3;
-    private JRadioButton jRadioButton4;
-    private JScrollPane jScrollPane1;
-    private JScrollPane jScrollPane2;
-    private JScrollPane jScrollPane3;
-    private JScrollPane jScrollPane4;
-    private JScrollPane jScrollPane5;
-    private JTabbedPane jTabbedPane1;
-    private JTextArea jTextArea1;
-    private JTextField jTextField1;
-    private JTextField jTextField4;
+    private JButton button_AddAllVehicle;
+    private JButton button_AddVehicle;
+    private JButton button_Cancel;
+    private JButton button_RemoveAllVehicle;
+    private JButton button_RemoveVehicle;
+    private JButton button_Save;
+    private JButton button_SaveAsNew;
+    private JButton button_SetEnvironment;
+    private JComboBox dropdown_SelectedSimulation;
+    private JLabel label_Evolution;
+    private JLabel label_Perishable;
+    private JList list_AvailableEnvironments;
+    private JList list_AvailableVehicles;
+    private JList list_SelectedEnvironment;
+    private JList list_SelectedVehicles;
+    private JPanel panel_AddRemoveVehicles;
+    private JPanel panel_Author;
+    private JPanel panel_AvailableEnvironments;
+    private JPanel panel_AvailableVehicles;
+    private JPanel panel_Configuration;
+    private JPanel panel_Description;
+    private JPanel panel_LastModified;
+    private JPanel panel_Name;
+    private JPanel panel_PreviewEnvironment;
+    private JPanel panel_PreviewVehicle;
+    private JPanel panel_SelectedEnvironment;
+    private JPanel panel_SelectedSimulation;
+    private JPanel panel_SelectedVehicles;
+    private JPanel panel_SetEnvironment;
+    private JPanel processing_Environment;
+    private JPanel processing_Vehicle;
+    private JRadioButton radio_Evolution_Off;
+    private JRadioButton radio_Evolution_On;
+    private JRadioButton radio_Perishable_Off;
+    private JRadioButton radio_Perishable_On;
+    private JScrollPane scrollpanel_AvailableEnvironments;
+    private JScrollPane scrollpanel_AvailableVehicles;
+    private JScrollPane scrollpanel_Description;
+    private JScrollPane scrollpanel_SelectedEnvironment;
+    private JScrollPane scrollpanel_SelectedVehicles;
+    private JTabbedPane tabContainer;
+    private JPanel tab_Environment;
+    private JPanel tab_Properties;
+    private JPanel tab_Vehicles;
+    private JTextField text_Author;
+    private JTextArea text_Description;
+    private JTextField text_LastModified;
+    private JTextField text_Name;
+    private JTextField text_Status;
     // End of variables declaration//GEN-END:variables
-
+    private PApplet embed;
+    private EditorSimulation[] simulationArray;
+    private DefaultComboBoxModel simulationDropDown;
 }

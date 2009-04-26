@@ -11,9 +11,9 @@ public class VehicleTest {
 
 		/*Testing creating and editing a vehicle XML entry*/
 			EditorVehicle v = new EditorVehicle("xml/vehicles/hungry.veh");
-			v.setVehicleName("Hungy Vehicle"); //set object attributes
-			v.setVehicleAuthor("Some guy");
-			v.setVehicleDescription("This is a hungry little vehicle ");
+			v.setName("Hungy Vehicle"); //set object attributes
+			v.setAuthor("Some guy");
+			v.setDescription("This is a hungry little vehicle ");
 			v.setCurr_battery_capacity(46);
 			v.setMotorStrength(67);
 			v.setAggression(55);
@@ -36,7 +36,7 @@ public class VehicleTest {
 
 			/*Now the vehicle is saved as an xml doc, lets try load that xml back into an object */
 			EditorVehicle veh = new EditorVehicle("xml/vehicles/hungry.veh",true); //constructor loads xml into an object
-			veh.setXmlLocation("xml/vehicles/hungryduplicate.xml");//where to save the new xml, should be same as hungry.xml
+			veh.setXmlLocation("xml/vehicles/hungryduplicate.veh");//where to save the new xml, should be same as hungry.xml
 			veh.saveVehicle(); //write the xml
 			//Now we have created an object, written to xml, created an object from that xml, and wrote that
 			//  to produce the same xml

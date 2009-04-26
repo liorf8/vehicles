@@ -2,7 +2,10 @@ package vehicles.gui;
 
 import java.awt.GridBagLayout;
 import java.awt.event.*;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import vehicles.processing.*;
@@ -134,7 +137,6 @@ public class Simulator extends FrameView implements ChangeListener {
         menuBar = new JMenuBar();
         JMenu simulationMenu = new JMenu();
         jMenuItem4 = new JMenuItem();
-        jMenuItem5 = new JMenuItem();
         jSeparator2 = new JSeparator();
         jMenuItem10 = new JMenuItem();
         jMenuItem9 = new JMenuItem();
@@ -157,14 +159,16 @@ public class Simulator extends FrameView implements ChangeListener {
         JMenu helpMenu = new JMenu();
         JMenuItem aboutMenuItem = new JMenuItem();
         toolBar = new JToolBar();
+        jPanel1 = new JPanel();
         jButton1 = new JButton();
         jButton2 = new JButton();
-        jButton3 = new JButton();
         jButton4 = new JButton();
+        jComboBox1 = new JComboBox();
         jSeparator1 = new Separator();
         jSlider1 = new JSlider();
 
         mainPanel.setName("mainPanel"); // NOI18N
+        mainPanel.setPreferredSize(new Dimension(820, 610));
 
         jScrollPane1.setAutoscrolls(true);
         jScrollPane1.setName("jScrollPane1"); // NOI18N
@@ -181,11 +185,11 @@ public class Simulator extends FrameView implements ChangeListener {
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
         );
 
         menuBar.setMinimumSize(new Dimension(261, 21));
@@ -201,20 +205,13 @@ public class Simulator extends FrameView implements ChangeListener {
         jMenuItem4.setName("jMenuItem4"); // NOI18N
         simulationMenu.add(jMenuItem4);
 
-        jMenuItem5.setAction(actionMap.get("open")); // NOI18N
-        jMenuItem5.setText(resourceMap.getString("jMenuItem5.text")); // NOI18N
-        jMenuItem5.setName("jMenuItem5"); // NOI18N
-        simulationMenu.add(jMenuItem5);
-
         jSeparator2.setName("jSeparator2"); // NOI18N
         simulationMenu.add(jSeparator2);
 
-        jMenuItem10.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
         jMenuItem10.setText(resourceMap.getString("jMenuItem10.text")); // NOI18N
         jMenuItem10.setName("jMenuItem10"); // NOI18N
         simulationMenu.add(jMenuItem10);
 
-        jMenuItem9.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.SHIFT_MASK | InputEvent.CTRL_MASK));
         jMenuItem9.setText(resourceMap.getString("jMenuItem9.text")); // NOI18N
         jMenuItem9.setName("jMenuItem9"); // NOI18N
         simulationMenu.add(jMenuItem9);
@@ -223,6 +220,7 @@ public class Simulator extends FrameView implements ChangeListener {
         simulationMenu.add(jSeparator3);
 
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
+        exitMenuItem.setText(resourceMap.getString("exitMenuItem.text")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         simulationMenu.add(exitMenuItem);
 
@@ -299,42 +297,63 @@ public class Simulator extends FrameView implements ChangeListener {
 
         toolBar.setRollover(true);
         toolBar.setAlignmentY(0.5F);
-        toolBar.setMinimumSize(new Dimension(640, 48));
         toolBar.setName("toolBar"); // NOI18N
-        toolBar.setPreferredSize(new Dimension(640, 48));
         toolBar.setRequestFocusEnabled(false);
+
+        jPanel1.setName("jPanel1"); // NOI18N
+        jPanel1.setPreferredSize(new Dimension(100, 71));
 
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(SwingConstants.CENTER);
         jButton1.setIconTextGap(10);
-        jButton1.setMargin(new Insets(14, 14, 14, 14));
         jButton1.setName("jButton1"); // NOI18N
-        toolBar.add(jButton1);
 
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
         jButton2.setEnabled(false);
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(SwingConstants.CENTER);
-        jButton2.setMargin(new Insets(14, 14, 14, 14));
         jButton2.setName("jButton2"); // NOI18N
-        toolBar.add(jButton2);
-
-        jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
-        jButton3.setEnabled(false);
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(SwingConstants.CENTER);
-        jButton3.setMargin(new Insets(14, 14, 14, 14));
-        jButton3.setName("jButton3"); // NOI18N
-        toolBar.add(jButton3);
 
         jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
         jButton4.setEnabled(false);
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(SwingConstants.CENTER);
-        jButton4.setMargin(new Insets(14, 14, 14, 14));
         jButton4.setName("jButton4"); // NOI18N
-        toolBar.add(jButton4);
+
+        jComboBox1.setModel(new DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setName("jComboBox1"); // NOI18N
+
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jButton4))
+                    .addComponent(jComboBox1, 0, 313, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jComboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        toolBar.add(jPanel1);
 
         jSeparator1.setMinimumSize(new Dimension(6, 4));
         jSeparator1.setName("jSeparator1"); // NOI18N
@@ -351,7 +370,6 @@ public class Simulator extends FrameView implements ChangeListener {
         jSlider1.setMaximumSize(new Dimension(32767, 30000));
         jSlider1.setMinimumSize(new Dimension(36, 48));
         jSlider1.setName("jSlider1"); // NOI18N
-        jSlider1.setPreferredSize(new Dimension(300, 46));
         jSlider1.addChangeListener(this);
         toolBar.add(jSlider1);
 
@@ -379,8 +397,8 @@ public class Simulator extends FrameView implements ChangeListener {
     private JMenu environmentMenu;
     private JButton jButton1;
     private JButton jButton2;
-    private JButton jButton3;
     private JButton jButton4;
+    private JComboBox jComboBox1;
     private JMenuItem jMenuItem1;
     private JMenuItem jMenuItem10;
     private JMenuItem jMenuItem11;
@@ -388,11 +406,11 @@ public class Simulator extends FrameView implements ChangeListener {
     private JMenuItem jMenuItem2;
     private JMenuItem jMenuItem3;
     private JMenuItem jMenuItem4;
-    private JMenuItem jMenuItem5;
     private JMenuItem jMenuItem6;
     private JMenuItem jMenuItem7;
     private JMenuItem jMenuItem8;
     private JMenuItem jMenuItem9;
+    private JPanel jPanel1;
     private JPanel jPanel3;
     private JScrollPane jScrollPane1;
     private Separator jSeparator1;

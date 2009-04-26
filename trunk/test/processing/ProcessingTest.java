@@ -19,7 +19,7 @@ public class ProcessingTest extends PApplet{
 	
     @Override
 	public void draw(){
-		if(veh.getVehicleName()!= null){ //has it worked?
+		if(veh.getName()!= null){ //has it worked?
 			background(255);    // Setting the background to white
 			stroke(0);          // Setting the outline (stroke) to black
 			fill(150);          // Setting the interior of a shape (fill) to grey 

@@ -1,9 +1,5 @@
 package test.simulation;
 import vehicles.simulation.*;
-import vehicles.vehicle.*;
-import vehicles.environment.*;
-import java.util.Vector;
-import vehicles.util.*;
 
 /**A main class for testing of various elements in the simulation.
 * Please DON'T upload binary files produced by compiling this into the repo.
@@ -13,13 +9,13 @@ public class SimulationTest {
 	public static void main(String[] args){
 		EditorSimulation es = new EditorSimulation();
 		es.setXmlLocation("xml/simulations/testsim.sim");
-		es.setSimulationName("TestSim");
+		es.setName("TestSim");
 		es.setAuthor("Some guy");
 		es.setDescription("a test simulation");
 		es.setEvolution(true);
 		es.setGeneticSelectionMethod(0);
-		es.addVehicle("xml/vehicles/angry.veh");
 		es.addVehicle("xml/vehicles/hungry.veh");
+        es.addVehicle("xml/vehicles/hungryduplicate.veh");
 		es.setEnvironment("xml/environments/desert.env");
 		es.saveSimulation();
 		
@@ -49,7 +45,7 @@ public class SimulationTest {
 //		System.out.println("\n\nTESTING CREATION OF SIMULATION FROM INPUTTING DATA");
 //		Simulation b = new Simulation();
 //		b.setAuthor("Shaun");
-//		b.setSimulationName("Test 2");
+//		b.setName("Test 2");
 //		b.setGeneticSelectionMethod(5);
 //		b.setEnvironment("A complete test yo");
 //		for(int i = 0; i < 10; i++){
@@ -66,7 +62,7 @@ public class SimulationTest {
 //		System.out.println("Testing the creation of an xml doc from specified data");
 //		EditorSimulation mySimEditor = new EditorSimulation("xml/simulations/my_simulation_test.xml");
 //		mySimEditor.setAuthor("Shaun");
-//		mySimEditor.setSimulationName("Test 3");
+//		mySimEditor.setName("Test 3");
 //		mySimEditor.setGeneticSelectionMethod(5);
 //		mySimEditor.setEnvironment("I do not exist :D");
 //		Vehicle v;
@@ -86,7 +82,7 @@ public class SimulationTest {
 //		System.out.println("TESTING MODIFICATION OF EXISTING XML DOCUMENT");
 //		EditorSimulation editor2 = new EditorSimulation("xml/simulations/my_simulation_test.xml", true);
 //		editor2.printSimDetails();
-//		editor2.setSimulationName("New NAME!");
+//		editor2.setName("New NAME!");
 //		editor2.saveSimulation();
 //		editor2 = new EditorSimulation("xml/simulations/my_simulation_test.xml", true);
 //		editor2.printSimDetails();
