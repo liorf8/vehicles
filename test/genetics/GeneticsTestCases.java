@@ -17,17 +17,19 @@ public class GeneticsTestCases {
 
 
 		Random r = new Random();
-		
+
 		Simulation sim = new Simulation("xml/simulations/testsim.sim");
-		
+
 		Vector<Vehicle> v = sim.getVehicles();
 
 		Vehicle temp;
 
 		//Tester for best vehicle in the population
 		temp = Genetics.getVehicleByBest(v);
-		System.out.println("Best vehicles fitness: " + temp.getFitness());
-		System.out.println("Filepath: " + temp.getXmlLocation());
+		if(temp != null){
+			System.out.println("Best vehicles fitness: " + temp.getFitness());
+			System.out.println("Filepath: " + temp.getXmlLocation());
+		}
 
 		System.out.println("\n\n\n");
 
@@ -35,8 +37,10 @@ public class GeneticsTestCases {
 		//Run n times to check random generator seed is good
 		for(int i = 0; i < 10; i++){
 			temp = Genetics.getVehicleByRandom(v);
-			System.out.println("Random vehicles fitness: " + temp.getFitness());
-			System.out.println("Filepath: " + temp.getXmlLocation());
+			if(temp != null){
+				System.out.println("Random vehicles fitness: " + temp.getFitness());
+				System.out.println("Filepath: " + temp.getXmlLocation());
+			}
 		}
 
 		System.out.println("\n\n\n");
@@ -45,31 +49,70 @@ public class GeneticsTestCases {
 		//Run n times to check it works properly
 		for(int i = 0; i < 10; i++){
 			temp = Genetics.getVehicleByRoulette(v);
-			System.out.println("Roulette vehicles fitness: " + temp.getFitness());
-			System.out.println("Filepath: " + temp.getXmlLocation());
+			if(temp != null){
+				System.out.println("Roulette vehicles fitness: " + temp.getFitness());
+				System.out.println("Filepath: " + temp.getXmlLocation());
+			}
 		}
-		
+
 		System.out.println("\n\n\n");
 
 		//Tester for getting a vehicle by tournament
 		//Run n times to check it works properly with n being random between 1 and 100 each time
 		for(int i = 0; i < 10; i++){
 			temp = Genetics.getVehicleByTournament(v, r.nextInt(101));
-			System.out.println("Tournament vehicles fitness: " + temp.getFitness());
-			System.out.println("Filepath: " + temp.getXmlLocation());
+			if(temp != null){
+				System.out.println("Tournament vehicles fitness: " + temp.getFitness());
+				System.out.println("Filepath: " + temp.getXmlLocation());
+			}
 		}
-		
-		
+
+
 		System.out.println("\n\n\n");
 
 		//Tester for getting a vehicle by topNPercent
 		//Run n times to check it works properly with n being random between 1 and 100 each time
 		for(int i = 0; i < 10; i++){
 			temp = Genetics.getVehicleByTop_N_Percent(v, r.nextInt(101));
-			System.out.println("TopNPercent vehicles fitness: " + temp.getFitness());
-			System.out.println("Filepath: " + temp.getXmlLocation());
+			if( temp != null){
+				System.out.println("TopNPercent vehicles fitness: " + temp.getFitness());
+				System.out.println("Filepath: " + temp.getXmlLocation());
+			}
 		}
+
+		String p;
+		for(int i = 0; i < 101; i++){
+			p = Integer.toBinaryString(i);
+			p = addLeadingZeros(8, p);
+			System.out.println(i + " as binary sring: " +  p);
+		}
+		
+
+
 	}
-
-
+	
+	public static String crossoverBits(String parentA, String parentB){
+		
+		return "";
+	}
+	
+	
+	public static String addLeadingZeros(int n, String bin){
+		int length = bin.length();
+		System.out.println("Lenght: " + length);
+		int num_zeros = n - length;
+		System.out.println("Zeroes: " + num_zeros);
+		if ((num_zeros) <= 0){
+			return null;
+		}
+		String temp = "";
+		for(int i = 0; i < num_zeros; i++){
+			temp = temp.concat("0");
+		}
+		System.out.println("Temp: " + temp);
+		bin = temp.concat(bin);
+		System.out.println("Bin: " + bin);
+		return bin;
+		
+	}
 }

@@ -30,6 +30,7 @@ public class Simulation {
 	/* By default all options are off */
 	protected boolean perishable_vehicles = false, evolution = false;
 	protected int gen_selection = 0; //genetic selection algorithm to use 0 - X are valid
+	protected int repro_method = 0; //reproduction method. 0 - 2 are valid
 
 	public Simulation(){
 		vehicles = new Vector<Vehicle>();
@@ -131,6 +132,9 @@ public class Simulation {
 			else if(name.equals("genetic_selection_method")){
 				this.setGeneticSelectionMethod(Integer.parseInt(node_value));
 			}
+			else if(name.equals("reproduction_method")){
+				this.setReproductionMethod(Integer.parseInt(node_value));
+			}
 			else break;
 		}
 	}
@@ -177,6 +181,10 @@ public class Simulation {
 		return this.gen_selection;
 	}
 
+	public int getReproductionMethod(){
+		return this.repro_method;
+	}
+	
 	public String getLastModified(){
 		return this.lastModified;
 	}
@@ -232,6 +240,10 @@ public class Simulation {
 		this.gen_selection = gen;
 	}
 
+	public void setReproductionMethod(int r){
+		this.repro_method = r;
+	}
+	
 	public void setLastModified(String timeStamp){
 		this.lastModified = timeStamp;
 	}

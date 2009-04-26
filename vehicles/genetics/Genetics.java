@@ -121,6 +121,9 @@ public class Genetics {
 	 * @return a vehicle chosen by roulette selection N times
 	 */
 	public static Vehicle getVehicleByTournament(Vector<Vehicle> v, int n){
+		if(n == 0){
+			return null;
+		}
 		Vehicle[] subset = new Vehicle[n];
 
 		for(int i = 0; i < n; i++){
@@ -138,20 +141,20 @@ public class Genetics {
 	public static Vehicle getVehicleByTop_N_Percent(Vector<Vehicle> v, int n){
 		int size = v.size();
 		//cant enter a number greater than 100..only goes up to 100%
-		if(n > 100){
+		if(n > 100 || n <= 0){
 			return  null;
 		}
 		System.out.println("Looking for vehicle in top " + n + " percent of vehicle population");
 		double topN = size * ((double)n/100);
-		//System.out.println("topN of pop: " + topN);		
+		System.out.println("topN of pop: " + topN);		
 		sortByFitness(v);
 	
 		int diff = (int)(size - topN);
 		int diff_minus = size - diff;
-		//System.out.println("Generating random number between 0 and " + (diff_minus - 1));
+		System.out.println("Generating random number between 0 and " + (diff_minus - 1));
 		Random r = new Random();
 		int ran = r.nextInt(diff_minus);
-		//System.out.println("Random number: " + ran);
+		System.out.println("Random number: " + ran);
 		return v.elementAt(ran + diff);
 	}
 
@@ -172,7 +175,11 @@ public class Genetics {
 	 */
 	public static Vehicle getVehicleByBest(Vehicle[] v){
 		Arrays.sort(v);
-		return v[v.length - 1];
+		for(int i = 0; i < v.length; i++){
+			System.out.println("" + v[i].getFitness());
+		}
+		System.out.println("Length: " + v.length);
+		return v[(v.length - 1)];
 	}
 	
 	/**
