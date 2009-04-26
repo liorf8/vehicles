@@ -54,7 +54,7 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="panel_SelectedVehicle" min="-2" max="-2" attributes="1"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="tabContainer" pref="410" max="32767" attributes="0"/>
+              <Component id="tabContainer" pref="420" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="button_Cancel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -133,13 +133,13 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="panel_Description" pref="230" max="32767" attributes="2"/>
-                          <Component id="panel_Name" alignment="0" pref="230" max="32767" attributes="2"/>
+                          <Component id="panel_Description" pref="229" max="32767" attributes="2"/>
+                          <Component id="panel_Name" alignment="0" pref="229" max="32767" attributes="2"/>
                           <Component id="panel_Author" alignment="1" max="32767" attributes="2"/>
                           <Component id="panel_LastModified" alignment="0" max="32767" attributes="2"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="panel_Appearance" pref="219" max="32767" attributes="2"/>
+                      <Component id="panel_Appearance" max="32767" attributes="2"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -149,13 +149,13 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="panel_Appearance" alignment="1" pref="363" max="32767" attributes="2"/>
+                          <Component id="panel_Appearance" alignment="1" pref="373" max="32767" attributes="2"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="panel_Name" min="-2" max="-2" attributes="1"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="panel_Author" min="-2" max="-2" attributes="1"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="panel_Description" pref="211" max="32767" attributes="2"/>
+                              <Component id="panel_Description" pref="221" max="32767" attributes="2"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="panel_LastModified" min="-2" max="-2" attributes="1"/>
                           </Group>
@@ -185,7 +185,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_Name" alignment="0" pref="218" max="32767" attributes="0"/>
+                      <Component id="text_Name" alignment="0" pref="217" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -218,7 +218,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_Author" alignment="0" pref="218" max="32767" attributes="0"/>
+                      <Component id="text_Author" alignment="0" pref="217" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -254,12 +254,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollpanel_Description" alignment="0" pref="218" max="32767" attributes="0"/>
+                      <Component id="scrollpanel_Description" alignment="0" pref="217" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollpanel_Description" alignment="0" pref="185" max="32767" attributes="0"/>
+                      <Component id="scrollpanel_Description" alignment="0" pref="195" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -306,7 +306,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_LastModified" alignment="0" pref="218" max="32767" attributes="0"/>
+                      <Component id="text_LastModified" alignment="0" pref="217" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -351,13 +351,13 @@
                       <Component id="panel_Red" alignment="0" max="32767" attributes="2"/>
                       <Component id="panel_Green" alignment="0" max="32767" attributes="2"/>
                       <Component id="panel_Blue" alignment="0" max="32767" attributes="2"/>
-                      <Component id="processing_Appearance" alignment="0" pref="207" max="32767" attributes="2"/>
+                      <Component id="processing_Appearance" alignment="0" pref="208" max="32767" attributes="2"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="processing_Appearance" pref="169" max="32767" attributes="0"/>
+                          <Component id="processing_Appearance" pref="179" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="panel_Red" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -396,7 +396,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Blue" pref="159" max="32767" attributes="0"/>
+                              <Component id="slider_Blue" pref="160" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Blue" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
@@ -446,7 +446,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Green" pref="159" max="32767" attributes="0"/>
+                              <Component id="slider_Green" pref="160" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Green" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
@@ -496,7 +496,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Red" pref="159" max="32767" attributes="0"/>
+                              <Component id="slider_Red" pref="160" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Red" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
@@ -540,7 +540,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Design">
+              <JTabbedPaneConstraints tabName="Sensors">
                 <Property name="tabTitle" type="java.lang.String" resourceKey="tab_Design.TabConstraints.tabTitle"/>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -549,34 +549,23 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="panel_RightSensor" max="32767" attributes="2"/>
-                          <Component id="panel_LeftSensor" alignment="0" max="32767" attributes="2"/>
-                      </Group>
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="panel_MotorStrength" max="32767" attributes="0"/>
-                          <Component id="panel_Aggression" alignment="1" max="32767" attributes="0"/>
+                          <Component id="panel_RightSensor" alignment="0" max="32767" attributes="2"/>
+                          <Component id="panel_LeftSensor" alignment="0" max="32767" attributes="2"/>
                       </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="panel_MotorStrength" alignment="0" max="32767" attributes="2"/>
-                          <Component id="panel_LeftSensor" alignment="0" max="32767" attributes="0"/>
-                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="panel_RightSensor" max="32767" attributes="0"/>
-                          <Component id="panel_Aggression" max="32767" attributes="2"/>
-                      </Group>
+                      <Component id="panel_LeftSensor" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="panel_RightSensor" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -641,14 +630,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Left_Light" alignment="1" pref="56" max="32767" attributes="0"/>
-                          <Component id="slider_Left_Light" alignment="0" pref="56" max="32767" attributes="0"/>
+                          <Component id="text_Left_Light" alignment="1" pref="94" max="32767" attributes="0"/>
+                          <Component id="slider_Left_Light" alignment="0" pref="94" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Left_Light" pref="102" max="32767" attributes="0"/>
+                              <Component id="slider_Left_Light" pref="107" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Left_Light" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -701,14 +690,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Left_Heat" alignment="0" pref="56" max="32767" attributes="0"/>
-                          <Component id="slider_Left_Heat" alignment="1" pref="56" max="32767" attributes="0"/>
+                          <Component id="text_Left_Heat" alignment="0" pref="98" max="32767" attributes="0"/>
+                          <Component id="slider_Left_Heat" alignment="1" pref="98" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Left_Heat" pref="102" max="32767" attributes="0"/>
+                              <Component id="slider_Left_Heat" pref="107" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Left_Heat" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -761,14 +750,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Left_Water" alignment="0" pref="56" max="32767" attributes="0"/>
-                          <Component id="slider_Left_Water" alignment="0" pref="56" max="32767" attributes="0"/>
+                          <Component id="text_Left_Water" alignment="0" pref="96" max="32767" attributes="0"/>
+                          <Component id="slider_Left_Water" alignment="0" pref="96" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Left_Water" pref="102" max="32767" attributes="0"/>
+                              <Component id="slider_Left_Water" pref="107" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Left_Water" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -821,14 +810,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Left_Power" alignment="0" pref="56" max="32767" attributes="0"/>
-                          <Component id="slider_Left_Power" alignment="0" pref="56" max="32767" attributes="0"/>
+                          <Component id="text_Left_Power" alignment="0" pref="97" max="32767" attributes="0"/>
+                          <Component id="slider_Left_Power" alignment="0" pref="97" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Left_Power" pref="102" max="32767" attributes="0"/>
+                              <Component id="slider_Left_Power" pref="107" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Left_Power" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -863,68 +852,6 @@
                     </Component>
                   </SubComponents>
                 </Container>
-              </SubComponents>
-            </Container>
-            <Container class="javax.swing.JPanel" name="panel_MotorStrength">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder justification="2" title="Motor Strength">
-                      <Property name="titleX" resourceKey="panel_MotorStrength.border.title"/>
-                      <Property name="font" resourceKey="panel_MotorStrength.border.titleFont"/>
-                    </TitledBorder>
-                  </Border>
-                </Property>
-                <Property name="toolTipText" type="java.lang.String" resourceKey="panel_MotorStrength.toolTipText"/>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[114, 0]"/>
-                </Property>
-                <Property name="name" type="java.lang.String" value="panel_MotorStrength" noResource="true"/>
-              </Properties>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_MotorStrength" alignment="0" pref="143" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="slider_MotorStrength" pref="133" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="slider_MotorStrength" pref="126" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="text_MotorStrength" min="-2" pref="20" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="javax.swing.JSlider" name="slider_MotorStrength">
-                  <Properties>
-                    <Property name="majorTickSpacing" type="int" value="10"/>
-                    <Property name="minorTickSpacing" type="int" value="2"/>
-                    <Property name="orientation" type="int" value="1"/>
-                    <Property name="paintLabels" type="boolean" value="true"/>
-                    <Property name="paintTicks" type="boolean" value="true"/>
-                    <Property name="name" type="java.lang.String" value="slider_MotorStrength" noResource="true"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="slider_MotorStrength_StateChanged"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JTextField" name="text_MotorStrength">
-                  <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
-                    <Property name="font" type="java.awt.Font" resourceKey="text_MotorStrength.font"/>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" resourceKey="text_MotorStrength.text"/>
-                    <Property name="name" type="java.lang.String" value="text_MotorStrength" noResource="true"/>
-                  </Properties>
-                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="panel_RightSensor">
@@ -982,14 +909,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Right_Light" alignment="1" pref="56" max="32767" attributes="0"/>
-                          <Component id="slider_Right_Light" alignment="0" pref="56" max="32767" attributes="0"/>
+                          <Component id="text_Right_Light" alignment="1" pref="124" max="32767" attributes="0"/>
+                          <Component id="slider_Right_Light" alignment="0" pref="124" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Right_Light" pref="102" max="32767" attributes="0"/>
+                              <Component id="slider_Right_Light" pref="107" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Right_Light" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1042,14 +969,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Right_Heat" alignment="0" pref="56" max="32767" attributes="0"/>
-                          <Component id="slider_Right_Heat" alignment="1" pref="56" max="32767" attributes="0"/>
+                          <Component id="text_Right_Heat" alignment="0" pref="88" max="32767" attributes="0"/>
+                          <Component id="slider_Right_Heat" alignment="1" pref="88" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Right_Heat" pref="102" max="32767" attributes="0"/>
+                              <Component id="slider_Right_Heat" pref="107" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Right_Heat" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1102,14 +1029,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Right_Water" alignment="0" pref="56" max="32767" attributes="0"/>
-                          <Component id="slider_Right_Water" alignment="0" pref="56" max="32767" attributes="0"/>
+                          <Component id="text_Right_Water" alignment="0" pref="87" max="32767" attributes="0"/>
+                          <Component id="slider_Right_Water" alignment="0" pref="87" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Right_Water" pref="102" max="32767" attributes="0"/>
+                              <Component id="slider_Right_Water" pref="107" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Right_Water" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1162,14 +1089,14 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="text_Right_Power" alignment="0" pref="56" max="32767" attributes="0"/>
-                          <Component id="slider_Right_Power" alignment="0" pref="56" max="32767" attributes="0"/>
+                          <Component id="text_Right_Power" alignment="0" pref="86" max="32767" attributes="0"/>
+                          <Component id="slider_Right_Power" alignment="0" pref="86" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="slider_Right_Power" pref="102" max="32767" attributes="0"/>
+                              <Component id="slider_Right_Power" pref="107" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="text_Right_Power" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1206,6 +1133,111 @@
                 </Container>
               </SubComponents>
             </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="tab_Attributes">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="tab_Attributes" noResource="true"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Attributes">
+                <Property name="tabTitle" type="java.lang.String" resourceKey="tab_Attributes.TabConstraints.tabTitle"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="panel_MotorStrength" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="panel_Aggression" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="panel_BatteryCapacity" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="panel_Aggression" alignment="1" max="32767" attributes="2"/>
+                          <Component id="panel_MotorStrength" alignment="0" max="32767" attributes="2"/>
+                          <Component id="panel_BatteryCapacity" alignment="0" max="32767" attributes="2"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="panel_MotorStrength">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder justification="2" title="Motor Strength">
+                      <Property name="titleX" resourceKey="panel_MotorStrength.border.title"/>
+                      <Property name="font" resourceKey="panel_MotorStrength.border.titleFont"/>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" resourceKey="panel_MotorStrength.toolTipText"/>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[114, 0]"/>
+                </Property>
+                <Property name="name" type="java.lang.String" value="panel_MotorStrength" noResource="true"/>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="text_MotorStrength" alignment="0" pref="102" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="slider_MotorStrength" pref="92" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="slider_MotorStrength" pref="321" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="text_MotorStrength" min="-2" pref="20" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JSlider" name="slider_MotorStrength">
+                  <Properties>
+                    <Property name="majorTickSpacing" type="int" value="10"/>
+                    <Property name="minorTickSpacing" type="int" value="2"/>
+                    <Property name="orientation" type="int" value="1"/>
+                    <Property name="paintLabels" type="boolean" value="true"/>
+                    <Property name="paintTicks" type="boolean" value="true"/>
+                    <Property name="name" type="java.lang.String" value="slider_MotorStrength" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="slider_MotorStrength_StateChanged"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="text_MotorStrength">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" resourceKey="text_MotorStrength.font"/>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" resourceKey="text_MotorStrength.text"/>
+                    <Property name="name" type="java.lang.String" value="text_MotorStrength" noResource="true"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
             <Container class="javax.swing.JPanel" name="panel_Aggression">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -1222,9 +1254,9 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_Aggression" alignment="0" pref="143" max="32767" attributes="0"/>
+                      <Component id="text_Aggression" alignment="0" pref="92" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="slider_Aggression" pref="133" max="32767" attributes="0"/>
+                          <Component id="slider_Aggression" pref="82" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1232,7 +1264,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="slider_Aggression" pref="127" max="32767" attributes="0"/>
+                          <Component id="slider_Aggression" pref="321" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="text_Aggression" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
@@ -1260,6 +1292,125 @@
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" resourceKey="text_Aggression.text"/>
                     <Property name="name" type="java.lang.String" value="text_Aggression" noResource="true"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="panel_BatteryCapacity">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder justification="2" title="Battery Capacity">
+                      <Property name="titleX" resourceKey="panel_BatteryCapacity.border.title"/>
+                      <Property name="font" resourceKey="panel_BatteryCapacity.border.titleFont"/>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" resourceKey="panel_BatteryCapacity.toolTipText"/>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[114, 0]"/>
+                </Property>
+                <Property name="name" type="java.lang.String" value="panel_BatteryCapacity" noResource="true"/>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="text_MaxBattery" alignment="0" pref="107" max="32767" attributes="2"/>
+                              <Component id="slider_MaxBattery" pref="107" max="32767" attributes="2"/>
+                              <Component id="label_MaxBattery" alignment="1" pref="107" max="32767" attributes="2"/>
+                          </Group>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="text_CurrentBattery" pref="100" max="32767" attributes="2"/>
+                              <Component id="slider_CurrentBattery" pref="100" max="32767" attributes="2"/>
+                              <Component id="label_CurrentBattery" alignment="0" pref="100" max="32767" attributes="2"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="label_MaxBattery" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="label_CurrentBattery" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="slider_CurrentBattery" pref="301" max="32767" attributes="2"/>
+                              <Component id="slider_MaxBattery" alignment="0" pref="301" max="32767" attributes="2"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="text_MaxBattery" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="text_CurrentBattery" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="label_MaxBattery">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" resourceKey="label_MaxBattery.text"/>
+                    <Property name="name" type="java.lang.String" value="label_MaxBattery" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSlider" name="slider_MaxBattery">
+                  <Properties>
+                    <Property name="majorTickSpacing" type="int" value="10"/>
+                    <Property name="minimum" type="int" value="10"/>
+                    <Property name="minorTickSpacing" type="int" value="2"/>
+                    <Property name="orientation" type="int" value="1"/>
+                    <Property name="paintLabels" type="boolean" value="true"/>
+                    <Property name="paintTicks" type="boolean" value="true"/>
+                    <Property name="name" type="java.lang.String" value="slider_MaxBattery" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="slider_MaxBattery_StateChanged"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="text_MaxBattery">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" resourceKey="text_MaxBattery.font"/>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" resourceKey="text_MaxBattery.text"/>
+                    <Property name="name" type="java.lang.String" value="text_MaxBattery" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="label_CurrentBattery">
+                  <Properties>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" resourceKey="label_CurrentBattery.text"/>
+                    <Property name="name" type="java.lang.String" value="label_CurrentBattery" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSlider" name="slider_CurrentBattery">
+                  <Properties>
+                    <Property name="majorTickSpacing" type="int" value="10"/>
+                    <Property name="minimum" type="int" value="10"/>
+                    <Property name="minorTickSpacing" type="int" value="2"/>
+                    <Property name="orientation" type="int" value="1"/>
+                    <Property name="paintLabels" type="boolean" value="true"/>
+                    <Property name="paintTicks" type="boolean" value="true"/>
+                    <Property name="name" type="java.lang.String" value="slider_CurrentBattery" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="slider_CurrentBattery_StateChanged"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="text_CurrentBattery">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="font" type="java.awt.Font" resourceKey="text_CurrentBattery.font"/>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" resourceKey="text_CurrentBattery.text"/>
+                    <Property name="name" type="java.lang.String" value="text_CurrentBattery" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>

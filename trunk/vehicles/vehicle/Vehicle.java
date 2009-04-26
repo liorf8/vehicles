@@ -25,8 +25,8 @@ public class Vehicle implements Comparable{
 	protected String vehicleDescription = null; //the description of this vehicle
 	protected String lastModified = null;
 	protected Vector<VehicleComponent> components; //components of the vehicle
-	protected double max_battery_capacity = 100; //maximum battery this vehicle can have
-	protected double curr_battery_capacity = 100;//current battery capacity
+	protected int max_battery_capacity = 100; //maximum battery this vehicle can have
+	protected int curr_battery_capacity = 100;//current battery capacity
 	protected int motorStrength = 0;
 	protected int aggression = 0;
 	protected VehicleColour vehicleColour = new VehicleColour();
@@ -274,19 +274,19 @@ public class Vehicle implements Comparable{
 		this.motorStrength = motorStrength;
 	}
 
-	public double getMaxBatteryCapacity() {
+	public int getMaxBatteryCapacity() {
 		return max_battery_capacity;
 	}
 
-	public void setMaxBatteryCapacity(double max_battery_capacity) {
+	public void setMaxBatteryCapacity(int max_battery_capacity) {
 		this.max_battery_capacity = max_battery_capacity;
 	}
 
-	public double getCurr_battery_capacity() {
+	public int getCurrentBatteryCapacity() {
 		return curr_battery_capacity;
 	}
 
-	public void setCurr_battery_capacity(double curr_battery_capacity) {
+	public void setCurrentBatteryCapacity(int curr_battery_capacity) {
 		this.curr_battery_capacity = curr_battery_capacity;
 	}
 
@@ -338,10 +338,10 @@ public class Vehicle implements Comparable{
 			this.setLastModified(lastModded.item(0).getChildNodes().item(0).getNodeValue());
 
 			NodeList maxBattery = dom.getElementsByTagName("max_battery_capacity");
-			this.setMaxBatteryCapacity(Double.parseDouble(maxBattery.item(0).getChildNodes().item(0).getNodeValue()));
+			this.setMaxBatteryCapacity(Integer.parseInt(maxBattery.item(0).getChildNodes().item(0).getNodeValue()));
 
 			NodeList currBattery = dom.getElementsByTagName("curr_battery_capacity");
-			this.setCurr_battery_capacity(Double.parseDouble(currBattery.item(0).getChildNodes().item(0).getNodeValue()));
+			this.setCurrentBatteryCapacity(Integer.parseInt(currBattery.item(0).getChildNodes().item(0).getNodeValue()));
 
 			NodeList motorStr = dom.getElementsByTagName("motorStrength");
 			this.setMotorStrength(Integer.parseInt(motorStr.item(0).getChildNodes().item(0).getNodeValue()));
