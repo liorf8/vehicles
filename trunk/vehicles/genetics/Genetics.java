@@ -144,17 +144,17 @@ public class Genetics {
 		if(n > 100 || n <= 0){
 			return  null;
 		}
-		System.out.println("Looking for vehicle in top " + n + " percent of vehicle population");
+		//System.out.println("Looking for vehicle in top " + n + " percent of vehicle population");
 		double topN = size * ((double)n/100);
-		System.out.println("topN of pop: " + topN);		
+		//System.out.println("topN of pop: " + topN);		
 		sortByFitness(v);
 	
 		int diff = (int)(size - topN);
 		int diff_minus = size - diff;
-		System.out.println("Generating random number between 0 and " + (diff_minus - 1));
+		//System.out.println("Generating random number between 0 and " + (diff_minus - 1));
 		Random r = new Random();
 		int ran = r.nextInt(diff_minus);
-		System.out.println("Random number: " + ran);
+		//System.out.println("Random number: " + ran);
 		return v.elementAt(ran + diff);
 	}
 
@@ -175,10 +175,9 @@ public class Genetics {
 	 */
 	public static Vehicle getVehicleByBest(Vehicle[] v){
 		Arrays.sort(v);
-		for(int i = 0; i < v.length; i++){
-			System.out.println("" + v[i].getFitness());
-		}
-		System.out.println("Length: " + v.length);
+		//for(int i = 0; i < v.length; i++){
+			//System.out.println("" + v[i].getFitness());
+		//}
 		return v[(v.length - 1)];
 	}
 	
