@@ -25,21 +25,6 @@ public class SimulationTest {
 		es.addVehicle("xml/vehicles/angry.veh");
 		es.setEnvironment("xml/environments/desert.env");
 		es.saveSimulation();
-
-		EditorSimulation sim = new EditorSimulation("xml/simulations/testsim.sim");
-		sim.printSimDetails();
-		sim.setXmlLocation("xml/simulations/testsimduplicate.sim");
-		sim.saveSimulation();
-		Vector<Vehicle> v= sim.getVehicles();
-		System.out.println("VEctor before sort");
-		for(int i = 0; i < v.size(); i++){
-			System.out.println("Fitness: " + v.elementAt(i).getFitness());
-		}
-		Collections.sort(v);
-		System.out.println("VEctor after sort");
-		for(int i = 0; i < v.size(); i++){
-			System.out.println("Fitness: " + v.elementAt(i).getFitness());
-		}
 	}
 
 
