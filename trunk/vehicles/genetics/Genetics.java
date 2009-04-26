@@ -107,10 +107,10 @@ public class Genetics {
 		//System.out.println("Random Number: " + random);
 		for(i = 0; i < percent.length; i++){
 			if(random <= percent[i]){
-				break;
+				return v.elementAt(i);
 			}
 		}
-		return v.elementAt(i);
+		return v.lastElement();
 	}
 
 
