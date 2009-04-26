@@ -4,6 +4,11 @@ import com.mallardsoft.tuple.*;
 import vehicles.environment.*;
 import java.util.Vector;
 
+import org.apache.xerces.dom.DocumentImpl;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Text;
+
 
 /**
  * This classed is used by vehicle objects. 
@@ -18,6 +23,9 @@ public class MemoryUnit {
 	private Vector<Quintuple<Double, Double, Integer, String, Integer>> temp_memory; 
 	private int time_to_learn, max;
 
+	Document  xmldoc; //the XML document we are creating, stored as an object in memory
+	Element root;//the root element of the document
+
 
 	/**
 	 * Constructor for new memory units
@@ -28,6 +36,8 @@ public class MemoryUnit {
 		this.max = 50; //max amount of items to remember
 		real_memory = new Vector<Quadruple<Double, Double, String, Integer>>();
 		temp_memory = new Vector<Quintuple<Double, Double, Integer, String, Integer>>();
+		xmldoc= new DocumentImpl();
+		root = xmldoc.createElement("memory");
 	}
 
 	/**
@@ -49,6 +59,8 @@ public class MemoryUnit {
 		}
 		real_memory = new Vector<Quadruple<Double, Double, String, Integer>>();
 		temp_memory = new Vector<Quintuple<Double, Double, Integer, String, Integer>>();
+		xmldoc= new DocumentImpl();
+		root = xmldoc.createElement("memory");
 	}
 
 	public void resetMem(){
@@ -63,15 +75,15 @@ public class MemoryUnit {
 	public void setLearningRate(int l){
 		this.time_to_learn = l;
 	}
-	
+
 	public int getLearningRate(){
 		return this.time_to_learn;
 	}
-	
+
 	public int getMaxMem(){
 		return this.max;
 	}
-	
+
 	/**
 	 * a method to check if the vehicle remembers an element at the specified co-ordinates
 	 * @param xPos The xPos of the element to check
@@ -91,7 +103,7 @@ public class MemoryUnit {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * return the type of the element remebered at the specified co ordinates
 	 * @param xPos The xpos of the element
@@ -110,7 +122,7 @@ public class MemoryUnit {
 		}
 		return EnvironmentElement.NotSet;
 	}
-	
+
 
 	/**
 	 * Method to add an element into memory
@@ -150,7 +162,7 @@ public class MemoryUnit {
 		}
 		this.temp_memory.add(Tuple.from(el_xPos, el_yPos, e.getType(), e.getName(), 1));
 	}
-	
+
 	/**
 	 * Print details about all items in memory
 	 *
@@ -170,9 +182,29 @@ public class MemoryUnit {
 		System.out.println(len + " elements in memory");
 	}
 
+	/*XML geneneration*/
+	/**
+	 * Write an element into an XML file
+	 * @param elemName The name of the attribute
+	 * @param elemValue The value for this attribute
+	 * @param xmldoc The document to write into
+	 */
+	public void writeXMLEntry(String elemName, String elemValue, Document xmldoc){
+		Element nameElement = xmldoc.createElement(elemName);
+		Text nameText = xmldoc.createTextNode(elemValue);
+		nameElement.appendChild(nameText);//add in the text to the element
+		root.appendChild(nameElement);//and add this new element to the document
+	}
 
-
-
-
-
+	/**
+	 * Finalise and return the xml tree of this VehicleColour
+	 * @return the root element of this VehicleColour's xml tree
+	 */
+	public Element getRootElement(){
+		this.writeXMLEntry("max", Integer.toString(this.max), xmldoc);
+		this.writeXMLEntry("learnrate",Integer.toString(this.time_to_learn) , xmldoc);
+		
+		xmldoc.appendChild(root);
+		return root;
+	}
 }

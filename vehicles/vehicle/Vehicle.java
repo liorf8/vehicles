@@ -32,7 +32,7 @@ public class Vehicle implements Comparable{
 	protected VehicleColour vehicleColour = new VehicleColour();
 	public MemoryUnit mu = null;
 	protected int max_mem = 0, learning_rate = 0;
-	
+
 
 
 	/**
@@ -78,11 +78,11 @@ public class Vehicle implements Comparable{
 	public int getMaxMem(){
 		return this.max_mem;
 	}
-	
+
 	public int getLearningRate(){
 		return this.learning_rate;
 	}
-	
+
 	public String getAuthor() {
 		return vehicleAuthor;
 	}
@@ -374,25 +374,26 @@ public class Vehicle implements Comparable{
 			NodeList lastModded = dom.getElementsByTagName("LastModified");
 			this.setLastModified(lastModded.item(0).getChildNodes().item(0).getNodeValue());
 
-			NodeList maxBattery = dom.getElementsByTagName("max_battery_capacity");
-			this.setMaxBatteryCapacity(Integer.parseInt(maxBattery.item(0).getChildNodes().item(0).getNodeValue()));
-
-			NodeList currBattery = dom.getElementsByTagName("curr_battery_capacity");
-			this.setCurrentBatteryCapacity(Integer.parseInt(currBattery.item(0).getChildNodes().item(0).getNodeValue()));
 
 			//if these entries are not in the xml file, default values will be kept
 			try{
-				NodeList max_memory = dom.getElementsByTagName("maximum_memory");
-				this.setMaxMem(Integer.parseInt(max_memory.item(0).getChildNodes().item(0).getNodeValue()));
-			}
-			catch(Exception e){}
+				NodeList memory_units = dom.getElementsByTagName("memory");
+				//get the two entryies in this xml type
+				Node firstEntry = memory_units.item(0).getChildNodes().item(1).getFirstChild();
+				Node secondEntry = memory_units.item(0).getChildNodes().item(3).getFirstChild();
 
-			try{
-				NodeList learning_rate = dom.getElementsByTagName("learning_rate");
-				this.setLearningRate(Integer.parseInt(learning_rate.item(0).getChildNodes().item(0).getNodeValue()));
+				if(firstEntry.getParentNode().getNodeName().contains("max")){
+					this.mu.setMaxMem(Integer.parseInt(firstEntry.getNodeValue()));
+					this.mu.setLearningRate(Integer.parseInt(secondEntry.getNodeValue()));
+				}else{ //other node is the max
+					this.mu.setMaxMem(Integer.parseInt(secondEntry.getNodeValue()));
+					this.mu.setLearningRate(Integer.parseInt(firstEntry.getNodeValue()));
+				}
 			}
-			catch(Exception e){}
+			catch(Exception e){e.printStackTrace();}
+
 			
+
 			//if the above two failed, these will be defaults
 			this.max_mem = this.mu.getMaxMem();
 			this.learning_rate = this.mu.getLearningRate();
