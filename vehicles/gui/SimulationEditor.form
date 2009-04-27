@@ -39,7 +39,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="text_Status" pref="425" max="32767" attributes="0"/>
+                      <Component id="text_Status" pref="359" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="button_Save" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -48,7 +48,7 @@
                       <Component id="button_Cancel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="panel_SelectedSimulation" alignment="0" max="32767" attributes="0"/>
-                  <Component id="tabContainer" alignment="1" pref="666" max="32767" attributes="0"/>
+                  <Component id="tabContainer" alignment="1" pref="600" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -60,7 +60,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="panel_SelectedSimulation" min="-2" max="-2" attributes="1"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="tabContainer" pref="488" max="32767" attributes="0"/>
+              <Component id="tabContainer" pref="455" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="button_Cancel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -90,7 +90,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="dropdown_SelectedSimulation" alignment="0" pref="654" max="32767" attributes="0"/>
+              <Component id="dropdown_SelectedSimulation" alignment="0" pref="588" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -188,7 +188,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_Name" alignment="0" pref="305" max="32767" attributes="0"/>
+                      <Component id="text_Name" alignment="0" pref="267" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -223,7 +223,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="panel_Evolution" pref="311" max="32767" attributes="0"/>
+                          <Component id="panel_Evolution" pref="280" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="panel_PerishableVehicles" max="32767" attributes="0"/>
                       </Group>
@@ -267,7 +267,7 @@
                                       <Component id="radio_Evolution_On" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="radio_Evolution_Off" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="213" max="32767" attributes="0"/>
+                                      <EmptySpace pref="182" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -277,9 +277,9 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="dropdown_GeneticSelectionMethod" alignment="0" pref="160" max="32767" attributes="1"/>
-                                          <Component id="dropdown_ReproductionMethod" alignment="0" pref="160" max="32767" attributes="1"/>
-                                          <Component id="text_GeneticSelectionN" alignment="0" pref="160" max="32767" attributes="0"/>
+                                          <Component id="dropdown_GeneticSelectionMethod" alignment="0" pref="129" max="32767" attributes="1"/>
+                                          <Component id="dropdown_ReproductionMethod" alignment="0" pref="129" max="32767" attributes="1"/>
+                                          <Component id="text_GeneticSelectionN" alignment="0" pref="129" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -420,7 +420,7 @@
                               <Component id="radio_Perishable_On" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                               <Component id="radio_Perishable_Off" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="213" max="32767" attributes="0"/>
+                              <EmptySpace pref="178" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -476,12 +476,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollpanel_Description" alignment="0" pref="629" max="32767" attributes="0"/>
+                      <Component id="scrollpanel_Description" alignment="0" pref="563" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollpanel_Description" alignment="0" pref="157" max="32767" attributes="0"/>
+                      <Component id="scrollpanel_Description" alignment="0" pref="124" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -526,7 +526,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_Author" alignment="0" pref="306" max="32767" attributes="0"/>
+                      <Component id="text_Author" alignment="0" pref="278" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -560,7 +560,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_LastModified" alignment="0" pref="629" max="32767" attributes="0"/>
+                      <Component id="text_LastModified" alignment="0" pref="563" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -642,14 +642,14 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" alignment="0" pref="200" max="32767" attributes="0"/>
-                      <Component id="scrollpanel_AvailableVehicles" alignment="0" pref="200" max="32767" attributes="0"/>
+                      <Component id="jLabel1" alignment="0" pref="185" max="32767" attributes="0"/>
+                      <Component id="scrollpanel_AvailableVehicles" alignment="0" pref="185" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="scrollpanel_AvailableVehicles" pref="395" max="32767" attributes="0"/>
+                          <Component id="scrollpanel_AvailableVehicles" pref="362" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" pref="14" max="-2" attributes="0"/>
                       </Group>
@@ -674,6 +674,9 @@
                         </Property>
                         <Property name="name" type="java.lang.String" value="list_AvailableVehicles" noResource="true"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="list_AvailableVehiclesValueChanged"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -697,10 +700,10 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="button_AddVehicle" alignment="0" pref="187" max="32767" attributes="0"/>
-                              <Component id="button_AddAllVehicle" alignment="0" pref="187" max="32767" attributes="0"/>
-                              <Component id="button_RemoveVehicle" alignment="0" pref="187" max="32767" attributes="0"/>
-                              <Component id="button_RemoveAllVehicle" alignment="1" pref="187" max="32767" attributes="0"/>
+                              <Component id="button_AddVehicle" alignment="0" pref="157" max="32767" attributes="0"/>
+                              <Component id="button_AddAllVehicle" alignment="0" pref="157" max="32767" attributes="0"/>
+                              <Component id="button_RemoveVehicle" alignment="0" pref="157" max="32767" attributes="0"/>
+                              <Component id="button_RemoveAllVehicle" alignment="1" pref="157" max="32767" attributes="0"/>
                               <Component id="panel_VehiclePreview" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -778,16 +781,48 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="processing_VehiclePreview" alignment="0" pref="175" max="32767" attributes="0"/>
+                          <Component id="processing_VehiclePreview" alignment="0" pref="145" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" pref="145" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="processing_VehiclePreview" alignment="0" pref="243" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jScrollPane1" min="-2" pref="99" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="processing_VehiclePreview" pref="105" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+                      <Properties>
+                        <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+                        <Property name="name" type="java.lang.String" value="jScrollPane1" noResource="true"/>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTextArea" name="jTextArea1">
+                          <Properties>
+                            <Property name="columns" type="int" value="20"/>
+                            <Property name="editable" type="boolean" value="false"/>
+                            <Property name="font" type="java.awt.Font" resourceKey="jTextArea1.font"/>
+                            <Property name="lineWrap" type="boolean" value="true"/>
+                            <Property name="rows" type="int" value="5"/>
+                            <Property name="wrapStyleWord" type="boolean" value="true"/>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="null"/>
+                            </Property>
+                            <Property name="name" type="java.lang.String" value="jTextArea1" noResource="true"/>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
                     <Container class="javax.swing.JPanel" name="processing_VehiclePreview">
                       <Properties>
                         <Property name="background" type="java.awt.Color" resourceKey="processing_VehiclePreview.background"/>
@@ -819,12 +854,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollpanel_SelectedVehicles" alignment="0" pref="198" max="32767" attributes="0"/>
+                      <Component id="scrollpanel_SelectedVehicles" alignment="1" pref="177" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollpanel_SelectedVehicles" alignment="0" pref="415" max="32767" attributes="0"/>
+                      <Component id="scrollpanel_SelectedVehicles" alignment="0" pref="382" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -889,7 +924,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="panel_AvailableEnvironments" alignment="1" pref="441" max="32767" attributes="0"/>
+                          <Component id="panel_AvailableEnvironments" alignment="1" pref="408" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="panel_SelectedEnvironment" min="-2" max="-2" attributes="1"/>
@@ -934,7 +969,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="scrollpanel_AvailableEnvironments" pref="395" max="32767" attributes="0"/>
+                          <Component id="scrollpanel_AvailableEnvironments" pref="362" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" pref="14" max="-2" attributes="0"/>
                       </Group>
@@ -988,7 +1023,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollpanel_SelectedEnvironment" alignment="0" pref="280" max="32767" attributes="0"/>
+                      <Component id="scrollpanel_SelectedEnvironment" alignment="0" pref="214" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -1079,12 +1114,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="processing_EnvironmentPreview" alignment="0" pref="411" max="32767" attributes="0"/>
+                      <Component id="processing_EnvironmentPreview" alignment="0" pref="345" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="processing_EnvironmentPreview" alignment="1" pref="363" max="32767" attributes="0"/>
+                      <Component id="processing_EnvironmentPreview" alignment="1" pref="330" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
