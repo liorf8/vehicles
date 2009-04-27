@@ -40,20 +40,20 @@ public class MemoryTest {
 		Vector<EnvironmentElement> els = e.getElements();
 		EnvironmentElement ee = els.elementAt(0);
 		for(int i = 0; i < 100; i++){
-			veh.mu.addElement(ee);
+			veh.addElementToMemory(ee);
 		}
 
 		//Testing if environment in memory
 		System.out.println("Remebers element at (" + ee.getXpos() + "," + ee.getYpos() + ")" + 
-				veh.mu.remembersElementAt(ee.getXpos(), ee.getYpos()));
+				veh.remembersElementAt(ee.getXpos(), ee.getYpos()));
 
 		//testing getting environment xpos, ypos and type
-		System.out.println("Element is of type: " + veh.mu.getTypeOfElementAt(ee.getXpos(), ee.getYpos()));
+		System.out.println("Element is of type: " + veh.getTypeOfElementAt(ee.getXpos(), ee.getYpos()));
 
 		//Testing memory deletion
-		veh.mu.resetMem();
+		veh.resetMemory();
 		System.out.println("Remebers element at (" + ee.getXpos() + "," + ee.getYpos() + ")" + 
-				veh.mu.remembersElementAt(ee.getXpos(), ee.getYpos()));
+				veh.remembersElementAt(ee.getXpos(), ee.getYpos()));
 
 		//Testing adding many many things in memory
 		Environment crazyEnv = new Environment("xml/environments/crazy.env");
@@ -61,10 +61,10 @@ public class MemoryTest {
 		for(int i = 0; i < crazy_el.size(); i++){
 			EnvironmentElement cr = crazy_el.elementAt(i);
 			for(int j = 0; j < 100; j++){
-				veh.mu.addElement(cr);
+				veh.addElementToMemory(cr);
 			}
 		}
-		veh.mu.printMemory();
+		veh.printMemory();
 
 		Vehicle angry = new Vehicle("xml/vehicles/angry.veh");
 		System.out.println("Angry vehicle max mem: " + angry.getMaxMem());
@@ -113,10 +113,10 @@ public class MemoryTest {
 		for(int i = 0; i < crazy_el.size(); i++){
 			EnvironmentElement cr = crazy_el.elementAt(i);
 			for(int j = 0; j < 100; j++){
-				veh.mu.addElement(cr);
+				veh.addElementToMemory(cr);
 			}
 		}
-		veh.mu.printMemory();
+		veh.printMemory();
 
 
 	}
