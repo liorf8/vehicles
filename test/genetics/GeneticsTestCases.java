@@ -98,6 +98,11 @@ public class GeneticsTestCases {
 		child = Genetics.asexualReproduction(parentA, sim.log);
 		child.printDetails();
 
+		child = Genetics.produceVehicleAsexually(sim.getGeneticSelectionMethod(), sim.getN(), sim.getVehicles(), sim.log);
+		if(child != null){
+			child.printDetails();
+		}
+		
 		System.out.println(sim.log.getLog());
 
 
