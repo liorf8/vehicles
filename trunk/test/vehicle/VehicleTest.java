@@ -1,8 +1,4 @@
 package test.vehicle;
-import java.util.Vector;
-
-import vehicles.environment.Environment;
-import vehicles.environment.EnvironmentElement;
 import vehicles.vehicle.*;
 
 

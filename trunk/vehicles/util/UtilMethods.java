@@ -1,6 +1,9 @@
 package vehicles.util;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
 import vehicles.vehicle.*;
 import vehicles.environment.Environment;
@@ -78,5 +81,11 @@ public class UtilMethods {
         s = s.toLowerCase();
         s = s.replaceAll("[^a-z0-9]", "");
 		return s;
+	}
+	
+	public static String getTimeStamp(){
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		Date date = new Date();
+		return dateFormat.format(date);
 	}
 }

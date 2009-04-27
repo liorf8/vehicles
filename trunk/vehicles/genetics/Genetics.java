@@ -8,11 +8,9 @@ import java.util.Arrays;
 import java.util.Vector;
 import java.util.Collections;
 
-import vehicles.vehicle.MemoryUnit;
 import vehicles.vehicle.Vehicle;
-import vehicles.vehicle.VehicleBattery;
-import vehicles.vehicle.VehicleColour;
-import vehicles.vehicle.VehicleComponent;
+import vehicles.simulation.*;
+import vehicles.util.*;
 
 /**
  * A class containing only static methods. To be used when the simulation is running to 
@@ -63,21 +61,21 @@ public class Genetics {
 	 * @param v A vehicle array to extract a single vehicle from
 	 * @param n This is for some of the genetic algorithms that require user input such as topNselection
 	 */ 
-	public static Vehicle getVehicle_SelectionBased(int gen_selection, Vector<Vehicle> v, int n){
+	public static Vehicle getVehicle_SelectionBased(int gen_selection, Vector<Vehicle> v, int n, SimulationLog s){
 		switch(gen_selection){
 		case 0:
 			System.out.println("No genetic selection method set! Returning null");
 			return null;
 		case 1:
-			return getVehicleByRoulette(v);
+			return getVehicleByRoulette(v, s);
 		case 2:
-			return getVehicleByTournament(v, n);
+			return getVehicleByTournament(v, n, s);
 		case 3:
-			return getVehicleByTop_N_Percent(v, n);
+			return getVehicleByTop_N_Percent(v, n, s);
 		case 4:
-			return getVehicleByBest(v);
+			return getVehicleByBest(v, s);
 		case 5:
-			return getVehicleByRandom(v);
+			return getVehicleByRandom(v, s);
 		default:
 			return null;
 		}
@@ -92,7 +90,9 @@ public class Genetics {
 	 * 
 	 * @return a vehicle chosen by roulette selection
 	 */
-	public static Vehicle getVehicleByRoulette(Vector<Vehicle> v){
+	public static Vehicle getVehicleByRoulette(Vector<Vehicle> v,  SimulationLog s){
+		s.addToLog(UtilMethods.getTimeStamp());
+		s.addToLog("Choosing vehicle by Roulette Selection.");
 		int len = v.size();
 		sortByFitness(v);
 		int i = 0;
@@ -118,6 +118,7 @@ public class Genetics {
 				return v.elementAt(i);
 			}
 		}
+		s.addToLog("Vehicle " + v.lastElement().getName() + " chosen by Roulette Selection");
 		return v.lastElement();
 	}
 
@@ -128,16 +129,22 @@ public class Genetics {
 	 * is then chosen as the selected vehicle to be the base for the next generation.
 	 * @return a vehicle chosen by roulette selection N times
 	 */
-	public static Vehicle getVehicleByTournament(Vector<Vehicle> v, int n){
+	public static Vehicle getVehicleByTournament(Vector<Vehicle> v, int n,  SimulationLog s){
+		s.addToLog(UtilMethods.getTimeStamp());
+		s.addToLog("Choosing vehicle by Tournament Selection. For this run a subset of the population\n" +
+				"of size " + n + " will be created using roulette selection " + n + " times and the\n" +
+						"best vehicle in this subset will be returned." );
 		if(n == 0){
 			return null;
 		}
 		Vehicle[] subset = new Vehicle[n];
 
 		for(int i = 0; i < n; i++){
-			subset[i] = getVehicleByRoulette(v);
+			subset[i] = getVehicleByRoulette(v, s);
 		}
-		return getVehicleByBest(subset);
+		Vehicle temp = getVehicleByBest(subset);
+		s.addToLog("Vehicle " + temp.getName() + " chosen by Tournament Selection");
+		return temp;
 	}
 
 
@@ -146,7 +153,9 @@ public class Genetics {
 	 * N percent of the population as specified by the user.
 	 * @return a vehicle chosen from the top N percent
 	 */
-	public static Vehicle getVehicleByTop_N_Percent(Vector<Vehicle> v, int n){
+	public static Vehicle getVehicleByTop_N_Percent(Vector<Vehicle> v, int n,  SimulationLog s){
+		s.addToLog(UtilMethods.getTimeStamp());
+		s.addToLog("Choosing a vehicle from the top " +  n + " percent of the population.");
 		int size = v.size();
 		//cant enter a number greater than 100..only goes up to 100%
 		if(n > 100 || n <= 0){
@@ -163,7 +172,10 @@ public class Genetics {
 		Random r = new Random();
 		int ran = r.nextInt(diff_minus);
 		//System.out.println("Random number: " + ran);
-		return v.elementAt(ran + diff);
+		Vehicle temp = v.elementAt(ran + diff);
+		s.addToLog("Vehicle " + temp.getName() + " chosen as a vehicle from the top " + n + 
+				" percent of the population");
+		return temp;
 	}
 
 	/**
@@ -171,8 +183,11 @@ public class Genetics {
 	 * @param A vector of vehicles to choose the best from
 	 * @return the best vehicle in the set of vehicles
 	 */
-	public static Vehicle getVehicleByBest(Vector<Vehicle> v){
+	public static Vehicle getVehicleByBest(Vector<Vehicle> v,  SimulationLog s){
+		s.addToLog(UtilMethods.getTimeStamp());
+		s.addToLog("Choosing the best vehicle from the population in terms of fitness.");
 		sortByFitness(v);
+		s.addToLog("Vehicle " + v.lastElement().getName() + " chosen as the Best\nVehicle in the population.");
 		return v.lastElement();
 	}
 
@@ -193,10 +208,13 @@ public class Genetics {
 	 * A selection operator which randomly selects a single vehicle from the population.
 	 * @return a random vehicle from the set of vehicles
 	 */
-	public static Vehicle getVehicleByRandom(Vector<Vehicle> v){
+	public static Vehicle getVehicleByRandom(Vector<Vehicle> v,  SimulationLog s){
+		s.addToLog(UtilMethods.getTimeStamp());
+		s.addToLog("Choosing a random vehicle from the population.");
 		Random ran = new Random();
 		int num_veh = v.size();
 		int random = ran.nextInt(num_veh);
+		s.addToLog("Vehicle " + v.elementAt(random).getName() + " chosen by random from the population.");
 		return v.elementAt(random);
 	}
 
@@ -273,9 +291,12 @@ public class Genetics {
 		return fin;
 	}
 
-	public static Vehicle pairedMating(Vehicle parentA, Vehicle parentB){
+	public static Vehicle pairedMating(Vehicle parentA, Vehicle parentB,  SimulationLog s){
+		s.addToLog(UtilMethods.getTimeStamp());
+		s.addToLog("Creating a vehicle by paired mating of " + parentA.getName() + " and " + parentB.getName());
 		Vehicle child = new Vehicle();
 		String name = "Offspring of "+ parentA.getName() + " and " + parentB.getName();
+		s.addToLog("New vehicle name: " + name);
 		child.setName(name);
 		child.setAuthor(name);
 		child.setDescription(name);
@@ -283,11 +304,11 @@ public class Genetics {
 		//These will be set for an editor vehicle if we go down that path
 		//For an object in memory alone, null is fine for these
 		child.setXmlLocation("src/test/genetics/tmp/" + name);
+		s.addToLog("New vehicle temporarily stored in: " + child.getXmlLocation());
 		child.setFileName(name);
 		
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		Date date = new Date();
-		child.setLastModified(dateFormat.format(date));
+		
+		child.setLastModified(UtilMethods.getTimeStamp());
 		
 		//Set the battery
 		setBattery(child, parentA, parentB);
@@ -516,5 +537,4 @@ public class Genetics {
 		bin = temp.concat(bin);
 		return bin;
 	}
-
 }

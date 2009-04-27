@@ -1,6 +1,7 @@
 package vehicles.simulation;
 import vehicles.vehicle.*;
 import vehicles.environment.*;
+import vehicles.util.*;
 import java.io.*;
 import java.util.Iterator;
 import org.w3c.dom.Document;
@@ -80,10 +81,9 @@ public class EditorSimulation extends Simulation{
 	 * Add The Last Modified Time Stamp to the Simulation's document
 	 */
 	public void addLastModified(){
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		Date date = new Date();
-		writeXMLEntry("LastModified", dateFormat.format(date), xmldoc);
-		this.setLastModified(dateFormat.format(date));
+		String t = UtilMethods.getTimeStamp();
+		writeXMLEntry("LastModified", t, xmldoc);
+		this.setLastModified(t);
 	}
 
 	/**
@@ -149,6 +149,8 @@ public class EditorSimulation extends Simulation{
 			this.addInteger("genetic_selection_method", this.gen_selection);
 			//Add Reproduction Method
 			this.addInteger("reproduction_method", this.repro_method);
+			//add N for genetic selection
+			this.addInteger("n_for_selection", this.n);
 
 			xmldoc.appendChild(root); //finalise the XML document
 			/*Now take the file in RAM and write it out to disk*/

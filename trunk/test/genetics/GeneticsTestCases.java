@@ -25,7 +25,7 @@ public class GeneticsTestCases {
 		Vehicle temp;
 
 		//Tester for best vehicle in the population
-		temp = Genetics.getVehicleByBest(v);
+		temp = Genetics.getVehicleByBest(v, sim.log);
 		if(temp != null){
 			System.out.println("Best vehicles fitness: " + temp.getFitness());
 			System.out.println("Filepath: " + temp.getXmlLocation());
@@ -36,7 +36,7 @@ public class GeneticsTestCases {
 		//Tester for random vehicle in the population.
 		//Run n times to check random generator seed is good
 		for(int i = 0; i < 10; i++){
-			temp = Genetics.getVehicleByRandom(v);
+			temp = Genetics.getVehicleByRandom(v, sim.log);
 			if(temp != null){
 				System.out.println("Random vehicles fitness: " + temp.getFitness());
 				System.out.println("Filepath: " + temp.getXmlLocation());
@@ -48,7 +48,7 @@ public class GeneticsTestCases {
 		//Tester for getting a vehicle by roulette
 		//Run n times to check it works properly
 		for(int i = 0; i < 10; i++){
-			temp = Genetics.getVehicleByRoulette(v);
+			temp = Genetics.getVehicleByRoulette(v, sim.log);
 			if(temp != null){
 				System.out.println("Roulette vehicles fitness: " + temp.getFitness());
 				System.out.println("Filepath: " + temp.getXmlLocation());
@@ -60,7 +60,7 @@ public class GeneticsTestCases {
 		//Tester for getting a vehicle by tournament
 		//Run n times to check it works properly with n being random between 1 and 100 each time
 		for(int i = 0; i < 10; i++){
-			temp = Genetics.getVehicleByTournament(v, r.nextInt(101));
+			temp = Genetics.getVehicleByTournament(v, r.nextInt(101), sim.log);
 			if(temp != null){
 				System.out.println("Tournament vehicles fitness: " + temp.getFitness());
 				System.out.println("Filepath: " + temp.getXmlLocation());
@@ -73,7 +73,7 @@ public class GeneticsTestCases {
 		//Tester for getting a vehicle by topNPercent
 		//Run n times to check it works properly with n being random between 1 and 100 each time
 		for(int i = 0; i < 10; i++){
-			temp = Genetics.getVehicleByTop_N_Percent(v, r.nextInt(101));
+			temp = Genetics.getVehicleByTop_N_Percent(v, r.nextInt(101), sim.log);
 			if( temp != null){
 				System.out.println("TopNPercent vehicles fitness: " + temp.getFitness());
 				System.out.println("Filepath: " + temp.getXmlLocation());
@@ -88,14 +88,15 @@ public class GeneticsTestCases {
 		parentA.printDetails();
 		System.out.println("\nParent B specs:");
 		parentB.printDetails();
-		Vehicle child = Genetics.pairedMating(parentA, parentB);
+		Vehicle child = Genetics.pairedMating(parentA, parentB, sim.log);
 		System.out.println("\nChild specs:");
 		child.printDetails();
 		child.saveVehicle();
 		
 		parentA = new Vehicle("xml/vehicles/angry.veh");
 		parentB = new Vehicle("xml/vehicles/hungry.veh");
-		child = Genetics.pairedMating(parentA, parentB);
+		child = Genetics.pairedMating(parentA, parentB, sim.log);
+		System.out.println(sim.log.getLog());
 		child.saveVehicle();
 		
 	}
