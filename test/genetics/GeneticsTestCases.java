@@ -79,9 +79,9 @@ public class GeneticsTestCases {
 				System.out.println("Filepath: " + temp.getXmlLocation());
 			}
 		}
-		
+
 		System.out.println("\n\nTesting Paired Mating \n\n");
-		
+
 		Vehicle parentA = new Vehicle("xml/vehicles/angry.veh");
 		Vehicle parentB = new Vehicle("xml/vehicles/stoner.veh");
 		System.out.println("Parent A specs:");
@@ -92,12 +92,23 @@ public class GeneticsTestCases {
 		System.out.println("\nChild specs:");
 		child.printDetails();
 		child.saveVehicle();
-		
+
 		parentA = new Vehicle("xml/vehicles/angry.veh");
 		parentB = new Vehicle("xml/vehicles/hungry.veh");
 		child = Genetics.pairedMating(parentA, parentB, sim.log);
+
+		//Testing asexual reproduction
+		child = Genetics.asexualReproduction(parentA, sim.log);
+		child.printDetails();
+
+
+
+
+
+
 		System.out.println(sim.log.getLog());
-		child.saveVehicle();
-		
+
+
+
 	}
 }
