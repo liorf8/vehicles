@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Vehicle>
+    <name>Offspring of Angry Vehicle and Stoner Vehicle</name>
+    <author>Offspring of Angry Vehicle and Stoner Vehicle</author>
+    <description>Offspring of Angry Vehicle and Stoner Vehicle</description>
+    <LastModified>27/04/2009 14:26:01</LastModified>
+    <motorStrength>72</motorStrength>
+    <aggression>45</aggression>
+    <Colour>
+        <red>127</red>
+        <green>222</green>
+        <blue>22</blue>
+    </Colour>
+    <memory>
+        <max>34</max>
+        <learnrate>16</learnrate>
+    </memory>
+    <battery>
+        <max>100</max>
+        <current>100</current>
+    </battery>
+    <VehicleComponent>
+        <type>LEFT</type>
+        <LeftSensorHeat>26</LeftSensorHeat>
+        <LeftSensorLight>23</LeftSensorLight>
+        <LeftSensorPower>50</LeftSensorPower>
+        <LeftSensorWater>27</LeftSensorWater>
+    </VehicleComponent>
+    <VehicleComponent>
+        <type>RIGHT</type>
+        <RightSensorHeat>27</RightSensorHeat>
+        <RightSensorLight>-44</RightSensorLight>
+        <RightSensorPower>-28</RightSensorPower>
+        <RightSensorWater>-24</RightSensorWater>
+    </VehicleComponent>
+</Vehicle>

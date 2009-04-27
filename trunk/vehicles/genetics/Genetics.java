@@ -240,6 +240,8 @@ public class Genetics {
 	/																							\
 	/*******************************************************************************************/
 	
+	
+	////////////////////////////////     Paired Mating     \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 	/**
 	 * A method that takes in two integers and using a binary crossover and mutation algorithm
@@ -303,7 +305,7 @@ public class Genetics {
 		
 		//These will be set for an editor vehicle if we go down that path
 		//For an object in memory alone, null is fine for these
-		child.setXmlLocation("src/test/genetics/tmp/" + name);
+		child.setXmlLocation("src/test/genetics/tmp/" + UtilMethods.formatString(name));
 		s.addToLog("New vehicle temporarily stored in: " + child.getXmlLocation());
 		child.setFileName(name);
 		
@@ -330,6 +332,8 @@ public class Genetics {
 		
 		//Set Right Sensor
 		setRightSensor(child, parentA, parentB);
+		
+		child.saveVehicle();
 		
 		return child;
 	}
@@ -517,6 +521,197 @@ public class Genetics {
 		}
 	}
 
+	
+	
+	
+	
+	////////////////////////////////     Asexual Reproduction     \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	
+	/**
+	 * There is a 70% chance of a some attributes of a vehicle being mutated
+	 * There is a 30% chance of inheriting some attributes directly
+	 * @param parent The parent to produce offspring from asexually
+	 * @parma s A simulation log to log the reproduction
+	 * @return A vehicle which is the offspring of parent
+	 */
+	public static Vehicle asexualReproduction(Vehicle parent, SimulationLog s){
+		s.addToLog(UtilMethods.getTimeStamp());
+		s.addToLog("Creating a new vehicle by asexual reproduction of " + parent.getName());
+		Vehicle child = new Vehicle();
+		String name = "Offspring of "+ parent.getName();
+		s.addToLog("New vehicle name: " + name);
+		child.setName(name);
+		child.setAuthor(name);
+		child.setDescription(name);
+		
+		//These will be set for an editor vehicle if we go down that path
+		//For an object in memory alone, null is fine for these
+		child.setXmlLocation("src/test/genetics/tmp/" + UtilMethods.formatString(name));
+		s.addToLog("New vehicle temporarily stored in: " + child.getXmlLocation());
+		child.setFileName(name);
+		
+		
+		child.setLastModified(UtilMethods.getTimeStamp());
+		
+		//Set the battery
+		setBattery(child, parent);
+		
+		//Set the memory
+		setMemory(child, parent);
+		
+		//Set the motor strength
+		setMotorStrength(child, parent);
+		
+		//Set the aggression
+		setAggression(child, parent);
+		
+		//Set the vehicle colour
+		setColour(child, parent);
+		
+		//Set Left Sensor
+		setLeftSensor(child, parent);
+		
+		//Set Right Sensor
+		setRightSensor(child, parent);
+		
+		child.saveVehicle();
+		
+		return child;
+	}
+	
+	
+	private static void setRightSensor(Vehicle child, Vehicle parent){
+		Random r = new Random();
+		int ran = r.nextInt(10);
+		int light = parent.getRightSensorLight() + 50;
+		int heat = parent.getRightSensorHeat() + 50;
+		int power = parent.getRightSensorPower() + 50;
+		int water = parent.getRightSensorWater() + 50;
+		if(ran <= 7){
+			child.setRightSensorLight((mutateAttribute(light, 100)) - 50);
+			child.setRightSensorHeat((mutateAttribute(heat, 100)) - 50);
+			child.setRightSensorPower((mutateAttribute(power, 100)) - 50);
+			child.setRightSensorWater((mutateAttribute(water, 100)) - 50);
+			
+		}
+		else{
+			child.setRightSensorLight(light - 50);
+			child.setRightSensorHeat(heat - 50);
+			child.setRightSensorPower(power - 50);
+			child.setRightSensorWater(water - 50);
+		}
+	}	
+	
+	private static void setLeftSensor(Vehicle child, Vehicle parent){
+		Random r = new Random();
+		int ran = r.nextInt(10);
+		int light = parent.getLeftSensorLight() + 50;
+		int heat = parent.getLeftSensorHeat() + 50;
+		int power = parent.getLeftSensorPower() + 50;
+		int water = parent.getLeftSensorWater() + 50;
+		if(ran <= 7){
+			child.setLeftSensorLight((mutateAttribute(light, 100)) - 50);
+			child.setLeftSensorHeat((mutateAttribute(heat, 100)) - 50);
+			child.setLeftSensorPower((mutateAttribute(power, 100)) - 50);
+			child.setLeftSensorWater((mutateAttribute(water, 100)) - 50);
+			
+		}
+		else{
+			child.setLeftSensorLight(light - 50);
+			child.setLeftSensorHeat(heat - 50);
+			child.setLeftSensorPower(power - 50);
+			child.setLeftSensorWater(water - 50);
+		}
+	}	
+	
+	private static void setColour(Vehicle child, Vehicle parent){
+		Random r = new Random();
+		int ran = r.nextInt(10);
+		int red = parent.getVehicleColourRed();
+		int blue =  parent.getVehicleColourBlue();
+		int green = parent.getVehicleColourGreen();
+		if(ran < 7){
+			child.setColour(mutateAttribute(red, 255), mutateAttribute(green, 255), mutateAttribute(blue, 255));
+		}
+		else{
+			child.setColour(red, green, blue);
+		}
+	}
+	
+	private static void setAggression(Vehicle child, Vehicle parent){
+		Random r = new Random();
+		int ran = r.nextInt(10);
+		int a = parent.getAggression();
+		if(ran < 7){
+			child.setAggression(mutateAttribute(a, 100));
+		}
+		else{
+			child.setAggression(a);
+		}
+	}
+	
+	private static void setMotorStrength(Vehicle child, Vehicle parent){
+		Random r = new Random();
+		int ran = r.nextInt(10);
+		int strength = parent.getMotorStrength();
+		if(ran < 7){
+			child.setMotorStrength(mutateAttribute(strength, 100));
+		}
+		else{
+			child.setMotorStrength(strength);
+		}
+	}
+
+	
+	private static void setMemory(Vehicle child, Vehicle parent){
+		Random r = new Random();
+		int ran = r.nextInt(10);
+		int max_mem = parent.getMaxMem();
+		int learn = parent.getLearningRate();
+		if(ran < 7){
+			child.setMaxMem(mutateAttribute(max_mem, 100));
+			child.setLearningRate(mutateAttribute(learn, 20));
+		}
+		else{
+			child.setMaxMem(max_mem);
+			child.setLearningRate(learn);
+		}
+	}
+
+	private static void setBattery(Vehicle child, Vehicle parent){
+		Random r = new Random();
+		int ran = r.nextInt(10);
+		int max_batt = parent.getMaxBatteryCapacity();
+		if(ran < 7){
+			child.setMaxBatteryCapacity(mutateAttribute(max_batt, 100));
+			child.setCurrentBatteryCapacity(child.getMaxBatteryCapacity());
+		}
+		else{
+			child.setMaxBatteryCapacity(max_batt);
+			child.setCurrentBatteryCapacity(max_batt);
+		}
+	}
+
+	
+	
+	private static int mutateAttribute(int attr, int max){
+		String bin = Integer.toBinaryString(attr);
+		bin = addLeadingZeros(8, bin);
+		Random r = new Random();
+		int ran = r.nextInt(8);
+		if(bin.charAt(ran) == '0'){
+			bin = bin.substring(0, ran) + "1" + bin.substring(ran+1);
+		}
+		else{
+			bin = bin.substring(0, ran) + "0" + bin.substring(ran+1);
+		}
+		int fin = Integer.parseInt(bin, 2) ;
+		if(fin > max){
+			return max;
+		}
+		else return fin; 
+	}
+	
 	/**
 	 * A method to pad a string representing a binary number out to n bits by adding
 	 * leading zeros
