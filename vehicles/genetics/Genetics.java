@@ -1,8 +1,5 @@
 package vehicles.genetics;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Random;
 import java.util.Arrays;
 import java.util.Vector;
@@ -45,12 +42,12 @@ public class Genetics {
 	 * 5 - Random - A selection operator which randomly selects a single vehicle from the population.
 	 */
 	
-	protected static int NoSelection = 0;
-	protected static int RouletteSelection = 1;
-	protected static int TournamenetSelection = 2;
-	protected static int TopNPercenSelection = 3;
-	protected static int GetBestSelection = 4;
-	protected static int RandomSelection = 5;
+	public static int NoSelection = 0;
+	public static int RouletteSelection = 1;
+	public static int TournamenetSelection = 2;
+	public static int TopNPercenSelection = 3;
+	public static int GetBestSelection = 4;
+	public static int RandomSelection = 5;
 
 	
 	/**

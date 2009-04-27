@@ -6,6 +6,7 @@ import vehicles.genetics.*;
 import java.util.Vector;
 import java.util.Random;
 
+
 /**
  * Class for testing genetic algorithms
  * @author graysr
@@ -104,10 +105,7 @@ public class GeneticsTestCases {
 
 
 
-
-
 		System.out.println(sim.log.getLog());
-
 
 
 	}

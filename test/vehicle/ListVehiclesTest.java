@@ -2,9 +2,6 @@ package test.vehicle;
 
 import vehicles.util.*;
 import vehicles.vehicle.*;
-import vehicles.environment.*;
-import java.util.Vector;
-
 //WARNING- hard-coded values
 public class ListVehiclesTest {
 	public static void main(String args[]){

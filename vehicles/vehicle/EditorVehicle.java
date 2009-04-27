@@ -1,9 +1,6 @@
 package vehicles.vehicle;
 
 import java.io.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Iterator;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

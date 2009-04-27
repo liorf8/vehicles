@@ -5,8 +5,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
+
 import vehicles.vehicle.*;
 import vehicles.environment.Environment;
+import vehicles.environment.EnvironmentElement;
+import vehicles.environment.Point;
+import vehicles.genetics.Genetics;
 import vehicles.simulation.*;
 
 public class UtilMethods {
@@ -17,7 +21,7 @@ public class UtilMethods {
 	 * @return A Vehicle[] of the Vehicles in folderName
 	 */
 	public static EditorVehicle[] getVehiclesFromFolder(String folderName){
-	
+
 		Vector<EditorVehicle> v = new Vector<EditorVehicle>();
 		File[] files = new File(folderName).listFiles(); //get list of files
 		int count = 0;
@@ -31,7 +35,7 @@ public class UtilMethods {
 		EditorVehicle[] list = new EditorVehicle[count];
 		return v.toArray(list);
 	}
-	
+
 	/**
 	 * Get a list of simulations from a particular folder
 	 * @param folderPath The path to generate the list from
@@ -51,7 +55,7 @@ public class UtilMethods {
 		EditorSimulation[] list = new EditorSimulation[count];
 		return s.toArray(list);
 	}
-	
+
 	/**
 	 * Get a list of environments from a particular folder
 	 * @param folderPath The path to generate the list from
@@ -71,21 +75,212 @@ public class UtilMethods {
 		Environment[] list = new Environment[count];
 		return e.toArray(list);
 	}
-	
+
 	/**
 	 * Removes all non alphanumeric characters in a string
 	 * @param s The string to format
 	 * @return A formatted version of the string passed
 	 */
 	public static String formatString(String s){
-        s = s.toLowerCase();
-        s = s.replaceAll("[^a-z0-9]", "");
+		s = s.toLowerCase();
+		s = s.replaceAll("[^a-z0-9]", "");
 		return s;
 	}
-	
+
 	public static String getTimeStamp(){
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
 		return dateFormat.format(date);
 	}
+
+	/**
+	 * Delete a directoy with files in it
+	 * @param dir The directory to delete
+	 * @return boolean stating whether deletion occurred or not
+	 */
+	private static boolean deleteDir(File dir) {
+		if (dir.isDirectory()) {
+			boolean success;
+			String[] children = dir.list();
+			for (int i=0; i<children.length; i++) {
+				System.out.println("Deleting " + children[i]);
+				success = deleteDir(new File(dir, children[i]));
+				if (!success) {
+					System.err.println("Deletion of " + children[i].toString() + " failed!");
+					return false;
+				}
+			}
+		}
+		// The directory is now empty so delete it
+		return dir.delete();
+	} 
+
+	public static void deleteFile(String filepath){
+		System.out.println("Attempting to delete " + filepath);
+		boolean success = (new File(filepath)).delete();
+		if (!success) {
+			System.err.println("Deletion of " + filepath + " failed!");
+		}
+		System.out.println("Deletion successful!");
+
+	}
+	/**
+	 * A void method to delete all xml in the xml folders environment, simulation and vehicle
+	 *
+	 */
+	public static void resetXML(){
+		boolean deleteXML = deleteDir(new File("xml/"));
+		if(!deleteXML){
+			System.err.println("Some files could not be deleted!");
+		}
+		File f;
+		f = new File("xml/");
+		f.mkdirs();
+		f = new File("xml/environments/");
+		f.mkdirs();
+		f = new File("xml/vehicles/");
+		f.mkdirs();
+		f = new File("xml/simulations/");
+		f.mkdirs();
+
+		//Re create them
+
+		//Create a light source, populate it's attributes, and write to file
+		EnvironmentElement ls = new EnvironmentElement();	
+		ls.setType(EnvironmentElement.LightSource);//TODO put this in object constructor
+		ls.setPosition(new Point(20,40));		
+		ls.setRadius(100);
+		ls.setStrength(100);		
+
+		//Create a heat source, populate it's attributes, and write to file
+		EnvironmentElement hs = new EnvironmentElement();
+		hs.setType(EnvironmentElement.HeatSource); 
+		hs.setPosition(new Point(50,50));
+		hs.setRadius(5);
+		hs.setStrength(50);		
+
+		EnvironmentElement ws = new EnvironmentElement();
+		ws.setType(EnvironmentElement.WaterSource);
+		ws.setPosition(new Point(70,0));
+		ws.setRadius(10);	
+
+		// Create an environment and write to xml
+
+		Environment e = new Environment("default_environment1","xml/environments/default_environment1.env");
+		e.setWidth(640);
+		e.setHeight(480);
+		e.setAuthor("Shaun");
+		e.setDescription("Default Environment 1");
+		e.addElement(ls);
+		e.addElement(hs);
+		e.addElement(ws);
+		e.saveEnvironment();
+		System.out.println("Creating xml/environments/default_environment1.env");
+
+		Environment env = new Environment("xml/environments/default_environment1.env"); 
+		env.setXMLLocation("xml/environments/default_environment2.env");
+		env.setDescription("Default Environment 2");
+		EnvironmentElement ps = new EnvironmentElement();
+		ps.setType(EnvironmentElement.PowerSource);
+		ps.setPosition(new Point(10, 5));
+		ps.setRadius(10);
+		ps.setStrength(100);
+		env.addElement(ps);
+		env.saveEnvironment();
+		System.out.println("Creating xml/environments/default_environment2.env");
+
+
+		//Testing creating and editing a vehicle XML entry
+
+		EditorVehicle v = new EditorVehicle("xml/vehicles/default_vehicle1.veh");
+		v.setName("Default Vehicle 1"); //set object attributes
+		v.setAuthor("Shaun");
+		v.setDescription("Default Vehicle 1");
+
+		v.setMotorStrength(100);
+		v.setAggression(0);
+
+		v.setMaxBatteryCapacity(50);
+		v.setCurrentBatteryCapacity(50);
+
+		v.setMaxMem(30);
+		v.setLearningRate(5);
+
+		v.setColour(50, 100, 150);
+
+		v.setLeftSensorHeat(20);
+		v.setLeftSensorLight(30);
+		v.setLeftSensorPower(40);
+		v.setLeftSensorWater(50);
+
+		v.setRightSensorHeat(-10);
+		v.setRightSensorLight(-20);
+		v.setRightSensorPower(-30);
+		v.setRightSensorWater(-40);
+
+		v.saveVehicle(); //convert object and its attributes into XML
+		System.out.println("Creating xml/vehicles/default_vehicle1.veh");
+
+		v = new EditorVehicle("xml/vehicles/default_vehicle2.veh");
+		v.setName("Default Vehicle 2"); //set object attributes
+		v.setAuthor("Shaun");
+		v.setDescription("Default Vehicle 2");
+
+		v.setMotorStrength(10);
+		v.setAggression(100);
+
+		v.setMaxBatteryCapacity(100);
+		v.setCurrentBatteryCapacity(80);
+
+		v.setMaxMem(1);
+		v.setLearningRate(1);
+
+		v.setColour(255, 0, 255);
+
+		v.setLeftSensorHeat(0);
+		v.setLeftSensorLight(10);
+		v.setLeftSensorPower(20);
+		v.setLeftSensorWater(50);
+
+		v.setRightSensorHeat(-50);
+		v.setRightSensorLight(20);
+		v.setRightSensorPower(40);
+		v.setRightSensorWater(-40);
+
+		v.saveVehicle(); //convert object and its attributes into XML
+		System.out.println("Creating xml/vehicles/default_vehicle2.veh");
+
+
+		//Re create a simlation
+		EditorSimulation es = new EditorSimulation();
+		es.setXmlLocation("xml/simulations/default_simulation1.sim");
+		es.setName("Default Simulation 1");
+		es.setAuthor("Shaun");
+		es.setDescription("Default Simulation 1");
+		es.setEvolution(true);
+		es.setReproductionMethod(1); //Asexual
+		es.setGeneticSelectionMethod(Genetics.GetBestSelection);
+		es.addVehicle("xml/vehicles/default_vehicle1.veh");
+		es.addVehicle("xml/vehicles/default_vehicle2.veh");
+		es.setEnvironment("xml/environments/default_environment1.env");
+		es.saveSimulation();
+		System.out.println("Creating xml/simulations/default_simulation1.sim");
+
+		es = new EditorSimulation();
+		es.setXmlLocation("xml/simulations/default_simulation2.sim");
+		es.setName("Default Simulation 2");
+		es.setAuthor("Shaun");
+		es.setDescription("Default Simulation 2");
+		es.setEvolution(false);
+		es.setReproductionMethod(0); 
+		es.setGeneticSelectionMethod(Genetics.NoSelection);
+		es.addVehicle("xml/vehicles/default_vehicle1.veh");
+		es.addVehicle("xml/vehicles/default_vehicle2.veh");
+		es.setEnvironment("xml/environments/default_environment2.env");
+		es.saveSimulation();
+		System.out.println("Creating xml/simulations/default_simulation2.sim");
+	}
+
+
+
 }
