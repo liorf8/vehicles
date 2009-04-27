@@ -156,40 +156,47 @@ public class UtilMethods {
 		//Create a light source, populate it's attributes, and write to file
 		EnvironmentElement ls = new EnvironmentElement();	
 		ls.setType(EnvironmentElement.LightSource);//TODO put this in object constructor
-		ls.setPosition(new Point(200,40));		
+		ls.setPosition(new Point(100,100));		
 		ls.setRadius(500);
 		ls.setStrength(1);		
 
 		//Create a heat source, populate it's attributes, and write to file
 		EnvironmentElement hs = new EnvironmentElement();
 		hs.setType(EnvironmentElement.HeatSource); 
-		hs.setPosition(new Point(50,246));
+		hs.setPosition(new Point(200,200));
 		hs.setRadius(57);
 		hs.setStrength(96);		
 
 		EnvironmentElement ws = new EnvironmentElement();
 		ws.setType(EnvironmentElement.WaterSource);
-		ws.setPosition(new Point(420,560));
+		ws.setPosition(new Point(300,300));
 		ws.setStrength(56);
 		ws.setRadius(250);	
+		
+		EnvironmentElement ps = new EnvironmentElement();
+		ps.setType(EnvironmentElement.PowerSource);
+		ps.setPosition(new Point(400,400));
+		ps.setStrength(65);
+		ps.setRadius(220);	
 
 		// Create an environment and write to xml
 
 		Environment e = new Environment("default_environment1","xml/environments/default_environment1.env");
-		e.setWidth(640);
-		e.setHeight(480);
+		e.setWidth(800);
+		e.setHeight(600);
 		e.setAuthor("Shaun");
 		e.setDescription("Default Environment 1");
 		e.addElement(ls);
 		e.addElement(hs);
 		e.addElement(ws);
+		e.addElement(ps);
 		e.saveEnvironment();
 		System.out.println("Creating xml/environments/default_environment1.env");
 
 		Environment env = new Environment("xml/environments/default_environment1.env"); 
 		env.setXMLLocation("xml/environments/default_environment2.env");
 		env.setDescription("Default Environment 2");
-		EnvironmentElement ps = new EnvironmentElement();
+		ps = new EnvironmentElement();
 		ps.setType(EnvironmentElement.PowerSource);
 		ps.setPosition(new Point(10, 5));
 		ps.setRadius(10);
