@@ -321,6 +321,7 @@ public class Environment {
 	}
 
 	public String getDescription(){
+		this.description = this.description.replace('\n', ' ');
 		return this.description;
 	}
 

@@ -30,6 +30,9 @@ public class SimulatonEngine extends PApplet {
 
     int source_drag_id = -1;
 
+    public SimulatonEngine(){
+    	
+    }
     public SimulatonEngine(Simulation simu){
     	System.out.println("Engine received object "+simu.getName());
     	this.sim = simu;
@@ -440,7 +443,7 @@ public class SimulatonEngine extends PApplet {
         }
 
         void draw() { //just draw a graphical representation
-            fill(255);
+        	fill(255);
             ellipse(x, y, 20, 20);
             fill(255 * sense, 100 * sense, 0);
             ellipse(x, y, 4 + 12 * sense, 2 + 12 * sense);

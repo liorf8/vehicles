@@ -157,6 +157,7 @@ public class Simulation {
 	}
 	
 	public String getDescription(){
+		this.description = this.description.replace('\n', ' ');
 		return this.description;
 	}
 
@@ -299,6 +300,7 @@ public class Simulation {
 	public void printSimDetails(){
 		System.out.println("Name\t" + this.getName());
 		System.out.println("Author\t" + this.getAuthor());
+		System.out.println("Description\t" + this.description);
 		System.out.println("Last Modified\t" + this.getLastModified());
 		System.out.println("Location\t" + this.getXmlLocation());
 		if(this.vehicles != null){

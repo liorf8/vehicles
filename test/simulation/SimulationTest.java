@@ -19,8 +19,8 @@ public class SimulationTest {
 		es.addVehicle("xml/vehicles/default_vehicle1.veh");
 		es.addVehicle("xml/vehicles/default_vehicle2.veh");
 		es.setEnvironment("xml/environments/default_environment1.env");
-		es.printSimDetails();
 		es.saveSimulation();
+		es.printSimDetails();
 		Simulation e = new Simulation("xml/simulations/default_simulation1.sim");
 		e.printSimDetails();
 	}

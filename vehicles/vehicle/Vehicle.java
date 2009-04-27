@@ -31,7 +31,7 @@ public class Vehicle implements Comparable{
 	protected int aggression = 0;
 	protected VehicleColour vehicleColour = new VehicleColour();
 	protected MemoryUnit mu = null;
-	
+
 	public Vehicle(Vehicle other){
 		this.xmlLocation = other.xmlLocation;
 		this.fileName = other.fileName;
@@ -68,30 +68,30 @@ public class Vehicle implements Comparable{
 	public void addElementToMemory(EnvironmentElement e){
 		this.mu.addElement(e);
 	}
-	
+
 	public void printMemory(){
 		this.mu.printMemory();
 	}
-	
+
 	public void resetMemory(){
 		this.mu.resetMem();
 	}
-	
+
 	public boolean remembersElementAt(double x, double y){
 		return this.mu.remembersElementAt(x, y);
-		
+
 	}
-	
+
 	public int getTypeOfElementAt(double xPos, double yPos){
 		return this.mu.getTypeOfElementAt(xPos, yPos);
 	}
-	
+
 	public void setMaxMem(int m){
 		if(m >= 0) {
 			this.mu.setMaxMem(m);
 		}
 		else{
-		this.mu.setMaxMem(0);
+			this.mu.setMaxMem(0);
 		}
 	}
 
@@ -304,8 +304,9 @@ public class Vehicle implements Comparable{
 		this.vehicleColour = vehicleColour;
 	}
 
-	public String getDescription() {
-		return vehicleDescription;
+	public String getDescription(){
+		this.vehicleDescription = this.vehicleDescription.replace('\n', ' ');
+		return this.vehicleDescription;
 	}
 
 	public void setDescription(String vehicleDescription) {
@@ -590,7 +591,7 @@ public class Vehicle implements Comparable{
 
 		v.setMaxBatteryCapacity(this.getMaxBatteryCapacity());
 		v.setCurrentBatteryCapacity(this.getCurrentBatteryCapacity());
-		
+
 		v.setMaxMem(this.getMaxMem());
 		v.setLearningRate(this.getLearningRate());
 
@@ -607,7 +608,7 @@ public class Vehicle implements Comparable{
 		v.setRightSensorWater(this.getRightSensorWater());
 		v.saveVehicle();
 	}
-	
+
 	public void printDetails(){
 		System.out.println("File Path " + this.xmlLocation);
 		System.out.println("File Name: " + this.fileName);
