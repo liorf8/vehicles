@@ -6,26 +6,35 @@ import processing.core.*;
  * @author Niall O'Hara
  */
 public class VehicleAppearance extends PApplet {
+	
+	Robot robot;
      @Override
      public void setup() {
-         // original setup code here ...
          size(400, 400);
-         background(255);
-         // prevent thread from starving everything else
+         background(100);
+         robot = new Robot(this, width / 2, height / 2, random(PI), 10, 155, 155, 155);
          noLoop();
      }
 
      @Override
      public void draw() {
-         // drawing code goes here
+    	 robot.setLeftSpeed(0);
+         robot.setRightSpeed(0);
+         robot.draw();
+         robot.move();
      }
 
-     @Override
-     public void mouseDragged() {
-         // do something based on mouse movement
-         line(mouseX, mouseY, pmouseX, pmouseY);
-         // update the screen (run draw once)
-         redraw();
+     
+     public void updateRed(int r){
+     	this.robot.updateRed(r);
+     }
+     
+     public void updateGreen(int g){
+     	this.robot.updateRed(g);
+     }
+     
+     public void updateBlue(int b){
+     	this.robot.updateBlue(b);
      }
 
 
