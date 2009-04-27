@@ -3,17 +3,17 @@
     <name>Offspring of Angry Vehicle and Stoner Vehicle</name>
     <author>Offspring of Angry Vehicle and Stoner Vehicle</author>
     <description>Offspring of Angry Vehicle and Stoner Vehicle</description>
-    <LastModified>27/04/2009 02:33:31</LastModified>
-    <motorStrength>28</motorStrength>
-    <aggression>0</aggression>
+    <LastModified>27/04/2009 02:42:38</LastModified>
+    <motorStrength>52</motorStrength>
+    <aggression>32</aggression>
     <Colour>
-        <red>243</red>
-        <green>254</green>
-        <blue>222</blue>
+        <red>239</red>
+        <green>251</green>
+        <blue>215</blue>
     </Colour>
     <memory>
-        <max>100</max>
-        <learnrate>2</learnrate>
+        <max>10</max>
+        <learnrate>0</learnrate>
     </memory>
     <battery>
         <max>100</max>
@@ -21,10 +21,10 @@
     </battery>
     <VehicleComponent>
         <type>LEFT</type>
-        <LeftSensorHeat>34</LeftSensorHeat>
-        <LeftSensorLight>45</LeftSensorLight>
-        <LeftSensorPower>67</LeftSensorPower>
-        <LeftSensorWater>89</LeftSensorWater>
+        <LeftSensorHeat>50</LeftSensorHeat>
+        <LeftSensorLight>23</LeftSensorLight>
+        <LeftSensorPower>23</LeftSensorPower>
+        <LeftSensorWater>27</LeftSensorWater>
     </VehicleComponent>
     <VehicleComponent>
         <type>RIGHT</type>
