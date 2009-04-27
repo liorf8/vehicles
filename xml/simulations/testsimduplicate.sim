@@ -3,9 +3,9 @@
     <Name>TestSim</Name>
     <Author>Some guy</Author>
     <Description>a test simulation</Description>
-    <LastModified>25/04/2009 19:56:15</LastModified>
-    <VehiclePath>xml/vehicles/angry.veh</VehiclePath>
+    <LastModified>26/04/2009 23:25:15</LastModified>
     <VehiclePath>xml/vehicles/hungry.veh</VehiclePath>
+    <VehiclePath>xml/vehicles/angry.veh</VehiclePath>
     <EnvironmentPath>xml/environments/desert.env</EnvironmentPath>
     <perishable_vehicles>false</perishable_vehicles>
     <evolution>true</evolution>
