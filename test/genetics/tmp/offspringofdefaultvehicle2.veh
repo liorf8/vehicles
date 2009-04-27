@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Vehicle>
+    <name>Offspring of Default Vehicle 2</name>
+    <author>Offspring of Default Vehicle 2</author>
+    <description>Offspring of Default Vehicle 2</description>
+    <LastModified>27/04/2009 16:54:02</LastModified>
+    <motorStrength>10</motorStrength>
+    <aggression>68</aggression>
+    <Colour>
+        <red>223</red>
+        <green>32</green>
+        <blue>247</blue>
+    </Colour>
+    <memory>
+        <max>5</max>
+        <learnrate>3</learnrate>
+    </memory>
+    <battery>
+        <max>100</max>
+        <current>100</current>
+    </battery>
+    <VehicleComponent>
+        <type>LEFT</type>
+        <LeftSensorHeat>50</LeftSensorHeat>
+        <LeftSensorLight>2</LeftSensorLight>
+        <LeftSensorPower>36</LeftSensorPower>
+        <LeftSensorWater>46</LeftSensorWater>
+    </VehicleComponent>
+    <VehicleComponent>
+        <type>RIGHT</type>
+        <RightSensorHeat>-50</RightSensorHeat>
+        <RightSensorLight>20</RightSensorLight>
+        <RightSensorPower>40</RightSensorPower>
+        <RightSensorWater>-40</RightSensorWater>
+    </VehicleComponent>
+</Vehicle>
