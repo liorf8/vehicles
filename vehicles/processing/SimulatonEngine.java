@@ -5,13 +5,13 @@ import processing.core.*;
 @SuppressWarnings("serial")
 public class SimulatonEngine extends PApplet {
 
-    Robot[] robots;
-    Source[] sources;
+    Robot[] robots; //array of vehicles
+    Source[] sources; //array of enviornment elements
     boolean mouseDown;
-    PImage ground;
+    PImage ground; //background image
     boolean specialSense = true;
-    int numOfLights = 6;
-    int numOfRobots = 10;
+    int numOfLights = 6; //self-explanatory --change this
+    int numOfRobots = 10; //self-explanatory -change this
     float move_speed = 0;
 
     public float getMove_speed() {
@@ -67,7 +67,10 @@ public class SimulatonEngine extends PApplet {
             sources[i].draw();
 
         }
-
+        /*
+         * if(frameCount % some_constant == 0){
+         * 		make vehicles evolve
+         */
         for (int i = 0; i < numOfRobots; i++) {
             robots[i].move();
             robots[i].draw();
@@ -85,7 +88,9 @@ public class SimulatonEngine extends PApplet {
             specialSense = !specialSense;
             updateGround();
         }
-
+        /*
+         * we won't need this functionality , should take it out
+         */
         // num of lights
         if (key >= '1' && key <= '5') {
             numOfLights = 5 - ('5' - key);
@@ -106,6 +111,10 @@ public class SimulatonEngine extends PApplet {
 
     /**
      * update the light source on the ground
+     * 
+     * This seems to be for the functionality of inverting the sense of the environment
+     *  elements, so the vehicles are afraid of them. I guess we can leave it in, but I
+     *  don't really think it's needed -Karl
      */
     void updateGround() {
 
@@ -115,7 +124,7 @@ public class SimulatonEngine extends PApplet {
 
         ground = new PImage(width, height);
         for (int i = 0; i < width; i += px) {
-            for (int k = 0; k < height; k += px) {
+            for (int k = 0; k < height; k += px) { //process every pixel in the image
 
                 sum = 0;
                 for (int m = 0; m < numOfLights; m++) {
@@ -151,14 +160,15 @@ public class SimulatonEngine extends PApplet {
      */
     class Robot {
 
-        float x, y, axle, half_axle, axleSq;
+        float x, y, axle;
+        float half_axle, axleSq; //derivatives of axle
         float angle; // direction of the Robot
         float wheel_diff, wheel_average; // the difference and average of the wheels' rotating speed
         Wheel wA, wB; // two wheels
         Sensor sA, sB; // two sensors
-        int id;
+        int id; //maybe we can make this by doing a hash on the vehicle's name?
 
-        Robot(float x, float y, float angle, float axle_length, int id) {
+        Robot(float x, float y, float angle, float axle_length, int id) { //constructor
 
             this.x = x;
             this.y = y;
@@ -176,8 +186,9 @@ public class SimulatonEngine extends PApplet {
 
         }
 
-        void draw() {
-
+        void draw() { //simply draw a representaion of the vehicle
+        	
+        	//Commented out lines draw the vehicle "nose"
             //fill(55, 55, 0);
             //triangle(sA.x, sA.y, sB.x, sB.y, x + cos(angle) * axle * 2f, y + sin(angle) * axle * 2f);
 
@@ -198,27 +209,29 @@ public class SimulatonEngine extends PApplet {
 
             // check sensor
             if (specialSense) { // special taste mode
+            	/*Again, for the inverted sense mode, maybe can be taken out for simplification*/
                 setLeftSpeed(sB.getSense(false));
                 setRightSpeed(sA.getSense(false));
             } else {  // love mode
-                setLeftSpeed(sA.getSense(false));
+                setLeftSpeed(sA.getSense(false)); //speed is determined by sensors, good
                 setRightSpeed(sB.getSense(false));
 
             }
 
 
             // move
-
+            
+            /*Just update the vehicle's position and direction, this stuff won't need to be changed*/
             wheel_diff = wA.d - wB.d;
             wheel_average = (wA.d + wB.d) / 2;
             angle += wheel_diff / axle;
-
             x += cos(angle) * wheel_average;
             y += sin(angle) * wheel_average;
-
             checkCollision();
 
             // wheels move
+            //remember the wheels are not part of the vehicle image, only look that way,
+            //	so have to move them separately
             float ang = angle - HALF_PI;
 
             wA.x = x + half_axle * cos(ang);
@@ -255,7 +268,7 @@ public class SimulatonEngine extends PApplet {
 
         }
 
-        void checkCollision() {
+        void checkCollision() { //if vehicles are occupying the same spot, move them
 
             float dx, dy, da;
             for (int i = 0; i < numOfRobots; i++) {
@@ -269,6 +282,7 @@ public class SimulatonEngine extends PApplet {
                         //angle = ;
                         x = x + cos(da) * half_axle;
                         y = y + sin(da) * half_axle;
+                        //do the actual move that avoids the collision
                         robots[i].x = robots[i].x + cos(da + PI) * half_axle;
                         robots[i].y = robots[i].y + sin(da + PI) * half_axle;
                     }
@@ -278,6 +292,7 @@ public class SimulatonEngine extends PApplet {
             }
         }
 
+        /*handy interfaces*/
         void setLeftSpeed(float ang_speed) {
             wA.setSpeed(ang_speed * move_speed);
         }
@@ -297,14 +312,16 @@ public class SimulatonEngine extends PApplet {
 
     /**
      * Robot's Wheel... customize the robots' style.
+     * 
+     * I think this class should be fine as is
      *
      */
     class Wheel {
 
         float x, y;
-        float ang_speed, radius;
-        float angle;
-        float d;
+        float ang_speed, radius; 
+        float angle; //direction
+        float d; //displacement, I think
 
         Wheel(float x, float y, float radius, float ang_speed) {
 
@@ -314,7 +331,7 @@ public class SimulatonEngine extends PApplet {
             this.ang_speed = ang_speed;
             angle = 0;
 
-            d = ang_speed * radius;
+            d = ang_speed * radius; //looks like displacement to me?
         }
 
         void setSpeed(float ang_speed) {
@@ -344,7 +361,7 @@ public class SimulatonEngine extends PApplet {
      */
     class Sensor {
 
-        float x, y;
+        float x, y; //position relative to the whole frame
         float maxReading;
         float sense;
 
@@ -354,19 +371,41 @@ public class SimulatonEngine extends PApplet {
             maxReading = 1;
         }
 
-        void setLocation(float x, float y) {
+        void setLocation(float x, float y) { //place the sensor in a certain place
             this.x = x;
             this.y = y;
         }
-
+        
+        
+        /**
+         * Very very important method for getting a reading from the sensor
+         * @param plus this is always false when called, maybe 
+         * @return
+         */
         float getSense(boolean plus) {
+        	//get a value of the red-ness of the ground at our current position
             float sum = red(ground.get((int) x, (int) y)) / 255.0f;
-            sum = (plus) ? sum : 1 - sum;
-            sense = (specialSense) ? nonlinear(sum, maxReading) : 1 - sum;
+            
+            if(plus ==true){ //which it never seems to be
+            	//sum = sum;
+            }else{
+            	sum = 1-sum;
+            }
+            //sum = (plus) ? sum : 1 - sum;
+            
+            /*This if statement is for handling the inverted sense, should be taken out 
+             * and the true option taken
+             */
+            if(specialSense == true){ 
+            	sense = nonlinear(sum,maxReading);
+            }else{
+            	sense = 1-sense;
+            }
+            //sense = (specialSense) ? nonlinear(sum, maxReading) : 1 - sum;
             return sense;
         }
 
-        void draw() {
+        void draw() { //just draw a graphical representation
             fill(255);
             ellipse(x, y, 20, 20);
             fill(255 * sense, 100 * sense, 0);
@@ -384,7 +423,7 @@ public class SimulatonEngine extends PApplet {
         float x, y;
         float strength; // between 0 to 1
         float max_radius;
-        boolean dragging = true;
+        //boolean dragging = true; //so taking this functionaloty out
         int id;
 
         Source(float x, float y, float strength, float max_radius, int id) {
@@ -395,7 +434,7 @@ public class SimulatonEngine extends PApplet {
             this.id = id;
         }
 
-        void setLocation(float x, float y) {
+        void setLocation(float x, float y) { //place the source somewhere
             this.x = x;
             this.y = y;
         }
