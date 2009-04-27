@@ -10,32 +10,22 @@ public class VehicleAppearance extends PApplet {
 	Robot robot;
      @Override
      public void setup() {
-         size(400, 400);
+         size(100, 100);
          background(100);
          robot = new Robot(this, width / 2, height / 2, random(PI), 10, 155, 155, 155);
-         noLoop();
      }
 
      @Override
      public void draw() {
-    	 robot.setLeftSpeed(0);
-         robot.setRightSpeed(0);
-         robot.draw();
-         robot.move();
+        background(0);
+        robot.setLeftSpeed(0.2f);
+        robot.setRightSpeed(0.1f);
+        robot.draw();
+        robot.move();
      }
 
      
-     public void updateRed(int r){
-     	this.robot.updateRed(r);
-     }
-     
-     public void updateGreen(int g){
-     	this.robot.updateRed(g);
-     }
-     
-     public void updateBlue(int b){
-     	this.robot.updateBlue(b);
-     }
-
-
- }
+    public void updateColor (int p_red, int p_green, int p_blue) {
+        robot.updateColor(p_red, p_green, p_blue);
+    }
+}
