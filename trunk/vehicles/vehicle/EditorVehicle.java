@@ -212,6 +212,7 @@ public class EditorVehicle extends Vehicle {
 			}
 			
 			OutputFormat of = new OutputFormat("XML","ISO-8859-1",true);
+			of.setLineWidth(Integer.MAX_VALUE);
 			of.setIndent(1);
 			of.setIndenting(true);
 			XMLSerializer serializer = new XMLSerializer(fos,of);//prepare a serialiser for
