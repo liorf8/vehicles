@@ -4,7 +4,6 @@ import vehicles.vehicle.*;
 import vehicles.environment.*;
 import java.io.*;
 import java.util.Vector;
-import java.util.Random;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

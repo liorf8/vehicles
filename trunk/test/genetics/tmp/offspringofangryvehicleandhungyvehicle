@@ -3,17 +3,17 @@
     <name>Offspring of Angry Vehicle and Hungy Vehicle</name>
     <author>Offspring of Angry Vehicle and Hungy Vehicle</author>
     <description>Offspring of Angry Vehicle and Hungy Vehicle</description>
-    <LastModified>27/04/2009 14:26:01</LastModified>
-    <motorStrength>75</motorStrength>
-    <aggression>47</aggression>
+    <LastModified>27/04/2009 14:30:31</LastModified>
+    <motorStrength>100</motorStrength>
+    <aggression>45</aggression>
     <Colour>
         <red>123</red>
         <green>223</green>
         <blue>150</blue>
     </Colour>
     <memory>
-        <max>36</max>
-        <learnrate>20</learnrate>
+        <max>68</max>
+        <learnrate>17</learnrate>
     </memory>
     <battery>
         <max>100</max>
@@ -21,16 +21,16 @@
     </battery>
     <VehicleComponent>
         <type>LEFT</type>
-        <LeftSensorHeat>50</LeftSensorHeat>
-        <LeftSensorLight>37</LeftSensorLight>
-        <LeftSensorPower>43</LeftSensorPower>
-        <LeftSensorWater>50</LeftSensorWater>
+        <LeftSensorHeat>22</LeftSensorHeat>
+        <LeftSensorLight>25</LeftSensorLight>
+        <LeftSensorPower>22</LeftSensorPower>
+        <LeftSensorWater>26</LeftSensorWater>
     </VehicleComponent>
     <VehicleComponent>
         <type>RIGHT</type>
-        <RightSensorHeat>22</RightSensorHeat>
-        <RightSensorLight>47</RightSensorLight>
-        <RightSensorPower>44</RightSensorPower>
-        <RightSensorWater>48</RightSensorWater>
+        <RightSensorHeat>17</RightSensorHeat>
+        <RightSensorLight>50</RightSensorLight>
+        <RightSensorPower>-36</RightSensorPower>
+        <RightSensorWater>14</RightSensorWater>
     </VehicleComponent>
 </Vehicle>

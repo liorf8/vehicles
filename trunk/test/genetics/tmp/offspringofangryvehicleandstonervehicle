@@ -3,17 +3,17 @@
     <name>Offspring of Angry Vehicle and Stoner Vehicle</name>
     <author>Offspring of Angry Vehicle and Stoner Vehicle</author>
     <description>Offspring of Angry Vehicle and Stoner Vehicle</description>
-    <LastModified>27/04/2009 14:26:01</LastModified>
-    <motorStrength>72</motorStrength>
-    <aggression>45</aggression>
+    <LastModified>27/04/2009 14:30:31</LastModified>
+    <motorStrength>24</motorStrength>
+    <aggression>2</aggression>
     <Colour>
-        <red>127</red>
-        <green>222</green>
-        <blue>22</blue>
+        <red>59</red>
+        <green>215</green>
+        <blue>158</blue>
     </Colour>
     <memory>
-        <max>34</max>
-        <learnrate>16</learnrate>
+        <max>100</max>
+        <learnrate>20</learnrate>
     </memory>
     <battery>
         <max>100</max>
@@ -22,15 +22,15 @@
     <VehicleComponent>
         <type>LEFT</type>
         <LeftSensorHeat>26</LeftSensorHeat>
-        <LeftSensorLight>23</LeftSensorLight>
-        <LeftSensorPower>50</LeftSensorPower>
-        <LeftSensorWater>27</LeftSensorWater>
+        <LeftSensorLight>24</LeftSensorLight>
+        <LeftSensorPower>-42</LeftSensorPower>
+        <LeftSensorWater>50</LeftSensorWater>
     </VehicleComponent>
     <VehicleComponent>
         <type>RIGHT</type>
-        <RightSensorHeat>27</RightSensorHeat>
-        <RightSensorLight>-44</RightSensorLight>
-        <RightSensorPower>-28</RightSensorPower>
-        <RightSensorWater>-24</RightSensorWater>
+        <RightSensorHeat>50</RightSensorHeat>
+        <RightSensorLight>-16</RightSensorLight>
+        <RightSensorPower>50</RightSensorPower>
+        <RightSensorWater>-42</RightSensorWater>
     </VehicleComponent>
 </Vehicle>

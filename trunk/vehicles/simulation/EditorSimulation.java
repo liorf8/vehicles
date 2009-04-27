@@ -9,9 +9,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 import org.apache.xerces.dom.DocumentImpl;
 import org.apache.xml.serialize.*;
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 
 

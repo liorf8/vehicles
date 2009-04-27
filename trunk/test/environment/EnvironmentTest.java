@@ -2,7 +2,6 @@ package test.environment;
 import vehicles.environment.Environment;
 import vehicles.environment.EnvironmentElement;
 import vehicles.environment.Point;
-import java.util.Random;
 
 public class EnvironmentTest{
 	public static void main(String args[]){
