@@ -16,9 +16,10 @@ public class SimulationTest {
 		es.setDescription("a test simulation");
 		es.setEvolution(true);
 		es.setGeneticSelectionMethod(0);
-		es.addVehicle("xml/vehicles/default_vehicle1.veh");
-		es.addVehicle("xml/vehicles/default_vehicle1.veh");
-		es.setEnvironment("xml/environments/default_environment1.env");
+		es.addVehicle("xml/vehicles/hungry.veh");
+		es.addVehicle("xml/vehicles/angry.veh");
+		es.setEnvironment("xml/environments/desert.env");
+		es.printSimDetails();
 		es.saveSimulation();
 		Simulation e = new Simulation("xml/simulations/testsim.sim");
 		e.printSimDetails();
