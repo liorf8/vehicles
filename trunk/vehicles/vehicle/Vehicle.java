@@ -588,6 +588,10 @@ public class Vehicle implements Comparable{
 		System.out.println("Heat\t" + this.getRightSensorHeat());
 		System.out.println("Light\t" + this.getRightSensorLight());
 		System.out.println("Water\t" + this.getRightSensorWater());
+		System.out.println("\tColours");
+		System.out.println("Red\t" + this.getVehicleColourRed());
+		System.out.println("Green\t" + this.getVehicleColourGreen());
+		System.out.println("Blue\t" + this.getVehicleColourBlue());
 	}
 
 
