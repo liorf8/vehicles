@@ -10,7 +10,7 @@ public class EnvironmentTest{
 		 */
 		EnvironmentElement ls = new EnvironmentElement();	
 		ls.setType(EnvironmentElement.LightSource);//TODO put this in object constructor
-		ls.setPosition(new Point(15,42));		
+		ls.setPosition(new Point(150,42));		
 		ls.setRadius(78);
 		ls.setStrength(95);		
 		/*
@@ -18,20 +18,35 @@ public class EnvironmentTest{
 		 */
 		EnvironmentElement hs = new EnvironmentElement();
 		hs.setType(EnvironmentElement.HeatSource); //TODO put this in object constructor
-		hs.setPosition(new Point(30,40));
-		hs.setRadius(10);
-		hs.setStrength(30);		
-
+		hs.setPosition(new Point(400,240));
+		hs.setRadius(20);
+		hs.setStrength(60);	
+		
+		EnvironmentElement hes = new EnvironmentElement();
+		hes.setType(EnvironmentElement.HeatSource); //TODO put this in object constructor
+		hes.setPosition(new Point(400,240));
+		hes.setRadius(300);
+		hes.setStrength(60);	
+			
+			
+		EnvironmentElement hss = new EnvironmentElement();
+		hss.setType(EnvironmentElement.HeatSource); //TODO put this in object constructor
+		hss.setPosition(new Point(500,140));
+		hss.setRadius(40);
+		hss.setStrength(86);	
+	
 		/*
 		 * Create an environment and write to xml
 		 */
 		Environment e = new Environment("desert","xml/environments/desert.env");
-		e.setWidth(640);
-		e.setHeight(480);
+		e.setWidth(800);
+		e.setHeight(600);
 		e.setAuthor("some guy");
 		e.setDescription("a harsh environment");
 		e.addElement(ls);
 		e.addElement(hs);
+		e.addElement(hes);
+		e.addElement(hss);
 		e.saveEnvironment();
 
 		/*Read that xml and create an object from it, then re-write it back to xml*/
