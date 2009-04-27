@@ -34,9 +34,9 @@ public class MemoryTest {
 
 //		Testing adding an environment to vehicle memory
 
-		Vehicle veh = new Vehicle("xml/vehicles/hungry.veh"); //constructor loads xml into an object
+		Vehicle veh = new Vehicle("xml/vehicles/default_vehicle1.veh"); //constructor loads xml into an object
 
-		Environment e = new Environment("xml/environments/desert.env");
+		Environment e = new Environment("xml/environments/default_environment1.env");
 		Vector<EnvironmentElement> els = e.getElements();
 		EnvironmentElement ee = els.elementAt(0);
 		for(int i = 0; i < 100; i++){
@@ -66,13 +66,13 @@ public class MemoryTest {
 		}
 		veh.printMemory();
 
-		Vehicle angry = new Vehicle("xml/vehicles/angry.veh");
-		System.out.println("Angry vehicle max mem: " + angry.getMaxMem());
-		System.out.println("Angry vehicle learning rate: " + angry.getLearningRate());
+		Vehicle angry = new Vehicle("xml/vehicles/default_vehicle2.veh");
+		System.out.println("vehicle max mem: " + angry.getMaxMem());
+		System.out.println("vehicle learning rate: " + angry.getLearningRate());
 		angry.setMaxMem(1000);
 		angry.setLearningRate(50);
-		System.out.println("Angry vehicle max mem: " + angry.getMaxMem());
-		System.out.println("Angry vehicle learning rate: " + angry.getLearningRate());
+		System.out.println("vehicle max mem: " + angry.getMaxMem());
+		System.out.println("vehicle learning rate: " + angry.getLearningRate());
 
 
 		//// Testing writing memory to xml ////
@@ -89,7 +89,7 @@ public class MemoryTest {
 		v.setCurrentBatteryCapacity(100);
 		
 		v.setMaxMem(10);
-		v.setLearningRate(0);
+		v.setLearningRate(2);
 
 		v.setColour(123, 223, 150);
 

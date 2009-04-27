@@ -19,7 +19,7 @@ public class GeneticsTestCases {
 
 		Random r = new Random();
 
-		Simulation sim = new Simulation("xml/simulations/testsim.sim");
+		Simulation sim = new Simulation("xml/simulations/default_simulation1.sim");
 
 		Vector<Vehicle> v = sim.getVehicles();
 
@@ -83,8 +83,8 @@ public class GeneticsTestCases {
 
 		System.out.println("\n\nTesting Paired Mating \n\n");
 
-		Vehicle parentA = new Vehicle("xml/vehicles/angry.veh");
-		Vehicle parentB = new Vehicle("xml/vehicles/stoner.veh");
+		Vehicle parentA = new Vehicle("xml/vehicles/default_vehicle1.veh");
+		Vehicle parentB = new Vehicle("xml/vehicles/default_vehicle2.veh");
 		System.out.println("Parent A specs:");
 		parentA.printDetails();
 		System.out.println("\nParent B specs:");
@@ -94,16 +94,9 @@ public class GeneticsTestCases {
 		child.printDetails();
 		child.saveVehicle();
 
-		parentA = new Vehicle("xml/vehicles/angry.veh");
-		parentB = new Vehicle("xml/vehicles/hungry.veh");
-		child = Genetics.pairedMating(parentA, parentB, sim.log);
-
 		//Testing asexual reproduction
 		child = Genetics.asexualReproduction(parentA, sim.log);
 		child.printDetails();
-
-
-
 
 		System.out.println(sim.log.getLog());
 
