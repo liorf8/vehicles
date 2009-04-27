@@ -292,7 +292,7 @@ public class EnvironmentElement {
 		}
 		if(this.position != null){
 			this.writeXMLEntry("Xpos",Double.toString(this.position.getXpos()),xmldoc);
-			this.writeXMLEntry("Ypos",Double.toString(this.position.getXpos()),xmldoc);
+			this.writeXMLEntry("Ypos",Double.toString(this.position.getYpos()),xmldoc);
 		}
 		if(this.radius != 0){
 			this.writeXMLEntry("radius",Integer.toString(radius),xmldoc);

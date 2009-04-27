@@ -50,7 +50,7 @@ public class EnvironmentTest{
 		e.saveEnvironment();
 
 		/*Read that xml and create an object from it, then re-write it back to xml*/
-		Environment env = new Environment("xml/environments/desert.env"); //load up object values from xml
+		Environment env = new Environment("xml/environments/default_environment1.env"); //load up object values from xml
 		env.setXMLLocation("xml/environments/desertDuplicate.env");
 		env.saveEnvironment();	
 		

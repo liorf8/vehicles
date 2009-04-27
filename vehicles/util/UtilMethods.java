@@ -156,21 +156,22 @@ public class UtilMethods {
 		//Create a light source, populate it's attributes, and write to file
 		EnvironmentElement ls = new EnvironmentElement();	
 		ls.setType(EnvironmentElement.LightSource);//TODO put this in object constructor
-		ls.setPosition(new Point(20,40));		
-		ls.setRadius(100);
-		ls.setStrength(100);		
+		ls.setPosition(new Point(200,40));		
+		ls.setRadius(500);
+		ls.setStrength(10);		
 
 		//Create a heat source, populate it's attributes, and write to file
 		EnvironmentElement hs = new EnvironmentElement();
 		hs.setType(EnvironmentElement.HeatSource); 
-		hs.setPosition(new Point(50,50));
-		hs.setRadius(5);
-		hs.setStrength(50);		
+		hs.setPosition(new Point(50,246));
+		hs.setRadius(57);
+		hs.setStrength(96);		
 
 		EnvironmentElement ws = new EnvironmentElement();
 		ws.setType(EnvironmentElement.WaterSource);
-		ws.setPosition(new Point(70,0));
-		ws.setRadius(10);	
+		ws.setPosition(new Point(420,560));
+		ws.setStrength(56);
+		ws.setRadius(250);	
 
 		// Create an environment and write to xml
 
