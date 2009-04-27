@@ -8,7 +8,7 @@ import processing.core.*;
  */
 public class VehiclePreview extends PApplet {
 
-    private Robot robot;
+    Robot robot;
 
     @Override
     public void setup() {
@@ -20,6 +20,8 @@ public class VehiclePreview extends PApplet {
 
     @Override
     public void draw() {
+        robot.setLeftSpeed(10);
+        robot.setRightSpeed(0.9f);
         robot.draw();
         robot.move();
     }

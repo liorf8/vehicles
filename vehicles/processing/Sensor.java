@@ -8,13 +8,12 @@ import processing.core.*;
  */
 public class Sensor implements PConstants {
 
+    PApplet parent; // The parent PApplet that we will render ourselves onto
     float x, y; //position relative to the whole frame
     float maxReading;
     float sense;
-    PApplet parent; // The parent PApplet that we will render ourselves onto
 
     public Sensor(PApplet p, float x, float y) {
-
         parent = p;
         this.x = x;
         this.y = y;
@@ -24,6 +23,10 @@ public class Sensor implements PConstants {
     public void setLocation(float x, float y) { //place the sensor in a certain place
         this.x = x;
         this.y = y;
+    }
+
+    float getSense(boolean plus) {
+        return sense;
     }
 
     public void draw() { //just draw a graphical representation

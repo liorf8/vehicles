@@ -13,30 +13,30 @@ import processing.core.*;
 public class Robot implements PConstants {
 
     float x, y, axle;
-    float half_axle, axleSq; //derivatives of axle
+    float axleHalf, axleSquared; //derivatives of axle
     float angle; // direction of the Robot
     float wheel_diff, wheel_average; // the difference and average of the wheels' rotating speed
     Wheel wA, wB; // two wheels
     Sensor sA, sB; // two sensors
-    int r, gr, b, id; //maybe we can make this by doing a hash on the vehicle's name?
+    int colorRed, colorGreen, colorBlue; //maybe we can make this by doing a hash on the vehicle's name?
     PApplet parent; // The parent PApplet that we will render ourselves onto
 
-    public Robot (PApplet p, float x, float y, float angle, float axle_length, int r, int g, int b) { //constructor
+    public Robot(PApplet p, float x, float y, float angle, float axle_length, int r, int g, int b) { //constructor
 
-        parent = p;
+        this.parent = p;
         this.x = x;
         this.y = y;
-        this.r = r;
-        this.gr = g;
-        this.b = b;
+        this.colorRed = r;
+        this.colorGreen = g;
+        this.colorBlue = b;
         this.angle = angle;
-        //this.id = id;
-        axle = axle_length;
-        half_axle = axle / 2;
-        axleSq = axle * axle;
 
-        wA = new Wheel(parent, x + half_axle * PApplet.cos(angle - HALF_PI), y + half_axle * PApplet.sin(angle - HALF_PI), 5, 0);
-        wB = new Wheel(parent, x + half_axle * PApplet.cos(angle + HALF_PI), y + half_axle * PApplet.sin(angle + HALF_PI), 5, 0);
+        axle = axle_length;
+        axleHalf = axle / 2;
+        axleSquared = axle * axle;
+
+        wA = new Wheel(parent, x + axleHalf * PApplet.cos(angle - HALF_PI), y + axleHalf * PApplet.sin(angle - HALF_PI), 5, 0);
+        wB = new Wheel(parent, x + axleHalf * PApplet.cos(angle + HALF_PI), y + axleHalf * PApplet.sin(angle + HALF_PI), 5, 0);
 
         sA = new Sensor(parent, x + axle * PApplet.cos(angle - HALF_PI / 1.5f), y + axle * PApplet.sin(angle - HALF_PI / 1.5f));
         sB = new Sensor(parent, x + axle * PApplet.cos(angle + HALF_PI / 1.5f), y + axle * PApplet.sin(angle + HALF_PI / 1.5f));
@@ -45,7 +45,7 @@ public class Robot implements PConstants {
 
     public void draw() { //simply draw a representaion of the vehicle
 
-        parent.fill(r, gr, b);
+        parent.fill(colorRed, colorGreen, colorBlue);
         wA.draw(angle, 1);
         wB.draw(angle - PI, -1);
 
@@ -57,6 +57,7 @@ public class Robot implements PConstants {
 
     public void move() {
 
+        float ang;
         checkBounds();
 
         // move
@@ -69,18 +70,15 @@ public class Robot implements PConstants {
         y += PApplet.sin(angle) * wheel_average;
 
         // wheels move
-        //remember the wheels are not part of the vehicle image, only look that way,
-        //	so have to move them separately
-        float ang = angle - HALF_PI;
+        ang = angle - HALF_PI;
 
-        wA.x = x + half_axle * PApplet.cos(ang);
-        wA.y = y + half_axle * PApplet.sin(ang);
+        wA.x = x + axleHalf * PApplet.cos(ang);
+        wA.y = y + axleHalf * PApplet.sin(ang);
 
         ang = angle + HALF_PI;
 
-        wB.x = x + half_axle * PApplet.cos(ang);
-        wB.y = y + half_axle * PApplet.sin(ang);
-
+        wB.x = x + axleHalf * PApplet.cos(ang);
+        wB.y = y + axleHalf * PApplet.sin(ang);
 
         // sensors move
         ang = angle - HALF_PI / 2;
@@ -93,18 +91,21 @@ public class Robot implements PConstants {
         sB.x = x + axle * PApplet.cos(ang);
         sB.y = y + axle * PApplet.sin(ang);
 
-
-
     }
 
     public void checkBounds() {
 
-        //x = ( x<0 ) ? width+x : ((x>width) ? x-width : x );
-        //y = ( y<0 ) ? height+y : ((y>height) ? y-height : y );
-
         x = PApplet.max(axle + 5, PApplet.min(parent.width - axle - 5, x));
         y = PApplet.max(axle + 5, PApplet.min(parent.height - axle - 5, y));
 
+    }
+
+    public void setLeftSpeed(float ang_speed) {
+        wA.setSpeed(ang_speed * 1.0f);
+    }
+
+    public void setRightSpeed(float ang_speed) {
+        wB.setSpeed(ang_speed * 1.0f);
     }
 
     public void changeLeftSpeed(float inc) {

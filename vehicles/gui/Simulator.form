@@ -402,7 +402,6 @@
                   <action class="vehicles.gui.Simulator" id="stopSim" methodName="stopSim"/>
                 </Property>
                 <Property name="text" type="java.lang.String" resourceKey="button_Stop.text"/>
-                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="name" type="java.lang.String" value="button_Stop" noResource="true"/>
@@ -426,7 +425,6 @@
                   <action class="vehicles.gui.Simulator" id="pauseSim" methodName="pauseSim"/>
                 </Property>
                 <Property name="text" type="java.lang.String" resourceKey="button_Pause.text"/>
-                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="button_Pause" noResource="true"/>
               </Properties>
             </Component>
