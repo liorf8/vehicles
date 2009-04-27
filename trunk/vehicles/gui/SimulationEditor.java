@@ -9,6 +9,7 @@ import java.awt.event.WindowFocusListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import vehicles.processing.*;
 import vehicles.*;
@@ -100,10 +101,16 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_Name = new JPanel();
         text_Name = new JTextField();
         panel_Configuration = new JPanel();
-        label_Evolution = new JLabel();
+        panel_Evolution = new JPanel();
         radio_Evolution_On = new JRadioButton();
         radio_Evolution_Off = new JRadioButton();
-        label_Perishable = new JLabel();
+        label_ReproductionMethod = new JLabel();
+        dropdown_ReproductionMethod = new JComboBox();
+        label_GeneticSelectionMethod = new JLabel();
+        dropdown_GeneticSelectionMethod = new JComboBox();
+        label_GeneticSelectionN = new JLabel();
+        text_GeneticSelectionN = new JTextField();
+        panel_PerishableVehicles = new JPanel();
         radio_Perishable_On = new JRadioButton();
         radio_Perishable_Off = new JRadioButton();
         panel_Description = new JPanel();
@@ -171,7 +178,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_SelectedSimulation.setLayout(panel_SelectedSimulationLayout);
         panel_SelectedSimulationLayout.setHorizontalGroup(
             panel_SelectedSimulationLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(dropdown_SelectedSimulation, 0, 588, Short.MAX_VALUE)
+            .addComponent(dropdown_SelectedSimulation, 0, 654, Short.MAX_VALUE)
         );
         panel_SelectedSimulationLayout.setVerticalGroup(
             panel_SelectedSimulationLayout.createParallelGroup(Alignment.LEADING)
@@ -192,7 +199,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_Name.setLayout(panel_NameLayout);
         panel_NameLayout.setHorizontalGroup(
             panel_NameLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_Name, GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+            .addComponent(text_Name, GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
         );
         panel_NameLayout.setVerticalGroup(
             panel_NameLayout.createParallelGroup(Alignment.LEADING)
@@ -202,20 +209,100 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_Configuration.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Configuration.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Configuration.border.titleFont"))); // NOI18N
         panel_Configuration.setName("panel_Configuration"); // NOI18N
 
-        label_Evolution.setText(resourceMap.getString("label_Evolution.text")); // NOI18N
-        label_Evolution.setName("label_Evolution"); // NOI18N
+        panel_Evolution.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Evolution.border.title"))); // NOI18N
+        panel_Evolution.setName("panel_Evolution"); // NOI18N
+        panel_Evolution.setPreferredSize(new Dimension(313, 101));
 
+        ActionMap actionMap = Application.getInstance(VehiclesApp.class).getContext().getActionMap(SimulationEditor.class, this);
+        radio_Evolution_On.setAction(actionMap.get("evolutionOn")); // NOI18N
         buttonGroup_Evolution.add(radio_Evolution_On);
         radio_Evolution_On.setText(resourceMap.getString("radio_Evolution_On.text")); // NOI18N
         radio_Evolution_On.setName("radio_Evolution_On"); // NOI18N
 
+        radio_Evolution_Off.setAction(actionMap.get("evolutionOff")); // NOI18N
         buttonGroup_Evolution.add(radio_Evolution_Off);
         radio_Evolution_Off.setSelected(true);
         radio_Evolution_Off.setText(resourceMap.getString("radio_Evolution_Off.text")); // NOI18N
         radio_Evolution_Off.setName("radio_Evolution_Off"); // NOI18N
 
-        label_Perishable.setText(resourceMap.getString("label_Perishable.text")); // NOI18N
-        label_Perishable.setName("label_Perishable"); // NOI18N
+        label_ReproductionMethod.setHorizontalAlignment(SwingConstants.RIGHT);
+        label_ReproductionMethod.setText(resourceMap.getString("label_ReproductionMethod.text")); // NOI18N
+        label_ReproductionMethod.setName("label_ReproductionMethod"); // NOI18N
+
+        dropdown_ReproductionMethod.setModel(new DefaultComboBoxModel(new String[] { "Asexual", "Paired" }));
+        dropdown_ReproductionMethod.setEnabled(false);
+        dropdown_ReproductionMethod.setName("dropdown_ReproductionMethod"); // NOI18N
+        dropdown_ReproductionMethod.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                dropdown_ReproductionMethodItemStateChanged(evt);
+            }
+        });
+
+        label_GeneticSelectionMethod.setText(resourceMap.getString("label_GeneticSelectionMethod.text")); // NOI18N
+        label_GeneticSelectionMethod.setName("label_GeneticSelectionMethod"); // NOI18N
+
+        dropdown_GeneticSelectionMethod.setModel(new DefaultComboBoxModel(new String[] { "Roulette", "Tournament", "Top Percent", "Best", "Random" }));
+        dropdown_GeneticSelectionMethod.setEnabled(false);
+        dropdown_GeneticSelectionMethod.setName("dropdown_GeneticSelectionMethod"); // NOI18N
+        dropdown_GeneticSelectionMethod.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                dropdown_GeneticSelectionMethodItemStateChanged(evt);
+            }
+        });
+
+        label_GeneticSelectionN.setText(resourceMap.getString("label_GeneticSelectionN.text")); // NOI18N
+        label_GeneticSelectionN.setName("label_GeneticSelectionN"); // NOI18N
+
+        text_GeneticSelectionN.setText(resourceMap.getString("text_GeneticSelectionN.text")); // NOI18N
+        text_GeneticSelectionN.setEnabled(false);
+        text_GeneticSelectionN.setName("text_GeneticSelectionN"); // NOI18N
+
+        GroupLayout panel_EvolutionLayout = new GroupLayout(panel_Evolution);
+        panel_Evolution.setLayout(panel_EvolutionLayout);
+        panel_EvolutionLayout.setHorizontalGroup(
+            panel_EvolutionLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(panel_EvolutionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel_EvolutionLayout.createParallelGroup(Alignment.LEADING)
+                    .addGroup(panel_EvolutionLayout.createSequentialGroup()
+                        .addComponent(radio_Evolution_On)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(radio_Evolution_Off)
+                        .addPreferredGap(ComponentPlacement.RELATED, 213, Short.MAX_VALUE))
+                    .addGroup(panel_EvolutionLayout.createSequentialGroup()
+                        .addGroup(panel_EvolutionLayout.createParallelGroup(Alignment.LEADING, false)
+                            .addComponent(label_GeneticSelectionMethod, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(label_GeneticSelectionN, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(label_ReproductionMethod, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addGroup(panel_EvolutionLayout.createParallelGroup(Alignment.TRAILING)
+                            .addComponent(dropdown_GeneticSelectionMethod, Alignment.LEADING, 0, 160, Short.MAX_VALUE)
+                            .addComponent(dropdown_ReproductionMethod, Alignment.LEADING, 0, 160, Short.MAX_VALUE)
+                            .addComponent(text_GeneticSelectionN, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        panel_EvolutionLayout.setVerticalGroup(
+            panel_EvolutionLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(panel_EvolutionLayout.createSequentialGroup()
+                .addGroup(panel_EvolutionLayout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(radio_Evolution_On)
+                    .addComponent(radio_Evolution_Off))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(panel_EvolutionLayout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(dropdown_ReproductionMethod, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_ReproductionMethod))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(panel_EvolutionLayout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(dropdown_GeneticSelectionMethod, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_GeneticSelectionMethod))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(panel_EvolutionLayout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(text_GeneticSelectionN, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_GeneticSelectionN)))
+        );
+
+        panel_PerishableVehicles.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_PerishableVehicles.border.title"))); // NOI18N
+        panel_PerishableVehicles.setName("panel_PerishableVehicles"); // NOI18N
 
         buttonGroup_PerishableVehicles.add(radio_Perishable_On);
         radio_Perishable_On.setText(resourceMap.getString("radio_Perishable_On.text")); // NOI18N
@@ -226,39 +313,42 @@ public class SimulationEditor extends javax.swing.JFrame {
         radio_Perishable_Off.setText(resourceMap.getString("radio_Perishable_Off.text")); // NOI18N
         radio_Perishable_Off.setName("radio_Perishable_Off"); // NOI18N
 
+        GroupLayout panel_PerishableVehiclesLayout = new GroupLayout(panel_PerishableVehicles);
+        panel_PerishableVehicles.setLayout(panel_PerishableVehiclesLayout);
+        panel_PerishableVehiclesLayout.setHorizontalGroup(
+            panel_PerishableVehiclesLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(panel_PerishableVehiclesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(radio_Perishable_On)
+                .addGap(5, 5, 5)
+                .addComponent(radio_Perishable_Off)
+                .addContainerGap(213, Short.MAX_VALUE))
+        );
+        panel_PerishableVehiclesLayout.setVerticalGroup(
+            panel_PerishableVehiclesLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(panel_PerishableVehiclesLayout.createSequentialGroup()
+                .addGroup(panel_PerishableVehiclesLayout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(radio_Perishable_Off)
+                    .addComponent(radio_Perishable_On))
+                .addContainerGap(78, Short.MAX_VALUE))
+        );
+
         GroupLayout panel_ConfigurationLayout = new GroupLayout(panel_Configuration);
         panel_Configuration.setLayout(panel_ConfigurationLayout);
         panel_ConfigurationLayout.setHorizontalGroup(
             panel_ConfigurationLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(panel_ConfigurationLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panel_ConfigurationLayout.createParallelGroup(Alignment.LEADING)
-                    .addGroup(panel_ConfigurationLayout.createSequentialGroup()
-                        .addComponent(label_Perishable)
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(radio_Perishable_On)
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(radio_Perishable_Off))
-                    .addGroup(panel_ConfigurationLayout.createSequentialGroup()
-                        .addComponent(label_Evolution)
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(radio_Evolution_On)
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(radio_Evolution_Off)))
-                .addContainerGap(380, Short.MAX_VALUE))
+                .addComponent(panel_Evolution, GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(panel_PerishableVehicles, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_ConfigurationLayout.setVerticalGroup(
             panel_ConfigurationLayout.createParallelGroup(Alignment.LEADING)
-            .addGroup(panel_ConfigurationLayout.createSequentialGroup()
-                .addGroup(panel_ConfigurationLayout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(label_Evolution)
-                    .addComponent(radio_Evolution_On)
-                    .addComponent(radio_Evolution_Off))
-                .addPreferredGap(ComponentPlacement.UNRELATED)
-                .addGroup(panel_ConfigurationLayout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(label_Perishable)
-                    .addComponent(radio_Perishable_On)
-                    .addComponent(radio_Perishable_Off)))
+            .addGroup(Alignment.TRAILING, panel_ConfigurationLayout.createSequentialGroup()
+                .addGroup(panel_ConfigurationLayout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(panel_PerishableVehicles, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_Evolution, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         panel_Description.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Description.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Description.border.titleFont"))); // NOI18N
@@ -278,11 +368,11 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_Description.setLayout(panel_DescriptionLayout);
         panel_DescriptionLayout.setHorizontalGroup(
             panel_DescriptionLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_Description, GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
+            .addComponent(scrollpanel_Description, GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
         );
         panel_DescriptionLayout.setVerticalGroup(
             panel_DescriptionLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_Description, GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+            .addComponent(scrollpanel_Description, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
         );
 
         panel_Author.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Author.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Author.border.titleFont"))); // NOI18N
@@ -295,7 +385,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_Author.setLayout(panel_AuthorLayout);
         panel_AuthorLayout.setHorizontalGroup(
             panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_Author, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+            .addComponent(text_Author, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
         );
         panel_AuthorLayout.setVerticalGroup(
             panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
@@ -313,7 +403,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_LastModified.setLayout(panel_LastModifiedLayout);
         panel_LastModifiedLayout.setHorizontalGroup(
             panel_LastModifiedLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_LastModified, GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
+            .addComponent(text_LastModified, GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
         );
         panel_LastModifiedLayout.setVerticalGroup(
             panel_LastModifiedLayout.createParallelGroup(Alignment.LEADING)
@@ -328,8 +418,8 @@ public class SimulationEditor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
                     .addComponent(panel_Description, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel_LastModified, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panel_Configuration, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_LastModified, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(tab_PropertiesLayout.createSequentialGroup()
                         .addComponent(panel_Name, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
@@ -344,7 +434,7 @@ public class SimulationEditor extends javax.swing.JFrame {
                     .addComponent(panel_Name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel_Author, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(panel_Configuration, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel_Configuration, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(panel_Description, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
@@ -369,16 +459,15 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_AvailableVehicles.setLayout(panel_AvailableVehiclesLayout);
         panel_AvailableVehiclesLayout.setHorizontalGroup(
             panel_AvailableVehiclesLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_AvailableVehicles, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+            .addComponent(scrollpanel_AvailableVehicles, GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
         );
         panel_AvailableVehiclesLayout.setVerticalGroup(
             panel_AvailableVehiclesLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_AvailableVehicles, GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+            .addComponent(scrollpanel_AvailableVehicles, GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
         );
 
         panel_AddRemoveVehicles.setName("panel_AddRemoveVehicles"); // NOI18N
 
-        ActionMap actionMap = Application.getInstance(VehiclesApp.class).getContext().getActionMap(SimulationEditor.class, this);
         button_AddVehicle.setAction(actionMap.get("addSelectedVehicles")); // NOI18N
         button_AddVehicle.setText(resourceMap.getString("button_AddVehicle.text")); // NOI18N
         button_AddVehicle.setName("button_AddVehicle"); // NOI18N
@@ -406,11 +495,11 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_VehiclePreview.setLayout(panel_VehiclePreviewLayout);
         panel_VehiclePreviewLayout.setHorizontalGroup(
             panel_VehiclePreviewLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(processing_VehiclePreview, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+            .addComponent(processing_VehiclePreview, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
         );
         panel_VehiclePreviewLayout.setVerticalGroup(
             panel_VehiclePreviewLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(processing_VehiclePreview, GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+            .addComponent(processing_VehiclePreview, GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
         );
 
         processing_VehiclePreview.add(proVehiclePreview, BorderLayout.CENTER);
@@ -422,10 +511,10 @@ public class SimulationEditor extends javax.swing.JFrame {
             .addGroup(panel_AddRemoveVehiclesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel_AddRemoveVehiclesLayout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(button_AddVehicle, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                    .addComponent(button_AddAllVehicle, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                    .addComponent(button_RemoveVehicle, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                    .addComponent(button_RemoveAllVehicle, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                    .addComponent(button_AddVehicle, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                    .addComponent(button_AddAllVehicle, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                    .addComponent(button_RemoveVehicle, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                    .addComponent(button_RemoveAllVehicle, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                     .addComponent(panel_VehiclePreview, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -462,11 +551,11 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_SelectedVehicles.setLayout(panel_SelectedVehiclesLayout);
         panel_SelectedVehiclesLayout.setHorizontalGroup(
             panel_SelectedVehiclesLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_SelectedVehicles, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+            .addComponent(scrollpanel_SelectedVehicles, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
         );
         panel_SelectedVehiclesLayout.setVerticalGroup(
             panel_SelectedVehiclesLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_SelectedVehicles, GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+            .addComponent(scrollpanel_SelectedVehicles, GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
         );
 
         GroupLayout tab_VehiclesLayout = new GroupLayout(tab_Vehicles);
@@ -516,7 +605,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         );
         panel_AvailableEnvironmentsLayout.setVerticalGroup(
             panel_AvailableEnvironmentsLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_AvailableEnvironments, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+            .addComponent(scrollpanel_AvailableEnvironments, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
         );
 
         panel_SelectedEnvironment.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_SelectedEnvironment.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_SelectedEnvironment.border.titleFont"))); // NOI18N
@@ -540,7 +629,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_SelectedEnvironment.setLayout(panel_SelectedEnvironmentLayout);
         panel_SelectedEnvironmentLayout.setHorizontalGroup(
             panel_SelectedEnvironmentLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_SelectedEnvironment, GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+            .addComponent(scrollpanel_SelectedEnvironment, GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
         );
         panel_SelectedEnvironmentLayout.setVerticalGroup(
             panel_SelectedEnvironmentLayout.createParallelGroup(Alignment.LEADING)
@@ -581,11 +670,11 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_EnvironmentPreview.setLayout(panel_EnvironmentPreviewLayout);
         panel_EnvironmentPreviewLayout.setHorizontalGroup(
             panel_EnvironmentPreviewLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(processing_EnvironmentPreview, GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+            .addComponent(processing_EnvironmentPreview, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
         );
         panel_EnvironmentPreviewLayout.setVerticalGroup(
             panel_EnvironmentPreviewLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(processing_EnvironmentPreview, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+            .addComponent(processing_EnvironmentPreview, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
         );
 
         processing_EnvironmentPreview.add(proEnvironmentPreview, BorderLayout.CENTER);
@@ -611,7 +700,7 @@ public class SimulationEditor extends javax.swing.JFrame {
             .addGroup(Alignment.TRAILING, tab_EnvironmentLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tab_EnvironmentLayout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(panel_AvailableEnvironments, GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                    .addComponent(panel_AvailableEnvironments, GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
                     .addGroup(Alignment.LEADING, tab_EnvironmentLayout.createSequentialGroup()
                         .addGroup(tab_EnvironmentLayout.createParallelGroup(Alignment.LEADING)
                             .addComponent(panel_SelectedEnvironment, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -649,7 +738,7 @@ public class SimulationEditor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
                     .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(text_Status, GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                        .addComponent(text_Status, GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(button_Save)
                         .addPreferredGap(ComponentPlacement.RELATED)
@@ -657,7 +746,7 @@ public class SimulationEditor extends javax.swing.JFrame {
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(button_Cancel))
                     .addComponent(panel_SelectedSimulation, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tabContainer, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE))
+                    .addComponent(tabContainer, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -666,7 +755,7 @@ public class SimulationEditor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panel_SelectedSimulation, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(tabContainer, GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+                .addComponent(tabContainer, GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(button_Cancel)
@@ -699,6 +788,14 @@ public class SimulationEditor extends javax.swing.JFrame {
         dropdown_SelectedSimulation.requestFocus();        // TODO add your handling code here:
     }//GEN-LAST:event_formWindowGainedFocus
 
+    private void dropdown_ReproductionMethodItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_ReproductionMethodItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropdown_ReproductionMethodItemStateChanged
+
+    private void dropdown_GeneticSelectionMethodItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_GeneticSelectionMethodItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropdown_GeneticSelectionMethodItemStateChanged
+
     @Action
     public void saveSimulation() {
     }
@@ -727,6 +824,20 @@ public class SimulationEditor extends javax.swing.JFrame {
     public void setEnvironment() {
     }
 
+    @Action
+    public void evolutionOff() {
+        dropdown_GeneticSelectionMethod.setEnabled(false);
+        dropdown_ReproductionMethod.setEnabled(false);
+        text_GeneticSelectionN.setEnabled(false);
+    }
+
+    @Action
+    public void evolutionOn() {
+        dropdown_GeneticSelectionMethod.setEnabled(true);
+        dropdown_ReproductionMethod.setEnabled(true);
+        text_GeneticSelectionN.setEnabled(true);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ButtonGroup buttonGroup_Evolution;
     private ButtonGroup buttonGroup_PerishableVehicles;
@@ -738,9 +849,12 @@ public class SimulationEditor extends javax.swing.JFrame {
     private JButton button_Save;
     private JButton button_SaveAsNew;
     private JButton button_SetEnvironment;
+    private JComboBox dropdown_GeneticSelectionMethod;
+    private JComboBox dropdown_ReproductionMethod;
     private JComboBox dropdown_SelectedSimulation;
-    private JLabel label_Evolution;
-    private JLabel label_Perishable;
+    private JLabel label_GeneticSelectionMethod;
+    private JLabel label_GeneticSelectionN;
+    private JLabel label_ReproductionMethod;
     private JList list_AvailableEnvironments;
     private JList list_AvailableVehicles;
     private JList list_SelectedEnvironment;
@@ -752,8 +866,10 @@ public class SimulationEditor extends javax.swing.JFrame {
     private JPanel panel_Configuration;
     private JPanel panel_Description;
     private JPanel panel_EnvironmentPreview;
+    private JPanel panel_Evolution;
     private JPanel panel_LastModified;
     private JPanel panel_Name;
+    private JPanel panel_PerishableVehicles;
     private JPanel panel_SelectedEnvironment;
     private JPanel panel_SelectedSimulation;
     private JPanel panel_SelectedVehicles;
@@ -776,16 +892,16 @@ public class SimulationEditor extends javax.swing.JFrame {
     private JPanel tab_Vehicles;
     private JTextField text_Author;
     private JTextArea text_Description;
+    private JTextField text_GeneticSelectionN;
     private JTextField text_LastModified;
     private JTextField text_Name;
     private JTextField text_Status;
     // End of variables declaration//GEN-END:variables
     private PApplet proVehiclePreview, proEnvironmentPreview;
     private EditorSimulation[] simulationArray;
-    private EditorVehicle[] vehicleArray;
-    private EnvironmentElement[] elementArray;
-    private Environment[] environmentArray;
+    private EditorVehicle[] vehicleArray, selectedVehicleArray;
+    private Environment[] environmentArray, selectedEnvironmentArray;
     private DefaultComboBoxModel simulationDropDown;
     private Simulator appRoot;
-    private AbstractListModel availableVehicles, availableEnvironments;
+    private AbstractListModel availableVehicles, availableEnvironments, selectedVehicles, selectedEnvironments;
 }
