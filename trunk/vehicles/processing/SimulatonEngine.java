@@ -1,10 +1,16 @@
 package vehicles.processing;
 
+import java.util.Iterator;
+import java.util.Vector;
+
 import processing.core.*;
+import vehicles.environment.EnvironmentElement;
+import vehicles.simulation.Simulation;
 
 @SuppressWarnings("serial")
 public class SimulatonEngine extends PApplet {
-
+	
+	Simulation sim; //simulation representing this
     Robot[] robots; //array of vehicles
     Source[] sources; //array of enviornment elements
     boolean mouseDown;
@@ -24,6 +30,28 @@ public class SimulatonEngine extends PApplet {
 
     int source_drag_id = -1;
 
+    public SimulatonEngine(Simulation simu){
+    	System.out.println("Engine received object "+simu.getName());
+    	this.sim = simu;
+    	Vector<EnvironmentElement> elements = simu.getEnvironment().getElements();
+    	this.numOfLights = elements.size();
+    	Iterator<EnvironmentElement> it = elements.iterator();
+    	System.out.println("THERE ARE "+numOfLights+" LIGHTS!");
+    	
+    	sources = new Source[numOfLights]; //create this number of lights on the environment
+    	for (int i = 0; i < sources.length; i++) {
+    		EnvironmentElement curr = it.next();
+    		System.out.print(i + " : ");
+    		sources[i] = new Source(
+    				(float)curr.getXpos(),
+    				(float)curr.getYpos(),
+    				(float)((float)curr.getStrength()/100.0f),
+    				(float)curr.getRadius(),
+    				curr.getName().hashCode()); //generate some id
+    		print(sources[i]);
+    	}
+    	
+    }
 
     // Processing Sketch Setup
     @Override
@@ -40,15 +68,16 @@ public class SimulatonEngine extends PApplet {
 
         robots = new Robot[10];
         for (int i = 0; i < robots.length; i++) {
-            robots[i] = new Robot(i * (width / 10) + 20, height / 2, random(PI), 10, i);
+            robots[i] = new Robot(i * (width / 10) + 20, height / 6, random(PI), 10, i);
         }
 
-
+        /* Moving this to the constructor
         sources = new Source[6];
         for (int i = 0; i < sources.length; i++) {
             sources[i] = new Source(i * (width / 6) + 60, height / 2 + (i % 2) * 50, 1.0f, 130, i);
 
         }
+        */
 
         smooth();
         updateGround();
@@ -495,6 +524,9 @@ public class SimulatonEngine extends PApplet {
             d = 1 - nonlinear(d, max_radius);
 
             return ((plus) ? 1 - d : d);
+        }
+        public String toString(){
+        	return(this.x + " " + this.y + " " + this.strength + " " + this.max_radius);
         }
     }
 }
