@@ -75,7 +75,7 @@ public class ProcessingTest extends PApplet{
 		}
 	}
 	class ProcessingVehicle extends Vehicle{
-		int x,y; //vehicle's position
+		float x,y; //vehicle's position
 
 		ProcessingVehicle(Vehicle v){
 			super(v);
@@ -84,21 +84,34 @@ public class ProcessingTest extends PApplet{
 		}
 
 		void draw(){
-			fill(Color.ORANGE.getRGB());
+			fill(Color.ORANGE.getRGB()); //vehicles are orange
 			rect(x,y,10,15);
 			Iterator<EnvironmentElement> it = elements.iterator();
 			while(it.hasNext()){
 				EnvironmentElement curr = it.next();
-				float distanceTo = dist(
-						(float)x,
-						(float)y,
+				float distanceTo = dist( //from us(x,y) to curr(getXpos,getYpos)
+						x,
+						y,
 						(float)curr.getXpos(),
 						(float)curr.getYpos());
 			
 				boolean onLeft = (curr.getXpos() - this.x <= 0); 
+				boolean above = (curr.getYpos() - this.y <= 0); 
 				//well now we have the distance to an element, and its type and direction
 				// so we need to do some maths, based on things like this.getLeftSensorHeat()
 				// to determine what speed to apply to the motor
+				if(onLeft){
+					this.x += 1 - (distanceTo / curr.getStrength());
+					
+				}else{ //onRight
+					this.x -= 1 - (distanceTo / curr.getStrength());
+					
+				}
+				if(above){
+					this.y += 1 - (distanceTo / curr.getStrength());
+				}else{ //below
+					this.y -= 1 - (distanceTo / curr.getStrength());
+				}
 			}
 		}
 	}
