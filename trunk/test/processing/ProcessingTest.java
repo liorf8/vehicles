@@ -1,29 +1,63 @@
 package test.processing;
 /**
- * Crappy crappy test class
+ *  test class
  * @author Karl
  */
+import java.awt.Color;
+import java.util.Iterator;
+import java.util.Vector;
+
+import vehicles.simulation.Simulation;
 import vehicles.vehicle.*;
+import vehicles.environment.EnvironmentElement;
 import processing.core.*;
 @SuppressWarnings("serial")
 
 public class ProcessingTest extends PApplet{
-	Vehicle veh; //one of our Java vehicles
-
+	Simulation sim;
+	Vector<EnvironmentElement> elements;
+	
+	public ProcessingTest(Simulation simu){
+		this.sim = simu;
+	}
+	
+	public void setMove_speed(float x){
+		//need to implement
+	}
+	
     @Override
-	public void setup(){		
-		size(200, 200);
-		veh = new Vehicle("/home/graysr/Eclipse_Workspace/2ba7_GroupProject/xml/vehicles/hungry.xml");
+	public void setup(){	
+    	size(sim.getEnvironment().getWidth() ,sim.getEnvironment().getHeigth());
+    	this.elements = sim.getEnvironment().getElements();
 
 	}
 	
     @Override
 	public void draw(){
-		if(veh.getName()!= null){ //has it worked?
-			background(255);    // Setting the background to white
 			stroke(0);          // Setting the outline (stroke) to black
+			background(0,0,0);
 			fill(150);          // Setting the interior of a shape (fill) to grey 
-			rect(50,50,75,100); // Drawing the rectangle
-		}
+			Iterator<EnvironmentElement> it = elements.iterator();
+			while(it.hasNext()){
+				EnvironmentElement curr = it.next();
+				switch(curr.getType()){
+				case EnvironmentElement.HeatSource:
+					fill(Color.RED.getRGB());
+					break;
+				case EnvironmentElement.LightSource:
+					fill(Color.GREEN.getRGB());
+					break;
+				case EnvironmentElement.WaterSource:
+					fill(Color.BLUE.getRGB());
+					break;
+				case EnvironmentElement.PowerSource:
+					fill(Color.WHITE.getRGB());
+					break;
+				}
+				ellipse((float)curr.getXpos(),
+						(float)curr.getYpos(),
+						(float)curr.getRadius(),
+						(float)curr.getRadius());
+			}
 	}
 }

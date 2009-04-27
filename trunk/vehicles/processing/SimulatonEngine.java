@@ -143,7 +143,8 @@ public class SimulatonEngine extends PApplet {
      * update the light source on the ground
      * 
      * This seems to be for the functionality of inverting the sense of the environment
-     *  elements, so the vehicles are afraid of them -- only partly. It actually 
+     *  elements, so the vehicles are afraid of them -- only partly. It actually draws
+     *  the sources
      */
     void updateGround() {
 
@@ -157,8 +158,10 @@ public class SimulatonEngine extends PApplet {
 
                 sum = 0;
                 for (int m = 0; m < numOfLights; m++) {
-
-                    sum += sources[m].getReading(i, k, true);
+                	
+                	//pass this pixel's position
+                    sum += sources[m].getReading(i, k, true); 
+                    //sum up intensity of sources until it reachrs one
                     if (sum >= 1) {
                         break;
                     }
@@ -529,6 +532,7 @@ public class SimulatonEngine extends PApplet {
 
             return ((plus) ? 1 - d : d);
         }
+    
         public String toString(){
         	return(this.x + " " + this.y + " " + this.strength + " " + this.max_radius);
         }

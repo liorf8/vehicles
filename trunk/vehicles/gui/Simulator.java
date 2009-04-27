@@ -12,6 +12,8 @@ import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import test.processing.ProcessingTest;
 import vehicles.vehicle.*;
 import vehicles.util.*;
 import vehicles.environment.*;
@@ -58,7 +60,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         setSimulationArray();
         setVehicleArray();
         setEnvironmentArray();
-        engine = new SimulatonEngine(simulationArray[0]); //populate the engine with a simulation object
+        engine = new ProcessingTest(simulationArray[0]); //populate the engine with a simulation object
         isPaused = false;
 
         
@@ -596,7 +598,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     private JFrame environmentEditor;
     private JFrame vehicleEditor;
     private JFrame simulationEditor;
-    private SimulatonEngine engine;
+    private ProcessingTest engine;
 
     private Environment[] environmentArray;
     private EditorVehicle[] vehicleArray;
