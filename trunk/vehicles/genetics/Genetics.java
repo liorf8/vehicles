@@ -17,14 +17,17 @@ import vehicles.util.*;
  *
  */
 public class Genetics {
-		
+
+	public static int AsexualReproduction = 0;
+	public static int PairedMating = 1;	
+
 
 	/*******************************************************************************************\
 	/																							\
 	/                      Genetic Selection Algorithms for a set of Vehicles					\
 	/																							\
 	/*******************************************************************************************/
-	
+
 	/*
 	 * 
 	 * Values are as follows:
@@ -41,7 +44,7 @@ public class Genetics {
 	 * 		randomly.
 	 * 5 - Random - A selection operator which randomly selects a single vehicle from the population.
 	 */
-	
+
 	public static int NoSelection = 0;
 	public static int RouletteSelection = 1;
 	public static int TournamenetSelection = 2;
@@ -49,7 +52,7 @@ public class Genetics {
 	public static int GetBestSelection = 4;
 	public static int RandomSelection = 5;
 
-	
+
 	/**
 	 * A selection method that will choose a vehicle from the array of vehicles based
 	 * on the value passed for genetic selection
@@ -106,7 +109,7 @@ public class Genetics {
 			percent[i] = percent[i] + percent[i-1];
 			//System.out.println("Percent at " + i + " : " + percent[i]); 
 		}
-		
+
 		Random ran = new Random();
 		int random = ran.nextInt(101);
 		//System.out.println("Random Number: " + random);
@@ -130,7 +133,7 @@ public class Genetics {
 		s.addToLog(UtilMethods.getTimeStamp());
 		s.addToLog("Choosing vehicle by Tournament Selection. For this run a subset of the population\n" +
 				"of size " + n + " will be created using roulette selection " + n + " times and the\n" +
-						"best vehicle in this subset will be returned." );
+		"best vehicle in this subset will be returned." );
 		if(n == 0){
 			return null;
 		}
@@ -162,7 +165,7 @@ public class Genetics {
 		double topN = size * ((double)n/100);
 		//System.out.println("topN of pop: " + topN);		
 		sortByFitness(v);
-	
+
 		int diff = (int)(size - topN);
 		int diff_minus = size - diff;
 		//System.out.println("Generating random number between 0 and " + (diff_minus - 1));
@@ -171,7 +174,7 @@ public class Genetics {
 		//System.out.println("Random number: " + ran);
 		Vehicle temp = v.elementAt(ran + diff);
 		s.addToLog("Vehicle " + temp.getName() + " chosen as a vehicle from the top " + n + 
-				" percent of the population");
+		" percent of the population");
 		return temp;
 	}
 
@@ -196,11 +199,11 @@ public class Genetics {
 	public static Vehicle getVehicleByBest(Vehicle[] v){
 		Arrays.sort(v);
 		//for(int i = 0; i < v.length; i++){
-			//System.out.println("" + v[i].getFitness());
+		//System.out.println("" + v[i].getFitness());
 		//}
 		return v[(v.length - 1)];
 	}
-	
+
 	/**
 	 * A selection operator which randomly selects a single vehicle from the population.
 	 * @return a random vehicle from the set of vehicles
@@ -223,21 +226,21 @@ public class Genetics {
 	public static void sortByFitness(Vector<Vehicle> v){
 		Collections.sort(v);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
 	/*******************************************************************************************\
 	/																							\
 	/                      Evolution and Mutation Algorithms for Vehicles						\
 	/																							\
 	/*******************************************************************************************/
-	
-	
+
+
 	////////////////////////////////     Paired Mating     \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 	/**
@@ -260,7 +263,7 @@ public class Genetics {
 		int ran = r.nextInt(8);
 		//crossover the two binary numbers at the crossover point
 		String crossed = (pA.substring(0, ran)).concat(pB.substring(ran, pB.length()));
-		
+
 		/*
 		 * For Debugging
 		System.out.println("Parent A as int\t" + parentA);
@@ -269,7 +272,7 @@ public class Genetics {
 		System.out.println("Parent B as binary padded to 8 bits\t" + pB);
 		System.out.println("Crossover point\t" + ran);
 		System.out.println("Crossed\t" + crossed);
-		*/
+		 */
 		//now choose a random bit and flip it
 		ran = r.nextInt(8);
 		//System.out.println("Bit to mutate\t" + ran);
@@ -299,49 +302,49 @@ public class Genetics {
 		child.setName(name);
 		child.setAuthor(name);
 		child.setDescription(name);
-		
+
 		//These will be set for an editor vehicle if we go down that path
 		//For an object in memory alone, null is fine for these
 		child.setXmlLocation("src/test/genetics/tmp/" + UtilMethods.formatString(name));
 		s.addToLog("New vehicle temporarily stored in: " + child.getXmlLocation());
 		child.setFileName(name);
-		
-		
+
+
 		child.setLastModified(UtilMethods.getTimeStamp());
-		
+
 		//Set the battery
 		setBattery(child, parentA, parentB);
-		
+
 		//Set the memory
 		setMemory(child, parentA, parentB);
-		
+
 		//Set the motor strength
 		setMotorStrength(child, parentA, parentB);
-		
+
 		//Set the aggression
 		setAggression(child, parentA, parentB);
-		
+
 		//Set the vehicle colour
 		setColour(child, parentA, parentB);
-		
+
 		//Set Left Sensor
 		setLeftSensor(child, parentA, parentB);
-		
+
 		//Set Right Sensor
 		setRightSensor(child, parentA, parentB);
-		
+
 		child.saveVehicle();
-		
+
 		return child;
 	}
-	
+
 	/*According to http://geneticalgorithms.ai-depot.com/Tutorial/Overview.html there is a 
 	 * approximately a 70 % chance that crossover will occur. Our algorithm pushes this up to 80%
 	 * and as such, for each attribute to be set via evolution, it will be determind via a random 
 	 * number if it is to be created via crossover. If not, one of the parents will be chosen and 
 	 * the attribute will be inerited directly.
 	 */
-	
+
 	private static void setRightSensor(Vehicle child, Vehicle parentA, Vehicle parentB){
 		Random r = new Random();
 		int ran = r.nextInt(10);
@@ -355,7 +358,7 @@ public class Genetics {
 			child.setRightSensorHeat(heat);
 			child.setRightSensorPower(power);
 			child.setRightSensorWater(water);
-			
+
 		}
 		else if (ran == 8){
 			light = parentA.getRightSensorLight(); 
@@ -378,7 +381,7 @@ public class Genetics {
 			child.setRightSensorWater(water);
 		}
 	}
-	
+
 	private static void setLeftSensor(Vehicle child, Vehicle parentA, Vehicle parentB){
 		Random r = new Random();
 		int ran = r.nextInt(10);
@@ -392,7 +395,7 @@ public class Genetics {
 			child.setLeftSensorHeat(heat);
 			child.setLeftSensorPower(power);
 			child.setLeftSensorWater(water);
-			
+
 		}
 		else if (ran == 8){
 			light = parentA.getLeftSensorLight(); 
@@ -415,7 +418,7 @@ public class Genetics {
 			child.setLeftSensorWater(water);
 		}
 	}
-	
+
 	private static void setColour(Vehicle child, Vehicle parentA, Vehicle parentB){
 		Random r = new Random();
 		int ran = r.nextInt(10);
@@ -439,7 +442,7 @@ public class Genetics {
 			child.setColour(red, green, blue);
 		}
 	}
-	
+
 	private static void setAggression(Vehicle child, Vehicle parentA, Vehicle parentB){
 		Random r = new Random();
 		int ran = r.nextInt(10);
@@ -456,7 +459,7 @@ public class Genetics {
 			child.setAggression(parentB.getAggression());
 		}
 	}
-	
+
 	private static void setMotorStrength(Vehicle child, Vehicle parentA, Vehicle parentB){
 		Random r = new Random();
 		int ran = r.nextInt(10);
@@ -473,8 +476,8 @@ public class Genetics {
 			child.setMotorStrength(parentB.getMotorStrength());
 		}
 	}
-	
-	
+
+
 	private static void setMemory(Vehicle child, Vehicle parentA, Vehicle parentB){
 		Random r = new Random();
 		int ran = r.nextInt(10);
@@ -496,8 +499,8 @@ public class Genetics {
 			child.setLearningRate(parentB.getLearningRate());
 		}
 	}
-	
-	
+
+
 	private static void setBattery(Vehicle child, Vehicle parentA, Vehicle parentB){
 		Random r = new Random();
 		int ran = r.nextInt(10);
@@ -518,11 +521,23 @@ public class Genetics {
 		}
 	}
 
-	
-	
-	
-	
+
+
+
+
 	////////////////////////////////     Asexual Reproduction     \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+	/**
+	 * This methods allows you to pass all variables associated with asexual reproduction
+	 * in one pass to generate a vehicle
+	 */
+	public static Vehicle produceVehicleAsexually(int gen_selection, int n_for_selection, Vector<Vehicle> v, SimulationLog s){
+		Vehicle parent = Genetics.getVehicle_SelectionBased(gen_selection, v, n_for_selection, s);
+		if(parent == null){
+			return null;
+		}
+		return Genetics.asexualReproduction(parent, s);
+	}
 	
 	/**
 	 * There is a 70% chance of a some attributes of a vehicle being mutated
@@ -540,43 +555,43 @@ public class Genetics {
 		child.setName(name);
 		child.setAuthor(name);
 		child.setDescription(name);
-		
+
 		//These will be set for an editor vehicle if we go down that path
 		//For an object in memory alone, null is fine for these
 		child.setXmlLocation("src/test/genetics/tmp/" + UtilMethods.formatString(name));
 		s.addToLog("New vehicle temporarily stored in: " + child.getXmlLocation());
 		child.setFileName(name);
-		
-		
+
+
 		child.setLastModified(UtilMethods.getTimeStamp());
-		
+
 		//Set the battery
 		setBattery(child, parent);
-		
+
 		//Set the memory
 		setMemory(child, parent);
-		
+
 		//Set the motor strength
 		setMotorStrength(child, parent);
-		
+
 		//Set the aggression
 		setAggression(child, parent);
-		
+
 		//Set the vehicle colour
 		setColour(child, parent);
-		
+
 		//Set Left Sensor
 		setLeftSensor(child, parent);
-		
+
 		//Set Right Sensor
 		setRightSensor(child, parent);
-		
+
 		child.saveVehicle();
-		
+
 		return child;
 	}
-	
-	
+
+
 	private static void setRightSensor(Vehicle child, Vehicle parent){
 		Random r = new Random();
 		int ran = r.nextInt(10);
@@ -589,7 +604,7 @@ public class Genetics {
 			child.setRightSensorHeat((mutateAttribute(heat, 100)) - 50);
 			child.setRightSensorPower((mutateAttribute(power, 100)) - 50);
 			child.setRightSensorWater((mutateAttribute(water, 100)) - 50);
-			
+
 		}
 		else{
 			child.setRightSensorLight(light - 50);
@@ -598,7 +613,7 @@ public class Genetics {
 			child.setRightSensorWater(water - 50);
 		}
 	}	
-	
+
 	private static void setLeftSensor(Vehicle child, Vehicle parent){
 		Random r = new Random();
 		int ran = r.nextInt(10);
@@ -611,7 +626,7 @@ public class Genetics {
 			child.setLeftSensorHeat((mutateAttribute(heat, 100)) - 50);
 			child.setLeftSensorPower((mutateAttribute(power, 100)) - 50);
 			child.setLeftSensorWater((mutateAttribute(water, 100)) - 50);
-			
+
 		}
 		else{
 			child.setLeftSensorLight(light - 50);
@@ -620,7 +635,7 @@ public class Genetics {
 			child.setLeftSensorWater(water - 50);
 		}
 	}	
-	
+
 	private static void setColour(Vehicle child, Vehicle parent){
 		Random r = new Random();
 		int ran = r.nextInt(10);
@@ -634,7 +649,7 @@ public class Genetics {
 			child.setColour(red, green, blue);
 		}
 	}
-	
+
 	private static void setAggression(Vehicle child, Vehicle parent){
 		Random r = new Random();
 		int ran = r.nextInt(10);
@@ -646,7 +661,7 @@ public class Genetics {
 			child.setAggression(a);
 		}
 	}
-	
+
 	private static void setMotorStrength(Vehicle child, Vehicle parent){
 		Random r = new Random();
 		int ran = r.nextInt(10);
@@ -659,7 +674,7 @@ public class Genetics {
 		}
 	}
 
-	
+
 	private static void setMemory(Vehicle child, Vehicle parent){
 		Random r = new Random();
 		int ran = r.nextInt(10);
@@ -689,8 +704,8 @@ public class Genetics {
 		}
 	}
 
-	
-	
+
+
 	private static int mutateAttribute(int attr, int max){
 		String bin = Integer.toBinaryString(attr);
 		bin = addLeadingZeros(8, bin);
@@ -708,7 +723,7 @@ public class Genetics {
 		}
 		else return fin; 
 	}
-	
+
 	/**
 	 * A method to pad a string representing a binary number out to n bits by adding
 	 * leading zeros
