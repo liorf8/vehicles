@@ -2,6 +2,7 @@ package vehicles.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
@@ -526,7 +527,7 @@ public class SimulationEditor extends javax.swing.JFrame {
 
         processing_VehiclePreview.setBackground(resourceMap.getColor("processing_VehiclePreview.background")); // NOI18N
         processing_VehiclePreview.setName("processing_VehiclePreview"); // NOI18N
-        processing_VehiclePreview.setLayout(new BorderLayout());
+        processing_VehiclePreview.setLayout(new GridBagLayout());
 
         GroupLayout panel_VehiclePreviewLayout = new GroupLayout(panel_VehiclePreview);
         panel_VehiclePreview.setLayout(panel_VehiclePreviewLayout);
@@ -543,7 +544,7 @@ public class SimulationEditor extends javax.swing.JFrame {
                 .addComponent(processing_VehiclePreview, GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
         );
 
-        processing_VehiclePreview.add(proVehiclePreview, BorderLayout.CENTER);
+        processing_VehiclePreview.add(proVehiclePreview);
 
         GroupLayout panel_AddRemoveVehiclesLayout = new GroupLayout(panel_AddRemoveVehicles);
         panel_AddRemoveVehicles.setLayout(panel_AddRemoveVehiclesLayout);
