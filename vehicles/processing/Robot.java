@@ -100,6 +100,12 @@ public class Robot implements PConstants {
 
     }
 
+    public void updateColor(int p_red, int p_green, int p_blue) {
+        this.colorRed = p_red;
+        this.colorGreen = p_green;
+        this.colorBlue = p_blue;
+    }
+
     public void setLeftSpeed(float ang_speed) {
         wA.setSpeed(ang_speed * 1.0f);
     }

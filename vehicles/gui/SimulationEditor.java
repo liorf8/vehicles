@@ -534,15 +534,15 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_VehiclePreview.setLayout(panel_VehiclePreviewLayout);
         panel_VehiclePreviewLayout.setHorizontalGroup(
             panel_VehiclePreviewLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(processing_VehiclePreview, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
             .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+            .addComponent(processing_VehiclePreview, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
         );
         panel_VehiclePreviewLayout.setVerticalGroup(
             panel_VehiclePreviewLayout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, panel_VehiclePreviewLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+            .addGroup(panel_VehiclePreviewLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(processing_VehiclePreview, GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
+                .addComponent(processing_VehiclePreview, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
         );
 
         processing_VehiclePreview.add(proVehiclePreview);
@@ -969,6 +969,7 @@ public class SimulationEditor extends javax.swing.JFrame {
 
     public void showDescription(EditorVehicle veh) {
 		jTextArea1.setText(veh.getDescription());
+        proVehiclePreview.updateColor(100, 100, 100);
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1034,7 +1035,8 @@ public class SimulationEditor extends javax.swing.JFrame {
     private JTextField text_Name;
     private JTextField text_Status;
     // End of variables declaration//GEN-END:variables
-    private PApplet proVehiclePreview, proEnvironmentPreview;
+    private VehiclePreview proVehiclePreview;
+    private EnvironmentPreview proEnvironmentPreview;
     private EditorSimulation[] simulationArray;
     private EditorVehicle[] vehicleArray, selectedVehicleArray;
     private Environment[] environmentArray, selectedEnvironmentArray;
