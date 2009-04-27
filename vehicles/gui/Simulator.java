@@ -515,7 +515,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         dropdown_SelectedSimulation.setEnabled(false);
         slider_Speed.setEnabled(true);
         engine.setup();
-        engine.setMove_speed(slider_Speed.getValue() / 10);
+        engine.setMove_speed((float)slider_Speed.getValue() / 10);
         button_Stop.setEnabled(true);
         button_Pause.setEnabled(true);
     }
@@ -538,8 +538,8 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     public void pauseSim() {
         if (isPaused) {
             isPaused = false;
-            engine.setMove_speed(slider_Speed.getValue() / 10);
             slider_Speed.setEnabled(true);
+            engine.setMove_speed((float)slider_Speed.getValue() / 10);
         } else {;
             isPaused = true;
             engine.setMove_speed(0);
