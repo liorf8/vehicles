@@ -55,12 +55,13 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
 
     public Simulator(SingleFrameApplication app) {
         super(app);
-        engine = new SimulatonEngine();
-        isPaused = false;
-
         setSimulationArray();
         setVehicleArray();
         setEnvironmentArray();
+        engine = new SimulatonEngine(simulationArray[0]); //populate the engine with a simulation object
+        isPaused = false;
+
+        
 
         simulationDropDown = new DefaultComboBoxModel(simulationArray);
 
