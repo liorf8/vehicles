@@ -17,76 +17,90 @@ public class ProcessingTest extends PApplet{
 	Simulation sim;
 	Vector<EnvironmentElement> elements;
 	Vector<ProcessingVehicle> vehicles;
-	
+
 	public ProcessingTest(Simulation simu){
 		this.sim = simu;
 	}
-	
+
 	public void setMove_speed(float x){
 		//need to implement
 	}
-	
-    @Override
+
+	@Override
 	public void setup(){	
-    	size(sim.getEnvironment().getWidth() ,sim.getEnvironment().getHeigth());
-    	//populate our list of environment elements
-    	this.elements = sim.getEnvironment().getElements();
-    	
-    	Vector<Vehicle> temp = sim.getVehicles();
-    	this.vehicles = new Vector<ProcessingVehicle>();
-    	Iterator<Vehicle> it = temp.iterator();
-    	while(it.hasNext()){
-    		this.vehicles.add(new ProcessingVehicle(it.next()));
-    	}
+		size(sim.getEnvironment().getWidth() ,sim.getEnvironment().getHeigth());
+		//populate our list of environment elements
+		this.elements = sim.getEnvironment().getElements();
+
+		Vector<Vehicle> temp = sim.getVehicles();
+		this.vehicles = new Vector<ProcessingVehicle>();
+		Iterator<Vehicle> it = temp.iterator();
+		while(it.hasNext()){
+			this.vehicles.add(new ProcessingVehicle(it.next()));
+		}
 
 	}
-	
-    @Override
+
+	@Override
 	public void draw(){
-			stroke(0);          // Setting the outline (stroke) to black
-			background(0,0,0);
-			fill(150);          // Setting the interior of a shape (fill) to grey 
+		stroke(0);          // Setting the outline (stroke) to black
+		background(0,0,0);
+		fill(150);          // Setting the interior of a shape (fill) to grey 
+		Iterator<EnvironmentElement> it = elements.iterator();
+		while(it.hasNext()){
+			EnvironmentElement curr = it.next();
+			switch(curr.getType()){
+			case EnvironmentElement.HeatSource:
+				fill(Color.RED.getRGB());
+				break;
+			case EnvironmentElement.LightSource:
+				fill(Color.GREEN.getRGB());
+				break;
+			case EnvironmentElement.WaterSource:
+				fill(Color.BLUE.getRGB());
+				break;
+			case EnvironmentElement.PowerSource:
+				fill(Color.WHITE.getRGB());
+				break;
+			}
+			ellipse((float)curr.getXpos(),
+					(float)curr.getYpos(),
+					(float)curr.getRadius(),
+					(float)curr.getRadius());
+		}
+		Iterator<ProcessingVehicle> vehIt = this.vehicles.iterator();
+		while(vehIt.hasNext()){
+			ProcessingVehicle curr = vehIt.next();
+			curr.draw();
+		}
+	}
+	class ProcessingVehicle extends Vehicle{
+		int x,y; //vehicle's position
+
+		ProcessingVehicle(Vehicle v){
+			super(v);
+			this.x = (int)random(sim.getEnvironment().getWidth());
+			this.y = (int)random(sim.getEnvironment().getHeigth());
+		}
+
+		void draw(){
+			fill(Color.ORANGE.getRGB());
+			rect(x,y,10,15);
 			Iterator<EnvironmentElement> it = elements.iterator();
 			while(it.hasNext()){
 				EnvironmentElement curr = it.next();
-				switch(curr.getType()){
-				case EnvironmentElement.HeatSource:
-					fill(Color.RED.getRGB());
-					break;
-				case EnvironmentElement.LightSource:
-					fill(Color.GREEN.getRGB());
-					break;
-				case EnvironmentElement.WaterSource:
-					fill(Color.BLUE.getRGB());
-					break;
-				case EnvironmentElement.PowerSource:
-					fill(Color.WHITE.getRGB());
-					break;
-				}
-				ellipse((float)curr.getXpos(),
-						(float)curr.getYpos(),
-						(float)curr.getRadius(),
-						(float)curr.getRadius());
+				float distanceTo = dist(
+						(float)x,
+						(float)y,
+						(float)curr.getXpos(),
+						(float)curr.getYpos());
+			
+				boolean onLeft = (curr.getXpos() - this.x <= 0); 
+				//well now we have the distance to an element, and its type and direction
+				// so we need to do some maths, based on things like this.getLeftSensorHeat()
+				// to determine what speed to apply to the motor
 			}
-			Iterator<ProcessingVehicle> vehIt = this.vehicles.iterator();
-			while(vehIt.hasNext()){
-				ProcessingVehicle curr = vehIt.next();
-				curr.draw();
-			}
+		}
 	}
-    class ProcessingVehicle extends Vehicle{
-    	int x,y; //vehicle's position
-    	
-    	ProcessingVehicle(Vehicle v){
-    		super(v);
-    		this.x = (int)random(sim.getEnvironment().getWidth());
-    		this.y = (int)random(sim.getEnvironment().getHeigth());
-    	}
-    	
-    	void draw(){
-    		fill(Color.ORANGE.getRGB());
-    		rect(x,y,10,15);
-    	}
-    }
 }
 
