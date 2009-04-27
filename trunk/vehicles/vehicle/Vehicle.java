@@ -556,7 +556,7 @@ public class Vehicle implements Comparable{
 	}
 
 	public void printDetails(){
-		System.out.println("Details for vehicle to be at location: " + this.xmlLocation);
+		System.out.println("File Path " + this.xmlLocation);
 		System.out.println("File Name: " + this.fileName);
 		System.out.println("Name\t" + this.vehicleName);
 		System.out.println("Author\t" + this.vehicleAuthor);
@@ -566,6 +566,16 @@ public class Vehicle implements Comparable{
 		System.out.println("Motor Strength\t" + this.motorStrength);
 		System.out.println("Maximum Memory\t" + this.max_mem);
 		System.out.println("Learning rate\t" + this.learning_rate);
+		System.out.println("\tLeft Sensor");
+		System.out.println("Power\t" + this.getLeftSensorPower());
+		System.out.println("Heat\t" + this.getLeftSensorHeat());
+		System.out.println("Light\t" + this.getLeftSensorLight());
+		System.out.println("Water\t" + this.getLeftSensorWater());
+		System.out.println("\tRight Sensor");
+		System.out.println("Power\t" + this.getRightSensorPower());
+		System.out.println("Heat\t" + this.getRightSensorHeat());
+		System.out.println("Light\t" + this.getRightSensorLight());
+		System.out.println("Water\t" + this.getRightSensorWater());
 	}
 
 

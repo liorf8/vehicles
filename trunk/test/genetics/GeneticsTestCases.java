@@ -80,9 +80,16 @@ public class GeneticsTestCases {
 			}
 		}
 		
-		for(int i = 0; i < 100; i++){
-			Genetics.crossoverBitsAndMutate(r.nextInt(101), r.nextInt(101));
-			System.out.println("\n");
-		}
+		System.out.println("\n\nTesting Paired Mating \n\n");
+		
+		Vehicle parentA = new Vehicle("xml/vehicles/angry.veh");
+		Vehicle parentB = new Vehicle("xml/vehicles/stoner.veh");
+		System.out.println("Parent A specs:");
+		parentA.printDetails();
+		System.out.println("\nParent B specs:");
+		parentB.printDetails();
+		Vehicle child = Genetics.pairedMating(parentA, parentB);
+		System.out.println("\nChild specs:");
+		child.printDetails();
 	}
 }
