@@ -305,7 +305,7 @@ public class Genetics {
 
 		//These will be set for an editor vehicle if we go down that path
 		//For an object in memory alone, null is fine for these
-		child.setXmlLocation("src/test/genetics/tmp/" + UtilMethods.formatString(name));
+		child.setXmlLocation("src/test/genetics/tmp/" + UtilMethods.formatString(name) + ".veh");
 		s.addToLog("New vehicle temporarily stored in: " + child.getXmlLocation());
 		child.setFileName(name);
 
@@ -558,7 +558,7 @@ public class Genetics {
 
 		//These will be set for an editor vehicle if we go down that path
 		//For an object in memory alone, null is fine for these
-		child.setXmlLocation("src/test/genetics/tmp/" + UtilMethods.formatString(name));
+		child.setXmlLocation("src/test/genetics/tmp/" + UtilMethods.formatString(name) + ".veh");
 		s.addToLog("New vehicle temporarily stored in: " + child.getXmlLocation());
 		child.setFileName(name);
 
