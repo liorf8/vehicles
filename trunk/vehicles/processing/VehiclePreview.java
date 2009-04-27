@@ -7,7 +7,6 @@ import processing.core.*;
  * @author Niall O'Hara
  */
 public class VehiclePreview extends PApplet {
-
     Robot robot;
 
     @Override
