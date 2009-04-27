@@ -74,6 +74,7 @@ public class VehicleTest {
 		EditorVehicle veh = new EditorVehicle(v.getXmlLocation(),true); //constructor loads xml into an object
 		veh.setXmlLocation("xml/vehicles/duplicate.veh");//where to save the new xml, should be same as hungry.xml
 		veh.saveVehicle(); //write the xml
+		veh.printDetails();
 		//Now we have created an object, written to xml, created an object from that xml, and wrote that
 		//  to produce the same xml
 	}
