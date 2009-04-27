@@ -6,6 +6,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.ScrollPaneConstants;
@@ -63,10 +66,12 @@ public class SimulationEditor extends javax.swing.JFrame {
         };
 
         vehicleArray = appRoot.getVehicleArray();
-        availableVehicles = new AbstractListModel() {
-            public int getSize() { return vehicleArray.length; }
-            public Object getElementAt(int i) { return vehicleArray[i]; }
-        };
+        for (int i = 0; i < vehicleArray.length; i++) {
+            availableRobots.add(i, vehicleArray[i]);
+        }
+        
+        availableVehicles = new AvailableRobotsModel();
+        selectedVehicles = new SelectedRobotsModel();
 
         initComponents();
 
@@ -124,6 +129,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_AvailableVehicles = new JPanel();
         scrollpanel_AvailableVehicles = new JScrollPane();
         list_AvailableVehicles = new JList();
+        jLabel1 = new JLabel();
         panel_AddRemoveVehicles = new JPanel();
         button_AddVehicle = new JButton();
         button_AddAllVehicle = new JButton();
@@ -138,6 +144,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_AvailableEnvironments = new JPanel();
         scrollpanel_AvailableEnvironments = new JScrollPane();
         list_AvailableEnvironments = new JList();
+        jLabel2 = new JLabel();
         panel_SelectedEnvironment = new JPanel();
         scrollpanel_SelectedEnvironment = new JScrollPane();
         list_SelectedEnvironment = new JList();
@@ -455,15 +462,23 @@ public class SimulationEditor extends javax.swing.JFrame {
         list_AvailableVehicles.setName("list_AvailableVehicles"); // NOI18N
         scrollpanel_AvailableVehicles.setViewportView(list_AvailableVehicles);
 
+        jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
         GroupLayout panel_AvailableVehiclesLayout = new GroupLayout(panel_AvailableVehicles);
         panel_AvailableVehicles.setLayout(panel_AvailableVehiclesLayout);
         panel_AvailableVehiclesLayout.setHorizontalGroup(
             panel_AvailableVehiclesLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_AvailableVehicles, GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+            .addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addComponent(scrollpanel_AvailableVehicles, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
         panel_AvailableVehiclesLayout.setVerticalGroup(
             panel_AvailableVehiclesLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_AvailableVehicles, GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+            .addGroup(Alignment.TRAILING, panel_AvailableVehiclesLayout.createSequentialGroup()
+                .addComponent(scrollpanel_AvailableVehicles, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
         );
 
         panel_AddRemoveVehicles.setName("panel_AddRemoveVehicles"); // NOI18N
@@ -495,7 +510,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_VehiclePreview.setLayout(panel_VehiclePreviewLayout);
         panel_VehiclePreviewLayout.setHorizontalGroup(
             panel_VehiclePreviewLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(processing_VehiclePreview, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+            .addComponent(processing_VehiclePreview, GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
         );
         panel_VehiclePreviewLayout.setVerticalGroup(
             panel_VehiclePreviewLayout.createParallelGroup(Alignment.LEADING)
@@ -511,10 +526,10 @@ public class SimulationEditor extends javax.swing.JFrame {
             .addGroup(panel_AddRemoveVehiclesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel_AddRemoveVehiclesLayout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(button_AddVehicle, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                    .addComponent(button_AddAllVehicle, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                    .addComponent(button_RemoveVehicle, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                    .addComponent(button_RemoveAllVehicle, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                    .addComponent(button_AddVehicle, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                    .addComponent(button_AddAllVehicle, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                    .addComponent(button_RemoveVehicle, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                    .addComponent(button_RemoveAllVehicle, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                     .addComponent(panel_VehiclePreview, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -539,11 +554,7 @@ public class SimulationEditor extends javax.swing.JFrame {
 
         scrollpanel_SelectedVehicles.setName("scrollpanel_SelectedVehicles"); // NOI18N
 
-        list_SelectedVehicles.setModel(new AbstractListModel() {
-            String[] strings = { "Vehicle 1", "Vehicle 2", "Vehicle 3", "Vehicle 4", "Vehicle 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        list_SelectedVehicles.setModel(selectedVehicles);
         list_SelectedVehicles.setName("list_SelectedVehicles"); // NOI18N
         scrollpanel_SelectedVehicles.setViewportView(list_SelectedVehicles);
 
@@ -597,15 +608,23 @@ public class SimulationEditor extends javax.swing.JFrame {
         list_AvailableEnvironments.setName("list_AvailableEnvironments"); // NOI18N
         scrollpanel_AvailableEnvironments.setViewportView(list_AvailableEnvironments);
 
+        jLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
+        jLabel2.setName("jLabel2"); // NOI18N
+
         GroupLayout panel_AvailableEnvironmentsLayout = new GroupLayout(panel_AvailableEnvironments);
         panel_AvailableEnvironments.setLayout(panel_AvailableEnvironmentsLayout);
         panel_AvailableEnvironmentsLayout.setHorizontalGroup(
             panel_AvailableEnvironmentsLayout.createParallelGroup(Alignment.LEADING)
+            .addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
             .addComponent(scrollpanel_AvailableEnvironments, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
         panel_AvailableEnvironmentsLayout.setVerticalGroup(
             panel_AvailableEnvironmentsLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_AvailableEnvironments, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+            .addGroup(Alignment.TRAILING, panel_AvailableEnvironmentsLayout.createSequentialGroup()
+                .addComponent(scrollpanel_AvailableEnvironments, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
         );
 
         panel_SelectedEnvironment.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_SelectedEnvironment.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_SelectedEnvironment.border.titleFont"))); // NOI18N
@@ -697,11 +716,11 @@ public class SimulationEditor extends javax.swing.JFrame {
         );
         tab_EnvironmentLayout.setVerticalGroup(
             tab_EnvironmentLayout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, tab_EnvironmentLayout.createSequentialGroup()
+            .addGroup(tab_EnvironmentLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(tab_EnvironmentLayout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(panel_AvailableEnvironments, GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                    .addGroup(Alignment.LEADING, tab_EnvironmentLayout.createSequentialGroup()
+                .addGroup(tab_EnvironmentLayout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(panel_AvailableEnvironments, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                    .addGroup(tab_EnvironmentLayout.createSequentialGroup()
                         .addGroup(tab_EnvironmentLayout.createParallelGroup(Alignment.LEADING)
                             .addComponent(panel_SelectedEnvironment, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addGroup(tab_EnvironmentLayout.createSequentialGroup()
@@ -776,7 +795,6 @@ public class SimulationEditor extends javax.swing.JFrame {
 
     private void populateFields(EditorSimulation p_simulation) {
         EditorSimulation tempSimulation = p_simulation;
-
         text_Author.setText(tempSimulation.getAuthor());
         text_Description.setText(tempSimulation.getDescription());
         text_Name.setText(tempSimulation.getName());
@@ -806,18 +824,46 @@ public class SimulationEditor extends javax.swing.JFrame {
 
     @Action
     public void addSelectedVehicles() {
+		SelectedRobotsModel selectedModel = (SelectedRobotsModel) list_SelectedVehicles.getModel();
+		List<EditorVehicle> moves = getSelectedRobots();
+		for (EditorVehicle move : moves) {
+			selectedRobots.add(move);
+		}
+		selectedModel.changed();
+        System.out.print(selectedRobots.size() + " ");
     }
 
     @Action
     public void addAllVehicles() {
+        JList selectedList = list_AvailableVehicles;
+		SelectedRobotsModel selectedModel = (SelectedRobotsModel) list_SelectedVehicles.getModel();
+		for (EditorVehicle selected : availableRobots) {
+			selectedRobots.add(selected);
+        }
+		selectedList.clearSelection();
+		selectedModel.changed();
+        System.out.print(selectedRobots.size() + " ");
     }
 
     @Action
     public void removeSelectedVehicles() {
+        JList selectedList = list_SelectedVehicles;
+		SelectedRobotsModel selectedModel = (SelectedRobotsModel) selectedList.getModel();
+		int sel[] = selectedList.getSelectedIndices();
+		for (int i = 0; i < sel.length; i++) {
+			selectedRobots.remove(sel[i] - i);
+		}
+		selectedList.clearSelection();
+		selectedModel.changed();
     }
 
     @Action
     public void removeAllVehicles() {
+        JList selectedList = list_SelectedVehicles;
+		SelectedRobotsModel selectedModel = (SelectedRobotsModel) selectedList.getModel();
+		selectedRobots.clear();
+		selectedList.clearSelection();
+		selectedModel.changed();
     }
 
     @Action
@@ -838,6 +884,46 @@ public class SimulationEditor extends javax.swing.JFrame {
         text_GeneticSelectionN.setEnabled(true);
     }
 
+    public List<EditorVehicle> getSelectedRobots() {
+		List<EditorVehicle> selected = new ArrayList<EditorVehicle>();
+		for (int i : list_AvailableVehicles.getSelectedIndices()) {
+			selected.add(availableRobots.get(i));
+		}
+		return selected;
+	}
+
+    public int getSelectedRobotsCount() {
+		return selectedRobots.size();
+	}
+
+    class SelectedRobotsModel extends AbstractListModel {
+		public void changed() {
+			fireContentsChanged(this, 0, getSize());
+		}
+
+		public int getSize() {
+			return selectedRobots.size();
+		}
+
+		public EditorVehicle getElementAt(int which) {
+			return selectedRobots.get(which);
+		}
+	}
+
+    private class AvailableRobotsModel extends AbstractListModel {
+		public void changed() {
+			fireContentsChanged(this, 0, getSize());
+		}
+
+		public int getSize() {
+			return availableRobots.size();
+		}
+
+		public EditorVehicle getElementAt(int which) {
+			return availableRobots.get(which);
+		}
+	}
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ButtonGroup buttonGroup_Evolution;
     private ButtonGroup buttonGroup_PerishableVehicles;
@@ -852,6 +938,8 @@ public class SimulationEditor extends javax.swing.JFrame {
     private JComboBox dropdown_GeneticSelectionMethod;
     private JComboBox dropdown_ReproductionMethod;
     private JComboBox dropdown_SelectedSimulation;
+    private JLabel jLabel1;
+    private JLabel jLabel2;
     private JLabel label_GeneticSelectionMethod;
     private JLabel label_GeneticSelectionN;
     private JLabel label_ReproductionMethod;
@@ -904,4 +992,9 @@ public class SimulationEditor extends javax.swing.JFrame {
     private DefaultComboBoxModel simulationDropDown;
     private Simulator appRoot;
     private AbstractListModel availableVehicles, availableEnvironments, selectedVehicles, selectedEnvironments;
+
+    //private JList selectedRobotsList;
+    private final List<EditorVehicle> selectedRobots = new ArrayList<EditorVehicle>();
+    //private JList availableRobotsList;
+    private final List<EditorVehicle> availableRobots = new CopyOnWriteArrayList<EditorVehicle>();
 }
