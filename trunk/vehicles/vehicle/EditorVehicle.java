@@ -50,6 +50,11 @@ public class EditorVehicle extends Vehicle {
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("Vehicle");
 	}
+	public EditorVehicle(Vehicle v){
+		super(v);
+		xmldoc= new DocumentImpl();
+		root = xmldoc.createElement("Vehicle");
+	}
 
 	/**
 	 * Add a vehicle name attribute to the XML document being created

@@ -158,7 +158,7 @@ public class UtilMethods {
 		ls.setType(EnvironmentElement.LightSource);//TODO put this in object constructor
 		ls.setPosition(new Point(200,40));		
 		ls.setRadius(500);
-		ls.setStrength(10);		
+		ls.setStrength(1);		
 
 		//Create a heat source, populate it's attributes, and write to file
 		EnvironmentElement hs = new EnvironmentElement();
