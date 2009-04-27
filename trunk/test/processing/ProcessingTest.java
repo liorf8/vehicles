@@ -16,6 +16,7 @@ import processing.core.*;
 public class ProcessingTest extends PApplet{
 	Simulation sim;
 	Vector<EnvironmentElement> elements;
+	Vector<ProcessingVehicle> vehicles;
 	
 	public ProcessingTest(Simulation simu){
 		this.sim = simu;
@@ -28,7 +29,15 @@ public class ProcessingTest extends PApplet{
     @Override
 	public void setup(){	
     	size(sim.getEnvironment().getWidth() ,sim.getEnvironment().getHeigth());
+    	//populate our list of environment elements
     	this.elements = sim.getEnvironment().getElements();
+    	
+    	Vector<Vehicle> temp = sim.getVehicles();
+    	this.vehicles = new Vector<ProcessingVehicle>();
+    	Iterator<Vehicle> it = temp.iterator();
+    	while(it.hasNext()){
+    		this.vehicles.add(new ProcessingVehicle(it.next()));
+    	}
 
 	}
 	
@@ -59,5 +68,25 @@ public class ProcessingTest extends PApplet{
 						(float)curr.getRadius(),
 						(float)curr.getRadius());
 			}
+			Iterator<ProcessingVehicle> vehIt = this.vehicles.iterator();
+			while(vehIt.hasNext()){
+				ProcessingVehicle curr = vehIt.next();
+				curr.draw();
+			}
 	}
+    class ProcessingVehicle extends Vehicle{
+    	int x,y; //vehicle's position
+    	
+    	ProcessingVehicle(Vehicle v){
+    		super(v);
+    		this.x = (int)random(sim.getEnvironment().getWidth());
+    		this.y = (int)random(sim.getEnvironment().getHeigth());
+    	}
+    	
+    	void draw(){
+    		fill(Color.ORANGE.getRGB());
+    		rect(x,y,10,15);
+    	}
+    }
 }
+
