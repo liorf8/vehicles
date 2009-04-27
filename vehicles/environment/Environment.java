@@ -153,6 +153,17 @@ public class Environment {
 		} //end of an single element for loop iteration here
 
 	}
+	public Environment(Environment e){
+		this.author = e.author;
+		this.description = e.description;
+		this.elementVector = e.elementVector;
+		this.fileName = e.fileName;
+		this.grid = e.grid;
+		this.name = e.name;
+		this.xmlLocation = e.xmlLocation;
+		xmldoc= new DocumentImpl();
+		root = xmldoc.createElement("Environment");
+	}
 
 	/**
 	 * Take in a node from an XML document and use it to instansiate parts of the object- for 
