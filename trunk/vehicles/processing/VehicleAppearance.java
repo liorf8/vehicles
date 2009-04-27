@@ -10,7 +10,7 @@ public class VehicleAppearance extends PApplet {
      public void setup() {
          // original setup code here ...
          size(400, 400);
-         background(100);
+         background(255);
          // prevent thread from starving everything else
          noLoop();
      }
@@ -27,4 +27,6 @@ public class VehicleAppearance extends PApplet {
          // update the screen (run draw once)
          redraw();
      }
+
+
  }
