@@ -11,6 +11,8 @@ import org.w3c.dom.Text;
 import org.apache.xerces.dom.DocumentImpl;
 import org.apache.xml.serialize.*;
 
+import vehicles.util.UtilMethods;
+
 /**
  * A vehicle class for use in the Vehicle Editor, essentially a wrapper around some
  * XML generation and manipulation. 
@@ -142,11 +144,13 @@ public class EditorVehicle extends Vehicle {
 		root.appendChild(xmldoc.adoptNode(b.getRootElement().cloneNode(true)));
 	}
 
+	/** 
+	 * Add The Last Modified Time Stamp to the Simulation's document
+	 */
 	public void writeTimeStamp(Document xmldoc){
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		Date date = new Date();
-		writeXMLEntry("LastModified", dateFormat.format(date), xmldoc);
-		this.setLastModified(dateFormat.format(date));
+		String t = UtilMethods.getTimeStamp();
+		writeXMLEntry("LastModified", t, xmldoc);
+		this.setLastModified(t);
 	}
 	
 	/**

@@ -31,9 +31,12 @@ public class Simulation {
 	protected boolean perishable_vehicles = false, evolution = false;
 	protected int gen_selection = 0; //genetic selection algorithm to use 0 - X are valid
 	protected int repro_method = 0; //reproduction method. 0 - 2 are valid
-
+	protected int n = 0;
+	public SimulationLog log = null; //this is public so it can be passed around.
+	
 	public Simulation(){
 		vehicles = new Vector<Vehicle>();
+		this.log = new SimulationLog();
 	}
 
 	public Simulation(String filename){
@@ -66,6 +69,8 @@ public class Simulation {
 			/* Fill the vector with the vehicles pointed at in the file */
 			NodeList vehiclePaths = dom.getElementsByTagName("VehiclePath");
 			processVehiclePaths(vehiclePaths);
+			
+			this.log = new SimulationLog();
 
 		}catch(Exception e){
 			//e.printStackTrace();
@@ -135,6 +140,9 @@ public class Simulation {
 			else if(name.equals("reproduction_method")){
 				this.setReproductionMethod(Integer.parseInt(node_value));
 			}
+			else if(name.equals("n_for_selection")){
+				this.setN(Integer.parseInt(node_value));
+			}
 			else break;
 		}
 	}
@@ -179,6 +187,10 @@ public class Simulation {
 
 	public int getGeneticSelectionMethod(){
 		return this.gen_selection;
+	}
+	
+	public int getN(){
+		return this.n;
 	}
 
 	public int getReproductionMethod(){
@@ -242,6 +254,15 @@ public class Simulation {
 
 	public void setReproductionMethod(int r){
 		this.repro_method = r;
+	}
+
+	public void setN(int N){
+		if(N == 0){
+			this.n = 1;
+		}
+		else{
+			this.	n = N;
+		}
 	}
 	
 	public void setLastModified(String timeStamp){

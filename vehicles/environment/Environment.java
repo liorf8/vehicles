@@ -1,5 +1,7 @@
 package vehicles.environment;
 
+import vehicles.util.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -208,11 +210,13 @@ public class Environment {
 		root.appendChild(nameElement);//and add this new element to the document
 	}
 
+	/** 
+	 * Add The Last Modified Time Stamp to the Simulation's document
+	 */
 	public void writeTimeStamp(Document xmldoc){
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		Date date = new Date();
-		writeXMLEntry("LastModified", dateFormat.format(date), xmldoc);
-		this.setLastModified(dateFormat.format(date));
+		String t = UtilMethods.getTimeStamp();
+		writeXMLEntry("LastModified", t, xmldoc);
+		this.setLastModified(t);
 	}
 
 
