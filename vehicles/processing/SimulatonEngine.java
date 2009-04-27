@@ -47,7 +47,8 @@ public class SimulatonEngine extends PApplet {
     				(float)curr.getYpos(),
     				(float)((float)curr.getStrength()/100.0f),
     				(float)curr.getRadius(),
-    				curr.getName().hashCode()); //generate some id
+    				curr.getName().hashCode(), //generate some id
+    				curr.getType());
     		print(sources[i]);
     	}
     	
@@ -68,7 +69,7 @@ public class SimulatonEngine extends PApplet {
 
         robots = new Robot[10];
         for (int i = 0; i < robots.length; i++) {
-            robots[i] = new Robot(i * (width / 10) + 20, height / 6, random(PI), 10, i);
+            robots[i] = new Robot(i * (width / 10) + 20, height / 2, random(PI), 10, i);
         }
 
         /* Moving this to the constructor
@@ -142,8 +143,7 @@ public class SimulatonEngine extends PApplet {
      * update the light source on the ground
      * 
      * This seems to be for the functionality of inverting the sense of the environment
-     *  elements, so the vehicles are afraid of them. I guess we can leave it in, but I
-     *  don't really think it's needed -Karl
+     *  elements, so the vehicles are afraid of them -- only partly. It actually 
      */
     void updateGround() {
 
@@ -170,7 +170,9 @@ public class SimulatonEngine extends PApplet {
 
                 for (int p = 0; p < px; p++) {
                     for (int q = 0; q < px; q++) {
-                        ground.set(i + p, k + q, color(c, c, (specialSense) ? c / 8 : c));
+                    	//agh, horrible code
+                        ground.set(i + p, k + q,
+                        		color(c , c, c / 8 )); //r,g,b
                     }
                 }
             }
@@ -454,13 +456,15 @@ public class SimulatonEngine extends PApplet {
         float max_radius;
         //boolean dragging = true; //so taking this functionaloty out
         int id;
+        int type; //enumeration values are in EnvironmentElement
 
-        Source(float x, float y, float strength, float max_radius, int id) {
+        Source(float x, float y, float strength, float max_radius, int id, int type) {
             this.x = x;
             this.y = y;
             this.strength = strength;
             this.max_radius = max_radius;
             this.id = id;
+            this.type = type;
         }
 
         void setLocation(float x, float y) { //place the source somewhere
@@ -470,8 +474,8 @@ public class SimulatonEngine extends PApplet {
 
         void draw() {
 
-            if (id < numOfLights) {
-                checkCollision();
+           // if (id < numOfLights) {
+             //   checkCollision();
                 /*
                 // dragging?
                 int range = 80;
@@ -494,7 +498,7 @@ public class SimulatonEngine extends PApplet {
                     updateGround();
                 }
 */
-            }
+           // }
         }
 
         void checkCollision() {

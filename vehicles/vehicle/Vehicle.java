@@ -31,7 +31,20 @@ public class Vehicle implements Comparable{
 	protected int aggression = 0;
 	protected VehicleColour vehicleColour = new VehicleColour();
 	protected MemoryUnit mu = null;
-
+	
+	public Vehicle(Vehicle other){
+		this.xmlLocation = other.xmlLocation;
+		this.fileName = other.fileName;
+		this.vehicleAuthor = other.vehicleAuthor;
+		this.vehicleColour = other.vehicleColour;
+		this.vehicleDescription = other.vehicleDescription;
+		this.vehicleName = other.vehicleName;
+		this.components = other.components;
+		this.battery = other.battery;
+		this.motorStrength = other.motorStrength;
+		this.aggression = other.aggression;
+		this.mu = other.mu;
+	}
 
 
 	/**
