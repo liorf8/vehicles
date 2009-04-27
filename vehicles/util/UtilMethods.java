@@ -135,13 +135,21 @@ public class UtilMethods {
 		}
 		File f;
 		f = new File("xml/");
-		f.mkdirs();
+		if(!f.exists()){
+			f.mkdirs();
+		}
 		f = new File("xml/environments/");
-		f.mkdirs();
+		if(!f.exists()){
+			f.mkdirs();
+		}
 		f = new File("xml/vehicles/");
-		f.mkdirs();
+		if(!f.exists()){
+			f.mkdirs();
+		}
 		f = new File("xml/simulations/");
-		f.mkdirs();
+		if(!f.exists()){
+			f.mkdirs();
+		}
 
 		//Re create them
 
