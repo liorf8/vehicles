@@ -74,8 +74,14 @@ public class ProcessingTest extends PApplet{
 			curr.draw();
 		}
 	}
+	/**
+	 * A vehicle in the engine, subclassing the more generic Vehicle class
+	 * @author Karl
+	 *
+	 */
 	class ProcessingVehicle extends Vehicle{
 		float x,y; //vehicle's position
+		int max_movement = 5; //the maximum number of units we can move in a single step
 
 		ProcessingVehicle(Vehicle v){
 			super(v);
@@ -87,6 +93,12 @@ public class ProcessingTest extends PApplet{
 			fill(Color.ORANGE.getRGB()); //vehicles are orange
 			rect(x,y,10,15);
 			Iterator<EnvironmentElement> it = elements.iterator();
+			
+			int total_absolute_sensed = 0; //the amount this vehicle likes elements
+			float total_intensities_at_point = 0.0f; //total intensities of all elements around the vehicle
+			/*
+			 * Process a single element realitive to this vehicle
+			 */
 			while(it.hasNext()){
 				EnvironmentElement curr = it.next();
 				float distanceTo = dist( //from us(x,y) to curr(getXpos,getYpos)
@@ -100,20 +112,33 @@ public class ProcessingTest extends PApplet{
 				//well now we have the distance to an element, and its type and direction
 				// so we need to do some maths, based on things like this.getLeftSensorHeat()
 				// to determine what speed to apply to the motor
-				if(onLeft){
-					this.x += 1 - (distanceTo / curr.getStrength());
+				if(distanceTo < curr.getRadius()){ //is actually in range
+					//sum intensities
+					float relIntensity = curr.getStrength() / distanceTo; //relative intensity
+					total_intensities_at_point += relIntensity;
+					//sum likes
+					switch(curr.getType()){
+					case EnvironmentElement.HeatSource:
+						total_absolute_sensed += abs(this.getLeftSensorHeat());
+						break;
+					case EnvironmentElement.LightSource:
+						total_absolute_sensed += abs(this.getLeftSensorLight());
+						break;
+					case EnvironmentElement.PowerSource:
+						total_absolute_sensed += abs(this.getLeftSensorPower());
+						break;
+					case EnvironmentElement.WaterSource:
+						total_absolute_sensed += abs(this.getLeftSensorWater());
+						break;
+					}
 					
-				}else{ //onRight
-					this.x -= 1 - (distanceTo / curr.getStrength());
-					
-				}
-				if(above){
-					this.y += 1 - (distanceTo / curr.getStrength());
-				}else{ //below
-					this.y -= 1 - (distanceTo / curr.getStrength());
-				}
-			}
-		}
-	}
-}
+				} //end if
+			}// end a single element that this vehicle can see
+			//TODO generate the 'temp' variables
+		} //end draw
+		
+		
+		
+	}//end inner class
+}//end outer class
 
