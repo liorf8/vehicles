@@ -1,4 +1,4 @@
-package test.UtilMethods;
+package test.utilmethods;
 
 import vehicles.util.*;
 
