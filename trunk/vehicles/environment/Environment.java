@@ -289,8 +289,7 @@ public class Environment {
 			}
 
 			OutputFormat of = new OutputFormat("XML","ISO-8859-1",true);
-			of.setIndent(1);
-			of.setIndenting(true);
+            of.setLineWidth(Integer.MAX_VALUE);
 			XMLSerializer serializer = new XMLSerializer(fos,of);//prepare a serialiser for
 			//generating XML documents
 			// As a DOMSerializer

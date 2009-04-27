@@ -153,8 +153,7 @@ public class EditorSimulation extends Simulation{
 			/*Now take the file in RAM and write it out to disk*/
 			FileOutputStream fos = new FileOutputStream(xmlLocation);
 			OutputFormat of = new OutputFormat("XML","ISO-8859-1",true);
-			of.setIndent(1);
-			of.setIndenting(true);
+            of.setLineWidth(Integer.MAX_VALUE);
 			XMLSerializer serializer = new XMLSerializer(fos,of);//prepare a serialiser for
 			//generating XML documents
 			// As a DOMSerializer

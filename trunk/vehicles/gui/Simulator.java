@@ -63,8 +63,6 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         engine = new ProcessingTest(simulationArray[0]); //populate the engine with a simulation object
         isPaused = false;
 
-        
-
         simulationDropDown = new DefaultComboBoxModel(simulationArray);
 
         initComponents();
