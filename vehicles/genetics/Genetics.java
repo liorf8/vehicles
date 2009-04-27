@@ -484,15 +484,16 @@ public class Genetics {
 			max_batt = crossoverBitsAndMutate(parentA.getMaxBatteryCapacity(),
 					parentB.getMaxBatteryCapacity(), 100);
 			child.setMaxBatteryCapacity(max_batt);
+			child.setCurrentBatteryCapacity(max_batt);
 		}
 		else if (ran == 8){
 			child.setMaxBatteryCapacity(parentA.getMaxBatteryCapacity());
+			child.setCurrentBatteryCapacity(parentA.getMaxBatteryCapacity());
 		}
 		else{
 			child.setMaxBatteryCapacity(parentB.getMaxBatteryCapacity());
+			child.setCurrentBatteryCapacity(parentB.getMaxBatteryCapacity());
 		}
-		//have the vehicle start off fully charged, after all, it was only just created
-		child.setCurrentBatteryCapacity(child.getMaxBatteryCapacity());
 	}
 
 	/**

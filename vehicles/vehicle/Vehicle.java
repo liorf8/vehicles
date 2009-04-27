@@ -1,5 +1,6 @@
 package vehicles.vehicle;
 
+import vehicles.environment.*;
 import java.util.Vector;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -26,13 +27,10 @@ public class Vehicle implements Comparable{
 	protected String lastModified = null;
 	protected Vector<VehicleComponent> components; //components of the vehicle
 	protected VehicleBattery battery = new VehicleBattery();
-	protected int max_battery_capacity = 100; //maximum battery this vehicle can have
-	protected int curr_battery_capacity = 100;//current battery capacity
 	protected int motorStrength = 0;
 	protected int aggression = 0;
 	protected VehicleColour vehicleColour = new VehicleColour();
-	public MemoryUnit mu = null;
-	protected int max_mem = 0, learning_rate = 0;
+	protected MemoryUnit mu = null;
 
 
 
@@ -54,34 +52,51 @@ public class Vehicle implements Comparable{
 		}
 	}
 
+	public void addElementToMemory(EnvironmentElement e){
+		this.mu.addElement(e);
+	}
+	
+	public void printMemory(){
+		this.mu.printMemory();
+	}
+	
+	public void resetMemory(){
+		this.mu.resetMem();
+	}
+	
+	public boolean remembersElementAt(double x, double y){
+		return this.mu.remembersElementAt(x, y);
+		
+	}
+	
+	public int getTypeOfElementAt(double xPos, double yPos){
+		return this.mu.getTypeOfElementAt(xPos, yPos);
+	}
+	
 	public void setMaxMem(int m){
 		if(m >= 0) {
 			this.mu.setMaxMem(m);
-			this.max_mem = m;
 		}
 		else{
 		this.mu.setMaxMem(0);
-		this.max_mem = 0;
 		}
 	}
 
 	public void setLearningRate(int l){
 		if(l >= 0) {
 			this.mu.setLearningRate(l);
-			this.learning_rate = l;
 		}
 		else{
 			this.mu.setLearningRate(0);
-			this.learning_rate = 0;
 		}
 	}
 
 	public int getMaxMem(){
-		return this.max_mem;
+		return this.mu.getMaxMem();
 	}
 
 	public int getLearningRate(){
-		return this.learning_rate;
+		return this.mu.getLearningRate();
 	}
 
 	public String getAuthor() {
@@ -336,15 +351,15 @@ public class Vehicle implements Comparable{
 	 * @return curr_battery_capacity/max_battery_capacity
 	 */
 	public double getFitness() {
-		return (this.curr_battery_capacity / this.max_battery_capacity) + (this.max_battery_capacity * 0.10);
+		return ((double)this.battery.getCurr_capacity() / (double)this.battery.getMax_capacity()) + ((double)this.battery.getMax_capacity() * 0.10);
 	}
 
 	public Vehicle() {
 		this.mu = new MemoryUnit();
-		this.max_mem = this.mu.getMaxMem();
-		this.learning_rate = this.mu.getLearningRate();
-		this.max_battery_capacity = 100;
-		this.curr_battery_capacity = 0;
+		this.setMaxMem(100);
+		this.setLearningRate(1);
+		this.setMaxBatteryCapacity(100);
+		this.setCurrentBatteryCapacity(100);
 		this.components = new Vector<VehicleComponent>();
 		VehicleComponent vc = new VehicleComponent();
 		vc.setVehicleComponentType("LEFT");
@@ -407,10 +422,6 @@ public class Vehicle implements Comparable{
 				this.battery.setMax_capacity(Integer.parseInt(secondEntry.getNodeValue()));
 				this.battery.setCurr_capacity(Integer.parseInt(firstEntry.getNodeValue()));
 			}
-
-			//if the above two failed, these will be defaults
-			this.max_mem = this.mu.getMaxMem();
-			this.learning_rate = this.mu.getLearningRate();
 
 			NodeList motorStr = dom.getElementsByTagName("motorStrength");
 			this.setMotorStrength(Integer.parseInt(motorStr.item(0).getChildNodes().item(0).getNodeValue()));
@@ -562,10 +573,11 @@ public class Vehicle implements Comparable{
 		System.out.println("Author\t" + this.vehicleAuthor);
 		System.out.println("Description\t" + this.vehicleDescription);
 		System.out.println("Aggression\t" + this.aggression);    
-		System.out.println("Max Battery Capacity\t" + this.max_battery_capacity);
+		System.out.println("Max Battery Capacity\t" + this.getMaxBatteryCapacity());
+		System.out.println("Current Battery Capacity\t" + this.getCurrentBatteryCapacity());
 		System.out.println("Motor Strength\t" + this.motorStrength);
-		System.out.println("Maximum Memory\t" + this.max_mem);
-		System.out.println("Learning rate\t" + this.learning_rate);
+		System.out.println("Maximum Memory\t" + this.getMaxMem());
+		System.out.println("Learning rate\t" + this.getLearningRate());
 		System.out.println("\tLeft Sensor");
 		System.out.println("Power\t" + this.getLeftSensorPower());
 		System.out.println("Heat\t" + this.getLeftSensorHeat());
