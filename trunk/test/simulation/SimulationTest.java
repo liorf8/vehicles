@@ -21,7 +21,7 @@ public class SimulationTest {
 		es.setEnvironment("xml/environments/default_environment1.env");
 		es.printSimDetails();
 		es.saveSimulation();
-		Simulation e = new Simulation("xml/simulations/testsim.sim");
+		Simulation e = new Simulation("xml/simulations/default_simulation1.sim");
 		e.printSimDetails();
 	}
 }

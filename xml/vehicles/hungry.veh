@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Vehicle>
+    <name>Hungy Vehicle</name>
+    <author>Some guy</author>
+    <description>This is a hungry little vehicle </description>
+    <LastModified>26/04/2009 23:02:05</LastModified>
+    <motorStrength>67</motorStrength>
+    <aggression>55</aggression>
+    <Colour>
+        <red>102</red>
+        <green>203</green>
+        <blue>150</blue>
+    </Colour>
+    <memory>
+        <max>50</max>
+        <learnrate>5</learnrate>
+    </memory>
+    <battery>
+        <max>100</max>
+        <current>50</current>
+    </battery>
+    <VehicleComponent>
+        <type>LEFT</type>
+        <LeftSensorHeat>12</LeftSensorHeat>
+        <LeftSensorLight>35</LeftSensorLight>
+        <LeftSensorPower>42</LeftSensorPower>
+        <LeftSensorWater>-16</LeftSensorWater>
+    </VehicleComponent>
+    <VehicleComponent>
+        <type>RIGHT</type>
+        <RightSensorHeat>48</RightSensorHeat>
+        <RightSensorLight>47</RightSensorLight>
+        <RightSensorPower>44</RightSensorPower>
+        <RightSensorWater>46</RightSensorWater>
+    </VehicleComponent>
+</Vehicle>

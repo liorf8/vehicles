@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Vehicle>
+    <name>Angry Vehicle</name>
+    <author>another guy</author>
+    <description>This is an angry little vehicle </description>
+    <LastModified>26/04/2009 23:02:05</LastModified>
+    <motorStrength>90</motorStrength>
+    <aggression>45</aggression>
+    <Colour>
+        <red>123</red>
+        <green>223</green>
+        <blue>150</blue>
+    </Colour>
+    <memory>
+        <max>50</max>
+        <learnrate>5</learnrate>
+    </memory>
+    <battery>
+        <max>100</max>
+        <current>80</current>
+    </battery>
+    <VehicleComponent>
+        <type>LEFT</type>
+        <LeftSensorHeat>22</LeftSensorHeat>
+        <LeftSensorLight>25</LeftSensorLight>
+        <LeftSensorPower>22</LeftSensorPower>
+        <LeftSensorWater>26</LeftSensorWater>
+    </VehicleComponent>
+    <VehicleComponent>
+        <type>RIGHT</type>
+        <RightSensorHeat>26</RightSensorHeat>
+        <RightSensorLight>-12</RightSensorLight>
+        <RightSensorPower>-20</RightSensorPower>
+        <RightSensorWater>-40</RightSensorWater>
+    </VehicleComponent>
+</Vehicle>

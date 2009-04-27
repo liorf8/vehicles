@@ -72,7 +72,7 @@ public class Simulation {
 			this.log = new SimulationLog();
 
 		}catch(Exception e){
-			//e.printStackTrace();
+			e.printStackTrace();
 			System.err.println("An error occurred while creating an Environment from the file '" +
 					filename + "'. Please check that this file exists.");
 
