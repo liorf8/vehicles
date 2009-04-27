@@ -91,5 +91,7 @@ public class GeneticsTestCases {
 		Vehicle child = Genetics.pairedMating(parentA, parentB);
 		System.out.println("\nChild specs:");
 		child.printDetails();
+		child.saveVehicle();
+		
 	}
 }

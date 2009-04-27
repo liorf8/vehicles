@@ -566,6 +566,35 @@ public class Vehicle implements Comparable{
 		components.add(vc);
 	}
 
+	public void saveVehicle(){
+		EditorVehicle v = new EditorVehicle(this.xmlLocation);
+		v.setName(this.getName()); //set object attributes
+		v.setAuthor(this.getAuthor());
+		v.setDescription(this.getDescription());
+
+		v.setMotorStrength(this.getMotorStrength());
+		v.setAggression(this.getAggression());
+
+		v.setMaxBatteryCapacity(this.getMaxBatteryCapacity());
+		v.setCurrentBatteryCapacity(this.getCurrentBatteryCapacity());
+		
+		v.setMaxMem(this.getMaxMem());
+		v.setLearningRate(this.getLearningRate());
+
+		v.setColour(this.getVehicleColourRed(), this.getVehicleColourGreen(), this.getVehicleColourBlue());
+
+		v.setLeftSensorHeat(this.getLeftSensorHeat());
+		v.setLeftSensorLight(this.getLeftSensorLight());
+		v.setLeftSensorPower(this.getLeftSensorPower());
+		v.setLeftSensorWater(this.getLeftSensorWater());
+
+		v.setRightSensorHeat(this.getRightSensorHeat());
+		v.setRightSensorLight(this.getRightSensorLight());
+		v.setRightSensorPower(this.getRightSensorPower());
+		v.setRightSensorWater(this.getRightSensorWater());
+		v.saveVehicle();
+	}
+	
 	public void printDetails(){
 		System.out.println("File Path " + this.xmlLocation);
 		System.out.println("File Name: " + this.fileName);

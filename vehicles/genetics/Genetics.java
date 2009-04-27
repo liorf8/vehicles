@@ -282,19 +282,12 @@ public class Genetics {
 		
 		//These will be set for an editor vehicle if we go down that path
 		//For an object in memory alone, null is fine for these
-		//child.setXmlLocation("tmp/" + name);
-		//child.setFileName(name);
+		child.setXmlLocation("src/test/genetics/tmp/" + name);
+		child.setFileName(name);
 		
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
 		child.setLastModified(dateFormat.format(date));
-		
-		/*According to http://geneticalgorithms.ai-depot.com/Tutorial/Overview.html there is a 
-		 * approximately a 70 % chance that crossover will occur. Our algorithm pushes this up to 80%
-		 * and as such, for each attribute to be set via evolution, it will be determind via a random 
-		 * number if it is to be created via crossover. If not, one of the parents will be chosen and 
-		 * the attribute will be inerited directly.
-		 */
 		
 		//Set the battery
 		setBattery(child, parentA, parentB);
@@ -319,6 +312,13 @@ public class Genetics {
 		
 		return child;
 	}
+	
+	/*According to http://geneticalgorithms.ai-depot.com/Tutorial/Overview.html there is a 
+	 * approximately a 70 % chance that crossover will occur. Our algorithm pushes this up to 80%
+	 * and as such, for each attribute to be set via evolution, it will be determind via a random 
+	 * number if it is to be created via crossover. If not, one of the parents will be chosen and 
+	 * the attribute will be inerited directly.
+	 */
 	
 	private static void setRightSensor(Vehicle child, Vehicle parentA, Vehicle parentB){
 		Random r = new Random();
