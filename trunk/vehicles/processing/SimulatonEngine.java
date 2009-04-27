@@ -14,6 +14,10 @@ public class SimulatonEngine extends PApplet {
     int numOfRobots = 10;
     float move_speed = 0;
 
+    public float getMove_speed() {
+        return move_speed;
+    }
+
     public void setMove_speed(float move_speed) {
         this.move_speed = move_speed / PI;
     }
