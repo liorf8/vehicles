@@ -93,5 +93,10 @@ public class GeneticsTestCases {
 		child.printDetails();
 		child.saveVehicle();
 		
+		parentA = new Vehicle("xml/vehicles/angry.veh");
+		parentB = new Vehicle("xml/vehicles/hungry.veh");
+		child = Genetics.pairedMating(parentA, parentB);
+		child.saveVehicle();
+		
 	}
 }
