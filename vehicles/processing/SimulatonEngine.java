@@ -40,7 +40,7 @@ public class SimulatonEngine extends PApplet {
 		int num_veh = veh.size();
 
 		for (int i = 0; i < num_veh; i++) {
-			this.vehicleVector.add(new ProcessingVehicle(this, veh.elementAt(i), 400, 400, random(PI), 10, i));
+			this.vehicleVector.add(new ProcessingVehicle(this, veh.elementAt(i), 400, 400, random(PI), 10, i, 3));
 		}
 
 		this.num_sources = elements.size();
@@ -54,7 +54,7 @@ public class SimulatonEngine extends PApplet {
 			EnvironmentElement curr = elements.elementAt(i);
 			System.out.print(i + " : ");
 			elementVector.add(new ProcessingEnviroElement(this, curr, curr.getName().hashCode()));
-			//print(elementVector.elementAt(i).toString());
+			print(elementVector.elementAt(i).toString());
 		}
 	}
 
@@ -76,10 +76,10 @@ public class SimulatonEngine extends PApplet {
 
 		image(ground, 0, 0);
 		fill(155);
-		for (int i = 0; i < num_sources; i++) {
-			elementVector.elementAt(i).draw();
+		//for (int i = 0; i < num_sources; i++) {
+		//	elementVector.elementAt(i).draw();
 
-		}
+		//}
 		/*
 		 * if(frameCount % some_constant == 0){
 		 * 		make vehicles evolve
@@ -139,7 +139,7 @@ public class SimulatonEngine extends PApplet {
 
 				c = (int) min(sum * 255, 255);
 
-
+				
 				for (int p = 0; p < px; p++) {
 					for (int q = 0; q < px; q++) {
 						//agh, horrible code
@@ -148,6 +148,7 @@ public class SimulatonEngine extends PApplet {
 
 					}
 				}
+				
 			}
 		}
 

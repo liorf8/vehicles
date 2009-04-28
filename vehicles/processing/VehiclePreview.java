@@ -12,7 +12,7 @@ public class VehiclePreview extends PApplet {
     @Override
     public void setup() {
         background(0);
-        robot = new ProcessingVehicle(this, 60, 60, random(PI), 10, 155, 155, 155);
+        robot = new ProcessingVehicle(this, 60, 60, random(PI), 10, 155, 155, 155, 2);
         smooth();
     }
 
