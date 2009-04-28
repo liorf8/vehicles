@@ -150,7 +150,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_AvailableVehicles = new JPanel();
         scrollpanel_AvailableVehicles = new JScrollPane();
         list_AvailableVehicles = new JList();
-        jLabel1 = new JLabel();
+        button_ReloadVeh = new JButton();
         panel_AddRemoveVehicles = new JPanel();
         button_AddVehicle = new JButton();
         button_AddAllVehicle = new JButton();
@@ -167,7 +167,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_AvailableEnvironments = new JPanel();
         scrollpanel_AvailableEnvironments = new JScrollPane();
         list_AvailableEnvironments = new JList();
-        jLabel2 = new JLabel();
+        button_ReloadEnv = new JButton();
         panel_SelectedEnvironment = new JPanel();
         scrollpanel_SelectedEnvironment = new JScrollPane();
         list_SelectedEnvironment = new JList();
@@ -497,23 +497,23 @@ public class SimulationEditor extends javax.swing.JFrame {
         });
         scrollpanel_AvailableVehicles.setViewportView(list_AvailableVehicles);
 
-        jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
+        button_ReloadVeh.setAction(actionMap.get("reloadVehiclesList")); // NOI18N
+        button_ReloadVeh.setText(resourceMap.getString("button_ReloadVeh.text")); // NOI18N
+        button_ReloadVeh.setName("button_ReloadVeh"); // NOI18N
 
         GroupLayout panel_AvailableVehiclesLayout = new GroupLayout(panel_AvailableVehicles);
         panel_AvailableVehicles.setLayout(panel_AvailableVehiclesLayout);
         panel_AvailableVehiclesLayout.setHorizontalGroup(
             panel_AvailableVehiclesLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
             .addComponent(scrollpanel_AvailableVehicles, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+            .addComponent(button_ReloadVeh, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
         );
         panel_AvailableVehiclesLayout.setVerticalGroup(
             panel_AvailableVehiclesLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_AvailableVehiclesLayout.createSequentialGroup()
-                .addComponent(scrollpanel_AvailableVehicles, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+                .addComponent(scrollpanel_AvailableVehicles, GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
+                .addComponent(button_ReloadVeh))
         );
 
         panel_AddRemoveVehicles.setName("panel_AddRemoveVehicles"); // NOI18N
@@ -671,23 +671,23 @@ public class SimulationEditor extends javax.swing.JFrame {
         });
         scrollpanel_AvailableEnvironments.setViewportView(list_AvailableEnvironments);
 
-        jLabel2.setHorizontalAlignment(SwingConstants.CENTER);
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
-        jLabel2.setName("jLabel2"); // NOI18N
+        button_ReloadEnv.setAction(actionMap.get("reloadEnvironmentsList")); // NOI18N
+        button_ReloadEnv.setText(resourceMap.getString("button_ReloadEnv.text")); // NOI18N
+        button_ReloadEnv.setName("button_ReloadEnv"); // NOI18N
 
         GroupLayout panel_AvailableEnvironmentsLayout = new GroupLayout(panel_AvailableEnvironments);
         panel_AvailableEnvironments.setLayout(panel_AvailableEnvironmentsLayout);
         panel_AvailableEnvironmentsLayout.setHorizontalGroup(
             panel_AvailableEnvironmentsLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
             .addComponent(scrollpanel_AvailableEnvironments, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+            .addComponent(button_ReloadEnv, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
         );
         panel_AvailableEnvironmentsLayout.setVerticalGroup(
             panel_AvailableEnvironmentsLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_AvailableEnvironmentsLayout.createSequentialGroup()
-                .addComponent(scrollpanel_AvailableEnvironments, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+                .addComponent(scrollpanel_AvailableEnvironments, GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
+                .addComponent(button_ReloadEnv))
         );
 
         panel_SelectedEnvironment.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_SelectedEnvironment.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_SelectedEnvironment.border.titleFont"))); // NOI18N
@@ -1193,12 +1193,44 @@ public class SimulationEditor extends javax.swing.JFrame {
 		jTextArea2.setText(env.getDescription());
 	}
 
+    @Action
+    public void reloadVehiclesList() {
+        vehicleArray = appRoot.getVehicleArray();
+        availableRobots.clear();
+        for (int i = 0; i < vehicleArray.length; i++) {
+            availableRobots.add(i, vehicleArray[i]);
+        }
+        AvailableRobotsModel selectedModel = (AvailableRobotsModel) list_AvailableVehicles.getModel();
+        selectedModel.changed();
+        EditorSimulation s = (EditorSimulation) dropdown_SelectedSimulation.getSelectedItem();
+        populateFields(s);
+        dropdown_SelectedSimulation.requestFocus();
+        selectedRobotsListSelectionChanged();
+    }
+
+    @Action
+    public void reloadEnvironmentsList() {
+        environmentArray = appRoot.getEnvironmentArray();
+        availableEnv.clear();
+        for (int i = 0; i < environmentArray.length; i++) {
+            availableEnv.add(i, environmentArray[i]);
+        }
+        AvailableEnvironmentsModel selectedModel = (AvailableEnvironmentsModel) list_AvailableEnvironments.getModel();
+        selectedModel.changed();
+        EditorSimulation s = (EditorSimulation) dropdown_SelectedSimulation.getSelectedItem();
+        populateFields(s);
+        dropdown_SelectedSimulation.requestFocus();
+        selectedEnvironmentListSelectionChanged();
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ButtonGroup buttonGroup_Evolution;
     private ButtonGroup buttonGroup_PerishableVehicles;
     private JButton button_AddAllVehicle;
     private JButton button_AddVehicle;
     private JButton button_Cancel;
+    private JButton button_ReloadEnv;
+    private JButton button_ReloadVeh;
     private JButton button_RemoveAllVehicle;
     private JButton button_RemoveVehicle;
     private JButton button_Save;
@@ -1207,8 +1239,6 @@ public class SimulationEditor extends javax.swing.JFrame {
     private JComboBox dropdown_GeneticSelectionMethod;
     private JComboBox dropdown_ReproductionMethod;
     private JComboBox dropdown_SelectedSimulation;
-    private JLabel jLabel1;
-    private JLabel jLabel2;
     private JScrollPane jScrollPane1;
     private JScrollPane jScrollPane2;
     private JTextArea jTextArea1;
