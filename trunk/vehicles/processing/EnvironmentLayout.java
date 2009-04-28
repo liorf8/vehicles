@@ -18,14 +18,13 @@ public class EnvironmentLayout extends PApplet {
 		this.w = w;
 		this.h = h;
 	}
-	public void setBrush(ElementBrush brush){
-		this.eb = brush;
+
+	public void setBrush(EnvironmentElement brush){
 	}
 	
 	@Override
 	public void setup() {
 		ee = new Vector<EnvironmentElement>();
-		eb = new ElementBrush();
 		this.setWidth_and_Height(640, 480);
 		// original setup code here ...
 		size(w, h);

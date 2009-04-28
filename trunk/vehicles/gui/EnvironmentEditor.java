@@ -59,14 +59,14 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         elementDropDown = new DefaultComboBoxModel(elementArray);
 
         proLayout = new EnvironmentLayout();
-        proBrush = new ElementBrush();
-        proLayout.setBrush(proBrush);
-
-        initComponents();
         // important to call this whenever embedding a PApplet.
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
         proLayout.init();
+        proLayout.setBrush(elementArray[0]);
+
+        initComponents();
+ 
        // proBrush.init();
         populateFields(environmentArray[0]);
     }
@@ -537,13 +537,17 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 }//GEN-LAST:event_slider_Intensity_StateChanged
 
     private void dropdown_GridSizeItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_GridSizeItemStateChanged
-        // TODO add your handling code here:
+        JComboBox tempComboBox = (JComboBox) evt.getSource();
+        Grid selected = (Grid) tempComboBox.getSelectedItem();
+        proLayout.setWidth_and_Height(selected.getWidth(), selected.getHeight());
+
     }//GEN-LAST:event_dropdown_GridSizeItemStateChanged
 
     private void dropdown_BrushItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_BrushItemStateChanged
         JComboBox tempComboBox = (JComboBox) evt.getSource();
         EnvironmentElement selected = (EnvironmentElement) tempComboBox.getSelectedItem();
         populateBrushSliders(selected);
+        proLayout.setBrush(selected);
 }//GEN-LAST:event_dropdown_BrushItemStateChanged
 
     private void populateBrushSliders(EnvironmentElement p_element) {
@@ -551,7 +555,6 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 
         slider_Radius.setValue(tempElement.getRadius());
         slider_Intensity.setValue(tempElement.getStrength());
-
     }
 
     private void populateFields(Environment p_environment) {

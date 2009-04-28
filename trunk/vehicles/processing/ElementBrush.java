@@ -5,11 +5,11 @@ import vehicles.environment.*;
  *
  * @author Niall O'Hara
  */
- public class ElementBrush  {
+ public class ElementBrush extends EnvironmentElement {
 	 EnvironmentElement currentlySelected;
 	 
-	 public ElementBrush(){
-		 this.currentlySelected = new EnvironmentElement();
+	 public ElementBrush(EnvironmentElement p_ele){
+		 this.currentlySelected = p_ele;
 	 }
 	 
 	 /**
