@@ -2,35 +2,35 @@
 <Vehicle>
     <name>Offspring of Default Vehicle 1 and Default Vehicle 2</name>
     <author>Offspring of Default Vehicle 1 and Default Vehicle 2</author>
-    <description><![CDATA[Offspring of Default Vehicle 1 and Default Vehicle 2]]></description>
-    <LastModified>27/04/2009 21:33:54</LastModified>
-    <motorStrength>98</motorStrength>
-    <aggression>20</aggression>
+    <description>Offspring of Default Vehicle 1 and Default Vehicle 2</description>
+    <LastModified>28/04/2009 19:17:37</LastModified>
+    <motorStrength>100</motorStrength>
+    <aggression>100</aggression>
     <Colour>
-        <red>19</red>
+        <red>34</red>
         <green>101</green>
-        <blue>159</blue>
+        <blue>151</blue>
     </Colour>
     <memory>
-        <max>95</max>
-        <learnrate>13</learnrate>
+        <max>26</max>
+        <learnrate>20</learnrate>
     </memory>
     <battery>
-        <max>54</max>
-        <current>54</current>
+        <max>100</max>
+        <current>100</current>
     </battery>
     <VehicleComponent>
         <type>LEFT</type>
         <LeftSensorHeat>16</LeftSensorHeat>
         <LeftSensorLight>50</LeftSensorLight>
-        <LeftSensorPower>28</LeftSensorPower>
-        <LeftSensorWater>50</LeftSensorWater>
+        <LeftSensorPower>41</LeftSensorPower>
+        <LeftSensorWater>46</LeftSensorWater>
     </VehicleComponent>
     <VehicleComponent>
         <type>RIGHT</type>
-        <RightSensorHeat>-6</RightSensorHeat>
-        <RightSensorLight>-28</RightSensorLight>
-        <RightSensorPower>40</RightSensorPower>
-        <RightSensorWater>-42</RightSensorWater>
+        <RightSensorHeat>-18</RightSensorHeat>
+        <RightSensorLight>44</RightSensorLight>
+        <RightSensorPower>-28</RightSensorPower>
+        <RightSensorWater>-8</RightSensorWater>
     </VehicleComponent>
 </Vehicle>

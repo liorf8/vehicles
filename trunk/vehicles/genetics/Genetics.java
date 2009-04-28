@@ -297,17 +297,17 @@ public class Genetics {
 		s.addToLog(UtilMethods.getTimeStamp());
 		s.addToLog("Creating a vehicle by paired mating of " + parentA.getName() + " and " + parentB.getName());
 		Vehicle child = new Vehicle();
-		String name = "Offspring of "+ parentA.getName() + " and " + parentB.getName();
-		s.addToLog("New vehicle name: " + name);
-		child.setName(name);
-		child.setAuthor(name);
-		child.setDescription(name);
+		String description = "Offspring of "+ parentA.getName() + " and " + parentB.getName();
+		s.addToLog("New vehicle created from " + parentA.getName() + " and " + parentB.getName());
+		child.setName("Vehicle_from_Paired_Mating");
+		child.setAuthor(description);
+		child.setDescription(description);
 
 		//These will be set for an editor vehicle if we go down that path
 		//For an object in memory alone, null is fine for these
-		child.setXmlLocation("src/test/genetics/tmp/" + UtilMethods.formatString(name) + ".veh");
+		child.setXmlLocation("src/test/genetics/tmp/" + Integer.toString(description.hashCode()) + ".veh");
 		s.addToLog("New vehicle temporarily stored in: " + child.getXmlLocation());
-		child.setFileName(name);
+		child.setFileName(Integer.toString(description.hashCode()));
 
 
 		child.setLastModified(UtilMethods.getTimeStamp());

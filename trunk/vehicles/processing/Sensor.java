@@ -44,10 +44,19 @@ public class Sensor implements PConstants {
 				max_sense += (intensity_atPoint/temp.getStrength()) * maxSpeed;
 			}
 		}
-		if(max_sense == 0.0){
-			return this.parent.random(maxSpeed);
+		return 0.1f;
+		/*
+		if(max_sense == 0.0f){
+			return this.parent.random(maxSpeed*2) - maxSpeed;
 		}
-		else return max_sense * (aggression * 0.02f);
+		else {
+			//System.out.println("Returning speed of: " + (max_sense * (aggression * 0.02f)));
+			if(aggression == 0){
+				return max_sense;
+			}
+			return max_sense * (aggression * 0.02f);
+		}
+		*/
 				
 				/*
 				
