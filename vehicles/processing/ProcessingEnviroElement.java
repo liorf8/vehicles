@@ -67,12 +67,13 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 
 		parent.fill(this.colorRed, this.colorGreen, this.colorBlue);
         
-		int alpha = this.strength;
+		int alpha = 255;
+		int units = alpha / strength;
 		for(float d = 0.0f; d < this.radius; d++){
 			//System.out.println("Alpha: " + alpha);
 			this.parent.stroke(this.colorRed, this.colorBlue, this.colorGreen, 0);
 			this.parent.ellipse(this.xPos, this.yPos, d, d);
-			alpha -- ;
+			alpha -= units ;
 
 		}
 		 
@@ -87,18 +88,18 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 			this.colorBlue = 100;
 			break;
 		case EnvironmentElement.PowerSource:
-			this.colorRed = 255;
+			this.colorRed = 100;
 			this.colorGreen = 255;
 			this.colorBlue = 255;
 			break;
 		case EnvironmentElement.LightSource:
 			this.colorRed = 255;
 			this.colorGreen = 255;
-			this.colorBlue = 50;
+			this.colorBlue = 255;
 			break;
 		case EnvironmentElement.WaterSource:
 			this.colorRed = 0;
-			this.colorGreen = 100;
+			this.colorGreen = 10;
 			this.colorBlue = 255;
 			break;
 		}
@@ -116,6 +117,21 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 		}
 	}
 
+	public float getAplhaAtPoint(float x, float y){
+		float d = PApplet.dist(this.xPos, this.yPos, x, y);
+		if (d > this.radius) {
+			return 0.0f;
+		}
+		else {
+			float diff = (float)this.radius - d;
+			float alpha = 255;
+			float units = alpha/this.radius;
+			for(float i = 0; i < diff; i++){
+				alpha -= units;
+			}
+			return alpha;
+		}
+	}
 	public float getRedAtPoint(float x, float y) {
 
 		float d = PApplet.dist(this.xPos, this.yPos, x, y);
