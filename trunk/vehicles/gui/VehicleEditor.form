@@ -375,10 +375,10 @@
                     <Property name="name" type="java.lang.String" value="processing_Appearance" noResource="true"/>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="processing_Appearance.add(proAppearance, BorderLayout.CENTER);"/>
+                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="processing_Appearance.add(proAppearance);"/>
                   </AuxValues>
 
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
                 </Container>
                 <Container class="javax.swing.JPanel" name="panel_Blue">
                   <Properties>
