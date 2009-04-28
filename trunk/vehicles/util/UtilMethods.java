@@ -134,7 +134,7 @@ public class UtilMethods {
 			System.err.println("Some files could not be deleted!");
 		}
 		File f;
-		f = new File("xml/");
+		f = new File("xml"+  File.separator);
 		if(!f.exists()){
 			f.mkdirs();
 		}
@@ -307,7 +307,7 @@ public class UtilMethods {
 		//es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle2.veh");
 		es.setEnvironment("xml" + File.separator  + "environments" + File.separator + "default_environment2.env");
 		es.saveSimulation();
-		System.out.println("Creating xml/simulations/default_simulation2.sim");
+		System.out.println("Creating "+path);
 	}
 
 
