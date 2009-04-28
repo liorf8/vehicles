@@ -15,10 +15,12 @@ public class EnvironmentLayout extends PApplet {
 	int w, h;
 	Vector<ProcessingEnviroElement> ee;
 	ElementBrush eb;
+	PImage ground;
 
 	public void setWidth_and_Height(int h, int w){
 		this.w = w;
 		this.h = h;
+		redraw();
 	}
 
 	public void setBrush(EnvironmentElement brush){
@@ -34,7 +36,9 @@ public class EnvironmentLayout extends PApplet {
 		background(100);
 		// prevent thread from starving everything else
 		smooth();
+		//updateGround();
 		cursor(CROSS);
+		redraw();
 	}
 
 	@Override
@@ -49,19 +53,18 @@ public class EnvironmentLayout extends PApplet {
 		noStroke();
 		Iterator<ProcessingEnviroElement> it = ee.iterator();
 		while(it.hasNext()){
-			it.next().draw();
+			it.next().editorDraw();
 		}
+		//updateGround();
+		print("Now have "+ee.size()+ " elements\n");
 		noLoop();
-
-		// drawing code goes here
 	}
 
 	@Override
 	public void mouseClicked() {
 		if(mouseX <= this.w && mouseY <= this.h){
-			eb.setPosition(new Point(mouseX,mouseY));
+			eb.getCurrentlySelected().setPosition(new Point(mouseX,mouseY));
 			ProcessingEnviroElement toSet = new ProcessingEnviroElement((PApplet)this,eb.getCurrentlySelected(),0);
-			System.err.println("ok to add");
 			System.out.println(toSet.tostring());
 			this.ee.add(toSet);
 		}
@@ -99,5 +102,53 @@ public class EnvironmentLayout extends PApplet {
 		}
 		e.setPosition(new Point(xPos, yPos));
 		//this.ee.add(e);
+	}
+	
+	public EnvironmentElement[] getElements(){
+		return (EnvironmentElement[]) ee.toArray();		
+	}
+	
+	void updateGround() {
+
+		float sum;
+		int c, r, g, b;
+		int px = 1;
+
+		ground = new PImage(width, height);
+		for (int i = 0; i < width; i += px) {
+			for (int k = 0; k < height; k += px) { //process every pixel in the image
+
+				sum = 0;
+                r = 0;
+                g = 0;
+                b = 0;
+				for (int m = 0; m < ee.size(); m++) {
+
+					//pass this pixel's position
+					sum += ee.elementAt(m).getIntensityAtPoint(i, k);
+                    r += ee.elementAt(m).getRedAtPoint(i, k);
+                    g += ee.elementAt(m).getGreenAtPoint(i, k);
+                    b += ee.elementAt(m).getBlueAtPoint(i, k);
+					//sum up intensity of elementVector until it reachrs one
+					if (sum >= 1) {
+						break;
+					}
+
+				}
+
+				c = (int) min(sum * 255, 255);
+
+
+				for (int p = 0; p < px; p++) {
+					for (int q = 0; q < px; q++) {
+						//agh, horrible code
+						ground.set(i + p, k + q,
+								color(r, g, b / 8)); //r,g,b
+
+					}
+				}
+			}
+		}
+
 	}
 }

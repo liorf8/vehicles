@@ -5,7 +5,7 @@ import vehicles.environment.*;
  *
  * @author Niall O'Hara
  */
- public class ElementBrush extends EnvironmentElement {
+ public class ElementBrush {
 	 EnvironmentElement currentlySelected;
 	 
 	 public ElementBrush(EnvironmentElement p_ele){
