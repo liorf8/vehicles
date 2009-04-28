@@ -254,7 +254,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		SimulatonEngine engineParent = (SimulatonEngine) parent;
 		SimulationLog s = engineParent.sim.log;
 		Vehicle v = Genetics.pairedMating(this, other, s);
-		ProcessingVehicle pv = new ProcessingVehicle(this.parent, v, 400, 400, this.parent.random(PI), 10, (int)this.parent.random(100), 3, this.pairedMating, this.canDie);
+		ProcessingVehicle pv = new ProcessingVehicle(this.parent, v, this.parent.random(this.parent.width), this.parent.random(this.parent.height), this.parent.random(PI), 10, (int)this.parent.random(100), 3, this.pairedMating, this.canDie);
 		if(v != null){
 			engineParent.vehicleVector.add(pv);
 		}
