@@ -23,6 +23,7 @@ public class SimulatonEngine extends PApplet {
 	int n_for_sel;
 	PFont font;
 	String font_location = "src" + java.io.File.separator + "data" + java.io.File.separator + "CourierNew36.vlw";
+	String on_screen_message = "";
 
 	public float getMove_speed() {
 		return move_speed;
@@ -101,13 +102,11 @@ public class SimulatonEngine extends PApplet {
 	// Processing Sketch Main Loop
 	@Override
 	public void draw() {
-		//background(0, 0, 0);
-		//background(255, 255, 255);
 		image(ground, 0, 0);
 	
-		//if(frameCount % some_constant == 0){
-		// 		make vehicles evolve
-
+		fill(100, 255, 190);
+		text(this.on_screen_message, 200, 200, this.on_screen_message.length() * 5, 100);
+		
 		
 		if(this.num_vehicles > 0){
 			for(int i = 0; i < this.num_vehicles; i++){
@@ -118,7 +117,9 @@ public class SimulatonEngine extends PApplet {
 			}
 		}
 		
-		checkMouse(pmouseX, pmouseY);
+		if(mousePressed){
+			checkMouse(pmouseX, pmouseY);
+		}
 	}
 	
 	public void pause(){
@@ -138,11 +139,12 @@ public class SimulatonEngine extends PApplet {
 			axle = this.vehicleVector.elementAt(i).axle;
 			if((x <= xPos + axle && y <= yPos + axle) && (x >= xPos - axle && y <= yPos + axle) &&
 					(x <= xPos + axle && y >= yPos - axle) && (x >= xPos - axle && y >= yPos - axle)){
-				fill(100, 255, 190);
+				//fill(100, 255, 190);
 				//rect(mouseX, mouseY, 150, 30);
 				String t = this.vehicleVector.elementAt(i).toString();
-				text(t, 200, 200, t.length() * 5, 100);
-				System.out.println(t);
+				//text(t, 200, 200, t.length() * 5, 100);
+				this.on_screen_message = t;
+				//System.out.println(t);
 			}
 		}
 		

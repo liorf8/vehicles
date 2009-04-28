@@ -1,4 +1,5 @@
 package vehicles.simulation;
+import vehicles.util.UtilMethods;
 
 public class SimulationLog {
 	private String logMessage;
