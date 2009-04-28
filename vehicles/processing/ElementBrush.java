@@ -1,31 +1,33 @@
 package vehicles.processing;
 import processing.core.*;
+import vehicles.environment.*;
 /**
  *
  * @author Niall O'Hara
  */
- public class ElementBrush extends PApplet {
-
-     @Override
-     public void setup() {
-         // original setup code here ...
-         size(400, 400);
-         background(100);
-         // prevent thread from starving everything else
-         noLoop();
-     }
-
-     @Override
-     public void draw() {
-         // drawing code goes here
-     }
-
-     @Override
-     public void mouseDragged() {
-         // do something based on mouse movement
-         line(mouseX, mouseY, pmouseX, pmouseY);
-         // update the screen (run draw once)
-         redraw();
-     }
+ public class ElementBrush  {
+	 EnvironmentElement currentlySelected;
+	 
+	 public ElementBrush(){
+		 this.currentlySelected = new EnvironmentElement();
+	 }
+	 
+	 /**
+	  * Get the current "paint" on the brush
+	  * @return the enviornment element currently in use
+	  */
+	public EnvironmentElement getCurrentlySelected() {
+		return currentlySelected;
+	}
+	/**
+	 * Apply "paint" to the brush
+	 * @param currentlySelected the environment element to set
+	 */
+	public void setCurrentlySelected(EnvironmentElement currentlySelected) {
+		this.currentlySelected = currentlySelected;
+	}
+	 
+	 
+     
  }
 

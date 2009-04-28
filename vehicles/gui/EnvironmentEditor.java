@@ -32,6 +32,7 @@ import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
 import processing.core.*;
 import vehicles.environment.*;
+import vehicles.processing.*;
 
 /*
  * EnvironmentEditor.java
@@ -59,13 +60,14 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 
         proLayout = new EnvironmentLayout();
         proBrush = new ElementBrush();
+        proLayout.setBrush(proBrush);
 
         initComponents();
         // important to call this whenever embedding a PApplet.
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
         proLayout.init();
-        proBrush.init();
+       // proBrush.init();
         populateFields(environmentArray[0]);
     }
 
@@ -414,7 +416,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
                 .addComponent(panel_Intensity, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
 
-        processing_Brush.add(proBrush, BorderLayout.CENTER);
+        //processing_Brush.add(proBrush, BorderLayout.CENTER);
 
         GroupLayout panel_ToolsLayout = new GroupLayout(panel_Tools);
         panel_Tools.setLayout(panel_ToolsLayout);
@@ -614,7 +616,8 @@ public class EnvironmentEditor extends javax.swing.JFrame {
     private JTextField text_Status;
     private JToggleButton toggle_SelectionMode;
     // End of variables declaration//GEN-END:variables
-    private PApplet proLayout,  proBrush;
+    private EnvironmentLayout proLayout;
+    private ElementBrush proBrush;
     private Environment[] environmentArray;
     private Grid[] gridArray;
     private EnvironmentElement[] elementArray;

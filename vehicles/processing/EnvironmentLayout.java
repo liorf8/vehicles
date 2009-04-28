@@ -1,6 +1,8 @@
 package vehicles.processing;
 import processing.core.*;
 import vehicles.environment.*;
+
+import java.awt.Color;
 import java.util.Vector;
 
 /**
@@ -10,33 +12,44 @@ import java.util.Vector;
 public class EnvironmentLayout extends PApplet {
 	int w, h;
 	Vector<EnvironmentElement> ee;
+	ElementBrush eb;
 	
 	public void setWidth_and_Height(int h, int w){
 		this.w = w;
 		this.h = h;
 	}
+	public void setBrush(ElementBrush brush){
+		this.eb = brush;
+	}
 	
 	@Override
 	public void setup() {
 		ee = new Vector<EnvironmentElement>();
-		setWidth_and_Height(100, 400);
+		eb = new ElementBrush();
+		this.setWidth_and_Height(640, 480);
 		// original setup code here ...
 		size(w, h);
 		background(100);
 		// prevent thread from starving everything else
+		smooth();
 		noLoop();
+		cursor(CROSS);
 	}
 
 	@Override
 	public void draw() {
+		size(w,h); //lets the window be redrawn to a different size
+		background(Color.BLACK.getRGB());
+		
 		// drawing code goes here
 	}
 
 	@Override
-	public void mouseDragged() {
-		// do something based on mouse movement
-		line(mouseX, mouseY, pmouseX, pmouseY);
-		// update the screen (run draw once)
+	public void mouseClicked() {
+		EnvironmentElement toSet = eb.getCurrentlySelected();
+		toSet.setPosition(new Point(mouseX,mouseY));
+		System.out.println(toSet.toString());
+		this.ee.add(toSet);
 		redraw();
 	}
 	
