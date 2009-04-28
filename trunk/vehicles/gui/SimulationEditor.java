@@ -880,6 +880,10 @@ public class SimulationEditor extends javax.swing.JFrame {
         radio_Perishable_On.setSelected(tempSimulation.getPerishableVehicles());
         radio_Perishable_Off.setSelected(!tempSimulation.getPerishableVehicles());
         text_GeneticSelectionN.setText(Integer.toString(tempSimulation.getN()));
+        selectedVehicleArray = tempSimulation.getEditorVehicleArray();
+        selectedEnvironment = tempSimulation.getEnvironment();
+        addSelectedVehicles(selectedVehicleArray);
+        setEnvironment(selectedEnvironment);
 
 }
 
@@ -923,6 +927,35 @@ public class SimulationEditor extends javax.swing.JFrame {
 
     @Action
     public void saveSimulation() {
+        EditorSimulation s = (EditorSimulation) dropdown_SelectedSimulation.getSelectedItem();
+        s.setName(text_Name.getText()); //set object attributes
+		s.setAuthor(text_Author.getText());
+		s.setDescription(text_Description.getText());
+		s.setEnvironment(selectedEnvironment);
+        s.addVehicles(vehicleArray);
+        boolean evolution = radio_Evolution_On.isSelected();
+        s.setEvolution(evolution);
+        boolean perishable = radio_Perishable_On.isSelected();
+        s.setPerishableVehicles(perishable);
+        GeneticSelectionMethod g = (GeneticSelectionMethod) dropdown_GeneticSelectionMethod.getSelectedItem();
+        s.setGeneticSelectionMethod(g.getValue());
+        ReproductionMethod r = (ReproductionMethod) dropdown_ReproductionMethod.getSelectedItem();
+        s.setReproductionMethod(r.getValue());
+        s.setN(Integer.parseInt(text_GeneticSelectionN.getText()));
+		s.saveSimulation(); //convert object and its attributes into XML
+        String lastModified = s.getLastModified();
+        appRoot.setSimulationArray();
+        simulationArray = appRoot.getSimulationArray();
+        simulationDropDown = new DefaultComboBoxModel(simulationArray);
+        for (int i = 0; i < simulationArray.length; i++) {
+            if (simulationArray[i].getLastModified().equalsIgnoreCase(lastModified)) {
+                s = simulationArray[i];
+            }
+        }
+        dropdown_SelectedSimulation.setModel(simulationDropDown);
+        dropdown_SelectedSimulation.requestFocus();
+        dropdown_SelectedSimulation.setSelectedItem(s);
+        populateFields(s);
     }
 
     @Action
@@ -934,6 +967,16 @@ public class SimulationEditor extends javax.swing.JFrame {
 		SelectedRobotsModel selectedModel = (SelectedRobotsModel) list_SelectedVehicles.getModel();
 		List<EditorVehicle> moves = getSelectedRobots();
 		for (EditorVehicle move : moves) {
+			selectedRobots.add(move);
+		}
+		selectedModel.changed();
+    }
+
+    @Action
+    public void addSelectedVehicles(EditorVehicle[] vehicles) {
+		SelectedRobotsModel selectedModel = (SelectedRobotsModel) list_SelectedVehicles.getModel();
+        selectedRobots.clear();
+		for (EditorVehicle move : vehicles) {
 			selectedRobots.add(move);
 		}
 		selectedModel.changed();
@@ -979,6 +1022,14 @@ public class SimulationEditor extends javax.swing.JFrame {
 		for (Environment move : moves) {
 			selectedEnv.add(move);
 		}
+		selectedModel.changed();
+    }
+
+    @Action
+    public void setEnvironment(Environment env) {
+        SelectedEnvironmentsModel selectedModel = (SelectedEnvironmentsModel) list_SelectedEnvironment.getModel();
+		selectedEnv.clear();
+        selectedEnv.add(env);
 		selectedModel.changed();
     }
 
@@ -1174,7 +1225,8 @@ public class SimulationEditor extends javax.swing.JFrame {
     private EnvironmentPreview proEnvironmentPreview;
     private EditorSimulation[] simulationArray;
     private EditorVehicle[] vehicleArray, selectedVehicleArray;
-    private Environment[] environmentArray, selectedEnvironmentArray;
+    private Environment[] environmentArray;
+    private Environment selectedEnvironment;
     private DefaultComboBoxModel simulationDropDown, genSelDropDown, repoDropDown;
     private Simulator appRoot;
     private AbstractListModel availableVehicles, availableEnvironments, selectedVehicles, selectedEnvironments;
