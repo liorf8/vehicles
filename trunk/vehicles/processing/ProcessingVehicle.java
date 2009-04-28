@@ -12,6 +12,7 @@ import vehicles.vehicle.*;
 import vehicles.genetics.*;
 import vehicles.simulation.SimulationLog;
 import vehicles.util.UtilMethods;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -289,7 +290,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		SimulationLog s = engineParent.sim.log;
 		Vehicle v = Genetics.pairedMating(this, other, s);
 		ProcessingVehicle pv = new ProcessingVehicle(this.parent, v, this.parent.random(this.parent.width), this.parent.random(this.parent.height), this.parent.random(PI), 10, (int)this.parent.random(100), 3, this.pairedMating, this.canDie);
-		
+
 		if(v != null){
 			engineParent.vehicleVector.add(pv);
 		}
@@ -344,7 +345,9 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	}
 
 	public String toString(){
-		return "Name: " + this.vehicleName + "\nMax Speed: " + this.max_speed + "\nMax Battery: " + this.max_battery + "\nCurr Battery: " + this.curr_battery
-		+ "\nAggression: " + this.aggression + "\nItems In Memory: " + this.mu.numItems();
+		DecimalFormat df = new DecimalFormat("#.##");
+		return "Name: " + this.vehicleName + "\nMax Speed: " + this.max_speed + "\nMax Battery: " + df.format(this.max_battery) + "\nCurr Battery: " 
+		+ df.format(this.curr_battery) + "\nAggression: " + this.aggression + "\nItems In Memory: " + this.mu.numItems() + "\nCo-ordinates: (" + df.format(this.x)
+		+ "," + df.format(this.y) + ")";
 	}
 }
