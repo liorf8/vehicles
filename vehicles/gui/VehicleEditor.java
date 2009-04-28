@@ -2,6 +2,7 @@ package vehicles.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
@@ -50,7 +51,7 @@ public class VehicleEditor extends javax.swing.JFrame {
         vehicleArray = appRoot.getVehicleArray();
         vehiclesDropDown = new DefaultComboBoxModel(vehicleArray);
 
-        proAppearance = new VehicleAppearance();
+        proAppearance = new VehiclePreview();
 
         initComponents();
 
@@ -276,7 +277,7 @@ public class VehicleEditor extends javax.swing.JFrame {
 
         processing_Appearance.setBackground(resourceMap.getColor("processing_Appearance.background")); // NOI18N
         processing_Appearance.setName("processing_Appearance"); // NOI18N
-        processing_Appearance.setLayout(new BorderLayout());
+        processing_Appearance.setLayout(new GridBagLayout());
 
         panel_Blue.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Blue.border.title"))); // NOI18N
         panel_Blue.setName("panel_Blue"); // NOI18N
@@ -395,7 +396,7 @@ public class VehicleEditor extends javax.swing.JFrame {
                 .addComponent(panel_Blue, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
 
-        processing_Appearance.add(proAppearance, BorderLayout.CENTER);
+        processing_Appearance.add(proAppearance);
 
         GroupLayout tab_PropertiesLayout = new GroupLayout(tab_Properties);
         tab_Properties.setLayout(tab_PropertiesLayout);
@@ -1445,7 +1446,7 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JTextField text_Right_Water;
     private JTextField text_Status;
     // End of variables declaration//GEN-END:variables
-    private PApplet proAppearance;
+    private VehiclePreview proAppearance;
     private EditorVehicle[] vehicleArray;
     private DefaultComboBoxModel vehiclesDropDown;
     private Simulator appRoot;

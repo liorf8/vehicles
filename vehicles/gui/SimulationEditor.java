@@ -3,6 +3,8 @@ package vehicles.gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
@@ -10,6 +12,7 @@ import java.awt.event.WindowFocusListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.ScrollPaneConstants;
@@ -39,7 +42,6 @@ import javax.swing.ListSelectionModel;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
-import processing.core.*;
 import vehicles.simulation.*;
 import vehicles.vehicle.*;
 import vehicles.environment.*;
@@ -83,8 +85,10 @@ public class SimulationEditor extends javax.swing.JFrame {
         // important to call this whenever embedding a PApplet.
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
+        
         proVehiclePreview.init();
         proEnvironmentPreview.init();
+        proVehiclePreview.updateSize(processing_VehiclePreview.getWidth(), processing_VehiclePreview.getHeight());
     }
 
     @Action public void cancel() {
@@ -528,7 +532,12 @@ public class SimulationEditor extends javax.swing.JFrame {
 
         processing_VehiclePreview.setBackground(resourceMap.getColor("processing_VehiclePreview.background")); // NOI18N
         processing_VehiclePreview.setName("processing_VehiclePreview"); // NOI18N
-        processing_VehiclePreview.setLayout(new GridBagLayout());
+        processing_VehiclePreview.addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent evt) {
+                processing_VehiclePreviewComponentResized(evt);
+            }
+        });
+        processing_VehiclePreview.setLayout(new BorderLayout());
 
         GroupLayout panel_VehiclePreviewLayout = new GroupLayout(panel_VehiclePreview);
         panel_VehiclePreview.setLayout(panel_VehiclePreviewLayout);
@@ -545,7 +554,7 @@ public class SimulationEditor extends javax.swing.JFrame {
                 .addComponent(processing_VehiclePreview, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
         );
 
-        processing_VehiclePreview.add(proVehiclePreview);
+        processing_VehiclePreview.add(proVehiclePreview, BorderLayout.CENTER);
 
         GroupLayout panel_AddRemoveVehiclesLayout = new GroupLayout(panel_AddRemoveVehicles);
         panel_AddRemoveVehicles.setLayout(panel_AddRemoveVehiclesLayout);
@@ -845,6 +854,10 @@ public class SimulationEditor extends javax.swing.JFrame {
     private void list_AvailableVehiclesValueChanged(ListSelectionEvent evt) {//GEN-FIRST:event_list_AvailableVehiclesValueChanged
         selectedRobotsListSelectionChanged();
     }//GEN-LAST:event_list_AvailableVehiclesValueChanged
+
+    private void processing_VehiclePreviewComponentResized(ComponentEvent evt) {//GEN-FIRST:event_processing_VehiclePreviewComponentResized
+        proVehiclePreview.updateSize(processing_VehiclePreview.getWidth(), processing_VehiclePreview.getHeight());
+}//GEN-LAST:event_processing_VehiclePreviewComponentResized
 
     @Action
     public void saveSimulation() {
