@@ -66,7 +66,7 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 	public void editorDraw() { //simply draw a representaion of the element, for in the editor
 
 		parent.fill(this.colorRed, this.colorGreen, this.colorBlue);
-        
+
 		int alpha = 255;
 		int units = alpha / strength;
 		for(float d = 0.0f; d < this.radius; d++){
@@ -76,7 +76,19 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 			alpha -= units ;
 
 		}
-		 
+
+	}
+	public void previewDraw(int x, int y){
+		parent.fill(this.colorRed, this.colorGreen, this.colorBlue);
+
+		int alpha = this.strength;
+		for(float d = 0.0f; d < this.radius; d++){
+			//System.out.println("Alpha: " + alpha);
+			this.parent.stroke(this.colorRed, this.colorBlue, this.colorGreen, 0);
+			this.parent.ellipse(x, y, d, d);
+			alpha -- ;
+
+		}
 	}
 
 

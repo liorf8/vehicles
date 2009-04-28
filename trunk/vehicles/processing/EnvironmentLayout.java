@@ -17,12 +17,14 @@ public class EnvironmentLayout extends PApplet {
 	ElementBrush eb;
 	PImage ground;
 
-	public void setWidth_and_Height(int h, int w){
+	public void setWidth_and_Height(int w, int h){
 		this.w = w;
 		this.h = h;
 		redraw();
 	}
-
+	public ElementBrush getBrush(){
+		return eb;
+	}
 	public void setBrush(EnvironmentElement brush){
 		eb = new ElementBrush(brush);
 	}
