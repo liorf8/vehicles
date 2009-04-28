@@ -9,7 +9,6 @@ import vehicles.vehicle.*;
 
 @SuppressWarnings("serial")
 public class SimulatonEngine extends PApplet {
-
 	Simulation sim; //simulation representing this
 	Vector<ProcessingVehicle> vehicleVector;
 	Vector<ProcessingEnviroElement> elementVector;
@@ -22,6 +21,8 @@ public class SimulatonEngine extends PApplet {
 	int repro_method;
 	int sel_method;
 	int n_for_sel;
+	PFont font;
+	String font_location = "src" + java.io.File.separator + "data" + java.io.File.separator + "CourierNew36.vlw";
 
 	public float getMove_speed() {
 		return move_speed;
@@ -86,6 +87,9 @@ public class SimulatonEngine extends PApplet {
 	// Processing Sketch Setup
 	@Override
 	public void setup() {
+		font = loadFont(font_location); 
+		textFont(font, 14); 
+
 		size(w, h);
 		noStroke();
 		ground = new PImage(width, height);
@@ -100,6 +104,7 @@ public class SimulatonEngine extends PApplet {
 		background(0, 0, 0);
 
 		image(ground, 0, 0);
+	
 		fill(155);
 		//if(frameCount % some_constant == 0){
 		// 		make vehicles evolve
@@ -113,6 +118,35 @@ public class SimulatonEngine extends PApplet {
 				this.num_vehicles = vehicleVector.size();
 			}
 		}
+		
+		checkMouse(pmouseX, pmouseY);
+	}
+	
+	public void pause(){
+		System.out.println("Paused!");
+		noLoop();
+	}
+	
+	public void startSim(){
+		loop();
+	}
+	
+	public void checkMouse(float x, float y){
+		float xPos, yPos, axle;
+		for(int i = 0; i < this.num_vehicles; i++){
+			xPos = this.vehicleVector.elementAt(i).x;
+			yPos = this.vehicleVector.elementAt(i).y;
+			axle = this.vehicleVector.elementAt(i).axle;
+			if((x <= xPos + axle && y <= yPos + axle) && (x >= xPos - axle && y <= yPos + axle) &&
+					(x <= xPos + axle && y >= yPos - axle) && (x >= xPos - axle && y >= yPos - axle)){
+				fill(100, 255, 190);
+				//rect(mouseX, mouseY, 150, 30);
+				String t = this.vehicleVector.elementAt(i).toString();
+				text(t, 200, 200, t.length() * 5, 100);
+				System.out.println(t);
+			}
+		}
+		
 	}
 
 	/**
