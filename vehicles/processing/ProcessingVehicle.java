@@ -70,9 +70,9 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	}
 
 	public ProcessingVehicle(){
-		
+
 	}
-	
+
 	public ProcessingVehicle(PApplet p, float x, float y, float angle, float axle_length, int r, int g, int b, float m) { //constructor
 
 		this.parent = p;
@@ -156,7 +156,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		this.curr_battery -= 0.05;
 		this.checkBattery();
 	}
-	
+
 	public void checkBattery(){
 		if(this.curr_battery <= 0){
 			SimulatonEngine engineParent = (SimulatonEngine) parent;
@@ -170,11 +170,11 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	public float getCurrbatt(){
 		return this.curr_battery;
 	}
-	
+
 	public float getMaxBatt(){
 		return this.max_battery;
 	}
-	
+
 //	used in preview windows
 	public void moveWithoutSensor() {
 
@@ -228,56 +228,61 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		ProcessingVehicle temp;
 		int size = engineParent.vehicleVector.size();
 		for(int i = 0; i < size; i++){
-			temp = engineParent.vehicleVector.elementAt(i);
-			if (temp.getId() != id) {
-				dx = x - temp.x;
-				dy = y - temp.y;
-				//if (abs(dx) <=axle && abs(dy)<=axle ) {
-				if (dx * dx + dy * dy < axleSquared) {
-					if(this.pairedMating){
-						//System.out.println("Vehicles can mate...");
-						double my_fitness = this.getFitness();
-						double their_fitness = temp.getFitness();
-						if((their_fitness >= my_fitness - (my_fitness * 0.1)) ||(their_fitness <= my_fitness + (my_fitness * 0.1)) ){
-							float r = this.parent.random(10);
-							System.out.println("Random number: " + r);
-							if(r <= 1){ //20% chance of mating
-								System.out.println("Vehicles are mating ...");
-								this.mate(temp);
-								veh_count ++;
-								System.out.println(veh_count + " vehicles created from mating");
-								if(veh_count >=500){
-									engineParent.pause();
+			try{
+				temp = engineParent.vehicleVector.elementAt(i);
+				if (temp.getId() != id) {
+					dx = x - temp.x;
+					dy = y - temp.y;
+					//if (abs(dx) <=axle && abs(dy)<=axle ) {
+					if (dx * dx + dy * dy < axleSquared) {
+						if(this.pairedMating){
+							//System.out.println("Vehicles can mate...");
+							double my_fitness = this.getFitness();
+							double their_fitness = temp.getFitness();
+							if((their_fitness >= my_fitness - (my_fitness * 0.1)) ||(their_fitness <= my_fitness + (my_fitness * 0.1)) ){
+								float r = this.parent.random(10);
+								System.out.println("Random number: " + r);
+								if(r <= 1){ //20% chance of mating
+									System.out.println("Vehicles are mating ...");
+									this.mate(temp);
+									veh_count ++;
+									System.out.println(veh_count + " vehicles created from mating");
+									if(veh_count >=500){
+										engineParent.pause();
+									}
+									this.depleteBatt();
+									this.checkBattery();
+									temp.depleteBatt();
+									temp.checkBattery();
 								}
-								this.depleteBatt();
-								this.checkBattery();
-								temp.depleteBatt();
+							}
+							else{
+								float batt_to_steal = temp.curr_battery * ((float)this.aggression / 10);
+								temp.curr_battery = temp.curr_battery - batt_to_steal;
 								temp.checkBattery();
+								this.curr_battery = this.curr_battery + batt_to_steal;
+								if(this.curr_battery > this.max_battery){
+									this.curr_battery = this.max_battery;
+								}
+								engineParent.sim.log.addToLog(UtilMethods.getTimeStamp());
+								engineParent.sim.log.addToLog("Vehicle " + this.getName() + " stole " +
+										batt_to_steal + "energy from Vehicle " + temp.getName());
+								engineParent.sim.log.addToLog("Vehicle " + this.getName() + " current battery charge is now " + this.curr_battery);
 							}
 						}
-						else{
-							float batt_to_steal = temp.curr_battery * ((float)this.aggression / 10);
-							temp.curr_battery = temp.curr_battery - batt_to_steal;
-							temp.checkBattery();
-							this.curr_battery = this.curr_battery + batt_to_steal;
-							if(this.curr_battery > this.max_battery){
-								this.curr_battery = this.max_battery;
-							}
-							engineParent.sim.log.addToLog(UtilMethods.getTimeStamp());
-							engineParent.sim.log.addToLog("Vehicle " + this.getName() + " stole " +
-									batt_to_steal + "energy from Vehicle " + temp.getName());
-							engineParent.sim.log.addToLog("Vehicle " + this.getName() + " current battery charge is now " + this.curr_battery);
-						}
+
+						da = PApplet.atan2(dy, dx);
+						//angle = ;
+						x = x + PApplet.cos(da) * axleHalf;
+						y = y + PApplet.sin(da) * axleHalf;
+						//do the actual move that avoids the collision
+						temp.x = temp.x + PApplet.cos(da + PI) * axleHalf;
+						temp.y = temp.y + PApplet.sin(da + PI) * axleHalf;
 					}
-					
-					da = PApplet.atan2(dy, dx);
-					//angle = ;
-					x = x + PApplet.cos(da) * axleHalf;
-					y = y + PApplet.sin(da) * axleHalf;
-					//do the actual move that avoids the collision
-					temp.x = temp.x + PApplet.cos(da + PI) * axleHalf;
-					temp.y = temp.y + PApplet.sin(da + PI) * axleHalf;
 				}
+			}
+			catch(Exception e){
+				return;
 			}
 		}
 	}
@@ -296,12 +301,12 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 			pv.die();
 		}
 	}
-	
+
 	public void die(){
 		SimulatonEngine engineParent = (SimulatonEngine) parent;
 		engineParent.vehicleVector.remove(this);
 	}
-	
+
 	public void updateColor(int p_red, int p_green, int p_blue) {
 		this.colorRed = p_red;
 		this.colorGreen = p_green;
@@ -339,9 +344,9 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	public void updateBlue(int b) {
 		this.colorBlue = b;
 	}
-	
+
 	public String toString(){
 		return "Name: " + this.vehicleName + "\nMax Battery: " + this.max_battery + "\nCurr Battery: " + this.curr_battery
-			+ "\nAggression: " + this.aggression;
+		+ "\nAggression: " + this.aggression;
 	}
 }
