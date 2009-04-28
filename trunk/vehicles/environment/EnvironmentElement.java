@@ -334,4 +334,8 @@ public class EnvironmentElement {
 		//return(this.name + " " +this.type + " "+ this.radius + " " + this.strength + this.getXpos() + "," + this.getYpos());
 		return(this.name);
 	}
+	public String tostring(){
+		return("name:" + this.name + " type: " +this.type + " radius: "+ this.radius + " strength: " + this.strength + " pos: "+this.getXpos() + "," + this.getYpos());
+
+	}
 }

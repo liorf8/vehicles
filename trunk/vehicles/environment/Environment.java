@@ -457,6 +457,11 @@ public class Environment {
 	public String toString(){
 		return this.name + " (" + this.fileName + ")";
 	}
-
+	
+	public void addElements(EnvironmentElement[] array){
+		for(int i = 0; i < array.length ; i++){
+			this.elementVector.add(array[i]);
+		}
+	}
 
 }
