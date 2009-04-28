@@ -1,5 +1,6 @@
 package test.simulation;
 import vehicles.simulation.*;
+import vehicles.vehicle.EditorVehicle;
 
 
 
@@ -21,7 +22,11 @@ public class SimulationTest {
 		es.setEnvironment("xml/environments/default_environment1.env");
 		es.saveSimulation();
 		es.printSimDetails();
-		Simulation e = new Simulation("xml/simulations/default_simulation1.sim");
+		EditorSimulation e = new EditorSimulation("xml/simulations/default_simulation1.sim");
 		e.printSimDetails();
+		EditorVehicle[] a = e.getEditorVehicleArray();
+		for(int i = 0; i < a.length; i ++){
+			System.out.println(a[i].toString());
+		}
 	}
 }
