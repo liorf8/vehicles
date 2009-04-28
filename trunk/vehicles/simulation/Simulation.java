@@ -4,6 +4,8 @@ import vehicles.vehicle.*;
 import vehicles.environment.*;
 
 import java.io.*;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Vector;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -339,5 +341,12 @@ public class Simulation {
     public Vehicle[] getVehicleArray(){
     	Vehicle[] vehs = new Vehicle[this.vehicles.size()];
     	return this.vehicles.toArray(vehs);
+    }
+    public void addVehiclesFromArrayList(List<EditorVehicle> list){
+    	Iterator<EditorVehicle> it = list.iterator();
+    	while(it.hasNext()){
+    		Vehicle v = new Vehicle(it.next());
+    		this.vehicles.add(v);
+    	}
     }
 }
