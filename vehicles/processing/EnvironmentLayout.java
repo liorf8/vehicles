@@ -34,9 +34,8 @@ public class EnvironmentLayout extends PApplet {
 		// original setup code here ...
 		size(w, h);
 		background(100);
-		// prevent thread from starving everything else
 		smooth();
-		//updateGround();
+		updateGround();
 		cursor(CROSS);
 		redraw();
 	}
@@ -45,17 +44,18 @@ public class EnvironmentLayout extends PApplet {
 	public void draw() {
 		size(w,h); //lets the window be redrawn to a different size
 		background(Color.BLACK.getRGB());
+		//image(ground, 0, 0); //works, just too slow		
 		stroke(Color.RED.getRGB());
 		strokeWeight(4);
-		fill(Color.GRAY.getRGB());
-		rect(0,0,width,height);
+		fill(Color.BLACK.getRGB());
+		rect(0,0,width,height);//draw a border - take out later
 		noFill();
 		noStroke();
 		Iterator<ProcessingEnviroElement> it = ee.iterator();
 		while(it.hasNext()){
 			it.next().editorDraw();
 		}
-		//updateGround();
+		//updateGround()  works, but too slow
 		print("Now have "+ee.size()+ " elements\n");
 		noLoop();
 	}

@@ -336,4 +336,8 @@ public class Simulation {
 			this.vehicles.add(array[i]);
 		}
 	}
+    public Vehicle[] getVehicleArray(){
+    	Vehicle[] vehs = new Vehicle[this.vehicles.size()];
+    	return this.vehicles.toArray(vehs);
+    }
 }
