@@ -63,7 +63,7 @@ public class EnvironmentLayout extends PApplet {
 	}
 
 	@Override
-	public void mouseClicked() {
+	public void mouseReleased() {
 		if(mouseX <= this.w && mouseY <= this.h){
 			eb.getCurrentlySelected().setPosition(new Point(mouseX,mouseY));
 			ProcessingEnviroElement toSet = new ProcessingEnviroElement((PApplet)this,eb.getCurrentlySelected(),0);
