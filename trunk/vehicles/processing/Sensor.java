@@ -15,38 +15,17 @@ public class Sensor implements PConstants {
 	float maxReading;
 	float sense;
 	float defaultSense = 0.2f;
-	int water, heat, light, power;
 
-	public Sensor(PApplet p, float x, float y, int w, int pow, int h, int l) {
+	public Sensor(PApplet p, float x, float y) {
 		parent = p;
 		this.x = x;
 		this.y = y;
 		maxReading = 1;
-		this.water = w;
-		this.heat = h;
-		this.light = l;
-		this.power = pow;
 	}
 
 	public void setLocation(float x, float y) { //place the sensor in a certain place
 		this.x = x;
 		this.y = y;
-	}
-
-	public int getPowerDispos(){
-		return this.power;
-	}
-
-	public int getWaterDispos(){
-		return this.water;
-	}
-
-	public int getHeatDispos(){
-		return this.heat;
-	}
-
-	public int getLightDispos(){
-		return this.light;
 	}
 
 
