@@ -12,6 +12,7 @@ import vehicles.environment.*;
  */
 public class ProcessingEnviroElement extends EnvironmentElement implements PConstants {
 	int colorRed, colorGreen, colorBlue, id; //maybe we can make this by doing a hash on the vehicle's name?
+
 	PApplet parent; // The parent PApplet that we will render ourselves onto
 	float xPos, yPos;
 
@@ -49,7 +50,9 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 	}
 
 	public void draw() { //simply draw a representaion of the element
-		this.parent.fill(this.colorRed, this.colorGreen, this.colorBlue);
+		
+        /*parent.fill(this.colorRed, this.colorGreen, this.colorBlue);
+        /*
 		int alpha = this.strength;
 		for(float d = 0.0f; d < this.radius; d++){
 			System.out.println("Alpha: " + alpha);
@@ -58,6 +61,7 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 			alpha -- ;
 			
 		}
+         */
 	}
 
 
@@ -66,7 +70,7 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 		case EnvironmentElement.HeatSource:
 			this.colorRed = 255;
 			this.colorGreen = 0;
-			this.colorBlue = 51;
+			this.colorBlue = 100;
 			break;
 		case EnvironmentElement.PowerSource:
 			this.colorRed = 255;
@@ -76,11 +80,11 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 		case EnvironmentElement.LightSource:
 			this.colorRed = 255;
 			this.colorGreen = 255;
-			this.colorBlue = 51;
+			this.colorBlue = 50;
 			break;
 		case EnvironmentElement.WaterSource:
 			this.colorRed = 0;
-			this.colorGreen = 102;
+			this.colorGreen = 100;
 			this.colorBlue = 255;
 			break;
 		}
@@ -98,7 +102,57 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 		}
 	}
 
+ 	public float getRedAtPoint(float x, float y) {
+
+		float d = PApplet.dist(this.xPos, this.yPos, x, y);
+		if (d > this.radius) {
+			return 0.0f;
+		}
+		else {
+			float diff = (float)this.radius - d;
+			return this.colorRed * (0.10f * ((diff/(float)this.radius) * this.strength));
+		}
+	}
+
+    public float getGreenAtPoint(float x, float y) {
+
+		float d = PApplet.dist(this.xPos, this.yPos, x, y);
+		if (d > this.radius) {
+			return 0.0f;
+		}
+		else {
+			float diff = (float)this.radius - d;
+			return this.colorGreen * (0.10f * ((diff/(float)this.radius) * this.strength));
+		}
+	}
+
+    public float getBlueAtPoint(float x, float y) {
+
+		float d = PApplet.dist(this.xPos, this.yPos, x, y);
+		if (d > this.radius) {
+			return 0.0f;
+		}
+		else {
+			float diff = (float)this.radius - d;
+			return this.colorBlue *(0.10f * ((diff/(float)this.radius) * this.strength));
+		}
+	}
+
+
 	public String toString() {
 		return (this.xPos + " " + this.yPos + " " + this.strength + " " + this.radius);
 	}
+
+
+    public int getColorBlue() {
+        return colorBlue;
+    }
+
+    public int getColorGreen() {
+        return colorGreen;
+    }
+
+    public int getColorRed() {
+        return colorRed;
+    }
 }

@@ -54,7 +54,7 @@ public class SimulatonEngine extends PApplet {
 			EnvironmentElement curr = elements.elementAt(i);
 			System.out.print(i + " : ");
 			elementVector.add(new ProcessingEnviroElement(this, curr, curr.getName().hashCode()));
-			print(elementVector.elementAt(i).toString());
+			//print(elementVector.elementAt(i).toString());
 		}
 	}
 
@@ -112,7 +112,7 @@ public class SimulatonEngine extends PApplet {
 	void updateGround() {
 
 		float sum;
-		int c;
+		int c, r, g, b;
 		int px = 1;
 
 		ground = new PImage(width, height);
@@ -120,10 +120,16 @@ public class SimulatonEngine extends PApplet {
 			for (int k = 0; k < height; k += px) { //process every pixel in the image
 
 				sum = 0;
+                r = 0;
+                g = 0;
+                b = 0;
 				for (int m = 0; m < num_sources; m++) {
 
 					//pass this pixel's position
 					sum += elementVector.elementAt(m).getIntensityAtPoint(i, k);
+                    r += elementVector.elementAt(m).getRedAtPoint(i, k);
+                    g += elementVector.elementAt(m).getGreenAtPoint(i, k);
+                    b += elementVector.elementAt(m).getBlueAtPoint(i, k);
 					//sum up intensity of elementVector until it reachrs one
 					if (sum >= 1) {
 						break;
@@ -138,7 +144,8 @@ public class SimulatonEngine extends PApplet {
 					for (int q = 0; q < px; q++) {
 						//agh, horrible code
 						ground.set(i + p, k + q,
-								color(c, c, c / 8)); //r,g,b
+								color(r, g, b / 8)); //r,g,b
+
 					}
 				}
 			}
