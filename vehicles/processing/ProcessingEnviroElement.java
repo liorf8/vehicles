@@ -81,10 +81,10 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 	public void previewDraw(int x, int y){
 		parent.fill(this.colorRed, this.colorGreen, this.colorBlue);
 
-		int alpha = this.strength;
-		for(float d = 0.0f; d < this.radius; d++){
+		int alpha = this.strength * 2;
+		for(float d = 0.0f; d < this.radius; d += 0.1){
 			//System.out.println("Alpha: " + alpha);
-			this.parent.stroke(this.colorRed, this.colorBlue, this.colorGreen, 0);
+			this.parent.stroke(this.colorRed, this.colorBlue, this.colorGreen, alpha);
 			this.parent.ellipse(x, y, d, d);
 			alpha -- ;
 
