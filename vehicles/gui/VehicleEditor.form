@@ -374,11 +374,14 @@
                     <Property name="background" type="java.awt.Color" resourceKey="processing_Appearance.background"/>
                     <Property name="name" type="java.lang.String" value="processing_Appearance" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="componentResized" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="processing_AppearanceComponentResized"/>
+                  </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="processing_Appearance.add(proAppearance);"/>
+                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="processing_Appearance.add(proVehiclePreview,BorderLayout.CENTER);"/>
                   </AuxValues>
 
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
                 </Container>
                 <Container class="javax.swing.JPanel" name="panel_Blue">
                   <Properties>

@@ -2,7 +2,8 @@ package vehicles.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
@@ -32,7 +33,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
-import processing.core.*;
 import vehicles.util.*;
 import vehicles.vehicle.*;
 
@@ -51,16 +51,20 @@ public class VehicleEditor extends javax.swing.JFrame {
         vehicleArray = appRoot.getVehicleArray();
         vehiclesDropDown = new DefaultComboBoxModel(vehicleArray);
 
-        proAppearance = new VehiclePreview();
+        proVehiclePreview = new VehiclePreview();
 
         initComponents();
 
-        populateFields(vehicleArray[0]);
+        
         
         // important to call this whenever embedding a PApplet.
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
-        proAppearance.init();
+        proVehiclePreview.init();
+        proVehiclePreview.updateSize(processing_Appearance.getWidth(), processing_Appearance.getHeight());
+
+        populateFields(vehicleArray[0]);
+        updateColour();
     }
 
     @Action
@@ -277,7 +281,12 @@ public class VehicleEditor extends javax.swing.JFrame {
 
         processing_Appearance.setBackground(resourceMap.getColor("processing_Appearance.background")); // NOI18N
         processing_Appearance.setName("processing_Appearance"); // NOI18N
-        processing_Appearance.setLayout(new GridBagLayout());
+        processing_Appearance.addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent evt) {
+                processing_AppearanceComponentResized(evt);
+            }
+        });
+        processing_Appearance.setLayout(new BorderLayout());
 
         panel_Blue.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Blue.border.title"))); // NOI18N
         panel_Blue.setName("panel_Blue"); // NOI18N
@@ -396,7 +405,7 @@ public class VehicleEditor extends javax.swing.JFrame {
                 .addComponent(panel_Blue, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
 
-        processing_Appearance.add(proAppearance);
+        processing_Appearance.add(proVehiclePreview,BorderLayout.CENTER);
 
         GroupLayout tab_PropertiesLayout = new GroupLayout(tab_Properties);
         tab_Properties.setLayout(tab_PropertiesLayout);
@@ -1212,24 +1221,28 @@ public class VehicleEditor extends javax.swing.JFrame {
         JSlider tempSlider = (JSlider) evt.getSource();
         int value = tempSlider.getValue();
         text_Red.setText(Integer.toString(value));
+        updateColour();
 }//GEN-LAST:event_slider_Red_StateChanged
 
     private void slider_Green_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Green_StateChanged
         JSlider tempSlider = (JSlider) evt.getSource();
         int value = tempSlider.getValue();
         text_Green.setText(Integer.toString(value));
+        updateColour();
 }//GEN-LAST:event_slider_Green_StateChanged
 
     private void slider_Blue_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Blue_StateChanged
         JSlider tempSlider = (JSlider) evt.getSource();
         int value = tempSlider.getValue();
         text_Blue.setText(Integer.toString(value));
+        updateColour();
 }//GEN-LAST:event_slider_Blue_StateChanged
 
     private void dropdown_SelectedVehicleItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_SelectedVehicleItemStateChanged
         JComboBox tempComboBox = (JComboBox) evt.getSource();
         EditorVehicle selected = (EditorVehicle) tempComboBox.getSelectedItem();
         populateFields(selected);
+        updateColour();
 }//GEN-LAST:event_dropdown_SelectedVehicleItemStateChanged
 
     private void formWindowGainedFocus(WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
@@ -1259,6 +1272,10 @@ public class VehicleEditor extends javax.swing.JFrame {
         int value = tempSlider.getValue();
         text_MemLearnRate.setText(Integer.toString(value));
 }//GEN-LAST:event_slider_MemLearnRate_StateChanged
+
+    private void processing_AppearanceComponentResized(ComponentEvent evt) {//GEN-FIRST:event_processing_AppearanceComponentResized
+        proVehiclePreview.updateSize(processing_Appearance.getWidth(), processing_Appearance.getHeight());
+    }//GEN-LAST:event_processing_AppearanceComponentResized
 
     private void populateFields(EditorVehicle p_vehicle) {
         EditorVehicle tempVehicle = p_vehicle;
@@ -1290,7 +1307,6 @@ public class VehicleEditor extends javax.swing.JFrame {
 
         slider_MemLearnRate.setValue(tempVehicle.getLearningRate());
         slider_MemMaxCapacity.setValue(tempVehicle.getMaxMem());
-
 }
 
     @Action
@@ -1367,6 +1383,10 @@ public class VehicleEditor extends javax.swing.JFrame {
         dropdown_SelectedVehicle.setSelectedItem(v);
         populateFields(v);
     }
+
+    public void updateColour() {
+        proVehiclePreview.updateColor(slider_Red.getValue(), slider_Green.getValue(), slider_Blue.getValue());
+	}
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton button_Cancel;
@@ -1446,7 +1466,7 @@ public class VehicleEditor extends javax.swing.JFrame {
     private JTextField text_Right_Water;
     private JTextField text_Status;
     // End of variables declaration//GEN-END:variables
-    private VehiclePreview proAppearance;
+    private VehiclePreview proVehiclePreview;
     private EditorVehicle[] vehicleArray;
     private DefaultComboBoxModel vehiclesDropDown;
     private Simulator appRoot;

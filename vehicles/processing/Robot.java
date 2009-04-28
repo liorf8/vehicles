@@ -38,8 +38,8 @@ public class Robot implements PConstants {
         wA = new Wheel(parent, x + axleHalf * PApplet.cos(angle - HALF_PI), y + axleHalf * PApplet.sin(angle - HALF_PI), 5, 0);
         wB = new Wheel(parent, x + axleHalf * PApplet.cos(angle + HALF_PI), y + axleHalf * PApplet.sin(angle + HALF_PI), 5, 0);
 
-        sA = new Sensor(parent, x + axle * PApplet.cos(angle - HALF_PI / 1.6f), y + axle * PApplet.sin(angle - HALF_PI / 1.6f));
-        sB = new Sensor(parent, x + axle * PApplet.cos(angle + HALF_PI / 2.6f), y + axle * PApplet.sin(angle + HALF_PI / 2.6f));
+        sA = new Sensor(parent, x + axle * PApplet.cos(angle - HALF_PI / 1.5f), y + axle * PApplet.sin(angle - HALF_PI / 1.5f));
+        sB = new Sensor(parent, x + axle * PApplet.cos(angle + HALF_PI / 1.5f), y + axle * PApplet.sin(angle + HALF_PI / 1.5f));
 
     }
 
