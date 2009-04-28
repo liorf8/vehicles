@@ -53,6 +53,7 @@ public class EditorSimulation extends Simulation{
 	}
 
 	public EditorSimulation(String fileName, boolean newSim){
+		this.xmlLocation = fileName;
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("Simulation");
 	}
