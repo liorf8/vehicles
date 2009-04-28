@@ -3,16 +3,22 @@ package vehicles.processing;
 import java.awt.Color;
 
 import processing.core.PApplet;
-import vehicles.environment.EnvironmentElement;
 
 public class ElementBrushPreview extends PApplet{
+	ElementBrush eb;
 	ProcessingEnviroElement pev;	
 
+	public ElementBrush getEb() {
+		return eb;
+	}
+	public void setEb(ElementBrush eb) {
+		this.eb = eb;
+	}
 	public ProcessingEnviroElement getPev() {
 		return pev;
 	}
-	public void setPev(EnvironmentElement pev) {
-		this.pev = new ProcessingEnviroElement(this,pev,0);
+	public void setPev(ProcessingEnviroElement pev) {
+		this.pev = pev;
 
 	}
 	public void setup(){
