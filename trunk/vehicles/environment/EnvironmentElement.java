@@ -31,7 +31,7 @@ public class EnvironmentElement {
 	protected int strength = 50;
 
 
-	protected Point position = null;
+	protected Point position = new Point(0,0);
 	protected Document xmldoc = null; //the XML document we are creating, stored as an object in memory
 	protected Element root = null;//the root element of the document
 

@@ -65,7 +65,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 		proLayout.init();
 		proLayout.setBrush(elementArray[0]);
 		preBrush = new ElementBrushPreview();
-		preBrush.setEb(proLayout.getBrush());
+		preBrush.setPev(elementArray[0]);
 
 		initComponents();
 
@@ -528,6 +528,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 		text_Radius.setText(Integer.toString(value));
 		EnvironmentElement selected = (EnvironmentElement) dropdown_Brush.getSelectedItem();
 		selected.setRadius(value);
+		preBrush.setPev(selected);
 	}//GEN-LAST:event_slider_Radius_StateChanged
 
 	private void slider_Intensity_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Intensity_StateChanged
@@ -536,6 +537,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 		text_Intensity.setText(Integer.toString(value));
 		EnvironmentElement selected = (EnvironmentElement) dropdown_Brush.getSelectedItem();
 		selected.setStrength(value);
+		preBrush.setPev(selected);
 	}//GEN-LAST:event_slider_Intensity_StateChanged
 
 	private void dropdown_GridSizeItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_GridSizeItemStateChanged
@@ -550,7 +552,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 		EnvironmentElement selected = (EnvironmentElement) tempComboBox.getSelectedItem();
 		populateBrushSliders(selected);
 		proLayout.getBrush().setCurrentlySelected(selected);
-		preBrush.setEb(proLayout.getBrush());
+		preBrush.setPev(selected);
 	}//GEN-LAST:event_dropdown_BrushItemStateChanged
 
 	private void populateBrushSliders(EnvironmentElement p_element) {
