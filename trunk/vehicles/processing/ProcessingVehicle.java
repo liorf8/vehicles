@@ -15,7 +15,7 @@ import vehicles.util.UtilMethods;
 
 /**
  *
- * @author Niall O'Hara
+ * @author Niall O'Hara, Shaun Gray
  */
 public class ProcessingVehicle extends Vehicle implements PConstants {
 
@@ -160,7 +160,6 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	public void checkBattery(){
 		if(this.curr_battery <= 0){
 			SimulatonEngine engineParent = (SimulatonEngine) parent;
-			engineParent.sim.log.addToLog(UtilMethods.getTimeStamp());
 			engineParent.sim.log.addToLog("Vehicle " + this.getName() + " died.");
 			this.die();
 			return;
@@ -242,11 +241,10 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 							if((their_fitness >= my_fitness - (my_fitness * 0.1)) ||(their_fitness <= my_fitness + (my_fitness * 0.1)) ){
 								float r = this.parent.random(10);
 								System.out.println("Random number: " + r);
-								if(r <= 1){ //20% chance of mating
+								if(r <= 2){ //30% chance of mating
 									System.out.println("Vehicles are mating ...");
 									this.mate(temp);
 									veh_count ++;
-									System.out.println(veh_count + " vehicles created from mating");
 									if(veh_count >=500){
 										engineParent.pause();
 									}
@@ -264,10 +262,9 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 								if(this.curr_battery > this.max_battery){
 									this.curr_battery = this.max_battery;
 								}
-								engineParent.sim.log.addToLog(UtilMethods.getTimeStamp());
 								engineParent.sim.log.addToLog("Vehicle " + this.getName() + " stole " +
-										batt_to_steal + "energy from Vehicle " + temp.getName());
-								engineParent.sim.log.addToLog("Vehicle " + this.getName() + " current battery charge is now " + this.curr_battery);
+										batt_to_steal + "energy from Vehicle " + temp.getName() +
+										"\nVehicle " + this.getName() + " current battery charge is now " + this.curr_battery);
 							}
 						}
 
@@ -292,6 +289,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		SimulationLog s = engineParent.sim.log;
 		Vehicle v = Genetics.pairedMating(this, other, s);
 		ProcessingVehicle pv = new ProcessingVehicle(this.parent, v, this.parent.random(this.parent.width), this.parent.random(this.parent.height), this.parent.random(PI), 10, (int)this.parent.random(100), 3, this.pairedMating, this.canDie);
+		
 		if(v != null){
 			engineParent.vehicleVector.add(pv);
 		}

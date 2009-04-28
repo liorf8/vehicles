@@ -20,7 +20,7 @@ public class Genetics {
 
 	public static int AsexualReproduction = 0;
 	public static int PairedMating = 1;	
-
+	private static int offspring_number = 0;
 
 	/*******************************************************************************************\
 	/																							\
@@ -91,8 +91,6 @@ public class Genetics {
 	 * @return a vehicle chosen by roulette selection
 	 */
 	public static Vehicle getVehicleByRoulette(Vector<Vehicle> v,  SimulationLog s){
-		s.addToLog(UtilMethods.getTimeStamp());
-		s.addToLog("Choosing vehicle by Roulette Selection.");
 		int len = v.size();
 		sortByFitness(v);
 		int i = 0;
@@ -118,7 +116,7 @@ public class Genetics {
 				return v.elementAt(i);
 			}
 		}
-		s.addToLog("Vehicle " + v.lastElement().getName() + " chosen by Roulette Selection");
+		s.addToLog("Choosing vehicle by Roulette Selection.\nVehicle " + v.lastElement().getName() + " chosen by Roulette Selection");
 		return v.lastElement();
 	}
 
@@ -130,11 +128,8 @@ public class Genetics {
 	 * @return a vehicle chosen by roulette selection N times
 	 */
 	public static Vehicle getVehicleByTournament(Vector<Vehicle> v, int n,  SimulationLog s){
-		s.addToLog(UtilMethods.getTimeStamp());
-		s.addToLog("Choosing vehicle by Tournament Selection. For this run a subset of the population\n" +
-				"of size " + n + " will be created using roulette selection " + n + " times and the\n" +
-		"best vehicle in this subset will be returned." );
 		if(n == 0){
+			s.addToLog("Choosing vehicle by Tournament Selection. As n was 0, a null vehicle is being returned");
 			return null;
 		}
 		Vehicle[] subset = new Vehicle[n];
@@ -143,7 +138,9 @@ public class Genetics {
 			subset[i] = getVehicleByRoulette(v, s);
 		}
 		Vehicle temp = getVehicleByBest(subset);
-		s.addToLog("Vehicle " + temp.getName() + " chosen by Tournament Selection");
+		s.addToLog("Choosing vehicle by Tournament Selection. For this run a subset of the population\n" +
+				"of size " + n + " will be created using roulette selection " + n + " times and the\n" +
+				"best vehicle in this subset will be returned.\nVehicle " + temp.getName() + " chosen by Tournament Selection");
 		return temp;
 	}
 
@@ -154,11 +151,10 @@ public class Genetics {
 	 * @return a vehicle chosen from the top N percent
 	 */
 	public static Vehicle getVehicleByTop_N_Percent(Vector<Vehicle> v, int n,  SimulationLog s){
-		s.addToLog(UtilMethods.getTimeStamp());
-		s.addToLog("Choosing a vehicle from the top " +  n + " percent of the population.");
 		int size = v.size();
 		//cant enter a number greater than 100..only goes up to 100%
 		if(n > 100 || n <= 0){
+			s.addToLog("As n was 0, returning a null vehicle");
 			return  null;
 		}
 		//System.out.println("Looking for vehicle in top " + n + " percent of vehicle population");
@@ -173,7 +169,8 @@ public class Genetics {
 		int ran = r.nextInt(diff_minus);
 		//System.out.println("Random number: " + ran);
 		Vehicle temp = v.elementAt(ran + diff);
-		s.addToLog("Vehicle " + temp.getName() + " chosen as a vehicle from the top " + n + 
+		s.addToLog("Choosing a vehicle from the top " +  n + " percent of the population.\nVehicle " + temp.getName()
+				+ " chosen as a vehicle from the top " + n + 
 		" percent of the population");
 		return temp;
 	}
@@ -184,10 +181,9 @@ public class Genetics {
 	 * @return the best vehicle in the set of vehicles
 	 */
 	public static Vehicle getVehicleByBest(Vector<Vehicle> v,  SimulationLog s){
-		s.addToLog(UtilMethods.getTimeStamp());
-		s.addToLog("Choosing the best vehicle from the population in terms of fitness.");
 		sortByFitness(v);
-		s.addToLog("Vehicle " + v.lastElement().getName() + " chosen as the Best\nVehicle in the population.");
+		s.addToLog("Choosing the best vehicle from the population in terms of fitness.\nVehicle " 
+				+ v.lastElement().getName() + " chosen as the Best\nVehicle in the population.");
 		return v.lastElement();
 	}
 
@@ -198,9 +194,6 @@ public class Genetics {
 	 */
 	public static Vehicle getVehicleByBest(Vehicle[] v){
 		Arrays.sort(v);
-		//for(int i = 0; i < v.length; i++){
-		//System.out.println("" + v[i].getFitness());
-		//}
 		return v[(v.length - 1)];
 	}
 
@@ -209,12 +202,11 @@ public class Genetics {
 	 * @return a random vehicle from the set of vehicles
 	 */
 	public static Vehicle getVehicleByRandom(Vector<Vehicle> v,  SimulationLog s){
-		s.addToLog(UtilMethods.getTimeStamp());
-		s.addToLog("Choosing a random vehicle from the population.");
 		Random ran = new Random();
 		int num_veh = v.size();
 		int random = ran.nextInt(num_veh);
-		s.addToLog("Vehicle " + v.elementAt(random).getName() + " chosen by random from the population.");
+		s.addToLog("Choosing a random vehicle from the population\nVehicle " 
+				+ v.elementAt(random).getName() + " chosen by random from the population.");
 		return v.elementAt(random);
 	}
 
@@ -294,20 +286,22 @@ public class Genetics {
 	}
 
 	public static Vehicle pairedMating(Vehicle parentA, Vehicle parentB,  SimulationLog s){
-		s.addToLog(UtilMethods.getTimeStamp());
-		s.addToLog("Creating a vehicle by paired mating of " + parentA.getName() + " and " + parentB.getName());
 		Vehicle child = new Vehicle();
-		String description = "Offspring of "+ parentA.getName() + " and " + parentB.getName();
-		s.addToLog("New vehicle created from " + parentA.getName() + " and " + parentB.getName());
-		child.setName("Vehicle_from_Paired_Mating");
-		child.setAuthor(description);
+		String description = "Offspring of \n'"+ parentA.getName() + "' and\n'" + parentB.getName() + "'" +
+			"\nCreated " + UtilMethods.getTimeStamp();
+		String name = "Offspring of paired mating #" + offspring_number;
+		offspring_number ++;
+		s.addToLog("New vehicle created from\n'" + parentA.getName() + "' and\n'" + parentB.getName() +
+				"'\nNew vehicle name: " + name);
+		child.setName(name);
+		child.setAuthor(name);
 		child.setDescription(description);
 
 		//These will be set for an editor vehicle if we go down that path
 		//For an object in memory alone, null is fine for these
-		child.setXmlLocation("src/test/genetics/tmp/" + Integer.toString(description.hashCode()) + ".veh");
-		s.addToLog("New vehicle temporarily stored in: " + child.getXmlLocation());
-		child.setFileName(Integer.toString(description.hashCode()));
+		//child.setXmlLocation("src/test/genetics/tmp/" + Integer.toString(description.hashCode()) + ".veh");
+		//child.setFileName(Integer.toString(name.hashCode()));
+		child.setFileName(name);
 
 
 		child.setLastModified(UtilMethods.getTimeStamp());
@@ -333,8 +327,7 @@ public class Genetics {
 		//Set Right Sensor
 		setRightSensor(child, parentA, parentB);
 
-		child.saveVehicle();
-
+		//child.saveVehicle();
 		return child;
 	}
 
@@ -538,7 +531,7 @@ public class Genetics {
 		}
 		return Genetics.asexualReproduction(parent, s);
 	}
-	
+
 	/**
 	 * There is a 70% chance of a some attributes of a vehicle being mutated
 	 * There is a 30% chance of inheriting some attributes directly
@@ -547,19 +540,19 @@ public class Genetics {
 	 * @return A vehicle which is the offspring of parent
 	 */
 	public static Vehicle asexualReproduction(Vehicle parent, SimulationLog s){
-		s.addToLog(UtilMethods.getTimeStamp());
-		s.addToLog("Creating a new vehicle by asexual reproduction of " + parent.getName());
 		Vehicle child = new Vehicle();
 		String name = "Offspring of "+ parent.getName();
-		s.addToLog("New vehicle name: " + name);
+		s.addToLog("Creating a new vehicle by asexual reproduction of " + parent.getName() +
+				"\nNew vehicle name: " + name);
 		child.setName(name);
 		child.setAuthor(name);
 		child.setDescription(name);
 
 		//These will be set for an editor vehicle if we go down that path
 		//For an object in memory alone, null is fine for these
-		child.setXmlLocation("src/test/genetics/tmp/" + UtilMethods.formatString(name) + ".veh");
-		s.addToLog("New vehicle temporarily stored in: " + child.getXmlLocation());
+		//child.setXmlLocation("src/test/genetics/tmp/" + UtilMethods.formatString(name) + ".veh");
+		child.setXmlLocation(null);
+		//s.addToLog("New vehicle temporarily stored in: " + child.getXmlLocation());
 		child.setFileName(name);
 
 
@@ -586,7 +579,7 @@ public class Genetics {
 		//Set Right Sensor
 		setRightSensor(child, parent);
 
-		child.saveVehicle();
+		//child.saveVehicle();
 
 		return child;
 	}

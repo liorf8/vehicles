@@ -1,5 +1,6 @@
 package vehicles.vehicle;
 
+import vehicles.simulation.SimulationLog;
 import vehicles.environment.*;
 import java.util.Vector;
 import org.w3c.dom.Document;
@@ -65,8 +66,8 @@ public class Vehicle implements Comparable{
 		}
 	}
 
-	public void addElementToMemory(EnvironmentElement e){
-		this.mu.addElement(e);
+	public void addElementToMemory(EnvironmentElement e, SimulationLog s){
+		this.mu.addElement(e, s);
 	}
 
 	public void printMemory(){
@@ -369,7 +370,7 @@ public class Vehicle implements Comparable{
 	}
 
 	public Vehicle() {
-		this.mu = new MemoryUnit();
+		this.mu = new MemoryUnit(this.vehicleName);
 		this.setMaxMem(100);
 		this.setLearningRate(1);
 		this.setMaxBatteryCapacity(100);
@@ -387,7 +388,7 @@ public class Vehicle implements Comparable{
 
 	public Vehicle(String filename) {
 		try {
-			this.mu = new MemoryUnit();
+			this.mu = new MemoryUnit(this.vehicleName);
 			xmlLocation = filename;
 			this.setFileName();
 			components = new Vector<VehicleComponent>();

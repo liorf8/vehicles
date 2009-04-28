@@ -2,6 +2,7 @@ package test.memorytest;
 import java.util.Random;
 import java.util.Vector;
 
+import vehicles.simulation.*;
 import vehicles.environment.Environment;
 import vehicles.environment.EnvironmentElement;
 import vehicles.environment.Point;
@@ -10,6 +11,7 @@ import vehicles.vehicle.*;
 public class MemoryTest {
 	public static void main(String[] args){
 
+		Simulation s = new Simulation("xml/simulation/default_simulation1.sim");
 		/*used to create a crazy environemnt to test vehicle memory
 		 * 
 		 */
@@ -40,7 +42,7 @@ public class MemoryTest {
 		Vector<EnvironmentElement> els = e.getElements();
 		EnvironmentElement ee = els.elementAt(0);
 		for(int i = 0; i < 100; i++){
-			veh.addElementToMemory(ee);
+			veh.addElementToMemory(ee, s.log);
 		}
 
 		//Testing if environment in memory
@@ -61,7 +63,7 @@ public class MemoryTest {
 		for(int i = 0; i < crazy_el.size(); i++){
 			EnvironmentElement cr = crazy_el.elementAt(i);
 			for(int j = 0; j < 100; j++){
-				veh.addElementToMemory(cr);
+				veh.addElementToMemory(cr, s.log);
 			}
 		}
 		veh.printMemory();
@@ -113,7 +115,7 @@ public class MemoryTest {
 		for(int i = 0; i < crazy_el.size(); i++){
 			EnvironmentElement cr = crazy_el.elementAt(i);
 			for(int j = 0; j < 100; j++){
-				veh.addElementToMemory(cr);
+				veh.addElementToMemory(cr, s.log);
 			}
 		}
 		veh.printMemory();
