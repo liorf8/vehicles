@@ -4,22 +4,24 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import processing.core.*;
-import vehicles.environment.EnvironmentElement;
-import vehicles.simulation.Simulation;
+import vehicles.environment.*;
+import vehicles.simulation.*;
+import vehicles.vehicle.*;
 
 @SuppressWarnings("serial")
 public class SimulatonEngine extends PApplet {
 	
 	Simulation sim; //simulation representing this
-    Robot[] robots; //array of vehicles
-    Source[] sources; //array of enviornment elements
+	Vector<Robot> robots; 
+    Vector<Source> sources;
+    Environment enviro;
     boolean mouseDown;
     PImage ground; //background image
     boolean specialSense = true;
-    int numOfLights = 6; //self-explanatory --change this
-    int numOfRobots = 10; //self-explanatory -change this
     float move_speed = 0;
-
+    int num_sources;
+    int w, h;
+    
     public float getMove_speed() {
         return move_speed;
     }
@@ -30,29 +32,35 @@ public class SimulatonEngine extends PApplet {
 
     int source_drag_id = -1;
 
-    public SimulatonEngine(){
-    	
-    }
     public SimulatonEngine(Simulation simu){
-    	System.out.println("Engine received object "+simu.getName());
+    	System.out.println("Engine received object "+ simu.getXmlLocation());
     	this.sim = simu;
     	Vector<EnvironmentElement> elements = simu.getEnvironment().getElements();
-    	this.numOfLights = elements.size();
-    	Iterator<EnvironmentElement> it = elements.iterator();
-    	System.out.println("THERE ARE "+numOfLights+" LIGHTS!");
+    	Vector<Vehicle> veh = simu.getVehicles();
+    	int num_veh = veh.size();
     	
-    	sources = new Source[numOfLights]; //create this number of lights on the environment
-    	for (int i = 0; i < sources.length; i++) {
-    		EnvironmentElement curr = it.next();
+    	for(int i = 0; i < num_veh; i++){
+    		this.robots.add(new Robot(i * (width / 10) + 20, height / 2, random(PI), 10, i));
+    	}
+    	
+    	this.num_sources = elements.size();
+    	enviro = this.sim.getEnvironment();
+    	this.w = enviro.getWidth();
+    	this.h = enviro.getHeigth();
+    	   	
+    	sources = new Vector<Source>();
+    	
+    	for(int i = 0; i < this.num_sources; i++){
+    		EnvironmentElement curr = elements.elementAt(i); 
     		System.out.print(i + " : ");
-    		sources[i] = new Source(
+    		sources.add(new Source(
     				(float)curr.getXpos(),
     				(float)curr.getYpos(),
     				(float)((float)curr.getStrength()/100.0f),
     				(float)curr.getRadius(),
     				curr.getName().hashCode(), //generate some id
-    				curr.getType());
-    		print(sources[i]);
+    				curr.getType()));
+    		print(sources.elementAt(i));
     	}
     	
     }
@@ -60,29 +68,9 @@ public class SimulatonEngine extends PApplet {
     // Processing Sketch Setup
     @Override
     public void setup() {
-        size(800, 600);
-        background(0,0,0);
-
-        ellipseMode(CENTER);
-        rectMode(CENTER);
-
+        size(w, h);
         noStroke();
-
         ground = new PImage(width, height);
-
-        robots = new Robot[10];
-        for (int i = 0; i < robots.length; i++) {
-            robots[i] = new Robot(i * (width / 10) + 20, height / 2, random(PI), 10, i);
-        }
-
-        /* Moving this to the constructor
-        sources = new Source[6];
-        for (int i = 0; i < sources.length; i++) {
-            sources[i] = new Source(i * (width / 6) + 60, height / 2 + (i % 2) * 50, 1.0f, 130, i);
-
-        }
-        */
-
         smooth();
         updateGround();
     }
@@ -131,6 +119,15 @@ public class SimulatonEngine extends PApplet {
         }
     }
 
+    private double distBetweenPoints(Point a, Point b){
+    	double x1 = a.getXpos();
+    	double y1 = a.getYpos();
+    	double x2 = b.getXpos();
+    	double y2 = b.getYpos();
+    	double dist = Math.sqrt((Math.pow((y2 - y1), 2) + Math.pow((x2 - x1), 2)));
+    	return dist;
+    }
+    
     @Override
     public void mousePressed() {
         mouseDown = true;
@@ -458,16 +455,16 @@ public class SimulatonEngine extends PApplet {
     class Source {
 
         float x, y;
-        float strength; // between 0 to 1
+        float intensity; // between 0 to 1
         float max_radius;
         //boolean dragging = true; //so taking this functionaloty out
         int id;
         int type; //enumeration values are in EnvironmentElement
 
-        Source(float x, float y, float strength, float max_radius, int id, int type) {
+        Source(float x, float y, float intensity, float max_radius, int id, int type) {
             this.x = x;
             this.y = y;
-            this.strength = strength;
+            this.intensity = intensity;
             this.max_radius = max_radius;
             this.id = id;
             this.type = type;
@@ -537,8 +534,11 @@ public class SimulatonEngine extends PApplet {
         }
     
         public String toString(){
-        	return(this.x + " " + this.y + " " + this.strength + " " + this.max_radius);
+        	return(this.x + " " + this.y + " " + this.intensity + " " + this.max_radius);
         }
+        
+        
+        
     }
 }
 
