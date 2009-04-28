@@ -82,10 +82,12 @@ public class SimulationEditor extends javax.swing.JFrame {
         proEnvironmentPreview.init();
 
         environmentArray = appRoot.getEnvironmentArray();
-        availableEnvironments = new AbstractListModel() {
-            public int getSize() { return environmentArray.length; }
-            public Object getElementAt(int i) { return environmentArray[i]; }
-        };
+        for (int i = 0; i < environmentArray.length; i++) {
+            availableEnv.add(i, environmentArray[i]);
+        }
+
+        availableEnvironments = new AvailableEnvironmentsModel();
+        selectedEnvironments = new SelectedEnvironmentsModel();
 
         vehicleArray = appRoot.getVehicleArray();
         for (int i = 0; i < vehicleArray.length; i++) {
@@ -172,6 +174,8 @@ public class SimulationEditor extends javax.swing.JFrame {
         button_SetEnvironment = new JButton();
         panel_EnvironmentPreview = new JPanel();
         processing_EnvironmentPreview = new JPanel();
+        jScrollPane2 = new JScrollPane();
+        jTextArea2 = new JTextArea();
         text_Status = new JTextField();
         button_Save = new JButton();
         button_SaveAsNew = new JButton();
@@ -659,6 +663,11 @@ public class SimulationEditor extends javax.swing.JFrame {
         list_AvailableEnvironments.setModel(availableEnvironments);
         list_AvailableEnvironments.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list_AvailableEnvironments.setName("list_AvailableEnvironments"); // NOI18N
+        list_AvailableEnvironments.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent evt) {
+                list_AvailableEnvironmentsValueChanged(evt);
+            }
+        });
         scrollpanel_AvailableEnvironments.setViewportView(list_AvailableEnvironments);
 
         jLabel2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -669,8 +678,8 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_AvailableEnvironments.setLayout(panel_AvailableEnvironmentsLayout);
         panel_AvailableEnvironmentsLayout.setHorizontalGroup(
             panel_AvailableEnvironmentsLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-            .addComponent(scrollpanel_AvailableEnvironments, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+            .addComponent(scrollpanel_AvailableEnvironments, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
         );
         panel_AvailableEnvironmentsLayout.setVerticalGroup(
             panel_AvailableEnvironmentsLayout.createParallelGroup(Alignment.LEADING)
@@ -687,11 +696,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         scrollpanel_SelectedEnvironment.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollpanel_SelectedEnvironment.setName("scrollpanel_SelectedEnvironment"); // NOI18N
 
-        list_SelectedEnvironment.setModel(new AbstractListModel() {
-            String[] strings = { "Enviro 1" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        list_SelectedEnvironment.setModel(selectedEnvironments);
         list_SelectedEnvironment.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list_SelectedEnvironment.setEnabled(false);
         list_SelectedEnvironment.setName("list_SelectedEnvironment"); // NOI18N
@@ -701,7 +706,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         panel_SelectedEnvironment.setLayout(panel_SelectedEnvironmentLayout);
         panel_SelectedEnvironmentLayout.setHorizontalGroup(
             panel_SelectedEnvironmentLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_SelectedEnvironment, GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+            .addComponent(scrollpanel_SelectedEnvironment, GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
         );
         panel_SelectedEnvironmentLayout.setVerticalGroup(
             panel_SelectedEnvironmentLayout.createParallelGroup(Alignment.LEADING)
@@ -738,15 +743,33 @@ public class SimulationEditor extends javax.swing.JFrame {
         processing_EnvironmentPreview.setName("processing_EnvironmentPreview"); // NOI18N
         processing_EnvironmentPreview.setLayout(new BorderLayout());
 
+        jScrollPane2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setName("jScrollPane2"); // NOI18N
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setEditable(false);
+        jTextArea2.setFont(resourceMap.getFont("jTextArea2.font")); // NOI18N
+        jTextArea2.setLineWrap(true);
+        jTextArea2.setRows(5);
+        jTextArea2.setWrapStyleWord(true);
+        jTextArea2.setAutoscrolls(false);
+        jTextArea2.setBorder(null);
+        jTextArea2.setName("jTextArea2"); // NOI18N
+        jScrollPane2.setViewportView(jTextArea2);
+
         GroupLayout panel_EnvironmentPreviewLayout = new GroupLayout(panel_EnvironmentPreview);
         panel_EnvironmentPreview.setLayout(panel_EnvironmentPreviewLayout);
         panel_EnvironmentPreviewLayout.setHorizontalGroup(
             panel_EnvironmentPreviewLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(processing_EnvironmentPreview, GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+            .addComponent(processing_EnvironmentPreview, GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
         );
         panel_EnvironmentPreviewLayout.setVerticalGroup(
             panel_EnvironmentPreviewLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(processing_EnvironmentPreview, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+            .addGroup(panel_EnvironmentPreviewLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(processing_EnvironmentPreview, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
         );
 
         processing_EnvironmentPreview.add(proEnvironmentPreview, BorderLayout.CENTER);
@@ -757,7 +780,7 @@ public class SimulationEditor extends javax.swing.JFrame {
             tab_EnvironmentLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(tab_EnvironmentLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panel_AvailableEnvironments, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel_AvailableEnvironments, GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(tab_EnvironmentLayout.createParallelGroup(Alignment.TRAILING)
                     .addGroup(tab_EnvironmentLayout.createSequentialGroup()
@@ -894,6 +917,10 @@ public class SimulationEditor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_radio_Evolution_OnItemStateChanged
 
+    private void list_AvailableEnvironmentsValueChanged(ListSelectionEvent evt) {//GEN-FIRST:event_list_AvailableEnvironmentsValueChanged
+        selectedEnvironmentListSelectionChanged();
+    }//GEN-LAST:event_list_AvailableEnvironmentsValueChanged
+
     @Action
     public void saveSimulation() {
     }
@@ -910,7 +937,6 @@ public class SimulationEditor extends javax.swing.JFrame {
 			selectedRobots.add(move);
 		}
 		selectedModel.changed();
-        System.out.print(selectedRobots.size() + " ");
     }
 
     @Action
@@ -922,7 +948,6 @@ public class SimulationEditor extends javax.swing.JFrame {
         }
 		selectedList.clearSelection();
 		selectedModel.changed();
-        System.out.print(selectedRobots.size() + " ");
     }
 
     @Action
@@ -948,6 +973,13 @@ public class SimulationEditor extends javax.swing.JFrame {
 
     @Action
     public void setEnvironment() {
+        SelectedEnvironmentsModel selectedModel = (SelectedEnvironmentsModel) list_SelectedEnvironment.getModel();
+		List<Environment> moves = getSelectedEnvironments();
+        selectedEnv.clear();
+		for (Environment move : moves) {
+			selectedEnv.add(move);
+		}
+		selectedModel.changed();
     }
 
     @Action
@@ -968,6 +1000,14 @@ public class SimulationEditor extends javax.swing.JFrame {
 		List<EditorVehicle> selected = new ArrayList<EditorVehicle>();
 		for (int i : list_AvailableVehicles.getSelectedIndices()) {
 			selected.add(availableRobots.get(i));
+		}
+		return selected;
+	}
+
+    public List<Environment> getSelectedEnvironments() {
+		List<Environment> selected = new ArrayList<Environment>();
+		for (int i : list_AvailableEnvironments.getSelectedIndices()) {
+			selected.add(availableEnv.get(i));
 		}
 		return selected;
 	}
@@ -1004,22 +1044,65 @@ public class SimulationEditor extends javax.swing.JFrame {
 		}
 	}
 
+     class SelectedEnvironmentsModel extends AbstractListModel {
+		public void changed() {
+			fireContentsChanged(this, 0, getSize());
+		}
+
+		public int getSize() {
+			return selectedEnv.size();
+		}
+
+		public Environment getElementAt(int which) {
+			return selectedEnv.get(which);
+		}
+	}
+
+    private class AvailableEnvironmentsModel extends AbstractListModel {
+		public void changed() {
+			fireContentsChanged(this, 0, getSize());
+		}
+
+		public int getSize() {
+			return availableEnv.size();
+		}
+
+		public Environment getElementAt(int which) {
+			return availableEnv.get(which);
+		}
+	}
+
 	private void selectedRobotsListSelectionChanged() {
 		int sel[] = list_AvailableVehicles.getSelectedIndices();
 
 		if (sel.length == 1) {
 			EditorVehicle veh = ((EditorVehicle) list_AvailableVehicles.getModel().getElementAt(sel[0]));
-			showDescription(veh);
+			showVehicleDescription(veh);
 		} else {
 			jTextArea1.setText(null);
 		}
 	}
 
-    public void showDescription(EditorVehicle veh) {
+    private void selectedEnvironmentListSelectionChanged() {
+		int sel[] = list_AvailableEnvironments.getSelectedIndices();
+
+		if (sel.length == 1) {
+			Environment env = ((Environment) list_AvailableEnvironments.getModel().getElementAt(sel[0]));
+			showEnvironmentDescription(env);
+		} else {
+			jTextArea2.setText(null);
+		}
+	}
+
+    public void showVehicleDescription(EditorVehicle veh) {
 		jTextArea1.setText(veh.getDescription());
         proVehiclePreview.updateColor(veh.getVehicleColourRed(),
                                         veh.getVehicleColourGreen(),
                                         veh.getVehicleColourBlue());
+	}
+    
+    public void showEnvironmentDescription(Environment env) {
+		jTextArea2.setText(env.getDescription());
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1039,7 +1122,9 @@ public class SimulationEditor extends javax.swing.JFrame {
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JScrollPane jScrollPane1;
+    private JScrollPane jScrollPane2;
     private JTextArea jTextArea1;
+    private JTextArea jTextArea2;
     private JLabel label_GeneticSelectionMethod;
     private JLabel label_GeneticSelectionN;
     private JLabel label_ReproductionMethod;
@@ -1094,10 +1179,13 @@ public class SimulationEditor extends javax.swing.JFrame {
     private Simulator appRoot;
     private AbstractListModel availableVehicles, availableEnvironments, selectedVehicles, selectedEnvironments;
 
-    //private JList selectedRobotsList;
+
     private final List<EditorVehicle> selectedRobots = new ArrayList<EditorVehicle>();
-    //private JList availableRobotsList;
+    private final List<Environment> selectedEnv = new ArrayList<Environment>();
+
     private final List<EditorVehicle> availableRobots = new CopyOnWriteArrayList<EditorVehicle>();
+    private final List<Environment> availableEnv = new CopyOnWriteArrayList<Environment>();
+
     GeneticSelectionMethod[] genSelArray;
     ReproductionMethod[] repoArray;
 }
