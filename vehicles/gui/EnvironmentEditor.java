@@ -62,8 +62,8 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 		// important to call this whenever embedding a PApplet.
 		// It ensures that the animation thread is started and
 		// that other internal variables are properly set.
-		proLayout.init();
 		proLayout.setBrush(elementArray[0]);
+		proLayout.init();
 		preBrush = new ElementBrushPreview();
 		preBrush.setPev(elementArray[0]);
 

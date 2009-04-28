@@ -35,7 +35,7 @@ public class EnvironmentLayout extends PApplet {
 	public void setWidth_and_Height(int w, int h){
 		this.w = w;
 		this.h = h;
-		redraw();
+		this.draw();
 	}
 	public ElementBrush getBrush(){
 		return eb;
@@ -46,46 +46,50 @@ public class EnvironmentLayout extends PApplet {
 
 	@Override
 	public void setup() {
-		ee = new Vector<ProcessingEnviroElement>();
-		this.setWidth_and_Height(200, 200);
+		//ee = new Vector<ProcessingEnviroElement>();
+		this.setWidth_and_Height(1024,768);
 		// original setup code here ...
 		size(w, h);
-		background(100);
+		//background(100);
+		//ground = new PImage(width, height);
 		smooth();
-		updateGround();
+		//updateGround();
 		cursor(CROSS);
-		redraw();
-	}
-
-	@Override
-	public void draw() {
-		size(w,h); //lets the window be redrawn to a different size
-		background(Color.BLACK.getRGB());
-		//image(ground, 0, 0); //works, just too slow		
-		stroke(Color.RED.getRGB());
-		strokeWeight(4);
-		fill(Color.BLACK.getRGB());
-		rect(0,0,width,height);//draw a border - take out later
-		noFill();
-		noStroke();
-		Iterator<ProcessingEnviroElement> it = ee.iterator();
-		while(it.hasNext()){
-			it.next().editorDraw();
-		}
-		//updateGround()  works, but too slow
-		print("Now have "+ee.size()+ " elements\n");
 		noLoop();
 	}
 
 	@Override
-	public void mouseReleased() {
+	public void draw() {
+		background(Color.BLACK.getRGB());
+		size(w,h); //lets the window be redrawn to a different size
+		background(Color.BLACK.getRGB());
+		//image(ground, 0, 0); //works, just too slow		
+//		stroke(Color.RED.getRGB());
+//		strokeWeight(4);
+//		fill(Color.BLACK.getRGB());
+//		rect(0,0,width,height);//draw a border - take out later
+//		noFill();
+//		noStroke();
+		Iterator<ProcessingEnviroElement> it = ee.iterator();
+		while(it.hasNext()){
+			it.next().editorDraw();
+		}
+		//updateGround(); // works, but too slow
+		print("Now have "+ee.size()+ " elements\n");
+		
+	}
+
+	@Override
+	public void mouseClicked() {
 		if(mouseX <= this.w && mouseY <= this.h){
 			eb.getCurrentlySelected().setPosition(new Point(mouseX,mouseY));
 			ProcessingEnviroElement toSet = new ProcessingEnviroElement((PApplet)this,eb.getCurrentlySelected(),0);
 			System.out.println(toSet.tostring());
 			this.ee.add(toSet);
+			this.draw();
 		}
-		redraw();
+		
+		
 	}
 
 	public void addElement(int xPos, int yPos, int type, int radius, int intensity){
