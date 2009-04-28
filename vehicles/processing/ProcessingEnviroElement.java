@@ -50,8 +50,8 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 	}
 
 	public void draw() { //simply draw a representaion of the element
-		
-        /*parent.fill(this.colorRed, this.colorGreen, this.colorBlue);
+
+		/*parent.fill(this.colorRed, this.colorGreen, this.colorBlue);
         /*
 		int alpha = this.strength;
 		for(float d = 0.0f; d < this.radius; d++){
@@ -59,9 +59,23 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 			this.parent.stroke(this.colorRed, this.colorBlue, this.colorGreen, 0);
 			this.parent.ellipse(this.xPos, this.yPos, d, d);
 			alpha -- ;
-			
+
 		}
-         */
+		 */
+	}
+	public void editorDraw() { //simply draw a representaion of the element, for in the editor
+
+		parent.fill(this.colorRed, this.colorGreen, this.colorBlue);
+        
+		int alpha = this.strength;
+		for(float d = 0.0f; d < this.radius; d++){
+			//System.out.println("Alpha: " + alpha);
+			this.parent.stroke(this.colorRed, this.colorBlue, this.colorGreen, 0);
+			this.parent.ellipse(this.xPos, this.yPos, d, d);
+			alpha -- ;
+
+		}
+		 
 	}
 
 
@@ -102,7 +116,7 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 		}
 	}
 
- 	public float getRedAtPoint(float x, float y) {
+	public float getRedAtPoint(float x, float y) {
 
 		float d = PApplet.dist(this.xPos, this.yPos, x, y);
 		if (d > this.radius) {
@@ -114,7 +128,7 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 		}
 	}
 
-    public float getGreenAtPoint(float x, float y) {
+	public float getGreenAtPoint(float x, float y) {
 
 		float d = PApplet.dist(this.xPos, this.yPos, x, y);
 		if (d > this.radius) {
@@ -126,7 +140,7 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 		}
 	}
 
-    public float getBlueAtPoint(float x, float y) {
+	public float getBlueAtPoint(float x, float y) {
 
 		float d = PApplet.dist(this.xPos, this.yPos, x, y);
 		if (d > this.radius) {
@@ -144,15 +158,15 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 	}
 
 
-    public int getColorBlue() {
-        return colorBlue;
-    }
+	public int getColorBlue() {
+		return colorBlue;
+	}
 
-    public int getColorGreen() {
-        return colorGreen;
-    }
+	public int getColorGreen() {
+		return colorGreen;
+	}
 
-    public int getColorRed() {
-        return colorRed;
-    }
+	public int getColorRed() {
+		return colorRed;
+	}
 }
