@@ -13,6 +13,7 @@ public class VehicleAppearance extends PApplet {
          size(100, 100);
          background(100);
          robot = new Robot(this, width / 2, height / 2, random(PI), 10, 155, 155, 155);
+         smooth();
      }
 
      @Override
