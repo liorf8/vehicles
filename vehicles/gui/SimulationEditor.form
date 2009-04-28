@@ -636,16 +636,16 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" alignment="0" pref="185" max="32767" attributes="0"/>
                       <Component id="scrollpanel_AvailableVehicles" alignment="0" pref="185" max="32767" attributes="0"/>
+                      <Component id="button_ReloadVeh" alignment="0" pref="185" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="scrollpanel_AvailableVehicles" pref="362" max="32767" attributes="0"/>
+                          <Component id="scrollpanel_AvailableVehicles" pref="353" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" pref="14" max="-2" attributes="0"/>
+                          <Component id="button_ReloadVeh" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -674,11 +674,13 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JLabel" name="jLabel1">
+                <Component class="javax.swing.JButton" name="button_ReloadVeh">
                   <Properties>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" resourceKey="jLabel1.text"/>
-                    <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
+                    <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                      <action class="vehicles.gui.SimulationEditor" id="reloadVehiclesList" methodName="reloadVehiclesList"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" resourceKey="button_ReloadVeh.text"/>
+                    <Property name="name" type="java.lang.String" value="button_ReloadVeh" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -960,16 +962,16 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" alignment="0" pref="180" max="32767" attributes="0"/>
                       <Component id="scrollpanel_AvailableEnvironments" alignment="0" pref="180" max="32767" attributes="0"/>
+                      <Component id="button_ReloadEnv" alignment="0" pref="180" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="scrollpanel_AvailableEnvironments" pref="362" max="32767" attributes="0"/>
+                          <Component id="scrollpanel_AvailableEnvironments" pref="353" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" pref="14" max="-2" attributes="0"/>
+                          <Component id="button_ReloadEnv" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -999,11 +1001,13 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JLabel" name="jLabel2">
+                <Component class="javax.swing.JButton" name="button_ReloadEnv">
                   <Properties>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" resourceKey="jLabel2.text"/>
-                    <Property name="name" type="java.lang.String" value="jLabel2" noResource="true"/>
+                    <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                      <action class="vehicles.gui.SimulationEditor" id="reloadEnvironmentsList" methodName="reloadEnvironmentsList"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" resourceKey="button_ReloadEnv.text"/>
+                    <Property name="name" type="java.lang.String" value="button_ReloadEnv" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
