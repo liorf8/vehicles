@@ -64,7 +64,7 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 		 */
 	}
 	public void editorDraw() { //simply draw a representaion of the element, for in the editor
-
+		this.setColor();
 		parent.fill(this.colorRed, this.colorGreen, this.colorBlue);
 
 		int alpha = 255;
@@ -76,9 +76,11 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 			alpha -= units ;
 
 		}
+		
 
 	}
 	public void previewDraw(int x, int y){
+		this.setColor();
 		parent.fill(this.colorRed, this.colorGreen, this.colorBlue);
 
 		int alpha = this.strength * 2;
@@ -97,12 +99,12 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 		case EnvironmentElement.HeatSource:
 			this.colorRed = 255;
 			this.colorGreen = 0;
-			this.colorBlue = 100;
+			this.colorBlue = 0;
 			break;
 		case EnvironmentElement.PowerSource:
-			this.colorRed = 100;
+			this.colorRed = 0;
 			this.colorGreen = 255;
-			this.colorBlue = 255;
+			this.colorBlue = 0;
 			break;
 		case EnvironmentElement.LightSource:
 			this.colorRed = 255;
@@ -111,7 +113,7 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 			break;
 		case EnvironmentElement.WaterSource:
 			this.colorRed = 0;
-			this.colorGreen = 10;
+			this.colorGreen = 0;
 			this.colorBlue = 255;
 			break;
 		}
