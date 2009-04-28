@@ -2,7 +2,6 @@ package vehicles.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ItemEvent;
@@ -12,7 +11,6 @@ import java.awt.event.WindowFocusListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.ScrollPaneConstants;
@@ -982,7 +980,9 @@ public class SimulationEditor extends javax.swing.JFrame {
 
     public void showDescription(EditorVehicle veh) {
 		jTextArea1.setText(veh.getDescription());
-        proVehiclePreview.updateColor(100, 100, 100);
+        proVehiclePreview.updateColor(veh.getVehicleColourRed(),
+                                        veh.getVehicleColourGreen(),
+                                        veh.getVehicleColourBlue());
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
