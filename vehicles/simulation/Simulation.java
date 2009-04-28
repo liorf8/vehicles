@@ -343,6 +343,7 @@ public class Simulation {
     	return this.vehicles.toArray(vehs);
     }
     public void addVehiclesFromArrayList(List<EditorVehicle> list){
+        vehicles.clear();
     	Iterator<EditorVehicle> it = list.iterator();
     	while(it.hasNext()){
     		Vehicle v = new Vehicle(it.next());

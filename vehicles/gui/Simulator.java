@@ -10,6 +10,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -23,6 +24,8 @@ import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.text.Format;
+import java.util.Date;
 import javax.swing.ActionMap;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -151,9 +154,9 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         jScrollPane1 = new JScrollPane();
         jPanel3 = new JPanel();
         jPanel2 = new JPanel();
-        jScrollPane2 = new JScrollPane();
-        jTextArea1 = new JTextArea();
         jButton3 = new JButton();
+        scrollpane_SystemLog = new JScrollPane();
+        textarea_SystemLog = new JTextArea();
         jSeparator7 = new JSeparator();
         menuBar = new JMenuBar();
         JMenu simulationMenu = new JMenu();
@@ -209,33 +212,38 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
 
         jPanel2.setName("jPanel2"); // NOI18N
 
-        jScrollPane2.setName("jScrollPane2"); // NOI18N
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setEditable(false);
-        jTextArea1.setFont(resourceMap.getFont("jTextArea1.font")); // NOI18N
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setWrapStyleWord(true);
-        jTextArea1.setName("jTextArea1"); // NOI18N
-        jScrollPane2.setViewportView(jTextArea1);
-
         ActionMap actionMap = Application.getInstance(VehiclesApp.class).getContext().getActionMap(Simulator.class, this);
         jButton3.setAction(actionMap.get("saveLog")); // NOI18N
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
         jButton3.setName("jButton3"); // NOI18N
+
+        scrollpane_SystemLog.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollpane_SystemLog.setName("scrollpane_SystemLog"); // NOI18N
+
+        textarea_SystemLog.setColumns(20);
+        textarea_SystemLog.setEditable(false);
+        textarea_SystemLog.setFont(resourceMap.getFont("textarea_SystemLog.font")); // NOI18N
+        textarea_SystemLog.setLineWrap(true);
+        textarea_SystemLog.setRows(5);
+        textarea_SystemLog.setText(resourceMap.getString("textarea_SystemLog.text")); // NOI18N
+        textarea_SystemLog.setWrapStyleWord(true);
+        textarea_SystemLog.setDoubleBuffered(true);
+        textarea_SystemLog.setName("textarea_SystemLog"); // NOI18N
+        scrollpane_SystemLog.setViewportView(textarea_SystemLog);
 
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(Alignment.LEADING)
             .addComponent(jButton3, GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE)
-            .addComponent(jScrollPane2, GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(scrollpane_SystemLog, GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
+                .addComponent(scrollpane_SystemLog, GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(jButton3))
         );
@@ -378,7 +386,6 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
 
         button_Stop.setAction(actionMap.get("stopSim")); // NOI18N
         button_Stop.setText(resourceMap.getString("button_Stop.text")); // NOI18N
-        button_Stop.setEnabled(false);
         button_Stop.setFocusable(false);
         button_Stop.setHorizontalTextPosition(SwingConstants.CENTER);
         button_Stop.setName("button_Stop"); // NOI18N
@@ -390,7 +397,6 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
 
         button_Pause.setAction(actionMap.get("pauseSim")); // NOI18N
         button_Pause.setText(resourceMap.getString("button_Pause.text")); // NOI18N
-        button_Pause.setEnabled(false);
         button_Pause.setName("button_Pause"); // NOI18N
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
@@ -551,6 +557,11 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     public void saveLog() {
     }
 
+    public void writeToLog(String text) {
+        formattedTime = formatter.format(now.getTime());
+        textarea_SystemLog.append("\n" + formattedTime + " : " + text);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JToggleButton button_Pause;
     private JButton button_Start;
@@ -573,7 +584,6 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     private JPanel jPanel2;
     private JPanel jPanel3;
     private JScrollPane jScrollPane1;
-    private JScrollPane jScrollPane2;
     private Separator jSeparator1;
     private JSeparator jSeparator2;
     private JSeparator jSeparator3;
@@ -582,11 +592,12 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     private JSeparator jSeparator6;
     private JSeparator jSeparator7;
     private JTabbedPane jTabbedPane1;
-    private JTextArea jTextArea1;
     private JPanel mainPanel;
     private JMenuBar menuBar;
     private JMenu optionsMenu;
+    private JScrollPane scrollpane_SystemLog;
     private JSlider slider_Speed;
+    private JTextArea textarea_SystemLog;
     private JToolBar toolBar;
     private JMenu vehicleMenu;
     // End of variables declaration//GEN-END:variables
@@ -603,5 +614,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
 
     private DefaultComboBoxModel simulationDropDown;
     private Boolean isPaused;
-
+    private String formattedTime;
+    private Date now = new Date();
+    private Format formatter;
 }
