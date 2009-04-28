@@ -11,12 +11,27 @@ import java.util.Iterator;
  *
  * @author Niall O'Hara, Shuan Gray
  */
+@SuppressWarnings("serial")
 public class EnvironmentLayout extends PApplet {
 	int w, h;
 	Vector<ProcessingEnviroElement> ee;
 	ElementBrush eb;
 	PImage ground;
-
+	public EnvironmentLayout(){
+		
+	}
+	/**
+	 * Create a new preview from an environment object
+	 * @param e the environment to load from
+	 */
+	public EnvironmentLayout(Environment e){
+		ee = new Vector<ProcessingEnviroElement>();
+		Iterator<EnvironmentElement> it = e.getElements().iterator();
+		while(it.hasNext()){
+			ProcessingEnviroElement temp = new ProcessingEnviroElement(this,it.next(),0);
+			ee.add(temp);
+		}
+	}
 	public void setWidth_and_Height(int w, int h){
 		this.w = w;
 		this.h = h;
@@ -105,11 +120,11 @@ public class EnvironmentLayout extends PApplet {
 		e.setPosition(new Point(xPos, yPos));
 		//this.ee.add(e);
 	}
-	
+
 	public EnvironmentElement[] getElements(){
 		return (EnvironmentElement[]) ee.toArray();		
 	}
-	
+
 	void updateGround() {
 
 		float sum;
@@ -121,16 +136,16 @@ public class EnvironmentLayout extends PApplet {
 			for (int k = 0; k < height; k += px) { //process every pixel in the image
 
 				sum = 0;
-                r = 0;
-                g = 0;
-                b = 0;
+				r = 0;
+				g = 0;
+				b = 0;
 				for (int m = 0; m < ee.size(); m++) {
 
 					//pass this pixel's position
 					sum += ee.elementAt(m).getIntensityAtPoint(i, k);
-                    r += ee.elementAt(m).getRedAtPoint(i, k);
-                    g += ee.elementAt(m).getGreenAtPoint(i, k);
-                    b += ee.elementAt(m).getBlueAtPoint(i, k);
+					r += ee.elementAt(m).getRedAtPoint(i, k);
+					g += ee.elementAt(m).getGreenAtPoint(i, k);
+					b += ee.elementAt(m).getBlueAtPoint(i, k);
 					//sum up intensity of elementVector until it reachrs one
 					if (sum >= 1) {
 						break;
