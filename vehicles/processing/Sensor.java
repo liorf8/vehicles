@@ -26,6 +26,10 @@ public class Sensor implements PConstants {
     }
 
     float getSense(boolean plus) {
+        SimulatonEngine engineParent = (SimulatonEngine) parent;
+        float sum = parent.red( engineParent.ground.get( (int)x, (int)y ) )/255.0f;
+		sum = (plus) ? sum : 1-sum;
+		sense = (true) ? engineParent.nonlinear( sum, maxReading ) : 1-sum;
         return sense;
     }
 

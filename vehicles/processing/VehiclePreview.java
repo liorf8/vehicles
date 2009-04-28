@@ -7,12 +7,12 @@ import processing.core.*;
  * @author Niall O'Hara
  */
 public class VehiclePreview extends PApplet {
-    Robot robot;
+    ProcessingVehicle robot;
 
     @Override
     public void setup() {
         background(0);
-        robot = new Robot(this, 60, 60, random(PI), 10, 155, 155, 155);
+        robot = new ProcessingVehicle(this, 60, 60, random(PI), 10, 155, 155, 155);
         smooth();
     }
 
@@ -21,7 +21,7 @@ public class VehiclePreview extends PApplet {
         background(0);
         robot.setLeftSpeed(0.2f);
         robot.setRightSpeed(0.17f);
-        robot.move();
+        robot.moveWithoutSensor();
         robot.draw();
     }
 
