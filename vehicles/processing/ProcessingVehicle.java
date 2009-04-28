@@ -153,7 +153,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	}
 
 	public void depleteBatt(){
-		this.curr_battery -= 0.05;
+		this.curr_battery -= 0.005;
 		this.checkBattery();
 	}
 
@@ -346,7 +346,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	}
 
 	public String toString(){
-		return "Name: " + this.vehicleName + "\nMax Battery: " + this.max_battery + "\nCurr Battery: " + this.curr_battery
-		+ "\nAggression: " + this.aggression;
+		return "Name: " + this.vehicleName + "\nMax Speed: " + this.max_speed + "\nMax Battery: " + this.max_battery + "\nCurr Battery: " + this.curr_battery
+		+ "\nAggression: " + this.aggression + "\nItems In Memory: " + this.mu.numItems();
 	}
 }
