@@ -29,6 +29,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	PApplet parent; // The parent PApplet that we will render ourselves onto
 	float max_battery, curr_battery;
 	boolean canDie, pairedMating;
+	private static int veh_count = 0;
 	/*
 	 * This constructor takes a vehicle as a parameter
 	 * Means that all the vehicle methods are now avaialble within processing
@@ -154,7 +155,8 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		this.curr_battery -= 0.05;
 		if(this.curr_battery <= 0){
 			SimulatonEngine engineParent = (SimulatonEngine) parent;
-			engineParent.vehicleVector.remove(this);
+			this.die();
+			//engineParent.vehicleVector.remove(this);
 			return;
 		}
 	}
@@ -227,14 +229,20 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 				//if (abs(dx) <=axle && abs(dy)<=axle ) {
 				if (dx * dx + dy * dy < axleSquared) {
 					if(this.pairedMating){
-						System.out.println("Vehicles can mate...");
+						//System.out.println("Vehicles can mate...");
 						double my_fitness = this.getFitness();
 						double their_fitness = temp.getFitness();
 						if((their_fitness >= my_fitness - (my_fitness * 0.1)) ||(their_fitness <= my_fitness + (my_fitness * 0.1)) ){
 							float r = this.parent.random(10);
+							System.out.println("Random number: " + r);
 							if(r <= 2){
 								System.out.println("Vehicles are mating ...");
 								this.mate(temp);
+								veh_count ++;
+								System.out.println(veh_count + " vehicles created from mating");
+								if(veh_count >=500){
+									engineParent.pause();
+								}
 							}
 						}
 					}
@@ -259,9 +267,16 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 			engineParent.vehicleVector.add(pv);
 		}
 		//Stops the vehicles killing everything
-		if(engineParent.vehicleVector.size() == 100){
-			engineParent.vehicleVector.removeElementAt(0);
+		if(engineParent.vehicleVector.size() == 500){
+			pv = engineParent.vehicleVector.elementAt(0);
+			pv.die();
+			//engineParent.vehicleVector.removeElementAt(0);
 		}
+	}
+	
+	public void die(){
+		SimulatonEngine engineParent = (SimulatonEngine) parent;
+		engineParent.vehicleVector.remove(this);
 	}
 	
 	public void updateColor(int p_red, int p_green, int p_blue) {
@@ -300,5 +315,10 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 	public void updateBlue(int b) {
 		this.colorBlue = b;
+	}
+	
+	public String toString(){
+		return "Name: " + this.vehicleName + "\nMax Battery: " + this.max_battery + "\nCurr Battery: " + this.curr_battery
+			+ "\nAggression: " + this.aggression;
 	}
 }
