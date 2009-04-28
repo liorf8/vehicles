@@ -64,6 +64,10 @@ public class EnvironmentElement {
 		}
 	}
 
+    public boolean comparePoint(Point other){
+    	return this.position.compareTo(other);
+    }
+    
 	/**
 	 * An constructor for new environment-elements
 	 */

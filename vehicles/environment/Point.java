@@ -24,4 +24,8 @@ public class Point {
 	public void setYPos(double y){
 		this.ypos = y;
 	}
+	
+	public boolean compareTo(Point other){
+		return (other.getXpos() == this.xpos) && (other.getYpos() == this.ypos);
+	}
 }

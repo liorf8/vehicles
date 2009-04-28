@@ -1,27 +1,27 @@
 package vehicles.processing;
 import processing.core.*;
-import vehicles.environment.Point;
+import vehicles.environment.*;
+import java.util.Vector;
 
 /**
  *
  * @author Niall O'Hara
  */
 public class EnvironmentLayout extends PApplet {
-	private int w  = 5, h = 5;
-	float grid_unit_x, grid_unit_y;
-
-	public void updateWidthHeight(int h, int w){
-		this.h = h;
+	int w, h;
+	Vector<EnvironmentElement> ee;
+	
+	public void setWidth_and_Height(int h, int w){
 		this.w = w;
-		
-		grid_unit_x = (float)width/(float)w;
-		grid_unit_y = (float)height/(float)h;
+		this.h = h;
 	}
 	
 	@Override
 	public void setup() {
+		ee = new Vector<EnvironmentElement>();
+		setWidth_and_Height(100, 400);
 		// original setup code here ...
-		size(400, 400);
+		size(w, h);
 		background(100);
 		// prevent thread from starving everything else
 		noLoop();
@@ -30,7 +30,6 @@ public class EnvironmentLayout extends PApplet {
 	@Override
 	public void draw() {
 		// drawing code goes here
-		drawGrid();
 	}
 
 	@Override
@@ -40,34 +39,37 @@ public class EnvironmentLayout extends PApplet {
 		// update the screen (run draw once)
 		redraw();
 	}
-
-	public void drawGrid(){
-		stroke(144, 144, 213);
-		this.updateWidthHeight(6, 4);
-		float j = 0;
-		for(float i = 0; i < w; i++){
-			line(0, j, height, j);
-			j+= grid_unit_x;
-		}
-		j = 0;
-		for(float i = 0; i < h; i++){
-			line(j, 0, j, width);
-			j+= grid_unit_y;
-		}
-	}
 	
-	public Point getRelativeGridPoint(int x, int y){
-		int relX = 0, relY = 0;
-		int temp;
-		float temp_div;
-		for(float i = 0; i < w; i++){
-			if(i == x){
-				break;
-			}
-			temp_div = x / grid_unit_x;
+	public void addElement(int xPos, int yPos, int type, int radius, int intensity){
+		EnvironmentElement e = new EnvironmentElement();
+		e.setRadius(radius);
+		e.setStrength(intensity);
+		e.setType(type);
+		
+		switch(type){
+		case EnvironmentElement.WaterSource:
+			e.setName("Water Source");
+			break;
+		case EnvironmentElement.HeatSource:
+			e.setName("Heat Source");
+			break;
+		case EnvironmentElement.PowerSource:
+			e.setName("Power Source");
+			break;
+		case EnvironmentElement.LightSource:
+			e.setName("Light Source");
+			break;
 		}
 		
-		return new Point(3, 4);
+		int len = this.ee.size();
+		Point p = new Point(xPos, yPos);
+		for(int i = 0; i < len; i++){
+			if(this.ee.elementAt(i).comparePoint(p)){
+				this.ee.removeElementAt(i);
+				break;
+			}
+		}
+		e.setPosition(new Point(xPos, yPos));
+		this.ee.add(e);
 	}
-	
 }
