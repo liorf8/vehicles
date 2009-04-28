@@ -57,7 +57,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 				new EnvironmentElement(4)};
 		elementDropDown = new DefaultComboBoxModel(elementArray);
 
-		proLayout = new EnvironmentLayout();
+		proLayout = new EnvironmentLayout(environmentArray[0]);
 		
 		// important to call this whenever embedding a PApplet.
 		// It ensures that the animation thread is started and
@@ -569,6 +569,10 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 		text_Description.setText(tempEnvironment.getDescription());
 		text_Name.setText(tempEnvironment.getName());
 		text_LastModified.setText(tempEnvironment.getLastModified());
+        proLayout.destroy();
+        proLayout = new EnvironmentLayout(tempEnvironment);
+        proLayout.init();
+
 
 	}
 

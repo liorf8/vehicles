@@ -386,6 +386,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
 
         button_Stop.setAction(actionMap.get("stopSim")); // NOI18N
         button_Stop.setText(resourceMap.getString("button_Stop.text")); // NOI18N
+        button_Stop.setEnabled(false);
         button_Stop.setFocusable(false);
         button_Stop.setHorizontalTextPosition(SwingConstants.CENTER);
         button_Stop.setName("button_Stop"); // NOI18N
@@ -397,6 +398,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
 
         button_Pause.setAction(actionMap.get("pauseSim")); // NOI18N
         button_Pause.setText(resourceMap.getString("button_Pause.text")); // NOI18N
+        button_Pause.setEnabled(false);
         button_Pause.setName("button_Pause"); // NOI18N
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
