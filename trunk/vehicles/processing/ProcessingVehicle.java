@@ -94,8 +94,8 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
         float ang;
         checkBounds();
 
-		setLeftSpeed( sB.getSense( false ) );
-		setRightSpeed( sA.getSense( false ) );
+		//setLeftSpeed( sB.getSense( false ) );
+		//setRightSpeed( sA.getSense( false ) );
 	
         /*Just update the vehicle's position and direction, this stuff won't need to be changed*/
         wheel_diff = wA.d - wB.d;

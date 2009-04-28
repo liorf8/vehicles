@@ -5,7 +5,7 @@ import java.util.Vector;
 
 /**
  *
- * @author Niall O'Hara
+ * @author Niall O'Hara, Shuan Gray
  */
 public class EnvironmentLayout extends PApplet {
 	int w, h;
