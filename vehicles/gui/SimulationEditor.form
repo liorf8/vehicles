@@ -325,6 +325,9 @@
                         <Property name="text" type="java.lang.String" resourceKey="radio_Evolution_On.text"/>
                         <Property name="name" type="java.lang.String" value="radio_Evolution_On" noResource="true"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="radio_Evolution_OnItemStateChanged"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JRadioButton" name="radio_Evolution_Off">
                       <Properties>
@@ -348,11 +351,8 @@
                     </Component>
                     <Component class="javax.swing.JComboBox" name="dropdown_ReproductionMethod">
                       <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="2">
-                            <StringItem index="0" value="Asexual"/>
-                            <StringItem index="1" value="Paired"/>
-                          </StringArray>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="repoDropDown" type="code"/>
                         </Property>
                         <Property name="enabled" type="boolean" value="false"/>
                         <Property name="name" type="java.lang.String" value="dropdown_ReproductionMethod" noResource="true"/>
@@ -369,14 +369,8 @@
                     </Component>
                     <Component class="javax.swing.JComboBox" name="dropdown_GeneticSelectionMethod">
                       <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="5">
-                            <StringItem index="0" value="Roulette"/>
-                            <StringItem index="1" value="Tournament"/>
-                            <StringItem index="2" value="Top Percent"/>
-                            <StringItem index="3" value="Best"/>
-                            <StringItem index="4" value="Random"/>
-                          </StringArray>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="genSelDropDown" type="code"/>
                         </Property>
                         <Property name="enabled" type="boolean" value="false"/>
                         <Property name="name" type="java.lang.String" value="dropdown_GeneticSelectionMethod" noResource="true"/>
