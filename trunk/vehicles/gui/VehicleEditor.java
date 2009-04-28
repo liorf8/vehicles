@@ -52,15 +52,13 @@ public class VehicleEditor extends javax.swing.JFrame {
         vehiclesDropDown = new DefaultComboBoxModel(vehicleArray);
 
         proVehiclePreview = new VehiclePreview();
-
-        initComponents();
-
-        
-        
         // important to call this whenever embedding a PApplet.
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
         proVehiclePreview.init();
+        
+        initComponents();
+
         proVehiclePreview.updateSize(processing_Appearance.getWidth(), processing_Appearance.getHeight());
 
         populateFields(vehicleArray[0]);
