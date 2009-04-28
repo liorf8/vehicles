@@ -11,6 +11,7 @@ import processing.core.*;
 import vehicles.vehicle.*;
 import vehicles.genetics.*;
 import vehicles.simulation.SimulationLog;
+import vehicles.util.UtilMethods;
 
 /**
  *
@@ -147,16 +148,21 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		sB.y = y + axle * PApplet.sin(ang);
 
 		if(canDie){
-			checkBattery();
+			depleteBatt();
 		}
 	}
 
-	public void checkBattery(){
+	public void depleteBatt(){
 		this.curr_battery -= 0.05;
+		this.checkBattery();
+	}
+	
+	public void checkBattery(){
 		if(this.curr_battery <= 0){
 			SimulatonEngine engineParent = (SimulatonEngine) parent;
+			engineParent.sim.log.addToLog(UtilMethods.getTimeStamp());
+			engineParent.sim.log.addToLog("Vehicle " + this.getName() + " died.");
 			this.die();
-			//engineParent.vehicleVector.remove(this);
 			return;
 		}
 	}
@@ -235,7 +241,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 						if((their_fitness >= my_fitness - (my_fitness * 0.1)) ||(their_fitness <= my_fitness + (my_fitness * 0.1)) ){
 							float r = this.parent.random(10);
 							System.out.println("Random number: " + r);
-							if(r <= 2){
+							if(r <= 1){ //20% chance of mating
 								System.out.println("Vehicles are mating ...");
 								this.mate(temp);
 								veh_count ++;
@@ -243,9 +249,27 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 								if(veh_count >=500){
 									engineParent.pause();
 								}
+								this.depleteBatt();
+								this.checkBattery();
+								temp.depleteBatt();
+								temp.checkBattery();
 							}
 						}
+						else{
+							float batt_to_steal = temp.curr_battery * ((float)this.aggression / 10);
+							temp.curr_battery = temp.curr_battery - batt_to_steal;
+							temp.checkBattery();
+							this.curr_battery = this.curr_battery + batt_to_steal;
+							if(this.curr_battery > this.max_battery){
+								this.curr_battery = this.max_battery;
+							}
+							engineParent.sim.log.addToLog(UtilMethods.getTimeStamp());
+							engineParent.sim.log.addToLog("Vehicle " + this.getName() + " stole " +
+									batt_to_steal + "energy from Vehicle " + temp.getName());
+							engineParent.sim.log.addToLog("Vehicle " + this.getName() + " current battery charge is now " + this.curr_battery);
+						}
 					}
+					
 					da = PApplet.atan2(dy, dx);
 					//angle = ;
 					x = x + PApplet.cos(da) * axleHalf;
@@ -267,10 +291,9 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 			engineParent.vehicleVector.add(pv);
 		}
 		//Stops the vehicles killing everything
-		if(engineParent.vehicleVector.size() == 500){
+		if(engineParent.vehicleVector.size() == 100){
 			pv = engineParent.vehicleVector.elementAt(0);
 			pv.die();
-			//engineParent.vehicleVector.removeElementAt(0);
 		}
 	}
 	

@@ -101,11 +101,10 @@ public class SimulatonEngine extends PApplet {
 	// Processing Sketch Main Loop
 	@Override
 	public void draw() {
-		background(0, 0, 0);
-
+		//background(0, 0, 0);
+		//background(255, 255, 255);
 		image(ground, 0, 0);
 	
-		fill(155);
 		//if(frameCount % some_constant == 0){
 		// 		make vehicles evolve
 
@@ -191,7 +190,7 @@ public class SimulatonEngine extends PApplet {
 					for (int q = 0; q < px; q++) {
 						//agh, horrible code
 						ground.set(i + p, k + q,
-								color(r, g, b / 8)); //r,g,b
+								color(r, g, b / 8, c)); //r,g,b
 					}
 				}
 
