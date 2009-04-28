@@ -25,6 +25,7 @@ public class SimulatonEngine extends PApplet {
 	String font_location = "src" + java.io.File.separator + "data" + java.io.File.separator + "CourierNew36.vlw";
 	String on_screen_message = null;
 	ProcessingVehicle curr_on_screen = null;
+	int update_on_screen = 0;
 
 	public float getMove_speed() {
 		return move_speed;
@@ -122,8 +123,14 @@ public class SimulatonEngine extends PApplet {
 
 		updateOnScreenMessage();
 
-		if(mousePressed){
-			checkMouse(pmouseX, pmouseY);
+		if (mousePressed && (mouseButton == RIGHT)) {
+			checkMouseLeft(pmouseX, pmouseY, 2);
+		}
+		else if (mousePressed && (mouseButton == LEFT)) {
+			checkMouseLeft(pmouseX, pmouseY, 1);
+		}
+		else {
+
 		}
 	}
 
@@ -137,30 +144,39 @@ public class SimulatonEngine extends PApplet {
 	}
 
 	public void updateOnScreenMessage(){
-		if(this.curr_on_screen != null){
-			this.on_screen_message = this.curr_on_screen.toString();
+		if(this.update_on_screen == 1){
+			if(this.curr_on_screen != null){
+				this.on_screen_message = this.curr_on_screen.toString();
+			}
+		}
+		else if(this.update_on_screen == 2){
+
 		}
 		else this.on_screen_message = null;
 	}
 
-	public void checkMouse(float x, float y){
+	public void checkMouseLeft(float x, float y, int button){
 		float xPos, yPos, axle;
-		boolean match = false;
 		for(int i = 0; i < this.num_vehicles; i++){
 			xPos = this.vehicleVector.elementAt(i).x;
 			yPos = this.vehicleVector.elementAt(i).y;
 			axle = this.vehicleVector.elementAt(i).axle;
 			if((x <= xPos + axle && y <= yPos + axle) && (x >= xPos - axle && y <= yPos + axle) &&
 					(x <= xPos + axle && y >= yPos - axle) && (x >= xPos - axle && y >= yPos - axle)){
-				this.curr_on_screen = this.vehicleVector.elementAt(i);
-				this.updateOnScreenMessage();
-				match = true;
+				if(button == 1){
+					this.curr_on_screen = this.vehicleVector.elementAt(i);
+					this.update_on_screen = button;
+					this.updateOnScreenMessage();
+				}
+				else{
+					this.on_screen_message = this.vehicleVector.elementAt(i).getDescription();
+					this.update_on_screen = button;
+				}
+				return;
 			}
 		}
-		if(!match){
-			this.on_screen_message = null;
-			this.curr_on_screen = null;
-		}
+		this.on_screen_message = null;
+		this.curr_on_screen = null;
 	}
 
 

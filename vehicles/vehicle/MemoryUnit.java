@@ -2,6 +2,7 @@ package vehicles.vehicle;
 
 import com.mallardsoft.tuple.*;
 import vehicles.environment.*;
+import vehicles.simulation.SimulationLog;
 import java.util.Vector;
 
 import org.apache.xerces.dom.DocumentImpl;
@@ -23,6 +24,8 @@ public class MemoryUnit {
 	private Vector<Quintuple<Double, Double, Integer, String, Integer>> temp_memory; 
 	private int time_to_learn, max;
 
+	private String name;
+	
 	Document  xmldoc; //the XML document we are creating, stored as an object in memory
 	Element root;//the root element of the document
 
@@ -31,7 +34,8 @@ public class MemoryUnit {
 	 * Constructor for new memory units
 	 * time to learn is defaulted to 7
 	 */
-	public MemoryUnit(){
+	public MemoryUnit(String n){
+		this.name = n;
 		this.time_to_learn = 5;
 		this.max = 50; //max amount of items to remember
 		real_memory = new Vector<Quadruple<Double, Double, String, Integer>>();
@@ -44,7 +48,7 @@ public class MemoryUnit {
 	 * Constructor for new memory units
 	 * @param l The amount of time it takes to learn something
 	 */
-	public MemoryUnit(int l, int max){
+	public MemoryUnit(int l, int max, String n){
 		if(l <= 0) {
 			this.time_to_learn = 1;
 		}
@@ -57,6 +61,7 @@ public class MemoryUnit {
 		else{
 			this.max = max;
 		}
+		this.name = n;
 		real_memory = new Vector<Quadruple<Double, Double, String, Integer>>();
 		temp_memory = new Vector<Quintuple<Double, Double, Integer, String, Integer>>();
 		xmldoc= new DocumentImpl();
@@ -129,11 +134,11 @@ public class MemoryUnit {
 	 * The element is stored in the vehicle memory as the x and y pos of the element and its type
 	 * @param e The element to add into memory
 	 */
-	public void addElement(EnvironmentElement e){
+	public void addElement(EnvironmentElement e, SimulationLog s){
 		if(this.remembersElementAt(e.getXpos(), e.getYpos()) || this.max == 0 || this.time_to_learn == 0){
 			return;
 		}
-		double x, y, el_xPos, el_yPos;
+		double x, y, el_xPos, el_yPos, x_temp, y_temp;
 		String name;
 		el_xPos = e.getXpos();
 		el_yPos = e.getYpos();
@@ -148,8 +153,14 @@ public class MemoryUnit {
 				times_learned++;
 				if(times_learned >= this.time_to_learn){
 					if(this.real_memory.size() >= this.max){
+						if(s != null){
+							x_temp = Tuple.get1(this.real_memory.elementAt(0));
+							y_temp = Tuple.get2(this.real_memory.elementAt(0));
+							s.addToLog("Vehicle " + this.name + " forgot about the element at (" + x_temp + "," + y_temp + ")");
+						}
 						this.real_memory.removeElementAt(0);
 					}
+					s.addToLog("Vehicle " + this.name + " learned about the element at (" + el_xPos + "," + el_yPos  + ")");
 					this.real_memory.add(Tuple.from(el_xPos, el_yPos, name, e.getType()));
 					this.temp_memory.removeElementAt(i);
 				}
