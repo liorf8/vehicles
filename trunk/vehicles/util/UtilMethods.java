@@ -129,7 +129,7 @@ public class UtilMethods {
 	 *
 	 */
 	public static void resetXML(){
-		boolean deleteXML = deleteDir(new File("xml/"));
+		boolean deleteXML = deleteDir(new File("xml" + File.separator));
 		if(!deleteXML){
 			System.err.println("Some files could not be deleted!");
 		}
@@ -138,15 +138,15 @@ public class UtilMethods {
 		if(!f.exists()){
 			f.mkdirs();
 		}
-		f = new File("xml/environments/");
+		f = new File("xml" +  File.separator + "environments" +  File.separator);
 		if(!f.exists()){
 			f.mkdirs();
 		}
-		f = new File("xml/vehicles/");
+		f = new File("xml" +  File.separator + "vehicles" +  File.separator);
 		if(!f.exists()){
 			f.mkdirs();
 		}
-		f = new File("xml/simulations/");
+		f = new File("xml" +  File.separator + "simulations" +  File.separator);
 		if(!f.exists()){
 			f.mkdirs();
 		}
@@ -181,7 +181,8 @@ public class UtilMethods {
 
 		// Create an environment and write to xml
 
-		Environment e = new Environment("default_environment1","xml/environments/default_environment1.env");
+		String path = "xml" + File.separator + "environments" + File.separator + "default_environment1.env";
+		Environment e = new Environment("default_environment1", path);
 		e.setWidth(800);
 		e.setHeight(600);
 		e.setAuthor("Shaun");
@@ -191,10 +192,11 @@ public class UtilMethods {
 		e.addElement(ws);
 		e.addElement(ps);
 		e.saveEnvironment();
-		System.out.println("Creating xml/environments/default_environment1.env");
+		System.out.println("Creating " + path);
 
-		Environment env = new Environment("xml/environments/default_environment1.env"); 
-		env.setXMLLocation("xml/environments/default_environment2.env");
+		path = "xml" + File.separator + "environments" + File.separator + "default_environment2.env";
+		Environment env = new Environment(e.getFileLocation()); 
+		env.setXMLLocation(path);
 		env.setDescription("Default Environment 2");
 		ps = new EnvironmentElement();
 		ps.setType(EnvironmentElement.PowerSource);
@@ -203,12 +205,14 @@ public class UtilMethods {
 		ps.setStrength(100);
 		env.addElement(ps);
 		env.saveEnvironment();
-		System.out.println("Creating xml/environments/default_environment2.env");
+		System.out.println("Creating " + path);
 
 
 		//Testing creating and editing a vehicle XML entry
 
-		EditorVehicle v = new EditorVehicle("xml/vehicles/default_vehicle1.veh");
+		path = "xml" + File.separator + "vehicles" + File.separator + "default_vehicle1.veh";
+		
+		EditorVehicle v = new EditorVehicle(path);
 		v.setName("Default Vehicle 1"); //set object attributes
 		v.setAuthor("Shaun");
 		v.setDescription("Default Vehicle 1");
@@ -235,9 +239,11 @@ public class UtilMethods {
 		v.setRightSensorWater(-40);
 
 		v.saveVehicle(); //convert object and its attributes into XML
-		System.out.println("Creating xml/vehicles/default_vehicle1.veh");
+		System.out.println("Creating " + path);
 
-		v = new EditorVehicle("xml/vehicles/default_vehicle2.veh");
+		/*
+		path = "xml" + File.separator + "vehicles" + File.separator + "default_vehicle2.veh";
+		v = new EditorVehicle(path);
 		v.setName("Default Vehicle 2"); //set object attributes
 		v.setAuthor("Shaun");
 		v.setDescription("Default Vehicle 2");
@@ -264,35 +270,42 @@ public class UtilMethods {
 		v.setRightSensorWater(-40);
 
 		v.saveVehicle(); //convert object and its attributes into XML
-		System.out.println("Creating xml/vehicles/default_vehicle2.veh");
+		System.out.println("Creating " + path);
+		*/
 
 
 		//Re create a simlation
 		EditorSimulation es = new EditorSimulation();
-		es.setXmlLocation("xml/simulations/default_simulation1.sim");
+		path = "xml" + File.separator + "simulations" + File.separator + "default_simulation1.sim";
+		es.setXmlLocation(path);
 		es.setName("Default Simulation 1");
 		es.setAuthor("Shaun");
 		es.setDescription("Default Simulation 1");
 		es.setEvolution(true);
-		es.setReproductionMethod(1); //Asexual
+		es.setReproductionMethod(2);
 		es.setGeneticSelectionMethod(Genetics.GetBestSelection);
-		es.addVehicle("xml/vehicles/default_vehicle1.veh");
-		es.addVehicle("xml/vehicles/default_vehicle2.veh");
-		es.setEnvironment("xml/environments/default_environment1.env");
+		es.setPerishableVehicles(false);
+		es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle1.veh");
+		es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle1.veh");
+		//es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle2.veh");
+		es.setEnvironment("xml" + File.separator  + "environments" + File.separator + "default_environment1.env");
 		es.saveSimulation();
-		System.out.println("Creating xml/simulations/default_simulation1.sim");
+		System.out.println("Creating " + path);
 
 		es = new EditorSimulation();
-		es.setXmlLocation("xml/simulations/default_simulation2.sim");
+		path = "xml" + File.separator + "simulations" + File.separator + "default_simulation2.sim";
+		es.setXmlLocation(path);
 		es.setName("Default Simulation 2");
 		es.setAuthor("Shaun");
 		es.setDescription("Default Simulation 2");
-		es.setEvolution(false);
-		es.setReproductionMethod(0); 
+		es.setEvolution(true);
+		es.setReproductionMethod(2); 
 		es.setGeneticSelectionMethod(Genetics.NoSelection);
-		es.addVehicle("xml/vehicles/default_vehicle1.veh");
-		es.addVehicle("xml/vehicles/default_vehicle2.veh");
-		es.setEnvironment("xml/environments/default_environment2.env");
+		es.setPerishableVehicles(false);
+		es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle1.veh");
+		es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle1.veh");
+		//es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle2.veh");
+		es.setEnvironment("xml" + File.separator  + "environments" + File.separator + "default_environment2.env");
 		es.saveSimulation();
 		System.out.println("Creating xml/simulations/default_simulation2.sim");
 	}
