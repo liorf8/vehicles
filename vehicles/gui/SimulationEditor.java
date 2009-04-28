@@ -62,6 +62,12 @@ public class SimulationEditor extends javax.swing.JFrame {
         proVehiclePreview = new VehiclePreview();
         proEnvironmentPreview = new EnvironmentPreview();
 
+        // important to call this whenever embedding a PApplet.
+        // It ensures that the animation thread is started and
+        // that other internal variables are properly set.
+        proVehiclePreview.init();
+        proEnvironmentPreview.init();
+
         environmentArray = appRoot.getEnvironmentArray();
         availableEnvironments = new AbstractListModel() {
             public int getSize() { return environmentArray.length; }
@@ -80,12 +86,6 @@ public class SimulationEditor extends javax.swing.JFrame {
 
         populateFields(simulationArray[0]);
         
-        // important to call this whenever embedding a PApplet.
-        // It ensures that the animation thread is started and
-        // that other internal variables are properly set.
-        
-        proVehiclePreview.init();
-        proEnvironmentPreview.init();
         proVehiclePreview.updateSize(processing_VehiclePreview.getWidth(), processing_VehiclePreview.getHeight());
     }
 
