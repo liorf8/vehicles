@@ -262,7 +262,7 @@ public class Simulation {
 			this.n = 1;
 		}
 		else{
-			this.	n = N;
+			this.n = N;
 		}
 	}
 	

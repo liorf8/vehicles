@@ -43,6 +43,8 @@ import org.jdesktop.application.ResourceMap;
 import vehicles.simulation.*;
 import vehicles.vehicle.*;
 import vehicles.environment.*;
+import vehicles.genetics.*;
+
 
 /*
  * SimulationEditor.java
@@ -58,6 +60,17 @@ public class SimulationEditor extends javax.swing.JFrame {
         appRoot = p_appRoot;
         simulationArray = appRoot.getSimulationArray();
         simulationDropDown = new DefaultComboBoxModel(simulationArray);
+
+        genSelArray = new GeneticSelectionMethod[]{new GeneticSelectionMethod(1),
+        new GeneticSelectionMethod(2),
+        new GeneticSelectionMethod(3),
+        new GeneticSelectionMethod(4),
+        new GeneticSelectionMethod(5)};
+        genSelDropDown = new DefaultComboBoxModel(genSelArray);
+
+        repoArray = new ReproductionMethod[]{new ReproductionMethod(1),
+        new ReproductionMethod(2)};
+        repoDropDown = new DefaultComboBoxModel(repoArray);
 
         proVehiclePreview = new VehiclePreview();
         proEnvironmentPreview = new EnvironmentPreview();
@@ -232,6 +245,11 @@ public class SimulationEditor extends javax.swing.JFrame {
         buttonGroup_Evolution.add(radio_Evolution_On);
         radio_Evolution_On.setText(resourceMap.getString("radio_Evolution_On.text")); // NOI18N
         radio_Evolution_On.setName("radio_Evolution_On"); // NOI18N
+        radio_Evolution_On.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                radio_Evolution_OnItemStateChanged(evt);
+            }
+        });
 
         radio_Evolution_Off.setAction(actionMap.get("evolutionOff")); // NOI18N
         buttonGroup_Evolution.add(radio_Evolution_Off);
@@ -243,7 +261,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         label_ReproductionMethod.setText(resourceMap.getString("label_ReproductionMethod.text")); // NOI18N
         label_ReproductionMethod.setName("label_ReproductionMethod"); // NOI18N
 
-        dropdown_ReproductionMethod.setModel(new DefaultComboBoxModel(new String[] { "Asexual", "Paired" }));
+        dropdown_ReproductionMethod.setModel(repoDropDown);
         dropdown_ReproductionMethod.setEnabled(false);
         dropdown_ReproductionMethod.setName("dropdown_ReproductionMethod"); // NOI18N
         dropdown_ReproductionMethod.addItemListener(new ItemListener() {
@@ -255,7 +273,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         label_GeneticSelectionMethod.setText(resourceMap.getString("label_GeneticSelectionMethod.text")); // NOI18N
         label_GeneticSelectionMethod.setName("label_GeneticSelectionMethod"); // NOI18N
 
-        dropdown_GeneticSelectionMethod.setModel(new DefaultComboBoxModel(new String[] { "Roulette", "Tournament", "Top Percent", "Best", "Random" }));
+        dropdown_GeneticSelectionMethod.setModel(genSelDropDown);
         dropdown_GeneticSelectionMethod.setEnabled(false);
         dropdown_GeneticSelectionMethod.setName("dropdown_GeneticSelectionMethod"); // NOI18N
         dropdown_GeneticSelectionMethod.addItemListener(new ItemListener() {
@@ -834,6 +852,11 @@ public class SimulationEditor extends javax.swing.JFrame {
         text_Description.setText(tempSimulation.getDescription());
         text_Name.setText(tempSimulation.getName());
         text_LastModified.setText(tempSimulation.getLastModified());
+        radio_Evolution_On.setSelected(tempSimulation.getEvolution());
+        radio_Evolution_Off.setSelected(!tempSimulation.getEvolution());
+        radio_Perishable_On.setSelected(tempSimulation.getPerishableVehicles());
+        radio_Perishable_Off.setSelected(!tempSimulation.getPerishableVehicles());
+        text_GeneticSelectionN.setText(Integer.toString(tempSimulation.getN()));
 
 }
 
@@ -842,11 +865,15 @@ public class SimulationEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void dropdown_ReproductionMethodItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_ReproductionMethodItemStateChanged
-        // TODO add your handling code here:
+        //JComboBox tempComboBox = (JComboBox) evt.getSource();
+        //EditorSimulation selected = (EditorSimulation) tempComboBox.getSelectedItem();
+        //populateFields(selected);
     }//GEN-LAST:event_dropdown_ReproductionMethodItemStateChanged
 
     private void dropdown_GeneticSelectionMethodItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_GeneticSelectionMethodItemStateChanged
-        // TODO add your handling code here:
+        //JComboBox tempComboBox = (JComboBox) evt.getSource();
+        //EditorSimulation selected = (EditorSimulation) tempComboBox.getSelectedItem();
+        //populateFields(selected);
     }//GEN-LAST:event_dropdown_GeneticSelectionMethodItemStateChanged
 
     private void list_AvailableVehiclesValueChanged(ListSelectionEvent evt) {//GEN-FIRST:event_list_AvailableVehiclesValueChanged
@@ -856,6 +883,16 @@ public class SimulationEditor extends javax.swing.JFrame {
     private void processing_VehiclePreviewComponentResized(ComponentEvent evt) {//GEN-FIRST:event_processing_VehiclePreviewComponentResized
         proVehiclePreview.updateSize(processing_VehiclePreview.getWidth(), processing_VehiclePreview.getHeight());
 }//GEN-LAST:event_processing_VehiclePreviewComponentResized
+
+    private void radio_Evolution_OnItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_radio_Evolution_OnItemStateChanged
+        JRadioButton tempRadio = (JRadioButton) evt.getSource();
+        boolean selected = tempRadio.isSelected();
+        if(selected){
+            evolutionOn();
+        } else {
+            evolutionOff();
+        }
+    }//GEN-LAST:event_radio_Evolution_OnItemStateChanged
 
     @Action
     public void saveSimulation() {
@@ -1053,7 +1090,7 @@ public class SimulationEditor extends javax.swing.JFrame {
     private EditorSimulation[] simulationArray;
     private EditorVehicle[] vehicleArray, selectedVehicleArray;
     private Environment[] environmentArray, selectedEnvironmentArray;
-    private DefaultComboBoxModel simulationDropDown;
+    private DefaultComboBoxModel simulationDropDown, genSelDropDown, repoDropDown;
     private Simulator appRoot;
     private AbstractListModel availableVehicles, availableEnvironments, selectedVehicles, selectedEnvironments;
 
@@ -1061,4 +1098,6 @@ public class SimulationEditor extends javax.swing.JFrame {
     private final List<EditorVehicle> selectedRobots = new ArrayList<EditorVehicle>();
     //private JList availableRobotsList;
     private final List<EditorVehicle> availableRobots = new CopyOnWriteArrayList<EditorVehicle>();
+    GeneticSelectionMethod[] genSelArray;
+    ReproductionMethod[] repoArray;
 }

@@ -12,7 +12,6 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import vehicles.processing.*;
 import vehicles.*;
 import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
