@@ -121,7 +121,7 @@ public class SimulatonEngine extends PApplet {
 		}
 
 		updateOnScreenMessage();
-		
+
 		if(mousePressed){
 			checkMouse(pmouseX, pmouseY);
 		}
@@ -142,9 +142,10 @@ public class SimulatonEngine extends PApplet {
 		}
 		else this.on_screen_message = null;
 	}
-	
+
 	public void checkMouse(float x, float y){
 		float xPos, yPos, axle;
+		boolean match = false;
 		for(int i = 0; i < this.num_vehicles; i++){
 			xPos = this.vehicleVector.elementAt(i).x;
 			yPos = this.vehicleVector.elementAt(i).y;
@@ -153,14 +154,15 @@ public class SimulatonEngine extends PApplet {
 					(x <= xPos + axle && y >= yPos - axle) && (x >= xPos - axle && y >= yPos - axle)){
 				this.curr_on_screen = this.vehicleVector.elementAt(i);
 				this.updateOnScreenMessage();
-			}
-			else {
-				this.on_screen_message = null;
-				this.curr_on_screen = null;
+				match = true;
 			}
 		}
-
+		if(!match){
+			this.on_screen_message = null;
+			this.curr_on_screen = null;
+		}
 	}
+
 
 	/**
 	 * update the light source on the ground
