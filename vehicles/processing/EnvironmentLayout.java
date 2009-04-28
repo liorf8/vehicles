@@ -1,5 +1,6 @@
 package vehicles.processing;
 import processing.core.*;
+import vehicles.environment.Point;
 
 /**
  *
@@ -7,10 +8,14 @@ import processing.core.*;
  */
 public class EnvironmentLayout extends PApplet {
 	private int w  = 5, h = 5;
+	float grid_unit_x, grid_unit_y;
 
 	public void updateWidthHeight(int h, int w){
 		this.h = h;
 		this.w = w;
+		
+		grid_unit_x = (float)width/(float)w;
+		grid_unit_y = (float)height/(float)h;
 	}
 	
 	@Override
@@ -37,17 +42,32 @@ public class EnvironmentLayout extends PApplet {
 	}
 
 	public void drawGrid(){
-		float num_l_r = (float)width/(float)w;
-		float num_u_d = (float)height/(float)h;
+		stroke(144, 144, 213);
+		this.updateWidthHeight(6, 4);
 		float j = 0;
 		for(float i = 0; i < w; i++){
 			line(0, j, height, j);
-			j+= num_l_r;
+			j+= grid_unit_x;
 		}
 		j = 0;
 		for(float i = 0; i < h; i++){
 			line(j, 0, j, width);
-			j+= num_u_d;
+			j+= grid_unit_y;
 		}
 	}
+	
+	public Point getRelativeGridPoint(int x, int y){
+		int relX = 0, relY = 0;
+		int temp;
+		float temp_div;
+		for(float i = 0; i < w; i++){
+			if(i == x){
+				break;
+			}
+			temp_div = x / grid_unit_x;
+		}
+		
+		return new Point(3, 4);
+	}
+	
 }
