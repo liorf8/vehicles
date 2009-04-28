@@ -145,6 +145,12 @@ public class SimulatonEngine extends PApplet {
 		}
 
 	}
+	
+	float nonlinear(float r, float rmax) {
+        float f = (rmax - Math.min(r, rmax)) / rmax;
+        return 0.5f - 0.5f * cos(f * PI);
+    }
+
 
 }
 
