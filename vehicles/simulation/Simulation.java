@@ -294,7 +294,7 @@ public class Simulation {
 	 * @return
 	 */
 	public boolean isSaveable(){
-		return (this.vehicles.size() >= 2 && this.simulationName != null && this.enviro != null);
+		return (this.vehicles.size() >= 1 && this.simulationName != null && this.enviro != null);
 	}
 
 	/**
