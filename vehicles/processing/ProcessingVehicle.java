@@ -258,6 +258,10 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		if(v != null){
 			engineParent.vehicleVector.add(pv);
 		}
+		//Stops the vehicles killing everything
+		if(engineParent.vehicleVector.size() == 100){
+			engineParent.vehicleVector.removeElementAt(0);
+		}
 	}
 	
 	public void updateColor(int p_red, int p_green, int p_blue) {
