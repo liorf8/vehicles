@@ -241,7 +241,7 @@ public class UtilMethods {
 		v.saveVehicle(); //convert object and its attributes into XML
 		System.out.println("Creating " + path);
 
-		/*
+		
 		path = "xml" + File.separator + "vehicles" + File.separator + "default_vehicle2.veh";
 		v = new EditorVehicle(path);
 		v.setName("Default Vehicle 2"); //set object attributes
@@ -271,7 +271,7 @@ public class UtilMethods {
 
 		v.saveVehicle(); //convert object and its attributes into XML
 		System.out.println("Creating " + path);
-		*/
+		
 
 
 		//Re create a simlation
