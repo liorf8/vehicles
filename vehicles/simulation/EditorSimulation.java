@@ -153,7 +153,7 @@ public class EditorSimulation extends Simulation{
 			/*Now take the file in RAM and write it out to disk*/
 			FileOutputStream fos = new FileOutputStream(xmlLocation);
 			OutputFormat of = new OutputFormat("XML","ISO-8859-1",true);
-            of.setLineWidth(Integer.MAX_VALUE);
+			of.setLineWidth(Integer.MAX_VALUE);
 			XMLSerializer serializer = new XMLSerializer(fos,of);//prepare a serialiser for
 			//generating XML documents
 			// As a DOMSerializer
@@ -164,6 +164,16 @@ public class EditorSimulation extends Simulation{
 			e.printStackTrace();
 		}
 	}
-}
 
+	public EditorVehicle[] getEditorVehicleArray(){
+		EditorVehicle[] toReturn = new EditorVehicle[vehicles.size()];
+		Iterator<Vehicle> it = vehicles.iterator(); int i = 0;
+		while(it.hasNext()){
+			EditorVehicle temp = new EditorVehicle(it.next());
+			toReturn[i] = temp;			
+			i++;
+		}
+		return toReturn;
+	}
+}
 
