@@ -23,7 +23,8 @@ public class SimulatonEngine extends PApplet {
 	int n_for_sel;
 	PFont font;
 	String font_location = "src" + java.io.File.separator + "data" + java.io.File.separator + "CourierNew36.vlw";
-	String on_screen_message = "";
+	String on_screen_message = null;
+	ProcessingVehicle curr_on_screen = null;
 
 	public float getMove_speed() {
 		return move_speed;
@@ -43,13 +44,13 @@ public class SimulatonEngine extends PApplet {
 		this.sel_method = this.sim.getGeneticSelectionMethod();
 		this.n_for_sel = this.sim.getN();
 		this.repro_method = this.sim.getReproductionMethod();
-		
+
 		Vector<EnvironmentElement> elements = simu.getEnvironment().getElements();
 		Vector<Vehicle> veh = simu.getVehicles();
 
 		vehicleVector = new Vector<ProcessingVehicle>();
 		int num_veh = veh.size();
-	
+
 		boolean paired = false;
 		if(this.evolution){
 			if(this.repro_method == 1){
@@ -62,18 +63,18 @@ public class SimulatonEngine extends PApplet {
 				this.evolution = false;
 			}
 		}
-		
+
 		for (int i = 0; i < num_veh; i++) {
 			this.vehicleVector.add(new ProcessingVehicle(this, veh.elementAt(i), 400, 400, /*random(PI)*/12f, 10, i, 3, paired, this.perishable_vehicles));
 		}
-		
+
 		this.num_vehicles = vehicleVector.size();
-		
+
 		this.num_sources = elements.size();
 		enviro = this.sim.getEnvironment();
 		this.w = enviro.getWidth();
 		this.h = enviro.getHeigth();
-		
+
 
 		elementVector = new Vector<ProcessingEnviroElement>();
 
@@ -103,11 +104,13 @@ public class SimulatonEngine extends PApplet {
 	@Override
 	public void draw() {
 		image(ground, 0, 0);
-	
-		fill(100, 255, 190);
-		text(this.on_screen_message, 200, 200, this.on_screen_message.length() * 5, 100);
-		
-		
+
+		if(this.on_screen_message != null){
+			fill(100, 255, 190);
+			text(this.on_screen_message, 200, 200, this.on_screen_message.length() * 5, 100);
+		}
+
+
 		if(this.num_vehicles > 0){
 			for(int i = 0; i < this.num_vehicles; i++){
 				ProcessingVehicle temp = this.vehicleVector.elementAt(i);
@@ -116,19 +119,28 @@ public class SimulatonEngine extends PApplet {
 				this.num_vehicles = vehicleVector.size();
 			}
 		}
+
+		updateOnScreenMessage();
 		
 		if(mousePressed){
 			checkMouse(pmouseX, pmouseY);
 		}
 	}
-	
+
 	public void pause(){
 		System.out.println("Paused!");
 		noLoop();
 	}
-	
+
 	public void startSim(){
 		loop();
+	}
+
+	public void updateOnScreenMessage(){
+		if(this.curr_on_screen != null){
+			this.on_screen_message = this.curr_on_screen.toString();
+		}
+		else this.on_screen_message = null;
 	}
 	
 	public void checkMouse(float x, float y){
@@ -139,15 +151,15 @@ public class SimulatonEngine extends PApplet {
 			axle = this.vehicleVector.elementAt(i).axle;
 			if((x <= xPos + axle && y <= yPos + axle) && (x >= xPos - axle && y <= yPos + axle) &&
 					(x <= xPos + axle && y >= yPos - axle) && (x >= xPos - axle && y >= yPos - axle)){
-				//fill(100, 255, 190);
-				//rect(mouseX, mouseY, 150, 30);
-				String t = this.vehicleVector.elementAt(i).toString();
-				//text(t, 200, 200, t.length() * 5, 100);
-				this.on_screen_message = t;
-				//System.out.println(t);
+				this.curr_on_screen = this.vehicleVector.elementAt(i);
+				this.updateOnScreenMessage();
+			}
+			else {
+				this.on_screen_message = null;
+				this.curr_on_screen = null;
 			}
 		}
-		
+
 	}
 
 	/**

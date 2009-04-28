@@ -206,4 +206,8 @@ public class MemoryUnit {
 		xmldoc.appendChild(root);
 		return root;
 	}
+	
+	public int numItems(){
+		return this.real_memory.size();
+	}
 }
