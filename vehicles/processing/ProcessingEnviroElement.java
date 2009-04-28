@@ -70,36 +70,36 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 
 	}
 	public void previewDraw(int x, int y){
-		//		this.setColor();
-		//		parent.fill(this.colorRed, this.colorGreen, this.colorBlue);
-		//
-		//		float relStrength = /*(float)*/strength/*/ 100.0f*/; //this strength / max_strength
-		//		float alpha =(255.0f/100.0f) * relStrength ; //percentage
-		//		float colourMinus = (255.0f/100.0f) * radius;
-		//		for(float d = 0.0f; d < this.radius; d+= 0.1){
-		//			//this.parent.print("relStrength : "+relStrength+"alpha :"+alpha+"\n");
-		//			this.parent.fill(this.colorRed, this.colorBlue, this.colorGreen, alpha);
-		//			this.parent.ellipse(x, y, d, d);
-		//			
-		//			
-		//			switch(this.type){
-		//			case EnvironmentElement.HeatSource:
-		//				this.colorRed-=colourMinus;
-		//				break;
-		//			case EnvironmentElement.PowerSource:
-		//				this.colorGreen -=colourMinus;
-		//				break;
-		//			case EnvironmentElement.LightSource:
-		//				this.colorRed -=colourMinus;
-		//				this.colorGreen -=colourMinus;
-		//				this.colorBlue -=colourMinus;
-		//				break;
-		//			case EnvironmentElement.WaterSource:
-		//				this.colorBlue -=colourMinus;
-		//				break;
-		//			}
-		//			this.setColor();
-		//		}
+				this.setColor();
+				parent.fill(this.colorRed, this.colorGreen, this.colorBlue);
+		
+				float relStrength = /*(float)*/strength/*/ 100.0f*/; //this strength / max_strength
+				float alpha =(255.0f/100.0f) * relStrength ; //percentage
+				float colourMinus = (255.0f/100.0f) * radius;
+				for(float d = 0.0f; d < this.radius; d+= 0.1){
+					//this.parent.print("relStrength : "+relStrength+"alpha :"+alpha+"\n");
+					this.parent.fill(this.colorRed, this.colorBlue, this.colorGreen, alpha);
+					this.parent.ellipse(x, y, d, d);
+					
+					
+					switch(this.type){
+					case EnvironmentElement.HeatSource:
+						this.colorRed-=colourMinus;
+						break;
+					case EnvironmentElement.PowerSource:
+						this.colorGreen -=colourMinus;
+						break;
+					case EnvironmentElement.LightSource:
+						this.colorRed -=colourMinus;
+						this.colorGreen -=colourMinus;
+						this.colorBlue -=colourMinus;
+						break;
+					case EnvironmentElement.WaterSource:
+						this.colorBlue -=colourMinus;
+						break;
+					}
+					this.setColor();
+				}
 	}
 
 
