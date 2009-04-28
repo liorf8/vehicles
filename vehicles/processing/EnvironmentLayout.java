@@ -5,33 +5,35 @@ import vehicles.environment.*;
 import java.awt.Color;
 import java.util.Vector;
 
+import java.util.Iterator;
+
 /**
  *
  * @author Niall O'Hara, Shuan Gray
  */
 public class EnvironmentLayout extends PApplet {
 	int w, h;
-	Vector<EnvironmentElement> ee;
+	Vector<ProcessingEnviroElement> ee;
 	ElementBrush eb;
-	
+
 	public void setWidth_and_Height(int h, int w){
 		this.w = w;
 		this.h = h;
 	}
 
 	public void setBrush(EnvironmentElement brush){
+		eb = new ElementBrush(brush);
 	}
-	
+
 	@Override
 	public void setup() {
-		ee = new Vector<EnvironmentElement>();
-		this.setWidth_and_Height(640, 480);
+		ee = new Vector<ProcessingEnviroElement>();
+		this.setWidth_and_Height(200, 200);
 		// original setup code here ...
 		size(w, h);
 		background(100);
 		// prevent thread from starving everything else
 		smooth();
-		noLoop();
 		cursor(CROSS);
 	}
 
@@ -39,25 +41,39 @@ public class EnvironmentLayout extends PApplet {
 	public void draw() {
 		size(w,h); //lets the window be redrawn to a different size
 		background(Color.BLACK.getRGB());
-		
+		stroke(Color.RED.getRGB());
+		strokeWeight(4);
+		fill(Color.GRAY.getRGB());
+		rect(0,0,width,height);
+		noFill();
+		noStroke();
+		Iterator<ProcessingEnviroElement> it = ee.iterator();
+		while(it.hasNext()){
+			it.next().draw();
+		}
+		noLoop();
+
 		// drawing code goes here
 	}
 
 	@Override
 	public void mouseClicked() {
-		EnvironmentElement toSet = eb.getCurrentlySelected();
-		toSet.setPosition(new Point(mouseX,mouseY));
-		System.out.println(toSet.toString());
-		this.ee.add(toSet);
+		if(mouseX <= this.w && mouseY <= this.h){
+			eb.setPosition(new Point(mouseX,mouseY));
+			ProcessingEnviroElement toSet = new ProcessingEnviroElement((PApplet)this,eb.getCurrentlySelected(),0);
+			System.err.println("ok to add");
+			System.out.println(toSet.tostring());
+			this.ee.add(toSet);
+		}
 		redraw();
 	}
-	
+
 	public void addElement(int xPos, int yPos, int type, int radius, int intensity){
 		EnvironmentElement e = new EnvironmentElement();
 		e.setRadius(radius);
 		e.setStrength(intensity);
 		e.setType(type);
-		
+
 		switch(type){
 		case EnvironmentElement.WaterSource:
 			e.setName("Water Source");
@@ -72,7 +88,7 @@ public class EnvironmentLayout extends PApplet {
 			e.setName("Light Source");
 			break;
 		}
-		
+
 		int len = this.ee.size();
 		Point p = new Point(xPos, yPos);
 		for(int i = 0; i < len; i++){
@@ -82,6 +98,6 @@ public class EnvironmentLayout extends PApplet {
 			}
 		}
 		e.setPosition(new Point(xPos, yPos));
-		this.ee.add(e);
+		//this.ee.add(e);
 	}
 }

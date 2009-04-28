@@ -547,7 +547,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         JComboBox tempComboBox = (JComboBox) evt.getSource();
         EnvironmentElement selected = (EnvironmentElement) tempComboBox.getSelectedItem();
         populateBrushSliders(selected);
-        proLayout.setBrush(selected);
+        proLayout.setBrush(new ElementBrush(selected));
 }//GEN-LAST:event_dropdown_BrushItemStateChanged
 
     private void populateBrushSliders(EnvironmentElement p_element) {

@@ -55,7 +55,7 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
         /*
 		int alpha = this.strength;
 		for(float d = 0.0f; d < this.radius; d++){
-			System.out.println("Alpha: " + alpha);
+			//System.out.println("Alpha: " + alpha);
 			this.parent.stroke(this.colorRed, this.colorBlue, this.colorGreen, 0);
 			this.parent.ellipse(this.xPos, this.yPos, d, d);
 			alpha -- ;

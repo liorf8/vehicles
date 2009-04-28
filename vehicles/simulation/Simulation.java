@@ -2,6 +2,7 @@ package vehicles.simulation;
 
 import vehicles.vehicle.*;
 import vehicles.environment.*;
+
 import java.io.*;
 import java.util.Vector;
 import org.w3c.dom.Document;
@@ -330,5 +331,9 @@ public class Simulation {
     public String toString(){
 		return this.simulationName + " (" + this.fileName + ")";
 	}
-
+    public void addVehicles(Vehicle[] array){
+		for(int i = 0; i < array.length ; i++){
+			this.vehicles.add(array[i]);
+		}
+	}
 }
