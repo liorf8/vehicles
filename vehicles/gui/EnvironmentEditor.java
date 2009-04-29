@@ -33,6 +33,7 @@ import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
 import vehicles.environment.*;
 import vehicles.processing.*;
+import vehicles.util.*;
 
 /*
  * EnvironmentEditor.java
@@ -604,7 +605,6 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 	@Action
 	public void saveEnvironment() {
         Environment e = (Environment) dropdown_SelectedEnvironment.getSelectedItem();
-        Grid g = (Grid) gridDropDown.getSelectedItem();
         e.setName(text_Name.getText()); //set object attributes
 		e.setAuthor(text_Author.getText());
 		e.setDescription(text_Description.getText());
@@ -630,6 +630,29 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 
 	@Action
 	public void saveEnvironmentAs() {
+        String filename = UtilMethods.formatString(text_Name.getText());
+        Environment e = new Environment("xml/environments/" + filename + ".env");
+        e.setName(text_Name.getText()); //set object attributes
+		e.setAuthor(text_Author.getText());
+		e.setDescription(text_Description.getText());
+		e.setWidth(proLayout.getWidth());
+        e.setHeight(proLayout.getHeight());
+        e.addElements(proLayout.getElements());
+        System.out.print(proLayout.getElements());
+		e.saveEnvironment(); //convert object and its attributes into XML
+        String lastModified = e.getLastModified();
+        appRoot.setEnvironmentArray();
+		environmentArray = appRoot.getEnvironmentArray();
+		environmentDropDown = new DefaultComboBoxModel(environmentArray);
+        for (int i = 0; i < environmentArray.length; i++) {
+            if (environmentArray[i].getLastModified().equalsIgnoreCase(lastModified)) {
+                e = environmentArray[i];
+            }
+        }
+        dropdown_SelectedEnvironment.setModel(environmentDropDown);
+        dropdown_SelectedEnvironment.requestFocus();
+        dropdown_SelectedEnvironment.setSelectedItem(e);
+        populateFields(e);
 	}
 
 	@Action
