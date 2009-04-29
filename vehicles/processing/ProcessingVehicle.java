@@ -143,7 +143,12 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 		sB.x = x + axle * PApplet.cos(ang);
 		sB.y = y + axle * PApplet.sin(ang);
-
+        setLeftSpeed(sB.getSenseRed());
+		setRightSpeed(sA.getSenseRed());
+                setLeftSpeed(sB.getSenseGreen());
+		setRightSpeed(sA.getSenseGreen());
+                setLeftSpeed(sB.getSenseBlue());
+		setRightSpeed(sA.getSenseBlue());
 		if(canDie){
 			depleteBatt();
 		}
