@@ -43,7 +43,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	int colorRed, colorGreen, colorBlue, id; //maybe we can make this by doing a hash on the vehicle's name?
 	PApplet parent; // The parent PApplet that we will render ourselves onto
 	float max_battery, curr_battery;
-	boolean canDie, pairedMating, dead = false, remember = false, paused = false;
+	boolean canDie, pairedMating, dead = false, remember = false;
 	private static int veh_count = 0;
 	public StopWatch stopwatch;
 	/*
@@ -432,14 +432,6 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	}
 	
 	public void updateSpeed_ofTime(float percent){
-		if(percent == 0){
-			this.stopwatch.pause();
-			paused = true;
-		}
-		if(paused){
-			paused = false;
-			this.stopwatch.unPause();
-		}
 		this.time_speed = percent;
 		this.curr_max_speed = percent * (this.max_speed / 100);
 		this.wA.updateMaxSpeed(this.curr_max_speed);
@@ -450,9 +442,6 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	public String toString(){
 		DecimalFormat df = new DecimalFormat("#.##");
 		double alive = (this.stopwatch.getElapsedTimeDoubleSecs() / 100) * this.time_speed;
-		if(alive == 0){
-			alive = this.stopwatch.getElapsedTimeAtPause();
-		}
 		return "Name: " + this.vehicleName + "\nMotor Strength: " + this.getMotorStrength() + "\nMax Displacement(Movement): " + df.format(this.max_speed) +
 		"\nCurrent Maximum Displacement: " + df.format(this.curr_max_speed) + 		"\nLeft Motor Turn Speed: " + this.wA.getAngleSpeed() +
 		"\nRight Motor Turn Speed: " + this.wB.getAngleSpeed() + "\nMax Battery: " + df.format(this.max_battery) + "\nCurr Battery: " +

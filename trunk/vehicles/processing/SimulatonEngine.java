@@ -25,12 +25,12 @@ public class SimulatonEngine extends PApplet {
 	int sel_method;
 	int n_for_sel;
 	PFont font;
-	String font_location = "src" + java.io.File.separator + "data" + java.io.File.separator + "CourierNew36.vlw";
+	String font_location = java.io.File.separator + "data" + java.io.File.separator + "CourierNew36.vlw";
 	String on_screen_message = null;
 	ProcessingVehicle curr_on_screen = null;
 	int update_on_screen = 0;
 	float asexual_reproduction_constant = 0, curr_asexual_constant = 0;
-	float chance_asexual_repro = 2.5f; //this is out of ten i.e 1 = 10% chance
+	float chance_asexual_repro = 3.5f; //this is out of ten i.e 1 = 10% chance
 	StopWatch stopwatch;
 	int axle = 10;
 	int min_time_for_asexual = 20;
@@ -127,7 +127,6 @@ public class SimulatonEngine extends PApplet {
 		ground = new PImage(width, height);
 		smooth();
 		updateGround();
-		//this.adjustRunningSpeed(SLIDER . GET VALUE);
         noLoop();
 	}
 
@@ -173,15 +172,15 @@ public class SimulatonEngine extends PApplet {
 	}
 
 	public void asexualReproduction(){
-		if(this.curr_asexual_constant <= 0){
-			return;
-		}
 		long elapsed = this.stopwatch.getElapsedTimeSecs();
 		String log = "";
 		if(elapsed == this.curr_asexual_constant){
 			this.stopwatch.reset();
 			float r = this.random(10);
-			if(this.chance_asexual_repro <= r){
+			System.out.println("Chance for repro: " + this.chance_asexual_repro);
+			System.out.println("Random: " + r);
+			if(r <= this.chance_asexual_repro){
+				System.out.println("Asexes can occur");
 				Vehicle v = Genetics.produceVehicleAsexually(this.sel_method, this.n_for_sel, this.vehicleVector, this.sim.log);
 				if(v == null){
 					return;
@@ -352,12 +351,12 @@ public class SimulatonEngine extends PApplet {
 	}
 
 	public void adjustRunningSpeed(float percent){
-		float max;
 		for(int i = 0; i < this.num_vehicles; i++){
-			max = this.vehicleVector.elementAt(i).getMaxSpeed();
 			this.vehicleVector.elementAt(i).updateSpeed_ofTime(percent);
 		}
+		System.out.println("Curr Asexual Consent: " + this.curr_asexual_constant);
 		this.curr_asexual_constant = (100 / percent) * this.asexual_reproduction_constant;
+		System.out.println("Curr Asexual Consent: " + this.curr_asexual_constant);
 	}
 
 	float nonlinear(float r, float rmax) {
