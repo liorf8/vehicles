@@ -6,7 +6,6 @@ import java.awt.Color;
 import java.util.Vector;
 
 import java.util.Iterator;
-
 /**
  *
  * @author Niall O'Hara, Shuan Gray, Karl Reid
@@ -15,7 +14,7 @@ import java.util.Iterator;
 public class EnvironmentLayout extends PApplet {
 	int w, h;
 	Vector<ProcessingEnviroElement> ee;
-	ElementBrush eb;
+	ElementBrushPreview eb;
 	public EnvironmentLayout(){
 		
 	}
@@ -33,7 +32,6 @@ public class EnvironmentLayout extends PApplet {
 		}
         w = e.getWidth();
         h = e.getHeigth();
-        eb = new ElementBrush();
 
 	}
 
@@ -43,18 +41,13 @@ public class EnvironmentLayout extends PApplet {
 		this.draw();
 	}
 
-	public ElementBrush getBrush(){
-		return eb;
-	}
-
-	public void setBrush(EnvironmentElement brush){
-		eb = new ElementBrush(brush);
+	
+	public void setEb(ElementBrushPreview b){
+		this.eb = b;
 	}
 
 	@Override
 	public void setup() {
-		//ee = new Vector<ProcessingEnviroElement>();
-		// original setup code here ...
 		size(w, h);
 		background(0);
 		//ground = new PImage(width, height);
@@ -77,20 +70,26 @@ public class EnvironmentLayout extends PApplet {
 //		noStroke();
 		Iterator<ProcessingEnviroElement> it = ee.iterator();
 		while(it.hasNext()){
-			it.next().editorDraw();
+			ProcessingEnviroElement curr = it.next();
+			curr.editorDraw();
 		}
 		//updateGround(); // works, but too slow
-		//print("Now have "+ee.size()+ " elements\n");
+		print("Now have "+ee.size()+ " elements\n");
 	}
 
 	@Override
 	public void mouseClicked() {
+		
+		//System.out.println("mouseClicked() : using "+this.getBrush().getCurrentlySelected());
+
 		if(mouseX <= this.w && mouseY <= this.h){
-			eb.getCurrentlySelected().setPosition(new Point(mouseX,mouseY));
-			ProcessingEnviroElement toSet = new ProcessingEnviroElement((PApplet)this,eb.getCurrentlySelected(),0);
+			ProcessingEnviroElement toSet = new ProcessingEnviroElement(eb.getPev());
+			toSet.parent = this;
+			toSet.setPosition(new Point(mouseX,mouseY));
 			System.out.println(toSet.tostring());
 			this.ee.add(toSet);
 			this.draw();
+			
 		}
 	}
 
@@ -138,5 +137,9 @@ public class EnvironmentLayout extends PApplet {
 			i++;
 		}		
 		return toReturn;		
+	}
+	
+	public void removeAllElements(){
+		this.ee = new Vector<ProcessingEnviroElement>();
 	}
 }
