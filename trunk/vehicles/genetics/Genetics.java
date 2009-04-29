@@ -474,6 +474,21 @@ public class Genetics {
 
 
 	private static void setMemory(Vehicle child, Vehicle parentA, Vehicle parentB){
+		/*
+		 * Random r = new Random();
+		int ran = r.nextInt(10);
+		int max_mem = parent.getMaxMem();
+		int learn = parent.getLearningRate();
+		if(ran < 7){
+			child.setMaxMem(mutateAttribute(max_mem, 100));
+			child.setLearningRate(mutateAttribute(learn, 20));
+			int ran_mem = r.nextInt(child.getMaxMem());
+			child.add_n_memory(parent.getMem(), ran_mem);
+		}
+		else{
+			
+		}
+		 */
 		Random r = new Random();
 		int ran = r.nextInt(10);
 		int max_mem, l_rate;
@@ -484,14 +499,16 @@ public class Genetics {
 					parentB.getLearningRate(), 20);
 			child.setMaxMem(max_mem);
 			child.setLearningRate(l_rate);
+			int ran_mem = r.nextInt(child.getMaxMem());
+			child.add_n_memory(parentA.getMem(), ran_mem);
+			ran_mem = child.getMaxMem() - ran_mem;
+			child.add_n_memory(parentB.getMem(), ran_mem);
 		}
 		else if (ran == 8){
-			child.setMaxMem(parentA.getMaxMem());
-			child.setLearningRate(parentA.getLearningRate());
+			child.setMem(parentA.getMem());
 		}
 		else{
-			child.setMaxMem(parentB.getMaxMem());
-			child.setLearningRate(parentB.getLearningRate());
+			child.setMem(parentB.getMem());
 		}
 	}
 
@@ -680,10 +697,11 @@ public class Genetics {
 		if(ran < 7){
 			child.setMaxMem(mutateAttribute(max_mem, 100));
 			child.setLearningRate(mutateAttribute(learn, 20));
+			int ran_mem = r.nextInt(child.getMaxMem());
+			child.add_n_memory(parent.getMem(), ran_mem);
 		}
 		else{
-			child.setMaxMem(max_mem);
-			child.setLearningRate(learn);
+			child.setMem(parent.getMem());
 		}
 	}
 
