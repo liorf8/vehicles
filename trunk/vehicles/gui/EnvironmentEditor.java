@@ -394,8 +394,9 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_Intensity.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Intensity.border.title"))); // NOI18N
         panel_Intensity.setName("panel_Intensity"); // NOI18N
 
-        slider_Intensity.setMaximum(20);
+        slider_Intensity.setMaximum(10);
         slider_Intensity.setMinimum(1);
+        slider_Intensity.setValue(5);
         slider_Intensity.setName("slider_Intensity"); // NOI18N
         slider_Intensity.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent evt) {
