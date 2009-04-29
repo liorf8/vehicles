@@ -893,7 +893,6 @@ public class SimulationEditor extends javax.swing.JFrame {
         addSelectedVehicles(selectedVehicleArray);
         setEnvironment(selectedEnvironment);
         proEnvironmentPreview.setEnvironment(selectedEnvironment);
-
 }
 
     private void formWindowGainedFocus(WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
@@ -1074,7 +1073,6 @@ public class SimulationEditor extends javax.swing.JFrame {
 		selectedModel.changed();
     }
 
-    @Action
     public void setEnvironment(Environment env) {
         SelectedEnvironmentsModel selectedModel = (SelectedEnvironmentsModel) list_SelectedEnvironment.getModel();
 		selectedEnv.clear();
