@@ -1,5 +1,6 @@
 package vehicles.processing;
 
+import java.text.DecimalFormat;
 import java.util.Vector; 
 import processing.core.*;
 import vehicles.environment.*;
@@ -33,6 +34,8 @@ public class SimulatonEngine extends PApplet {
 	int axle = 10;
 	int min_time_for_asexual = 20;
 	int max_time_for_asexual = 30;
+	int text_box_width = 0;
+	int text_box_height = 0;
 	boolean canMate = false;
 
 	public float getMove_speed() {
@@ -153,8 +156,10 @@ public class SimulatonEngine extends PApplet {
 		}
 
 		if(this.on_screen_message != null){
-			fill(100, 255, 190);
-			text(this.on_screen_message, 200, 200, this.on_screen_message.length() * 10, 100);
+			fill(100, 255, 190, 50);
+			rect(50,50, this.text_box_width, this.text_box_height);
+			fill(255, 255, 190);
+			text(this.on_screen_message, 66, 58, 10000, 10000);
 		}
 
 	}
@@ -165,10 +170,10 @@ public class SimulatonEngine extends PApplet {
 		if(elapsed % this.asexual_reproduction_constant == 0 && canMate){
 			this.canMate = false;
 			this.stopwatch.addSecond();
-			System.out.println("Asexes can occur");
+			//System.out.println("Asexes can occur");
 			float r = this.random(10);
 			if(this.chance_asexual_repro <= r){
-				System.out.println("Asexes HAS occurred");
+				//System.out.println("Asexes HAS occurred");
 				Vehicle v = Genetics.produceVehicleAsexually(this.sel_method, this.n_for_sel, this.vehicleVector, this.sim.log);
 				if(v == null){
 					return;
@@ -213,6 +218,29 @@ public class SimulatonEngine extends PApplet {
 		else this.on_screen_message = null;
 	}
 
+	public void updateTextBox(String message){
+		String[] st = message.split("\n");
+		if(st.length == 1){
+			this.text_box_height = 22;
+			this.text_box_width = message.length() * 10;
+			return;
+		}
+		int depth = 0, width = st[0].length();
+		for(int i = 1; i < st.length; i++){
+			if(st[i].length() > width){
+				width = st[i].length();
+			}
+			depth++;
+		}
+		if(this.update_on_screen == 1){
+			this.text_box_height = depth * 16;
+		}
+		else{
+			this.text_box_height = depth * 20;
+		}
+		this.text_box_width = width * 10;
+	}
+
 	public void checkMouse(float x, float y, int button){
 		float xPos, yPos, axle;
 		boolean on_screen = false;
@@ -229,6 +257,7 @@ public class SimulatonEngine extends PApplet {
 					this.curr_on_screen = v;
 					this.update_on_screen = button;
 					on_screen = true;
+					this.updateTextBox(this.curr_on_screen.toString());
 					this.updateOnScreenMessage();
 				}
 			}
@@ -241,6 +270,7 @@ public class SimulatonEngine extends PApplet {
 		else{
 			String message = "";
 			ProcessingEnviroElement ee;
+			DecimalFormat df = new DecimalFormat("#.##");
 			for(int i = 0; i < this.num_sources; i++){
 				ee = this.elementVector.elementAt(i);
 				xPos = ee.xPos;
@@ -248,11 +278,12 @@ public class SimulatonEngine extends PApplet {
 				range = ee.getRadius();
 				if((x <= xPos + range && y <= yPos + range) && (x >= xPos - range && y <= yPos + range) &&
 						(x <= xPos + range && y >= yPos - range) && (x >= xPos - range && y >= yPos - range)){					
-					message += ee.getName() + " : "  + ee.getStrength() + "\n";
+					message += "Point : (" + df.format(xPos) + "," + df.format(yPos) + ") : " + ee.getName() + " : "  + ee.getStrength() + "\n";
 					on_screen = true;
 				}
 			}
 			this.update_on_screen = button;
+			this.updateTextBox(message);
 			if(!on_screen){
 				this.on_screen_message = null;
 				this.curr_on_screen = null;
