@@ -11,10 +11,11 @@ public class ElementBrushPreview extends PApplet{
 	public ProcessingEnviroElement getPev() {
 		return pev;
 	}
+
 	public void setPev(EnvironmentElement pev) {
 		this.pev = new ProcessingEnviroElement(this,pev,0);
-
 	}
+
 	public void setup(){
 		try{
 			size(pev.getRadius() + 10,pev.getRadius() + 10);
@@ -22,6 +23,7 @@ public class ElementBrushPreview extends PApplet{
 		background(Color.BLACK.getRGB());
 		smooth();
 	}
+
 	public void draw(){
 		try{
 			size(pev.getRadius() + 10,pev.getRadius() + 10);
@@ -29,6 +31,4 @@ public class ElementBrushPreview extends PApplet{
 		}catch(NullPointerException e){}
 
 	}
-
-
 }

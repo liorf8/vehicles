@@ -7,7 +7,10 @@ import vehicles.environment.*;
  */
  public class ElementBrush {
 	 EnvironmentElement currentlySelected;
-	 
+
+     public ElementBrush(){
+	 }
+
 	 public ElementBrush(EnvironmentElement p_ele){
 		 this.currentlySelected = p_ele;
 	 }
