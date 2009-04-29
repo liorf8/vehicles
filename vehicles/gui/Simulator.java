@@ -550,6 +550,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
 
     @Action
     public void startSim() {
+        enviroPreview.stop();
         jPanel3.remove(enviroPreview);
         jPanel3.add(engine);
         jPanel3.validate();
@@ -568,6 +569,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         jPanel3.remove(engine);
         engine.pause();
         engine.stop();
+        enviroPreview.start();
         jPanel3.add(enviroPreview);
         jPanel3.validate();
         button_Start.setEnabled(true);
