@@ -892,6 +892,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         selectedEnvironment = tempSimulation.getEnvironment();
         addSelectedVehicles(selectedVehicleArray);
         setEnvironment(selectedEnvironment);
+        proEnvironmentPreview.setEnvironment(selectedEnvironment);
 
 }
 
