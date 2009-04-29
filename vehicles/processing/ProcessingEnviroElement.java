@@ -31,7 +31,10 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
         this.xPos = (float) this.getXpos();
         this.yPos = (float) this.getYpos();
     }
-
+    
+    public ProcessingEnviroElement(ProcessingEnviroElement other){
+    	super(other);
+    }
     public int getId() {
         return id;
     }
