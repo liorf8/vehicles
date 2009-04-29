@@ -543,7 +543,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 		EnvironmentElement selected = (EnvironmentElement) dropdown_Brush.getSelectedItem();
 		selected.setRadius(value);
 		preBrush.setPev(selected);
-		proLayout.setEb(preBrush);
+		
 	}//GEN-LAST:event_slider_Radius_StateChanged
 
 	private void slider_Intensity_StateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_Intensity_StateChanged
@@ -582,8 +582,9 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 		text_Description.setText(tempEnvironment.getDescription());
 		text_Name.setText(tempEnvironment.getName());
 		text_LastModified.setText(tempEnvironment.getLastModified());
-		proLayout.destroy();
-		proLayout = new EnvironmentLayout(tempEnvironment);
+		//proLayout.destroy();
+		//proLayout = new EnvironmentLayout(tempEnvironment);
+		proLayout.setEnvironment(tempEnvironment);
 		proLayout.init();
 	}
 

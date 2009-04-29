@@ -170,13 +170,13 @@ public class UtilMethods {
 		EnvironmentElement ws = new EnvironmentElement();
 		ws.setType(EnvironmentElement.WaterSource);
 		ws.setPosition(new Point(700,100));
-        ws.setRadius(150);
+		ws.setRadius(150);
 		ws.setStrength(10);
-		
+
 		EnvironmentElement ps = new EnvironmentElement();
 		ps.setType(EnvironmentElement.PowerSource);
 		ps.setPosition(new Point(100,500));
-        ps.setRadius(150);
+		ps.setRadius(150);
 		ps.setStrength(10);
 
 		// Create an environment and write to xml
@@ -190,6 +190,17 @@ public class UtilMethods {
 		e.addElement(ls);
 		e.addElement(hs);
 		e.addElement(ws);
+		e.addElement(ps);
+		e.saveEnvironment();
+		System.out.println("Creating " + path);
+
+		path = "xml" + File.separator + "environments" + File.separator + "default_environment3.env";
+		e = new Environment("default_environment1", path);
+		e.setWidth(800);
+		e.setHeight(600);
+		e.setAuthor("Karl");
+		e.setDescription("Default Environment 1");
+
 		e.addElement(ps);
 		e.saveEnvironment();
 		System.out.println("Creating " + path);
@@ -211,7 +222,7 @@ public class UtilMethods {
 		//Testing creating and editing a vehicle XML entry
 
 		path = "xml" + File.separator + "vehicles" + File.separator + "default_vehicle1.veh";
-		
+
 		EditorVehicle v = new EditorVehicle(path);
 		v.setName("Default Vehicle 1"); //set object attributes
 		v.setAuthor("Shaun");
@@ -241,7 +252,7 @@ public class UtilMethods {
 		v.saveVehicle(); //convert object and its attributes into XML
 		System.out.println("Creating " + path);
 
-		
+
 		path = "xml" + File.separator + "vehicles" + File.separator + "default_vehicle2.veh";
 		v = new EditorVehicle(path);
 		v.setName("Default Vehicle 2"); //set object attributes
@@ -271,7 +282,7 @@ public class UtilMethods {
 
 		v.saveVehicle(); //convert object and its attributes into XML
 		System.out.println("Creating " + path);
-		
+
 		//Re create a simlation
 		EditorSimulation es = new EditorSimulation();
 		path = "xml" + File.separator + "simulations" + File.separator + "default_simulation1.sim";
