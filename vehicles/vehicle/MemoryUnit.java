@@ -159,6 +159,17 @@ public class MemoryUnit {
 		return 0;
 	}
 
+	public Point[] getPoints(){
+		double x, y;
+		int size = this.real_memory.size();
+		Point[] p = new Point[size];
+		for(int i = 0; i < size; i++){
+			x = Tuple.get1(this.real_memory.elementAt(i));
+			y = Tuple.get2(this.real_memory.elementAt(i));
+			p[i] = new Point(x, y);
+		}
+		return p;
+	}
 
 	/**
 	 * Method to add an element into memory

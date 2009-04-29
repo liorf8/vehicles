@@ -17,27 +17,27 @@ public class SimulatonEngine extends PApplet {
 	Environment enviro;
 	PImage ground; //background image
 	boolean specialSense = true, perishable_vehicles, evolution = false, asexual = false, pairedMating = false;
+	boolean canMate = false;
 	float move_speed = 0;
+	float asexual_reproduction_constant = 0, curr_asexual_constant = 0;
+	float chance_repro;// = 1.5f; //this is out of ten i.e 1 = 10% chance
 	int num_sources, num_vehicles;
 	int w, h;
 	int repro_method;
 	int sel_method;
 	int n_for_sel;
-	PFont font;
-	String font_location = java.io.File.separator + "data" + java.io.File.separator + "CourierNew36.vlw";
-	String on_screen_message = null;
-	ProcessingVehicle curr_on_screen = null;
-	int update_on_screen = 0;
-	float asexual_reproduction_constant = 0, curr_asexual_constant = 0;
-	float chance_asexual_repro = 1.5f; //this is out of ten i.e 1 = 10% chance
-	StopWatch stopwatch;
 	int axle = 10;
 	int min_time_for_asexual = 10;
 	int max_time_for_asexual = 25;
 	int time_now = 0;
 	int text_box_width = 0;
 	int text_box_height = 0;
-	boolean canMate = false;
+	int update_on_screen = 0;
+	PFont font;
+	String font_location = java.io.File.separator + "data" + java.io.File.separator + "CourierNew36.vlw";
+	String on_screen_message = null;
+	ProcessingVehicle curr_on_screen = null;	
+	StopWatch stopwatch;
 
 	public float getMove_speed() {
 		return move_speed;
@@ -58,11 +58,15 @@ public class SimulatonEngine extends PApplet {
 		this.n_for_sel = this.sim.getN();
 		this.repro_method = this.sim.getReproductionMethod();
 
-		Vector<EnvironmentElement> elements = simu.getEnvironment().getElements();
+		enviro = this.sim.getEnvironment();
+		Vector<EnvironmentElement> elements = enviro.getElements();
+		this.num_sources = elements.size();
 		Vector<Vehicle> veh = simu.getVehicles();
-
-		vehicleVector = new Vector<ProcessingVehicle>();
-		int num_veh = veh.size();
+		this.num_vehicles = veh.size();		
+		
+		this.w = enviro.getWidth();
+		this.h = enviro.getHeigth();
+		
 
 		if(this.evolution){
 			if(this.repro_method == 1){
@@ -87,21 +91,13 @@ public class SimulatonEngine extends PApplet {
 			}
 		}
 
-		for (int i = 0; i < num_veh; i++) {
-			this.vehicleVector.add(new ProcessingVehicle(this, veh.elementAt(i), (int)this.random(width), (int)this.random(height), random(PI), axle,
+		vehicleVector = new Vector<ProcessingVehicle>();
+		for (int i = 0; i < this.num_vehicles; i++) {
+			this.vehicleVector.add(new ProcessingVehicle(this, veh.elementAt(i), (int)this.random(this.w), (int)this.random(this.h), random(PI), axle,
 					i, pairedMating, this.perishable_vehicles));
 		}
 
-		this.num_vehicles = vehicleVector.size();
-
-		this.num_sources = elements.size();
-		enviro = this.sim.getEnvironment();
-		this.w = enviro.getWidth();
-		this.h = enviro.getHeigth();
-
-
 		elementVector = new Vector<ProcessingEnviroElement>();
-
 		for (int i = 0; i < this.num_sources; i++) {
 			EnvironmentElement curr = elements.elementAt(i);
 			System.out.print(i + " : ");
@@ -204,6 +200,10 @@ public class SimulatonEngine extends PApplet {
 		image(ground, 0, 0);
 			
 		this.num_vehicles = this.vehicleVector.size();
+		this.chance_repro = 0.035f * (100 / this.num_vehicles);
+		if(pairedMating){
+			this.updateChancePairedMating();
+		}
 		if(this.num_vehicles > 0){
 			for(int i = 0; i < this.num_vehicles; i++){
 				ProcessingVehicle temp = this.vehicleVector.elementAt(i);
@@ -229,7 +229,6 @@ public class SimulatonEngine extends PApplet {
 		}
 
 		if(this.on_screen_message != null){
-			//fill(100, 255, 190, 50);
 			fill(50, 120, 140, 120);
 			rect(50,50, this.text_box_width, this.text_box_height);
 			fill(255, 255, 190);
@@ -244,9 +243,9 @@ public class SimulatonEngine extends PApplet {
 		if(elapsed == this.curr_asexual_constant){
 			this.stopwatch.reset();
 			float r = this.random(10);
-			System.out.println("Chance for repro: " + this.chance_asexual_repro);
+			System.out.println("Chance for repro: " + this.chance_repro);
 			System.out.println("Random: " + r);
-			if(r <= this.chance_asexual_repro){
+			if(r <= this.chance_repro){
 				System.out.println("Asexes can occur");
 				Vehicle v = Genetics.produceVehicleAsexually(this.sel_method, this.n_for_sel, this.vehicleVector, this.sim.log);
 				if(v == null){
@@ -426,6 +425,12 @@ public class SimulatonEngine extends PApplet {
 		System.out.println("Curr Asexual Consent: " + this.curr_asexual_constant);
 	}
 
+	public void updateChancePairedMating(){
+		for(int i = 0; i < this.num_vehicles; i++){
+			this.vehicleVector.elementAt(i).updateChanceOfMating(this.chance_repro);
+		}
+	}
+	
 	float nonlinear(float r, float rmax) {
 		float f = (rmax - Math.min(r, rmax)) / rmax;
 		return 0.5f - 0.5f * cos(f * PI);

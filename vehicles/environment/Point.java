@@ -28,4 +28,9 @@ public class Point {
 	public boolean compareTo(Point other){
 		return (other.getXpos() == this.xpos) && (other.getYpos() == this.ypos);
 	}
+	
+	public float getDistanceBetween(Point other){
+		float x2 = (float)other.getXpos(), y2 = (float)other.getYpos();
+		return (float)(Math.sqrt((x2-this.xpos)*(x2-this.xpos) + (y2-this.ypos)*(y2-this.ypos)));
+	}
 }
