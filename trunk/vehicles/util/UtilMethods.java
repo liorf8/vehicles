@@ -318,6 +318,28 @@ public class UtilMethods {
 		es.saveSimulation();
 		System.out.println("Creating "+path);
 	}
+	
+	public static String formatFilePath(String filePath){
+		String[] parts;
+		String new_filePath = "";
+		int len;
+		if(filePath.contains("/")){
+			parts = filePath.split("/");
+		}
+		else if(filePath.contains("\\")){
+			parts = filePath.split("\\\\");
+		}
+		else{
+			return "";
+		}
+		len = parts.length;
+		for(int i = 0; i < len - 1; i++){
+			new_filePath = new_filePath.concat(parts[i]).concat(File.separator);
+		}
+		new_filePath = new_filePath.concat(parts[len - 1]);
+		System.out.println("FilePath: " + filePath);
+		return new_filePath;
+	}
 
 
 
