@@ -161,7 +161,8 @@ public class SimulatonEngine extends PApplet {
 		}
 
 		if(this.on_screen_message != null){
-			fill(100, 255, 190, 50);
+			//fill(100, 255, 190, 50);
+			fill(50, 120, 140, 120);
 			rect(50,50, this.text_box_width, this.text_box_height);
 			fill(255, 255, 190);
 			text(this.on_screen_message, 66, 58, 10000, 10000);
@@ -235,7 +236,7 @@ public class SimulatonEngine extends PApplet {
 			this.text_box_height = depth * 16;
 		}
 		else{
-			this.text_box_height = depth * 20;
+			this.text_box_height = (depth + 1)* 20;
 		}
 		this.text_box_width = width * 10;
 	}
