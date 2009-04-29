@@ -16,7 +16,7 @@ public class EnvironmentLayout extends PApplet {
 	Vector<ProcessingEnviroElement> ee;
 	ElementBrushPreview eb;
 	int bufferTime;
-	
+
 	public EnvironmentLayout(){
 
 	}
@@ -49,7 +49,7 @@ public class EnvironmentLayout extends PApplet {
 	public void setWidth_and_Height(int w, int h){
 		this.w = w;
 		this.h = h;
-		this.draw();
+		//	this.redraw();
 	}
 
 
@@ -65,45 +65,35 @@ public class EnvironmentLayout extends PApplet {
 
 		//updateGround();
 		cursor(CROSS);
-		
+		noLoop();
 	}
+
+
 
 	@Override
 	public void draw() {
 		size(w,h); //lets the window be redrawn to a different size
 		background(0);
-		//image(ground, 0, 0); //works, just too slow		
-		//		stroke(Color.RED.getRGB());
-		//		strokeWeight(4);
-		//		fill(Color.BLACK.getRGB());
-		//		rect(0,0,width,height);//draw a border - take out later
-		//		noFill();
-		//		noStroke();
 		Iterator<ProcessingEnviroElement> it = ee.iterator();
 		while(it.hasNext()){
 			ProcessingEnviroElement curr = it.next();
 			curr.editorDraw();
 		}
 		//print("Now have "+ee.size()+ " elements\n");
-		//updateGround(); // works, but too slow
-		
 	}
 
 	@Override
 	public void mousePressed() {
-
-
 		if(mouseX <= this.w && mouseY <= this.h  && eb != null && (frameCount - bufferTime > 2) ){
-			
-				ProcessingEnviroElement toSet = new ProcessingEnviroElement(eb.getPev());
-				toSet.parent = this;
-				toSet.setPosition(new Point(mouseX,mouseY));
-				System.out.println(toSet.tostring());
-				this.ee.add(toSet);
-				print("Now have "+ee.size()+ " elements\n");
-				bufferTime = frameCount;
-				this.draw();
-			
+
+			ProcessingEnviroElement toSet = new ProcessingEnviroElement(eb.getPev());
+			toSet.parent = this;
+			toSet.setPosition(new Point(mouseX,mouseY));
+			System.out.println(toSet.tostring());
+			this.ee.add(toSet);
+			//print("Now have "+ee.size()+ " elements\n");
+			bufferTime = frameCount;
+			redraw();
 		}
 	}
 

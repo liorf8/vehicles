@@ -62,6 +62,8 @@ public class EnvironmentElement {
 			this.name = "Water";
 			break;
 		}
+		xmldoc= new DocumentImpl();
+		root = xmldoc.createElement("EnvironmentElement");
 	}
 
     public boolean comparePoint(Point other){
@@ -144,6 +146,8 @@ public class EnvironmentElement {
 			break;
 
 		}
+		xmldoc= new DocumentImpl();
+		root = xmldoc.createElement("EnvironmentElement");
 	}
 
 
