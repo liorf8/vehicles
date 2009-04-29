@@ -1,6 +1,9 @@
 package vehicles.processing;
+import java.util.Iterator;
+
 import processing.core.*;
 import vehicles.environment.Environment;
+import vehicles.environment.EnvironmentElement;
 
 /**
  *
@@ -11,10 +14,10 @@ public class EnvironmentPreview extends PApplet {
 	Environment e;
 
 	public EnvironmentPreview(Environment env){
-		this.e = env;
+		this.e = new Environment(env);
 	}
 	public void setEnvironment(Environment env){
-		this.e = env;
+		this.e = new Environment(env);
 	}
 	@Override
 	public void setup() {
@@ -27,6 +30,25 @@ public class EnvironmentPreview extends PApplet {
 	public void draw() {
 		image(ground, 0, 0);
 		updateGround();
+	}
+	/**
+	 * Scale this applet to panel size
+	 * @param x panel x size
+	 * @param y panel y size
+	 */
+	public void updateSize(int x, int y){
+		int scaleFactor = this.width / x ;
+		for(int i = 0;i<e.getElements().size();i++){
+			e.getElements().elementAt(i).
+				setRadius(e.getElements().elementAt(i).getRadius() / scaleFactor);
+			e.getElements().elementAt(i).
+				setXpos(e.getElements().elementAt(i).getXpos() / scaleFactor);
+			e.getElements().elementAt(i).
+				setYpos(e.getElements().elementAt(i).getYpos() / scaleFactor);
+			e.getElements().elementAt(i).
+				setStrength(e.getElements().elementAt(i).getStrength() / scaleFactor);			
+		}
+		size(x,y);
 	}
 
 	
@@ -71,7 +93,7 @@ public class EnvironmentPreview extends PApplet {
 
 				}
 			}
-
+			
 		}
 
 	}
