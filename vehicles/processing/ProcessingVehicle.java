@@ -266,13 +266,19 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 					y <= this.last_storedY + this.axle)	&& (x <= this.last_storedX + this.axle && y >= this.last_storedY - this.axle) && 
 					(x >= this.last_storedX - this.axle && y >= this.last_storedY - this.axle)){
 				if(this.parent.random(10) <= 4){
+					System.out.println("Changing motor A");
 					this.wB.setSpeed((this.wB.getAngleSpeed() * 1.1f) + 0.25f);
 				}
 				else{
+					System.out.println("Changing motor B");
 					this.wA.setSpeed((this.wA.getAngleSpeed() * 1.1f) + 0.25f);
 				}
-				//this.angle += this.parent.random(1.0f);
-				this.angle += 0.15f * this.angle;
+				if(this.parent.random(10) <= 4){
+					this.angle += HALF_PI / 1.25;
+				}
+				else{
+					this.angle -= HALF_PI / 1.25;
+				}
 				this.last_storedX = this.x;
 				this.last_storedY = this.y;
 				return;
@@ -307,13 +313,13 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 					intensity = temp.getIntensityAtPoint(x, y);
 					switch(temp.getType()){
 					case ProcessingEnviroElement.WaterSource:
-						this.curr_battery -= (this.max_battery/5) * intensity;
+						this.curr_battery -= (intensity * 0.01)/100 * this.time_speed;
 						break;
 					case ProcessingEnviroElement.PowerSource:
-						this.curr_battery += (this.max_battery/2.5f) * intensity;
+						this.curr_battery += (intensity * 0.01)/100 * this.time_speed;
 						break;
 					case ProcessingEnviroElement.HeatSource:
-						this.curr_battery -= (this.max_battery/2.5f) * intensity;
+						this.curr_battery -= (intensity * 0.02)/100 * this.time_speed;
 						break;
 					}
 					this.checkBattery();

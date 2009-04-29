@@ -57,7 +57,6 @@ public class EnvironmentPreview extends PApplet {
 
 
 	public void updateGround() {
-		println("update Ground called");
 		float sum;
 		int c, r, g, b;
 		int px = 1;
