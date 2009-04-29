@@ -551,7 +551,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
             isPaused = false;
             slider_Speed.setEnabled(true);
             engine.startSim();
-        } else {;
+        } else {
             isPaused = true;
             engine.pause();
             slider_Speed.setEnabled(false);
