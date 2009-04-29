@@ -2,7 +2,6 @@ package vehicles.processing;
 
 import processing.core.*;
 import java.util.Iterator;
-import java.util.Vector;
 
 /**
  *
@@ -30,29 +29,39 @@ public class Sensor implements PConstants {
 
 
 	float getSense(boolean found, float maxSpeed, float aggression, float p_red, float p_green, float p_blue) {
-		if(found){
-			return this.defaultSense;
-		}
-		SimulatonEngine engineParent = (SimulatonEngine) parent;
-		Iterator<ProcessingEnviroElement> elementIterator = engineParent.elementVector.iterator();
-		ProcessingEnviroElement temp;
-		float intensity_atPoint, red_atPoint, green_atPoint, blue_atPoint, max_sense = 0;
-		while (elementIterator.hasNext()) {
-			temp = elementIterator.next();
-			intensity_atPoint = temp.getIntensityAtPoint(this.x, this.y);
-            red_atPoint = temp.getRedAtPoint(this.x, this.y);
-            green_atPoint = temp.getGreenAtPoint(this.x, this.y);
-            blue_atPoint = temp.getBlueAtPoint(this.x, this.y);
-			if(intensity_atPoint > 0.0f | red_atPoint > 0.0f | green_atPoint > 0.0f | red_atPoint > 0.0f){
-				max_sense += (intensity_atPoint/temp.getStrength()) * (maxSpeed / aggression) * 0.1f;
-                max_sense += (red_atPoint/p_red) * (maxSpeed / aggression) * 0.1f;
-                max_sense += (green_atPoint/p_green) * (maxSpeed / aggression)* 0.1f;
-                max_sense += (blue_atPoint/p_blue) * (maxSpeed / aggression)* 0.1f;
-			} else {
-                max_sense = 0.1f;
+//		if(found){
+//			return this.defaultSense;
+//		}
+//		SimulatonEngine engineParent = (SimulatonEngine) parent;
+//		Iterator<ProcessingEnviroElement> elementIterator = engineParent.elementVector.iterator();
+//		ProcessingEnviroElement temp;
+//		float intensity_atPoint, red_atPoint, green_atPoint, blue_atPoint;
+//		while (elementIterator.hasNext()) {
+//			temp = elementIterator.next();
+//			intensity_atPoint = temp.getIntensityAtPoint(this.x, this.y);
+//            red_atPoint = temp.getRedAtPoint(this.x, this.y);
+//            green_atPoint = temp.getGreenAtPoint(this.x, this.y);
+//            blue_atPoint = temp.getBlueAtPoint(this.x, this.y);
+//			if(intensity_atPoint > 0.0f | red_atPoint > 0.0f | green_atPoint > 0.0f | red_atPoint > 0.0f){
+//				sense += (intensity_atPoint/temp.getStrength()) * (maxSpeed / aggression) * 0.1f;
+//                sense += (red_atPoint/p_red) * (maxSpeed / aggression) * 0.1f;
+//                sense += (green_atPoint/p_green) * (maxSpeed / aggression)* 0.1f;
+//                sense += (blue_atPoint/p_blue) * (maxSpeed / aggression)* 0.1f;
+//			} else {
+//                sense = 0.1f;
+//            }
+//		}
+//		return sense;
+            SimulatonEngine p = (SimulatonEngine) parent;
+            float sum = parent.red( p.ground.get( (int)x, (int)y ) ) / 255.0f;
+            sum += parent.green( p.ground.get( (int)x, (int)y ) ) / 255.0f;
+            sum += parent.blue( p.ground.get( (int)x, (int)y ) ) / 255.0f;
+			sum = (found) ? sum : 1-sum;
+			sense = (false) ? p.nonlinear( sum, maxReading ) : 1-sum;
+            if (sense == 0) {
+                sense = 0.1f;
             }
-		}
-		return max_sense;
+			return sense;
 		/*
 		if(max_sense == 0.0f){
 			return this.parent.random(maxSpeed*2) - maxSpeed;
