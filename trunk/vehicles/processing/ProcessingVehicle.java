@@ -9,6 +9,7 @@ import vehicles.vehicle.*;
 import vehicles.genetics.*;
 import vehicles.simulation.SimulationLog;
 import java.text.DecimalFormat;
+import vehicles.util.StopWatch;
 
 /*
  * 
@@ -31,7 +32,8 @@ import java.text.DecimalFormat;
 public class ProcessingVehicle extends Vehicle implements PConstants {
 
 	float chance_to_mate = 2.5f; //this is out of ten
-	float max_speed;
+	float time_speed;
+	float max_speed, curr_max_speed;
 	float x, y, axle;
 	float axleHalf, axleSquared; //derivatives of axle
 	float angle; // direction of the ProcessingVehicle
@@ -43,6 +45,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	float max_battery, curr_battery;
 	boolean canDie, pairedMating, dead = false, remember = false;
 	private static int veh_count = 0;
+	public StopWatch stopwatch;
 	/*
 	 * This constructor takes a vehicle as a parameter
 	 * Means that all the vehicle methods are now avaialble within processing
@@ -64,7 +67,12 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		this.curr_battery = this.getCurrentBatteryCapacity();
 		this.canDie = d;
 		this.pairedMating = pairedM;
+		
+		this.stopwatch = new StopWatch();
+		this.stopwatch.start();
 
+		this.time_speed = 100;
+		
 		axle = axle_length;
 		axleHalf = axle / 2;
 		axleSquared = axle * axle;
@@ -95,6 +103,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		this.colorBlue = b;
 		this.angle = angle;
 		this.max_speed = m;
+		this.curr_max_speed = max_speed;
 
 		axle = axle_length;
 		axleHalf = axle / 2;
@@ -177,7 +186,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	}
 
 	public void depleteBatt(){
-		this.curr_battery -= 0.005;
+		this.curr_battery -= 0.005 * (this.time_speed / 100);
 		this.checkBattery();
 	}
 
@@ -186,6 +195,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 			SimulatonEngine engineParent = (SimulatonEngine) parent;
 			engineParent.sim.log.addToLog("Vehicle " + this.getName() + " died.");
 			this.die();
+			engineParent.sim.log.addToLog("Vehicle: " + this.getName() + " perished when it's battery ran to 0.0");
 			return;
 		}
 		if(this.curr_battery > this.max_battery){
@@ -421,20 +431,31 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		return this.max_speed;
 	}
 	
+	public void updateSpeed_ofTime(float percent){
+		this.time_speed = percent;
+		this.curr_max_speed = percent * (this.max_speed / 100);
+		this.wA.updateMaxSpeed(this.curr_max_speed);
+		this.wB.updateMaxSpeed(this.curr_max_speed);
+	}
+	
+	/*
 	public void updateMaxSpeed(float s){
+		this.curr_max_speed = s; 
 		this.wA.updateMaxSpeed(s);
 		this.wB.updateMaxSpeed(s);
 	}
+	*/
 
 	public String toString(){
 		DecimalFormat df = new DecimalFormat("#.##");
-		return "Name: " + this.vehicleName + "\nMotor Strength: " + this.getMotorStrength() + "\nMax Displacement(Movement): " + this.max_speed + 
-		"\nLeft Motor Turn Speed: " + this.wA.getAngleSpeed() + "\nRight Motor Turn Speed: " + this.wB.getAngleSpeed() + 
-		"\nMax Battery: " + df.format(this.max_battery) + "\nCurr Battery: " + df.format(this.curr_battery) + "\nAggression: " + 
-		this.aggression + "\nItems In Memory: " + this.mu.numItems() + "\nCo-ordinates: (" + df.format(this.x) + 
-		"," + df.format(this.y) + ")" + "\nRight Sensor Values" + "\nPower: " + this.getRightSensorPower() +  
+		return "Name: " + this.vehicleName + "\nMotor Strength: " + this.getMotorStrength() + "\nMax Displacement(Movement): " + df.format(this.max_speed) +
+		"\nCurrent Maximum Displacement: " + df.format(this.curr_max_speed) + 		"\nLeft Motor Turn Speed: " + this.wA.getAngleSpeed() +
+		"\nRight Motor Turn Speed: " + this.wB.getAngleSpeed() + "\nMax Battery: " + df.format(this.max_battery) + "\nCurr Battery: " +
+		df.format(this.curr_battery) + "\nAggression: " + this.aggression + "\nItems In Memory: " + this.mu.numItems() + 
+		"\nCo-ordinates: (" + df.format(this.x) + "," + df.format(this.y) + ")" + "\nRight Sensor Values" + "\nPower: " + this.getRightSensorPower() +
 		"\nHeat: " + this.getRightSensorHeat() + "\nLight: " + this.getRightSensorLight() + "\nWater: " + this.getRightSensorWater() +
 		"\nLeft Sensor Values" + "\nPower: " + this.getLeftSensorPower() +"\nHeat: " + this.getLeftSensorHeat() +
-		"\nLight: " + this.getLeftSensorLight() + "\nWater: " + this.getLeftSensorWater();
+		"\nLight: " + this.getLeftSensorLight() + "\nWater: " + this.getLeftSensorWater() + "\nAlive for: " + 
+		df.format((this.stopwatch.getElapsedTimeDoubleSecs() / 100) * this.time_speed) + " seconds.";
 	}
 }
