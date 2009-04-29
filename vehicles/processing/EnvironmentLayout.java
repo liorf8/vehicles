@@ -91,7 +91,7 @@ public class EnvironmentLayout extends PApplet {
 			toSet.setPosition(new Point(mouseX,mouseY));
 			System.out.println(toSet.tostring());
 			this.ee.add(toSet);
-			//print("Now have "+ee.size()+ " elements\n");
+			print("Now have "+ee.size()+ " elements\n");
 			bufferTime = frameCount;
 			redraw();
 		}
