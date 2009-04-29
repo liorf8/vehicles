@@ -63,7 +63,7 @@ public class EnvironmentLayout extends PApplet {
 
 		//updateGround();
 		cursor(CROSS);
-		noLoop();
+		
 	}
 
 	@Override
@@ -84,14 +84,14 @@ public class EnvironmentLayout extends PApplet {
 		}
 		//updateGround(); // works, but too slow
 		print("Now have "+ee.size()+ " elements\n");
+		noLoop();
 	}
 
 	@Override
 	public void mouseClicked() {
 		
-		//System.out.println("mouseClicked() : using "+this.getBrush().getCurrentlySelected());
 
-		if(mouseX <= this.w && mouseY <= this.h){
+		if(mouseX <= this.w && mouseY <= this.h  &&  eb != null){
 			ProcessingEnviroElement toSet = new ProcessingEnviroElement(eb.getPev());
 			toSet.parent = this;
 			toSet.setPosition(new Point(mouseX,mouseY));
