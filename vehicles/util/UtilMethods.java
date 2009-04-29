@@ -337,7 +337,6 @@ public class UtilMethods {
 			new_filePath = new_filePath.concat(parts[i]).concat(File.separator);
 		}
 		new_filePath = new_filePath.concat(parts[len - 1]);
-		System.out.println("FilePath: " + filePath);
 		return new_filePath;
 	}
 

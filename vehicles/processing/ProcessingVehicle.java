@@ -85,8 +85,10 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		wA = new Wheel(parent, x + axleHalf * PApplet.cos(angle - HALF_PI), y + axleHalf * PApplet.sin(angle - HALF_PI), 5, 0, this.max_speed);
 		wB = new Wheel(parent, x + axleHalf * PApplet.cos(angle + HALF_PI), y + axleHalf * PApplet.sin(angle + HALF_PI), 5, 0, this.max_speed);
 
-		sA = new Sensor(parent, x + axle * PApplet.cos(angle - HALF_PI / 1.5f), y + axle * PApplet.sin(angle - HALF_PI / 1.5f));
-		sB = new Sensor(parent, x + axle * PApplet.cos(angle + HALF_PI / 1.5f), y + axle * PApplet.sin(angle + HALF_PI / 1.5f));
+		sA = new Sensor(parent, x + axle * PApplet.cos(angle - HALF_PI / 1.5f), y + axle * PApplet.sin(angle - HALF_PI / 1.5f), 
+				this.getLeftSensorPower(), this.getLeftSensorWater(), this.getLeftSensorLight(), this.getLeftSensorHeat());
+		sB = new Sensor(parent, x + axle * PApplet.cos(angle + HALF_PI / 1.5f), y + axle * PApplet.sin(angle + HALF_PI / 1.5f),
+				this.getRightSensorPower(), this.getRightSensorWater(), this.getRightSensorLight(), this.getRightSensorHeat());
 
 	}
 
@@ -133,19 +135,21 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 		float ang;// = this.parent.random(10);
 		checkBounds();
-
-		setLeftSpeed(sB.getSense(false, this.max_speed, this.aggression, this.colorRed, this.colorGreen, this.colorBlue, this.getMem()));
-		setRightSpeed(sA.getSense(false, this.max_speed, this.aggression, this.colorRed, this.colorGreen, this.colorBlue, this.getMem()));
-
+		//setLeftSpeed(sB.getSense(false, this.max_speed, this.aggression, this.colorRed, this.colorGreen, this.colorBlue, this.getMem()));
+		//setRightSpeed(sA.getSense(false, this.max_speed, this.aggression, this.colorRed, this.colorGreen, this.colorBlue, this.getMem()));
+		setLeftSpeed(sB.getSense(this.max_speed, this.aggression, this.mu));
+		setRightSpeed(sA.getSense(this.max_speed, this.aggression, this.mu));
 		/*Just update the vehicle's position and direction, this stuff won't need to be changed*/
 		wheel_diff = wA.d - wB.d;
 		wheel_average = (wA.d + wB.d) / 2;
-		Math.abs(angle += wheel_diff / axle);
+		angle += wheel_diff / axle;
 		//angle += wheel_diff / axle;
-		x += this.time_speed * ((PApplet.cos(angle) * wheel_average)/85);
-		y += this.time_speed * ((PApplet.sin(angle) * wheel_average)/85);
-		//x += (PApplet.cos(angle) * wheel_average);
-		//y += (PApplet.sin(angle) * wheel_average);
+		//x += this.time_speed * ((PApplet.cos(angle) * wheel_average)/85);
+		//y += this.time_speed * ((PApplet.sin(angle) * wheel_average)/85);
+		x += (PApplet.cos(angle) * wheel_average);
+		y += (PApplet.sin(angle) * wheel_average);
+		///x+= this.time_speed * (10/100);
+		//y+= this.time_speed * (10/100);
 
 		checkCollisionVehicles();
 		checkCollisionElements();
@@ -171,12 +175,6 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 		sB.x = x + axle * PApplet.cos(ang);
 		sB.y = y + axle * PApplet.sin(ang);
-		setLeftSpeed(sB.getSenseRed());
-		setRightSpeed(sA.getSenseRed());
-		setLeftSpeed(sB.getSenseGreen());
-		setRightSpeed(sA.getSenseGreen());
-		setLeftSpeed(sB.getSenseBlue());
-		setRightSpeed(sA.getSenseBlue());
 
 		this.checkSamePos();
 
@@ -464,18 +462,9 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 	public void updateSpeed_ofTime(float percent){
 		this.time_speed = percent;
-		this.curr_max_speed = percent * (this.max_speed / 100);
+		this.curr_max_speed = (percent * (this.max_speed / 100))/5;
 		this.wA.setMaxSpeed(this.curr_max_speed);
 		this.wB.setMaxSpeed(this.curr_max_speed);
-		this.wA.setAngle(percent * (this.wA.getAngle() / 100));
-		this.wB.setAngle(percent * (this.wB.getAngle() / 100));
-		this.wA.setDispl(this.curr_max_speed);
-		this.wB.setDispl(this.curr_max_speed);
-		this.wA.setAngleSpeed(percent * (this.wA.getAngleSpeed() / 100));
-		this.wB.setAngleSpeed(percent * (this.wB.getAngleSpeed() / 100));
-		//this.wA.updateMaxSpeed(this.curr_max_speed);
-		//this.wB.updateMaxSpeed(this.curr_max_speed);
-		//this.changeLeftSpeed(inc);
 	}
 
 
