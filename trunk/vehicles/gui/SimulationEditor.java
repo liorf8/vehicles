@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
@@ -656,6 +658,14 @@ public class SimulationEditor extends javax.swing.JFrame {
         tabContainer.addTab(resourceMap.getString("tab_Vehicles.TabConstraints.tabTitle"), tab_Vehicles); // NOI18N
 
         tab_Environment.setName("tab_Environment"); // NOI18N
+        tab_Environment.addFocusListener(new FocusAdapter() {
+            public void focusGained(FocusEvent evt) {
+                tab_EnvironmentFocusGained(evt);
+            }
+            public void focusLost(FocusEvent evt) {
+                tab_EnvironmentFocusLost(evt);
+            }
+        });
 
         panel_AvailableEnvironments.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_AvailableEnvironments.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_AvailableEnvironments.border.titleFont"))); // NOI18N
         panel_AvailableEnvironments.setName("panel_AvailableEnvironments"); // NOI18N
@@ -938,6 +948,14 @@ public class SimulationEditor extends javax.swing.JFrame {
     private void processing_EnvironmentPreviewComponentResized(ComponentEvent evt) {//GEN-FIRST:event_processing_EnvironmentPreviewComponentResized
         proEnvironmentPreview.updateSize(processing_EnvironmentPreview.getWidth(), processing_EnvironmentPreview.getHeight());
     }//GEN-LAST:event_processing_EnvironmentPreviewComponentResized
+
+    private void tab_EnvironmentFocusGained(FocusEvent evt) {//GEN-FIRST:event_tab_EnvironmentFocusGained
+        proEnvironmentPreview.start();
+    }//GEN-LAST:event_tab_EnvironmentFocusGained
+
+    private void tab_EnvironmentFocusLost(FocusEvent evt) {//GEN-FIRST:event_tab_EnvironmentFocusLost
+        proEnvironmentPreview.destroy();
+    }//GEN-LAST:event_tab_EnvironmentFocusLost
 
     @Action
     public void saveSimulation() {

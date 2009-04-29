@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
@@ -194,6 +196,14 @@ public class VehicleEditor extends javax.swing.JFrame {
         tabContainer.setName("tabContainer"); // NOI18N
 
         tab_Properties.setName("tab_Properties"); // NOI18N
+        tab_Properties.addFocusListener(new FocusAdapter() {
+            public void focusGained(FocusEvent evt) {
+                tab_PropertiesFocusGained(evt);
+            }
+            public void focusLost(FocusEvent evt) {
+                tab_PropertiesFocusLost(evt);
+            }
+        });
 
         panel_Name.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Name.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Name.border.titleFont"))); // NOI18N
         panel_Name.setName("panel_Name"); // NOI18N
@@ -1274,6 +1284,14 @@ public class VehicleEditor extends javax.swing.JFrame {
     private void processing_AppearanceComponentResized(ComponentEvent evt) {//GEN-FIRST:event_processing_AppearanceComponentResized
         proVehiclePreview.updateSize(processing_Appearance.getWidth(), processing_Appearance.getHeight());
     }//GEN-LAST:event_processing_AppearanceComponentResized
+
+    private void tab_PropertiesFocusGained(FocusEvent evt) {//GEN-FIRST:event_tab_PropertiesFocusGained
+        proVehiclePreview.start();
+    }//GEN-LAST:event_tab_PropertiesFocusGained
+
+    private void tab_PropertiesFocusLost(FocusEvent evt) {//GEN-FIRST:event_tab_PropertiesFocusLost
+        proVehiclePreview.destroy();
+    }//GEN-LAST:event_tab_PropertiesFocusLost
 
     private void populateFields(EditorVehicle p_vehicle) {
         EditorVehicle tempVehicle = p_vehicle;
