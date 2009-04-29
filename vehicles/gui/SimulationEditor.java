@@ -890,6 +890,8 @@ public class SimulationEditor extends javax.swing.JFrame {
         text_GeneticSelectionN.setText(Integer.toString(tempSimulation.getN()));
         selectedVehicleArray = tempSimulation.getEditorVehicleArray();
         selectedEnvironment = tempSimulation.getEnvironment();
+        dropdown_GeneticSelectionMethod.setSelectedIndex(tempSimulation.getGeneticSelectionMethod() - 1);
+        dropdown_ReproductionMethod.setSelectedIndex(tempSimulation.getReproductionMethod() - 1);
         addSelectedVehicles(selectedVehicleArray);
         setEnvironment(selectedEnvironment);
         proEnvironmentPreview.setEnvironment(selectedEnvironment);
