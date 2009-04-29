@@ -62,6 +62,14 @@ public class Environment {
 		this.grid = new Grid();
 
 	}
+	public Environment(String filename,boolean newEnviro){
+		this.xmlLocation = filename;
+		this.elementVector = new Vector<EnvironmentElement>();
+		xmldoc= new DocumentImpl();
+		root = xmldoc.createElement("Environment");
+		this.setFileName();
+		this.grid = new Grid();
+	}
 
 	/**
 	 * Constructor for creating a new environment from an xml file
