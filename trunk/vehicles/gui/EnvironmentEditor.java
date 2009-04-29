@@ -29,7 +29,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.ResourceMap;
-import processing.core.*;
 import vehicles.environment.*;
 import vehicles.processing.*;
 
@@ -64,12 +63,13 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 		// that other internal variables are properly set.
 		proLayout.setBrush(elementArray[0]);
 		proLayout.init();
+
 		preBrush = new ElementBrushPreview();
 		preBrush.setPev(elementArray[0]);
+        preBrush.init();
 
 		initComponents();
 
-		preBrush.init();
 		populateFields(environmentArray[0]);
 	}
 
@@ -544,7 +544,6 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 		JComboBox tempComboBox = (JComboBox) evt.getSource();
 		Grid selected = (Grid) tempComboBox.getSelectedItem();
 		proLayout.setWidth_and_Height(selected.getWidth(), selected.getHeight());
-
 	}//GEN-LAST:event_dropdown_GridSizeItemStateChanged
 
 	private void dropdown_BrushItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_BrushItemStateChanged
@@ -557,14 +556,12 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 
 	private void populateBrushSliders(EnvironmentElement p_element) {
 		EnvironmentElement tempElement = p_element;
-
 		slider_Radius.setValue(tempElement.getRadius());
 		slider_Intensity.setValue(tempElement.getStrength());
 	}
 
 	private void populateFields(Environment p_environment) {
 		Environment tempEnvironment = p_environment;
-
 		text_Author.setText(tempEnvironment.getAuthor());
 		text_Description.setText(tempEnvironment.getDescription());
 		text_Name.setText(tempEnvironment.getName());
@@ -572,8 +569,6 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         proLayout.destroy();
         proLayout = new EnvironmentLayout(tempEnvironment);
         proLayout.init();
-
-
 	}
 
 	@Action
@@ -629,7 +624,6 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 	private JToggleButton toggle_SelectionMode;
 	// End of variables declaration//GEN-END:variables
 	private EnvironmentLayout proLayout;
-	private ElementBrush proBrush;
 	private ElementBrushPreview preBrush;
 	private Environment[] environmentArray;
 	private Grid[] gridArray;
