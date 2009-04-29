@@ -29,19 +29,25 @@ public class Sensor implements PConstants {
 	}
 
 
-	float getSense(boolean found, float maxSpeed, float aggression) {
+	float getSense(boolean found, float maxSpeed, float aggression, float p_red, float p_green, float p_blue) {
 		if(found){
 			return this.defaultSense;
 		}
 		SimulatonEngine engineParent = (SimulatonEngine) parent;
 		Iterator<ProcessingEnviroElement> elementIterator = engineParent.elementVector.iterator();
 		ProcessingEnviroElement temp;
-		float intensity_atPoint, max_sense = 0;
+		float intensity_atPoint, red_atPoint, green_atPoint, blue_atPoint, max_sense = 0;
 		while (elementIterator.hasNext()) {
 			temp = elementIterator.next();
 			intensity_atPoint = temp.getIntensityAtPoint(this.x, this.y);
+            red_atPoint = temp.getRedAtPoint(this.x, this.y);
+            green_atPoint = temp.getGreenAtPoint(this.x, this.y);
+            blue_atPoint = temp.getBlueAtPoint(this.x, this.y);
 			if(intensity_atPoint > 0.0f){
-				max_sense += (intensity_atPoint/temp.getStrength()) * maxSpeed;
+				max_sense += (intensity_atPoint/temp.getStrength()) * aggression;
+                max_sense += (red_atPoint/aggression) * p_red;
+                max_sense += (green_atPoint/aggression) * p_green;
+                max_sense += (blue_atPoint/aggression) * p_blue;
 			} else {
                 max_sense = 0.1f;
             }
