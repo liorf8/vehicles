@@ -141,9 +141,10 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		wheel_diff = wA.d - wB.d;
 		wheel_average = (wA.d + wB.d) / 2;
 		Math.abs(angle += wheel_diff / axle);
-		System.out.print("Angle: " + angle);
-		x += this.time_speed * ((PApplet.cos(angle) * wheel_average)/100);
-		y += this.time_speed * ((PApplet.sin(angle) * wheel_average)/100);
+		//angle += wheel_diff / axle;
+		x += this.time_speed * ((PApplet.cos(angle) * wheel_average)/85);
+		y += this.time_speed * ((PApplet.sin(angle) * wheel_average)/85);
+		//x += (PApplet.cos(angle) * wheel_average);
 		//y += (PApplet.sin(angle) * wheel_average);
 
 		checkCollisionVehicles();
