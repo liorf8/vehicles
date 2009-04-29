@@ -354,7 +354,6 @@ public class SimulatonEngine extends PApplet {
 		float max;
 		for(int i = 0; i < this.num_vehicles; i++){
 			max = this.vehicleVector.elementAt(i).getMaxSpeed();
-			System.out.println("Updating maximum to: " + max * (percent / 100));
 			this.vehicleVector.elementAt(i).updateSpeed_ofTime(percent);
 		}
 		this.curr_asexual_constant = (100 / percent) * this.asexual_reproduction_constant;
