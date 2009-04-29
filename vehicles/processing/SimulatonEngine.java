@@ -278,7 +278,7 @@ public class SimulatonEngine extends PApplet {
 				range = ee.getRadius();
 				if((x <= xPos + range && y <= yPos + range) && (x >= xPos - range && y <= yPos + range) &&
 						(x <= xPos + range && y >= yPos - range) && (x >= xPos - range && y >= yPos - range)){					
-					message += "Point : (" + df.format(xPos) + "," + df.format(yPos) + ") : " + ee.getName() + " : "  + ee.getStrength() + "\n";
+					message += "(" + df.format(xPos) + "," + df.format(yPos) + ") '" + ee.getName() + "' element with  intensity '"  + ee.getStrength() + "'\n";
 					on_screen = true;
 				}
 			}
