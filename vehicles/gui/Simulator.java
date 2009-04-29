@@ -1,5 +1,7 @@
 package vehicles.gui;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.ItemListener;
 import java.awt.GridBagLayout;
 import java.awt.event.ItemEvent;
@@ -55,7 +57,7 @@ import javax.swing.JFrame;
  * Created on 26-Mar-2009, 13:02:43
  * @author Niall O'Hara
  */
-public class Simulator extends FrameView implements ChangeListener, ItemListener {
+public class Simulator extends FrameView implements ChangeListener, ItemListener, FocusListener {
 
     public Simulator(SingleFrameApplication app) {
         super(app);
@@ -391,7 +393,6 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
 
         button_Stop.setAction(actionMap.get("stopSim")); // NOI18N
         button_Stop.setText(resourceMap.getString("button_Stop.text")); // NOI18N
-        button_Stop.setEnabled(false);
         button_Stop.setFocusable(false);
         button_Stop.setHorizontalTextPosition(SwingConstants.CENTER);
         button_Stop.setName("button_Stop"); // NOI18N
@@ -400,10 +401,10 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         dropdown_SelectedSimulation.setModel(simulationDropDown);
         dropdown_SelectedSimulation.setName("dropdown_SelectedSimulation"); // NOI18N
         dropdown_SelectedSimulation.addItemListener(this);
+        dropdown_SelectedSimulation.addFocusListener(this);
 
         button_Pause.setAction(actionMap.get("pauseSim")); // NOI18N
         button_Pause.setText(resourceMap.getString("button_Pause.text")); // NOI18N
-        button_Pause.setEnabled(false);
         button_Pause.setName("button_Pause"); // NOI18N
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
@@ -463,6 +464,15 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
 
     // Code for dispatching events from components to event handlers.
 
+    public void focusGained(java.awt.event.FocusEvent evt) {
+        if (evt.getSource() == dropdown_SelectedSimulation) {
+            Simulator.this.dropdown_SelectedSimulationFocusGained(evt);
+        }
+    }
+
+    public void focusLost(java.awt.event.FocusEvent evt) {
+    }
+
     public void itemStateChanged(java.awt.event.ItemEvent evt) {
         if (evt.getSource() == dropdown_SelectedSimulation) {
             Simulator.this.dropdown_SelectedSimulationItemStateChanged(evt);
@@ -495,6 +505,12 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         //engine.pause();
         //populateFields(selected);
 }//GEN-LAST:event_dropdown_SelectedSimulationItemStateChanged
+
+    private void dropdown_SelectedSimulationFocusGained(FocusEvent evt) {//GEN-FIRST:event_dropdown_SelectedSimulationFocusGained
+        setSimulationArray();
+        simulationDropDown = new DefaultComboBoxModel(simulationArray);
+        dropdown_SelectedSimulation.setModel(simulationDropDown);
+    }//GEN-LAST:event_dropdown_SelectedSimulationFocusGained
 
     public Environment[] getEnvironmentArray() {
         return environmentArray;

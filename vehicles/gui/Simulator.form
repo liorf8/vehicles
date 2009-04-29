@@ -423,6 +423,7 @@
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="dropdown_SelectedSimulationItemStateChanged"/>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="dropdown_SelectedSimulationFocusGained"/>
               </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="button_Pause">
