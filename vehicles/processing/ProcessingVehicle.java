@@ -43,7 +43,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	int colorRed, colorGreen, colorBlue, id; //maybe we can make this by doing a hash on the vehicle's name?
 	PApplet parent; // The parent PApplet that we will render ourselves onto
 	float max_battery, curr_battery;
-	boolean canDie, pairedMating, dead = false, remember = false;
+	boolean canDie, pairedMating, dead = false, remember = false, paused = false;
 	private static int veh_count = 0;
 	public StopWatch stopwatch;
 	/*
@@ -432,22 +432,27 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	}
 	
 	public void updateSpeed_ofTime(float percent){
+		if(percent == 0){
+			this.stopwatch.pause();
+			paused = true;
+		}
+		if(paused){
+			paused = false;
+			this.stopwatch.unPause();
+		}
 		this.time_speed = percent;
 		this.curr_max_speed = percent * (this.max_speed / 100);
 		this.wA.updateMaxSpeed(this.curr_max_speed);
 		this.wB.updateMaxSpeed(this.curr_max_speed);
 	}
 	
-	/*
-	public void updateMaxSpeed(float s){
-		this.curr_max_speed = s; 
-		this.wA.updateMaxSpeed(s);
-		this.wB.updateMaxSpeed(s);
-	}
-	*/
 
 	public String toString(){
 		DecimalFormat df = new DecimalFormat("#.##");
+		double alive = (this.stopwatch.getElapsedTimeDoubleSecs() / 100) * this.time_speed;
+		if(alive == 0){
+			alive = this.stopwatch.getElapsedTimeAtPause();
+		}
 		return "Name: " + this.vehicleName + "\nMotor Strength: " + this.getMotorStrength() + "\nMax Displacement(Movement): " + df.format(this.max_speed) +
 		"\nCurrent Maximum Displacement: " + df.format(this.curr_max_speed) + 		"\nLeft Motor Turn Speed: " + this.wA.getAngleSpeed() +
 		"\nRight Motor Turn Speed: " + this.wB.getAngleSpeed() + "\nMax Battery: " + df.format(this.max_battery) + "\nCurr Battery: " +
@@ -455,7 +460,6 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		"\nCo-ordinates: (" + df.format(this.x) + "," + df.format(this.y) + ")" + "\nRight Sensor Values" + "\nPower: " + this.getRightSensorPower() +
 		"\nHeat: " + this.getRightSensorHeat() + "\nLight: " + this.getRightSensorLight() + "\nWater: " + this.getRightSensorWater() +
 		"\nLeft Sensor Values" + "\nPower: " + this.getLeftSensorPower() +"\nHeat: " + this.getLeftSensorHeat() +
-		"\nLight: " + this.getLeftSensorLight() + "\nWater: " + this.getLeftSensorWater() + "\nAlive for: " + 
-		df.format((this.stopwatch.getElapsedTimeDoubleSecs() / 100) * this.time_speed) + " seconds.";
+		"\nLight: " + this.getLeftSensorLight() + "\nWater: " + this.getLeftSensorWater() + "\nAlive for: " + df.format(alive) + " seconds.";
 	}
 }
