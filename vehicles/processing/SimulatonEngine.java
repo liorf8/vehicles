@@ -1,11 +1,12 @@
 package vehicles.processing;
 
-import java.util.Vector;
-import java.util.Iterator;
+import java.util.Vector; 
 import processing.core.*;
 import vehicles.environment.*;
 import vehicles.simulation.*;
 import vehicles.vehicle.*;
+import vehicles.genetics.*;
+import vehicles.util.StopWatch;
 
 @SuppressWarnings("serial")
 public class SimulatonEngine extends PApplet {
@@ -14,7 +15,7 @@ public class SimulatonEngine extends PApplet {
 	Vector<ProcessingEnviroElement> elementVector;
 	Environment enviro;
 	PImage ground; //background image
-	boolean specialSense = true, perishable_vehicles, evolution = false, asexual = false;
+	boolean specialSense = true, perishable_vehicles, evolution = false, asexual = false, pairedMating = false;
 	float move_speed = 0;
 	int num_sources, num_vehicles;
 	int w, h;
@@ -26,6 +27,13 @@ public class SimulatonEngine extends PApplet {
 	String on_screen_message = null;
 	ProcessingVehicle curr_on_screen = null;
 	int update_on_screen = 0;
+	float asexual_reproduction_constant = 0;
+	float chance_asexual_repro = 2.5f; //this is out of ten i.e 25% chance
+	StopWatch stopwatch;
+	int axle = 10;
+	int max_speed = 3;
+	int min_time_for_asexual = 1;
+	int max_time_for_asexual = 10;
 
 	public float getMove_speed() {
 		return move_speed;
@@ -52,21 +60,31 @@ public class SimulatonEngine extends PApplet {
 		vehicleVector = new Vector<ProcessingVehicle>();
 		int num_veh = veh.size();
 
-		boolean paired = false;
 		if(this.evolution){
 			if(this.repro_method == 1){
 				asexual = true;
 			}
 			else if(this.repro_method == 2){
-				paired = true;
+				pairedMating = true;
 			}
 			else{
 				this.evolution = false;
 			}
 		}
 
+		if(asexual){
+			if (this.sel_method == Genetics.NoSelection){
+				evolution = false;
+				asexual = false;
+			}
+			if(this.n_for_sel == 0 && (this.sel_method == Genetics.TopNPercenSelection || this.sel_method == Genetics.TournamenetSelection)){
+				this.evolution = false;
+				asexual = false;
+			}
+		}
+		
 		for (int i = 0; i < num_veh; i++) {
-			this.vehicleVector.add(new ProcessingVehicle(this, veh.elementAt(i), 400, 400, /*random(PI)*/12f, 10, i, 3, paired, this.perishable_vehicles));
+			this.vehicleVector.add(new ProcessingVehicle(this, veh.elementAt(i), 400, 400, /*random(PI)*/12f, axle, i, max_speed, pairedMating, this.perishable_vehicles));
 		}
 
 		this.num_vehicles = vehicleVector.size();
@@ -85,11 +103,15 @@ public class SimulatonEngine extends PApplet {
 			elementVector.add(new ProcessingEnviroElement(this, curr, curr.getName().hashCode()));
 			print(elementVector.elementAt(i).toString());
 		}
+		this.asexual_reproduction_constant = (int)this.random(this.max_time_for_asexual - this.min_time_for_asexual) + this.min_time_for_asexual;
+		stopwatch = new StopWatch();
 	}
 
 	// Processing Sketch Setup
 	@Override
 	public void setup() {
+		this.stopwatch.start();
+		this.stopwatch.addOneSecond();
 		font = loadFont(font_location); 
 		textFont(font, 14); 
 
@@ -106,12 +128,6 @@ public class SimulatonEngine extends PApplet {
 	public void draw() {
 		image(ground, 0, 0);
 
-		if(this.on_screen_message != null){
-			fill(100, 255, 190);
-			text(this.on_screen_message, 200, 200, this.on_screen_message.length() * 5, 100);
-		}
-
-
 		if(this.num_vehicles > 0){
 			for(int i = 0; i < this.num_vehicles; i++){
 				ProcessingVehicle temp = this.vehicleVector.elementAt(i);
@@ -119,6 +135,10 @@ public class SimulatonEngine extends PApplet {
 				temp.draw();
 				this.num_vehicles = vehicleVector.size();
 			}
+		}
+		
+		if(this.asexual){
+			this.asexualReproduction();
 		}
 
 		updateOnScreenMessage();
@@ -130,7 +150,44 @@ public class SimulatonEngine extends PApplet {
 			checkMouseLeft(pmouseX, pmouseY, 1);
 		}
 		else {
+		}
 
+		if(this.on_screen_message != null){
+			fill(100, 255, 190);
+			text(this.on_screen_message, 200, 200, this.on_screen_message.length() * 5, 100);
+		}
+
+	}
+
+	public void asexualReproduction(){
+		long elapsed = this.stopwatch.getElapsedTimeSecs();
+		//System.out.println("Elapsed time: " + elapsed);
+		//System.out.println("Asexual Repro Constant: " + this.asexual_reproduction_constant);
+		//System.out.println("elapsed % this.asexual_reproduction_constant: " + elapsed % this.asexual_reproduction_constant);
+		String log = "";
+		if(elapsed % this.asexual_reproduction_constant == 0){
+			this.stopwatch.addOneSecond();
+			System.out.println("Asexes can occur");
+			float r = this.random(10);
+			if(this.chance_asexual_repro <= r){
+				System.out.println("Asexes HAS occurred");
+				Vehicle v = Genetics.produceVehicleAsexually(this.sel_method, this.n_for_sel, this.vehicleVector, this.sim.log);
+				if(v == null){
+					return;
+				}
+
+				ProcessingVehicle pv = new ProcessingVehicle(this, v, this.random(this.width),
+						this.random(this.height), this.random(PI), axle, v.getName().hashCode(), max_speed,
+						this.pairedMating, this.perishable_vehicles);
+				this.vehicleVector.add(pv);
+				log += "Adding new vehicle to simulation.\nVehicle " + v.getName() + " added successfully!";
+				if(this.num_vehicles >= 100){
+					log+= "\nToo many vehicles in simulation. Oldest vehicle moving out.\nVehicle " + 
+					this.vehicleVector.elementAt(0).getName() + " has moved out!";
+					this.vehicleVector.removeElementAt(0);
+				}
+				this.sim.log.addToLog(log);
+			}
 		}
 	}
 

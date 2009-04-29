@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Vector;
 import java.util.Collections;
 
+import vehicles.processing.ProcessingVehicle;
 import vehicles.vehicle.Vehicle;
 import vehicles.simulation.*;
 import vehicles.util.*;
@@ -21,6 +22,7 @@ public class Genetics {
 	public static int AsexualReproduction = 0;
 	public static int PairedMating = 1;	
 	private static int offspring_number = 0;
+	private static int offspring_asexual_number = 0;
 
 	/*******************************************************************************************\
 	/																							\
@@ -61,7 +63,7 @@ public class Genetics {
 	 * @param v A vehicle array to extract a single vehicle from
 	 * @param n This is for some of the genetic algorithms that require user input such as topNselection
 	 */ 
-	public static Vehicle getVehicle_SelectionBased(int gen_selection, Vector<Vehicle> v, int n, SimulationLog s){
+	public static Vehicle getVehicle_SelectionBased(int gen_selection, Vector<ProcessingVehicle> v, int n, SimulationLog s){
 		switch(gen_selection){
 		case 0:
 			System.out.println("No genetic selection method set! Returning null");
@@ -90,7 +92,7 @@ public class Genetics {
 	 * 
 	 * @return a vehicle chosen by roulette selection
 	 */
-	public static Vehicle getVehicleByRoulette(Vector<Vehicle> v,  SimulationLog s){
+	public static Vehicle getVehicleByRoulette(Vector<ProcessingVehicle> v,  SimulationLog s){
 		int len = v.size();
 		sortByFitness(v);
 		int i = 0;
@@ -127,7 +129,7 @@ public class Genetics {
 	 * is then chosen as the selected vehicle to be the base for the next generation.
 	 * @return a vehicle chosen by roulette selection N times
 	 */
-	public static Vehicle getVehicleByTournament(Vector<Vehicle> v, int n,  SimulationLog s){
+	public static Vehicle getVehicleByTournament(Vector<ProcessingVehicle> v, int n,  SimulationLog s){
 		if(n == 0){
 			s.addToLog("Choosing vehicle by Tournament Selection. As n was 0, a null vehicle is being returned");
 			return null;
@@ -150,7 +152,7 @@ public class Genetics {
 	 * N percent of the population as specified by the user.
 	 * @return a vehicle chosen from the top N percent
 	 */
-	public static Vehicle getVehicleByTop_N_Percent(Vector<Vehicle> v, int n,  SimulationLog s){
+	public static Vehicle getVehicleByTop_N_Percent(Vector<ProcessingVehicle> v, int n,  SimulationLog s){
 		int size = v.size();
 		//cant enter a number greater than 100..only goes up to 100%
 		if(n > 100 || n <= 0){
@@ -180,7 +182,7 @@ public class Genetics {
 	 * @param A vector of vehicles to choose the best from
 	 * @return the best vehicle in the set of vehicles
 	 */
-	public static Vehicle getVehicleByBest(Vector<Vehicle> v,  SimulationLog s){
+	public static Vehicle getVehicleByBest(Vector<ProcessingVehicle> v,  SimulationLog s){
 		sortByFitness(v);
 		s.addToLog("Choosing the best vehicle from the population in terms of fitness.\nVehicle " 
 				+ v.lastElement().getName() + " chosen as the Best\nVehicle in the population.");
@@ -201,7 +203,7 @@ public class Genetics {
 	 * A selection operator which randomly selects a single vehicle from the population.
 	 * @return a random vehicle from the set of vehicles
 	 */
-	public static Vehicle getVehicleByRandom(Vector<Vehicle> v,  SimulationLog s){
+	public static Vehicle getVehicleByRandom(Vector<ProcessingVehicle> v,  SimulationLog s){
 		Random ran = new Random();
 		int num_veh = v.size();
 		int random = ran.nextInt(num_veh);
@@ -215,7 +217,7 @@ public class Genetics {
 	 *@param v the vehcile array to sort 
 	 */
 	@SuppressWarnings("unchecked")
-	public static void sortByFitness(Vector<Vehicle> v){
+	public static void sortByFitness(Vector<ProcessingVehicle> v){
 		Collections.sort(v);
 	}
 
@@ -524,7 +526,7 @@ public class Genetics {
 	 * This methods allows you to pass all variables associated with asexual reproduction
 	 * in one pass to generate a vehicle
 	 */
-	public static Vehicle produceVehicleAsexually(int gen_selection, int n_for_selection, Vector<Vehicle> v, SimulationLog s){
+	public static Vehicle produceVehicleAsexually(int gen_selection, int n_for_selection, Vector<ProcessingVehicle> v, SimulationLog s){
 		Vehicle parent = Genetics.getVehicle_SelectionBased(gen_selection, v, n_for_selection, s);
 		if(parent == null){
 			return null;
@@ -541,17 +543,19 @@ public class Genetics {
 	 */
 	public static Vehicle asexualReproduction(Vehicle parent, SimulationLog s){
 		Vehicle child = new Vehicle();
-		String name = "Offspring of "+ parent.getName();
+		String name = "Offspring by Asexual Reproduction "+ Genetics.offspring_asexual_number;
+		String description = "Offspring of '" + parent.getName() + "'";
+		offspring_asexual_number++;
 		s.addToLog("Creating a new vehicle by asexual reproduction of " + parent.getName() +
 				"\nNew vehicle name: " + name);
 		child.setName(name);
 		child.setAuthor(name);
-		child.setDescription(name);
+		child.setDescription(description);
 
 		//These will be set for an editor vehicle if we go down that path
 		//For an object in memory alone, null is fine for these
 		//child.setXmlLocation("src/test/genetics/tmp/" + UtilMethods.formatString(name) + ".veh");
-		child.setXmlLocation(null);
+		//child.setXmlLocation(null);
 		//s.addToLog("New vehicle temporarily stored in: " + child.getXmlLocation());
 		child.setFileName(name);
 

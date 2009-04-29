@@ -16,7 +16,7 @@ public class GeneticsTestCases {
 
 	public static void main(String[] args){
 
-
+		/*
 		Random r = new Random();
 
 		Simulation sim = new Simulation("xml/simulations/default_simulation1.sim");
@@ -105,6 +105,6 @@ public class GeneticsTestCases {
 		
 		System.out.println(sim.log.getLog());
 
-
+	*/
 	}
 }

@@ -4,14 +4,10 @@
  */
 package vehicles.processing;
 
-import java.util.Iterator;
-
-
 import processing.core.*;
 import vehicles.vehicle.*;
 import vehicles.genetics.*;
 import vehicles.simulation.SimulationLog;
-import vehicles.util.UtilMethods;
 import java.text.DecimalFormat;
 
 /**
@@ -20,6 +16,7 @@ import java.text.DecimalFormat;
  */
 public class ProcessingVehicle extends Vehicle implements PConstants {
 
+	float chance_to_mate = 2.5f; //this is out of ten
 	float max_speed;
 	float x, y, axle;
 	float axleHalf, axleSquared; //derivatives of axle
@@ -38,7 +35,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	 * 
 	 */
 	public ProcessingVehicle(PApplet p, Vehicle v, float x, float y, float angle, float axle_length, int id, float m, boolean pairedM, boolean d) {
-
+		
 		super(v);
 		this.parent = p;
 		this.x = x;
@@ -124,7 +121,8 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		angle += wheel_diff / axle;
 		x += PApplet.cos(angle) * wheel_average;
 		y += PApplet.sin(angle) * wheel_average;
-		checkCollision();
+		checkCollisionVehicles();
+		checkCollisionElements();
 
 		// wheels move
 		ang = angle - HALF_PI;
@@ -154,7 +152,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	}
 
 	public void depleteBatt(){
-		this.curr_battery -= 0.005;
+		this.curr_battery -= 1;
 		this.checkBattery();
 	}
 
@@ -221,19 +219,36 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 	}
 
-	void checkCollision() { //if vehicles are occupying the same spot, move them
 
+	void checkCollisionElements() { //if vehicles occupies exact same spot as element, add it to memory
+		float xPos, yPos;
+		SimulatonEngine engineParent = (SimulatonEngine) parent;
+		ProcessingEnviroElement temp;
+		int size = engineParent.num_sources;
+		for(int i = 0; i < size; i++){
+			temp = engineParent.elementVector.elementAt(i);
+			xPos = temp.xPos;
+			yPos = temp.yPos;
+			if((x <= xPos + axle && y <= yPos + axle) && (x >= xPos - axle && y <= yPos + axle) &&
+					(x <= xPos + axle && y >= yPos - axle) && (x >= xPos - axle && y >= yPos - axle)){
+				System.out.println("Adding to memory");
+				this.addElementToMemory(engineParent.elementVector.elementAt(i), engineParent.sim.log);
+				return;
+			}
+		}
+	}
+
+	void checkCollisionVehicles() { //if vehicles are occupying the same spot, move them 
 		float dx, dy, da;
 		SimulatonEngine engineParent = (SimulatonEngine) parent;
 		ProcessingVehicle temp;
-		int size = engineParent.vehicleVector.size();
+		int size = engineParent.num_vehicles;
 		for(int i = 0; i < size; i++){
 			try{
 				temp = engineParent.vehicleVector.elementAt(i);
 				if (temp.getId() != id) {
 					dx = x - temp.x;
 					dy = y - temp.y;
-					//if (abs(dx) <=axle && abs(dy)<=axle ) {
 					if (dx * dx + dy * dy < axleSquared) {
 						if(this.pairedMating){
 							//System.out.println("Vehicles can mate...");
@@ -241,12 +256,11 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 							double their_fitness = temp.getFitness();
 							if((their_fitness >= my_fitness - (my_fitness * 0.1)) ||(their_fitness <= my_fitness + (my_fitness * 0.1)) ){
 								float r = this.parent.random(10);
-								System.out.println("Random number: " + r);
-								if(r <= 2){ //30% chance of mating
+								if(r <= chance_to_mate){ 
 									System.out.println("Vehicles are mating ...");
 									this.mate(temp);
 									veh_count ++;
-									if(veh_count >=500){
+									if(veh_count >=1000){
 										engineParent.pause();
 									}
 									this.depleteBatt();
@@ -270,7 +284,6 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 						}
 
 						da = PApplet.atan2(dy, dx);
-						//angle = ;
 						x = x + PApplet.cos(da) * axleHalf;
 						y = y + PApplet.sin(da) * axleHalf;
 						//do the actual move that avoids the collision
@@ -280,6 +293,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 				}
 			}
 			catch(Exception e){
+				e.printStackTrace();
 				return;
 			}
 		}
@@ -288,17 +302,24 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	private void mate(ProcessingVehicle other){
 		SimulatonEngine engineParent = (SimulatonEngine) parent;
 		SimulationLog s = engineParent.sim.log;
+		String log = "";
 		Vehicle v = Genetics.pairedMating(this, other, s);
-		ProcessingVehicle pv = new ProcessingVehicle(this.parent, v, this.parent.random(this.parent.width), this.parent.random(this.parent.height), this.parent.random(PI), 10, (int)this.parent.random(100), 3, this.pairedMating, this.canDie);
+		int axle = 10;
+		ProcessingVehicle pv = new ProcessingVehicle(this.parent, v, this.parent.random(this.parent.width),
+				this.parent.random(this.parent.height), this.parent.random(PI), axle, v.getName().hashCode(), 
+				this.max_speed, this.pairedMating, this.canDie);
 
 		if(v != null){
+			log += "Adding new vehicle to simulation.\nVehicle " + v.getName() + " added successfully!";
 			engineParent.vehicleVector.add(pv);
 		}
 		//Stops the vehicles killing everything
 		if(engineParent.vehicleVector.size() == 100){
 			pv = engineParent.vehicleVector.elementAt(0);
+			log+= "\nToo many vehicles in simulation. Oldest vehicle moving out.\nVehicle " + pv.getName() + " has moved out!";
 			pv.die();
 		}
+		s.addToLog(log);
 	}
 
 	public void die(){
