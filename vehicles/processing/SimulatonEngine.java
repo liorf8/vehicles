@@ -115,6 +115,8 @@ public class SimulatonEngine extends PApplet {
     }
 
     public void setSim(Simulation sim) {
+        vehicleVector = null;
+        elementVector = null;
         this.sim = sim;
         this.perishable_vehicles = this.sim.getPerishableVehicles();
 		this.evolution = this.sim.getEvolution();
