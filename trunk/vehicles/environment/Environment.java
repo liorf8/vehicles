@@ -467,6 +467,7 @@ public class Environment {
 	}
 	
 	public void addElements(EnvironmentElement[] array){
+		this.elementVector = new Vector<EnvironmentElement>();
 		for(int i = 0; i < array.length ; i++){
 			this.elementVector.add(array[i]);
 		}
