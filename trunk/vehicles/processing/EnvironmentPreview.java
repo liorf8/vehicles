@@ -37,16 +37,16 @@ public class EnvironmentPreview extends PApplet {
 	 * @param y panel y size
 	 */
 	public void updateSize(int x, int y){
-		int scaleFactor = this.width / x ;
+		float scaleFactor = (float)this.width / (float) x ;
 		for(int i = 0;i<e.getElements().size();i++){
 			e.getElements().elementAt(i).
-				setRadius(e.getElements().elementAt(i).getRadius() / scaleFactor);
+				setRadius((int)(e.getElements().elementAt(i).getRadius() / scaleFactor));
 			e.getElements().elementAt(i).
 				setXpos(e.getElements().elementAt(i).getXpos() / scaleFactor);
 			e.getElements().elementAt(i).
 				setYpos(e.getElements().elementAt(i).getYpos() / scaleFactor);
 			e.getElements().elementAt(i).
-				setStrength(e.getElements().elementAt(i).getStrength() / scaleFactor);			
+				setStrength((int)(e.getElements().elementAt(i).getStrength() / scaleFactor));			
 		}
 		size(x,y);
 	}
