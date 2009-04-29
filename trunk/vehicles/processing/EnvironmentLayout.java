@@ -15,8 +15,10 @@ public class EnvironmentLayout extends PApplet {
 	int w, h;
 	Vector<ProcessingEnviroElement> ee;
 	ElementBrushPreview eb;
+	int bufferTime;
+	
 	public EnvironmentLayout(){
-		
+
 	}
 	/**
 	 * Create a new preview from an environment object
@@ -30,8 +32,8 @@ public class EnvironmentLayout extends PApplet {
 			ProcessingEnviroElement temp = new ProcessingEnviroElement(this,it.next(),0);
 			ee.add(temp);
 		}
-        w = e.getWidth();
-        h = e.getHeigth();
+		w = e.getWidth();
+		h = e.getHeigth();
 
 	}
 	public void setEnvironment(Environment e){
@@ -41,8 +43,8 @@ public class EnvironmentLayout extends PApplet {
 			ProcessingEnviroElement temp = new ProcessingEnviroElement(this,it.next(),0);
 			ee.add(temp);
 		}
-        w = e.getWidth();
-        h = e.getHeigth();
+		w = e.getWidth();
+		h = e.getHeigth();
 	}
 	public void setWidth_and_Height(int w, int h){
 		this.w = w;
@@ -50,7 +52,7 @@ public class EnvironmentLayout extends PApplet {
 		this.draw();
 	}
 
-	
+
 	public void setEb(ElementBrushPreview b){
 		this.eb = b;
 	}
@@ -63,7 +65,7 @@ public class EnvironmentLayout extends PApplet {
 
 		//updateGround();
 		cursor(CROSS);
-		noLoop();
+		
 	}
 
 	@Override
@@ -71,68 +73,40 @@ public class EnvironmentLayout extends PApplet {
 		size(w,h); //lets the window be redrawn to a different size
 		background(0);
 		//image(ground, 0, 0); //works, just too slow		
-//		stroke(Color.RED.getRGB());
-//		strokeWeight(4);
-//		fill(Color.BLACK.getRGB());
-//		rect(0,0,width,height);//draw a border - take out later
-//		noFill();
-//		noStroke();
+		//		stroke(Color.RED.getRGB());
+		//		strokeWeight(4);
+		//		fill(Color.BLACK.getRGB());
+		//		rect(0,0,width,height);//draw a border - take out later
+		//		noFill();
+		//		noStroke();
 		Iterator<ProcessingEnviroElement> it = ee.iterator();
 		while(it.hasNext()){
 			ProcessingEnviroElement curr = it.next();
 			curr.editorDraw();
 		}
+		//print("Now have "+ee.size()+ " elements\n");
 		//updateGround(); // works, but too slow
-		print("Now have "+ee.size()+ " elements\n");
+		
 	}
 
 	@Override
-	public void mouseClicked() {
-		
+	public void mousePressed() {
 
-		if(mouseX <= this.w && mouseY <= this.h  &&  eb != null){
-			ProcessingEnviroElement toSet = new ProcessingEnviroElement(eb.getPev());
-			toSet.parent = this;
-			toSet.setPosition(new Point(mouseX,mouseY));
-			System.out.println(toSet.tostring());
-			this.ee.add(toSet);
-			this.draw();
+
+		if(mouseX <= this.w && mouseY <= this.h  && eb != null && (frameCount - bufferTime > 2) ){
+			
+				ProcessingEnviroElement toSet = new ProcessingEnviroElement(eb.getPev());
+				toSet.parent = this;
+				toSet.setPosition(new Point(mouseX,mouseY));
+				System.out.println(toSet.tostring());
+				this.ee.add(toSet);
+				print("Now have "+ee.size()+ " elements\n");
+				bufferTime = frameCount;
+				this.draw();
 			
 		}
 	}
 
-	public void addElement(int xPos, int yPos, int type, int radius, int intensity){
-		EnvironmentElement e = new EnvironmentElement();
-		e.setRadius(radius);
-		e.setStrength(intensity);
-		e.setType(type);
-
-		switch(type){
-		case EnvironmentElement.WaterSource:
-			e.setName("Water Source");
-			break;
-		case EnvironmentElement.HeatSource:
-			e.setName("Heat Source");
-			break;
-		case EnvironmentElement.PowerSource:
-			e.setName("Power Source");
-			break;
-		case EnvironmentElement.LightSource:
-			e.setName("Light Source");
-			break;
-		}
-
-		int len = this.ee.size();
-		Point p = new Point(xPos, yPos);
-		for(int i = 0; i < len; i++){
-			if(this.ee.elementAt(i).comparePoint(p)){
-				this.ee.removeElementAt(i);
-				break;
-			}
-		}
-		e.setPosition(new Point(xPos, yPos));
-		//this.ee.add(e);
-	}
 	/**
 	 * Get an array of the elements in this editing session 
 	 * @return this array
@@ -146,8 +120,9 @@ public class EnvironmentLayout extends PApplet {
 		}		
 		return toReturn;		
 	}
-	
+
 	public void removeAllElements(){
+		this.ee = null;
 		this.ee = new Vector<ProcessingEnviroElement>();
 	}
 }
