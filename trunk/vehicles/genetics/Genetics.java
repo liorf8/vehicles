@@ -499,7 +499,7 @@ public class Genetics {
 					parentB.getLearningRate(), 20);
 			child.setMaxMem(max_mem);
 			child.setLearningRate(l_rate);
-			int ran_mem = r.nextInt(child.getMaxMem());
+			int ran_mem = r.nextInt(child.getMaxMem() - 1) + 1;
 			child.add_n_memory(parentA.getMem(), ran_mem);
 			ran_mem = child.getMaxMem() - ran_mem;
 			child.add_n_memory(parentB.getMem(), ran_mem);
