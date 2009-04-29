@@ -33,7 +33,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="text_Status" pref="379" max="32767" attributes="0"/>
+                      <Component id="text_Status" pref="359" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="button_Save" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -41,7 +41,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="button_Cancel" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="tabContainer" alignment="1" max="32767" attributes="0"/>
+                  <Component id="tabContainer" alignment="1" pref="600" max="32767" attributes="0"/>
                   <Component id="panel_SelectedEnvironment" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -84,7 +84,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="dropdown_SelectedEnvironment" alignment="0" pref="608" max="32767" attributes="0"/>
+              <Component id="dropdown_SelectedEnvironment" alignment="0" pref="588" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -134,9 +134,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="panel_LastModified" alignment="0" max="32767" attributes="2"/>
-                          <Component id="panel_Description" alignment="0" pref="595" max="32767" attributes="2"/>
+                          <Component id="panel_Description" alignment="0" pref="575" max="32767" attributes="2"/>
                           <Component id="panel_Author" alignment="0" max="32767" attributes="2"/>
-                          <Component id="panel_Name" alignment="1" pref="595" max="32767" attributes="2"/>
+                          <Component id="panel_Name" alignment="1" pref="575" max="32767" attributes="2"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -178,7 +178,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_Name" alignment="0" pref="583" max="32767" attributes="0"/>
+                      <Component id="text_Name" alignment="0" pref="563" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -211,7 +211,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_Author" alignment="0" pref="583" max="32767" attributes="0"/>
+                      <Component id="text_Author" alignment="0" pref="563" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -247,7 +247,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollpanel_Description" alignment="0" pref="583" max="32767" attributes="0"/>
+                      <Component id="scrollpanel_Description" alignment="0" pref="563" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -299,7 +299,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="text_LastModified" alignment="0" pref="583" max="32767" attributes="0"/>
+                      <Component id="text_LastModified" alignment="0" pref="563" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -339,12 +339,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="panel_Layout" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="panel_Tools" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="panel_Tools" min="-2" pref="190" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -435,7 +435,13 @@
                     </TitledBorder>
                   </Border>
                 </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[190, 0]"/>
+                </Property>
                 <Property name="name" type="java.lang.String" value="panel_Tools" noResource="true"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[180, 408]"/>
+                </Property>
               </Properties>
 
               <Layout>
@@ -472,7 +478,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="dropdown_GridSize" alignment="0" pref="186" max="32767" attributes="0"/>
+                          <Component id="dropdown_GridSize" alignment="0" pref="166" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -511,25 +517,18 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="toggle_SelectionMode" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="dropdown_Brush" pref="75" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="processing_Brush" alignment="0" pref="186" max="32767" attributes="0"/>
+                          <Component id="processing_Brush" alignment="0" max="32767" attributes="0"/>
                           <Component id="panel_Radius" alignment="0" max="32767" attributes="2"/>
                           <Component id="panel_Intensity" alignment="0" max="32767" attributes="2"/>
+                          <Component id="dropdown_Brush" alignment="1" pref="166" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="toggle_SelectionMode" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="dropdown_Brush" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="dropdown_Brush" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="processing_Brush" pref="166" max="32767" attributes="0"/>
+                              <Component id="processing_Brush" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="panel_Radius" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
@@ -539,15 +538,6 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JToggleButton" name="toggle_SelectionMode">
-                      <Properties>
-                        <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                          <action class="vehicles.gui.EnvironmentEditor" id="toggleBrush" methodName="toggleBrush"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" resourceKey="toggle_SelectionMode.text"/>
-                        <Property name="name" type="java.lang.String" value="toggle_SelectionMode" noResource="true"/>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JComboBox" name="dropdown_Brush">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -568,7 +558,18 @@
                         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="processing_Brush.add(preBrush, BorderLayout.CENTER);"/>
                       </AuxValues>
 
-                      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <EmptySpace min="0" pref="166" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <EmptySpace min="0" pref="167" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
                     </Container>
                     <Container class="javax.swing.JPanel" name="panel_Radius">
                       <Properties>
@@ -586,7 +587,7 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="slider_Radius" pref="138" max="32767" attributes="0"/>
+                                  <Component id="slider_Radius" pref="118" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="text_Radius" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
@@ -603,6 +604,7 @@
                         <Component class="javax.swing.JSlider" name="slider_Radius">
                           <Properties>
                             <Property name="maximum" type="int" value="150"/>
+                            <Property name="minimum" type="int" value="5"/>
                             <Property name="value" type="int" value="10"/>
                             <Property name="name" type="java.lang.String" value="slider_Radius" noResource="true"/>
                           </Properties>
@@ -636,7 +638,7 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="slider_Intensity" pref="138" max="32767" attributes="0"/>
+                                  <Component id="slider_Intensity" pref="118" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="text_Intensity" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>

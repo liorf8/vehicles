@@ -7,6 +7,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import javax.swing.BoxLayout;
 import javax.swing.JSlider;
 import javax.swing.JToggleButton;
 import javax.swing.ScrollPaneConstants;
@@ -110,7 +111,6 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_GridSize = new JPanel();
         dropdown_GridSize = new JComboBox();
         panel_Brush = new JPanel();
-        toggle_SelectionMode = new JToggleButton();
         dropdown_Brush = new JComboBox();
         processing_Brush = new JPanel();
         panel_Radius = new JPanel();
@@ -152,7 +152,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_SelectedEnvironment.setLayout(panel_SelectedEnvironmentLayout);
         panel_SelectedEnvironmentLayout.setHorizontalGroup(
             panel_SelectedEnvironmentLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(dropdown_SelectedEnvironment, 0, 608, Short.MAX_VALUE)
+            .addComponent(dropdown_SelectedEnvironment, 0, 588, Short.MAX_VALUE)
         );
         panel_SelectedEnvironmentLayout.setVerticalGroup(
             panel_SelectedEnvironmentLayout.createParallelGroup(Alignment.LEADING)
@@ -173,7 +173,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_Name.setLayout(panel_NameLayout);
         panel_NameLayout.setHorizontalGroup(
             panel_NameLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_Name, GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+            .addComponent(text_Name, GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
         );
         panel_NameLayout.setVerticalGroup(
             panel_NameLayout.createParallelGroup(Alignment.LEADING)
@@ -189,7 +189,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_Author.setLayout(panel_AuthorLayout);
         panel_AuthorLayout.setHorizontalGroup(
             panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_Author, GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+            .addComponent(text_Author, GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
         );
         panel_AuthorLayout.setVerticalGroup(
             panel_AuthorLayout.createParallelGroup(Alignment.LEADING)
@@ -216,7 +216,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_Description.setLayout(panel_DescriptionLayout);
         panel_DescriptionLayout.setHorizontalGroup(
             panel_DescriptionLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(scrollpanel_Description, GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+            .addComponent(scrollpanel_Description, GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
         );
         panel_DescriptionLayout.setVerticalGroup(
             panel_DescriptionLayout.createParallelGroup(Alignment.LEADING)
@@ -234,7 +234,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_LastModified.setLayout(panel_LastModifiedLayout);
         panel_LastModifiedLayout.setHorizontalGroup(
             panel_LastModifiedLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(text_LastModified, GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+            .addComponent(text_LastModified, GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
         );
         panel_LastModifiedLayout.setVerticalGroup(
             panel_LastModifiedLayout.createParallelGroup(Alignment.LEADING)
@@ -249,9 +249,9 @@ public class EnvironmentEditor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(tab_PropertiesLayout.createParallelGroup(Alignment.TRAILING)
                     .addComponent(panel_LastModified, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel_Description, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+                    .addComponent(panel_Description, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
                     .addComponent(panel_Author, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel_Name, GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE))
+                    .addComponent(panel_Name, GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE))
                 .addContainerGap())
         );
         tab_PropertiesLayout.setVerticalGroup(
@@ -307,7 +307,9 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         );
 
         panel_Tools.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Tools.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Tools.border.titleFont"))); // NOI18N
+        panel_Tools.setMinimumSize(new Dimension(190, 0));
         panel_Tools.setName("panel_Tools"); // NOI18N
+        panel_Tools.setPreferredSize(new Dimension(180, 408));
 
         panel_GridSize.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_GridSize.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_GridSize.border.titleFont"))); // NOI18N
         panel_GridSize.setName("panel_GridSize"); // NOI18N
@@ -324,7 +326,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_GridSize.setLayout(panel_GridSizeLayout);
         panel_GridSizeLayout.setHorizontalGroup(
             panel_GridSizeLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(dropdown_GridSize, 0, 186, Short.MAX_VALUE)
+            .addComponent(dropdown_GridSize, 0, 166, Short.MAX_VALUE)
         );
         panel_GridSizeLayout.setVerticalGroup(
             panel_GridSizeLayout.createParallelGroup(Alignment.LEADING)
@@ -333,10 +335,6 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 
         panel_Brush.setBorder(BorderFactory.createTitledBorder(null, resourceMap.getString("panel_Brush.border.title"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, resourceMap.getFont("panel_Brush.border.titleFont"))); // NOI18N
         panel_Brush.setName("panel_Brush"); // NOI18N
-
-        toggle_SelectionMode.setAction(actionMap.get("toggleBrush")); // NOI18N
-        toggle_SelectionMode.setText(resourceMap.getString("toggle_SelectionMode.text")); // NOI18N
-        toggle_SelectionMode.setName("toggle_SelectionMode"); // NOI18N
 
         dropdown_Brush.setModel(elementDropDown);
         dropdown_Brush.setName("dropdown_Brush"); // NOI18N
@@ -348,12 +346,23 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 
         processing_Brush.setBackground(resourceMap.getColor("processing_Brush.background")); // NOI18N
         processing_Brush.setName("processing_Brush"); // NOI18N
-        processing_Brush.setLayout(new BorderLayout());
+
+        GroupLayout processing_BrushLayout = new GroupLayout(processing_Brush);
+        processing_Brush.setLayout(processing_BrushLayout);
+        processing_BrushLayout.setHorizontalGroup(
+            processing_BrushLayout.createParallelGroup(Alignment.LEADING)
+            .addGap(0, 166, Short.MAX_VALUE)
+        );
+        processing_BrushLayout.setVerticalGroup(
+            processing_BrushLayout.createParallelGroup(Alignment.LEADING)
+            .addGap(0, 167, Short.MAX_VALUE)
+        );
 
         panel_Radius.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Radius.border.title"))); // NOI18N
         panel_Radius.setName("panel_Radius"); // NOI18N
 
         slider_Radius.setMaximum(150);
+        slider_Radius.setMinimum(5);
         slider_Radius.setValue(10);
         slider_Radius.setName("slider_Radius"); // NOI18N
         slider_Radius.addChangeListener(new ChangeListener() {
@@ -372,7 +381,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_RadiusLayout.setHorizontalGroup(
             panel_RadiusLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_RadiusLayout.createSequentialGroup()
-                .addComponent(slider_Radius, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addComponent(slider_Radius, GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_Radius, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
         );
@@ -402,7 +411,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_IntensityLayout.setHorizontalGroup(
             panel_IntensityLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, panel_IntensityLayout.createSequentialGroup()
-                .addComponent(slider_Intensity, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addComponent(slider_Intensity, GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(text_Intensity, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
         );
@@ -416,22 +425,17 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_Brush.setLayout(panel_BrushLayout);
         panel_BrushLayout.setHorizontalGroup(
             panel_BrushLayout.createParallelGroup(Alignment.LEADING)
-            .addGroup(panel_BrushLayout.createSequentialGroup()
-                .addComponent(toggle_SelectionMode, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(dropdown_Brush, 0, 75, Short.MAX_VALUE))
-            .addComponent(processing_Brush, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+            .addComponent(processing_Brush, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panel_Radius, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panel_Intensity, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(dropdown_Brush, Alignment.TRAILING, 0, 166, Short.MAX_VALUE)
         );
         panel_BrushLayout.setVerticalGroup(
             panel_BrushLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(panel_BrushLayout.createSequentialGroup()
-                .addGroup(panel_BrushLayout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(toggle_SelectionMode)
-                    .addComponent(dropdown_Brush, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addComponent(dropdown_Brush, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(processing_Brush, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                .addComponent(processing_Brush, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(panel_Radius, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
@@ -459,11 +463,11 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         tab_Design.setLayout(tab_DesignLayout);
         tab_DesignLayout.setHorizontalGroup(
             tab_DesignLayout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, tab_DesignLayout.createSequentialGroup()
+            .addGroup(tab_DesignLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panel_Layout, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(panel_Tools, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel_Tools, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         tab_DesignLayout.setVerticalGroup(
@@ -502,14 +506,14 @@ public class EnvironmentEditor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
                     .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(text_Status, GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                        .addComponent(text_Status, GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(button_Save)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(button_SaveAs)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(button_Cancel))
-                    .addComponent(tabContainer, Alignment.TRAILING)
+                    .addComponent(tabContainer, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
                     .addComponent(panel_SelectedEnvironment, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -598,11 +602,30 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 	}
 
 	@Action
-	public void toggleBrush() {
-	}
-
-	@Action
 	public void saveEnvironment() {
+        Environment e = (Environment) dropdown_SelectedEnvironment.getSelectedItem();
+        Grid g = (Grid) gridDropDown.getSelectedItem();
+        e.setName(text_Name.getText()); //set object attributes
+		e.setAuthor(text_Author.getText());
+		e.setDescription(text_Description.getText());
+		e.setWidth(proLayout.getWidth());
+        e.setHeight(proLayout.getHeight());
+        e.addElements(proLayout.getElements());
+        System.out.print(proLayout.getElements());
+		e.saveEnvironment(); //convert object and its attributes into XML
+        String lastModified = e.getLastModified();
+        appRoot.setEnvironmentArray();
+		environmentArray = appRoot.getEnvironmentArray();
+		environmentDropDown = new DefaultComboBoxModel(environmentArray);
+        for (int i = 0; i < environmentArray.length; i++) {
+            if (environmentArray[i].getLastModified().equalsIgnoreCase(lastModified)) {
+                e = environmentArray[i];
+            }
+        }
+        dropdown_SelectedEnvironment.setModel(environmentDropDown);
+        dropdown_SelectedEnvironment.requestFocus();
+        dropdown_SelectedEnvironment.setSelectedItem(e);
+        populateFields(e);
 	}
 
 	@Action
@@ -649,7 +672,6 @@ public class EnvironmentEditor extends javax.swing.JFrame {
     private JTextField text_Name;
     private JTextField text_Radius;
     private JTextField text_Status;
-    private JToggleButton toggle_SelectionMode;
     // End of variables declaration//GEN-END:variables
 	private EnvironmentLayout proLayout;
 	private ElementBrush proBrush;
