@@ -10,6 +10,20 @@ import vehicles.genetics.*;
 import vehicles.simulation.SimulationLog;
 import java.text.DecimalFormat;
 
+/*
+ * 
+ * Vehicles max spped is 10 % of motor strength. This can change via the ui slider
+ * 
+ * If two vehicles bump into each other, they each do a damge of 10% of their max battery to the other vehicle, 
+ * gaiuning that for themselves
+ * 
+ * Heat will damage a battery by the intensity at the current point times 5% of the max_battery
+ * 
+ * Water will damage a battery by the intensity at the current point times  2.5% of the max_battery
+ * 
+ * Power will heal a battery by the intensity at the current point times  2.5% of the max_battery
+ * 
+ */
 /**
  *
  * @author Niall O'Hara, Shaun Gray
@@ -27,7 +41,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	int colorRed, colorGreen, colorBlue, id; //maybe we can make this by doing a hash on the vehicle's name?
 	PApplet parent; // The parent PApplet that we will render ourselves onto
 	float max_battery, curr_battery;
-	boolean canDie, pairedMating;
+	boolean canDie, pairedMating, dead = false, remember = false;
 	private static int veh_count = 0;
 	/*
 	 * This constructor takes a vehicle as a parameter
@@ -55,8 +69,8 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		axleHalf = axle / 2;
 		axleSquared = axle * axle;
 
-		wA = new Wheel(parent, x + axleHalf * PApplet.cos(angle - HALF_PI), y + axleHalf * PApplet.sin(angle - HALF_PI), 5, 0);
-		wB = new Wheel(parent, x + axleHalf * PApplet.cos(angle + HALF_PI), y + axleHalf * PApplet.sin(angle + HALF_PI), 5, 0);
+		wA = new Wheel(parent, x + axleHalf * PApplet.cos(angle - HALF_PI), y + axleHalf * PApplet.sin(angle - HALF_PI), 5, 0, this.max_speed);
+		wB = new Wheel(parent, x + axleHalf * PApplet.cos(angle + HALF_PI), y + axleHalf * PApplet.sin(angle + HALF_PI), 5, 0, this.max_speed);
 
 		sA = new Sensor(parent, x + axle * PApplet.cos(angle - HALF_PI / 1.5f), y + axle * PApplet.sin(angle - HALF_PI / 1.5f));
 		sB = new Sensor(parent, x + axle * PApplet.cos(angle + HALF_PI / 1.5f), y + axle * PApplet.sin(angle + HALF_PI / 1.5f));
@@ -86,8 +100,8 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		axleHalf = axle / 2;
 		axleSquared = axle * axle;
 
-		wA = new Wheel(parent, x + axleHalf * PApplet.cos(angle - HALF_PI), y + axleHalf * PApplet.sin(angle - HALF_PI), 5, 0);
-		wB = new Wheel(parent, x + axleHalf * PApplet.cos(angle + HALF_PI), y + axleHalf * PApplet.sin(angle + HALF_PI), 5, 0);
+		wA = new Wheel(parent, x + axleHalf * PApplet.cos(angle - HALF_PI), y + axleHalf * PApplet.sin(angle - HALF_PI), 5, 0, this.max_speed);
+		wB = new Wheel(parent, x + axleHalf * PApplet.cos(angle + HALF_PI), y + axleHalf * PApplet.sin(angle + HALF_PI), 5, 0, this.max_speed);
 
 		sA = new Sensor(parent, x + axle * PApplet.cos(angle - HALF_PI / 1.5f), y + axle * PApplet.sin(angle - HALF_PI / 1.5f));
 		sB = new Sensor(parent, x + axle * PApplet.cos(angle + HALF_PI / 1.5f), y + axle * PApplet.sin(angle + HALF_PI / 1.5f));
@@ -119,6 +133,14 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		angle += wheel_diff / axle;
 		x += PApplet.cos(angle) * wheel_average;
 		y += PApplet.sin(angle) * wheel_average;
+		
+		//hopefully this takes into account vehicle memory
+		remember = this.remembersElementAt(x, y);
+		if(remember){
+			setLeftSpeed((float)this.getIntesnityOfElementAt(x, y)/10 + this.wB.getAngSpeed());
+			setRightSpeed((float)this.getIntesnityOfElementAt(x, y)/10 + this.wA.getAngSpeed());
+		}
+		
 		checkCollisionVehicles();
 		checkCollisionElements();
 
@@ -143,11 +165,11 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 		sB.x = x + axle * PApplet.cos(ang);
 		sB.y = y + axle * PApplet.sin(ang);
-        setLeftSpeed(sB.getSenseRed());
+		setLeftSpeed(sB.getSenseRed());
 		setRightSpeed(sA.getSenseRed());
-                setLeftSpeed(sB.getSenseGreen());
+		setLeftSpeed(sB.getSenseGreen());
 		setRightSpeed(sA.getSenseGreen());
-                setLeftSpeed(sB.getSenseBlue());
+		setLeftSpeed(sB.getSenseBlue());
 		setRightSpeed(sA.getSenseBlue());
 		if(canDie){
 			depleteBatt();
@@ -165,6 +187,9 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 			engineParent.sim.log.addToLog("Vehicle " + this.getName() + " died.");
 			this.die();
 			return;
+		}
+		if(this.curr_battery > this.max_battery){
+			this.curr_battery = this.max_battery;
 		}
 	}
 
@@ -224,7 +249,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 
 	void checkCollisionElements() { //if vehicles occupies exact same spot as element, add it to memory
-		float xPos, yPos;
+		float xPos, yPos, radius, intensity;
 		SimulatonEngine engineParent = (SimulatonEngine) parent;
 		ProcessingEnviroElement temp;
 		int size = engineParent.num_sources;
@@ -232,10 +257,33 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 			temp = engineParent.elementVector.elementAt(i);
 			xPos = temp.xPos;
 			yPos = temp.yPos;
-			if((x <= xPos + axle && y <= yPos + axle) && (x >= xPos - axle && y <= yPos + axle) &&
-					(x <= xPos + axle && y >= yPos - axle) && (x >= xPos - axle && y >= yPos - axle)){
-				this.addElementToMemory(engineParent.elementVector.elementAt(i), engineParent.sim.log);
-				return;
+			radius = temp.getRadius();
+			if((x <= xPos + radius && y <= yPos + radius) && (x >= xPos - radius && y <= yPos + radius) &&
+					(x <= xPos + radius && y >= yPos - radius) && (x >= xPos - radius && y >= yPos - radius)){
+				//add element to memory
+				if((x <= xPos + axle && y <= yPos + axle) && (x >= xPos - axle && y <= yPos + axle) &&
+						(x <= xPos + axle && y >= yPos - axle) && (x >= xPos - axle && y >= yPos - axle)){
+					this.addElementToMemory(engineParent.elementVector.elementAt(i), engineParent.sim.log);
+				}
+				if(this.canDie){
+					//do damage or heal
+					intensity = temp.getIntensityAtPoint(x, y);
+					switch(temp.getType()){
+					case ProcessingEnviroElement.WaterSource:
+						this.curr_battery -= (this.max_battery/5) * intensity;
+						break;
+					case ProcessingEnviroElement.PowerSource:
+						this.curr_battery += (this.max_battery/2.5f) * intensity;
+						break;
+					case ProcessingEnviroElement.HeatSource:
+						this.curr_battery -= (this.max_battery/2.5f) * intensity;
+						break;
+					}
+					this.checkBattery();
+					if(this.dead){
+						return;
+					}
+				}
 			}
 		}
 	}
@@ -328,6 +376,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	public void die(){
 		SimulatonEngine engineParent = (SimulatonEngine) parent;
 		engineParent.vehicleVector.remove(this);
+		this.dead = true;
 	}
 
 	public void updateColor(int p_red, int p_green, int p_blue) {
@@ -367,15 +416,25 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	public void updateBlue(int b) {
 		this.colorBlue = b;
 	}
+	
+	public float getMaxSpeed(){
+		return this.max_speed;
+	}
+	
+	public void updateMaxSpeed(float s){
+		this.wA.updateMaxSpeed(s);
+		this.wB.updateMaxSpeed(s);
+	}
 
 	public String toString(){
 		DecimalFormat df = new DecimalFormat("#.##");
 		return "Name: " + this.vehicleName + "\nMotor Strength: " + this.getMotorStrength() + "\nMax Speed: " + this.max_speed + 
+		"\nLeft Motor Speed: " + df.format(this.wA.getDisplacement()) + "\nRight Motor Speed: " + df.format(this.wB.getDisplacement()) + 
 		"\nMax Battery: " + df.format(this.max_battery) + "\nCurr Battery: " + df.format(this.curr_battery) + "\nAggression: " + 
 		this.aggression + "\nItems In Memory: " + this.mu.numItems() + "\nCo-ordinates: (" + df.format(this.x) + 
 		"," + df.format(this.y) + ")" + "\nRight Sensor Values" + "\nPower: " + this.getRightSensorPower() +  
-		"\nHeatr: " + this.getRightSensorHeat() + "\nLight: " + this.getRightSensorLight() + "\nWater: " + this.getRightSensorWater() +
-		"\nLeft Sensor Values" + "\nPower: " + this.getLeftSensorPower() +"\nHeatr: " + this.getLeftSensorHeat() +
+		"\nHeat: " + this.getRightSensorHeat() + "\nLight: " + this.getRightSensorLight() + "\nWater: " + this.getRightSensorWater() +
+		"\nLeft Sensor Values" + "\nPower: " + this.getLeftSensorPower() +"\nHeat: " + this.getLeftSensorHeat() +
 		"\nLight: " + this.getLeftSensorLight() + "\nWater: " + this.getLeftSensorWater();
 	}
 }

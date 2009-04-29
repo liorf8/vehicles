@@ -8,6 +8,7 @@ import vehicles.simulation.*;
 import vehicles.vehicle.*;
 import vehicles.genetics.*;
 import vehicles.util.StopWatch;
+import java.util.Random;
 
 @SuppressWarnings("serial")
 public class SimulatonEngine extends PApplet {
@@ -29,7 +30,7 @@ public class SimulatonEngine extends PApplet {
 	ProcessingVehicle curr_on_screen = null;
 	int update_on_screen = 0;
 	float asexual_reproduction_constant = 0;
-	float chance_asexual_repro = 1.0f; //this is out of ten i.e 10% chance
+	float chance_asexual_repro = 2.5f; //this is out of ten i.e 1 = 10% chance
 	StopWatch stopwatch;
 	int axle = 10;
 	int min_time_for_asexual = 20;
@@ -88,7 +89,7 @@ public class SimulatonEngine extends PApplet {
 		}
 
 		for (int i = 0; i < num_veh; i++) {
-			this.vehicleVector.add(new ProcessingVehicle(this, veh.elementAt(i), 400, 400, /*random(PI)*/12f, axle,
+			this.vehicleVector.add(new ProcessingVehicle(this, veh.elementAt(i), (int)this.random(width), (int)this.random(height), random(PI), axle,
 					i, pairedMating, this.perishable_vehicles));
 		}
 
@@ -108,8 +109,7 @@ public class SimulatonEngine extends PApplet {
 			elementVector.add(new ProcessingEnviroElement(this, curr, curr.getName().hashCode()));
 			print(elementVector.elementAt(i).toString());
 		}
-		//this.asexual_reproduction_constant = (int)this.random(this.max_time_for_asexual - this.min_time_for_asexual) + this.min_time_for_asexual;
-		this.asexual_reproduction_constant = 1;
+		this.asexual_reproduction_constant = (int)this.random(this.max_time_for_asexual - this.min_time_for_asexual) + this.min_time_for_asexual;
 		System.out.println("Sexual Reproduction_constant: " + this.asexual_reproduction_constant);
 		stopwatch = new StopWatch();
 	}
@@ -118,7 +118,6 @@ public class SimulatonEngine extends PApplet {
 	@Override
 	public void setup() {
 		this.stopwatch.start();
-		//this.stopwatch.addSecond();
 		font = loadFont(font_location); 
 		textFont(font, 14); 
 
@@ -134,7 +133,7 @@ public class SimulatonEngine extends PApplet {
 	@Override
 	public void draw() {
 		image(ground, 0, 0);
-
+			
 		this.num_vehicles = this.vehicleVector.size();
 		if(this.num_vehicles > 0){
 			for(int i = 0; i < this.num_vehicles; i++){
@@ -344,6 +343,14 @@ public class SimulatonEngine extends PApplet {
 			}
 		}
 
+	}
+
+	public void setMaxSpeeds(float percent){
+		float max;
+		for(int i = 0; i < this.num_vehicles; i++){
+			max = this.vehicleVector.elementAt(i).getMaxSpeed();
+			this.vehicleVector.elementAt(i).updateMaxSpeed(max * (percent / 100));
+		}
 	}
 
 	float nonlinear(float r, float rmax) {
