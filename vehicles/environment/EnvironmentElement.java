@@ -34,6 +34,7 @@ public class EnvironmentElement {
 	protected Point position = new Point(0,0);
 	protected Document xmldoc = null; //the XML document we are creating, stored as an object in memory
 	protected Element root = null;//the root element of the document
+	protected boolean xmlMade = false;
 
 	/**
 	 * An empty constructor
@@ -43,10 +44,10 @@ public class EnvironmentElement {
 		root = xmldoc.createElement("EnvironmentElement");
 	}
 
-    /**
+	/**
 	 * Constructor for element type only
 	 */
-    public EnvironmentElement(int p_type) {
+	public EnvironmentElement(int p_type) {
 		this.type = p_type;
 		switch(this.type){
 		case EnvironmentElement.HeatSource :
@@ -66,10 +67,10 @@ public class EnvironmentElement {
 		root = xmldoc.createElement("EnvironmentElement");
 	}
 
-    public boolean comparePoint(Point other){
-    	return this.position.compareTo(other);
-    }
-    
+	public boolean comparePoint(Point other){
+		return this.position.compareTo(other);
+	}
+
 	/**
 	 * An constructor for new environment-elements
 	 */
@@ -85,7 +86,6 @@ public class EnvironmentElement {
 	 * @param filelocation The Environment Element xml file to read in
 	 */
 	public EnvironmentElement(String filelocation){
-		//TODO extract variables from XML file
 		this.fileLocation = filelocation;
 		xmldoc= new DocumentImpl();
 		root = xmldoc.createElement("EnvironmentElement");
@@ -120,7 +120,8 @@ public class EnvironmentElement {
 		this.root = other.root;
 		this.strength = other.strength;
 		this.type = other.type;
-		this.xmldoc = other.xmldoc;
+		xmldoc= new DocumentImpl();
+		root = xmldoc.createElement("EnvironmentElement");
 	}
 
 	/**
@@ -284,7 +285,9 @@ public class EnvironmentElement {
 	 * @return The root element of this EnvironmentElement
 	 */
 	public Element getRootElement(){
-		this.toInternalXML();
+		if(!xmlMade){
+			this.toInternalXML();
+		}
 		return root;
 	}
 
@@ -309,6 +312,7 @@ public class EnvironmentElement {
 			this.writeXMLEntry("strength",Integer.toString(strength),xmldoc);
 		}
 		//xmldoc.appendChild(root);
+		xmlMade = true;
 	}
 
 	/**
@@ -319,7 +323,7 @@ public class EnvironmentElement {
 			/*Now take the file in RAM and write it out to disk*/
 			FileOutputStream fos = new FileOutputStream(fileLocation);
 			OutputFormat of = new OutputFormat("XML","ISO-8859-1",true);
-            of.setLineWidth(Integer.MAX_VALUE);
+			of.setLineWidth(Integer.MAX_VALUE);
 			XMLSerializer serializer = new XMLSerializer(fos,of);//prepare a serialiser for
 			//generating XML documents
 			// As a DOMSerializer

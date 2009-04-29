@@ -195,11 +195,11 @@ public class UtilMethods {
 		System.out.println("Creating " + path);
 
 		path = "xml" + File.separator + "environments" + File.separator + "default_environment3.env";
-		e = new Environment("default_environment1", path);
+		e = new Environment("default_environment3", path);
 		e.setWidth(800);
 		e.setHeight(600);
 		e.setAuthor("Karl");
-		e.setDescription("Default Environment 1");
+		e.setDescription("Default Environment 3");
 
 		e.addElement(ps);
 		e.saveEnvironment();
