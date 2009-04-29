@@ -200,11 +200,11 @@ public class SimulatonEngine extends PApplet {
 		image(ground, 0, 0);
 			
 		this.num_vehicles = this.vehicleVector.size();
-		this.chance_repro = 0.035f * (100 / this.num_vehicles);
-		if(pairedMating){
-			this.updateChancePairedMating();
-		}
 		if(this.num_vehicles > 0){
+			this.chance_repro = 0.035f * (100 / this.num_vehicles);
+			if(pairedMating){
+				this.updateChancePairedMating();
+			}
 			for(int i = 0; i < this.num_vehicles; i++){
 				ProcessingVehicle temp = this.vehicleVector.elementAt(i);
 				temp.move();

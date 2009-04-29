@@ -38,36 +38,26 @@ public class Sensor implements PConstants {
 		sum = (found) ? sum : 1-sum;
 		sense = (false) ? p.nonlinear( sum, maxReading ) : 1-sum;
 		//if nothing sensed, then look towards memory to know where to go
-		if (sense == 0) { 
-			float distance, temp_dist;
-			int closest_x, closest_y;
+		if (sense == 0) {
 			Point[] points = memu.getPoints();
-			Point temp = new Point(this.x, this.y);
 			int size = points.length;
-			if(size > 0){
-				distance = points[0].getDistanceBetween(temp);
-				closest_x = (int)points[0].getXpos();
-				closest_y = (int)points[0].getYpos();
+			if(size == 0){
+				return this.parent.random(0.25f);
 			}
-			else {
-				return 0.1f;
+			int ran = (int)this.parent.random(size);
+			int x_point, y_point;
+			x_point = (int)points[ran].getXpos();
+			y_point = (int)points[ran].getYpos();
+			sum = parent.red( p.ground.get(x_point, y_point) ) / 255.0f;
+			sum += parent.green( p.ground.get(x_point, y_point) ) / 255.0f;
+			sum += parent.blue( p.ground.get(x_point, y_point) ) / 255.0f;
+			if(sense == 0){
+				return this.parent.random(0.25f);
 			}
-			for(int i = 1; i < size; i++){
-				temp_dist = points[i].getDistanceBetween(temp);
-				if(temp_dist <= distance){
-					distance = temp_dist;
-					closest_x = (int)points[i].getXpos();
-					closest_y = (int)points[i].getYpos();
-				}
-			}
-			sum = parent.red( p.ground.get(closest_x, closest_y) ) / 255.0f;
-			sum += parent.green( p.ground.get(closest_x, closest_y) ) / 255.0f;
-			sum += parent.blue( p.ground.get(closest_x, closest_y) ) / 255.0f;
-			sum = (found) ? sum : 1-sum;
-			sense = (false) ? p.nonlinear( sum, maxReading ) : 1-sum;
 		}
 		return sense;
 	}
+
 
 	float getSenseRed() {
 		SimulatonEngine engineParent = (SimulatonEngine) parent;
