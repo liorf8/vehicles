@@ -63,7 +63,7 @@ public class EnvironmentLayout extends PApplet {
 
 		//updateGround();
 		cursor(CROSS);
-		
+		noLoop();
 	}
 
 	@Override
@@ -84,7 +84,6 @@ public class EnvironmentLayout extends PApplet {
 		}
 		//updateGround(); // works, but too slow
 		print("Now have "+ee.size()+ " elements\n");
-		noLoop();
 	}
 
 	@Override
