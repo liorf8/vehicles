@@ -488,7 +488,6 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         EditorSimulation selected = (EditorSimulation) tempComboBox.getSelectedItem();
         enviroPreview.setEnvironment(selected.getEnvironment());
         engine.setSim(selected);
-        engine.setup();
         jPanel3.validate();
         //engine.setSim(selected);
         //engine.setup();
@@ -535,12 +534,14 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
 
     @Action
     public void startSim() {
-        jPanel3.add(engine);
         jPanel3.remove(enviroPreview);
+        jPanel3.add(engine);
         jPanel3.validate();
         button_Start.setEnabled(false);
         dropdown_SelectedSimulation.setEnabled(false);
         slider_Speed.setEnabled(true);
+        engine.start();
+        engine.setup();
         engine.startSim();
         button_Stop.setEnabled(true);
         button_Pause.setEnabled(true);
@@ -549,6 +550,8 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     @Action
     public void stopSim() {
         jPanel3.remove(engine);
+        engine.pause();
+        engine.stop();
         jPanel3.add(enviroPreview);
         jPanel3.validate();
         button_Start.setEnabled(true);
