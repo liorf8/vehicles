@@ -28,7 +28,7 @@ public class SimulatonEngine extends PApplet {
 	int n_for_sel;
 	int axle = 10;
 	int min_time_for_asexual = 10;
-	int max_time_for_asexual = 25;
+	int max_time_for_asexual = 60;
 	int time_now = 0;
 	int text_box_width = 0;
 	int text_box_height = 0;
@@ -106,7 +106,6 @@ public class SimulatonEngine extends PApplet {
 		}
 		this.asexual_reproduction_constant = (int)this.random(this.max_time_for_asexual - this.min_time_for_asexual) + this.min_time_for_asexual;
 		this.curr_asexual_constant = this.asexual_reproduction_constant;
-		System.out.println("Sexual Reproduction_constant: " + this.asexual_reproduction_constant);
 		stopwatch = new StopWatch();
 	}
 
@@ -245,8 +244,6 @@ public class SimulatonEngine extends PApplet {
 		if(elapsed == this.curr_asexual_constant){
 			this.stopwatch.reset();
 			float r = this.random(10);
-			System.out.println("Chance for repro: " + this.chance_repro);
-			System.out.println("Random: " + r);
 			if(r <= this.chance_repro){
 				System.out.println("Asexes can occur");
 				Vehicle v = Genetics.produceVehicleAsexually(this.sel_method, this.n_for_sel, this.vehicleVector, this.sim.log);
@@ -422,9 +419,7 @@ public class SimulatonEngine extends PApplet {
 		for(int i = 0; i < this.num_vehicles; i++){
 			this.vehicleVector.elementAt(i).updateSpeed_ofTime(percent);
 		}
-		System.out.println("Curr Asexual Consent: " + this.curr_asexual_constant);
 		this.curr_asexual_constant = (100 / percent) * this.asexual_reproduction_constant;
-		System.out.println("Curr Asexual Consent: " + this.curr_asexual_constant);
 	}
 
 	public void updateChancePairedMating(){
