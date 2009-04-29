@@ -29,11 +29,12 @@ public class SimulatonEngine extends PApplet {
 	ProcessingVehicle curr_on_screen = null;
 	int update_on_screen = 0;
 	float asexual_reproduction_constant = 0;
-	float chance_asexual_repro = 1.5f; //this is out of ten i.e 15% chance
+	float chance_asexual_repro = 1.0f; //this is out of ten i.e 10% chance
 	StopWatch stopwatch;
 	int axle = 10;
 	int min_time_for_asexual = 20;
-	int max_time_for_asexual = 30;
+	int max_time_for_asexual = 40;
+	int time_now = 0;
 	int text_box_width = 0;
 	int text_box_height = 0;
 	boolean canMate = false;
@@ -107,7 +108,9 @@ public class SimulatonEngine extends PApplet {
 			elementVector.add(new ProcessingEnviroElement(this, curr, curr.getName().hashCode()));
 			print(elementVector.elementAt(i).toString());
 		}
-		this.asexual_reproduction_constant = (int)this.random(this.max_time_for_asexual - this.min_time_for_asexual) + this.min_time_for_asexual;
+		//this.asexual_reproduction_constant = (int)this.random(this.max_time_for_asexual - this.min_time_for_asexual) + this.min_time_for_asexual;
+		this.asexual_reproduction_constant = 1;
+		System.out.println("Sexual Reproduction_constant: " + this.asexual_reproduction_constant);
 		stopwatch = new StopWatch();
 	}
 
@@ -115,7 +118,7 @@ public class SimulatonEngine extends PApplet {
 	@Override
 	public void setup() {
 		this.stopwatch.start();
-		this.stopwatch.addSecond();
+		//this.stopwatch.addSecond();
 		font = loadFont(font_location); 
 		textFont(font, 14); 
 
@@ -132,11 +135,13 @@ public class SimulatonEngine extends PApplet {
 	public void draw() {
 		image(ground, 0, 0);
 
+		this.num_vehicles = this.vehicleVector.size();
 		if(this.num_vehicles > 0){
 			for(int i = 0; i < this.num_vehicles; i++){
 				ProcessingVehicle temp = this.vehicleVector.elementAt(i);
 				temp.move();
 				temp.draw();
+				this.num_vehicles = vehicleVector.size();
 			}
 			if(this.asexual){
 				this.asexualReproduction();
@@ -167,13 +172,10 @@ public class SimulatonEngine extends PApplet {
 	public void asexualReproduction(){
 		long elapsed = this.stopwatch.getElapsedTimeSecs();
 		String log = "";
-		if(elapsed % this.asexual_reproduction_constant == 0 && canMate){
-			this.canMate = false;
-			this.stopwatch.addSecond();
-			//System.out.println("Asexes can occur");
+		if(elapsed == this.asexual_reproduction_constant){
+			this.stopwatch.reset();
 			float r = this.random(10);
 			if(this.chance_asexual_repro <= r){
-				//System.out.println("Asexes HAS occurred");
 				Vehicle v = Genetics.produceVehicleAsexually(this.sel_method, this.n_for_sel, this.vehicleVector, this.sim.log);
 				if(v == null){
 					return;
@@ -191,9 +193,6 @@ public class SimulatonEngine extends PApplet {
 				}
 				this.sim.log.addToLog(log);
 			}
-		}
-		else{
-			this.canMate = true;
 		}
 	}
 
