@@ -378,12 +378,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="button_ResetEnvironment" alignment="0" pref="347" max="32767" attributes="0"/>
                       <Component id="processing_Layout" alignment="0" pref="347" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="processing_Layout" alignment="0" pref="382" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="processing_Layout" pref="353" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="button_ResetEnvironment" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -402,6 +407,15 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
                 </Container>
+                <Component class="javax.swing.JButton" name="button_ResetEnvironment">
+                  <Properties>
+                    <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                      <action class="vehicles.gui.EnvironmentEditor" id="removeAllElements" methodName="removeAllElements"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" resourceKey="button_ResetEnvironment.text"/>
+                    <Property name="name" type="java.lang.String" value="button_ResetEnvironment" noResource="true"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="panel_Tools">
