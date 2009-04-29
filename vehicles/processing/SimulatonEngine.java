@@ -8,7 +8,6 @@ import vehicles.simulation.*;
 import vehicles.vehicle.*;
 import vehicles.genetics.*;
 import vehicles.util.StopWatch;
-import java.util.Random;
 
 @SuppressWarnings("serial")
 public class SimulatonEngine extends PApplet {
@@ -30,11 +29,11 @@ public class SimulatonEngine extends PApplet {
 	ProcessingVehicle curr_on_screen = null;
 	int update_on_screen = 0;
 	float asexual_reproduction_constant = 0, curr_asexual_constant = 0;
-	float chance_asexual_repro = 3.5f; //this is out of ten i.e 1 = 10% chance
+	float chance_asexual_repro = 1.5f; //this is out of ten i.e 1 = 10% chance
 	StopWatch stopwatch;
 	int axle = 10;
-	int min_time_for_asexual = 20;
-	int max_time_for_asexual = 40;
+	int min_time_for_asexual = 10;
+	int max_time_for_asexual = 25;
 	int time_now = 0;
 	int text_box_width = 0;
 	int text_box_height = 0;

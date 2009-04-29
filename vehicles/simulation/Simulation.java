@@ -2,6 +2,7 @@ package vehicles.simulation;
 
 import vehicles.vehicle.*;
 import vehicles.environment.*;
+import vehicles.util.UtilMethods;
 
 import java.io.*;
 import java.util.Iterator;
@@ -93,7 +94,8 @@ public class Simulation {
 		String vehicle_location = null;
 		for(int i = 0; i < length; i++){
 			vehicle_location = vehicleList.item(i).getChildNodes().item(0).getNodeValue();
-			this.vehicles.add(new Vehicle(vehicle_location));
+			String p = UtilMethods.formatFilePath(vehicle_location);
+			this.vehicles.add(new Vehicle(p));
 		}
 	}
 
@@ -128,7 +130,7 @@ public class Simulation {
 				this.setLastModified(node_value);
 			}
 			else if(name.equals("EnvironmentPath")){
-				this.setEnvironment(node_value);
+				this.setEnvironment(UtilMethods.formatFilePath(node_value));
 			}
 			else if(name.equals("perishable_vehicles")){
 				this.setPerishableVehicles(Boolean.valueOf(node_value));
@@ -228,6 +230,10 @@ public class Simulation {
 	}
 
 	public void addVehicle(String c){
+		String p = UtilMethods.formatFilePath(c);
+		if(vehicles.size() >= 2){
+			System.err.print("Cannot do taht");
+		}
 		vehicles.add(new Vehicle(c));
 	}
 	
