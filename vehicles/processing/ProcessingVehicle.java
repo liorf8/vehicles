@@ -34,8 +34,8 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	 * Means that all the vehicle methods are now avaialble within processing
 	 * 
 	 */
-	public ProcessingVehicle(PApplet p, Vehicle v, float x, float y, float angle, float axle_length, int id, float m, boolean pairedM, boolean d) {
-		
+	public ProcessingVehicle(PApplet p, Vehicle v, float x, float y, float angle, float axle_length, int id, boolean pairedM, boolean d) {
+
 		super(v);
 		this.parent = p;
 		this.x = x;
@@ -45,7 +45,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		this.colorBlue = v.getVehicleColourBlue();
 		this.angle = angle;
 		this.id = id;
-		this.max_speed = m;
+		this.max_speed = v.getMotorStrength()/10;
 		this.max_battery = this.getMaxBatteryCapacity();
 		this.curr_battery = this.getCurrentBatteryCapacity();
 		this.canDie = d;
@@ -304,8 +304,8 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		Vehicle v = Genetics.pairedMating(this, other, s);
 		int axle = 10;
 		ProcessingVehicle pv = new ProcessingVehicle(this.parent, v, this.parent.random(this.parent.width),
-				this.parent.random(this.parent.height), this.parent.random(PI), axle, v.getName().hashCode(), 
-				this.max_speed, this.pairedMating, this.canDie);
+				this.parent.random(this.parent.height), this.parent.random(PI), axle, v.getName().hashCode(),
+				this.pairedMating, this.canDie);
 
 		if(v != null){
 			log += "Adding new vehicle to simulation.\nVehicle " + v.getName() + " added successfully!";
@@ -365,8 +365,9 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 	public String toString(){
 		DecimalFormat df = new DecimalFormat("#.##");
-		return "Name: " + this.vehicleName + "\nMax Speed: " + this.max_speed + "\nMax Battery: " + df.format(this.max_battery) + "\nCurr Battery: " 
-		+ df.format(this.curr_battery) + "\nAggression: " + this.aggression + "\nItems In Memory: " + this.mu.numItems() + "\nCo-ordinates: (" + df.format(this.x)
-		+ "," + df.format(this.y) + ")";
+		return "Name: " + this.vehicleName + "\nMotor Strength: " + this.getMotorStrength() + "\nMax Speed: " + this.max_speed + 
+		"\nMax Battery: " + df.format(this.max_battery) + "\nCurr Battery: " + df.format(this.curr_battery) + "\nAggression: " + 
+		this.aggression + "\nItems In Memory: " + this.mu.numItems() + "\nCo-ordinates: (" + df.format(this.x) + 
+		"," + df.format(this.y) + ")";
 	}
 }

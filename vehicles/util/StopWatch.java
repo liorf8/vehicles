@@ -18,7 +18,7 @@ public class StopWatch {
     	
     }
     
-    public void addOneSecond(){
+    public void addSecond(){
     	this.startTime -= 1000;
     }
     

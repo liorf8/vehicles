@@ -66,6 +66,20 @@ public class Vehicle implements Comparable{
 		}
 	}
 
+	public void add_n_memory(MemoryUnit other, int n){
+		this.mu.add_N_Memory(other, n);
+	}
+	
+	public MemoryUnit getMem(){
+		return this.mu;
+	}
+	
+	public void setMem(MemoryUnit m){
+		this.mu = m;
+		this.setMaxMem(m.getMaxMem());
+		this.setLearningRate(m.getLearningRate());
+	}
+	
 	public void addElementToMemory(EnvironmentElement e, SimulationLog s){
 		this.mu.addElement(e, s);
 	}
@@ -85,6 +99,10 @@ public class Vehicle implements Comparable{
 
 	public int getTypeOfElementAt(double xPos, double yPos){
 		return this.mu.getTypeOfElementAt(xPos, yPos);
+	}
+	
+	public int getIntesnityOfElementAt(double xPos, double yPos){
+		return this.mu.getIntensityOfElementAt(xPos, yPos);
 	}
 
 	public void setMaxMem(int m){
