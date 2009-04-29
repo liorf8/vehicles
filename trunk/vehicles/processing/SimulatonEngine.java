@@ -128,6 +128,7 @@ public class SimulatonEngine extends PApplet {
 		smooth();
 		updateGround();
 		//this.adjustRunningSpeed(SLIDER . GET VALUE);
+        noLoop();
 	}
 
 
