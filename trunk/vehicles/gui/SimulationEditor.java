@@ -74,18 +74,20 @@ public class SimulationEditor extends javax.swing.JFrame {
         repoDropDown = new DefaultComboBoxModel(repoArray);
 
         proVehiclePreview = new VehiclePreview();
-        proEnvironmentPreview = new EnvironmentPreview();
+      
 
         // important to call this whenever embedding a PApplet.
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
         proVehiclePreview.init();
-        proEnvironmentPreview.init();
+        
 
         environmentArray = appRoot.getEnvironmentArray();
         for (int i = 0; i < environmentArray.length; i++) {
             availableEnv.add(i, environmentArray[i]);
         }
+        proEnvironmentPreview = new EnvironmentPreview(environmentArray[0]);
+        proEnvironmentPreview.init();
 
         availableEnvironments = new AvailableEnvironmentsModel();
         selectedEnvironments = new SelectedEnvironmentsModel();
