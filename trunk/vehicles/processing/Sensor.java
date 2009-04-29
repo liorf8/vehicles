@@ -43,11 +43,11 @@ public class Sensor implements PConstants {
             red_atPoint = temp.getRedAtPoint(this.x, this.y);
             green_atPoint = temp.getGreenAtPoint(this.x, this.y);
             blue_atPoint = temp.getBlueAtPoint(this.x, this.y);
-			if(intensity_atPoint > 0.0f){
-				max_sense += (intensity_atPoint/temp.getStrength()) * aggression;
-                max_sense += (red_atPoint/aggression) * p_red;
-                max_sense += (green_atPoint/aggression) * p_green;
-                max_sense += (blue_atPoint/aggression) * p_blue;
+			if(intensity_atPoint > 0.0f | red_atPoint > 0.0f | green_atPoint > 0.0f | red_atPoint > 0.0f){
+				max_sense += (intensity_atPoint/temp.getStrength()) * (maxSpeed / aggression) * 0.1f;
+                max_sense += (red_atPoint/p_red) * (maxSpeed / aggression) * 0.1f;
+                max_sense += (green_atPoint/p_green) * (maxSpeed / aggression)* 0.1f;
+                max_sense += (blue_atPoint/p_blue) * (maxSpeed / aggression)* 0.1f;
 			} else {
                 max_sense = 0.1f;
             }
@@ -84,6 +84,41 @@ public class Sensor implements PConstants {
 		return sense;*/
 	}
 
+    float getSenseRed() {
+		SimulatonEngine engineParent = (SimulatonEngine) parent;
+		Iterator<ProcessingEnviroElement> elementIterator = engineParent.elementVector.iterator();
+		ProcessingEnviroElement temp;
+		float red_atPoint = 0.0f;
+		while (elementIterator.hasNext()) {
+            temp = elementIterator.next();
+            red_atPoint += temp.getRedAtPoint(this.x, this.y);
+		}
+		return red_atPoint;
+    }
+
+    float getSenseGreen() {
+		SimulatonEngine engineParent = (SimulatonEngine) parent;
+		Iterator<ProcessingEnviroElement> elementIterator = engineParent.elementVector.iterator();
+		ProcessingEnviroElement temp;
+		float red_atPoint = 0.0f;
+		while (elementIterator.hasNext()) {
+            temp = elementIterator.next();
+            red_atPoint += temp.getGreenAtPoint(this.x, this.y);
+		}
+		return red_atPoint;
+    }
+
+     float getSenseBlue() {
+		SimulatonEngine engineParent = (SimulatonEngine) parent;
+		Iterator<ProcessingEnviroElement> elementIterator = engineParent.elementVector.iterator();
+		ProcessingEnviroElement temp;
+		float red_atPoint = 0.0f;
+		while (elementIterator.hasNext()) {
+            temp = elementIterator.next();
+            red_atPoint += temp.getBlueAtPoint(this.x, this.y);
+		}
+		return red_atPoint;
+    }
 
 	public void draw() { //just draw a graphical representation
 		parent.fill(255);
