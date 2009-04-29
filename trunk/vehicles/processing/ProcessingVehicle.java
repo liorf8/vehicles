@@ -368,6 +368,9 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		return "Name: " + this.vehicleName + "\nMotor Strength: " + this.getMotorStrength() + "\nMax Speed: " + this.max_speed + 
 		"\nMax Battery: " + df.format(this.max_battery) + "\nCurr Battery: " + df.format(this.curr_battery) + "\nAggression: " + 
 		this.aggression + "\nItems In Memory: " + this.mu.numItems() + "\nCo-ordinates: (" + df.format(this.x) + 
-		"," + df.format(this.y) + ")";
+		"," + df.format(this.y) + ")" + "\nRight Sensor Values" + "\nPower: " + this.getRightSensorPower() +  
+		"\nHeatr: " + this.getRightSensorHeat() + "\nLight: " + this.getRightSensorLight() + "\nWater: " + this.getRightSensorWater() +
+		"\nLeft Sensor Values" + "\nPower: " + this.getLeftSensorPower() +"\nHeatr: " + this.getLeftSensorHeat() +
+		"\nLight: " + this.getLeftSensorLight() + "\nWater: " + this.getLeftSensorWater();
 	}
 }
