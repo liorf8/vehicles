@@ -429,7 +429,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	public String toString(){
 		DecimalFormat df = new DecimalFormat("#.##");
 		return "Name: " + this.vehicleName + "\nMotor Strength: " + this.getMotorStrength() + "\nMax Displacement(Movement): " + this.max_speed + 
-		"\nLeft Motor Turn Speed: " + df.format(this.wA.getAngleSpeed()) + "\nRight Motor Turn Speed: " + df.format(this.wB.getAngleSpeed()) + 
+		"\nLeft Motor Turn Speed: " + this.wA.getAngleSpeed() + "\nRight Motor Turn Speed: " + this.wB.getAngleSpeed() + 
 		"\nMax Battery: " + df.format(this.max_battery) + "\nCurr Battery: " + df.format(this.curr_battery) + "\nAggression: " + 
 		this.aggression + "\nItems In Memory: " + this.mu.numItems() + "\nCo-ordinates: (" + df.format(this.x) + 
 		"," + df.format(this.y) + ")" + "\nRight Sensor Values" + "\nPower: " + this.getRightSensorPower() +  
