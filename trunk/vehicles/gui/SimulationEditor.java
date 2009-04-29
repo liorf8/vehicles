@@ -1187,6 +1187,7 @@ public class SimulationEditor extends javax.swing.JFrame {
 		if (sel.length == 1) {
 			Environment env = ((Environment) list_AvailableEnvironments.getModel().getElementAt(sel[0]));
 			showEnvironmentDescription(env);
+            proEnvironmentPreview.setEnvironment(env);
 		} else {
 			jTextArea2.setText(null);
 		}
