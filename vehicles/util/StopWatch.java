@@ -50,5 +50,20 @@ public class StopWatch {
         }
         return elapsed;
     }
+    
+    /**
+     * A method to get the elapsed time in seconds
+     * @return Elapsed time in seconds
+     */
+    public double getElapsedTimeDoubleSecs() {
+        double elapsed;
+        if (running) {
+            elapsed = ((double)(System.currentTimeMillis() - startTime) / 1000);
+        }
+        else {
+            elapsed = ((double)(stopTime - startTime) / 1000);
+        }
+        return elapsed;
+    }
 }
 

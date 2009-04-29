@@ -29,7 +29,7 @@ public class SimulatonEngine extends PApplet {
 	String on_screen_message = null;
 	ProcessingVehicle curr_on_screen = null;
 	int update_on_screen = 0;
-	float asexual_reproduction_constant = 0;
+	float asexual_reproduction_constant = 0, curr_asexual_constant = 0;
 	float chance_asexual_repro = 2.5f; //this is out of ten i.e 1 = 10% chance
 	StopWatch stopwatch;
 	int axle = 10;
@@ -110,6 +110,7 @@ public class SimulatonEngine extends PApplet {
 			print(elementVector.elementAt(i).toString());
 		}
 		this.asexual_reproduction_constant = (int)this.random(this.max_time_for_asexual - this.min_time_for_asexual) + this.min_time_for_asexual;
+		this.curr_asexual_constant = this.asexual_reproduction_constant;
 		System.out.println("Sexual Reproduction_constant: " + this.asexual_reproduction_constant);
 		stopwatch = new StopWatch();
 	}
@@ -126,6 +127,7 @@ public class SimulatonEngine extends PApplet {
 		ground = new PImage(width, height);
 		smooth();
 		updateGround();
+		//this.adjustRunningSpeed(SLIDER . GET VALUE);
 	}
 
 
@@ -170,9 +172,12 @@ public class SimulatonEngine extends PApplet {
 	}
 
 	public void asexualReproduction(){
+		if(this.curr_asexual_constant <= 0){
+			return;
+		}
 		long elapsed = this.stopwatch.getElapsedTimeSecs();
 		String log = "";
-		if(elapsed == this.asexual_reproduction_constant){
+		if(elapsed == this.curr_asexual_constant){
 			this.stopwatch.reset();
 			float r = this.random(10);
 			if(this.chance_asexual_repro <= r){
@@ -345,12 +350,14 @@ public class SimulatonEngine extends PApplet {
 
 	}
 
-	public void setMaxSpeeds(float percent){
+	public void adjustRunningSpeed(float percent){
 		float max;
 		for(int i = 0; i < this.num_vehicles; i++){
 			max = this.vehicleVector.elementAt(i).getMaxSpeed();
-			this.vehicleVector.elementAt(i).updateMaxSpeed(max * (percent / 100));
+			System.out.println("Updating maximum to: " + max * (percent / 100));
+			this.vehicleVector.elementAt(i).updateSpeed_ofTime(percent);
 		}
+		this.curr_asexual_constant = (100 / percent) * this.asexual_reproduction_constant;
 	}
 
 	float nonlinear(float r, float rmax) {
