@@ -145,8 +145,8 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
             return 0.0f;
         } else {
             float diff = (float) this.radius - d;
-            float alpha = 255;
-            float units = alpha / this.radius;
+            float alpha = (float) this.strength;
+            float units = alpha / (float) this.radius;
             for (float i = 0; i < diff; i++) {
                 alpha -= units;
             }
@@ -161,7 +161,7 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
             return 0.0f;
         } else {
             float diff = (float) this.radius - d;
-            return this.colorRed * (0.10f * ((diff / (float) this.radius) * this.strength));
+            return (float) this.colorRed * (0.10f * ((diff / (float) this.radius) * (float) this.strength));
         }
     }
 
@@ -172,7 +172,7 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
             return 0.0f;
         } else {
             float diff = (float) this.radius - d;
-            return this.colorGreen * (0.10f * ((diff / (float) this.radius) * this.strength));
+            return (float) this.colorGreen * (0.10f * ((diff / (float) this.radius) * (float) this.strength));
         }
     }
 
@@ -183,7 +183,7 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
             return 0.0f;
         } else {
             float diff = (float) this.radius - d;
-            return this.colorBlue * (0.10f * ((diff / (float) this.radius) * this.strength));
+            return (float) this.colorBlue * (0.9f * ((diff / (float) this.radius) * (float) this.strength));
         }
     }
 
