@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author Niall O'Hara, Shuan Gray
+ * @author Niall O'Hara, Shuan Gray, Karl Reid
  */
 @SuppressWarnings("serial")
 public class EnvironmentLayout extends PApplet {
@@ -124,9 +124,18 @@ public class EnvironmentLayout extends PApplet {
 		e.setPosition(new Point(xPos, yPos));
 		//this.ee.add(e);
 	}
-
+	/**
+	 * Get an array of the elements in this editing session 
+	 * @return this array
+	 */
 	public EnvironmentElement[] getElements(){
-		return (EnvironmentElement[]) ee.toArray();		
+		EnvironmentElement[] toReturn = new EnvironmentElement[ee.size()];
+		Iterator<ProcessingEnviroElement> it = ee.iterator(); int i = 0;
+		while(it.hasNext()){
+			toReturn[i] = new EnvironmentElement(it.next());
+			i++;
+		}		
+		return toReturn;		
 	}
 
 	void updateGround() {
