@@ -34,7 +34,16 @@ public class EnvironmentLayout extends PApplet {
         h = e.getHeigth();
 
 	}
-
+	public void setEnvironment(Environment e){
+		ee = new Vector<ProcessingEnviroElement>();
+		Iterator<EnvironmentElement> it = e.getElements().iterator();
+		while(it.hasNext()){
+			ProcessingEnviroElement temp = new ProcessingEnviroElement(this,it.next(),0);
+			ee.add(temp);
+		}
+        w = e.getWidth();
+        h = e.getHeigth();
+	}
 	public void setWidth_and_Height(int w, int h){
 		this.w = w;
 		this.h = h;
