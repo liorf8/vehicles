@@ -157,27 +157,27 @@ public class UtilMethods {
 		EnvironmentElement ls = new EnvironmentElement();	
 		ls.setType(EnvironmentElement.LightSource);//TODO put this in object constructor
 		ls.setPosition(new Point(100,100));		
-		ls.setRadius(500);
-		ls.setStrength(1);		
+		ls.setRadius(150);
+		ls.setStrength(10);
 
 		//Create a heat source, populate it's attributes, and write to file
 		EnvironmentElement hs = new EnvironmentElement();
 		hs.setType(EnvironmentElement.HeatSource); 
-		hs.setPosition(new Point(200,200));
-		hs.setRadius(57);
-		hs.setStrength(96);		
+		hs.setPosition(new Point(700,500));
+		hs.setRadius(150);
+		hs.setStrength(10);
 
 		EnvironmentElement ws = new EnvironmentElement();
 		ws.setType(EnvironmentElement.WaterSource);
-		ws.setPosition(new Point(300,300));
-		ws.setStrength(56);
-		ws.setRadius(250);	
+		ws.setPosition(new Point(700,100));
+        ws.setRadius(150);
+		ws.setStrength(10);
 		
 		EnvironmentElement ps = new EnvironmentElement();
 		ps.setType(EnvironmentElement.PowerSource);
-		ps.setPosition(new Point(400,400));
-		ps.setStrength(65);
-		ps.setRadius(220);	
+		ps.setPosition(new Point(100,500));
+        ps.setRadius(150);
+		ps.setStrength(10);
 
 		// Create an environment and write to xml
 
@@ -272,8 +272,6 @@ public class UtilMethods {
 		v.saveVehicle(); //convert object and its attributes into XML
 		System.out.println("Creating " + path);
 		
-
-
 		//Re create a simlation
 		EditorSimulation es = new EditorSimulation();
 		path = "xml" + File.separator + "simulations" + File.separator + "default_simulation1.sim";
