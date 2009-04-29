@@ -64,7 +64,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         setSimulationArray();
         setVehicleArray();
         setEnvironmentArray();
-        engine = new SimulatonEngine(simulationArray[0]); //populate the engine with a simulation object
+        //engine = new SimulatonEngine(simulationArray[0]); //populate the engine with a simulation object
         enviroPreview = new EnvironmentPreview(simulationArray[0].getEnvironment());
         isPaused = false;
         
@@ -77,11 +77,12 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         // important to call this whenever embedding a PApplet.
         // It ensures that the animation thread is started and
         // that other internal variables are properly set.
-        engine.init();
+        // engine.init();
+        // engine.stop();
         enviroPreview.init();
-        engine.adjustRunningSpeed((float)this.slider_Speed.getValue());
-        jPanel3.remove(engine);
-        jPanel3.add(enviroPreview);
+        //engine.adjustRunningSpeed((float)this.slider_Speed.getValue());
+        //jPanel3.remove(engine);
+        //jPanel3.add(enviroPreview);
     }
 
     @Action
@@ -210,7 +211,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setLayout(new GridBagLayout());
 
-        jPanel3.add(engine);
+        jPanel3.add(enviroPreview);
 
         jScrollPane1.setViewportView(jPanel3);
 
@@ -448,7 +449,6 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         slider_Speed.setPaintLabels(true);
         slider_Speed.setPaintTicks(true);
         slider_Speed.setSnapToTicks(true);
-        slider_Speed.setValue(10);
         slider_Speed.setEnabled(false);
         slider_Speed.setFocusable(false);
         slider_Speed.setMaximumSize(new Dimension(32767, 30000));
@@ -497,13 +497,17 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         JComboBox tempComboBox = (JComboBox) evt.getSource();
         EditorSimulation selected = (EditorSimulation) tempComboBox.getSelectedItem();
         enviroPreview.setEnvironment(selected.getEnvironment());
-        engine.setSim(selected);
+        //engine = new SimulatonEngine(selected);
+        //engine.init();
+        //engine.stop();
         jPanel3.validate();
         //engine.setSim(selected);
         //engine.setup();
        // engine.startSim();
         //engine.pause();
         //populateFields(selected);
+        //engine = new SimulatonEngine(selected);
+        //engine.init();
 }//GEN-LAST:event_dropdown_SelectedSimulationItemStateChanged
 
     private void dropdown_SelectedSimulationFocusGained(FocusEvent evt) {//GEN-FIRST:event_dropdown_SelectedSimulationFocusGained
@@ -550,25 +554,31 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
 
     @Action
     public void startSim() {
-        enviroPreview.stop();
+        enviroPreview.destroy();
+        EditorSimulation selected = (EditorSimulation) dropdown_SelectedSimulation.getSelectedItem();
+        engine = new SimulatonEngine(selected);
+        engine.init();
         jPanel3.remove(enviroPreview);
         jPanel3.add(engine);
-        jPanel3.validate();
+
+        
         button_Start.setEnabled(false);
         dropdown_SelectedSimulation.setEnabled(false);
         slider_Speed.setEnabled(true);
-        engine.start();
-        engine.setup();
-        engine.startSim();
+        //engine.setup();
         button_Stop.setEnabled(true);
         button_Pause.setEnabled(true);
+        engine.adjustRunningSpeed((float)this.slider_Speed.getValue());
+        engine.startSim();
+        button_Pause.setSelected(true);
+        pauseSim();
+        jPanel3.validate();
     }
 
     @Action
     public void stopSim() {
+        engine.destroy();
         jPanel3.remove(engine);
-        engine.pause();
-        engine.stop();
         enviroPreview.start();
         jPanel3.add(enviroPreview);
         jPanel3.validate();
@@ -577,8 +587,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         button_Stop.setEnabled(false);
         button_Pause.setEnabled(false);
         slider_Speed.setEnabled(false);
-        slider_Speed.setValue(10);
-        engine.setMove_speed(0);
+        slider_Speed.setValue(50);
         isPaused = false;
         if(button_Pause.isSelected())
             button_Pause.setSelected(false);
