@@ -1137,6 +1137,9 @@
                     <Property name="background" type="java.awt.Color" resourceKey="processing_EnvironmentPreview.background"/>
                     <Property name="name" type="java.lang.String" value="processing_EnvironmentPreview" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="componentResized" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="processing_EnvironmentPreviewComponentResized"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="processing_EnvironmentPreview.add(proEnvironmentPreview, BorderLayout.CENTER);"/>
                   </AuxValues>
