@@ -107,10 +107,8 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 	public void move() {
 
-
 		float ang;// = this.parent.random(10);
 		checkBounds();
-
 
 		setLeftSpeed(sB.getSense(false, this.max_speed, this.aggression));
 		setRightSpeed(sA.getSense(false, this.max_speed, this.aggression));
