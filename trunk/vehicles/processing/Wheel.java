@@ -46,9 +46,17 @@ public class Wheel implements PConstants {
 		return this.ang_speed;
 	}
 
+	public void setAngleSpeed(float a){
+		this.ang_speed = a;
+	}
+	
 	public void updateMaxSpeed(float s){
 		this.max_speed = s;
 		this.setSpeed(ang_speed);
+	}
+	
+	public void setMaxSpeed(float s){
+		this.max_speed = s;
 	}
 
 	public void setSpeedChange(float inc) {
@@ -62,6 +70,17 @@ public class Wheel implements PConstants {
 	public void setAngle(float a){
 		this.angle = a;
 	}
+	
+	public void setDispl(float disp){
+		if(disp <= this.max_speed){
+			this.d = disp;
+		}
+	}
+	
+	public float getDisp(){
+		return this.d;
+	}
+	
 	public float getAngle(){
 		return this.angle;
 	}

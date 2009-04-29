@@ -140,9 +140,11 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		/*Just update the vehicle's position and direction, this stuff won't need to be changed*/
 		wheel_diff = wA.d - wB.d;
 		wheel_average = (wA.d + wB.d) / 2;
-		angle += wheel_diff / axle;
-		x += PApplet.cos(angle) * wheel_average;
-		y += PApplet.sin(angle) * wheel_average;
+		Math.abs(angle += wheel_diff / axle);
+		System.out.print("Angle: " + angle);
+		x += this.time_speed * ((PApplet.cos(angle) * wheel_average)/100);
+		y += this.time_speed * ((PApplet.sin(angle) * wheel_average)/100);
+		//y += (PApplet.sin(angle) * wheel_average);
 
 		checkCollisionVehicles();
 		checkCollisionElements();
@@ -267,11 +269,11 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 					(x >= this.last_storedX - this.axle && y >= this.last_storedY - this.axle)){
 				if(this.parent.random(10) <= 4){
 					System.out.println("Changing motor A");
-					this.wB.setSpeed((this.wB.getAngleSpeed() * 1.1f) + 0.25f);
+					this.wB.setSpeed((this.wB.getAngleSpeed() * 1.1f) + 0.5f);
 				}
 				else{
 					System.out.println("Changing motor B");
-					this.wA.setSpeed((this.wA.getAngleSpeed() * 1.1f) + 0.25f);
+					this.wA.setSpeed((this.wA.getAngleSpeed() * 1.1f) + 0.5f);
 				}
 				if(this.parent.random(10) <= 4){
 					this.angle += HALF_PI / 1.25;
@@ -462,8 +464,17 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	public void updateSpeed_ofTime(float percent){
 		this.time_speed = percent;
 		this.curr_max_speed = percent * (this.max_speed / 100);
-		this.wA.updateMaxSpeed(this.curr_max_speed);
-		this.wB.updateMaxSpeed(this.curr_max_speed);
+		this.wA.setMaxSpeed(this.curr_max_speed);
+		this.wB.setMaxSpeed(this.curr_max_speed);
+		this.wA.setAngle(percent * (this.wA.getAngle() / 100));
+		this.wB.setAngle(percent * (this.wB.getAngle() / 100));
+		this.wA.setDispl(this.curr_max_speed);
+		this.wB.setDispl(this.curr_max_speed);
+		this.wA.setAngleSpeed(percent * (this.wA.getAngleSpeed() / 100));
+		this.wB.setAngleSpeed(percent * (this.wB.getAngleSpeed() / 100));
+		//this.wA.updateMaxSpeed(this.curr_max_speed);
+		//this.wB.updateMaxSpeed(this.curr_max_speed);
+		//this.changeLeftSpeed(inc);
 	}
 
 
