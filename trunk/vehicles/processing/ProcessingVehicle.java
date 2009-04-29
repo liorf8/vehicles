@@ -155,7 +155,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	}
 
 	public void depleteBatt(){
-		this.curr_battery -= 1;
+		this.curr_battery -= 0.005;
 		this.checkBattery();
 	}
 
@@ -234,7 +234,6 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 			yPos = temp.yPos;
 			if((x <= xPos + axle && y <= yPos + axle) && (x >= xPos - axle && y <= yPos + axle) &&
 					(x <= xPos + axle && y >= yPos - axle) && (x >= xPos - axle && y >= yPos - axle)){
-				System.out.println("Adding to memory");
 				this.addElementToMemory(engineParent.elementVector.elementAt(i), engineParent.sim.log);
 				return;
 			}
@@ -299,6 +298,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 				//e.printStackTrace();
 				return;
 			}
+			size = engineParent.num_vehicles;
 		}
 	}
 

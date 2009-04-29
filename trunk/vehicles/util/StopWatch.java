@@ -27,6 +27,9 @@ public class StopWatch {
         this.running = true;
     }
 
+    public void reset(){
+    	this.startTime = System.currentTimeMillis();
+    }
     
     public void stop() {
         this.stopTime = System.currentTimeMillis();
