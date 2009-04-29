@@ -27,7 +27,9 @@ import vehicles.environment.*;
 	 * @param currentlySelected the environment element to set
 	 */
 	public void setCurrentlySelected(EnvironmentElement currentlySelected) {
-		this.currentlySelected = currentlySelected;
+		System.out.println("setCurrentlySelectes() : change to "+this.getCurrentlySelected());
+
+		this.currentlySelected = new EnvironmentElement(currentlySelected);
 	}
 	 
 	 
