@@ -934,7 +934,7 @@ public class SimulationEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_list_AvailableEnvironmentsValueChanged
 
     private void processing_EnvironmentPreviewComponentResized(ComponentEvent evt) {//GEN-FIRST:event_processing_EnvironmentPreviewComponentResized
-        proVehiclePreview.updateSize(processing_VehiclePreview.getWidth(), processing_VehiclePreview.getHeight());
+        proEnvironmentPreview.updateSize(processing_EnvironmentPreview.getWidth(), processing_EnvironmentPreview.getHeight());
     }//GEN-LAST:event_processing_EnvironmentPreviewComponentResized
 
     @Action

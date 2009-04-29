@@ -482,6 +482,10 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     private void dropdown_SelectedSimulationItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_dropdown_SelectedSimulationItemStateChanged
         JComboBox tempComboBox = (JComboBox) evt.getSource();
         EditorSimulation selected = (EditorSimulation) tempComboBox.getSelectedItem();
+        engine.setSim(selected);
+        engine.setup();
+        engine.startSim();
+        engine.pause();
         //populateFields(selected);
 }//GEN-LAST:event_dropdown_SelectedSimulationItemStateChanged
 
