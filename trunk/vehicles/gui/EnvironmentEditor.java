@@ -7,9 +7,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
-import javax.swing.BoxLayout;
 import javax.swing.JSlider;
-import javax.swing.JToggleButton;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
@@ -640,7 +638,6 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 		e.setWidth(proLayout.getWidth());
         e.setHeight(proLayout.getHeight());
         e.addElements(proLayout.getElements());
-        System.out.print(proLayout.getElements());
 		e.saveEnvironment(); //convert object and its attributes into XML
         String lastModified = e.getLastModified();
         appRoot.setEnvironmentArray();
