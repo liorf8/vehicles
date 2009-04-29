@@ -114,6 +114,74 @@ public class SimulatonEngine extends PApplet {
 		stopwatch = new StopWatch();
 	}
 
+    public Simulation getSim() {
+        return sim;
+    }
+
+    public void setSim(Simulation sim) {
+        this.sim = sim;
+        this.perishable_vehicles = this.sim.getPerishableVehicles();
+		this.evolution = this.sim.getEvolution();
+		this.sel_method = this.sim.getGeneticSelectionMethod();
+		this.n_for_sel = this.sim.getN();
+		this.repro_method = this.sim.getReproductionMethod();
+
+		Vector<EnvironmentElement> elements = sim.getEnvironment().getElements();
+		Vector<Vehicle> veh = sim.getVehicles();
+
+		vehicleVector = new Vector<ProcessingVehicle>();
+		int num_veh = veh.size();
+
+		if(this.evolution){
+			if(this.repro_method == 1){
+				asexual = true;
+			}
+			else if(this.repro_method == 2){
+				pairedMating = true;
+			}
+			else{
+				this.evolution = false;
+			}
+		}
+
+		if(asexual){
+			if (this.sel_method == Genetics.NoSelection){
+				evolution = false;
+				asexual = false;
+			}
+			if(this.n_for_sel == 0 && (this.sel_method == Genetics.TopNPercenSelection || this.sel_method == Genetics.TournamenetSelection)){
+				this.evolution = false;
+				asexual = false;
+			}
+		}
+
+		for (int i = 0; i < num_veh; i++) {
+			this.vehicleVector.add(new ProcessingVehicle(this, veh.elementAt(i), (int)this.random(width), (int)this.random(height), random(PI), axle,
+					i, pairedMating, this.perishable_vehicles));
+		}
+
+		this.num_vehicles = vehicleVector.size();
+
+		this.num_sources = elements.size();
+		enviro = this.sim.getEnvironment();
+		this.w = enviro.getWidth();
+		this.h = enviro.getHeigth();
+
+
+		elementVector = new Vector<ProcessingEnviroElement>();
+
+		for (int i = 0; i < this.num_sources; i++) {
+			EnvironmentElement curr = elements.elementAt(i);
+			System.out.print(i + " : ");
+			elementVector.add(new ProcessingEnviroElement(this, curr, curr.getName().hashCode()));
+			print(elementVector.elementAt(i).toString());
+		}
+		this.asexual_reproduction_constant = (int)this.random(this.max_time_for_asexual - this.min_time_for_asexual) + this.min_time_for_asexual;
+		this.curr_asexual_constant = this.asexual_reproduction_constant;
+		System.out.println("Sexual Reproduction_constant: " + this.asexual_reproduction_constant);
+		stopwatch = new StopWatch();
+    }
+
 	// Processing Sketch Setup
 	@Override
 	public void setup() {
