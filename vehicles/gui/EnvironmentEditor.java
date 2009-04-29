@@ -363,8 +363,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_Radius.setName("panel_Radius"); // NOI18N
 
         slider_Radius.setMaximum(150);
-        slider_Radius.setMinimum(5);
-        slider_Radius.setValue(10);
+        slider_Radius.setMinimum(20);
         slider_Radius.setName("slider_Radius"); // NOI18N
         slider_Radius.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent evt) {
@@ -395,6 +394,8 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         panel_Intensity.setBorder(BorderFactory.createTitledBorder(resourceMap.getString("panel_Intensity.border.title"))); // NOI18N
         panel_Intensity.setName("panel_Intensity"); // NOI18N
 
+        slider_Intensity.setMaximum(20);
+        slider_Intensity.setMinimum(1);
         slider_Intensity.setName("slider_Intensity"); // NOI18N
         slider_Intensity.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent evt) {

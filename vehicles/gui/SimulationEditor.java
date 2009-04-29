@@ -742,6 +742,11 @@ public class SimulationEditor extends javax.swing.JFrame {
 
         processing_EnvironmentPreview.setBackground(resourceMap.getColor("processing_EnvironmentPreview.background")); // NOI18N
         processing_EnvironmentPreview.setName("processing_EnvironmentPreview"); // NOI18N
+        processing_EnvironmentPreview.addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent evt) {
+                processing_EnvironmentPreviewComponentResized(evt);
+            }
+        });
         processing_EnvironmentPreview.setLayout(new BorderLayout());
 
         jScrollPane2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -925,6 +930,10 @@ public class SimulationEditor extends javax.swing.JFrame {
     private void list_AvailableEnvironmentsValueChanged(ListSelectionEvent evt) {//GEN-FIRST:event_list_AvailableEnvironmentsValueChanged
         selectedEnvironmentListSelectionChanged();
     }//GEN-LAST:event_list_AvailableEnvironmentsValueChanged
+
+    private void processing_EnvironmentPreviewComponentResized(ComponentEvent evt) {//GEN-FIRST:event_processing_EnvironmentPreviewComponentResized
+        proVehiclePreview.updateSize(processing_VehiclePreview.getWidth(), processing_VehiclePreview.getHeight());
+    }//GEN-LAST:event_processing_EnvironmentPreviewComponentResized
 
     @Action
     public void saveSimulation() {
