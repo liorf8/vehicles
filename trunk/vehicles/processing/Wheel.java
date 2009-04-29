@@ -41,12 +41,14 @@ public class Wheel implements PConstants {
 	public float getDisplacement(){
 		return this.d;
 	}
+	
+	public float getAngleSpeed(){
+		return this.ang_speed;
+	}
 
 	public void updateMaxSpeed(float s){
 		this.max_speed = s;
-		if(d > max_speed){
-			d = max_speed;
-		}
+		this.setSpeed(ang_speed);
 	}
 
 	public void setSpeedChange(float inc) {
