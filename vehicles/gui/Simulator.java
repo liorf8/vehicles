@@ -472,7 +472,9 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     }// </editor-fold>//GEN-END:initComponents
 
     private void slider_SpeedStateChanged(ChangeEvent evt) {//GEN-FIRST:event_slider_SpeedStateChanged
-        //engine.setMove_speed((float)slider_Speed.getValue()/5);
+    	if(slider_Speed.getValue() == 0){
+    		slider_Speed.setValue(1);
+    	}
     	engine.adjustRunningSpeed((float)slider_Speed.getValue());
         jPanel3.validate();
 }//GEN-LAST:event_slider_SpeedStateChanged

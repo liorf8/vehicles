@@ -10,7 +10,6 @@ public class StopWatch {
     private long startTime = 0;
     private long stopTime = 0;
     private boolean running = false;
-    private long time_elapsed_at_pause = 0;
 
     /**
      * Emprty Constructor for a StopWatch
@@ -37,13 +36,6 @@ public class StopWatch {
         this.running = false;
     }
 
-    public void pause(){
-    	time_elapsed_at_pause = System.currentTimeMillis() - this.startTime;
-    }
-    
-    public void unPause(){
-    	this.startTime = time_elapsed_at_pause;
-    }
     /**
      * A method to get the elapsed time in seconds
      * @return Elapsed time in seconds
@@ -72,10 +64,6 @@ public class StopWatch {
             elapsed = ((double)(stopTime - startTime) / 1000);
         }
         return elapsed;
-    }
-    
-    public double getElapsedTimeAtPause(){
-    	return (double)(this.time_elapsed_at_pause / 1000);
     }
 }
 
