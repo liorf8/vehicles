@@ -2,6 +2,8 @@ package vehicles.processing;
 
 import processing.core.*;
 import java.util.Iterator;
+import vehicles.vehicle.MemoryUnit;
+import vehicles.environment.Point;
 
 /**
  *
@@ -28,15 +30,41 @@ public class Sensor implements PConstants {
 	}
 
 
-	float getSense(boolean found, float maxSpeed, float aggression, float p_red, float p_green, float p_blue) {
+	float getSense(boolean found, float maxSpeed, float aggression, float p_red, float p_green, float p_blue, MemoryUnit memu) {
 		SimulatonEngine p = (SimulatonEngine) parent;
 		float sum = parent.red( p.ground.get( (int)x, (int)y ) ) / 255.0f;
 		sum += parent.green( p.ground.get( (int)x, (int)y ) ) / 255.0f;
 		sum += parent.blue( p.ground.get( (int)x, (int)y ) ) / 255.0f;
 		sum = (found) ? sum : 1-sum;
 		sense = (false) ? p.nonlinear( sum, maxReading ) : 1-sum;
-		if (sense == 0) {
-			sense = 0.1f;
+		//if nothing sensed, then look towards memory to know where to go
+		if (sense == 0) { 
+			float distance, temp_dist;
+			int closest_x, closest_y;
+			Point[] points = memu.getPoints();
+			Point temp = new Point(this.x, this.y);
+			int size = points.length;
+			if(size > 0){
+				distance = points[0].getDistanceBetween(temp);
+				closest_x = (int)points[0].getXpos();
+				closest_y = (int)points[0].getYpos();
+			}
+			else {
+				return 0.1f;
+			}
+			for(int i = 1; i < size; i++){
+				temp_dist = points[i].getDistanceBetween(temp);
+				if(temp_dist <= distance){
+					distance = temp_dist;
+					closest_x = (int)points[i].getXpos();
+					closest_y = (int)points[i].getYpos();
+				}
+			}
+			sum = parent.red( p.ground.get(closest_x, closest_y) ) / 255.0f;
+			sum += parent.green( p.ground.get(closest_x, closest_y) ) / 255.0f;
+			sum += parent.blue( p.ground.get(closest_x, closest_y) ) / 255.0f;
+			sum = (found) ? sum : 1-sum;
+			sense = (false) ? p.nonlinear( sum, maxReading ) : 1-sum;
 		}
 		return sense;
 	}

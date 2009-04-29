@@ -31,7 +31,8 @@ import vehicles.util.StopWatch;
  */
 public class ProcessingVehicle extends Vehicle implements PConstants {
 
-	float chance_to_mate = 2.5f; //this is out of ten
+	float chance_to_mate = 0.2f; //this is out of ten
+	float last_storedX, last_storedY;
 	float time_speed;
 	float max_speed, curr_max_speed;
 	float x, y, axle;
@@ -41,11 +42,11 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	Wheel wA, wB; // two wheels
 	Sensor sA, sB; // two sensors
 	int colorRed, colorGreen, colorBlue, id; //maybe we can make this by doing a hash on the vehicle's name?
+	int interval = 4;
 	PApplet parent; // The parent PApplet that we will render ourselves onto
 	float max_battery, curr_battery;
 	boolean canDie, pairedMating, dead = false, remember = false;
-	private static int veh_count = 0;
-	public StopWatch stopwatch;
+	public StopWatch stopwatch, samePos_watch;
 	/*
 	 * This constructor takes a vehicle as a parameter
 	 * Means that all the vehicle methods are now avaialble within processing
@@ -57,6 +58,8 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		this.parent = p;
 		this.x = x;
 		this.y = y;
+		this.last_storedX = this.x;
+		this.last_storedY = this.y;
 		this.colorRed = v.getVehicleColourRed();
 		this.colorGreen = v.getVehicleColourGreen();
 		this.colorBlue = v.getVehicleColourBlue();
@@ -67,12 +70,14 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		this.curr_battery = this.getCurrentBatteryCapacity();
 		this.canDie = d;
 		this.pairedMating = pairedM;
-		
+
 		this.stopwatch = new StopWatch();
+		this.samePos_watch = new StopWatch();
 		this.stopwatch.start();
+		this.samePos_watch.start();
 
 		this.time_speed = 100;
-		
+
 		axle = axle_length;
 		axleHalf = axle / 2;
 		axleSquared = axle * axle;
@@ -87,10 +92,6 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 	public int getId() {
 		return id;
-	}
-
-	public ProcessingVehicle(){
-
 	}
 
 	public ProcessingVehicle(PApplet p, float x, float y, float angle, float axle_length, int r, int g, int b, float m) { //constructor
@@ -133,8 +134,8 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		float ang;// = this.parent.random(10);
 		checkBounds();
 
-		setLeftSpeed(sB.getSense(false, this.max_speed, this.aggression, this.colorRed, this.colorGreen, this.colorBlue));
-		setRightSpeed(sA.getSense(false, this.max_speed, this.aggression, this.colorRed, this.colorGreen, this.colorBlue));
+		setLeftSpeed(sB.getSense(false, this.max_speed, this.aggression, this.colorRed, this.colorGreen, this.colorBlue, this.getMem()));
+		setRightSpeed(sA.getSense(false, this.max_speed, this.aggression, this.colorRed, this.colorGreen, this.colorBlue, this.getMem()));
 
 		/*Just update the vehicle's position and direction, this stuff won't need to be changed*/
 		wheel_diff = wA.d - wB.d;
@@ -142,14 +143,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		angle += wheel_diff / axle;
 		x += PApplet.cos(angle) * wheel_average;
 		y += PApplet.sin(angle) * wheel_average;
-		
-		//hopefully this takes into account vehicle memory
-		remember = this.remembersElementAt(x, y);
-		if(remember){
-			setLeftSpeed((float)this.getIntesnityOfElementAt(x, y)/10 + this.wB.getAngSpeed());
-			setRightSpeed((float)this.getIntesnityOfElementAt(x, y)/10 + this.wA.getAngSpeed());
-		}
-		
+
 		checkCollisionVehicles();
 		checkCollisionElements();
 
@@ -180,9 +174,16 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		setRightSpeed(sA.getSenseGreen());
 		setLeftSpeed(sB.getSenseBlue());
 		setRightSpeed(sA.getSenseBlue());
+
+		this.checkSamePos();
+
 		if(canDie){
 			depleteBatt();
 		}
+	}
+
+	public void updateChanceOfMating(float c){
+		this.chance_to_mate = c;
 	}
 
 	public void depleteBatt(){
@@ -250,13 +251,39 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 	}
 
-	public void checkBounds() {
+	void checkBounds() {
 
 		x = PApplet.max(axle + 5, PApplet.min(parent.width - axle - 5, x));
 		y = PApplet.max(axle + 5, PApplet.min(parent.height - axle - 5, y));
 
 	}
 
+	void checkSamePos(){
+		long elapsed = this.samePos_watch.getElapsedTimeSecs();
+		if(elapsed == this.interval){
+			this.samePos_watch.reset();
+			if((x <= this.last_storedX + this.axle && y <= this.last_storedY + this.axle) && (x >= this.last_storedX - this.axle &&
+					y <= this.last_storedY + this.axle)	&& (x <= this.last_storedX + this.axle && y >= this.last_storedY - this.axle) && 
+					(x >= this.last_storedX - this.axle && y >= this.last_storedY - this.axle)){
+				if(this.parent.random(10) <= 4){
+					this.wB.setSpeed((this.wB.getAngleSpeed() * 1.1f) + 0.25f);
+				}
+				else{
+					this.wA.setSpeed((this.wA.getAngleSpeed() * 1.1f) + 0.25f);
+				}
+				//this.angle += this.parent.random(1.0f);
+				this.angle += 0.15f * this.angle;
+				this.last_storedX = this.x;
+				this.last_storedY = this.y;
+				return;
+			}
+		}
+		if(elapsed % 2 == 0){
+			this.last_storedX = this.x;
+			this.last_storedY = this.y;
+		}
+
+	}
 
 	void checkCollisionElements() { //if vehicles occupies exact same spot as element, add it to memory
 		float xPos, yPos, radius, intensity;
@@ -317,12 +344,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 							if((their_fitness >= my_fitness - (my_fitness * 0.1)) ||(their_fitness <= my_fitness + (my_fitness * 0.1)) ){
 								float r = this.parent.random(10);
 								if(r <= chance_to_mate){ 
-									System.out.println("Vehicles are mating ...");
 									this.mate(temp);
-									veh_count ++;
-									if(veh_count >=1000){
-										engineParent.pause();
-									}
 									this.depleteBatt();
 									this.checkBattery();
 									temp.depleteBatt();
@@ -375,7 +397,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 			engineParent.vehicleVector.add(pv);
 		}
 		//Stops the vehicles killing everything
-		if(engineParent.vehicleVector.size() == 100){
+		if(engineParent.vehicleVector.size() >= 100){
 			pv = engineParent.vehicleVector.elementAt(0);
 			log+= "\nToo many vehicles in simulation. Oldest vehicle moving out.\nVehicle " + pv.getName() + " has moved out!";
 			pv.die();
@@ -426,18 +448,18 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	public void updateBlue(int b) {
 		this.colorBlue = b;
 	}
-	
+
 	public float getMaxSpeed(){
 		return this.max_speed;
 	}
-	
+
 	public void updateSpeed_ofTime(float percent){
 		this.time_speed = percent;
 		this.curr_max_speed = percent * (this.max_speed / 100);
 		this.wA.updateMaxSpeed(this.curr_max_speed);
 		this.wB.updateMaxSpeed(this.curr_max_speed);
 	}
-	
+
 
 	public String toString(){
 		DecimalFormat df = new DecimalFormat("#.##");
