@@ -89,7 +89,7 @@ public class EnvironmentLayout extends PApplet {
 			ProcessingEnviroElement toSet = new ProcessingEnviroElement(eb.getPev());
 			toSet.parent = this;
 			toSet.setPosition(new Point(mouseX,mouseY));
-			System.out.println(toSet.tostring());
+			//System.out.println(toSet.tostring());
 			this.ee.add(toSet);
 			print("Now have "+ee.size()+ " elements\n");
 			bufferTime = frameCount;

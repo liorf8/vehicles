@@ -232,7 +232,7 @@ public class Simulation {
 	public void addVehicle(String c){
 		String p = UtilMethods.formatFilePath(c);
 		if(vehicles.size() >= 2){
-			System.err.print("Cannot do taht");
+			System.err.print("Cannot do that");
 		}
 		vehicles.add(new Vehicle(c));
 	}

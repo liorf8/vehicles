@@ -231,9 +231,9 @@ public class MemoryUnit {
 			x = Tuple.get1(this.real_memory.elementAt(i));
 			y = Tuple.get2(this.real_memory.elementAt(i));
 			type = Tuple.get4(this.real_memory.elementAt(i));
-			System.out.println("Position: (" + x + "," + y + ") | Type: " + type + " | Intensity: " + intensity);
+			//System.out.println("Position: (" + x + "," + y + ") | Type: " + type + " | Intensity: " + intensity);
 		}
-		System.out.println(len + " elements in memory");
+		//System.out.println(len + " elements in memory");
 	}
 
 	/*XML geneneration*/

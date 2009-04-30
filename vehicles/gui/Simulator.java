@@ -1,7 +1,5 @@
 package vehicles.gui;
 
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.ItemListener;
 import java.awt.GridBagLayout;
 import java.awt.event.ItemEvent;
@@ -29,7 +27,6 @@ import javax.swing.ActionMap;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -53,7 +50,7 @@ import javax.swing.JFrame;
  * Created on 26-Mar-2009, 13:02:43
  * @author Niall O'Hara
  */
-public class Simulator extends FrameView implements ChangeListener, ItemListener, FocusListener {
+public class Simulator extends FrameView implements ChangeListener, ItemListener {
 
     public Simulator(SingleFrameApplication app) {
         super(app);
@@ -68,17 +65,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
 
         initComponents();
 
-        //populateFields(simulationArray[0]);
-
-        // important to call this whenever embedding a PApplet.
-        // It ensures that the animation thread is started and
-        // that other internal variables are properly set.
-        // engine.init();
-        // engine.stop();
         enviroPreview.init();
-        //engine.adjustRunningSpeed((float)this.slider_Speed.getValue());
-        //jPanel3.remove(engine);
-        //jPanel3.add(enviroPreview);
     }
 
     @Action
@@ -122,27 +109,9 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     }
 
     @Action
-    public void open() {
-        JFileChooser fc = createFileChooser("openFileChooser");
-        int option = fc.showOpenDialog(getFrame());
-        if (JFileChooser.APPROVE_OPTION == option) {
-            fc.getSelectedFile();
-        }
-    }
-
-    @Action
     public void resetWindow(){
         ((Window)mainPanel.getTopLevelAncestor()).pack();
     }
-
-    private JFileChooser createFileChooser(String name) {
-        JFileChooser fc = new JFileChooser();
-        fc.setDialogTitle(getResourceMap().getString(name + ".dialogTitle"));
-        String textFilesDesc = getResourceMap().getString("txtFileExtensionDescription");
-        return fc;
-    }
-
-
     
     /** This method is called from within the constructor to
      * initialize the form.
@@ -400,7 +369,6 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         dropdown_SelectedSimulation.setModel(simulationDropDown);
         dropdown_SelectedSimulation.setName("dropdown_SelectedSimulation"); // NOI18N
         dropdown_SelectedSimulation.addItemListener(this);
-        dropdown_SelectedSimulation.addFocusListener(this);
 
         button_Pause.setAction(actionMap.get("pauseSim")); // NOI18N
         button_Pause.setText(resourceMap.getString("button_Pause.text")); // NOI18N
@@ -443,7 +411,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         toolBar.add(jSeparator1);
 
         slider_Speed.setMajorTickSpacing(10);
-        slider_Speed.setMaximum(200);
+        slider_Speed.setMaximum(150);
         slider_Speed.setMinorTickSpacing(2);
         slider_Speed.setPaintLabels(true);
         slider_Speed.setPaintTicks(true);
@@ -461,15 +429,6 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     }
 
     // Code for dispatching events from components to event handlers.
-
-    public void focusGained(java.awt.event.FocusEvent evt) {
-        if (evt.getSource() == dropdown_SelectedSimulation) {
-            Simulator.this.dropdown_SelectedSimulationFocusGained(evt);
-        }
-    }
-
-    public void focusLost(java.awt.event.FocusEvent evt) {
-    }
 
     public void itemStateChanged(java.awt.event.ItemEvent evt) {
         if (evt.getSource() == dropdown_SelectedSimulation) {
@@ -495,24 +454,8 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         JComboBox tempComboBox = (JComboBox) evt.getSource();
         EditorSimulation selected = (EditorSimulation) tempComboBox.getSelectedItem();
         enviroPreview.setEnvironment(selected.getEnvironment());
-        //engine = new SimulatonEngine(selected);
-        //engine.init();
-        //engine.stop();
         jPanel3.validate();
-        //engine.setSim(selected);
-        //engine.setup();
-       // engine.startSim();
-        //engine.pause();
-        //populateFields(selected);
-        //engine = new SimulatonEngine(selected);
-        //engine.init();
 }//GEN-LAST:event_dropdown_SelectedSimulationItemStateChanged
-
-    private void dropdown_SelectedSimulationFocusGained(FocusEvent evt) {//GEN-FIRST:event_dropdown_SelectedSimulationFocusGained
-        setSimulationArray();
-        simulationDropDown = new DefaultComboBoxModel(simulationArray);
-        dropdown_SelectedSimulation.setModel(simulationDropDown);
-    }//GEN-LAST:event_dropdown_SelectedSimulationFocusGained
 
     public Environment[] getEnvironmentArray() {
         return environmentArray;
@@ -558,12 +501,9 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         engine.init();
         jPanel3.remove(enviroPreview);
         jPanel3.add(engine);
-
-        
         button_Start.setEnabled(false);
         dropdown_SelectedSimulation.setEnabled(false);
         slider_Speed.setEnabled(true);
-        //engine.setup();
         button_Stop.setEnabled(true);
         button_Pause.setEnabled(true);
         engine.adjustRunningSpeed((float)this.slider_Speed.getValue());
@@ -579,7 +519,6 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         jPanel3.remove(engine);
         enviroPreview.start();
         jPanel3.add(enviroPreview);
-        jPanel3.validate();
         button_Start.setEnabled(true);
         dropdown_SelectedSimulation.setEnabled(true);
         button_Stop.setEnabled(false);
@@ -587,6 +526,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         slider_Speed.setEnabled(false);
         slider_Speed.setValue(50);
         isPaused = false;
+        jPanel3.validate();
         if(button_Pause.isSelected())
             button_Pause.setSelected(false);
     }
@@ -624,6 +564,8 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         setSimulationArray();
         setVehicleArray();
         setEnvironmentArray();
+        simulationDropDown = new DefaultComboBoxModel(simulationArray);
+        dropdown_SelectedSimulation.validate();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

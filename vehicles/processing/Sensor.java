@@ -72,10 +72,10 @@ public class Sensor implements PConstants {
 				total_intensity += temp_intensity * ((float)this.water);
 				break;
 			}
-			System.out.println("Intensity: " + total_intensity);
+			//System.out.println("Intensity: " + total_intensity);
 		}
 		if (total_intensity <= 0) {
-			System.out.println("GEtting Num from Memory");
+			//System.out.println("GEtting Num from Memory");
 			Point[] points = memu.getPoints();
 			size = points.length;
 			if(size == 0){
