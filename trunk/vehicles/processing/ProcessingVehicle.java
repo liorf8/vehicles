@@ -42,7 +42,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	Wheel wA, wB; // two wheels
 	Sensor sA, sB; // two sensors
 	int colorRed, colorGreen, colorBlue, id; //maybe we can make this by doing a hash on the vehicle's name?
-	int interval = 4;
+	int interval = 2;
 	PApplet parent; // The parent PApplet that we will render ourselves onto
 	float max_battery, curr_battery;
 	boolean canDie, pairedMating, dead = false, remember = false;
@@ -58,8 +58,6 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		this.parent = p;
 		this.x = x;
 		this.y = y;
-		this.last_storedX = this.x;
-		this.last_storedY = this.y;
 		this.colorRed = v.getVehicleColourRed();
 		this.colorGreen = v.getVehicleColourGreen();
 		this.colorBlue = v.getVehicleColourBlue();
@@ -176,7 +174,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		sB.x = x + axle * PApplet.cos(ang);
 		sB.y = y + axle * PApplet.sin(ang);
 
-		this.checkSamePos();
+		//this.checkSamePos();
 
 		if(canDie){
 			depleteBatt();
@@ -254,41 +252,27 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 	void checkBounds() {
 
-		x = PApplet.max(axle + 5, PApplet.min(parent.width - axle - 5, x));
-		y = PApplet.max(axle + 5, PApplet.min(parent.height - axle - 5, y));
-
-	}
-
-	void checkSamePos(){
 		long elapsed = this.samePos_watch.getElapsedTimeSecs();
-		if(elapsed == this.interval){
+		if(elapsed >= this.interval){
 			this.samePos_watch.reset();
-			if((x <= this.last_storedX + this.axle && y <= this.last_storedY + this.axle) && (x >= this.last_storedX - this.axle &&
-					y <= this.last_storedY + this.axle)	&& (x <= this.last_storedX + this.axle && y >= this.last_storedY - this.axle) && 
-					(x >= this.last_storedX - this.axle && y >= this.last_storedY - this.axle)){
+			if(this.sA.x - 8 <= 0 || this.sA.x + 8 >= parent.width || this.sB.x  - 8 <= 0 || this.sB.x + 8 >= parent.width ||
+					this.sA.y - 8 <= 0 || this.sA.y + 8 >= parent.height || this.sB.y - 8 <= 0 || this.sB.y +8 >= parent.height){
 				if(this.parent.random(10) <= 4){
-					System.out.println("Changing motor A");
 					this.wB.setSpeed((this.wB.getAngleSpeed() * 1.1f) + 0.5f);
 				}
 				else{
-					System.out.println("Changing motor B");
 					this.wA.setSpeed((this.wA.getAngleSpeed() * 1.1f) + 0.5f);
 				}
 				if(this.parent.random(10) <= 4){
-					this.angle += HALF_PI / 1.25;
+					this.angle += this.parent.random(HALF_PI, PI);
 				}
 				else{
-					this.angle -= HALF_PI / 1.25;
+					this.angle -= this.parent.random(HALF_PI, PI);
 				}
-				this.last_storedX = this.x;
-				this.last_storedY = this.y;
-				return;
 			}
 		}
-		if(elapsed % 2 == 0){
-			this.last_storedX = this.x;
-			this.last_storedY = this.y;
-		}
+		x = PApplet.max(axle + 5, PApplet.min(parent.width - axle - 5, x));
+		y = PApplet.max(axle + 5, PApplet.min(parent.height - axle - 5, y));
 
 	}
 

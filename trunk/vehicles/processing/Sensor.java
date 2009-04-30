@@ -47,8 +47,13 @@ public class Sensor implements PConstants {
 
 	float getSense(float maxSpeed, float aggression, MemoryUnit memu) {
 		SimulatonEngine p = (SimulatonEngine) parent;
+		float sum = parent.red( p.ground.get( (int)x, (int)y ) ) / 255.0f;
+		sum += parent.green( p.ground.get( (int)x, (int)y ) ) / 255.0f;
+		sum += parent.blue( p.ground.get( (int)x, (int)y ) ) / 255.0f;
+		sum = (false) ? sum : 1-sum;
+		sense = (false) ? p.nonlinear( sum, maxReading ) : 1-sum;
 		ProcessingEnviroElement temp;
-		float total_intensity = ((100f / (aggression + 0.0001f)) * 0.01f), temp_intensity;
+		float total_intensity = (aggression * 0.01f), temp_intensity;
 		int size = p.elementVector.size();
 		for(int i = 0; i < size; i++){
 			temp = p.elementVector.elementAt(i);
@@ -67,6 +72,7 @@ public class Sensor implements PConstants {
 				total_intensity += temp_intensity * ((float)this.water);
 				break;
 			}
+			System.out.println("Intensity: " + total_intensity);
 		}
 		if (total_intensity <= 0) {
 			System.out.println("GEtting Num from Memory");
@@ -102,9 +108,15 @@ public class Sensor implements PConstants {
 				return this.parent.random(maxSpeed);
 			}
 		}
+		total_intensity = total_intensity * this.parent.random(2);
 		if(total_intensity > maxSpeed){
 			total_intensity = maxSpeed;
 		}
+		sum = parent.red( p.ground.get( (int)x, (int)y ) ) / 255.0f;
+		sum += parent.green( p.ground.get( (int)x, (int)y ) ) / 255.0f;
+		sum += parent.blue( p.ground.get( (int)x, (int)y ) ) / 255.0f;
+		sum = (false) ? sum : 1-sum;
+		sense = (false) ? p.nonlinear( sum, maxReading ) : 1-sum;
 		return total_intensity;
 	}
 
