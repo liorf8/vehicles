@@ -20,7 +20,7 @@ public class MyAdjustmentListener implements AdjustmentListener {
             // getValueIsAdjusting() returns true if the user is currently
             // dragging the scrollbar's knob and has not picked a final value
             if (evt.getValueIsAdjusting()) {
-                System.out.println("de");
+                //System.out.println("de");
                 return;
             }
 

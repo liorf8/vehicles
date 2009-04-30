@@ -40,7 +40,7 @@ public class ListVehiclesTest {
 		veh.saveVehicle();
 		/*GET LIST OF ALL VEHICLES IN FOLDER*/
 		EditorVehicle[] array = UtilMethods.getVehiclesFromFolder("xml/vehicles");
-		System.out.println("Array Len: " + array.length);
+		//System.out.println("Array Len: " + array.length);
 		for(int i = 0; i<array.length;i++){
 			System.out.println(array[i].getName()+"\n");
 		}

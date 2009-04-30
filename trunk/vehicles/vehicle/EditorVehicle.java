@@ -206,7 +206,7 @@ public class EditorVehicle extends Vehicle {
 			try{
 				fos = new FileOutputStream(xmlLocation);
 			}catch(FileNotFoundException e ){
-				System.out.println(xmlLocation);
+				//System.out.println(xmlLocation);
 				File f = new File(xmlLocation);
 				f.createNewFile();
 				fos = new FileOutputStream(xmlLocation);

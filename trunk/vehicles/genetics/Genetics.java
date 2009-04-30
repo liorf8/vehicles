@@ -66,7 +66,7 @@ public class Genetics {
 	public static Vehicle getVehicle_SelectionBased(int gen_selection, Vector<ProcessingVehicle> v, int n, SimulationLog s){
 		switch(gen_selection){
 		case 0:
-			System.out.println("No genetic selection method set! Returning null");
+			//System.out.println("No genetic selection method set! Returning null");
 			return null;
 		case 1:
 			return getVehicleByRoulette(v, s);

@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import javax.swing.JSlider;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -123,6 +124,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
         button_SaveAs = new JButton();
         button_Cancel = new JButton();
 
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         ResourceMap resourceMap = Application.getInstance(VehiclesApp.class).getContext().getResourceMap(EnvironmentEditor.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setMinimumSize(new Dimension(620, 560));
@@ -611,7 +613,7 @@ public class EnvironmentEditor extends javax.swing.JFrame {
 		e.setWidth(proLayout.getWidth());
         e.setHeight(proLayout.getHeight());
         e.addElements(proLayout.getElements());
-        System.out.print(proLayout.getElements());
+        //System.out.print(proLayout.getElements());
 		e.saveEnvironment(); //convert object and its attributes into XML
         String lastModified = e.getLastModified();
         appRoot.setEnvironmentArray();

@@ -43,7 +43,6 @@ public class AboutBox extends javax.swing.JDialog {
         JLabel appVersionLabel = new JLabel();
         JLabel vendorLabel = new JLabel();
         JLabel appVendorLabel = new JLabel();
-        JLabel homepageLabel = new JLabel();
         JLabel appHomepageLabel = new JLabel();
         JLabel appDescLabel = new JLabel();
         JLabel imageLabel = new JLabel();
@@ -77,10 +76,6 @@ public class AboutBox extends javax.swing.JDialog {
         appVendorLabel.setText(resourceMap.getString("Application.vendor")); // NOI18N
         appVendorLabel.setName("appVendorLabel"); // NOI18N
 
-        homepageLabel.setFont(homepageLabel.getFont().deriveFont(homepageLabel.getFont().getStyle() | Font.BOLD));
-        homepageLabel.setText(resourceMap.getString("homepageLabel.text")); // NOI18N
-        homepageLabel.setName("homepageLabel"); // NOI18N
-
         appHomepageLabel.setText(resourceMap.getString("Application.homepage")); // NOI18N
         appHomepageLabel.setName("appHomepageLabel"); // NOI18N
 
@@ -101,8 +96,7 @@ public class AboutBox extends javax.swing.JDialog {
                     .addGroup(Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(Alignment.LEADING)
                             .addComponent(versionLabel)
-                            .addComponent(vendorLabel)
-                            .addComponent(homepageLabel))
+                            .addComponent(vendorLabel))
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(Alignment.LEADING)
                             .addComponent(appVersionLabel)
@@ -130,10 +124,8 @@ public class AboutBox extends javax.swing.JDialog {
                     .addComponent(vendorLabel)
                     .addComponent(appVendorLabel))
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(homepageLabel)
-                    .addComponent(appHomepageLabel))
-                .addPreferredGap(ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(appHomepageLabel)
+                .addPreferredGap(ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(closeButton)
                 .addContainerGap())
         );

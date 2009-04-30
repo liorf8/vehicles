@@ -240,14 +240,14 @@ public class UtilMethods {
 		v.setColour(50, 100, 150);
 
 		v.setLeftSensorHeat(20);
-		v.setLeftSensorLight(30);
+		v.setLeftSensorLight(40);
 		v.setLeftSensorPower(40);
 		v.setLeftSensorWater(50);
 
-		v.setRightSensorHeat(-10);
-		v.setRightSensorLight(-20);
-		v.setRightSensorPower(-30);
-		v.setRightSensorWater(-40);
+		v.setRightSensorHeat(10);
+		v.setRightSensorLight(30);
+		v.setRightSensorPower(30);
+		v.setRightSensorWater(40);
 
 		v.saveVehicle(); //convert object and its attributes into XML
 		System.out.println("Creating " + path);
@@ -255,11 +255,11 @@ public class UtilMethods {
 
 		path = "xml" + File.separator + "vehicles" + File.separator + "default_vehicle2.veh";
 		v = new EditorVehicle(path);
-		v.setName("Default Vehicle 2"); //set object attributes
-		v.setAuthor("Shaun");
-		v.setDescription("Default Vehicle 2");
+		v.setName("Power Vehicle"); //set object attributes
+		v.setAuthor("Niall");
+		v.setDescription("This vehicle is very aggressive and likes power");
 
-		v.setMotorStrength(10);
+		v.setMotorStrength(50);
 		v.setAggression(100);
 
 		v.setMaxBatteryCapacity(100);
@@ -271,14 +271,14 @@ public class UtilMethods {
 		v.setColour(255, 0, 255);
 
 		v.setLeftSensorHeat(0);
-		v.setLeftSensorLight(10);
-		v.setLeftSensorPower(20);
-		v.setLeftSensorWater(50);
+		v.setLeftSensorLight(0);
+		v.setLeftSensorPower(50);
+		v.setLeftSensorWater(0);
 
-		v.setRightSensorHeat(-50);
-		v.setRightSensorLight(20);
-		v.setRightSensorPower(40);
-		v.setRightSensorWater(-40);
+		v.setRightSensorHeat(0);
+		v.setRightSensorLight(0);
+		v.setRightSensorPower(50);
+		v.setRightSensorWater(0);
 
 		v.saveVehicle(); //convert object and its attributes into XML
 		System.out.println("Creating " + path);
@@ -295,7 +295,7 @@ public class UtilMethods {
 		es.setGeneticSelectionMethod(Genetics.GetBestSelection);
 		es.setPerishableVehicles(false);
 		es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle1.veh");
-		es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle1.veh");
+		es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle2.veh");
 		//es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle2.veh");
 		es.setEnvironment("xml" + File.separator  + "environments" + File.separator + "default_environment1.env");
 		es.saveSimulation();
@@ -312,7 +312,7 @@ public class UtilMethods {
 		es.setGeneticSelectionMethod(Genetics.NoSelection);
 		es.setPerishableVehicles(false);
 		es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle1.veh");
-		es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle1.veh");
+		es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle2.veh");
 		//es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle2.veh");
 		es.setEnvironment("xml" + File.separator  + "environments" + File.separator + "default_environment2.env");
 		es.saveSimulation();

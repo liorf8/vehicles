@@ -17,6 +17,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -186,6 +187,7 @@ public class SimulationEditor extends javax.swing.JFrame {
         button_SaveAsNew = new JButton();
         button_Cancel = new JButton();
 
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         ResourceMap resourceMap = Application.getInstance(VehiclesApp.class).getContext().getResourceMap(SimulationEditor.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setMinimumSize(new Dimension(620, 560));

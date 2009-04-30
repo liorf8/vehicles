@@ -46,16 +46,16 @@ public class MemoryTest {
 		}
 
 		//Testing if environment in memory
-		System.out.println("Remebers element at (" + ee.getXpos() + "," + ee.getYpos() + ")" + 
-				veh.remembersElementAt(ee.getXpos(), ee.getYpos()));
+		//System.out.println("Remebers element at (" + ee.getXpos() + "," + ee.getYpos() + ")" +
+				//veh.remembersElementAt(ee.getXpos(), ee.getYpos()));
 
 		//testing getting environment xpos, ypos and type
-		System.out.println("Element is of type: " + veh.getTypeOfElementAt(ee.getXpos(), ee.getYpos()));
+		//System.out.println("Element is of type: " + veh.getTypeOfElementAt(ee.getXpos(), ee.getYpos()));
 
 		//Testing memory deletion
 		veh.resetMemory();
-		System.out.println("Remebers element at (" + ee.getXpos() + "," + ee.getYpos() + ")" + 
-				veh.remembersElementAt(ee.getXpos(), ee.getYpos()));
+		//System.out.println("Remebers element at (" + ee.getXpos() + "," + ee.getYpos() + ")" +
+				//veh.remembersElementAt(ee.getXpos(), ee.getYpos()));
 
 		//Testing adding many many things in memory
 		Environment crazyEnv = new Environment("xml/environments/crazy.env");
@@ -69,12 +69,12 @@ public class MemoryTest {
 		veh.printMemory();
 
 		Vehicle angry = new Vehicle("xml/vehicles/default_vehicle2.veh");
-		System.out.println("vehicle max mem: " + angry.getMaxMem());
-		System.out.println("vehicle learning rate: " + angry.getLearningRate());
+		//System.out.println("vehicle max mem: " + angry.getMaxMem());
+		//System.out.println("vehicle learning rate: " + angry.getLearningRate());
 		angry.setMaxMem(1000);
 		angry.setLearningRate(50);
-		System.out.println("vehicle max mem: " + angry.getMaxMem());
-		System.out.println("vehicle learning rate: " + angry.getLearningRate());
+		//System.out.println("vehicle max mem: " + angry.getMaxMem());
+		//System.out.println("vehicle learning rate: " + angry.getLearningRate());
 
 
 		//// Testing writing memory to xml ////
