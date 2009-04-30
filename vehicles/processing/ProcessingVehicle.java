@@ -132,13 +132,11 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	public void move() {
 
 		float ang;// = this.parent.random(10);
-		float speed;
 		checkBounds(true);
 		//setLeftSpeed(sB.getSense(false, this.max_speed, this.aggression, this.colorRed, this.colorGreen, this.colorBlue, this.getMem()));
 		//setRightSpeed(sA.getSense(false, this.max_speed, this.aggression, this.colorRed, this.colorGreen, this.colorBlue, this.getMem()));
-		speed = sB.getSense(this.max_speed, this.aggression, this.mu);
-		setLeftSpeed(speed);
-		setRightSpeed(((sA.getSense(this.max_speed, this.aggression, this.mu) + sB.getSense(this.max_speed, this.aggression, this.mu)))/2);
+		setLeftSpeed(sB.getSense(this.max_speed, this.aggression, this.mu));
+		setRightSpeed((sA.getSense(this.max_speed, this.aggression, this.mu)));
 		/*Just update the vehicle's position and direction, this stuff won't need to be changed*/
 		wheel_diff = wA.d - wB.d;
 		wheel_average = (wA.d + wB.d) / 2;
