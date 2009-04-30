@@ -132,11 +132,13 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	public void move() {
 
 		float ang;// = this.parent.random(10);
-		checkBounds();
+		float speed;
+		checkBounds(true);
 		//setLeftSpeed(sB.getSense(false, this.max_speed, this.aggression, this.colorRed, this.colorGreen, this.colorBlue, this.getMem()));
 		//setRightSpeed(sA.getSense(false, this.max_speed, this.aggression, this.colorRed, this.colorGreen, this.colorBlue, this.getMem()));
-		setLeftSpeed(sB.getSense(this.max_speed, this.aggression, this.mu));
-		setRightSpeed(sA.getSense(this.max_speed, this.aggression, this.mu));
+		speed = sB.getSense(this.max_speed, this.aggression, this.mu);
+		setLeftSpeed(speed);
+		setRightSpeed(((sA.getSense(this.max_speed, this.aggression, this.mu) + sB.getSense(this.max_speed, this.aggression, this.mu)))/2);
 		/*Just update the vehicle's position and direction, this stuff won't need to be changed*/
 		wheel_diff = wA.d - wB.d;
 		wheel_average = (wA.d + wB.d) / 2;
@@ -215,7 +217,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	public void moveWithoutSensor() {
 
 		float ang;
-		checkBounds();
+		checkBounds(false);
 
 		// move
 
@@ -250,24 +252,25 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 	}
 
-	void checkBounds() {
-
-		long elapsed = this.samePos_watch.getElapsedTimeSecs();
-		if(elapsed >= this.interval){
-			this.samePos_watch.reset();
-			if(this.sA.x - 8 <= 0 || this.sA.x + 8 >= parent.width || this.sB.x  - 8 <= 0 || this.sB.x + 8 >= parent.width ||
-					this.sA.y - 8 <= 0 || this.sA.y + 8 >= parent.height || this.sB.y - 8 <= 0 || this.sB.y +8 >= parent.height){
-				if(this.parent.random(10) <= 4){
-					this.wB.setSpeed((this.wB.getAngleSpeed() * 1.1f) + 0.5f);
-				}
-				else{
-					this.wA.setSpeed((this.wA.getAngleSpeed() * 1.1f) + 0.5f);
-				}
-				if(this.parent.random(10) <= 4){
-					this.angle += this.parent.random(HALF_PI, PI);
-				}
-				else{
-					this.angle -= this.parent.random(HALF_PI, PI);
+	void checkBounds(boolean z) {
+		if(z){
+			long elapsed = this.samePos_watch.getElapsedTimeSecs();
+			if(elapsed >= this.interval){
+				this.samePos_watch.reset();
+				if(this.sA.x - 8 <= 0 || this.sA.x + 8 >= parent.width || this.sB.x  - 8 <= 0 || this.sB.x + 8 >= parent.width ||
+						this.sA.y - 8 <= 0 || this.sA.y + 8 >= parent.height || this.sB.y - 8 <= 0 || this.sB.y +8 >= parent.height){
+					if(this.parent.random(10) <= 4){
+						this.wB.setSpeed((this.wB.getAngleSpeed() * 1.1f) + 0.5f);
+					}
+					else{
+						this.wA.setSpeed((this.wA.getAngleSpeed() * 1.1f) + 0.5f);
+					}
+					if(this.parent.random(10) <= 4){
+						this.angle += this.parent.random(HALF_PI, PI);
+					}
+					else{
+						this.angle -= this.parent.random(HALF_PI, PI);
+					}
 				}
 			}
 		}
