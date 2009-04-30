@@ -131,23 +131,29 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 	public void move() {
 
-		float ang;// = this.parent.random(10);
+		float ang;
+		float speed1, speed2;
 		checkBounds(true);
 		setLeftSpeed(sB.getSense(false, this.max_speed, this.aggression, this.colorRed, this.colorGreen, this.colorBlue, this.getMem()));
 		setRightSpeed(sA.getSense(false, this.max_speed, this.aggression, this.colorRed, this.colorGreen, this.colorBlue, this.getMem()));
-		//setLeftSpeed(sB.getSense(this.max_speed, this.aggression, this.mu));
-		//setRightSpeed((sA.getSense(this.max_speed, this.aggression, this.mu)));
+		//speed1 = sB.getSense(this.mu);
+		//speed2 = sA.getSense(this.mu);
+
+//		System.out.println("Speed1, 1st: " + speed1);
+		//System.out.println("Speed2, 1st: " + speed2);
+		//speed1 = this.max_speed * speed1;
+		//speed2 = this.max_speed * speed2;
+		//System.out.println("Speed1: " + speed1);
+		//System.out.println("Speed2: " + speed2);
+		//setLeftSpeed((sB.getSense(this.mu)/100) * this.max_speed);
+		//setRightSpeed(((sA.getSense(this.mu)/100) * this.max_speed));
 		/*Just update the vehicle's position and direction, this stuff won't need to be changed*/
 		wheel_diff = wA.d - wB.d;
 		wheel_average = (wA.d + wB.d) / 2;
 		angle += wheel_diff / axle;
-		//angle += wheel_diff / axle;
-		//x += this.time_speed * ((PApplet.cos(angle) * wheel_average)/85);
-		//y += this.time_speed * ((PApplet.sin(angle) * wheel_average)/85);
+	
 		x += (PApplet.cos(angle) * wheel_average);
 		y += (PApplet.sin(angle) * wheel_average);
-		///x+= this.time_speed * (10/100);
-		//y+= this.time_speed * (10/100);
 
 		checkCollisionVehicles();
 		checkCollisionElements();

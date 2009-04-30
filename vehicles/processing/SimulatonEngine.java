@@ -287,13 +287,7 @@ public class SimulatonEngine extends PApplet {
         }
     }
 
-    /**
-     * update the light source on the ground
-     *
-     * This seems to be for the functionality of inverting the sense of the environment
-     *  elements, so the vehicles are afraid of them -- only partly. It actually draws
-     *  the elementVector
-     */
+
     void updateGround() {
 
         float sum;
