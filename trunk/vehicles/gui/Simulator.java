@@ -454,6 +454,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         JComboBox tempComboBox = (JComboBox) evt.getSource();
         EditorSimulation selected = (EditorSimulation) tempComboBox.getSelectedItem();
         enviroPreview.setEnvironment(selected.getEnvironment());
+        this.engine = new SimulatonEngine(selected);
         jPanel3.validate();
 }//GEN-LAST:event_dropdown_SelectedSimulationItemStateChanged
 
@@ -565,6 +566,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         setVehicleArray();
         setEnvironmentArray();
         simulationDropDown = new DefaultComboBoxModel(simulationArray);
+        dropdown_SelectedSimulation.setModel(simulationDropDown);
         dropdown_SelectedSimulation.validate();
     }
 
