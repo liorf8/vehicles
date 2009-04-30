@@ -49,7 +49,7 @@ public class SimulatonEngine extends PApplet {
     }
 
     public SimulatonEngine(Simulation simu) {
-
+    	
         System.out.println("Engine received object " + simu.getXmlLocation());
         this.sim = simu;
 
@@ -100,7 +100,7 @@ public class SimulatonEngine extends PApplet {
             EnvironmentElement curr = elements.elementAt(i);
             System.out.print(i + " : ");
             elementVector.add(new ProcessingEnviroElement(this, curr, curr.getName().hashCode()));
-            print(elementVector.elementAt(i).toString());
+            println(elementVector.elementAt(i).tostring());
         }
         this.asexual_reproduction_constant = (int) this.random(this.max_time_for_asexual - this.min_time_for_asexual) + this.min_time_for_asexual;
         this.curr_asexual_constant = this.asexual_reproduction_constant;
