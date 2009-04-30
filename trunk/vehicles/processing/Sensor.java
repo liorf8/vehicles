@@ -43,9 +43,9 @@ public class Sensor implements PConstants {
 		this.x = x;
 		this.y = y;
 	}
-
-
-	float getSense(float maxSpeed, float aggression, MemoryUnit memu) {
+	
+	
+	float getSense(MemoryUnit memu) {
 		SimulatonEngine p = (SimulatonEngine) parent;
 		float sum = parent.red( p.ground.get( (int)x, (int)y ) ) / 255.0f;
 		sum += parent.green( p.ground.get( (int)x, (int)y ) ) / 255.0f;
@@ -53,70 +53,63 @@ public class Sensor implements PConstants {
 		sum = (false) ? sum : 1-sum;
 		sense = (false) ? p.nonlinear( sum, maxReading ) : 1-sum;
 		ProcessingEnviroElement temp;
-		float total_intensity = (aggression * 0.01f), temp_intensity;
+		float total_intensity = 0, temp_intensity = 0;
 		int size = p.elementVector.size();
 		for(int i = 0; i < size; i++){
 			temp = p.elementVector.elementAt(i);
-			temp_intensity = temp.getIntensityAtPoint(x, y);
+			temp_intensity += temp.getIntensityAtPoint(x, y);
 			switch(temp.getType()){
 			case ProcessingEnviroElement.PowerSource:
-				total_intensity += temp_intensity * ((float)this.power); 
+				total_intensity += ((float)this.power); 
 				break;
 			case ProcessingEnviroElement.HeatSource:
-				total_intensity += temp_intensity * ((float)this.heat);
+				total_intensity += ((float)this.heat);
 				break;
 			case ProcessingEnviroElement.LightSource:
-				total_intensity += temp_intensity * ((float)this.light);
+				total_intensity += ((float)this.light);
 				break;
 			case ProcessingEnviroElement.WaterSource:
-				total_intensity += temp_intensity * ((float)this.water);
+				total_intensity += ((float)this.water);
 				break;
 			}
-			//System.out.println("Intensity: " + total_intensity);
 		}
-		if (total_intensity <= 0) {
-			//System.out.println("GEtting Num from Memory");
+		if (temp_intensity <= 0) {
 			Point[] points = memu.getPoints();
 			size = points.length;
 			if(size == 0){
-				return this.parent.random(maxSpeed);
+				return (this.parent.random(100) + 1);
 			}
 			int ran1 = (int)this.parent.random(size);
 			int ran2;
 			int x_point, y_point;
+			total_intensity = 0;
+			temp_intensity = 0;
 			for(int i = 0; i < ran1; i++){
 				ran2 = (int)this.parent.random(size);
 				x_point = (int)points[ran2].getXpos();
 				y_point = (int)points[ran2].getYpos();
-				temp_intensity = (memu.getIntensityOfElementAt(x_point, y_point)) * 0.01f;
+				temp_intensity += (memu.getIntensityOfElementAt(x_point, y_point)) * 0.1f;
 				switch(memu.getTypeOfElementAt(x_point, y_point)){
 				case ProcessingEnviroElement.PowerSource:
-					total_intensity += temp_intensity * ((float)this.power); 
+					total_intensity += ((float)this.power); 
 					break;
 				case ProcessingEnviroElement.HeatSource:
-					total_intensity += temp_intensity * ((float)this.heat);
+					total_intensity += ((float)this.heat);
 					break;
 				case ProcessingEnviroElement.LightSource:
-					total_intensity += temp_intensity * ((float)this.light);
+					total_intensity += ((float)this.light);
 					break;
 				case ProcessingEnviroElement.WaterSource:
-					total_intensity += temp_intensity * ((float)this.water);
+					total_intensity += ((float)this.water);
 					break;
 				}
 			}
-			if(total_intensity <= 0){
-				return this.parent.random(maxSpeed);
+			if(temp_intensity <= 0){
+				return (this.parent.random(100) + 1);
 			}
 		}
-		total_intensity = total_intensity * this.parent.random(2);
-		if(total_intensity > maxSpeed){
-			total_intensity = maxSpeed;
-		}
-		sum = parent.red( p.ground.get( (int)x, (int)y ) ) / 255.0f;
-		sum += parent.green( p.ground.get( (int)x, (int)y ) ) / 255.0f;
-		sum += parent.blue( p.ground.get( (int)x, (int)y ) ) / 255.0f;
-		sum = (false) ? sum : 1-sum;
-		sense = (false) ? p.nonlinear( sum, maxReading ) : 1-sum;
+		total_intensity = temp_intensity / total_intensity;
+		System.out.println("Total Intenisty: " + total_intensity);
 		return total_intensity;
 	}
 
