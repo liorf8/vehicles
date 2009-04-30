@@ -15,7 +15,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
 import vehicles.vehicle.*;
 import vehicles.util.*;
 import vehicles.environment.*;
@@ -24,8 +23,6 @@ import vehicles.processing.*;
 import vehicles.*;
 import java.awt.Dimension;
 import java.awt.Window;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 import java.text.Format;
 import java.util.Date;
 import javax.swing.ActionMap;
@@ -41,7 +38,6 @@ import javax.swing.JSeparator;
 import javax.swing.JSlider;
 import javax.swing.JToolBar;
 import javax.swing.JToolBar.Separator;
-import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.Application;
@@ -185,8 +181,8 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         jMenuItem12 = new JMenuItem();
         jMenuItem7 = new JMenuItem();
         optionsMenu = new JMenu();
+        jMenuItem5 = new JMenuItem();
         jMenuItem1 = new JMenuItem();
-        jSeparator6 = new JSeparator();
         jMenuItem8 = new JMenuItem();
         JMenu helpMenu = new JMenu();
         JMenuItem aboutMenuItem = new JMenuItem();
@@ -352,13 +348,15 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         optionsMenu.setText(resourceMap.getString("optionsMenu.text")); // NOI18N
         optionsMenu.setName("optionsMenu"); // NOI18N
 
-        jMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
+        jMenuItem5.setAction(actionMap.get("reloadXML")); // NOI18N
+        jMenuItem5.setText(resourceMap.getString("jMenuItem5.text")); // NOI18N
+        jMenuItem5.setName("jMenuItem5"); // NOI18N
+        optionsMenu.add(jMenuItem5);
+
+        jMenuItem1.setAction(actionMap.get("resetXML")); // NOI18N
         jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
         jMenuItem1.setName("jMenuItem1"); // NOI18N
         optionsMenu.add(jMenuItem1);
-
-        jSeparator6.setName("jSeparator6"); // NOI18N
-        optionsMenu.add(jSeparator6);
 
         jMenuItem8.setAction(actionMap.get("resetWindow")); // NOI18N
         jMenuItem8.setText(resourceMap.getString("jMenuItem8.text")); // NOI18N
@@ -445,10 +443,10 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         toolBar.add(jSeparator1);
 
         slider_Speed.setMajorTickSpacing(10);
-        slider_Speed.setMinorTickSpacing(1);
+        slider_Speed.setMaximum(200);
+        slider_Speed.setMinorTickSpacing(2);
         slider_Speed.setPaintLabels(true);
         slider_Speed.setPaintTicks(true);
-        slider_Speed.setSnapToTicks(true);
         slider_Speed.setEnabled(false);
         slider_Speed.setFocusable(false);
         slider_Speed.setMaximumSize(new Dimension(32767, 30000));
@@ -615,6 +613,19 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
         textarea_SystemLog.append("\n" + formattedTime + " : " + text);
     }
 
+    @Action
+    public void resetXML() {
+        UtilMethods.resetXML();
+        reloadXML();
+    }
+
+    @Action
+    public void reloadXML() {
+        setSimulationArray();
+        setVehicleArray();
+        setEnvironmentArray();
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JToggleButton button_Pause;
     private JButton button_Start;
@@ -629,6 +640,7 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     private JMenuItem jMenuItem2;
     private JMenuItem jMenuItem3;
     private JMenuItem jMenuItem4;
+    private JMenuItem jMenuItem5;
     private JMenuItem jMenuItem6;
     private JMenuItem jMenuItem7;
     private JMenuItem jMenuItem8;
@@ -642,7 +654,6 @@ public class Simulator extends FrameView implements ChangeListener, ItemListener
     private JSeparator jSeparator3;
     private JSeparator jSeparator4;
     private JSeparator jSeparator5;
-    private JSeparator jSeparator6;
     private JSeparator jSeparator7;
     private JTabbedPane jTabbedPane1;
     private JPanel mainPanel;
