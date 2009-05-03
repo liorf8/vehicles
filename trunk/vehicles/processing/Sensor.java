@@ -48,11 +48,11 @@ public class Sensor implements PConstants {
 
 		//This makes the sensors look freakin' awesome
 		SimulatonEngine p = (SimulatonEngine) parent;
-		//float sum = parent.red( p.ground.get( (int)x, (int)y ) ) / 255.0f;
-		//sum += parent.green( p.ground.get( (int)x, (int)y ) ) / 255.0f;
-		//sum += parent.blue( p.ground.get( (int)x, (int)y ) ) / 255.0f;
-		//sum = (false) ? sum : 1-sum;
-		//sense = (false) ? p.nonlinear( sum, maxReading ) : 1-sum;
+		float sum = parent.red( p.ground.get( (int)x, (int)y ) ) / 255.0f;
+		sum += parent.green( p.ground.get( (int)x, (int)y ) ) / 255.0f;
+		sum += parent.blue( p.ground.get( (int)x, (int)y ) ) / 255.0f;
+		sum = (false) ? sum : 1-sum;
+		sense = (false) ? p.nonlinear( sum, maxReading ) : 1-sum;
 
 		//Now deal with moving it getting sense at a point
 		ProcessingEnviroElement temp;
@@ -116,8 +116,6 @@ public class Sensor implements PConstants {
 				total_intensity += heat_intensity / this.heat;
 			}
 		}
-		//if(total_intensity != 0) System.out.println("Total Intensity: " + total_intensity);
-		sense = Math.abs(total_intensity);
 		return total_intensity;
 	}
 
