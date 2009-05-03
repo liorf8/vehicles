@@ -8,6 +8,7 @@ import vehicles.simulation.*;
 import vehicles.vehicle.*;
 import vehicles.genetics.*;
 import vehicles.util.StopWatch;
+import java.util.Random;
 
 @SuppressWarnings("serial")
 public class SimulatonEngine extends PApplet {
@@ -49,7 +50,6 @@ public class SimulatonEngine extends PApplet {
     }
 
     public SimulatonEngine(Simulation simu) {
-    	
         System.out.println("Engine received object " + simu.getXmlLocation());
         this.sim = simu;
 

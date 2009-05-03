@@ -697,8 +697,10 @@ public class Genetics {
 		if(ran < 7){
 			child.setMaxMem(mutateAttribute(max_mem, 100));
 			child.setLearningRate(mutateAttribute(learn, 20));
-			int ran_mem = r.nextInt(child.getMaxMem());
-			child.add_n_memory(parent.getMem(), ran_mem);
+			if(child.getMaxMem() > 0){
+				int ran_mem = r.nextInt(child.getMaxMem());
+				child.add_n_memory(parent.getMem(), ran_mem);
+			}
 		}
 		else{
 			child.setMem(parent.getMem());
