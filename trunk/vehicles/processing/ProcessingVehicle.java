@@ -16,13 +16,7 @@ import vehicles.util.StopWatch;
  * Vehicles max spped is 10 % of motor strength. This can change via the ui slider
  * 
  * If two vehicles bump into each other, they each do a damge of 10% of their max battery to the other vehicle, 
- * gaiuning that for themselves
- * 
- * Heat will damage a battery by the intensity at the current point times 5% of the max_battery
- * 
- * Water will damage a battery by the intensity at the current point times  2.5% of the max_battery
- * 
- * Power will heal a battery by the intensity at the current point times  2.5% of the max_battery
+ * gaining that for themselves
  * 
  */
 /**
@@ -34,7 +28,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	float chance_to_mate = 0.2f; //this is out of ten
 	float last_storedX, last_storedY;
 	float time_speed;
-	float max_speed, curr_max_speed;
+	float max_speed, curr_max_speed, default_speed;
 	float x, y, axle;
 	float axleHalf, axleSquared; //derivatives of axle
 	float angle; // direction of the ProcessingVehicle
@@ -64,6 +58,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		this.angle = angle;
 		this.id = id;
 		this.max_speed = v.getMotorStrength()/10;
+		this.default_speed = this.max_speed / 20;
 		this.max_battery = this.getMaxBatteryCapacity();
 		this.curr_battery = this.getCurrentBatteryCapacity();
 		this.canDie = d;
@@ -115,7 +110,6 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 		sA = new Sensor(parent, x + axle * PApplet.cos(angle - HALF_PI / 1.5f), y + axle * PApplet.sin(angle - HALF_PI / 1.5f));
 		sB = new Sensor(parent, x + axle * PApplet.cos(angle + HALF_PI / 1.5f), y + axle * PApplet.sin(angle + HALF_PI / 1.5f));
-
 	}
 
 	public void draw() { //simply draw a representaion of the vehicle
@@ -132,21 +126,13 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	public void move() {
 
 		float ang;
-		float speed1, speed2;
-		checkBounds(true);
-		setLeftSpeed(sB.getSense(false, this.max_speed, this.aggression, this.colorRed, this.colorGreen, this.colorBlue, this.getMem()));
-		setRightSpeed(sA.getSense(false, this.max_speed, this.aggression, this.colorRed, this.colorGreen, this.colorBlue, this.getMem()));
-		//speed1 = sB.getSense(this.mu);
-		//speed2 = sA.getSense(this.mu);
+		float sense1, sense2;
+		checkPos(true);
+		sense1 = sB.getSense(this.mu);
+		sense2 = sA.getSense(this.mu);
+		setLeftSpeed(this.default_speed + sense1);
+		setRightSpeed(this.default_speed + sense2);
 
-//		System.out.println("Speed1, 1st: " + speed1);
-		//System.out.println("Speed2, 1st: " + speed2);
-		//speed1 = this.max_speed * speed1;
-		//speed2 = this.max_speed * speed2;
-		//System.out.println("Speed1: " + speed1);
-		//System.out.println("Speed2: " + speed2);
-		//setLeftSpeed((sB.getSense(this.mu)/100) * this.max_speed);
-		//setRightSpeed(((sA.getSense(this.mu)/100) * this.max_speed));
 		/*Just update the vehicle's position and direction, this stuff won't need to be changed*/
 		wheel_diff = wA.d - wB.d;
 		wheel_average = (wA.d + wB.d) / 2;
@@ -179,8 +165,6 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 		sB.x = x + axle * PApplet.cos(ang);
 		sB.y = y + axle * PApplet.sin(ang);
-
-		//this.checkSamePos();
 
 		if(canDie){
 			depleteBatt();
@@ -221,7 +205,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	public void moveWithoutSensor() {
 
 		float ang;
-		checkBounds(false);
+		checkPos(false);
 
 		// move
 
@@ -256,13 +240,16 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 
 	}
 
-	void checkBounds(boolean z) {
+	void checkPos(boolean z) {
 		if(z){
 			long elapsed = this.samePos_watch.getElapsedTimeSecs();
 			if(elapsed >= this.interval){
 				this.samePos_watch.reset();
-				if(this.sA.x - 8 <= 0 || this.sA.x + 8 >= parent.width || this.sB.x  - 8 <= 0 || this.sB.x + 8 >= parent.width ||
-						this.sA.y - 8 <= 0 || this.sA.y + 8 >= parent.height || this.sB.y - 8 <= 0 || this.sB.y +8 >= parent.height){
+				if((this.sA.x - 8 <= 0 || this.sA.x + 8 >= parent.width || this.sB.x  - 8 <= 0 || this.sB.x + 8 >= parent.width ||
+						this.sA.y - 8 <= 0 || this.sA.y + 8 >= parent.height || this.sB.y - 8 <= 0 || this.sB.y +8 >= parent.height) ||
+						((x <= this.last_storedX + this.axle && y <= this.last_storedY + this.axle) && (x >= this.last_storedX - this.axle && 
+								y <= this.last_storedY + this.axle)	&& (x <= this.last_storedX + this.axle && y >= this.last_storedY - this.axle) &&
+								(x >= this.last_storedX - this.axle && y >= this.last_storedY - this.axle))){
 					if(this.parent.random(10) <= 4){
 						this.wB.setSpeed((this.wB.getAngleSpeed() * 1.1f) + 0.5f);
 					}
@@ -276,6 +263,10 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 						this.angle -= this.parent.random(HALF_PI, PI);
 					}
 				}
+			}
+			if(elapsed % 2 == 0){
+				this.last_storedX = this.x;
+				this.last_storedY = this.y;
 			}
 		}
 		x = PApplet.max(axle + 5, PApplet.min(parent.width - axle - 5, x));
@@ -463,8 +454,8 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 		DecimalFormat df = new DecimalFormat("#.##");
 		double alive = (this.stopwatch.getElapsedTimeDoubleSecs() / 100) * this.time_speed;
 		return "Name: " + this.vehicleName + "\nMotor Strength: " + this.getMotorStrength() + "\nMax Displacement(Movement): " + df.format(this.max_speed) +
-		"\nCurrent Maximum Displacement: " + df.format(this.curr_max_speed) + 		"\nLeft Motor Turn Speed: " + this.wA.getAngleSpeed() +
-		"\nRight Motor Turn Speed: " + this.wB.getAngleSpeed() + "\nMax Battery: " + df.format(this.max_battery) + "\nCurr Battery: " +
+		"\nCurrent Maximum Displacement: " + df.format(this.curr_max_speed) + 		"\nLeft Wheel Speed: " + this.wA.getAngleSpeed() +
+		"\nRight Wheel Speed: " + this.wB.getAngleSpeed() + "\nMax Battery: " + df.format(this.max_battery) + "\nCurr Battery: " +
 		df.format(this.curr_battery) + "\nAggression: " + this.aggression + "\nItems In Memory: " + this.mu.numItems() + 
 		"\nCo-ordinates: (" + df.format(this.x) + "," + df.format(this.y) + ")" + "\nRight Sensor Values" + "\nPower: " + this.getRightSensorPower() +
 		"\nHeat: " + this.getRightSensorHeat() + "\nLight: " + this.getRightSensorLight() + "\nWater: " + this.getRightSensorWater() +

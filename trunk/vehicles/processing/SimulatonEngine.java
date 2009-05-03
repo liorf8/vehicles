@@ -289,7 +289,8 @@ public class SimulatonEngine extends PApplet {
 
 
     void updateGround() {
-
+    	System.out.println("Starting to draw ground for Engine!");
+    		
         float sum;
         int c, r, g, b;
         int px = 1;
@@ -327,6 +328,7 @@ public class SimulatonEngine extends PApplet {
                 }
             }
         }
+        System.out.println("Ground for engine drawn!");
     }
 
     public void adjustRunningSpeed(float percent) {

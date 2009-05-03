@@ -25,13 +25,13 @@ public class EnvironmentPreview extends PApplet {
 	public void setup() {
 		size(e.getWidth(),e.getHeigth());
 		ground = new PImage(width, height);
+		updateGround();
 		image(ground, 0, 0);
 	}
 
 	@Override
 	public void draw() {
 		image(ground, 0, 0);
-		updateGround();
 	}
 	/**
 	 * Scale this applet to panel size
@@ -60,7 +60,7 @@ public class EnvironmentPreview extends PApplet {
 		float sum;
 		int c, r, g, b;
 		int px = 1;
-
+		System.out.println("Starting to draw ground for preview");
 		ground = new PImage(width, height);
 		for (int i = 0; i < width; i += px) {
 			for (int k = 0; k < height; k += px) { //process every pixel in the image
@@ -99,5 +99,6 @@ public class EnvironmentPreview extends PApplet {
 				}
 			}
 		}
+		System.out.println("Ground for preview drawn!");
 	}
 }
