@@ -110,8 +110,8 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 		if (d > this.radius) {
 			return 0.0f;
 		} else {
-			float diff = (float) this.radius - d;
-			return ((diff / (float) this.radius) * (float) this.strength);
+			float str = this.strength - ((((d/this.radius)*100)/100) * this.strength);
+			return str;
 		}
 	}
 

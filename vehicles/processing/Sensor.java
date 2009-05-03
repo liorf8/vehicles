@@ -2,7 +2,6 @@ package vehicles.processing;
 
 import processing.core.*;
 import java.util.Iterator;
-import java.util.Vector;
 import vehicles.vehicle.MemoryUnit;
 import vehicles.environment.Point;
 import vehicles.processing.ProcessingEnviroElement;
@@ -43,73 +42,82 @@ public class Sensor implements PConstants {
 		this.x = x;
 		this.y = y;
 	}
-	
-	
+
+
 	float getSense(MemoryUnit memu) {
+
+		//This makes the sensors look freakin' awesome
 		SimulatonEngine p = (SimulatonEngine) parent;
-		float sum = parent.red( p.ground.get( (int)x, (int)y ) ) / 255.0f;
-		sum += parent.green( p.ground.get( (int)x, (int)y ) ) / 255.0f;
-		sum += parent.blue( p.ground.get( (int)x, (int)y ) ) / 255.0f;
-		sum = (false) ? sum : 1-sum;
-		sense = (false) ? p.nonlinear( sum, maxReading ) : 1-sum;
+		//float sum = parent.red( p.ground.get( (int)x, (int)y ) ) / 255.0f;
+		//sum += parent.green( p.ground.get( (int)x, (int)y ) ) / 255.0f;
+		//sum += parent.blue( p.ground.get( (int)x, (int)y ) ) / 255.0f;
+		//sum = (false) ? sum : 1-sum;
+		//sense = (false) ? p.nonlinear( sum, maxReading ) : 1-sum;
+
+		//Now deal with moving it getting sense at a point
 		ProcessingEnviroElement temp;
 		float total_intensity = 0, temp_intensity = 0;
+		float water_intensity = 0, power_intensity = 0, light_intensity = 0, heat_intensity = 0;
+		boolean water=false, power=false, light=false, heat=false;
 		int size = p.elementVector.size();
 		for(int i = 0; i < size; i++){
 			temp = p.elementVector.elementAt(i);
-			temp_intensity += temp.getIntensityAtPoint(x, y);
-			switch(temp.getType()){
-			case ProcessingEnviroElement.PowerSource:
-				total_intensity += ((float)this.power); 
-				break;
-			case ProcessingEnviroElement.HeatSource:
-				total_intensity += ((float)this.heat);
-				break;
-			case ProcessingEnviroElement.LightSource:
-				total_intensity += ((float)this.light);
-				break;
-			case ProcessingEnviroElement.WaterSource:
-				total_intensity += ((float)this.water);
-				break;
-			}
-		}
-		if (temp_intensity <= 0) {
-			Point[] points = memu.getPoints();
-			size = points.length;
-			if(size == 0){
-				return (this.parent.random(100) + 1);
-			}
-			int ran1 = (int)this.parent.random(size);
-			int ran2;
-			int x_point, y_point;
-			total_intensity = 0;
-			temp_intensity = 0;
-			for(int i = 0; i < ran1; i++){
-				ran2 = (int)this.parent.random(size);
-				x_point = (int)points[ran2].getXpos();
-				y_point = (int)points[ran2].getYpos();
-				temp_intensity += (memu.getIntensityOfElementAt(x_point, y_point)) * 0.1f;
-				switch(memu.getTypeOfElementAt(x_point, y_point)){
+			temp_intensity = temp.getIntensityAtPoint(x, y);
+			if(temp_intensity != 0){
+				switch(temp.getType()){
 				case ProcessingEnviroElement.PowerSource:
-					total_intensity += ((float)this.power); 
+					power_intensity += temp_intensity;
+					if(!power){
+						power = true;
+					}
+					//total_intensity += ((float)this.power); 
 					break;
 				case ProcessingEnviroElement.HeatSource:
-					total_intensity += ((float)this.heat);
+					heat_intensity += temp_intensity;
+					if(!heat){
+						heat = true;
+					}
+					//total_intensity += ((float)this.heat);
 					break;
 				case ProcessingEnviroElement.LightSource:
-					total_intensity += ((float)this.light);
+					light_intensity += temp_intensity;
+					if(!light){
+						light = true;
+					}
+					//total_intensity += ((float)this.light);
 					break;
 				case ProcessingEnviroElement.WaterSource:
-					total_intensity += ((float)this.water);
+					water_intensity += temp_intensity;
+					if(!water){
+						water = true;
+					}
+					//total_intensity += ((float)this.water);
 					break;
 				}
 			}
-			if(temp_intensity <= 0){
-				return (this.parent.random(100) + 1);
+		}
+		if(light){
+			if(this.light != 0){
+				total_intensity += light_intensity / this.light;
 			}
 		}
-		total_intensity = temp_intensity / total_intensity;
-		System.out.println("Total Intenisty: " + total_intensity);
+		if(water){
+			if(this.water != 0){
+				total_intensity += water_intensity / this.water;
+			}
+		}
+		if(power){
+			if(this.power != 0){
+				total_intensity += power_intensity / this.power;
+			}
+		}
+		if(heat){
+			if(this.heat != 0){
+				total_intensity += heat_intensity / this.heat;
+			}
+		}
+		//if(total_intensity != 0) System.out.println("Total Intensity: " + total_intensity);
+		sense = Math.abs(total_intensity);
 		return total_intensity;
 	}
 
