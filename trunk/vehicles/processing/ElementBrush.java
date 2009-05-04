@@ -1,5 +1,4 @@
 package vehicles.processing;
-import processing.core.*;
 import vehicles.environment.*;
 /**
  *

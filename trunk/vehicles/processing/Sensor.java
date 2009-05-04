@@ -3,7 +3,6 @@ package vehicles.processing;
 import processing.core.*;
 import java.util.Iterator;
 import vehicles.vehicle.MemoryUnit;
-import vehicles.environment.Point;
 import vehicles.processing.ProcessingEnviroElement;
 
 /**
@@ -14,10 +13,10 @@ public class Sensor implements PConstants {
 
 	PApplet parent; // The parent PApplet that we will render ourselves onto
 	float x, y; //position relative to the whole frame
-	float maxReading;
+	float maxReading; 
 	float sense;
-	float defaultSense = 0.2f;
 	int power, water, light, heat;
+
 
 	public Sensor(PApplet p, float x, float y, int pow, int wat, int light, int heat) {
 		parent = p;
@@ -44,6 +43,12 @@ public class Sensor implements PConstants {
 	}
 
 
+	/**
+	 * This method is used to get the sense at a point.
+	 * The sense at the point is the combined total of the ratio of (each intenisty of en elementt type, summed up) to the disposition to that element
+	 * @param memu A memory unit
+	 * @return A float representing the sense at that point
+	 */
 	float getSense(MemoryUnit memu) {
 
 		//This makes the sensors look freakin' awesome
@@ -52,7 +57,7 @@ public class Sensor implements PConstants {
 		sum += parent.green( p.ground.get( (int)x, (int)y ) ) / 255.0f;
 		sum += parent.blue( p.ground.get( (int)x, (int)y ) ) / 255.0f;
 		sum = (false) ? sum : 1-sum;
-		sense = (false) ? p.nonlinear( sum, maxReading ) : 1-sum;
+		sense = (false) ? this.nonlinear( sum, maxReading ) : 1-sum;
 
 		//Now deal with moving it getting sense at a point
 		ProcessingEnviroElement temp;
@@ -69,29 +74,25 @@ public class Sensor implements PConstants {
 					power_intensity += temp_intensity;
 					if(!power){
 						power = true;
-					}
-					//total_intensity += ((float)this.power); 
+					} 
 					break;
 				case ProcessingEnviroElement.HeatSource:
 					heat_intensity += temp_intensity;
 					if(!heat){
 						heat = true;
 					}
-					//total_intensity += ((float)this.heat);
 					break;
 				case ProcessingEnviroElement.LightSource:
 					light_intensity += temp_intensity;
 					if(!light){
 						light = true;
 					}
-					//total_intensity += ((float)this.light);
 					break;
 				case ProcessingEnviroElement.WaterSource:
 					water_intensity += temp_intensity;
 					if(!water){
 						water = true;
 					}
-					//total_intensity += ((float)this.water);
 					break;
 				}
 			}
@@ -116,38 +117,18 @@ public class Sensor implements PConstants {
 				total_intensity += heat_intensity / this.heat;
 			}
 		}
+		if(!light && !heat && !water && !power){
+			//TODO Implement memory search here, old memory search algorithm was wrong
+		}
 		return total_intensity;
 	}
 
-	float getSense(boolean found, float maxSpeed, float aggression, float p_red, float p_green, float p_blue, MemoryUnit memu) {
-		SimulatonEngine p = (SimulatonEngine) parent;
-		float sum = parent.red( p.ground.get( (int)x, (int)y ) ) / 255.0f;
-		sum += parent.green( p.ground.get( (int)x, (int)y ) ) / 255.0f;
-		sum += parent.blue( p.ground.get( (int)x, (int)y ) ) / 255.0f;
-		sum = (found) ? sum : 1-sum;
-		sense = (false) ? p.nonlinear( sum, maxReading ) : 1-sum;
-		//if nothing sensed, then look towards memory to know where to go
-		if (sense == 0) {
-			Point[] points = memu.getPoints();
-			int size = points.length;
-			if(size == 0){
-				return this.parent.random(0.25f);
-			}
-			int ran = (int)this.parent.random(size);
-			int x_point, y_point;
-			x_point = (int)points[ran].getXpos();
-			y_point = (int)points[ran].getYpos();
-			sum = parent.red( p.ground.get(x_point, y_point) ) / 255.0f;
-			sum += parent.green( p.ground.get(x_point, y_point) ) / 255.0f;
-			sum += parent.blue( p.ground.get(x_point, y_point) ) / 255.0f;
-			if(sense == 0){
-				return this.parent.random(0.25f);
-			}
-		}
-		return sense;
-	}
 
 
+	/**
+	 * Get the sense at a point based on the amount of red at that point
+	 * @return A float representing sense at a point based on colour red
+	 */
 	float getSenseRed() {
 		SimulatonEngine engineParent = (SimulatonEngine) parent;
 		Iterator<ProcessingEnviroElement> elementIterator = engineParent.elementVector.iterator();
@@ -160,6 +141,10 @@ public class Sensor implements PConstants {
 		return red_atPoint;
 	}
 
+	/**
+	 * Get the sense at a point based on the amount of green at that point
+	 * @return A float representing sense at a point based on colour green
+	 */
 	float getSenseGreen() {
 		SimulatonEngine engineParent = (SimulatonEngine) parent;
 		Iterator<ProcessingEnviroElement> elementIterator = engineParent.elementVector.iterator();
@@ -172,6 +157,10 @@ public class Sensor implements PConstants {
 		return red_atPoint;
 	}
 
+	/**
+	 * Get the sense at a point based on the amount of blue at that point
+	 * @return A float representing sense at a point based on colour blue
+	 */
 	float getSenseBlue() {
 		SimulatonEngine engineParent = (SimulatonEngine) parent;
 		Iterator<ProcessingEnviroElement> elementIterator = engineParent.elementVector.iterator();
@@ -184,12 +173,21 @@ public class Sensor implements PConstants {
 		return red_atPoint;
 	}
 
-	public void draw() { //just draw a graphical representation
+	/**
+	 * Method to draw a graphical representation of this sensor 
+	 *
+	 */
+	public void draw() { 
 		parent.fill(255);
 		parent.ellipse(x, y, 20, 20);
 		parent.fill(255 * sense, 100 * sense, 0);
 		parent.ellipse(x, y, 4 + 9 * sense, 2 + 9 * sense);
 		parent.fill(0);
 		parent.ellipse(x, y, 4.5f * sense, 4.5f * sense);
+	}
+
+	private float nonlinear(float r, float rmax) {
+		float f = (rmax - Math.min(r, rmax)) / rmax;
+		return 0.5f - 0.5f * PApplet.cos(f * PI);
 	}
 }

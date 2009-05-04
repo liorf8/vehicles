@@ -1,14 +1,12 @@
 package vehicles.processing;
-import java.util.Iterator;
 
 import processing.core.*;
 import vehicles.environment.Environment;
-import vehicles.environment.EnvironmentElement;
-
 /**
  *
  * @author Niall O'Hara, Karl Reid
  */
+@SuppressWarnings("serial")
 public class EnvironmentPreview extends PApplet {
 	PImage ground; //background image
 	Environment e, spareE;

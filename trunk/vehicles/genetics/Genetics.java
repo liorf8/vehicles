@@ -287,22 +287,30 @@ public class Genetics {
 		return fin;
 	}
 
+	/**
+	 * A method that takes in two parents to mate, and a simulation log to write log messages to
+	 * The two parents are used to create a child vehicle which is then returned
+	 * @param parentA The first parnt of two
+	 * @param parentB The second parent of two
+	 * @param s The simulation log to write log messages to
+	 * @return A Vehicle representing a child of the two parents
+	 */
 	public static Vehicle pairedMating(Vehicle parentA, Vehicle parentB,  SimulationLog s){
 		Vehicle child = new Vehicle();
+		
 		String description = "Offspring of \n'"+ parentA.getName() + "' and\n'" + parentB.getName() + "'" +
 			"\nCreated " + UtilMethods.getTimeStamp();
 		String name = "Offspring of paired mating #" + offspring_number;
 		offspring_number ++;
 		s.addToLog("New vehicle created from\n'" + parentA.getName() + "' and\n'" + parentB.getName() +
 				"'\nNew vehicle name: " + name);
+		
 		child.setName(name);
+		
 		child.setAuthor(name);
+		
 		child.setDescription(description);
-
-		//These will be set for an editor vehicle if we go down that path
-		//For an object in memory alone, null is fine for these
-		//child.setXmlLocation("src/test/genetics/tmp/" + Integer.toString(description.hashCode()) + ".veh");
-		//child.setFileName(Integer.toString(name.hashCode()));
+		
 		child.setFileName(name);
 
 
@@ -329,7 +337,6 @@ public class Genetics {
 		//Set Right Sensor
 		setRightSensor(child, parentA, parentB);
 
-		//child.saveVehicle();
 		return child;
 	}
 
@@ -474,32 +481,20 @@ public class Genetics {
 
 
 	private static void setMemory(Vehicle child, Vehicle parentA, Vehicle parentB){
-		/*
-		 * Random r = new Random();
-		int ran = r.nextInt(10);
-		int max_mem = parent.getMaxMem();
-		int learn = parent.getLearningRate();
-		if(ran < 7){
-			child.setMaxMem(mutateAttribute(max_mem, 100));
-			child.setLearningRate(mutateAttribute(learn, 20));
-			int ran_mem = r.nextInt(child.getMaxMem());
-			child.add_n_memory(parent.getMem(), ran_mem);
-		}
-		else{
-			
-		}
-		 */
 		Random r = new Random();
 		int ran = r.nextInt(10);
 		int max_mem, l_rate;
 		if(ran <= 7){
 			max_mem = crossoverBitsAndMutate(parentA.getMaxMem(),
 					parentB.getMaxMem(), 100);
+			if(max_mem < 0){
+				max_mem = 0;
+			}
 			l_rate = crossoverBitsAndMutate(parentA.getLearningRate(),
 					parentB.getLearningRate(), 20);
 			child.setMaxMem(max_mem);
 			child.setLearningRate(l_rate);
-			int ran_mem = r.nextInt(child.getMaxMem() - 1) + 1;
+			int ran_mem = r.nextInt(child.getMaxMem() + 1) - 1;
 			child.add_n_memory(parentA.getMem(), ran_mem);
 			ran_mem = child.getMaxMem() - ran_mem;
 			child.add_n_memory(parentB.getMem(), ran_mem);
@@ -569,11 +564,6 @@ public class Genetics {
 		child.setAuthor(name);
 		child.setDescription(description);
 
-		//These will be set for an editor vehicle if we go down that path
-		//For an object in memory alone, null is fine for these
-		//child.setXmlLocation("src/test/genetics/tmp/" + UtilMethods.formatString(name) + ".veh");
-		//child.setXmlLocation(null);
-		//s.addToLog("New vehicle temporarily stored in: " + child.getXmlLocation());
 		child.setFileName(name);
 
 
@@ -599,8 +589,6 @@ public class Genetics {
 
 		//Set Right Sensor
 		setRightSensor(child, parent);
-
-		//child.saveVehicle();
 
 		return child;
 	}
