@@ -13,9 +13,9 @@ import vehicles.environment.*;
  */
 public class ProcessingEnviroElement extends EnvironmentElement implements PConstants {
 
-	int colorRed, colorGreen, colorBlue, id; //maybe we can make this by doing a hash on the vehicle's name?
+	int colorRed, colorGreen, colorBlue, id; 
 	PApplet parent; // The parent PApplet that we will render ourselves onto
-	float xPos, yPos;
+	float xPos, yPos; //current x and y position of this vehicle
 
 	/*
 	 * This constructor takes a vehicle as a parameter
@@ -54,31 +54,28 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 
 	}
 
-	public void draw() { //simply draw a representaion of the element
-
-		/*parent.fill(this.colorRed, this.colorGreen, this.colorBlue);
-        /*
-        int alpha = this.strength;
-        for(float d = 0.0f; d < this.radius; d++){
-        //System.out.println("Alpha: " + alpha);
-        this.parent.stroke(this.colorRed, this.colorBlue, this.colorGreen, 0);
-        this.parent.ellipse(this.xPos, this.yPos, d, d);
-        alpha -- ;
-
-        }
-		 */
-	}
-
-	public void editorDraw() { //simply draw a representaion of the element, for in the editor
+	/**
+	 * Used for drawing an element in the editor
+	 *
+	 */
+	public void editorDraw() { 
 		this.parent.fill(this.colorRed, this.colorGreen, this.colorBlue);
 		this.parent.ellipse((float)this.getXpos(), (float)this.getYpos(), radius, radius);
 	}
 
+	/**
+	 * Used for drawing an element in the preview windows
+	 *
+	 */
 	public void previewDraw(int x, int y) {
 		this.parent.fill(this.colorRed, this.colorGreen, this.colorBlue);
 		this.parent.ellipse(x, y, radius, radius);
 	}
 
+	/**
+	 * Set the colour of the element depending on its type
+	 *
+	 */
 	public void setColor() {
 		switch (this.type) {
 		case EnvironmentElement.HeatSource:
@@ -104,6 +101,17 @@ public class ProcessingEnviroElement extends EnvironmentElement implements PCons
 		}
 	}
 
+	/************* Getters *****************/
+	
+	/**
+	 * Used to return the intensity of an element at a point within raidal distance of the center of the element
+	 * 
+	 * The intenisty at a point is defined as being:
+	 * 
+	 * The overall intenisty of the element minus (the distance from the center of the element over the radius as a percent)
+	 * divided by 100 and multiplied by the strength. 
+	 * 
+	 */
 	public float getIntensityAtPoint(float x, float y) {
 
 		float d = PApplet.dist(this.xPos, this.yPos, x, y);

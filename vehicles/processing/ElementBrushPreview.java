@@ -5,6 +5,7 @@ import java.awt.Color;
 import processing.core.PApplet;
 import vehicles.environment.EnvironmentElement;
 
+@SuppressWarnings("serial")
 public class ElementBrushPreview extends PApplet{
 	ProcessingEnviroElement pev;	
 

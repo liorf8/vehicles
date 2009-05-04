@@ -2,7 +2,6 @@ package vehicles.processing;
 import processing.core.*;
 import vehicles.environment.*;
 
-import java.awt.Color;
 import java.util.Vector;
 
 import java.util.Iterator;

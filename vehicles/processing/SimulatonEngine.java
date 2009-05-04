@@ -8,8 +8,13 @@ import vehicles.simulation.*;
 import vehicles.vehicle.*;
 import vehicles.genetics.*;
 import vehicles.util.StopWatch;
-import java.util.Random;
 
+/**
+ * This class is a the engine for the simulation.
+ * This class ties the vehicles and environment together and deals with reproduction and timeline
+ * @author Shaun Gray
+ *
+ */
 @SuppressWarnings("serial")
 public class SimulatonEngine extends PApplet {
 
@@ -41,16 +46,13 @@ public class SimulatonEngine extends PApplet {
     ProcessingVehicle curr_on_screen = null;
     StopWatch stopwatch;
 
-    public float getMove_speed() {
-        return move_speed;
-    }
-
-    public void setMove_speed(float move_speed) {
-        this.move_speed = move_speed / PI;
-    }
-
+    /**
+     * Constructor for new simulation engines
+     * @param simu The simulation this engine will be based around
+     */
     public SimulatonEngine(Simulation simu) {
-        System.out.println("Engine received object " + simu.getXmlLocation());
+    	//For debugging
+        //System.out.println("Engine received object " + simu.getXmlLocation());
         this.sim = simu;
 
         this.perishable_vehicles = this.sim.getPerishableVehicles();
@@ -107,11 +109,10 @@ public class SimulatonEngine extends PApplet {
         stopwatch = new StopWatch();
     }
 
-    public Simulation getSim() {
-        return sim;
-    }
 
-    // Processing Sketch Setup
+    /**
+     * Set up the processing sketch
+     */
     @Override
     public void setup() {
         this.stopwatch.start();
@@ -125,7 +126,11 @@ public class SimulatonEngine extends PApplet {
         noLoop();
     }
 
-    // Processing Sketch Main Loop
+    /**
+     * THe main draw loop for the sketch.
+     * This will draw the vehicle, the background image and the on screen display box
+     * It also moves the vehicles and checks reproduction evolution etc
+     */
     @Override
     public void draw() {
         image(ground, 0, 0);
@@ -146,6 +151,10 @@ public class SimulatonEngine extends PApplet {
                 this.asexualReproduction();
             }
             this.num_vehicles = vehicleVector.size();
+        }
+        else{
+        	noLoop();
+        	//TODO On screen display telling the user the sim has ended as their are no more vehicles
         }
 
         updateOnScreenMessage();
@@ -173,7 +182,6 @@ public class SimulatonEngine extends PApplet {
             this.stopwatch.reset();
             float r = this.random(10);
             if (r <= this.chance_repro) {
-                //System.out.println("Asexes can occur");
                 Vehicle v = Genetics.produceVehicleAsexually(this.sel_method, this.n_for_sel, this.vehicleVector, this.sim.log);
                 if (v == null) {
                     return;
@@ -194,15 +202,27 @@ public class SimulatonEngine extends PApplet {
         }
     }
 
+    /**
+     * Pause the simulation
+     *
+     */
     public void pause() {
         System.out.println("Paused!");
         noLoop();
     }
 
+    /**
+     * Start the simulation
+     *
+     */
     public void startSim() {
         loop();
     }
 
+    /**
+     * Update the on screen message
+     *
+     */
     public void updateOnScreenMessage() {
         if (this.update_on_screen == 1) {
             if (this.curr_on_screen != null) {
@@ -214,6 +234,10 @@ public class SimulatonEngine extends PApplet {
         }
     }
 
+    /**
+     * Update the text box size
+     * @param message The message for the text box
+     */
     public void updateTextBox(String message) {
         String[] st = message.split("\n");
         if (st.length == 1) {
@@ -236,6 +260,11 @@ public class SimulatonEngine extends PApplet {
         this.text_box_width = width * 10;
     }
 
+    /**
+     * Check the mouse position to see whether or not to draw and on screen message box, and
+     * what sort of message to add if one is to be drawn
+     * 
+     */
     public void checkMouse(float x, float y, int button) {
         float xPos, yPos, axle;
         boolean on_screen = false;
@@ -288,8 +317,13 @@ public class SimulatonEngine extends PApplet {
     }
 
 
+    /**
+     * Method used to create the PImage for the background.
+     *
+     */
     void updateGround() {
-    	System.out.println("Starting to draw ground for Engine!");
+    	//Debugging
+    	//System.out.println("Starting to draw ground for Engine!");
     		
         float sum;
         int c, r, g, b;
@@ -328,26 +362,28 @@ public class SimulatonEngine extends PApplet {
                 }
             }
         }
-        System.out.println("Ground for engine drawn!");
+        //Debugging
+        //System.out.println("Ground for engine drawn!");
     }
 
+    /**
+     * Method to adjust the running speed of the vehicles to correspond to the UI slider
+     * @param percent The percent of real time at which the vehicles should be moving.
+     */
     public void adjustRunningSpeed(float percent) {
-        //for (int i = 0; i < this.num_vehicles; i++) {
-        //    this.vehicleVector.elementAt(i).updateSpeed_ofTime(percent);
-        //}
-        //this.curr_asexual_constant = (100 / percent) * this.asexual_reproduction_constant;
         frameRate(percent);
     }
 
+    /**
+     * Method to update the chance for paired mating for each of the vehicles in the simulation
+     *
+     */
     public void updateChancePairedMating() {
         for (int i = 0; i < this.num_vehicles; i++) {
             this.vehicleVector.elementAt(i).updateChanceOfMating(this.chance_repro);
         }
     }
-
-    float nonlinear(float r, float rmax) {
-        float f = (rmax - Math.min(r, rmax)) / rmax;
-        return 0.5f - 0.5f * cos(f * PI);
-    }
+    
+   
 }
 
