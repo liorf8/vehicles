@@ -1,40 +1,35 @@
 package vehicles.simulation;
+
 import vehicles.vehicle.*;
 import vehicles.environment.*;
 import vehicles.util.*;
+
 import java.io.*;
 import java.util.Iterator;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 import org.apache.xerces.dom.DocumentImpl;
 import org.apache.xml.serialize.*;
 
-
-
 /**
  * A simulation class for use in the Simulation Editor, essentially a wrapper around some
- * XML generation and manipulation. Moddelled on Karls EditorVehicle class 
- * @author Shaun
+ * XML generation and manipulation. Modelled on Karls EditorVehicle class
  *
+ * @author Shaun
  */
+public class EditorSimulation extends Simulation {
 
-public class EditorSimulation extends Simulation{
-	Document  xmldoc; //the XML document we are creating, stored as an object in memory
-	Element root;//the root element of the document
+	Document xmldoc;    //the XML document we are creating, stored as an object in memory
+	Element root;       //the root element of the document
 
-	/**
-	 * Write an element into an XML file
-	 * @param elemName The name of the attribute
-	 * @param elemValue The value for this attribute
-	 * @param xmldoc The document to write into
-	 */
-	public void writeXMLEntry(String elemName, String elemValue, Document xmldoc){
-		Element nameElement = xmldoc.createElement(elemName);
-		Text nameText = xmldoc.createTextNode(elemValue);
-		nameElement.appendChild(nameText);//add in the text to the element
-		root.appendChild(nameElement);//and add this new element to the document
-
+    /**
+     * Default Constructor for creating a new EditorSimulation object
+     */
+    public EditorSimulation(){
+		xmldoc = new DocumentImpl();
+		root = xmldoc.createElement("Simulation");
 	}
 
 	/**
@@ -43,19 +38,30 @@ public class EditorSimulation extends Simulation{
 	 */
 	public EditorSimulation(String fileName){
 		super(fileName);
-		xmldoc= new DocumentImpl();
+		xmldoc = new DocumentImpl();
 		root = xmldoc.createElement("Simulation");		
 	}
 
-	public EditorSimulation(){
-		xmldoc= new DocumentImpl();
-		root = xmldoc.createElement("Simulation");
-	}
+
 
 	public EditorSimulation(String fileName, boolean newSim){
 		this.xmlLocation = fileName;
-		xmldoc= new DocumentImpl();
+		xmldoc = new DocumentImpl();
 		root = xmldoc.createElement("Simulation");
+	}
+
+    /**
+	 * Write an element into an XML file
+	 * @param elemName The name of the attribute
+	 * @param elemValue The value for this attribute
+	 * @param xmldoc The document to write into
+	 */
+	public void writeXMLEntry(String elemName, String elemValue, Document xmldoc){
+		Element nameElement = xmldoc.createElement(elemName);
+		Text nameText = xmldoc.createTextNode(elemValue);
+		nameElement.appendChild(nameText);  //add in the text to the element
+		root.appendChild(nameElement);      //and add this new element to the document
+
 	}
 
 	/**
@@ -115,52 +121,55 @@ public class EditorSimulation extends Simulation{
 	 * will save the vehicle object as it is to disk, so make sure it's only called when we're finished
 	 * with it
 	 */
-	public void saveSimulation(){
+	public void saveSimulation() {
+        
 		if (!this.isSaveable()){
 			System.out.println("Simulation Not saveable yet");
 			return;
 		}
 
-		try{
-			/*** Form the XML document by saving the various attributes ***/
-			//Add the simulation name
+		try {
+			/* Form the XML document by saving the various attributes */
+			// Add the simulation name
 			this.addString("Name", this.simulationName);
-			//add the author name
+			// Add the author name
 			this.addString("Author", this.author);
-			//add the description
+			// Add the description
 			this.addString("Description", this.description);
-			//add modified data stamp
+			// Add modified data stamp
 			this.addLastModified();
-			//add the vehicle file paths
+			// Add the vehicle file paths
 			Iterator it = this.vehicles.iterator();
 			while(it.hasNext()){
 				this.addVehiclePath((Vehicle)it.next());
 			}
-			//add the environment file path
+			// Add the environment file path
 			this.addString("EnvironmentPath", this.enviro.getFileLocation());
-			//add perishable vehicles
+			// Add perishable vehicles
 			this.addBoolean("perishable_vehicles", this.perishable_vehicles);
-			//Add evolution
+			// Add evolution
 			this.addBoolean("evolution", this.evolution);
-			//Add Genetic Selection Mehod
+			// Add Genetic Selection Mehod
 			this.addInteger("genetic_selection_method", this.gen_selection);
-			//Add Reproduction Method
+			// Add Reproduction Method
 			this.addInteger("reproduction_method", this.repro_method);
-			//add N for genetic selection
+			// Add N for genetic selection
 			this.addInteger("n_for_selection", this.n);
 
-			xmldoc.appendChild(root); //finalise the XML document
-			/*Now take the file in RAM and write it out to disk*/
+			xmldoc.appendChild(root); // Finalise the XML document
+            
+			/* Now take the file in RAM and write it out to disk */
 			FileOutputStream fos = new FileOutputStream(xmlLocation);
 			OutputFormat of = new OutputFormat("XML","ISO-8859-1",true);
 			of.setLineWidth(Integer.MAX_VALUE);
-			XMLSerializer serializer = new XMLSerializer(fos,of);//prepare a serialiser for
-			//generating XML documents
-			// As a DOMSerializer
+
+            /* prepare a serialiser for generating XML documents a s a DOMSerializer */
+			XMLSerializer serializer = new XMLSerializer(fos,of);
 			serializer.asDOMSerializer();
-			serializer.serialize( xmldoc.getDocumentElement() );//get the root element and start writing
+			serializer.serialize( xmldoc.getDocumentElement() ); // Get the root element and start writing
+
 			fos.close();
-		}catch(Exception e ){
+		} catch(Exception e ) {
 			e.printStackTrace();
 		}
 	}

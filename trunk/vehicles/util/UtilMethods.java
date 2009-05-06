@@ -27,7 +27,6 @@ public class UtilMethods {
 		int count = 0;
 		for(int i =0; i < files.length;i++){
 			if(files[i].isFile() && files[i].toString().endsWith(".veh")){ // if current entry is a vehicle file
-				//System.out.println(files[i].toString());
 				v.add(new EditorVehicle(files[i].toString(),true)); //create an object from the XML in this file
 				count++;
 			}
@@ -296,7 +295,6 @@ public class UtilMethods {
 		es.setPerishableVehicles(false);
 		es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle1.veh");
 		es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle2.veh");
-		//es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle2.veh");
 		es.setEnvironment("xml" + File.separator  + "environments" + File.separator + "default_environment1.env");
 		es.saveSimulation();
 		System.out.println("Creating " + path);
@@ -313,7 +311,6 @@ public class UtilMethods {
 		es.setPerishableVehicles(false);
 		es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle1.veh");
 		es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle2.veh");
-		//es.addVehicle("xml" + File.separator + "vehicles" + File.separator + "default_vehicle2.veh");
 		es.setEnvironment("xml" + File.separator  + "environments" + File.separator + "default_environment2.env");
 		es.saveSimulation();
 		System.out.println("Creating "+path);
