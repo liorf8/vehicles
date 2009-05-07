@@ -384,10 +384,12 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 								float r = this.parent.random(10);
 								if(r <= chance_to_mate){ 
 									this.mate(temp);
-									this.depleteBatt();
-									this.checkBattery();
-									temp.depleteBatt();
-									temp.checkBattery();
+									if(this.canDie){
+										this.depleteBatt();
+										this.checkBattery();
+										temp.depleteBatt();
+										temp.checkBattery();
+									}
 									size = engineParent.num_vehicles;
 								}
 							}
@@ -415,8 +417,8 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 				}
 			}
 			catch(Exception e){
-				//e.printStackTrace();
-				return;
+				e.printStackTrace();
+				//return;
 			}
 			//update the number of vehicles
 			size = engineParent.num_vehicles;
