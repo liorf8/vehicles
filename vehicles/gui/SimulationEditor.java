@@ -975,7 +975,9 @@ public class SimulationEditor extends javax.swing.JFrame {
         s.setGeneticSelectionMethod(g.getValue());
         ReproductionMethod r = (ReproductionMethod) dropdown_ReproductionMethod.getSelectedItem();
         s.setReproductionMethod(r.getValue());
-        s.setN(Integer.parseInt(text_GeneticSelectionN.getText()));
+        if(evolution && (g.getValue() == 2 || g.getValue() == 3) && r.getName().equals("Asexual")){
+        	s.setN(Integer.parseInt(text_GeneticSelectionN.getText()));
+        }
 		s.saveSimulation(); //convert object and its attributes into XML
         String lastModified = s.getLastModified();
         appRoot.setSimulationArray();
@@ -1012,7 +1014,9 @@ public class SimulationEditor extends javax.swing.JFrame {
         s.setGeneticSelectionMethod(g.getValue());
         ReproductionMethod r = (ReproductionMethod) dropdown_ReproductionMethod.getSelectedItem();
         s.setReproductionMethod(r.getValue());
-        s.setN(Integer.parseInt(text_GeneticSelectionN.getText()));
+        if(evolution && (g.getValue() == 2 || g.getValue() == 3) && r.getName().equals("Asexual")){
+        	s.setN(Integer.parseInt(text_GeneticSelectionN.getText()));
+        }
 		s.saveSimulation(); //convert object and its attributes into XML
         String lastModified = s.getLastModified();
         appRoot.setSimulationArray();

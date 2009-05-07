@@ -388,6 +388,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 									this.checkBattery();
 									temp.depleteBatt();
 									temp.checkBattery();
+									size = engineParent.num_vehicles;
 								}
 							}
 						}
@@ -402,6 +403,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 							engineParent.sim.log.addToLog("Vehicle " + this.getName() + " stole " +
 									batt_to_steal + "energy from Vehicle " + temp.getName() +
 									"\nVehicle " + this.getName() + " current battery charge is now " + this.curr_battery);
+							size = engineParent.num_vehicles;
 						}
 						da = PApplet.atan2(dy, dx);
 						x = x + PApplet.cos(da) * axleHalf;
