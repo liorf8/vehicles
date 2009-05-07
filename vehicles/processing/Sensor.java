@@ -4,6 +4,7 @@ import processing.core.*;
 import java.util.Iterator;
 import vehicles.vehicle.MemoryUnit;
 import vehicles.processing.ProcessingEnviroElement;
+import vehicles.environment.Point;
 
 /**
  *
@@ -118,7 +119,29 @@ public class Sensor implements PConstants {
 			}
 		}
 		if(!light && !heat && !water && !power){
-			//TODO Implement memory search here, old memory search algorithm was wrong
+			int l = memu.numItems();
+			if(l != 0){
+				int ran = (int)this.parent.random(l);
+				Point[] points = memu.getPoints();
+				double xP = points[ran].getXpos();
+				double yP = points[ran].getYpos();
+				total_intensity = (memu.getIntensityOfElementAt(xP, yP)) / 100;
+				int type = memu.getTypeOfElementAt(xP, yP);
+				switch(type){
+				case ProcessingEnviroElement.PowerSource:
+					total_intensity = total_intensity / (this.power * 10);
+					break;
+				case ProcessingEnviroElement.HeatSource:
+					total_intensity = total_intensity / (this.heat * 10);
+					break;
+				case ProcessingEnviroElement.LightSource:
+					total_intensity = total_intensity / (this.light * 10);
+					break;
+				case ProcessingEnviroElement.WaterSource:
+					total_intensity = total_intensity / (this.water * 10);
+					break;
+				}
+			}
 		}
 		return total_intensity;
 	}

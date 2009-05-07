@@ -413,7 +413,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 				}
 			}
 			catch(Exception e){
-				e.printStackTrace();
+				//e.printStackTrace();
 				return;
 			}
 			//update the number of vehicles
