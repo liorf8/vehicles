@@ -395,17 +395,19 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 							}
 						}
 						else{
-							float batt_to_steal = temp.curr_battery * ((float)this.aggression / 10);
-							temp.curr_battery = temp.curr_battery - batt_to_steal;
-							temp.checkBattery();
-							this.curr_battery = this.curr_battery + batt_to_steal;
-							if(this.curr_battery > this.max_battery){
-								this.curr_battery = this.max_battery;
+							if(canDie){
+								float batt_to_steal = temp.curr_battery * ((float)this.aggression / 10);
+								temp.curr_battery = temp.curr_battery - batt_to_steal;
+								temp.checkBattery();
+								this.curr_battery = this.curr_battery + batt_to_steal;
+								if(this.curr_battery > this.max_battery){
+									this.curr_battery = this.max_battery;
+								}
+								engineParent.sim.log.addToLog("Vehicle " + this.getName() + " stole " +
+										batt_to_steal + "energy from Vehicle " + temp.getName() +
+										"\nVehicle " + this.getName() + " current battery charge is now " + this.curr_battery);
+								size = engineParent.num_vehicles;
 							}
-							engineParent.sim.log.addToLog("Vehicle " + this.getName() + " stole " +
-									batt_to_steal + "energy from Vehicle " + temp.getName() +
-									"\nVehicle " + this.getName() + " current battery charge is now " + this.curr_battery);
-							size = engineParent.num_vehicles;
 						}
 						da = PApplet.atan2(dy, dx);
 						x = x + PApplet.cos(da) * axleHalf;
@@ -450,6 +452,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 			log+= "\nToo many vehicles in simulation. Oldest vehicle moving out.\nVehicle " + pv.getName() + " has moved out!";
 			pv.die();
 		}
+		engineParent.num_vehicles = engineParent.vehicleVector.size();
 		s.addToLog(log);
 	}
 
@@ -460,6 +463,7 @@ public class ProcessingVehicle extends Vehicle implements PConstants {
 	public void die(){
 		SimulatonEngine engineParent = (SimulatonEngine) parent;
 		engineParent.vehicleVector.remove(this);
+		engineParent.num_vehicles = engineParent.vehicleVector.size();
 		this.dead = true;
 	}
 
